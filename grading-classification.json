@@ -1,0 +1,7182 @@
+{
+  "generatedAt": "2026-06-11T09:20:53.362Z",
+  "summary": {
+    "total": 673,
+    "byType": {
+      "mcq": 72,
+      "fill": 528,
+      "essay": 73
+    },
+    "byConfidence": {
+      "high": 405,
+      "medium": 91,
+      "low": 32
+    },
+    "alreadyClassified": 0,
+    "skippedNonFill": 145
+  },
+  "rows": [
+    {
+      "id": "cmq3gyc5w00098n8vpn5whsax",
+      "examId": "cg-2025-ref",
+      "type": "fill",
+      "correct": "450",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 450
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq3gyc5w000b8n8vjzw5njht",
+      "examId": "cg-2025-ref",
+      "type": "fill",
+      "correct": "132",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 132
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq3gyc5x000d8n8v2k5d174l",
+      "examId": "cg-2025-ref",
+      "type": "fill",
+      "correct": "9",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 9
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq3gyc5y000f8n8vft1ehj57",
+      "examId": "cg-2025-ref",
+      "type": "fill",
+      "correct": "64",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 64
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr3000016okaow6banxe",
+      "examId": "ref-cg-mq65nr2x-yr55qf89",
+      "type": "fill",
+      "correct": "25",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 25
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr3000036okamazkf7p4",
+      "examId": "ref-cg-mq65nr2x-yr55qf89",
+      "type": "fill",
+      "correct": "12",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 12
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr3000046okadn02zo69",
+      "examId": "ref-cg-mq65nr2x-yr55qf89",
+      "type": "fill",
+      "correct": "62,5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 62.5
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr3000056okaci5d7v5u",
+      "examId": "ref-cg-mq65nr2x-yr55qf89",
+      "type": "fill",
+      "correct": "4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 4
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr3000066okajr5be1u2",
+      "examId": "ref-cg-mq65nr2x-yr55qf89",
+      "type": "fill",
+      "correct": "25",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 25
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr3000086okankdsae7v",
+      "examId": "ref-cg-mq65nr2x-yr55qf89",
+      "type": "fill",
+      "correct": "5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr30000a6okae4vxj9v3",
+      "examId": "ref-cg-mq65nr2x-yr55qf89",
+      "type": "fill",
+      "correct": "5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr39000d6okavbulen02",
+      "examId": "set-phan-l5-all-mq65nr37-bjnhblt5",
+      "type": "fill",
+      "correct": "2",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr39000e6okaxtu9d5j0",
+      "examId": "set-phan-l5-all-mq65nr37-bjnhblt5",
+      "type": "fill",
+      "correct": "7km",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 7
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr39000f6okaj9jagxy4",
+      "examId": "set-phan-l5-all-mq65nr37-bjnhblt5",
+      "type": "fill",
+      "correct": "19,5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 19.5
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr39000g6okau5yi93hu",
+      "examId": "set-phan-l5-all-mq65nr37-bjnhblt5",
+      "type": "fill",
+      "correct": "220",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 220
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr39000h6oka3vbzabh8",
+      "examId": "set-phan-l5-all-mq65nr37-bjnhblt5",
+      "type": "fill",
+      "correct": "120",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 120
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr39000i6okau0o68wbi",
+      "examId": "set-phan-l5-all-mq65nr37-bjnhblt5",
+      "type": "fill",
+      "correct": "a) 20 học sinh; b) 5 học sinh",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          20,
+          5
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr39000j6okadrrhaexb",
+      "examId": "set-phan-l5-all-mq65nr37-bjnhblt5",
+      "type": "fill",
+      "correct": "1500000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1500000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr39000k6okaf6ar1tc7",
+      "examId": "set-phan-l5-all-mq65nr37-bjnhblt5",
+      "type": "fill",
+      "correct": "giá bao nhiêu?",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr39000l6okanusquscq",
+      "examId": "set-phan-l5-all-mq65nr37-bjnhblt5",
+      "type": "fill",
+      "correct": "lớp?",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq65nr39000m6okarrd92kyr",
+      "examId": "set-phan-l5-all-mq65nr37-bjnhblt5",
+      "type": "fill",
+      "correct": "6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6a68n9000316sysgedeid9",
+      "examId": "set-soh-nc-off-mq6a68n7-i52oma8v",
+      "type": "fill",
+      "correct": "944",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 944
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6a68n9000416syjenpi1nk",
+      "examId": "set-soh-nc-off-mq6a68n7-i52oma8v",
+      "type": "fill",
+      "correct": "1275",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1275
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6a68n9000516sygk8u5a9z",
+      "examId": "set-soh-nc-off-mq6a68n7-i52oma8v",
+      "type": "fill",
+      "correct": "x = 18",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 18
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6a68n9000616sy9l6wmm5u",
+      "examId": "set-soh-nc-off-mq6a68n7-i52oma8v",
+      "type": "fill",
+      "correct": "10712",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 10712
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6a68n9000716syuqjwk7x3",
+      "examId": "set-soh-nc-off-mq6a68n7-i52oma8v",
+      "type": "fill",
+      "correct": "232 và 63",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          232,
+          63
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6a68n9000816syl86rlgrl",
+      "examId": "set-soh-nc-off-mq6a68n7-i52oma8v",
+      "type": "fill",
+      "correct": "000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l4-01",
+      "examId": null,
+      "type": "fill",
+      "correct": "55",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 55
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l4-03",
+      "examId": null,
+      "type": "fill",
+      "correct": "8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l4-05",
+      "examId": null,
+      "type": "fill",
+      "correct": "0",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l4-06",
+      "examId": null,
+      "type": "fill",
+      "correct": "29",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 29
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l4-07",
+      "examId": null,
+      "type": "fill",
+      "correct": "72",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 72
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l4-08",
+      "examId": null,
+      "type": "fill",
+      "correct": "60",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 60
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l4-09",
+      "examId": null,
+      "type": "fill",
+      "correct": "40",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 40
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l4-10",
+      "examId": null,
+      "type": "fill",
+      "correct": "15",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 15
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l4-12",
+      "examId": null,
+      "type": "fill",
+      "correct": "30",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 30
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l4-13",
+      "examId": null,
+      "type": "fill",
+      "correct": "20",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 20
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l5-01",
+      "examId": null,
+      "type": "fill",
+      "correct": "25",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 25
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l5-02",
+      "examId": null,
+      "type": "fill",
+      "correct": "12,5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 12.5
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l5-04",
+      "examId": null,
+      "type": "fill",
+      "correct": "45,7",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 45.7
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l5-05",
+      "examId": null,
+      "type": "fill",
+      "correct": "132,8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 132.8
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l5-06",
+      "examId": null,
+      "type": "fill",
+      "correct": "3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l5-07",
+      "examId": null,
+      "type": "fill",
+      "correct": "10",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 10
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l5-08",
+      "examId": null,
+      "type": "fill",
+      "correct": "7,2",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 7.2
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l5-09",
+      "examId": null,
+      "type": "fill",
+      "correct": "3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l5-11",
+      "examId": null,
+      "type": "fill",
+      "correct": "15",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 15
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l5-12",
+      "examId": null,
+      "type": "fill",
+      "correct": "4,1",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 4.1
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l5-13",
+      "examId": null,
+      "type": "fill",
+      "correct": "10",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 10
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l45-01",
+      "examId": null,
+      "type": "fill",
+      "correct": "2,5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2.5
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l45-02",
+      "examId": null,
+      "type": "fill",
+      "correct": "18",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 18
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l45-03",
+      "examId": null,
+      "type": "fill",
+      "correct": "24",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 24
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l45-04",
+      "examId": null,
+      "type": "fill",
+      "correct": "120",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 120
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l45-05",
+      "examId": null,
+      "type": "fill",
+      "correct": "90",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 90
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l45-06",
+      "examId": null,
+      "type": "fill",
+      "correct": "100",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 100
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l45-07",
+      "examId": null,
+      "type": "fill",
+      "correct": "2,5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2.5
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l45-08",
+      "examId": null,
+      "type": "fill",
+      "correct": "8,4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8.4
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l45-09",
+      "examId": null,
+      "type": "fill",
+      "correct": "80",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 80
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l45-10",
+      "examId": null,
+      "type": "fill",
+      "correct": "450",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 450
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l45-11",
+      "examId": null,
+      "type": "fill",
+      "correct": "3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-l45-12",
+      "examId": null,
+      "type": "fill",
+      "correct": "4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 4
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-nc-01",
+      "examId": null,
+      "type": "fill",
+      "correct": "104",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 104
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-nc-02",
+      "examId": null,
+      "type": "fill",
+      "correct": "5050",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5050
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-nc-04",
+      "examId": null,
+      "type": "fill",
+      "correct": "7",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 7
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-nc-05",
+      "examId": null,
+      "type": "fill",
+      "correct": "2027",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2027
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-nc-06",
+      "examId": null,
+      "type": "fill",
+      "correct": "1/100",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.01,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-nc-07",
+      "examId": null,
+      "type": "fill",
+      "correct": "2430",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2430
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-nc-08",
+      "examId": null,
+      "type": "fill",
+      "correct": "37",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 37
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-nc-09",
+      "examId": null,
+      "type": "fill",
+      "correct": "85",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 85
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-nc-10",
+      "examId": null,
+      "type": "fill",
+      "correct": "1",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-nc-11",
+      "examId": null,
+      "type": "fill",
+      "correct": "5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-soh-nc-12",
+      "examId": null,
+      "type": "fill",
+      "correct": "5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l4-02",
+      "examId": null,
+      "type": "fill",
+      "correct": "4/5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.8,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l4-04",
+      "examId": null,
+      "type": "fill",
+      "correct": "1/6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.16666666666666666,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l4-05",
+      "examId": null,
+      "type": "fill",
+      "correct": "60",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 60
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l4-06",
+      "examId": null,
+      "type": "fill",
+      "correct": "10",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 10
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l4-07",
+      "examId": null,
+      "type": "fill",
+      "correct": "24",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 24
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l4-08",
+      "examId": null,
+      "type": "fill",
+      "correct": "3/4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.75,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l4-09",
+      "examId": null,
+      "type": "fill",
+      "correct": "2/3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.6666666666666666,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l4-11",
+      "examId": null,
+      "type": "fill",
+      "correct": "3/2",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1.5,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l4-12",
+      "examId": null,
+      "type": "fill",
+      "correct": "7/8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.875,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l4-13",
+      "examId": null,
+      "type": "fill",
+      "correct": "30",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 30
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l5-01",
+      "examId": null,
+      "type": "fill",
+      "correct": "60%",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 60
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l5-02",
+      "examId": null,
+      "type": "fill",
+      "correct": "20%",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 20
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l5-03",
+      "examId": null,
+      "type": "fill",
+      "correct": "3/4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.75,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l5-04",
+      "examId": null,
+      "type": "fill",
+      "correct": "40",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 40
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l5-05",
+      "examId": null,
+      "type": "fill",
+      "correct": "15",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 15
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l5-07",
+      "examId": null,
+      "type": "fill",
+      "correct": "42%",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 42
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l5-08",
+      "examId": null,
+      "type": "fill",
+      "correct": "40",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 40
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l5-09",
+      "examId": null,
+      "type": "fill",
+      "correct": "45",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 45
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l5-10",
+      "examId": null,
+      "type": "fill",
+      "correct": "2,5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2.5
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l5-11",
+      "examId": null,
+      "type": "fill",
+      "correct": "25",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 25
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l5-12",
+      "examId": null,
+      "type": "fill",
+      "correct": "5000000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5000000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l5-13",
+      "examId": null,
+      "type": "fill",
+      "correct": "1/2",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.5,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l45-01",
+      "examId": null,
+      "type": "fill",
+      "correct": "60",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 60
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l45-02",
+      "examId": null,
+      "type": "fill",
+      "correct": "3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l45-04",
+      "examId": null,
+      "type": "fill",
+      "correct": "40",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 40
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l45-05",
+      "examId": null,
+      "type": "fill",
+      "correct": "5/6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.8333333333333334,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l45-06",
+      "examId": null,
+      "type": "fill",
+      "correct": "288000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 288000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l45-07",
+      "examId": null,
+      "type": "fill",
+      "correct": "1",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l45-08",
+      "examId": null,
+      "type": "fill",
+      "correct": "0,2",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.2
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l45-10",
+      "examId": null,
+      "type": "fill",
+      "correct": "31/32",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.96875,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l45-11",
+      "examId": null,
+      "type": "fill",
+      "correct": "3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-l45-12",
+      "examId": null,
+      "type": "fill",
+      "correct": "160",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 160
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-nc-01",
+      "examId": null,
+      "type": "fill",
+      "correct": "99/100",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.99,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-nc-02",
+      "examId": null,
+      "type": "fill",
+      "correct": "20%",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 20
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-nc-03",
+      "examId": null,
+      "type": "fill",
+      "correct": "42",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 42
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-nc-05",
+      "examId": null,
+      "type": "fill",
+      "correct": "32/99",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.32323232323232326,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-nc-06",
+      "examId": null,
+      "type": "fill",
+      "correct": "80",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 80
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-nc-07",
+      "examId": null,
+      "type": "fill",
+      "correct": "64%",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 64
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-nc-08",
+      "examId": null,
+      "type": "fill",
+      "correct": "40",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 40
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-nc-09",
+      "examId": null,
+      "type": "fill",
+      "correct": "364/729",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.4993141289437586,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-nc-10",
+      "examId": null,
+      "type": "fill",
+      "correct": "8%",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-nc-11",
+      "examId": null,
+      "type": "fill",
+      "correct": "60",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 60
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "supp-phan-nc-12",
+      "examId": null,
+      "type": "fill",
+      "correct": "11/20",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.55,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6sw00q000c16syxgqqdn5n",
+      "examId": "set-log-l4-all-mq6sw00f-htmfircg",
+      "type": "fill",
+      "correct": "cuốn",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6sw00r000f16sybk7gcru1",
+      "examId": "set-log-l4-all-mq6sw00f-htmfircg",
+      "type": "fill",
+      "correct": "70 hình",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 70
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6sw00r000g16sypz4eol1h",
+      "examId": "set-log-l4-all-mq6sw00f-htmfircg",
+      "type": "fill",
+      "correct": "Màu đỏ",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6sw00r000h16sywq0vo7vi",
+      "examId": "set-log-l4-all-mq6sw00f-htmfircg",
+      "type": "fill",
+      "correct": "6 xe xích lô",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6sw00r000i16sy3mad0um4",
+      "examId": "set-log-l4-all-mq6sw00f-htmfircg",
+      "type": "fill",
+      "correct": "8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6sw00r000j16syx1znswa4",
+      "examId": "set-log-l4-all-mq6sw00f-htmfircg",
+      "type": "fill",
+      "correct": "Thứ Ba",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6szs2e000m16syaaa5lnhh",
+      "examId": "set-phan-l4-all-mq6szs29-8engkspq",
+      "type": "fill",
+      "correct": "52 53",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          52,
+          53
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6szs2e000n16sy1iu0fl2b",
+      "examId": "set-phan-l4-all-mq6szs29-8engkspq",
+      "type": "fill",
+      "correct": "học sinh",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6szs2e000o16sy3r4058r0",
+      "examId": "set-phan-l4-all-mq6szs29-8engkspq",
+      "type": "fill",
+      "correct": "học sinh nữ",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6szs2e000p16sy4c9r646n",
+      "examId": "set-phan-l4-all-mq6szs29-8engkspq",
+      "type": "fill",
+      "correct": "33",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 33
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6szs2e000q16syh3yn3aow",
+      "examId": "set-phan-l4-all-mq6szs29-8engkspq",
+      "type": "fill",
+      "correct": "x=4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 4
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6szs2e000r16syxdolmeh2",
+      "examId": "set-phan-l4-all-mq6szs29-8engkspq",
+      "type": "fill",
+      "correct": "363 và 484",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          363,
+          484
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6szs2e000t16sy6jgft3xc",
+      "examId": "set-phan-l4-all-mq6szs29-8engkspq",
+      "type": "fill",
+      "correct": "5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6t05xe000w16sy6s3ag5kf",
+      "examId": "set-phan-l4-sup-mq6t05xa-9mabmayn",
+      "type": "fill",
+      "correct": "3/4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.75,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6t05xe000x16syfsmbpsli",
+      "examId": "set-phan-l4-sup-mq6t05xa-9mabmayn",
+      "type": "fill",
+      "correct": "24",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 24
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6t05xe000z16syzcaw7k2j",
+      "examId": "set-phan-l4-sup-mq6t05xa-9mabmayn",
+      "type": "fill",
+      "correct": "7/8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.875,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6t05xe001016syvetx7lvy",
+      "examId": "set-phan-l4-sup-mq6t05xa-9mabmayn",
+      "type": "fill",
+      "correct": "1/6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.16666666666666666,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6t05xe001116sydnv9auui",
+      "examId": "set-phan-l4-sup-mq6t05xa-9mabmayn",
+      "type": "fill",
+      "correct": "30",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 30
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6t05xe001216sy2a7js7hn",
+      "examId": "set-phan-l4-sup-mq6t05xa-9mabmayn",
+      "type": "fill",
+      "correct": "10",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 10
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6tdley001a16sy0mcphv9n",
+      "examId": "set-phan-mix-sup-mq6tdlet-7lsdu7tb",
+      "type": "fill",
+      "correct": "40",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 40
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6tdlez001c16syn3u7c3m1",
+      "examId": "set-phan-mix-sup-mq6tdlet-7lsdu7tb",
+      "type": "fill",
+      "correct": "60",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 60
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6tdlez001d16sypmvbnmjo",
+      "examId": "set-phan-mix-sup-mq6tdlet-7lsdu7tb",
+      "type": "fill",
+      "correct": "3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6tdlez001e16sye0qmfvyc",
+      "examId": "set-phan-mix-sup-mq6tdlet-7lsdu7tb",
+      "type": "fill",
+      "correct": "25",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 25
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6tdlez001g16synrhkzdpb",
+      "examId": "set-phan-mix-sup-mq6tdlet-7lsdu7tb",
+      "type": "fill",
+      "correct": "64%",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 64
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6tdlez001i16symb45ccbl",
+      "examId": "set-phan-mix-sup-mq6tdlet-7lsdu7tb",
+      "type": "fill",
+      "correct": "5000000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5000000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "cmq6tdlez001j16sy52gq5eb2",
+      "examId": "set-phan-mix-sup-mq6tdlet-7lsdu7tb",
+      "type": "fill",
+      "correct": "42%",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 42
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2019-20-C1",
+      "examId": "cg-2019",
+      "type": "fill",
+      "correct": "5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2019-20-C2",
+      "examId": "cg-2019",
+      "type": "fill",
+      "correct": "55",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 55
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2019-20-C3",
+      "examId": "cg-2019",
+      "type": "fill",
+      "correct": "2020",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2020
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2019-20-C4",
+      "examId": "cg-2019",
+      "type": "fill",
+      "correct": "5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2019-20-C5",
+      "examId": "cg-2019",
+      "type": "fill",
+      "correct": "198",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 198
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2019-20-C6",
+      "examId": "cg-2019",
+      "type": "fill",
+      "correct": "16",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 16
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2019-20-C7",
+      "examId": "cg-2019",
+      "type": "fill",
+      "correct": "0,2424",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.2424
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2019-20-C8",
+      "examId": "cg-2019",
+      "type": "fill",
+      "correct": "27",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 27
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2020-21-C1",
+      "examId": "cg-2020",
+      "type": "fill",
+      "correct": "4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 4
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2020-21-C2",
+      "examId": "cg-2020",
+      "type": "fill",
+      "correct": "37",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 37
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2020-21-C3",
+      "examId": "cg-2020",
+      "type": "fill",
+      "correct": "270000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 270000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2020-21-C4",
+      "examId": "cg-2020",
+      "type": "fill",
+      "correct": "216",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 216
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2020-21-C5",
+      "examId": "cg-2020",
+      "type": "fill",
+      "correct": "30",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 30
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2020-21-C6",
+      "examId": "cg-2020",
+      "type": "fill",
+      "correct": "25",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 25
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2020-21-C7",
+      "examId": "cg-2020",
+      "type": "fill",
+      "correct": "25",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 25
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2020-21-C8",
+      "examId": "cg-2020",
+      "type": "fill",
+      "correct": "116",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 116
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2021-22-C1",
+      "examId": "cg-2021",
+      "type": "fill",
+      "correct": "62,5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 62.5
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2021-22-C2",
+      "examId": "cg-2021",
+      "type": "fill",
+      "correct": "3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2021-22-C3",
+      "examId": "cg-2021",
+      "type": "fill",
+      "correct": "36",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 36
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2021-22-C4",
+      "examId": "cg-2021",
+      "type": "fill",
+      "correct": "36",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 36
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2021-22-C5",
+      "examId": "cg-2021",
+      "type": "fill",
+      "correct": "19,5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 19.5
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2021-22-C6",
+      "examId": "cg-2021",
+      "type": "fill",
+      "correct": "16",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 16
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2021-22-C7",
+      "examId": "cg-2021",
+      "type": "fill",
+      "correct": "25",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 25
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2021-22-C8",
+      "examId": "cg-2021",
+      "type": "fill",
+      "correct": "6,28",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6.28
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2022-23-C5",
+      "examId": "cg-2022",
+      "type": "fill",
+      "correct": "6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2022-23-C6",
+      "examId": "cg-2022",
+      "type": "fill",
+      "correct": "600",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 600
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2022-23-C7",
+      "examId": "cg-2022",
+      "type": "fill",
+      "correct": "5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2022-23-C8",
+      "examId": "cg-2022",
+      "type": "fill",
+      "correct": "25,12",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 25.12
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2023-24-C5",
+      "examId": "cg-2023",
+      "type": "fill",
+      "correct": "63",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 63
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2023-24-C6",
+      "examId": "cg-2023",
+      "type": "fill",
+      "correct": "16",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 16
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2023-24-C7",
+      "examId": "cg-2023",
+      "type": "fill",
+      "correct": "12",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 12
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2023-24-C8",
+      "examId": "cg-2023",
+      "type": "fill",
+      "correct": "3,44",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3.44
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2024-25-C1",
+      "examId": "cg-2024",
+      "type": "fill",
+      "correct": "1",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2024-25-C2",
+      "examId": "cg-2024",
+      "type": "fill",
+      "correct": "1350",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1350
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2024-25-C3",
+      "examId": "cg-2024",
+      "type": "fill",
+      "correct": "37,5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 37.5
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2024-25-C4",
+      "examId": "cg-2024",
+      "type": "fill",
+      "correct": "300",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 300
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2024-25-C5",
+      "examId": "cg-2024",
+      "type": "fill",
+      "correct": "360",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 360
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2024-25-C6",
+      "examId": "cg-2024",
+      "type": "fill",
+      "correct": "60",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 60
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2024-25-C7",
+      "examId": "cg-2024",
+      "type": "fill",
+      "correct": "30,96",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 30.96
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2024-25-C8",
+      "examId": "cg-2024",
+      "type": "fill",
+      "correct": "6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2025-26-C1",
+      "examId": "cg-2025",
+      "type": "fill",
+      "correct": "10,12",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 10.12
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2025-26-C2",
+      "examId": "cg-2025",
+      "type": "fill",
+      "correct": "42",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 42
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2025-26-C3",
+      "examId": "cg-2025",
+      "type": "fill",
+      "correct": "60",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 60
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2025-26-C4",
+      "examId": "cg-2025",
+      "type": "fill",
+      "correct": "864",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 864
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2025-26-C5",
+      "examId": "cg-2025",
+      "type": "fill",
+      "correct": "8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2025-26-C6",
+      "examId": "cg-2025",
+      "type": "fill",
+      "correct": "15",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 15
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2025-26-C7",
+      "examId": "cg-2025",
+      "type": "fill",
+      "correct": "48",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 48
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2025-26-C8",
+      "examId": "cg-2025",
+      "type": "fill",
+      "correct": "8000000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8000000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2018-19-C5",
+      "examId": "ntt-2018",
+      "type": "fill",
+      "correct": "45",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 45
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2018-19-C6",
+      "examId": "ntt-2018",
+      "type": "fill",
+      "correct": "5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2018-19-C7",
+      "examId": "ntt-2018",
+      "type": "fill",
+      "correct": "(",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2018-19-C8",
+      "examId": "ntt-2018",
+      "type": "fill",
+      "correct": "2",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2018-19-C9",
+      "examId": "ntt-2018",
+      "type": "fill",
+      "correct": "giá bao nhiêu?",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2018-19-C10",
+      "examId": "ntt-2018",
+      "type": "fill",
+      "correct": "là bao nhiêu?",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2019-20-C1",
+      "examId": "ntt-2019",
+      "type": "fill",
+      "correct": "Siêu thị",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2019-20-C2",
+      "examId": "ntt-2019",
+      "type": "fill",
+      "correct": "Thứ năm",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2019-20-C3",
+      "examId": "ntt-2019",
+      "type": "fill",
+      "correct": "cục sắt",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2019-20-C4",
+      "examId": "ntt-2019",
+      "type": "fill",
+      "correct": "1260",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1260
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2019-20-C5",
+      "examId": "ntt-2019",
+      "type": "fill",
+      "correct": "một số bằng",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2019-20-C6",
+      "examId": "ntt-2019",
+      "type": "fill",
+      "correct": "được mấy vòng?",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2019-20-C7",
+      "examId": "ntt-2019",
+      "type": "fill",
+      "correct": "4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 4
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2019-20-C8",
+      "examId": "ntt-2019",
+      "type": "fill",
+      "correct": "2",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2019-20-C9",
+      "examId": "ntt-2019",
+      "type": "fill",
+      "correct": "phút",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2019-20-C10",
+      "examId": "ntt-2019",
+      "type": "fill",
+      "correct": "15",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 15
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2020-21-C1",
+      "examId": "ntt-2020",
+      "type": "fill",
+      "correct": "25%",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 25
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2020-21-C2",
+      "examId": "ntt-2020",
+      "type": "fill",
+      "correct": "4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 4
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2020-21-C3",
+      "examId": "ntt-2020",
+      "type": "fill",
+      "correct": "46",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 46
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2020-21-C4",
+      "examId": "ntt-2020",
+      "type": "fill",
+      "correct": "120",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 120
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2020-21-C5",
+      "examId": "ntt-2020",
+      "type": "fill",
+      "correct": "160",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 160
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2020-21-C6",
+      "examId": "ntt-2020",
+      "type": "fill",
+      "correct": "trên thế giới?",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2020-21-C7",
+      "examId": "ntt-2020",
+      "type": "fill",
+      "correct": "gà?",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2020-21-C8",
+      "examId": "ntt-2020",
+      "type": "fill",
+      "correct": "1",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2020-21-C9",
+      "examId": "ntt-2020",
+      "type": "fill",
+      "correct": "3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2022-23-C5",
+      "examId": "ntt-2022",
+      "type": "fill",
+      "correct": "675",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 675
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2022-23-C6",
+      "examId": "ntt-2022",
+      "type": "fill",
+      "correct": "25",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 25
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2022-23-C7",
+      "examId": "ntt-2022",
+      "type": "fill",
+      "correct": "1500000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1500000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2022-23-C8",
+      "examId": "ntt-2022",
+      "type": "fill",
+      "correct": "72",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 72
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2023-24-C5",
+      "examId": "ntt-2023",
+      "type": "fill",
+      "correct": "21,7",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 21.7
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2023-24-C6",
+      "examId": "ntt-2023",
+      "type": "fill",
+      "correct": "đồng",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2023-24-C7",
+      "examId": "ntt-2023",
+      "type": "fill",
+      "correct": "640 245",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          640,
+          245
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2023-24-C8",
+      "examId": "ntt-2023",
+      "type": "fill",
+      "correct": "6,28",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6.28
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2023-24-C9",
+      "examId": "ntt-2023",
+      "type": "fill",
+      "correct": "a) 12 km/giờ;",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 12
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2024-25-C7",
+      "examId": "ntt-2024",
+      "type": "fill",
+      "correct": "15",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 15
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2024-25-C8",
+      "examId": "ntt-2024",
+      "type": "fill",
+      "correct": "8 ngày",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2024-25-C9",
+      "examId": "ntt-2024",
+      "type": "fill",
+      "correct": "30km",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 30
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2024-25-C10",
+      "examId": "ntt-2024",
+      "type": "fill",
+      "correct": "75",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 75
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2024-25-C11",
+      "examId": "ntt-2024",
+      "type": "fill",
+      "correct": "a) 20 học sinh; b) 5 học sinh",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          20,
+          5
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2024-25-C12",
+      "examId": "ntt-2024",
+      "type": "fill",
+      "correct": "a) SABCD = 180cm ;",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 180
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2025-26-C9",
+      "examId": "ntt-2025",
+      "type": "fill",
+      "correct": "5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2025-26-C10",
+      "examId": "ntt-2025",
+      "type": "fill",
+      "correct": "68",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 68
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2025-26-C11",
+      "examId": "ntt-2025",
+      "type": "fill",
+      "correct": "28",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 28
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2025-26-C12",
+      "examId": "ntt-2025",
+      "type": "fill",
+      "correct": "62",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 62
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C1",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "19",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 19
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C2",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 4
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C3",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 4
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C4",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "Dư 1",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C5",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "x = 21",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 21
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C6",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "36",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 36
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C7",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "9 xe đạp và 6 xe xích lô",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          9,
+          6
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C8",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "2 và 13",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          2,
+          13
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C9",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "A = 1",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C10",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "10",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 10
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C11",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "21%",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 21
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C12",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "21",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 21
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C13",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C14",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "521",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 521
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C15",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "13",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 13
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C16",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "120/11",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 10.909090909090908,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C17",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C18",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "1331",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1331
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C19",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "Chủ nhật",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2011-12-C20",
+      "examId": "ltv-2011",
+      "type": "fill",
+      "correct": "25/26; 26/27; 51/52; 52/53",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          0.9615384615384616,
+          0.9629629629629629,
+          0.9807692307692307,
+          0.9811320754716981
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C1",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "363 và 484",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          363,
+          484
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C2",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "19",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 19
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C3",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "7",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 7
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C4",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "0",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C5",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "S_ABC = 204 cm²; S_ACD = 408 cm²",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          204,
+          408
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C6",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "72",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 72
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C7",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "125%",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 125
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C8",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "9/11; 199/220; 10/11",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          0.8181818181818182,
+          0.9045454545454545,
+          0.9090909090909091
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C9",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "a = 13; b = 17; c = 20",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          13,
+          17,
+          20
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "var_equals_number_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C10",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "600/11",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 54.54545454545455,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C11",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "10,26",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 10.26
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C12",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "729",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 729
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C13",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "10 và 28",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          10,
+          28
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C14",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "100/7",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 14.285714285714286,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C15",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "12,8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 12.8
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C16",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "Lớp 6A: 27 học sinh; Lớp 6B: 36 học sinh",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          6,
+          27,
+          6,
+          36
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C17",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "17 và 19 hoặc 19 và 21",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          17,
+          19,
+          19,
+          21
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C18",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "x = 5/3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1.6666666666666667
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C19",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "a = b = 72; c = 36",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          72,
+          36
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2012-13-C20",
+      "examId": "ltv-2012",
+      "type": "fill",
+      "correct": "30",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 30
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C1",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "42",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 42
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C2",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "Ngày 29 tháng 2 năm 1980",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          29,
+          2,
+          1980
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C3",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "7",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 7
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C4",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "5; 11; 17",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          5,
+          11,
+          17
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C5",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C6",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "a=8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C7",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "369; 371; 373",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          369,
+          371,
+          373
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C8",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "18,84",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 18.84
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C9",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "8 giờ 20 phút",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          8,
+          20
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C10",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "A = 5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C11",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "A = 54",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 54
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C12",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "10",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 10
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C13",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "1/2",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.5,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C14",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "A > B",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C15",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C16",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "28",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 28
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C17",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "1/89",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.011235955056179775,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C18",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "21,5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 21.5
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C19",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "34",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 34
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2013-14-C20",
+      "examId": "ltv-2013",
+      "type": "fill",
+      "correct": "99/100",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.99,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C1",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "x = 65",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 65
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C2",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "Ông: 60 tuổi; Bố: 36 tuổi; Nam: 12 tuổi",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          60,
+          36,
+          12
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C3",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "300",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 300
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C4",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "73",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 73
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C5",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "Việt: 5 cuốn; Nam: 15 cuốn; Chiến: 5 cuốn; Thắng: 30 cuốn",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          5,
+          15,
+          5,
+          30
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C6",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "2/3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.6666666666666666,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C7",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "1059",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1059
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C8",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "14",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 14
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C9",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "7 giờ 45 phút",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          7,
+          45
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C10",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "2/5; 12/25; 14/27; 5/9",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          0.4,
+          0.48,
+          0.5185185185185185,
+          0.5555555555555556
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C11",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "80",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 80
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C12",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "a = 0 và b = 0 hoặc a = 9 và b = 0",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          0,
+          0,
+          9,
+          0
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C13",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "180",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 180
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C14",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "22",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 22
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C15",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "168",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 168
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C16",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "300",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 300
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C17",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "622",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 622
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C18",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "1; 10; 100",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          1,
+          10,
+          100
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C19",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "136",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 136
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2014-15-C20",
+      "examId": "ltv-2014",
+      "type": "fill",
+      "correct": "6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2018-19-C1",
+      "examId": "ltv-2018",
+      "type": "fill",
+      "correct": "95719",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 95719
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2018-19-C2",
+      "examId": "ltv-2018",
+      "type": "fill",
+      "correct": "7820",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 7820
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2018-19-C3",
+      "examId": "ltv-2018",
+      "type": "fill",
+      "correct": "Thứ Ba",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2018-19-C4",
+      "examId": "ltv-2018",
+      "type": "fill",
+      "correct": "36",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 36
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2018-19-C5",
+      "examId": "ltv-2018",
+      "type": "fill",
+      "correct": "6,5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6.5
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2018-19-C6",
+      "examId": "ltv-2018",
+      "type": "fill",
+      "correct": "7 giờ 5 phút",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          7,
+          5
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2018-19-C7",
+      "examId": "ltv-2018",
+      "type": "fill",
+      "correct": "x = 4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 4
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2018-19-C8",
+      "examId": "ltv-2018",
+      "type": "fill",
+      "correct": "60",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 60
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2018-19-C9",
+      "examId": "ltv-2018",
+      "type": "fill",
+      "correct": "22,4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 22.4
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2018-19-C10",
+      "examId": "ltv-2018",
+      "type": "fill",
+      "correct": "5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2018-19-C11",
+      "examId": "ltv-2018",
+      "type": "fill",
+      "correct": "6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2018-19-C12",
+      "examId": "ltv-2018",
+      "type": "fill",
+      "correct": "23 năm sau",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 23
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2018-19-C13",
+      "examId": "ltv-2018",
+      "type": "fill",
+      "correct": "13,76",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 13.76
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2018-19-C14",
+      "examId": "ltv-2018",
+      "type": "fill",
+      "correct": "144",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 144
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C1",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C2",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "x = 15",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 15
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C3",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "60 và 90",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          60,
+          90
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C4",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "x = 2, y = 0",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          2,
+          0
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "var_equals_number_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C5",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "3528",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3528
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C6",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "13,5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 13.5
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C7",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "9375",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 9375
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C8",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "7/8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.875,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C9",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "9 giờ 30 phút",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          9,
+          30
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C10",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "0/2019",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C11",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "500000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 500000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C12",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "1234",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1234
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C13",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "204828",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 204828
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C14",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "Năm 2032",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2032
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C15",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "250",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 250
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C16",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "944",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 944
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C17",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "43",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 43
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C18",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "312",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 312
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C19",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "24",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 24
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2019-20-C20",
+      "examId": "ltv-2019",
+      "type": "fill",
+      "correct": "70",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 70
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C1",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "x=8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C2",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "Giảm 1,5 lần",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1.5
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C3",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "Con: 3 tuổi; Bố: 30 tuổi",
+      "suggestedSchema": {
+        "kind": "labeled",
+        "pairs": {
+          "con": 3,
+          "bo": 30
+        },
+        "aliases": {
+          "con": [
+            "con",
+            "child",
+            "son",
+            "daughter"
+          ],
+          "bo": [
+            "bo",
+            "ba",
+            "father",
+            "dad",
+            "cha"
+          ]
+        }
+      },
+      "confidence": "medium",
+      "reason": "labeled_pairs",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C4",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "13,4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 13.4
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C5",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "15 và 25",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          15,
+          25
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C6",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "67,32",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 67.32
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C7",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "36",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 36
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C8",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "400000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 400000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C9",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "A",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C10",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "9",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 9
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C11",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "2 giờ 12 phút",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          2,
+          12
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C12",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "900000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 900000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C13",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "14 850",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          14,
+          850
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C14",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "x = 0, y = 0 hoặc x = 6, y = 0",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          0,
+          0,
+          6,
+          0
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C15",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "18,84",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 18.84
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C16",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "16 con gà và 24 con vịt",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          16,
+          24
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C17",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "x = 2/7",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.2857142857142857
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C18",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "60",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 60
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C19",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "640",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 640
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2020-21-C20",
+      "examId": "ltv-2020",
+      "type": "fill",
+      "correct": "1/15",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.06666666666666667,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2021-22-C1",
+      "examId": "ltv-2021",
+      "type": "fill",
+      "correct": "8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2021-22-C2",
+      "examId": "ltv-2021",
+      "type": "fill",
+      "correct": "28%",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 28
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2021-22-C3",
+      "examId": "ltv-2021",
+      "type": "fill",
+      "correct": "11",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 11
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2021-22-C4",
+      "examId": "ltv-2021",
+      "type": "fill",
+      "correct": "38,465",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 38.465
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2021-22-C5",
+      "examId": "ltv-2021",
+      "type": "fill",
+      "correct": "Giảm 1% so với diện tích ban đầu",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2021-22-C6",
+      "examId": "ltv-2021",
+      "type": "fill",
+      "correct": "30 con trâu và 20 con bò",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          30,
+          20
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2021-22-C7",
+      "examId": "ltv-2021",
+      "type": "fill",
+      "correct": "12,5%",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 12.5
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2021-22-C8",
+      "examId": "ltv-2021",
+      "type": "fill",
+      "correct": "322",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 322
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2021-22-C9",
+      "examId": "ltv-2021",
+      "type": "fill",
+      "correct": "24",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 24
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2021-22-C10",
+      "examId": "ltv-2021",
+      "type": "fill",
+      "correct": "232 và 63",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          232,
+          63
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C1",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "7/8; 9/10; 4/3",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          0.875,
+          0.9,
+          1.3333333333333333
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C2",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "20,6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 20.6
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C3",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "4/5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.8,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C4",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "33",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 33
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C5",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "27",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 27
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C6",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "600",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 600
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C7",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C8",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "2005",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2005
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C9",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "1000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C10",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "900",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 900
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C11",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "8000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C12",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "20%",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 20
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C13",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "Hộp A",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C14",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "Hình thang thứ nhất",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C15",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "3000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C16",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "62",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 62
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C17",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "24",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 24
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C18",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "42",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 42
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C19",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "x = 66",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 66
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2022-23-C20",
+      "examId": "ltv-2022",
+      "type": "fill",
+      "correct": "45",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 45
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C1",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "a = 10",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 10
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C2",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "5760",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5760
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C3",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "125",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 125
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C4",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "48",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 48
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C5",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "5/8; 7/8; 11/12; 10/9",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          0.625,
+          0.875,
+          0.9166666666666666,
+          1.1111111111111112
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C6",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "120; 250",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          120,
+          250
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C7",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "122",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 122
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C8",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "280",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 280
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C9",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "9",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 9
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C10",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "2",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C11",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "25",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 25
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C12",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "39",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 39
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C13",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "113,04",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 113.04
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C14",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "39",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 39
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C15",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "1",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C16",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "37",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 37
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C17",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "6,88",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6.88
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C18",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "80",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 80
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C19",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2023-24-C20",
+      "examId": "ltv-2023",
+      "type": "fill",
+      "correct": "AN/AD = 1/3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.3333333333333333
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C1",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "1",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C2",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "a=6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C3",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "35",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 35
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C4",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "2,39",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2.39
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C5",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "Số lớn: 1105; Số bé: 884",
+      "suggestedSchema": {
+        "kind": "labeled",
+        "pairs": {
+          "so_lon": 1105,
+          "so_be": 884
+        },
+        "aliases": {
+          "so_lon": [
+            "so lon",
+            "so lon hon",
+            "larger"
+          ],
+          "so_be": [
+            "so be",
+            "so nho",
+            "smaller"
+          ]
+        }
+      },
+      "confidence": "medium",
+      "reason": "labeled_pairs",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C6",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "24; 26; 28; 30",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          24,
+          26,
+          28,
+          30
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C7",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "20",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 20
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C8",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "50",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 50
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C9",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "82500",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 82500
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C10",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "1300",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1300
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C11",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "1,2",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1.2
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C12",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C13",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "Mẹ 34 tuổi; Con 6 tuổi",
+      "suggestedSchema": {
+        "kind": "labeled",
+        "pairs": {
+          "con": 6,
+          "me": 34
+        },
+        "aliases": {
+          "con": [
+            "con",
+            "child",
+            "son",
+            "daughter"
+          ],
+          "me": [
+            "me",
+            "ma",
+            "mom",
+            "mother",
+            "mau"
+          ]
+        }
+      },
+      "confidence": "medium",
+      "reason": "labeled_pairs",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C14",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "3,87",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3.87
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C15",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "7531",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 7531
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C16",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "1275",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1275
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C17",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "85",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 85
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C18",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "4100 hoặc 4099",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          4100,
+          4099
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C19",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "9000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 9000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2024-25-C20",
+      "examId": "ltv-2024",
+      "type": "fill",
+      "correct": "19,5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 19.5
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2025-26-C1",
+      "examId": "ltv-2025",
+      "type": "fill",
+      "correct": "5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 5
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2025-26-C2",
+      "examId": "ltv-2025",
+      "type": "fill",
+      "correct": "100 và 102",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          100,
+          102
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2025-26-C3",
+      "examId": "ltv-2025",
+      "type": "fill",
+      "correct": "7",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 7
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2025-26-C4",
+      "examId": "ltv-2025",
+      "type": "fill",
+      "correct": "1/5",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.2,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2025-26-C5",
+      "examId": "ltv-2025",
+      "type": "fill",
+      "correct": "27",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 27
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2025-26-C6",
+      "examId": "ltv-2025",
+      "type": "fill",
+      "correct": "7km",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 7
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2025-26-C7",
+      "examId": "ltv-2025",
+      "type": "fill",
+      "correct": "32",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 32
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2025-26-C8",
+      "examId": "ltv-2025",
+      "type": "fill",
+      "correct": "20",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 20
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2025-26-C9",
+      "examId": "ltv-2025",
+      "type": "fill",
+      "correct": "60000",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 60000
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2025-26-C10",
+      "examId": "ltv-2025",
+      "type": "fill",
+      "correct": "6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2025-26-C11",
+      "examId": "ltv-2025",
+      "type": "fill",
+      "correct": "7/9",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.7777777777777778,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "LTV-2025-26-C12",
+      "examId": "ltv-2025",
+      "type": "fill",
+      "correct": "0",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2019-20-C1",
+      "examId": "tx-2019",
+      "type": "fill",
+      "correct": "2019",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2019
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2019-20-C2",
+      "examId": "tx-2019",
+      "type": "fill",
+      "correct": "42,0134",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 42.0134
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2019-20-C3",
+      "examId": "tx-2019",
+      "type": "fill",
+      "correct": "lớp?",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2019-20-C4",
+      "examId": "tx-2019",
+      "type": "fill",
+      "correct": "960",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 960
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2019-20-C5",
+      "examId": "tx-2019",
+      "type": "fill",
+      "correct": "đó",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2019-20-C6",
+      "examId": "tx-2019",
+      "type": "fill",
+      "correct": "2 4 8 16 32",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2019-20-C7",
+      "examId": "tx-2019",
+      "type": "fill",
+      "correct": "7",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 7
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2019-20-C8",
+      "examId": "tx-2019",
+      "type": "fill",
+      "correct": "9 dư 4",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          9,
+          4
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2019-20-C9",
+      "examId": "tx-2019",
+      "type": "fill",
+      "correct": "18",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 18
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2019-20-C10",
+      "examId": "tx-2019",
+      "type": "fill",
+      "correct": "10712",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 10712
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2020-21-C1",
+      "examId": "tx-2020",
+      "type": "fill",
+      "correct": "6,1",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 6.1
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2020-21-C2",
+      "examId": "tx-2020",
+      "type": "fill",
+      "correct": "Bình",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2020-21-C3",
+      "examId": "tx-2020",
+      "type": "fill",
+      "correct": "đúng 1 mặt?",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2020-21-B4",
+      "examId": "tx-2020",
+      "type": "fill",
+      "correct": "A = 2020",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2020
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2020-21-B5",
+      "examId": "tx-2020",
+      "type": "fill",
+      "correct": "SABGE = 1425 cm2; SEGCD = 575 cm2",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          1425,
+          2,
+          575,
+          2
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2021-22-C6",
+      "examId": "tx-2021",
+      "type": "fill",
+      "correct": "Số lớn 75; Số bé 25",
+      "suggestedSchema": {
+        "kind": "labeled",
+        "pairs": {
+          "so_lon": 75,
+          "so_be": 25
+        },
+        "aliases": {
+          "so_lon": [
+            "so lon",
+            "so lon hon",
+            "larger"
+          ],
+          "so_be": [
+            "so be",
+            "so nho",
+            "smaller"
+          ]
+        }
+      },
+      "confidence": "medium",
+      "reason": "labeled_pairs",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2021-22-C7",
+      "examId": "tx-2021",
+      "type": "fill",
+      "correct": "n = 9999",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 9999
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2021-22-C8",
+      "examId": "tx-2021",
+      "type": "fill",
+      "correct": "57",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 57
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2021-22-C9",
+      "examId": "tx-2021",
+      "type": "fill",
+      "correct": "220",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 220
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2021-22-C10",
+      "examId": "tx-2021",
+      "type": "fill",
+      "correct": "150 km",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 150
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2022-23-C1",
+      "examId": "tx-2022",
+      "type": "fill",
+      "correct": "8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2022-23-C2",
+      "examId": "tx-2022",
+      "type": "fill",
+      "correct": "484",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 484
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2022-23-C3",
+      "examId": "tx-2022",
+      "type": "fill",
+      "correct": "13,76",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 13.76
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2022-23-C4",
+      "examId": "tx-2022",
+      "type": "fill",
+      "correct": "60",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 60
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2022-23-C5",
+      "examId": "tx-2022",
+      "type": "fill",
+      "correct": "615",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 615
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2022-23-C6",
+      "examId": "tx-2022",
+      "type": "fill",
+      "correct": "đó",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2023-24-C10",
+      "examId": "tx-2023",
+      "type": "fill",
+      "correct": "vườn ban đầu",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2023-24-C11",
+      "examId": "tx-2023",
+      "type": "fill",
+      "correct": "2",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2023-24-C12",
+      "examId": "tx-2023",
+      "type": "fill",
+      "correct": "x = 18",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 18
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2023-24-C13",
+      "examId": "tx-2023",
+      "type": "fill",
+      "correct": "12,56",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 12.56
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2023-24-C14",
+      "examId": "tx-2023",
+      "type": "fill",
+      "correct": "8 35 80 143",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          8,
+          35,
+          80,
+          143
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_only_multi",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2023-24-C15",
+      "examId": "tx-2023",
+      "type": "fill",
+      "correct": "8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2023-24-C16",
+      "examId": "tx-2023",
+      "type": "fill",
+      "correct": "36 km/giờ",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 36
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2024-25-C1",
+      "examId": "tx-2024",
+      "type": "fill",
+      "correct": "10",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 10
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2024-25-C2",
+      "examId": "tx-2024",
+      "type": "fill",
+      "correct": "3,6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3.6
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2024-25-C3",
+      "examId": "tx-2024",
+      "type": "fill",
+      "correct": "168 mét",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 168
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2024-25-C4",
+      "examId": "tx-2024",
+      "type": "fill",
+      "correct": "1",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2024-25-C5",
+      "examId": "tx-2024",
+      "type": "fill",
+      "correct": "73 ki-lô-gam gạo nếp",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 73
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2024-25-C6",
+      "examId": "tx-2024",
+      "type": "fill",
+      "correct": "20% giá vốn",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 20
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2024-25-C7",
+      "examId": "tx-2024",
+      "type": "fill",
+      "correct": "0,005",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.005
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2024-25-C8",
+      "examId": "tx-2024",
+      "type": "fill",
+      "correct": "8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 8
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2024-25-C9",
+      "examId": "tx-2024",
+      "type": "fill",
+      "correct": "15",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 15
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2024-25-C10",
+      "examId": "tx-2024",
+      "type": "fill",
+      "correct": "1900 cm²",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1900
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2024-25-C11",
+      "examId": "tx-2024",
+      "type": "fill",
+      "correct": "10,26",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 10.26
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2024-25-C12",
+      "examId": "tx-2024",
+      "type": "fill",
+      "correct": "19,6",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 19.6
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2024-25-C13",
+      "examId": "tx-2024",
+      "type": "fill",
+      "correct": "241",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 241
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2024-25-C14",
+      "examId": "tx-2024",
+      "type": "fill",
+      "correct": "x = 18",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 18
+      },
+      "confidence": "high",
+      "reason": "var_equals_number",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2025-26-C1",
+      "examId": "tx-2025",
+      "type": "fill",
+      "correct": "700,07",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 700.07
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2025-26-C2",
+      "examId": "tx-2025",
+      "type": "fill",
+      "correct": "113,04",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 113.04
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2025-26-C3",
+      "examId": "tx-2025",
+      "type": "fill",
+      "correct": "64",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 64
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2025-26-C4",
+      "examId": "tx-2025",
+      "type": "fill",
+      "correct": "Màu đỏ",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2025-26-C5",
+      "examId": "tx-2025",
+      "type": "fill",
+      "correct": "441 sản phẩm",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 441
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2025-26-C6",
+      "examId": "tx-2025",
+      "type": "fill",
+      "correct": "10 800m2",
+      "suggestedSchema": {
+        "kind": "numeric_set",
+        "values": [
+          10,
+          800,
+          2
+        ],
+        "ordered": false
+      },
+      "confidence": "medium",
+      "reason": "numbers_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2025-26-C7",
+      "examId": "tx-2025",
+      "type": "fill",
+      "correct": "0,96",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.96
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2025-26-C8",
+      "examId": "tx-2025",
+      "type": "fill",
+      "correct": "19 viên bi",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 19
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2025-26-C9",
+      "examId": "tx-2025",
+      "type": "fill",
+      "correct": "32",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 32
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2025-26-C10",
+      "examId": "tx-2025",
+      "type": "fill",
+      "correct": "300",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 300
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2025-26-C11",
+      "examId": "tx-2025",
+      "type": "fill",
+      "correct": "2027,25",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 2027.25
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2025-26-C12",
+      "examId": "tx-2025",
+      "type": "fill",
+      "correct": "20% giá vé ngày thường",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 20
+      },
+      "confidence": "medium",
+      "reason": "number_with_text",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "TX-2025-26-C13",
+      "examId": "tx-2025",
+      "type": "fill",
+      "correct": "35",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 35
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2026-27-C1",
+      "examId": "cg-2026",
+      "type": "fill",
+      "correct": "0,3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.3
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2026-27-C2",
+      "examId": "cg-2026",
+      "type": "fill",
+      "correct": "Dũng",
+      "suggestedSchema": {
+        "kind": "exact"
+      },
+      "confidence": "low",
+      "reason": "no_pattern_matched",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2026-27-C3",
+      "examId": "cg-2026",
+      "type": "fill",
+      "correct": "13/20",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.65,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2026-27-C4",
+      "examId": "cg-2026",
+      "type": "fill",
+      "correct": "4034",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 4034
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2026-27-C5",
+      "examId": "cg-2026",
+      "type": "fill",
+      "correct": "24",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 24
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2026-27-C6",
+      "examId": "cg-2026",
+      "type": "fill",
+      "correct": "24",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 24
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2026-27-C7",
+      "examId": "cg-2026",
+      "type": "fill",
+      "correct": "1,57",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 1.57
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "CG-2026-27-C8",
+      "examId": "cg-2026",
+      "type": "fill",
+      "correct": "21,75",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 21.75
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2026-27-C1",
+      "examId": "ntt-2026",
+      "type": "fill",
+      "correct": "75",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 75
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2026-27-C2",
+      "examId": "ntt-2026",
+      "type": "fill",
+      "correct": "1/4",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.25,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2026-27-C3",
+      "examId": "ntt-2026",
+      "type": "fill",
+      "correct": "9996",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 9996
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2026-27-C4",
+      "examId": "ntt-2026",
+      "type": "fill",
+      "correct": "5/8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 0.625,
+        "tolerance": 0.0001
+      },
+      "confidence": "high",
+      "reason": "fraction",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2026-27-C5",
+      "examId": "ntt-2026",
+      "type": "fill",
+      "correct": "240",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 240
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2026-27-C6",
+      "examId": "ntt-2026",
+      "type": "fill",
+      "correct": "27",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 27
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2026-27-C7",
+      "examId": "ntt-2026",
+      "type": "fill",
+      "correct": "3",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 3
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2026-27-C8",
+      "examId": "ntt-2026",
+      "type": "fill",
+      "correct": "85,8",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 85.8
+      },
+      "confidence": "high",
+      "reason": "single_decimal",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2026-27-C9",
+      "examId": "ntt-2026",
+      "type": "fill",
+      "correct": "24",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 24
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2026-27-C10",
+      "examId": "ntt-2026",
+      "type": "fill",
+      "correct": "48",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 48
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2026-27-C11",
+      "examId": "ntt-2026",
+      "type": "fill",
+      "correct": "39",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 39
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    },
+    {
+      "id": "NTT-2026-27-C12",
+      "examId": "ntt-2026",
+      "type": "fill",
+      "correct": "510",
+      "suggestedSchema": {
+        "kind": "numeric",
+        "value": 510
+      },
+      "confidence": "high",
+      "reason": "single_integer",
+      "alreadyHasSchema": false
+    }
+  ]
+}

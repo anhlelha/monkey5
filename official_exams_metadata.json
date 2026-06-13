@@ -1,0 +1,7308 @@
+{
+  "exams": [
+    {
+      "id": "cg-2019",
+      "school": "cg",
+      "kind": "official",
+      "year": "2019-2020",
+      "title": "Đề thi vào lớp 6 — THCS Cầu Giấy",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Cầu Giấy năm học 2019-2020",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN 1: Học sinh chỉ viết đáp số vào ô trống bên phải"
+        },
+        {
+          "num": 9,
+          "header": "PHẦN 2: Bài tập học sinh phải trình bày lời giải"
+        }
+      ],
+      "questions": [
+        {
+          "id": "CG-2019-20-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2019-20-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "55",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2019-20-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2020",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2019-20-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2019-20-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "198",
+          "unit": "viên",
+          "figure": null
+        },
+        {
+          "id": "CG-2019-20-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4",
+          "points": 1,
+          "correct": "16",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "CG-2019-20-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "0,2424",
+          "unit": "ha",
+          "figure": null
+        },
+        {
+          "id": "CG-2019-20-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "27",
+          "unit": "quả",
+          "figure": null
+        },
+        {
+          "id": "CG-2019-20-B1",
+          "num": 9,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2019-20-B2",
+          "num": 10,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "cg-2020",
+      "school": "cg",
+      "kind": "official",
+      "year": "2020-2021",
+      "title": "Đề thi vào lớp 6 — THCS Cầu Giấy",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Cầu Giấy năm học 2020-2021",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN 1: Học sinh chỉ viết đáp số vào ô trống bên phải"
+        },
+        {
+          "num": 9,
+          "header": "PHẦN 2: Bài tập học sinh phải trình bày lời giải"
+        }
+      ],
+      "questions": [
+        {
+          "id": "CG-2020-21-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "132,8",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2020-21-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "tg",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "32",
+          "unit": "phút",
+          "figure": null
+        },
+        {
+          "id": "CG-2020-21-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "12,5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2020-21-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "216",
+          "unit": "cm³",
+          "figure": null
+        },
+        {
+          "id": "CG-2020-21-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "xs",
+          "grade": "L5",
+          "points": 1,
+          "correct": "10",
+          "unit": "em",
+          "figure": "cg-2020-c5"
+        },
+        {
+          "id": "CG-2020-21-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "1992",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2020-21-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "70,5",
+          "unit": "km",
+          "figure": null
+        },
+        {
+          "id": "CG-2020-21-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "10",
+          "unit": "cm²",
+          "figure": "cg-2020-c8"
+        },
+        {
+          "id": "CG-2020-21-B1",
+          "num": 9,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2020-21-B2",
+          "num": 10,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "cg-2021",
+      "school": "cg",
+      "kind": "official",
+      "year": "2021-2022",
+      "title": "Đề thi vào lớp 6 — THCS Cầu Giấy",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Cầu Giấy năm học 2021-2022",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN 1: Học sinh chỉ viết đáp số vào ô trống bên phải"
+        },
+        {
+          "num": 9,
+          "header": "PHẦN 2: Bài tập học sinh phải trình bày lời giải"
+        }
+      ],
+      "questions": [
+        {
+          "id": "CG-2021-22-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "8,4",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2021-22-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "do",
+          "grade": "L4",
+          "points": 1,
+          "correct": "400",
+          "unit": "lần",
+          "figure": null
+        },
+        {
+          "id": "CG-2021-22-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L4",
+          "points": 1,
+          "correct": "9",
+          "unit": "xe",
+          "figure": null
+        },
+        {
+          "id": "CG-2021-22-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "5",
+          "unit": "giờ",
+          "figure": null
+        },
+        {
+          "id": "CG-2021-22-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "19,5",
+          "unit": "lít",
+          "figure": null
+        },
+        {
+          "id": "CG-2021-22-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "37",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2021-22-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "140",
+          "unit": "chai",
+          "figure": null
+        },
+        {
+          "id": "CG-2021-22-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "8",
+          "unit": "cm²",
+          "figure": null
+        },
+        {
+          "id": "CG-2021-22-B1",
+          "num": 9,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2021-22-B2",
+          "num": 10,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "cg-2022",
+      "school": "cg",
+      "kind": "official",
+      "year": "2022-2023",
+      "title": "Đề thi vào lớp 6 — THCS Cầu Giấy",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Cầu Giấy năm học 2022-2023",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN 1: Trắc nghiệm"
+        },
+        {
+          "num": 5,
+          "header": "PHẦN 2: Điền đáp số"
+        },
+        {
+          "num": 9,
+          "header": "PHẦN 3: Tự luận"
+        }
+      ],
+      "questions": [
+        {
+          "id": "CG-2022-23-C1",
+          "num": 1,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2022-23-C2",
+          "num": 2,
+          "type": "mcq",
+          "topic": "do",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2022-23-C3",
+          "num": 3,
+          "type": "mcq",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2022-23-C4",
+          "num": 4,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2022-23-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2,89",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2022-23-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "225",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "CG-2022-23-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "10",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "CG-2022-23-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "51,2",
+          "unit": "cm²",
+          "figure": "cg-2022-c8"
+        },
+        {
+          "id": "CG-2022-23-B1",
+          "num": 9,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2022-23-B2",
+          "num": 10,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L4+5",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "cg-2023",
+      "school": "cg",
+      "kind": "official",
+      "year": "2023-2024",
+      "title": "Đề thi vào lớp 6 — THCS Cầu Giấy",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Cầu Giấy năm học 2023-2024",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN I: TRẮC NGHIỆM CHỌN ĐÁP ÁN ĐÚNG"
+        },
+        {
+          "num": 5,
+          "header": "PHẦN II: TRẮC NGHIỆM ĐIỀN ĐÁP SỐ"
+        },
+        {
+          "num": 9,
+          "header": "PHẦN III: TỰ LUẬN"
+        }
+      ],
+      "questions": [
+        {
+          "id": "CG-2023-24-C1",
+          "num": 1,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2023-24-C2",
+          "num": 2,
+          "type": "mcq",
+          "topic": "tg",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2023-24-C3",
+          "num": 3,
+          "type": "mcq",
+          "topic": "ti",
+          "grade": "L4",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2023-24-C4",
+          "num": 4,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2023-24-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "5274",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2023-24-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "30",
+          "unit": "tấn gạo",
+          "figure": null
+        },
+        {
+          "id": "CG-2023-24-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "xs",
+          "grade": "L5",
+          "points": 1,
+          "correct": "28",
+          "unit": "%",
+          "figure": "cg-2023-c7"
+        },
+        {
+          "id": "CG-2023-24-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "56,52",
+          "unit": "cm²",
+          "figure": "cg-2023-c8"
+        },
+        {
+          "id": "CG-2023-24-B1",
+          "num": 9,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2023-24-B2",
+          "num": 10,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "cg-2024",
+      "school": "cg",
+      "kind": "official",
+      "year": "2024-2025",
+      "title": "Đề thi vào lớp 6 — THCS Cầu Giấy",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Cầu Giấy năm học 2024-2025",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN I: TRẮC NGHIỆM ĐIỀN ĐÁP SỐ"
+        },
+        {
+          "num": 9,
+          "header": "PHẦN II: TỰ LUẬN"
+        }
+      ],
+      "questions": [
+        {
+          "id": "CG-2024-25-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2,75",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2024-25-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "do",
+          "grade": "L4",
+          "points": 1,
+          "correct": "2,0015",
+          "unit": "ha",
+          "figure": null
+        },
+        {
+          "id": "CG-2024-25-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "37,5",
+          "unit": "km",
+          "figure": null
+        },
+        {
+          "id": "CG-2024-25-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "480",
+          "unit": "cm³",
+          "figure": null
+        },
+        {
+          "id": "CG-2024-25-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "xs",
+          "grade": "L5",
+          "points": 1,
+          "correct": "210",
+          "unit": "người",
+          "figure": "cg-2024-c5"
+        },
+        {
+          "id": "CG-2024-25-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "8 giờ 15 phút",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2024-25-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "254",
+          "unit": "cm²",
+          "figure": "cg-2024-c7"
+        },
+        {
+          "id": "CG-2024-25-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "39",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "CG-2024-25-B1",
+          "num": 9,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2024-25-B2",
+          "num": 10,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "cg-2025",
+      "school": "cg",
+      "kind": "official",
+      "year": "2025-2026",
+      "title": "Đề thi vào lớp 6 — THCS Cầu Giấy",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Cầu Giấy năm học 2025-2026",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN A: TRẮC NGHIỆM - I. Khoanh vào chữ đặt trước câu trả lời đúng"
+        },
+        {
+          "num": 5,
+          "header": "PHẦN A: TRẮC NGHIỆM - II. Điền đáp số vào ô trả lời tương ứng với mỗi câu hỏi"
+        },
+        {
+          "num": 9,
+          "header": "PHẦN B: TỰ LUẬN"
+        }
+      ],
+      "questions": [
+        {
+          "id": "CG-2025-26-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "5",
+          "unit": "tấn",
+          "figure": null
+        },
+        {
+          "id": "CG-2025-26-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "do",
+          "grade": "L5",
+          "points": 1,
+          "correct": "15011",
+          "unit": "cm³",
+          "figure": null
+        },
+        {
+          "id": "CG-2025-26-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "4",
+          "unit": "cm",
+          "figure": null
+        },
+        {
+          "id": "CG-2025-26-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "864",
+          "unit": "cm²",
+          "figure": null
+        },
+        {
+          "id": "CG-2025-26-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "xs",
+          "grade": "NC",
+          "points": 1,
+          "correct": "2/7",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2025-26-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "15",
+          "unit": "phút",
+          "figure": null
+        },
+        {
+          "id": "CG-2025-26-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "20",
+          "unit": "viên",
+          "figure": null
+        },
+        {
+          "id": "CG-2025-26-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "30",
+          "unit": "cm",
+          "figure": null
+        },
+        {
+          "id": "CG-2025-26-B1",
+          "num": 9,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2025-26-B2",
+          "num": 10,
+          "type": "essay",
+          "topic": "log",
+          "grade": "L4+5",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntt-2006",
+      "school": "ntt",
+      "kind": "official",
+      "year": "2006-2007",
+      "title": "Đề thi vào lớp 6 — THCS Nguyễn Tất Thành",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Nguyễn Tất Thành năm học 2006-2007",
+      "sections": [],
+      "questions": [
+        {
+          "id": "NTT-2006-07-B1",
+          "num": 1,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2006-07-B2",
+          "num": 2,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "25",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2006-07-B3",
+          "num": 3,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 2,
+          "correct": "438 và 1992",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2006-07-B4",
+          "num": 4,
+          "type": "essay",
+          "topic": "log",
+          "grade": "L4",
+          "points": 2,
+          "correct": "37 người",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2006-07-B5",
+          "num": 5,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "360 cm2 ",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntt-2007",
+      "school": "ntt",
+      "kind": "official",
+      "year": "2007-2008",
+      "title": "Đề thi vào lớp 6 — THCS Nguyễn Tất Thành",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Nguyễn Tất Thành năm học 2007-2008",
+      "sections": [],
+      "questions": [
+        {
+          "id": "NTT-2007-08-B1",
+          "num": 1,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 2,
+          "correct": "Số thứ nhất: 12, 3; Số thứ hai: 10,5; Số thứ ba: 30,15",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2007-08-B2",
+          "num": 2,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 2,
+          "correct": "Số cần tìm là 585",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2007-08-B3",
+          "num": 3,
+          "type": "essay",
+          "topic": "tuoi",
+          "grade": "L4+5",
+          "points": 2,
+          "correct": "11",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "NTT-2007-08-B4",
+          "num": 4,
+          "type": "essay",
+          "topic": "log",
+          "grade": "L4",
+          "points": 2,
+          "correct": "27 bạn điểm 9 và 18 bạn điểm 10",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2007-08-B5",
+          "num": 5,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 2,
+          "correct": "a) 1000 hình;",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntt-2008",
+      "school": "ntt",
+      "kind": "official",
+      "year": "2008-2009",
+      "title": "Đề thi vào lớp 6 — THCS Nguyễn Tất Thành",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Nguyễn Tất Thành năm học 2008-2009",
+      "sections": [],
+      "questions": [
+        {
+          "id": "NTT-2008-09-B1",
+          "num": 1,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 2,
+          "correct": "a = 1339",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2008-09-B2",
+          "num": 2,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L4+5",
+          "points": 2,
+          "correct": "b = 20",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2008-09-B3",
+          "num": 3,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 2,
+          "correct": "8550000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "NTT-2008-09-B4",
+          "num": 4,
+          "type": "essay",
+          "topic": "log",
+          "grade": "L5",
+          "points": 2,
+          "correct": "Số bé: 3,5; Số lớn: 4,75",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2008-09-B5",
+          "num": 5,
+          "type": "essay",
+          "topic": "log",
+          "grade": "L4",
+          "points": 2,
+          "correct": "25 bạn trồng 4 cây và 20 bạn trồng 5 cây",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntt-2009",
+      "school": "ntt",
+      "kind": "official",
+      "year": "2009-2010",
+      "title": "Đề thi vào lớp 6 — THCS Nguyễn Tất Thành",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Nguyễn Tất Thành năm học 2009-2010",
+      "sections": [],
+      "questions": [
+        {
+          "id": "NTT-2009-10-B1",
+          "num": 1,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L4+5",
+          "points": 2,
+          "correct": "a) 2010",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2009-10-B2",
+          "num": 2,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 2,
+          "correct": "20 cái bát bị vỡ",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2009-10-B3",
+          "num": 3,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 2,
+          "correct": "Xe tải: 30 km/giờ; Taxi: 60 km/giờ",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2009-10-B4",
+          "num": 4,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "670 cm2 ",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2009-10-B5",
+          "num": 5,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 2,
+          "correct": "8 học sinh giỏi; 12 học sinh khá; 16 học sinh trung bình và 4 học sinh yếu",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntt-2010",
+      "school": "ntt",
+      "kind": "official",
+      "year": "2010-2011",
+      "title": "Đề thi vào lớp 6 — THCS Nguyễn Tất Thành",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Nguyễn Tất Thành năm học 2010-2011",
+      "sections": [],
+      "questions": [
+        {
+          "id": "NTT-2010-11-B1",
+          "num": 1,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 2,
+          "correct": "4",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "NTT-2010-11-B2",
+          "num": 2,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 2,
+          "correct": "AB = 3cm, BC = 5cm, CA = 4cm",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2010-11-B3",
+          "num": 3,
+          "type": "essay",
+          "topic": "log",
+          "grade": "L5",
+          "points": 2,
+          "correct": "Số trừ: 3,25; Số bị trừ: 5,5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2010-11-B4",
+          "num": 4,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "Nối G với C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2010-11-B5",
+          "num": 5,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 2,
+          "correct": "Vận tốc: 15 m/giây; Chiều dài: 120m",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntt-2018",
+      "school": "ntt",
+      "kind": "official",
+      "year": "2018-2019",
+      "title": "Đề thi vào lớp 6 — THCS Nguyễn Tất Thành",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Nguyễn Tất Thành năm học 2018-2019",
+      "sections": [],
+      "questions": [
+        {
+          "id": "NTT-2018-19-C1",
+          "num": 1,
+          "type": "mcq",
+          "topic": "xs",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2018-19-C2",
+          "num": 2,
+          "type": "mcq",
+          "topic": "do",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2018-19-C3",
+          "num": 3,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2018-19-C4",
+          "num": 4,
+          "type": "mcq",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2018-19-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "45",
+          "unit": "km/h",
+          "figure": null
+        },
+        {
+          "id": "NTT-2018-19-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "5",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "NTT-2018-19-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "21",
+          "unit": "cm",
+          "figure": "ntt-2018-c7"
+        },
+        {
+          "id": "NTT-2018-19-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "8",
+          "unit": "con",
+          "figure": null
+        },
+        {
+          "id": "NTT-2018-19-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "355740",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "NTT-2018-19-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "1985000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "NTT-2018-19-B1",
+          "num": 11,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 2,
+          "correct": "24",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "NTT-2018-19-B2",
+          "num": 12,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 2,
+          "correct": "7 km/giờ",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntt-2019",
+      "school": "ntt",
+      "kind": "official",
+      "year": "2019-2020",
+      "title": "Đề thi vào lớp 6 — THCS Nguyễn Tất Thành",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Nguyễn Tất Thành năm học 2019-2020",
+      "sections": [],
+      "questions": [
+        {
+          "id": "NTT-2019-20-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "Siêu thị",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2019-20-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "tg",
+          "grade": "L4",
+          "points": 1,
+          "correct": "Thứ năm",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2019-20-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "cục sắt",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2019-20-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "1260",
+          "unit": "m2",
+          "figure": null
+        },
+        {
+          "id": "NTT-2019-20-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "một số bằng",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2019-20-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "được mấy vòng?",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2019-20-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "4",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2019-20-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "2",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2019-20-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "phút",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2019-20-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "15",
+          "unit": "phút",
+          "figure": null
+        },
+        {
+          "id": "NTT-2019-20-B1",
+          "num": 11,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 2,
+          "correct": "495 cây",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2019-20-B2",
+          "num": 12,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 2,
+          "correct": "a) 8 giờ 45 phút; b) 9 giờ",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntt-2020",
+      "school": "ntt",
+      "kind": "official",
+      "year": "2020-2021",
+      "title": "Đề thi vào lớp 6 — THCS Nguyễn Tất Thành",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Nguyễn Tất Thành năm học 2020-2021",
+      "sections": [],
+      "questions": [
+        {
+          "id": "NTT-2020-21-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "25%",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2020-21-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "4",
+          "unit": "lần",
+          "figure": null
+        },
+        {
+          "id": "NTT-2020-21-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "46",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2020-21-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "120",
+          "unit": "kg",
+          "figure": null
+        },
+        {
+          "id": "NTT-2020-21-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 1,
+          "correct": "160",
+          "unit": "m",
+          "figure": null
+        },
+        {
+          "id": "NTT-2020-21-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "trên thế giới?",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2020-21-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "gà?",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2020-21-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2020-21-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "3",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2020-21-C10",
+          "num": 10,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2020-21-B1",
+          "num": 11,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 2,
+          "correct": "72",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "NTT-2020-21-B2",
+          "num": 12,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 2,
+          "correct": "a) Năm 1995;",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntt-2022",
+      "school": "ntt",
+      "kind": "official",
+      "year": "2022-2023",
+      "title": "Đề thi vào lớp 6 — THCS Nguyễn Tất Thành",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Nguyễn Tất Thành năm học 2022-2023",
+      "sections": [],
+      "questions": [
+        {
+          "id": "NTT-2022-23-C1",
+          "num": 1,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2022-23-C2",
+          "num": 2,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2022-23-C3",
+          "num": 3,
+          "type": "mcq",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2022-23-C4",
+          "num": 4,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2022-23-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "675",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2022-23-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "25",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2022-23-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "1500000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "NTT-2022-23-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "72",
+          "unit": "cm2",
+          "figure": "ntt-2022-c8"
+        },
+        {
+          "id": "NTT-2022-23-B1",
+          "num": 9,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 2,
+          "correct": "3",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2022-23-B2",
+          "num": 10,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 2,
+          "correct": "a)",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntt-2023",
+      "school": "ntt",
+      "kind": "official",
+      "year": "2023-2024",
+      "title": "Đề thi vào lớp 6 — THCS Nguyễn Tất Thành",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Nguyễn Tất Thành năm học 2023-2024",
+      "sections": [],
+      "questions": [
+        {
+          "id": "NTT-2023-24-C1",
+          "num": 1,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2023-24-C2",
+          "num": 2,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2023-24-C3",
+          "num": 3,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2023-24-C4",
+          "num": 4,
+          "type": "mcq",
+          "topic": "xs",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": "ntt-2023-c4"
+        },
+        {
+          "id": "NTT-2023-24-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "21,7",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2023-24-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "đồng",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2023-24-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "640 245",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2023-24-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "6,28",
+          "unit": "cm",
+          "figure": "ntt-2023-c8"
+        },
+        {
+          "id": "NTT-2023-24-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "a) 12 km/giờ;",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2023-24-B2",
+          "num": 10,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "a) 24 cm2 ; b) 52,8 cm2 ",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntt-2024",
+      "school": "ntt",
+      "kind": "official",
+      "year": "2024-2025",
+      "title": "Đề thi vào lớp 6 — THCS Nguyễn Tất Thành",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Nguyễn Tất Thành năm học 2024-2025",
+      "sections": [],
+      "questions": [
+        {
+          "id": "NTT-2024-25-C1",
+          "num": 1,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2024-25-C2",
+          "num": 2,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2024-25-C3",
+          "num": 3,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2024-25-C4",
+          "num": 4,
+          "type": "mcq",
+          "topic": "xs",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": "ntt-2024-c4"
+        },
+        {
+          "id": "NTT-2024-25-C5",
+          "num": 5,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2024-25-C6",
+          "num": 6,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": "ntt-2024-c6"
+        },
+        {
+          "id": "NTT-2024-25-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4",
+          "points": 1,
+          "correct": "15",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "NTT-2024-25-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L4",
+          "points": 1,
+          "correct": "8 ngày",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2024-25-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "30km",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2024-25-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "75",
+          "unit": "cm2",
+          "figure": "ntt-2024-c10"
+        },
+        {
+          "id": "NTT-2024-25-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "a) 20 học sinh; b) 5 học sinh",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2024-25-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "a) SABCD = 180cm ;",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntt-2025",
+      "school": "ntt",
+      "kind": "official",
+      "year": "2025-2026",
+      "title": "Đề thi vào lớp 6 — THCS Nguyễn Tất Thành",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Nguyễn Tất Thành năm học 2025-2026",
+      "sections": [
+        {
+          "num": 1,
+          "header": "A. TRẮC NGHIỆM - I. Khoanh vào chữ đặt trước câu trả lời đúng (Mỗi câu đúng được 0,5 điểm)"
+        },
+        {
+          "num": 9,
+          "header": "II. Điền đáp số vào ô trả lời tương ứng với mỗi câu hỏi (Mỗi câu đúng được 0,75 điểm)"
+        },
+        {
+          "num": 13,
+          "header": "B. TỰ LUẬN (3,0 điểm)"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NTT-2025-26-C1",
+          "num": 1,
+          "type": "mcq",
+          "topic": "xs",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": "ntt-2025-c1"
+        },
+        {
+          "id": "NTT-2025-26-C2",
+          "num": 2,
+          "type": "mcq",
+          "topic": "xs",
+          "grade": "NC",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": "ntt-2025-c2"
+        },
+        {
+          "id": "NTT-2025-26-C3",
+          "num": 3,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2025-26-C4",
+          "num": 4,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2025-26-C5",
+          "num": 5,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2025-26-C6",
+          "num": 6,
+          "type": "mcq",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2025-26-C7",
+          "num": 7,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": "ntt-2025-c7"
+        },
+        {
+          "id": "NTT-2025-26-C8",
+          "num": 8,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": "ntt-2025-c8"
+        },
+        {
+          "id": "NTT-2025-26-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "5",
+          "unit": "số",
+          "figure": null
+        },
+        {
+          "id": "NTT-2025-26-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "68",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2025-26-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "28",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "NTT-2025-26-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "62",
+          "unit": "cm2",
+          "figure": null
+        },
+        {
+          "id": "NTT-2025-26-B1",
+          "num": 13,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 2,
+          "correct": "Lớp 6A: 4 000 000 đồng;",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2025-26-B2",
+          "num": 14,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 2,
+          "correct": "2 giờ 24 phút",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2025-26-B3",
+          "num": 15,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "70",
+          "unit": "cm2",
+          "figure": "ntt-2025-b3"
+        }
+      ]
+    },
+    {
+      "id": "ltv-2011",
+      "school": "ltv",
+      "kind": "official",
+      "year": "2011-2012",
+      "title": "Đề thi vào lớp 6 — THCS Lương Thế Vinh",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Lương Thế Vinh năm học 2011-2012",
+      "sections": [],
+      "questions": [
+        {
+          "id": "LTV-2011-12-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "19",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "4",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "4",
+          "unit": "lần",
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "Dư 1",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "x = 21",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "36",
+          "unit": "m²",
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "9 xe đạp và 6 xe xích lô",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "2 và 13",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "A = 1",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "10",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "21%",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "21",
+          "unit": "m²",
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "000",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "521",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C15",
+          "num": 15,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "13",
+          "unit": "m",
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C16",
+          "num": 16,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "120/11",
+          "unit": "km/giờ",
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C17",
+          "num": 17,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "8",
+          "unit": "hình",
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C18",
+          "num": 18,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "1331",
+          "unit": "lần",
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C19",
+          "num": 19,
+          "type": "fill",
+          "topic": "tg",
+          "grade": "L4",
+          "points": 1,
+          "correct": "Chủ nhật",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2011-12-C20",
+          "num": 20,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "25/26; 26/27; 51/52; 52/53",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ltv-2012",
+      "school": "ltv",
+      "kind": "official",
+      "year": "2012-2013",
+      "title": "Đề thi vào lớp 6 — THCS Lương Thế Vinh",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Lương Thế Vinh năm học 2012-2013",
+      "sections": [],
+      "questions": [
+        {
+          "id": "LTV-2012-13-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "363 và 484",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "19",
+          "unit": "năm",
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "7",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "0",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "S_ABC = 204 cm²; S_ACD = 408 cm²",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "72",
+          "unit": "mét",
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "125%",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "9/11; 199/220; 10/11",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "a = 13; b = 17; c = 20",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "600/11",
+          "unit": "km/giờ",
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "10,26",
+          "unit": "cm²",
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "729",
+          "unit": "cm3",
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "10 và 28",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "100/7",
+          "unit": "km",
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C15",
+          "num": 15,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "12,8",
+          "unit": "cm",
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C16",
+          "num": 16,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "Lớp 6A: 27 học sinh; Lớp 6B: 36 học sinh",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C17",
+          "num": 17,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "17 và 19 hoặc 19 và 21",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C18",
+          "num": 18,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "x = 5/3",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C19",
+          "num": 19,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "a = b = 72; c = 36",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2012-13-C20",
+          "num": 20,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "30",
+          "unit": "trận",
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ltv-2013",
+      "school": "ltv",
+      "kind": "official",
+      "year": "2013-2014",
+      "title": "Đề thi vào lớp 6 — THCS Lương Thế Vinh",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Lương Thế Vinh năm học 2013-2014",
+      "sections": [],
+      "questions": [
+        {
+          "id": "LTV-2013-14-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "42",
+          "unit": "cm²",
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "Ngày 29 tháng 2 năm 1980",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "7",
+          "unit": "mét",
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "5; 11; 17",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "6",
+          "unit": "m",
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "a=8",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "369; 371; 373",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "18,84",
+          "unit": "cm",
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "8 giờ 20 phút",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A = 5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "A = 54",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "10",
+          "unit": "cm²",
+          "figure": "ltv-2013-c12"
+        },
+        {
+          "id": "LTV-2013-14-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "1/2",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A > B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C15",
+          "num": 15,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "3",
+          "unit": null,
+          "figure": "ltv-2013-c15"
+        },
+        {
+          "id": "LTV-2013-14-C16",
+          "num": 16,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "28",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C17",
+          "num": 17,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1/89",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C18",
+          "num": 18,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "21,5",
+          "unit": "cm²",
+          "figure": "ltv-2013-c18"
+        },
+        {
+          "id": "LTV-2013-14-C19",
+          "num": 19,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "34",
+          "unit": "m",
+          "figure": null
+        },
+        {
+          "id": "LTV-2013-14-C20",
+          "num": 20,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "99/100",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ltv-2014",
+      "school": "ltv",
+      "kind": "official",
+      "year": "2014-2015",
+      "title": "Đề thi vào lớp 6 — THCS Lương Thế Vinh",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Lương Thế Vinh năm học 2014-2015",
+      "sections": [],
+      "questions": [
+        {
+          "id": "LTV-2014-15-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "x = 65",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "Ông: 60 tuổi; Bố: 36 tuổi; Nam: 12 tuổi",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "300",
+          "unit": "trang",
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "73",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "Việt: 5 cuốn; Nam: 15 cuốn; Chiến: 5 cuốn; Thắng: 30 cuốn",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2/3",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "1059",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "14",
+          "unit": "đơn vị",
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "7 giờ 45 phút",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "2/5; 12/25; 14/27; 5/9",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "80",
+          "unit": "dm3",
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "a = 0 và b = 0 hoặc a = 9 và b = 0",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "180",
+          "unit": "cm2",
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "22",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C15",
+          "num": 15,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 1,
+          "correct": "168",
+          "unit": "mét",
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C16",
+          "num": 16,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "300",
+          "unit": "m²",
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C17",
+          "num": 17,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "622",
+          "unit": "chữ số",
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C18",
+          "num": 18,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "1; 10; 100",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C19",
+          "num": 19,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "136",
+          "unit": "hình",
+          "figure": null
+        },
+        {
+          "id": "LTV-2014-15-C20",
+          "num": 20,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "6",
+          "unit": "số",
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ltv-2018",
+      "school": "ltv",
+      "kind": "official",
+      "year": "2018-2019",
+      "title": "Đề thi vào lớp 6 — THCS Lương Thế Vinh",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Lương Thế Vinh năm học 2018-2019",
+      "sections": [],
+      "questions": [
+        {
+          "id": "LTV-2018-19-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "95719",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2018-19-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "7820",
+          "unit": "cm³",
+          "figure": null
+        },
+        {
+          "id": "LTV-2018-19-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "Thứ Ba",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2018-19-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "36",
+          "unit": "nghìn đồng",
+          "figure": null
+        },
+        {
+          "id": "LTV-2018-19-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "6,5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2018-19-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "7 giờ 5 phút",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2018-19-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "x = 4",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2018-19-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "60",
+          "unit": "mét",
+          "figure": null
+        },
+        {
+          "id": "LTV-2018-19-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L4",
+          "points": 1,
+          "correct": "22,4",
+          "unit": "mét vải",
+          "figure": null
+        },
+        {
+          "id": "LTV-2018-19-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "5",
+          "unit": "cm²",
+          "figure": "ltv-2018-c10"
+        },
+        {
+          "id": "LTV-2018-19-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "6",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2018-19-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "23 năm sau",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2018-19-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "13,76",
+          "unit": "cm²",
+          "figure": "ltv-2018-c13"
+        },
+        {
+          "id": "LTV-2018-19-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "144",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ltv-2019",
+      "school": "ltv",
+      "kind": "official",
+      "year": "2019-2020",
+      "title": "Đề thi vào lớp 6 — THCS Lương Thế Vinh",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Lương Thế Vinh năm học 2019-2020",
+      "sections": [],
+      "questions": [
+        {
+          "id": "LTV-2019-20-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "6",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "x = 15",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "60 và 90",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "x = 2, y = 0",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "3528",
+          "unit": "cm²",
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "13,5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "9375",
+          "unit": "cm3",
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "7/8",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "9 giờ 30 phút",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "0/2019",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "500000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1234",
+          "unit": "cm",
+          "figure": "ltv-2019-c12"
+        },
+        {
+          "id": "LTV-2019-20-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "204828",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "Năm 2032",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C15",
+          "num": 15,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "250",
+          "unit": "trang",
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C16",
+          "num": 16,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "944",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C17",
+          "num": 17,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "43",
+          "unit": "cách",
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C18",
+          "num": 18,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "312",
+          "unit": "cm²",
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C19",
+          "num": 19,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "24",
+          "unit": "chữ số 0",
+          "figure": null
+        },
+        {
+          "id": "LTV-2019-20-C20",
+          "num": 20,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "70",
+          "unit": "hình",
+          "figure": "ltv-2019-c20"
+        }
+      ]
+    },
+    {
+      "id": "ltv-2020",
+      "school": "ltv",
+      "kind": "official",
+      "year": "2020-2021",
+      "title": "Đề thi vào lớp 6 — THCS Lương Thế Vinh",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Lương Thế Vinh năm học 2020-2021",
+      "sections": [],
+      "questions": [
+        {
+          "id": "LTV-2020-21-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "x=8",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "Giảm 1,5 lần",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "Con: 3 tuổi; Bố: 30 tuổi",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "13,4",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "15 và 25",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "67,32",
+          "unit": "mét",
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "36",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L4",
+          "points": 1,
+          "correct": "400000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "9",
+          "unit": "ngày",
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2 giờ 12 phút",
+          "unit": null,
+          "figure": "ltv-2020-c11"
+        },
+        {
+          "id": "LTV-2020-21-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "900000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "14 850",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "x = 0, y = 0 hoặc x = 6, y = 0",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C15",
+          "num": 15,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "18,84",
+          "unit": "cm²",
+          "figure": "ltv-2020-c15"
+        },
+        {
+          "id": "LTV-2020-21-C16",
+          "num": 16,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "16 con gà và 24 con vịt",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C17",
+          "num": 17,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "x = 2/7",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C18",
+          "num": 18,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "60",
+          "unit": "trang",
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C19",
+          "num": 19,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "640",
+          "unit": "cm3",
+          "figure": null
+        },
+        {
+          "id": "LTV-2020-21-C20",
+          "num": 20,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1/15",
+          "unit": null,
+          "figure": "ltv-2020-c20"
+        }
+      ]
+    },
+    {
+      "id": "ltv-2021",
+      "school": "ltv",
+      "kind": "official",
+      "year": "2021-2022",
+      "title": "Đề thi vào lớp 6 — THCS Lương Thế Vinh",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Lương Thế Vinh năm học 2021-2022",
+      "sections": [],
+      "questions": [
+        {
+          "id": "LTV-2021-22-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "8",
+          "unit": "km",
+          "figure": null
+        },
+        {
+          "id": "LTV-2021-22-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "28%",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2021-22-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L4",
+          "points": 1,
+          "correct": "11",
+          "unit": "giờ",
+          "figure": null
+        },
+        {
+          "id": "LTV-2021-22-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "38,465",
+          "unit": "cm²",
+          "figure": null
+        },
+        {
+          "id": "LTV-2021-22-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "Giảm 1% so với diện tích ban đầu",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2021-22-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "30 con trâu và 20 con bò",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2021-22-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "12,5%",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2021-22-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "322",
+          "unit": "dm²",
+          "figure": "ltv-2021-c8"
+        },
+        {
+          "id": "LTV-2021-22-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "24",
+          "unit": "ngày",
+          "figure": null
+        },
+        {
+          "id": "LTV-2021-22-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "232 và 63",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ltv-2022",
+      "school": "ltv",
+      "kind": "official",
+      "year": "2022-2023",
+      "title": "Đề thi vào lớp 6 — THCS Lương Thế Vinh",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Lương Thế Vinh năm học 2022-2023",
+      "sections": [],
+      "questions": [
+        {
+          "id": "LTV-2022-23-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "7/8; 9/10; 4/3",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "20,6",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "4/5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "33",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "27",
+          "unit": "cm3",
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "600",
+          "unit": "cm2",
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "5",
+          "unit": "số",
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "do",
+          "grade": "L4",
+          "points": 1,
+          "correct": "2005",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "1000",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "900",
+          "unit": "lít",
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "8000",
+          "unit": "m²",
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "20%",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "Hộp A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "Hình thang thứ nhất",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C15",
+          "num": 15,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "3000",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C16",
+          "num": 16,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "62",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C17",
+          "num": 17,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "24",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C18",
+          "num": 18,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "42",
+          "unit": "bậc",
+          "figure": null
+        },
+        {
+          "id": "LTV-2022-23-C19",
+          "num": 19,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "x = 66",
+          "unit": null,
+          "figure": "ltv-2022-c19"
+        },
+        {
+          "id": "LTV-2022-23-C20",
+          "num": 20,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "45",
+          "unit": "cm²",
+          "figure": "ltv-2022-c20"
+        }
+      ]
+    },
+    {
+      "id": "ltv-2023",
+      "school": "ltv",
+      "kind": "official",
+      "year": "2023-2024",
+      "title": "Đề thi vào lớp 6 — THCS Lương Thế Vinh",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Lương Thế Vinh năm học 2023-2024",
+      "sections": [],
+      "questions": [
+        {
+          "id": "LTV-2023-24-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "a = 10",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "5760",
+          "unit": "dm3",
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "125",
+          "unit": "cm3",
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "48",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "5/8; 7/8; 11/12; 10/9",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "120; 250",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "122",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "280",
+          "unit": "cm2",
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "9",
+          "unit": "cm2",
+          "figure": "ltv-2023-c9"
+        },
+        {
+          "id": "LTV-2023-24-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2",
+          "unit": "tấn",
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "25",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4",
+          "points": 1,
+          "correct": "39",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "113,04",
+          "unit": "cm2",
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "39",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C15",
+          "num": 15,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1",
+          "unit": "giờ",
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C16",
+          "num": 16,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L5",
+          "points": 1,
+          "correct": "37",
+          "unit": "bông hoa",
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C17",
+          "num": 17,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "6,88",
+          "unit": "cm2",
+          "figure": "ltv-2023-c17"
+        },
+        {
+          "id": "LTV-2023-24-C18",
+          "num": 18,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "80",
+          "unit": "cây",
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C19",
+          "num": 19,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "3",
+          "unit": "tam giác",
+          "figure": null
+        },
+        {
+          "id": "LTV-2023-24-C20",
+          "num": 20,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "AN/AD = 1/3",
+          "unit": null,
+          "figure": "ltv-2023-c20"
+        }
+      ]
+    },
+    {
+      "id": "ltv-2024",
+      "school": "ltv",
+      "kind": "official",
+      "year": "2024-2025",
+      "title": "Đề thi vào lớp 6 — THCS Lương Thế Vinh",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 60,
+      "note": "Đề thi chính thức Lương Thế Vinh năm học 2024-2025",
+      "sections": [],
+      "questions": [
+        {
+          "id": "LTV-2024-25-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "1",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "a=6",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "35",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "2,39",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "Số lớn: 1105; Số bé: 884",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "24; 26; 28; 30",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "20",
+          "unit": "học sinh nữ",
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "50",
+          "unit": "cm2",
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L4",
+          "points": 1,
+          "correct": "82500",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "do",
+          "grade": "L4",
+          "points": 1,
+          "correct": "1300",
+          "unit": "kg",
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "1,2",
+          "unit": "m",
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "6",
+          "unit": "công nhân",
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "Mẹ 34 tuổi; Con 6 tuổi",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "3,87",
+          "unit": "cm2",
+          "figure": "ltv-2024-c14"
+        },
+        {
+          "id": "LTV-2024-25-C15",
+          "num": 15,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "7531",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C16",
+          "num": 16,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1275",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C17",
+          "num": 17,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L5",
+          "points": 1,
+          "correct": "85",
+          "unit": "m2",
+          "figure": "ltv-2024-c17"
+        },
+        {
+          "id": "LTV-2024-25-C18",
+          "num": 18,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "4100 hoặc 4099",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C19",
+          "num": 19,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "9000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "LTV-2024-25-C20",
+          "num": 20,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "19,5",
+          "unit": "cm2",
+          "figure": "ltv-2024-c20"
+        }
+      ]
+    },
+    {
+      "id": "ltv-2025",
+      "school": "ltv",
+      "kind": "official",
+      "year": "2025-2026",
+      "title": "Đề thi vào lớp 6 — THCS Lương Thế Vinh",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 30,
+      "note": "Đề thi chính thức Lương Thế Vinh năm học 2025-2026",
+      "sections": [],
+      "questions": [
+        {
+          "id": "LTV-2025-26-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2025-26-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "100 và 102",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2025-26-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "7",
+          "unit": "câu",
+          "figure": null
+        },
+        {
+          "id": "LTV-2025-26-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "xs",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1/5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2025-26-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "27",
+          "unit": null,
+          "figure": "ltv-2025-c5"
+        },
+        {
+          "id": "LTV-2025-26-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "7km",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2025-26-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "32",
+          "unit": "hình",
+          "figure": null
+        },
+        {
+          "id": "LTV-2025-26-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "20",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "LTV-2025-26-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "60000",
+          "unit": "lít",
+          "figure": null
+        },
+        {
+          "id": "LTV-2025-26-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L4",
+          "points": 1,
+          "correct": "6",
+          "unit": "ngày",
+          "figure": null
+        },
+        {
+          "id": "LTV-2025-26-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "7/9",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "LTV-2025-26-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "0",
+          "unit": null,
+          "figure": "ltv-2025-c12"
+        }
+      ]
+    },
+    {
+      "id": "tx-2019",
+      "school": "tx",
+      "kind": "official",
+      "year": "2019-2020",
+      "title": "Đề thi vào lớp 6 — THCS Thanh Xuân",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 40,
+      "note": "Đề thi chính thức Thanh Xuân năm học 2019-2020",
+      "sections": [],
+      "questions": [
+        {
+          "id": "TX-2019-20-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2019",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2019-20-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "do",
+          "grade": "L5",
+          "points": 1,
+          "correct": "42,0134",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2019-20-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "52,5",
+          "unit": "%",
+          "figure": null
+        },
+        {
+          "id": "TX-2019-20-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "960",
+          "unit": "bộ",
+          "figure": null
+        },
+        {
+          "id": "TX-2019-20-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "50,24",
+          "unit": "cm²",
+          "figure": null
+        },
+        {
+          "id": "TX-2019-20-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "1/32",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2019-20-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "5",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "TX-2019-20-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "a=7; b=3",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2019-20-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "448000",
+          "unit": "cm³",
+          "figure": "tx-2019-c9"
+        },
+        {
+          "id": "TX-2019-20-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "10712",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2019-20-B1",
+          "num": 11,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 2,
+          "correct": "157,5 km",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2019-20-B2",
+          "num": 12,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "75",
+          "unit": "cm2",
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "tx-2020",
+      "school": "tx",
+      "kind": "official",
+      "year": "2020-2021",
+      "title": "Đề thi vào lớp 6 — THCS Thanh Xuân",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 40,
+      "note": "Đề thi chính thức Thanh Xuân năm học 2020-2021",
+      "sections": [],
+      "questions": [
+        {
+          "id": "TX-2020-21-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "6,1",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2020-21-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "Bình",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2020-21-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "441",
+          "unit": "khối",
+          "figure": null
+        },
+        {
+          "id": "TX-2020-21-B4",
+          "num": 4,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "A = 2020",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2020-21-B5",
+          "num": 5,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "SABGE = 1425 cm2; SEGCD = 575 cm2",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "tx-2021",
+      "school": "tx",
+      "kind": "official",
+      "year": "2021-2022",
+      "title": "Đề thi vào lớp 6 — THCS Thanh Xuân",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 40,
+      "note": "Đề thi chính thức Thanh Xuân năm học 2021-2022",
+      "sections": [],
+      "questions": [
+        {
+          "id": "TX-2021-22-C1",
+          "num": 1,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2021-22-C2",
+          "num": 2,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2021-22-C3",
+          "num": 3,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2021-22-C4",
+          "num": 4,
+          "type": "mcq",
+          "topic": "ti",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2021-22-C5",
+          "num": 5,
+          "type": "mcq",
+          "topic": "cd",
+          "grade": "L4",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2021-22-C6",
+          "num": 6,
+          "type": "essay",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "Số lớn 75; Số bé 25",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2021-22-C7",
+          "num": 7,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "n = 9999",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2021-22-C8",
+          "num": 8,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "57",
+          "unit": "cm2",
+          "figure": "tx-2021-c8"
+        },
+        {
+          "id": "TX-2021-22-C9",
+          "num": 9,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "220",
+          "unit": "trang",
+          "figure": null
+        },
+        {
+          "id": "TX-2021-22-C10",
+          "num": 10,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "150 km",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "tx-2022",
+      "school": "tx",
+      "kind": "official",
+      "year": "2022-2023",
+      "title": "Đề thi vào lớp 6 — THCS Thanh Xuân",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 40,
+      "note": "Đề thi chính thức Thanh Xuân năm học 2022-2023",
+      "sections": [],
+      "questions": [
+        {
+          "id": "TX-2022-23-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "8",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2022-23-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "484",
+          "unit": "cm2",
+          "figure": null
+        },
+        {
+          "id": "TX-2022-23-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "13,76",
+          "unit": "cm2",
+          "figure": "tx-2022-c3"
+        },
+        {
+          "id": "TX-2022-23-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "615",
+          "unit": "m²",
+          "figure": null
+        },
+        {
+          "id": "TX-2022-23-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "800",
+          "unit": "kg",
+          "figure": null
+        },
+        {
+          "id": "TX-2022-23-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "48",
+          "unit": "km/giờ",
+          "figure": null
+        },
+        {
+          "id": "TX-2022-23-B1",
+          "num": 7,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 2,
+          "correct": "a) 120 nghìn đồng;",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2022-23-B2",
+          "num": 8,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L4+5",
+          "points": 2,
+          "correct": "98/33",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "tx-2023",
+      "school": "tx",
+      "kind": "official",
+      "year": "2023-2024",
+      "title": "Đề thi vào lớp 6 — THCS Thanh Xuân",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 40,
+      "note": "Đề thi chính thức Thanh Xuân năm học 2023-2024",
+      "sections": [],
+      "questions": [
+        {
+          "id": "TX-2023-24-C1",
+          "num": 1,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2023-24-C2",
+          "num": 2,
+          "type": "mcq",
+          "topic": "do",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2023-24-C3",
+          "num": 3,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2023-24-C4",
+          "num": 4,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2023-24-C5",
+          "num": 5,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2023-24-C6",
+          "num": 6,
+          "type": "mcq",
+          "topic": "log",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2023-24-C7",
+          "num": 7,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2023-24-C8",
+          "num": 8,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2023-24-C9",
+          "num": 9,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2023-24-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "180",
+          "unit": "m²",
+          "figure": null
+        },
+        {
+          "id": "TX-2023-24-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "32",
+          "unit": "quả",
+          "figure": null
+        },
+        {
+          "id": "TX-2023-24-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "x = 18",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2023-24-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "12,56",
+          "unit": "cm",
+          "figure": "tx-2023-c13"
+        },
+        {
+          "id": "TX-2023-24-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1/4760",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2023-24-C15",
+          "num": 15,
+          "type": "essay",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "8",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "TX-2023-24-C16",
+          "num": 16,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "36 km/giờ",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "tx-2024",
+      "school": "tx",
+      "kind": "official",
+      "year": "2024-2025",
+      "title": "Đề thi vào lớp 6 — THCS Thanh Xuân",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 40,
+      "note": "Đề thi chính thức Thanh Xuân năm học 2024-2025",
+      "sections": [],
+      "questions": [
+        {
+          "id": "TX-2024-25-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "do",
+          "grade": "L4",
+          "points": 1,
+          "correct": "10",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2024-25-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "3,6",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2024-25-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "168 mét",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2024-25-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1 1/2499",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2024-25-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "73 ki-lô-gam gạo nếp",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2024-25-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "20% giá vốn",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2024-25-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "0,005",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2024-25-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "8",
+          "unit": "xe",
+          "figure": null
+        },
+        {
+          "id": "TX-2024-25-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "15",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2024-25-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1900 cm²",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2024-25-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "10,26",
+          "unit": "cm2",
+          "figure": "tx-2024-c11"
+        },
+        {
+          "id": "TX-2024-25-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "19,6",
+          "unit": "cm2",
+          "figure": "tx-2024-c12"
+        },
+        {
+          "id": "TX-2024-25-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "241",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2024-25-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "x = 18",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2024-25-B1",
+          "num": 15,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 2,
+          "correct": "600 000 đồng",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2024-25-B2",
+          "num": 16,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 2,
+          "correct": "9 giờ 51 phút",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "tx-2025",
+      "school": "tx",
+      "kind": "official",
+      "year": "2025-2026",
+      "title": "Đề thi vào lớp 6 — THCS Thanh Xuân",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 40,
+      "note": "Đề thi chính thức Thanh Xuân năm học 2025-2026",
+      "sections": [],
+      "questions": [
+        {
+          "id": "TX-2025-26-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "700,07",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2025-26-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "113,04",
+          "unit": "cm2",
+          "figure": null
+        },
+        {
+          "id": "TX-2025-26-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "64",
+          "unit": "lần",
+          "figure": null
+        },
+        {
+          "id": "TX-2025-26-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "Màu đỏ",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2025-26-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "441 sản phẩm",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2025-26-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "10 800m2",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2025-26-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "0,96",
+          "unit": "dm3",
+          "figure": null
+        },
+        {
+          "id": "TX-2025-26-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "19 viên bi",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2025-26-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "32",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "TX-2025-26-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "300",
+          "unit": "cm3",
+          "figure": null
+        },
+        {
+          "id": "TX-2025-26-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4+5",
+          "points": 1,
+          "correct": "2027,25",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2025-26-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "20% giá vé ngày thường",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2025-26-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "tg",
+          "grade": "L4",
+          "points": 1,
+          "correct": "35",
+          "unit": "phút",
+          "figure": null
+        },
+        {
+          "id": "TX-2025-26-B1",
+          "num": 14,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 2,
+          "correct": "60 km/giờ",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2025-26-B2",
+          "num": 15,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "a) SABN = 150cm 2 ; SMNP = 200cm 2 ; SPBC = 750cm 2",
+          "unit": null,
+          "figure": "tx-2025-b2"
+        }
+      ]
+    },
+    {
+      "id": "tx-2026",
+      "school": "tx",
+      "kind": "official",
+      "year": "2026-2027",
+      "title": "Đề thi vào lớp 6 — THCS Thanh Xuân",
+      "intro": "Đề thi đánh giá năng lực vào lớp 6 trường THCS Thanh Xuân (đề được tổng hợp theo trí nhớ học sinh).",
+      "minutes": 40,
+      "note": "Đề thi ĐGNL Thanh Xuân năm học 2026-2027 (recollected by students)",
+      "sections": [],
+      "questions": [
+        {
+          "id": "TX-2026-27-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "3,04; 3,43; 4,03; 4,3",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "do",
+          "grade": "L5",
+          "points": 1,
+          "correct": "79,975",
+          "unit": "kg",
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "119",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "xs",
+          "grade": "NC",
+          "points": 1,
+          "correct": "10",
+          "unit": "khả năng",
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "18,24",
+          "unit": "cm²",
+          "figure": "tx-2026-c5"
+        },
+        {
+          "id": "TX-2026-27-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "15",
+          "unit": "kg",
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2,88",
+          "unit": "km/giờ",
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "Xanh",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "314",
+          "unit": "m",
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L4",
+          "points": 1,
+          "correct": "27",
+          "unit": "bạn",
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "724",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2,4",
+          "unit": "lần",
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "do",
+          "grade": "L5",
+          "points": 1,
+          "correct": "53 thùng; thừa 1,15 lít",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "10 giờ 24 phút",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C15",
+          "num": 15,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "32",
+          "unit": "viên",
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C16",
+          "num": 16,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2,35; 25,6",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C17",
+          "num": 17,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "7/10",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C18",
+          "num": 18,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L4",
+          "points": 1,
+          "correct": "7,07",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C19",
+          "num": 19,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "5,674",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-C20",
+          "num": 20,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2,7",
+          "unit": "tấn",
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-B1",
+          "num": 21,
+          "type": "essay",
+          "topic": "tuoi",
+          "grade": "NC",
+          "points": 2,
+          "correct": "6 tuổi",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "TX-2026-27-B2",
+          "num": 22,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 2,
+          "correct": "60 m",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "cg-2026",
+      "school": "cg",
+      "kind": "official",
+      "year": "2026-2027",
+      "title": "Đề thi vào lớp 6 — THCS Cầu Giấy",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Cầu Giấy năm học 2026-2027",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN I: TRẮC NGHIỆM"
+        },
+        {
+          "num": 5,
+          "header": "PHẦN II: ĐIỀN ĐÁP ÁN"
+        },
+        {
+          "num": 9,
+          "header": "PHẦN III: TỰ LUẬN"
+        }
+      ],
+      "questions": [
+        {
+          "id": "CG-2026-27-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "0,3",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2026-27-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "Dũng",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2026-27-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "xs",
+          "grade": "L5",
+          "points": 1,
+          "correct": "13/20",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2026-27-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "4034",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2026-27-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "do",
+          "grade": "L5",
+          "points": 1,
+          "correct": "24",
+          "unit": "lít",
+          "figure": null
+        },
+        {
+          "id": "CG-2026-27-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "24",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2026-27-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1,57",
+          "unit": "giờ",
+          "figure": "cg-2026-c7"
+        },
+        {
+          "id": "CG-2026-27-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "21,75",
+          "unit": "cm²",
+          "figure": "cg-2026-c8"
+        },
+        {
+          "id": "CG-2026-27-B1",
+          "num": 9,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 2,
+          "correct": "a) 30% b) 70 học sinh",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "CG-2026-27-B2",
+          "num": 10,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 2,
+          "correct": "a) 6107 b) 2021",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntt-2026",
+      "school": "ntt",
+      "kind": "official",
+      "year": "2026-2027",
+      "title": "Đề thi tuyển sinh vào lớp 6 — THCS&THPT Nguyễn Tất Thành",
+      "intro": "Đề được dựng theo trí nhớ của học sinh, các câu hỏi ở các mã đề có thể thay đổi. Mỗi phần có điểm số tương ứng.",
+      "minutes": 45,
+      "note": "Đề thi tuyển sinh vào lớp 6 Nguyễn Tất Thành năm học 2026-2027",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN I: Câu trắc nghiệm nhiều phương án lựa chọn (4 điểm)"
+        },
+        {
+          "num": 9,
+          "header": "PHẦN II. Câu trắc nghiệm trả lời ngắn (3 điểm)"
+        },
+        {
+          "num": 13,
+          "header": "PHẦN III. Tự luận (3 điểm)"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NTT-2026-27-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "xs",
+          "grade": "L5",
+          "points": 0.5,
+          "correct": "75",
+          "unit": "quyển",
+          "figure": "ntt-2026-c1"
+        },
+        {
+          "id": "NTT-2026-27-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 0.5,
+          "correct": "1/4",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2026-27-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 0.5,
+          "correct": "9996",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2026-27-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "xs",
+          "grade": "L5",
+          "points": 0.5,
+          "correct": "5/8",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTT-2026-27-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 0.5,
+          "correct": "240",
+          "unit": "lít",
+          "figure": null
+        },
+        {
+          "id": "NTT-2026-27-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 0.5,
+          "correct": "27",
+          "unit": "cm²",
+          "figure": "ntt-2026-c6"
+        },
+        {
+          "id": "NTT-2026-27-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 0.5,
+          "correct": "3",
+          "unit": "phút",
+          "figure": null
+        },
+        {
+          "id": "NTT-2026-27-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 0.5,
+          "correct": "85,8",
+          "unit": "m²",
+          "figure": "ntt-2026-c8"
+        },
+        {
+          "id": "NTT-2026-27-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 0.75,
+          "correct": "24",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "NTT-2026-27-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 0.75,
+          "correct": "48",
+          "unit": "kg",
+          "figure": null
+        },
+        {
+          "id": "NTT-2026-27-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 0.75,
+          "correct": "39",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "NTT-2026-27-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 0.75,
+          "correct": "510",
+          "unit": "dm²",
+          "figure": "ntt-2026-c12"
+        },
+        {
+          "id": "NTT-2026-27-B1",
+          "num": 13,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": null,
+          "unit": "kg",
+          "figure": null
+        },
+        {
+          "id": "NTT-2026-27-B2",
+          "num": 14,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 1,
+          "correct": null,
+          "unit": "phút",
+          "figure": null
+        },
+        {
+          "id": "NTT-2026-27-B3",
+          "num": 15,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": null,
+          "unit": "cm²",
+          "figure": "ntt-2026-c15"
+        }
+      ]
+    },
+    {
+      "id": "nn-2019",
+      "school": "nn",
+      "kind": "official",
+      "year": "2019-2020",
+      "title": "Đề thi vào lớp 6 — THCS Ngoại ngữ",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Ngoại ngữ (UMS) năm học 2019-2020",
+      "sections": [
+        {
+          "num": 1,
+          "header": "Phần 1: Trắc nghiệm"
+        },
+        {
+          "num": 7,
+          "header": "Phần 2: Tự luận"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NN-2019-20-C1",
+          "num": 1,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NN-2019-20-C2",
+          "num": 2,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NN-2019-20-C3",
+          "num": 3,
+          "type": "mcq",
+          "topic": "tuoi",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NN-2019-20-C4",
+          "num": 4,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": "nn-2019-c4"
+        },
+        {
+          "id": "NN-2019-20-C5",
+          "num": 5,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NN-2019-20-C6",
+          "num": 6,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NN-2019-20-B1",
+          "num": 7,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 2,
+          "correct": "Can I: 10 lít; Can II: 13 lít; Can III: 13 lít",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NN-2019-20-B2",
+          "num": 8,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 2,
+          "correct": "Xe đi từ A: 15 km/giờ; Xe đi từ B: 12 km/giờ",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "nn-2021",
+      "school": "nn",
+      "kind": "official",
+      "year": "2021-2022",
+      "title": "Đề thi vào lớp 6 — THCS Ngoại ngữ",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Ngoại ngữ (UMS) năm học 2021-2022",
+      "sections": [],
+      "questions": [
+        {
+          "id": "NN-2021-22-C1",
+          "num": 1,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NN-2021-22-C2",
+          "num": 2,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NN-2021-22-C3",
+          "num": 3,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NN-2021-22-C4",
+          "num": 4,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NN-2021-22-C5",
+          "num": 5,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NN-2021-22-C6",
+          "num": 6,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "nn-2022",
+      "school": "nn",
+      "kind": "official",
+      "year": "2022-2023",
+      "title": "Đề thi vào lớp 6 — THCS Ngoại ngữ",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 45,
+      "note": "Đề thi chính thức Ngoại ngữ (UMS) năm học 2022-2023",
+      "sections": [
+        {
+          "num": 1,
+          "header": "Phần 1: Điền đáp số"
+        },
+        {
+          "num": 6,
+          "header": "Phần 2: Tự luận"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NN-2022-23-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "51",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NN-2022-23-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "40",
+          "unit": "hình",
+          "figure": null
+        },
+        {
+          "id": "NN-2022-23-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "15",
+          "unit": "kg",
+          "figure": null
+        },
+        {
+          "id": "NN-2022-23-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "3/8",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NN-2022-23-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "36",
+          "unit": "cm²",
+          "figure": "nn-2022-c5"
+        },
+        {
+          "id": "NN-2022-23-B1",
+          "num": 6,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 2,
+          "correct": "Xe khách: 36 km/giờ; Xe tải: 24 km/giờ",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntl-2020",
+      "school": "ntl",
+      "kind": "official",
+      "year": "2020-2021",
+      "title": "Đề thi vào lớp 6 — THCS Nam Từ Liêm",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 50,
+      "note": "Đề thi chính thức Nam Từ Liêm năm học 2020-2021",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN I: TRẮC NGHIỆM ĐIỀN ĐÁP ÁN"
+        },
+        {
+          "num": 11,
+          "header": "PHẦN II: TỰ LUẬN"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NTL-2020-21-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "0",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2020-21-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "x = 2",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2020-21-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L5",
+          "points": 1,
+          "correct": "24 bạn điểm 9; 19 bạn điểm 10",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2020-21-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L5",
+          "points": 1,
+          "correct": "7",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "NTL-2020-21-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "6974",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2020-21-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "13",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2020-21-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "45",
+          "unit": "chiếc mặt nạ",
+          "figure": null
+        },
+        {
+          "id": "NTL-2020-21-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "105",
+          "unit": "km",
+          "figure": null
+        },
+        {
+          "id": "NTL-2020-21-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "6",
+          "unit": "dm",
+          "figure": null
+        },
+        {
+          "id": "NTL-2020-21-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L5",
+          "points": 1,
+          "correct": "10",
+          "unit": "viên bi",
+          "figure": null
+        },
+        {
+          "id": "NTL-2020-21-B1",
+          "num": 11,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 2,
+          "correct": "Xuân: 5 cây; Hạ: 4 cây; Thu: 2 cây; Đông: 3 cây",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2020-21-B2",
+          "num": 12,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 2,
+          "correct": "9 cách",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ntl-2022",
+      "school": "ntl",
+      "kind": "official",
+      "year": "2022-2023",
+      "title": "Đề thi vào lớp 6 — THCS Nam Từ Liêm",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 50,
+      "note": "Đề thi chính thức Nam Từ Liêm năm học 2022-2023",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN I: TRẮC NGHIỆM ĐIỀN ĐÁP ÁN"
+        },
+        {
+          "num": 12,
+          "header": "PHẦN II: TỰ LUẬN"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NTL-2022-23-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "1260",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2022-23-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "27",
+          "unit": "cm³",
+          "figure": null
+        },
+        {
+          "id": "NTL-2022-23-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "37",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2022-23-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "3/4",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2022-23-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "x = 12",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2022-23-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "10",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "NTL-2022-23-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "tg",
+          "grade": "L4",
+          "points": 1,
+          "correct": "38",
+          "unit": "phút",
+          "figure": null
+        },
+        {
+          "id": "NTL-2022-23-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "95",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2022-23-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L5",
+          "points": 1,
+          "correct": "6",
+          "unit": "năm",
+          "figure": null
+        },
+        {
+          "id": "NTL-2022-23-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "750000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "NTL-2022-23-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "6",
+          "unit": "cách",
+          "figure": "ntl-2022-c11"
+        },
+        {
+          "id": "NTL-2022-23-B1",
+          "num": 12,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 2,
+          "correct": "a) Xe thứ nhất: 60 km/giờ; Xe thứ hai: 50 km/giờ. b) 4 giờ",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2022-23-B2",
+          "num": 13,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "a) 15 cm²; b) MN/DN = 2; c) S_NDP/S_NPC = 1/4",
+          "unit": null,
+          "figure": "ntl-2022-b2"
+        }
+      ]
+    },
+    {
+      "id": "ntl-2023",
+      "school": "ntl",
+      "kind": "official",
+      "year": "2023-2024",
+      "title": "Đề thi vào lớp 6 — THCS Nam Từ Liêm",
+      "intro": "Học sinh làm bài trên giấy nháp, sau đó điền đáp án/lời giải vào ô trả lời. Không sử dụng máy tính.",
+      "minutes": 50,
+      "note": "Đề thi chính thức Nam Từ Liêm năm học 2023-2024",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN I: TRẮC NGHIỆM ĐIỀN ĐÁP ÁN"
+        },
+        {
+          "num": 11,
+          "header": "PHẦN II: TỰ LUẬN"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NTL-2023-24-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "45",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2023-24-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "a = 3",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2023-24-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "80000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "NTL-2023-24-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "NC",
+          "points": 1,
+          "correct": "3",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "NTL-2023-24-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "1,4",
+          "unit": "m",
+          "figure": null
+        },
+        {
+          "id": "NTL-2023-24-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "27",
+          "unit": "quyển",
+          "figure": null
+        },
+        {
+          "id": "NTL-2023-24-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "32",
+          "unit": "m²",
+          "figure": "ntl-2023-c7"
+        },
+        {
+          "id": "NTL-2023-24-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "3",
+          "unit": "số",
+          "figure": null
+        },
+        {
+          "id": "NTL-2023-24-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "225",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2023-24-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "30",
+          "unit": "hình vuông",
+          "figure": "ntl-2023-c10"
+        },
+        {
+          "id": "NTL-2023-24-B1",
+          "num": 11,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 2,
+          "correct": "a) 2400; b) x = 1/2; c) Bình: 12 km/giờ; An: 15 km/giờ",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2023-24-B2",
+          "num": 12,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "a) 30 cm²; b) S_ABI/S_BIC = 2; c) BK/KC = 2/3",
+          "unit": null,
+          "figure": "ntl-2023-b2"
+        }
+      ]
+    },
+    {
+      "id": "ntl-2025",
+      "school": "ntl",
+      "kind": "official",
+      "year": "2025-2026",
+      "title": "Đề thi ĐGNL vào lớp 6 — THCS Nam Từ Liêm",
+      "intro": "Đề thi đánh giá năng lực vào lớp 6 trường THCS Nam Từ Liêm năm 2025. Học sinh điền đáp án/lời giải vào ô trả lời.",
+      "minutes": 60,
+      "note": "Đề thi ĐGNL chính thức Nam Từ Liêm năm 2025 (nguồn MathX). Đáp án Claude tự derive — chưa có đáp án chính thức từ trường.",
+      "sections": [
+        {
+          "num": 1,
+          "header": "Phần I: Trắc nghiệm"
+        },
+        {
+          "num": 10,
+          "header": "Phần II: Tự luận"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NTL-2025-26-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "3",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2025-26-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "x = 3",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2025-26-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "33000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "NTL-2025-26-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "xs",
+          "grade": "L5",
+          "points": 1,
+          "correct": "7/10",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2025-26-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "1200000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "NTL-2025-26-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "192",
+          "unit": "lít",
+          "figure": null
+        },
+        {
+          "id": "NTL-2025-26-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2,5",
+          "unit": "km",
+          "figure": null
+        },
+        {
+          "id": "NTL-2025-26-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "xs",
+          "grade": "L5",
+          "points": 1,
+          "correct": "a) Đ; b) S; c) S; d) S",
+          "unit": null,
+          "figure": "ntl-2025-c8"
+        },
+        {
+          "id": "NTL-2025-26-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "a) S; b) S; c) S; d) S",
+          "unit": null,
+          "figure": "ntl-2025-c9"
+        },
+        {
+          "id": "NTL-2025-26-B1",
+          "num": 10,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 2,
+          "correct": "a) 24000000 đồng; b) Mũ: 525; Nón: 675",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NTL-2025-26-B2",
+          "num": 11,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "a) 4 cm²; b) 6 cm; c) BM = 2 cm",
+          "unit": null,
+          "figure": "ntl-2025-b2"
+        },
+        {
+          "id": "NTL-2025-26-B3",
+          "num": 12,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "18000 đồng",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    }
+  ]
+}

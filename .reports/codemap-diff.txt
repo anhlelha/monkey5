@@ -1,0 +1,49 @@
+Codemap Generation Report
+─────────────────────────────────────────────────────────────────
+Generated: 2026-06-12
+Mode: initial (no prior codemaps existed in docs/CODEMAPS/)
+
+Files created:
+  docs/CODEMAPS/architecture.md   (~750 tokens)
+  docs/CODEMAPS/backend.md        (~900 tokens)
+  docs/CODEMAPS/frontend.md       (~850 tokens)
+  docs/CODEMAPS/data.md           (~700 tokens)
+  docs/CODEMAPS/dependencies.md   (~600 tokens)
+
+Project type: Single Next.js 16 App Router app + Prisma 5 + SQLite.
+                No monorepo, no microservices.
+
+Scanned:
+  app/                      27 routes (page.tsx + actions.ts + route.ts)
+  components/               12 components (incl 1920-line ExamFigure.tsx)
+  lib/                      8 modules + lib/grading/ (8 files)
+  scripts/                  ~30 utilities, key: seed/build/audit/classify
+  prisma/schema.prisma      15 models
+
+Architecture highlights:
+  - Next.js Server Actions are the main backend surface (only 1 custom HTTP
+    route besides auth.js handlers: POST /api/reference-exams/claim).
+  - Grading library has 3-layer architecture (classify → dispatch → matchers).
+    Called at BOTH submit and render — UI updates on refresh.
+  - Exam content pipeline: override map → metadata JSON (generated) →
+    seed-all-exams.ts (destructive) → SQLite. App reads DB only.
+  - Figure rendering: hand-written SVG cases in components/ExamFigure.tsx
+    keyed by Question.figure string. ~50 cases.
+
+External services: minimal (Google OAuth optional, Gemini API for figure
+gen only). No analytics/email/payment/CDN wired.
+
+Architecture changes since last codemap: N/A (first generation).
+
+Staleness warnings:
+  README.md         updated 2026-06-11 (1 day ago)  — current
+  CLAUDE.md         updated 2026-06-12 — current
+  .claude/commands/exam-import.md  updated 2026-06-12 — current
+  docs/AUDIT-NTT-stems-2026-06-11.md  frozen snapshot — do not regenerate
+
+Next refresh recommended after:
+  - Adding new HTTP API routes
+  - Adding new Prisma models or schema changes
+  - Refactoring grading library structure
+  - Adding new external service dependencies
+─────────────────────────────────────────────────────────────────

@@ -1,0 +1,1638 @@
+[
+  {
+    "examId": "?",
+    "school": "?",
+    "year": "?",
+    "num": 13,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một mảnh đất hình chữ nhật có chu vi $120\\ \\text{m}$, chiều dài hơn chiều rộng $20\\ \\text{m}$. Tính chiều rộng của mảnh …",
+    "figure": null,
+    "correct": "20"
+  },
+  {
+    "examId": "?",
+    "school": "?",
+    "year": "?",
+    "num": 74,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Chiều rộng bằng $40\\%$ chiều dài của một hình chữ nhật. Biết chiều dài hơn chiều rộng là $15\\ \\text{m}$. Tính chiều dài …",
+    "figure": null,
+    "correct": "25"
+  },
+  {
+    "examId": "?",
+    "school": "?",
+    "year": "?",
+    "num": 85,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Diện tích một hình chữ nhật tăng thêm $20\\%$ khi chiều dài của nó tăng thêm $20\\%$. Hỏi chiều rộng của hình chữ nhật tha…",
+    "figure": null,
+    "correct": "A"
+  },
+  {
+    "examId": "cg-2019",
+    "school": "cg",
+    "year": "2019-2020",
+    "num": 7,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một mảnh đất hình chữ nhật có diện tích là 2020 m². Nếu tăng chiều dài lên $50\\%$ và giảm chiều rộng đi $20\\%$ thì diện …",
+    "figure": null,
+    "correct": "0,2424"
+  },
+  {
+    "examId": "cg-2019",
+    "school": "cg",
+    "year": "2019-2020",
+    "num": 10,
+    "type": "essay",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình tam giác ABC. Lấy điểm M trên AB và N trên AC sao cho $\\text{AM} = \\text{BM}$ và $2NC = \\text{NA}$.\n\na) Tính tỉ…",
+    "figure": null,
+    "correct": null
+  },
+  {
+    "examId": "cg-2020",
+    "school": "cg",
+    "year": "2020-2021",
+    "num": 4,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình lập phương có diện tích toàn phần lớn hơn diện tích xung quanh là $72\\,\\text{cm}^2$. Hỏi thể tích của hình lập …",
+    "figure": null,
+    "correct": "216"
+  },
+  {
+    "examId": "cg-2021",
+    "school": "cg",
+    "year": "2021-2022",
+    "num": 4,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một bể nước dạng hình hộp chữ nhật có các kích thước đo ở trong lòng bể là: dài 3 m, rộng 2 m, cao 1,5 m. Một vòi nước c…",
+    "figure": null,
+    "correct": "5"
+  },
+  {
+    "examId": "cg-2021",
+    "school": "cg",
+    "year": "2021-2022",
+    "num": 8,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình thang ABCD có AB = $\\frac{2}{3}$ × CD. Trên AD lấy điểm E sao cho AE gấp 2 lần ED. Tính diện tích tam giác ABE,…",
+    "figure": null,
+    "correct": "8"
+  },
+  {
+    "examId": "cg-2022",
+    "school": "cg",
+    "year": "2022-2023",
+    "num": 4,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình hộp chữ nhật có chiều dài là 12 cm, chiều rộng là 8 cm. Một hình lập phương có cạnh bằng trung bình cộng ba kíc…",
+    "figure": null,
+    "correct": "A"
+  },
+  {
+    "examId": "cg-2023",
+    "school": "cg",
+    "year": "2023-2024",
+    "num": 4,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Phòng học có dạng hình hộp chữ nhật chiều dài 7 m, chiều rộng 4,5 m, chiều cao 3 m. Người ta muốn sơn toàn bộ trần nhà v…",
+    "figure": null,
+    "correct": "C"
+  },
+  {
+    "examId": "cg-2024",
+    "school": "cg",
+    "year": "2024-2025",
+    "num": 4,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình hộp chữ nhật, chu vi đáy là 36 cm, chiều rộng là 8 cm, biết chiều cao bằng $\\frac{3}{4}$ chiều rộng. Tính thể t…",
+    "figure": null,
+    "correct": "480"
+  },
+  {
+    "examId": "cg-2025",
+    "school": "cg",
+    "year": "2025-2026",
+    "num": 3,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"bản đồ\" but figure field is empty"
+      }
+    ],
+    "stem": "Quãng đường từ nhà A đến B dài 800 m. Trên bản đồ có tỉ lệ $1:20000$, quãng đường đó dài bao nhiêu?",
+    "figure": null,
+    "correct": "4"
+  },
+  {
+    "examId": "cg-2025",
+    "school": "cg",
+    "year": "2025-2026",
+    "num": 4,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình lập phương có cạnh 12 cm. Tính diện tích toàn phần của hình lập phương đó.",
+    "figure": null,
+    "correct": "864"
+  },
+  {
+    "examId": "cg-2025",
+    "school": "cg",
+    "year": "2025-2026",
+    "num": 8,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho một hình thang có diện tích 100 cm². Người ta mở rộng đáy lớn thêm 5 cm thì phần diện tích tăng thêm bằng $\\frac{1}{…",
+    "figure": null,
+    "correct": "30"
+  },
+  {
+    "examId": "cg-2025-ref",
+    "school": "cg",
+    "year": "2025-2026",
+    "num": 3,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một mảnh đất hình chữ nhật trên bản đồ tỉ lệ $1 : 500$ có chiều dài $6\\ \\text{cm}$ và chiều rộng $4\\ \\text{cm}$. Diện tí…",
+    "figure": null,
+    "correct": "C"
+  },
+  {
+    "examId": "cg-2025-ref",
+    "school": "cg",
+    "year": "2025-2026",
+    "num": 8,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình thang $ABCD$ có hai đáy $AB$ và $CD$. Hai đường chéo $AC$ và $BD$ cắt nhau tại $O$. Biết diện tích tam giác $OA…",
+    "figure": null,
+    "correct": "64"
+  },
+  {
+    "examId": "ltv-2011",
+    "school": "ltv",
+    "year": "2011-2012",
+    "num": 6,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Nếu hình chữ nhật có chu vi 24m thì diện tích lớn nhất có thể của nó bằng bao nhiêu?",
+    "figure": null,
+    "correct": "36"
+  },
+  {
+    "examId": "ltv-2011",
+    "school": "ltv",
+    "year": "2011-2012",
+    "num": 11,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Nếu chiều dài và chiều rộng của hình chữ nhật được tăng lên $10\\%$ thì diện tích của nó tăng thêm bao nhiêu phần trăm?",
+    "figure": null,
+    "correct": "21%"
+  },
+  {
+    "examId": "ltv-2011",
+    "school": "ltv",
+    "year": "2011-2012",
+    "num": 12,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình thang $ABCD$ có đáy $CD$ dài gấp hai lần đáy nhỏ $AB$. Nếu hình thang đó có diện tích bằng $63\\text{m}^2$ thì d…",
+    "figure": null,
+    "correct": "21"
+  },
+  {
+    "examId": "ltv-2011",
+    "school": "ltv",
+    "year": "2011-2012",
+    "num": 15,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho ba hình tròn: hình tròn thứ nhất có bán kính bằng 5m, hình tròn thứ hai có bán kính bằng 12m, hình tròn thứ ba có di…",
+    "figure": null,
+    "correct": "13"
+  },
+  {
+    "examId": "ltv-2011",
+    "school": "ltv",
+    "year": "2011-2012",
+    "num": 17,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Dùng một số hình lập phương có kích thước bằng nhau để ghép thành một hình lập phương có kích thước lớn hơn. Hỏi cần dùn…",
+    "figure": null,
+    "correct": "8"
+  },
+  {
+    "examId": "ltv-2011",
+    "school": "ltv",
+    "year": "2011-2012",
+    "num": 18,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Nếu ba kích thước (chiều dài, chiều rộng, chiều cao) của một hình hộp chữ nhật được tăng lên 11 lần thì thể tích hình hộ…",
+    "figure": null,
+    "correct": "1331"
+  },
+  {
+    "examId": "ltv-2012",
+    "school": "ltv",
+    "year": "2012-2013",
+    "num": 5,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình thang $ABCD$ có diện tích bằng $612\\text{cm}^2$. Biết rằng độ dài cạnh đáy $CD$ gấp hai lần độ dài cạnh đáy $AB…",
+    "figure": null,
+    "correct": "S_ABC = 204 cm²; S_ACD = 408 cm²"
+  },
+  {
+    "examId": "ltv-2012",
+    "school": "ltv",
+    "year": "2012-2013",
+    "num": 6,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một mảnh vườn hình chữ nhật có chiều dài gấp đôi chiều rộng và có diện tích bằng 288m 2 . Hỏi chu vi mảnh vườn bằng bao …",
+    "figure": null,
+    "correct": "72"
+  },
+  {
+    "examId": "ltv-2012",
+    "school": "ltv",
+    "year": "2012-2013",
+    "num": 7,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Nếu bán kính của hình tròn tăng thêm $50\\%$ thì diện tích của hình tròn đó tăng thêm bao nhiêu phần trăm?",
+    "figure": null,
+    "correct": "125%"
+  },
+  {
+    "examId": "ltv-2012",
+    "school": "ltv",
+    "year": "2012-2013",
+    "num": 11,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Hình vuông $ABCD$ có bốn đỉnh nằm trên hình tròn và diện tích hình vuông bằng $18\\text{cm}^2$. Tính diện tích của phần h…",
+    "figure": null,
+    "correct": "10,26"
+  },
+  {
+    "examId": "ltv-2012",
+    "school": "ltv",
+    "year": "2012-2013",
+    "num": 15,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình hộp chữ nhật có chiều rộng bằng 4cm, chiều dài bằng 10cm và có thể tích bằng thể tích của hình lập phương có cạ…",
+    "figure": null,
+    "correct": "12,8"
+  },
+  {
+    "examId": "ltv-2013",
+    "school": "ltv",
+    "year": "2013-2014",
+    "num": 3,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình thang có diện tích $50\\text{m}^2$, có đáy lớn bằng 13m và có chiều cao bằng 5m. Hãy tính độ dài đáy nhỏ.",
+    "figure": null,
+    "correct": "7"
+  },
+  {
+    "examId": "ltv-2013",
+    "school": "ltv",
+    "year": "2013-2014",
+    "num": 5,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho ba khối đồng hình lập phương có cạnh lần lượt là 3m, 4m và 5m. Người ta đun chảy ba khối đồng đó để đúc thành một kh…",
+    "figure": null,
+    "correct": "6"
+  },
+  {
+    "examId": "ltv-2013",
+    "school": "ltv",
+    "year": "2013-2014",
+    "num": 9,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một bể đựng nước là một hình hộp chữ nhật có chiều dài 2,5m, chiều rộng 1,5m và chiều cao 2m. Một chiếc vòi chảy vào bể …",
+    "figure": null,
+    "correct": "8 giờ 20 phút"
+  },
+  {
+    "examId": "ltv-2013",
+    "school": "ltv",
+    "year": "2013-2014",
+    "num": 14,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Gọi A là diện tích hình tròn có bán kính 10m, B là diện tích hình chữ nhật có chiều dài bằng 20m và chiều rộng bằng 15,6…",
+    "figure": null,
+    "correct": "A > B"
+  },
+  {
+    "examId": "ltv-2013",
+    "school": "ltv",
+    "year": "2013-2014",
+    "num": 19,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình chữ nhật có diện tích $60\\text{m}^2$. Nếu tăng chiều dài của nó thêm 1m, còn chiều rộng để nguyên thì diện tích…",
+    "figure": null,
+    "correct": "34"
+  },
+  {
+    "examId": "ltv-2014",
+    "school": "ltv",
+    "year": "2014-2015",
+    "num": 11,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một miếng tôn có chu vi 44dm và chiều dài hơn chiều rộng 2dm. Người ta cắt 4 góc của miếng tôn 4 hình vuông bằng nhau, m…",
+    "figure": null,
+    "correct": "80"
+  },
+  {
+    "examId": "ltv-2014",
+    "school": "ltv",
+    "year": "2014-2015",
+    "num": 16,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một thửa ruộng hình chữ nhật có chiều dài lớn hơn chiều rộng 5m. Người ta mở rộng thửa ruộng bằng cách tăng thêm chiều r…",
+    "figure": null,
+    "correct": "300"
+  },
+  {
+    "examId": "ltv-2014",
+    "school": "ltv",
+    "year": "2014-2015",
+    "num": 19,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Xếp các hình lập phương nhỏ cạnh 1cm thành một khối hình hộp chữ nhật có chiều dài 1dm, chiều rộng 0,5dm và chiều cao 0,…",
+    "figure": null,
+    "correct": "136"
+  },
+  {
+    "examId": "ltv-2018",
+    "school": "ltv",
+    "year": "2018-2019",
+    "num": 2,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Trên một khối gỗ hình lập phương cạnh 20cm, người ta đục một lỗ hình vuông cạnh 3cm ở chính giữa, xuyên qua khối gỗ. Tín…",
+    "figure": null,
+    "correct": "7820"
+  },
+  {
+    "examId": "ltv-2018",
+    "school": "ltv",
+    "year": "2018-2019",
+    "num": 8,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một mảnh vườn hình chữ nhật có chiều dài gấp đôi chiều rộng và diện tích là 200m2 . Tính chu vi mảnh vườn đó.",
+    "figure": null,
+    "correct": "60"
+  },
+  {
+    "examId": "ltv-2019",
+    "school": "ltv",
+    "year": "2019-2020",
+    "num": 5,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Tính diện tích của một hình chữ nhật có chu vi bằng 252cm và chiều dài gấp đôi chiều rộng.",
+    "figure": null,
+    "correct": "3528"
+  },
+  {
+    "examId": "ltv-2019",
+    "school": "ltv",
+    "year": "2019-2020",
+    "num": 7,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình hộp chữ nhật có đáy là hình vuông cạnh 25cm và chiều cao bằng 1,5dm. Tính thể tích của hình hộp đó.",
+    "figure": null,
+    "correct": "9375"
+  },
+  {
+    "examId": "ltv-2019",
+    "school": "ltv",
+    "year": "2019-2020",
+    "num": 18,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình lập phương cạnh bằng 6cm được tạo thành bởi các hình lập phương cạnh bằng 1cm. Người ta sơn các mặt của hình lậ…",
+    "figure": null,
+    "correct": "312"
+  },
+  {
+    "examId": "ltv-2020",
+    "school": "ltv",
+    "year": "2020-2021",
+    "num": 2,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình hộp chữ nhật khi tăng chiều rộng lên 3 lần, chiều dài giảm đi 2 lần thì chiều cao phải tăng hay giảm bao nhiêu …",
+    "figure": null,
+    "correct": "Giảm 1,5 lần"
+  },
+  {
+    "examId": "ltv-2020",
+    "school": "ltv",
+    "year": "2020-2021",
+    "num": 6,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình chữ nhật có chiều rộng 15,21m, chiều dài hơn chiều rộng 3,24m. Tính chu vi hình chữ nhật đó.",
+    "figure": null,
+    "correct": "67,32"
+  },
+  {
+    "examId": "ltv-2020",
+    "school": "ltv",
+    "year": "2020-2021",
+    "num": 19,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một tấm bìa hình chữ nhật có chiều dài bằng 24cm, chiều rộng bằng 18cm, người ta cắt đi bốn hình vuông có cạnh 4cm ở bốn…",
+    "figure": null,
+    "correct": "640"
+  },
+  {
+    "examId": "ltv-2021",
+    "school": "ltv",
+    "year": "2021-2022",
+    "num": 4,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Tính diện tích hình tròn có đường kính 7cm.",
+    "figure": null,
+    "correct": "38,465"
+  },
+  {
+    "examId": "ltv-2021",
+    "school": "ltv",
+    "year": "2021-2022",
+    "num": 5,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Có một hình chữ nhật đã được tăng chiều dài thêm $10\\%$ và giảm chiều rộng đi $10\\%$ thì diện tích hình chữ nhật đó thay…",
+    "figure": null,
+    "correct": "Giảm 1% so với diện tích ban đầu"
+  },
+  {
+    "examId": "ltv-2022",
+    "school": "ltv",
+    "year": "2022-2023",
+    "num": 5,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Tính thể tích hình lập phương biết diện tích toàn phần của nó là 54cm 2 .",
+    "figure": null,
+    "correct": "27"
+  },
+  {
+    "examId": "ltv-2022",
+    "school": "ltv",
+    "year": "2022-2023",
+    "num": 6,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình chữ nhật có chu vi là 100cm. Biết chiều rộng bằng 20cm . Tính diện tích hình chữ nhật đó.",
+    "figure": null,
+    "correct": "600"
+  },
+  {
+    "examId": "ltv-2022",
+    "school": "ltv",
+    "year": "2022-2023",
+    "num": 10,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một bể nước hình hộp chữ nhật có kích thước đo ở trong lòng bể là: dài 2 m, rộng 1,5m và cao 12dm. Biết lượng nước trong…",
+    "figure": null,
+    "correct": "900"
+  },
+  {
+    "examId": "ltv-2022",
+    "school": "ltv",
+    "year": "2022-2023",
+    "num": 11,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Trên bản đồ tỉ lệ $1:1000$, một mảnh đất hình chữ nhật có chiều dài 10cm, chiều rộng 8cm. Hỏi trong thực tế mảnh đất đó …",
+    "figure": null,
+    "correct": "8000"
+  },
+  {
+    "examId": "ltv-2022",
+    "school": "ltv",
+    "year": "2022-2023",
+    "num": 14,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hai hình thang có diện tích bằng nhau. Hình thang thứ nhất có hai đáy dài 8cm và 10cm. Hình thang thứ hai có hai đáy…",
+    "figure": null,
+    "correct": "Hình thang thứ nhất"
+  },
+  {
+    "examId": "ltv-2023",
+    "school": "ltv",
+    "year": "2023-2024",
+    "num": 3,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Diện tích một mặt của hình lập phương là 25cm 2 . Hỏi thể tích hình đó là bao nhiêu?",
+    "figure": null,
+    "correct": "125"
+  },
+  {
+    "examId": "ltv-2023",
+    "school": "ltv",
+    "year": "2023-2024",
+    "num": 8,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Tính diện tích hình chữ nhật có chiều dài bằng 20cm, chiều dài hơn chiều rộng 6 cm.",
+    "figure": null,
+    "correct": "280"
+  },
+  {
+    "examId": "ltv-2023",
+    "school": "ltv",
+    "year": "2023-2024",
+    "num": 13,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Tính diện tích hình tròn biết chu vi của hình tròn đó là 37,68cm.",
+    "figure": null,
+    "correct": "113,04"
+  },
+  {
+    "examId": "ltv-2023",
+    "school": "ltv",
+    "year": "2023-2024",
+    "num": 19,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Dùng 7 que diêm thì xếp được tối đa bao nhiêu hình tam giác (phải giữ nguyên trạng thái từng que diêm)?",
+    "figure": null,
+    "correct": "3"
+  },
+  {
+    "examId": "ltv-2024",
+    "school": "ltv",
+    "year": "2024-2025",
+    "num": 8,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình chữ nhật có chu vi 30cm, chiều rộng kém chiều dài 5cm. Tính diện tích hình chữ nhật đó.",
+    "figure": null,
+    "correct": "50"
+  },
+  {
+    "examId": "ltv-2024",
+    "school": "ltv",
+    "year": "2024-2025",
+    "num": 11,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một bể bơi dạng hình hộp chữ nhật có chiều dài 20,5m, chiều rộng 16,2m. Nếu bể chứa 298,89m³ nước thì mực nước trong bể …",
+    "figure": null,
+    "correct": "1,2"
+  },
+  {
+    "examId": "ltv-2025",
+    "school": "ltv",
+    "year": "2025-2026",
+    "num": 7,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho một hình chữ nhật có chiều dài 40cm, chiều rộng là 20cm. Hỏi có thể chia hình chữ nhật đó được nhiều nhất bao nhiêu …",
+    "figure": null,
+    "correct": "32"
+  },
+  {
+    "examId": "ltv-2025",
+    "school": "ltv",
+    "year": "2025-2026",
+    "num": 9,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một bể nước hình hộp chữ nhật có chiều dài là 12m, chiều rộng là 5m, chiều cao 2,2m. Mực nước hiện tại là 1,2m. Hỏi phải…",
+    "figure": null,
+    "correct": "60000"
+  },
+  {
+    "examId": "nn-2021",
+    "school": "nn",
+    "year": "2021-2022",
+    "num": 4,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình hộp chữ nhật có chiều dài gấp hai lần chiều rộng. Nếu tăng chiều dài lên $5$ dm và giữ nguyên chiều rộng, chiều…",
+    "figure": null,
+    "correct": "B"
+  },
+  {
+    "examId": "nn-2021",
+    "school": "nn",
+    "year": "2021-2022",
+    "num": 5,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình thang $ABCD$ có đáy $CD$ gấp đôi đáy $AB$, hai đường chéo $AC$ và $BD$ cắt nhau tại $O$. Điểm $M$ nằm trên cạnh…",
+    "figure": null,
+    "correct": "C"
+  },
+  {
+    "examId": "nn-2022",
+    "school": "nn",
+    "year": "2022-2023",
+    "num": 2,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Xếp $128$ hình lập phương nhỏ thành một hình hộp chữ nhật có chiều dài bằng $2$ lần chiều rộng và cũng bằng $2$ lần chiề…",
+    "figure": null,
+    "correct": "40"
+  },
+  {
+    "examId": "ntl-2020",
+    "school": "ntl",
+    "year": "2020-2021",
+    "num": 9,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Hình bình hành có đáy $0{,}9$ m; chiều cao $4$ dm. Hình vuông có diện tích bằng diện tích hình bình hành. Tìm cạnh hình …",
+    "figure": null,
+    "correct": "6"
+  },
+  {
+    "examId": "ntl-2020",
+    "school": "ntl",
+    "year": "2020-2021",
+    "num": 12,
+    "type": "essay",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho $9$ thanh: thanh $1$ dài $1$ cm; thanh $2$ dài $2$ cm; thanh $3$ dài $3$ cm; $\\ldots$; thanh $9$ dài $9$ cm. Có bao …",
+    "figure": null,
+    "correct": "9 cách"
+  },
+  {
+    "examId": "ntl-2022",
+    "school": "ntl",
+    "year": "2022-2023",
+    "num": 2,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Diện tích toàn phần của hình lập phương hơn diện tích xung quanh là $18$ $\\text{cm}^2$. Tính thể tích hình lập phương.",
+    "figure": null,
+    "correct": "27"
+  },
+  {
+    "examId": "ntl-2023",
+    "school": "ntl",
+    "year": "2023-2024",
+    "num": 5,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một bể nước hình hộp chữ nhật có chiều dài $50$ m, chiều rộng $30$ m. Thể tích nước trong bể là $2100$ $\\text{m}^3$. Tín…",
+    "figure": null,
+    "correct": "1,4"
+  },
+  {
+    "examId": "ntl-2025",
+    "school": "ntl",
+    "year": "2025-2026",
+    "num": 6,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một bể nước hình hộp chữ nhật có chiều dài $80$ cm, chiều rộng $40$ cm, chiều cao $60$ cm. Hỏi bể nước chứa được bao nhi…",
+    "figure": null,
+    "correct": "192"
+  },
+  {
+    "examId": "ntt-2007",
+    "school": "ntt",
+    "year": "2007-2008",
+    "num": 5,
+    "type": "essay",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Người ta xếp các hình lập phương cạnh 1cm thành một hình lập phương lớn có diện tích toàn phần là 600 cm2 . Sau đó người…",
+    "figure": null,
+    "correct": "a) 1000 hình;"
+  },
+  {
+    "examId": "ntt-2008",
+    "school": "ntt",
+    "year": "2008-2009",
+    "num": 3,
+    "type": "essay",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một nền nhà hình chữ nhật có chiều dài 9m, chiều rộng bằng $\\frac{2}{3}$ chiều dài. Người ta dùng các viên gạch hình vuô…",
+    "figure": null,
+    "correct": "8550000"
+  },
+  {
+    "examId": "ntt-2009",
+    "school": "ntt",
+    "year": "2009-2010",
+    "num": 4,
+    "type": "essay",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình tam giác ABC có diện tích là 2 010m2 . Trên cạnh AB lấy hai điểm M, N sao cho $\\text{AM} = \\text{MN} = \\text{NB…",
+    "figure": null,
+    "correct": "670 cm2 "
+  },
+  {
+    "examId": "ntt-2018",
+    "school": "ntt",
+    "year": "2018-2019",
+    "num": 2,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Đội tình nguyện trường Nguyễn Tất Thành làm từ thiện tại một trường học của tỉnh Hà Giang. Theo kế hoạch, đội sẽ dọn cỏ …",
+    "figure": null,
+    "correct": "C"
+  },
+  {
+    "examId": "ntt-2019",
+    "school": "ntt",
+    "year": "2019-2020",
+    "num": 1,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Là 1 bài về giao thông có hình vẽ. Câu hỏi là Nam gặp biểu tượng nào?",
+    "figure": null,
+    "correct": "Siêu thị"
+  },
+  {
+    "examId": "ntt-2019",
+    "school": "ntt",
+    "year": "2019-2020",
+    "num": 3,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho một bể đầy nước hình hộp chữ nhật. Người ta thả hai cục sắt hình lập phương thì thấy nước tràn ra 54 lít (hoặc 16 lí…",
+    "figure": null,
+    "correct": "cục sắt"
+  },
+  {
+    "examId": "ntt-2019",
+    "school": "ntt",
+    "year": "2019-2020",
+    "num": 4,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Sân trường Nguyễn Tất Thành có chu vi là 142m . Nếu tăng chiều rộng lên 0,5m và giảm chiều dài đi 0,5m thì sân trường tr…",
+    "figure": null,
+    "correct": "1260"
+  },
+  {
+    "examId": "ntt-2020",
+    "school": "ntt",
+    "year": "2020-2021",
+    "num": 2,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Nếu gấp bán kính đường tròn lên 2 lần thì diện tích hình tròn gấp lên bao nhiêu lần?",
+    "figure": null,
+    "correct": "4"
+  },
+  {
+    "examId": "ntt-2020",
+    "school": "ntt",
+    "year": "2020-2021",
+    "num": 8,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình chữ nhật ABCD có $AB = 60m$, $AD = 30m$. Điểm E trên cạnh BC sao cho $BE = \\frac{1}{2} \\times BC$, điểm F trên …",
+    "figure": null,
+    "correct": "1"
+  },
+  {
+    "examId": "ntt-2022",
+    "school": "ntt",
+    "year": "2022-2023",
+    "num": 4,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Hình hộp chữ nhật có thể tích $V = 336$ cm3 . Biết diện tích đáy bằng 48cm2 . Chiều cao của hình hộp chữ nhật bằng",
+    "figure": null,
+    "correct": "C"
+  },
+  {
+    "examId": "ntt-2023",
+    "school": "ntt",
+    "year": "2023-2024",
+    "num": 3,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một bể hình hộp chữ nhật có chiều dài 1m, chiều rộng 5dm, chiều cao 6dm. Biết mực nước trong bể cao bằng $\\frac{2}{3}$ c…",
+    "figure": null,
+    "correct": "A"
+  },
+  {
+    "examId": "ntt-2023",
+    "school": "ntt",
+    "year": "2023-2024",
+    "num": 4,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_MISSING",
+        "detail": "Figure \"ntt-2023-c4\" not implemented in ExamFigure.tsx"
+      }
+    ],
+    "stem": "Biểu đồ cột dưới đây cho biết số lượng học sinh khối 6 tham gia câu lạc bộ nghệ thuật trong hè 2023 của trường Nguyễn Tấ…",
+    "figure": "ntt-2023-c4",
+    "correct": "A"
+  },
+  {
+    "examId": "ntt-2023",
+    "school": "ntt",
+    "year": "2023-2024",
+    "num": 8,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_MISSING",
+        "detail": "Figure \"ntt-2023-c8\" not implemented in ExamFigure.tsx"
+      }
+    ],
+    "stem": "Cho hình chữ nhật ABCD có cạnh $\\text{AD} = 4cm$. Hình tròn tâm D, có bán kính DA và hình tròn tâm C , bán kính CB có vị…",
+    "figure": "ntt-2023-c8",
+    "correct": "6,28"
+  },
+  {
+    "examId": "ntt-2023",
+    "school": "ntt",
+    "year": "2023-2024",
+    "num": 10,
+    "type": "essay",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình chữ nhật ABCD. Trên cạnh AB lấy điểm E sao cho $\\text{AB} = 3AE$. EC cắt BD tại G. Biết diện tích hình chữ nhật…",
+    "figure": null,
+    "correct": "a) 24 cm2 ; b) 52,8 cm2 "
+  },
+  {
+    "examId": "ntt-2024",
+    "school": "ntt",
+    "year": "2024-2025",
+    "num": 5,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một cái bể nước có lòng bể dạng hình hộp chữ nhật có chiều dài bằng 2m; chiều rộng bằng 1m và chiều cao bằng chiều dài. …",
+    "figure": null,
+    "correct": "D"
+  },
+  {
+    "examId": "ntt-2024",
+    "school": "ntt",
+    "year": "2024-2025",
+    "num": 12,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình thang ABCD (AB và CD là hai cạnh đáy), $\\text{CD} = 2 × \\text{AB}$. Trên đoạn thẳng AC lấy điểm M sao cho $\\tex…",
+    "figure": null,
+    "correct": "a) SABCD = 180cm ;"
+  },
+  {
+    "examId": "ntt-2025",
+    "school": "ntt",
+    "year": "2025-2026",
+    "num": 12,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Xếp 15 hình lập phương có cạnh bằng 1cm thành một hình hộp chữ nhật. Hỏi trong các hình hộp chữ nhật có thể xếp được, hì…",
+    "figure": null,
+    "correct": "62"
+  },
+  {
+    "examId": "ntt-2026",
+    "school": "ntt",
+    "year": "2026-2027",
+    "num": 5,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một bể kính dạng hình hộp chữ nhật với chiều dài 12dm, chiều rộng 6 dm, chiều cao 5 dm. Biết lượng nước trong bể kính đa…",
+    "figure": null,
+    "correct": "240"
+  },
+  {
+    "examId": "set-log-l4-all-mq6sw00f-htmfircg",
+    "school": "mix",
+    "year": "Luyện L4 · 09/06/2026",
+    "num": 4,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Có tất cả bao nhiêu hình vuông trong hình vẽ bên?",
+    "figure": null,
+    "correct": "70 hình"
+  },
+  {
+    "examId": "set-phan-mix-sup-mq6tdlet-7lsdu7tb",
+    "school": "mix",
+    "year": "Luyện MIX · 09/06/2026",
+    "num": 5,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Chiều rộng bằng $40\\%$ chiều dài của một hình chữ nhật. Biết chiều dài hơn chiều rộng là $15\\ \\text{m}$. Tính chiều dài …",
+    "figure": null,
+    "correct": "25"
+  },
+  {
+    "examId": "tx-2019",
+    "school": "tx",
+    "year": "2019-2020",
+    "num": 5,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho một hình tròn có đường kính là 8 cm. Tính diện tích hình tròn",
+    "figure": null,
+    "correct": "50,24"
+  },
+  {
+    "examId": "tx-2020",
+    "school": "tx",
+    "year": "2020-2021",
+    "num": 3,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Người ta xếp $1331$ khối lập phương nhỏ cạnh $1$ cm thành một khối hình lập phương lớn, sau đó người ta sơn $4$ mặt xung…",
+    "figure": null,
+    "correct": "441"
+  },
+  {
+    "examId": "tx-2020",
+    "school": "tx",
+    "year": "2020-2021",
+    "num": 5,
+    "type": "essay",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình thang vuông ABCD. Đáy nhỏ AB bằng 40 cm. Đáy lớn CD bằng 60 cm. Đường cao AD bằng 40 cm. Lấy E trên AD, G trên …",
+    "figure": null,
+    "correct": "SABGE = 1425 cm2; SEGCD = 575 cm2"
+  },
+  {
+    "examId": "tx-2022",
+    "school": "tx",
+    "year": "2022-2023",
+    "num": 2,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      },
+      {
+        "type": "MATH_RAW",
+        "detail": "Raw math detected: \\bcm2\\b|\\bm2\\b|\\bdm2\\b"
+      }
+    ],
+    "stem": "Nhiều hình lập phương nhỏ ghép thành 1 hình lập phương lớn có diện tích toàn phần bằng 484 cm2. Bỏ 4 hình lập phương nhỏ…",
+    "figure": null,
+    "correct": "484"
+  },
+  {
+    "examId": "tx-2022",
+    "school": "tx",
+    "year": "2022-2023",
+    "num": 4,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một thửa ruộng hình thang có trung bình cộng hai đáy là 20,5m. Sau khi tăng đáy lớn lên 4m thì diện tích tăng lên 60 m2.…",
+    "figure": null,
+    "correct": "615"
+  },
+  {
+    "examId": "tx-2023",
+    "school": "tx",
+    "year": "2023-2024",
+    "num": 7,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cạnh của một hình lập phương là 8 cm. Nếu tăng cạnh hình lập phương lên 3 lần thì diện tích toàn phần tăng lên bao nhiêu…",
+    "figure": null,
+    "correct": "C"
+  },
+  {
+    "examId": "tx-2023",
+    "school": "tx",
+    "year": "2023-2024",
+    "num": 8,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một bể nước hình hộp chữ nhật có chiều dài 60 cm, chiều rộng 40 cm. Trong bể có 96 lít nước. Tính chiều cao của mực nước…",
+    "figure": null,
+    "correct": "B"
+  },
+  {
+    "examId": "tx-2023",
+    "school": "tx",
+    "year": "2023-2024",
+    "num": 10,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một mảnh vườn hình thang vuông có đáy bé bằng $\\dfrac{3}{5}$ đáy lớn. Nếu tăng đáy bé 6m thì mảnh vườn đó thành hình vuô…",
+    "figure": null,
+    "correct": "180"
+  },
+  {
+    "examId": "tx-2024",
+    "school": "tx",
+    "year": "2024-2025",
+    "num": 10,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Có một cái bể đang chứa một số nước. Nếu thả một viên kim loại hình lập phương cạnh 10 cm thì sẽ chạm tới đáy bể và mực …",
+    "figure": null,
+    "correct": "1900 cm²"
+  },
+  {
+    "examId": "tx-2025",
+    "school": "tx",
+    "year": "2025-2026",
+    "num": 2,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho một hình tròn có chu vi 37,68cm. Tính diện tích hình tròn đó.",
+    "figure": null,
+    "correct": "113,04"
+  },
+  {
+    "examId": "tx-2025",
+    "school": "tx",
+    "year": "2025-2026",
+    "num": 3,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Nếu tăng cạnh của hình lập phương lên 4 lần thì thể tích của hình đó tăng lên bao nhiêu lần?",
+    "figure": null,
+    "correct": "64"
+  },
+  {
+    "examId": "tx-2025",
+    "school": "tx",
+    "year": "2025-2026",
+    "num": 6,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Trên bản đồ tỉ lệ $1:3$ 000 một mảnh đất hình chữ nhật có chiều rộng 3cm, chiều dài 4cm. Hỏi diện tích thực tế của mảnh …",
+    "figure": null,
+    "correct": "10 800m2"
+  },
+  {
+    "examId": "tx-2025",
+    "school": "tx",
+    "year": "2025-2026",
+    "num": 7,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một khối đá hình lập phương có cạnh là 2cm. Hỏi thể tích của 120 khối đá như thế bằng bao nhiêu đề-$xi-m$ét khối?",
+    "figure": null,
+    "correct": "0,96"
+  },
+  {
+    "examId": "tx-2025",
+    "school": "tx",
+    "year": "2025-2026",
+    "num": 10,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình hộp chữ nhật có tổng độ dài các cạnh bằng 84cm, chu vi đáy bằng 32cm và diện tích toàn phần bằng 280cm2. Tính t…",
+    "figure": null,
+    "correct": "300"
+  },
+  {
+    "examId": "tx-2026",
+    "school": "tx",
+    "year": "2026-2027",
+    "num": 6,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một chiếc hộp hình lập phương có cạnh là $2{,}5$ m. Người ta sơn mặt trong và mặt ngoài của chiếc hộp, biết rằng $1$ kg …",
+    "figure": null,
+    "correct": "15"
+  },
+  {
+    "examId": "tx-2026",
+    "school": "tx",
+    "year": "2026-2027",
+    "num": 12,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình tam giác có chiều cao bằng $125$ cm. Nếu đáy gấp $4$ lần và chiều cao giảm $50$ cm thì diện tích tăng bao nhiêu…",
+    "figure": null,
+    "correct": "2,4"
+  }
+]

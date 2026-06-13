@@ -1,0 +1,84 @@
+"use server";
+
+import { revalidatePath } from "next/cache";
+import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
+import { parseTopicSetId } from "@/lib/spawn-exam";
+import { gradeAnswer } from "@/lib/grading";
+
+interface SubmitArgs {
+  examId: string;
+  answers: Record<string, unknown>;
+  durationSec: number;
+}
+
+export async function submitExam({ examId, answers, durationSec }: SubmitArgs) {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Unauthorized");
+
+  const exam = await prisma.exam.findUnique({
+    where: { id: examId },
+    include: { questions: true },
+  });
+  if (!exam) throw new Error("Exam not found");
+
+  let earned = 0;
+  let total = 0;
+  let correctCount = 0;
+  for (const q of exam.questions) {
+    total += q.points;
+    const a = answers[q.id] as
+      | string
+      | { text?: string; drawings?: string[] }
+      | null
+      | undefined;
+    const result = gradeAnswer(
+      {
+        type: q.type as "fill" | "mcq" | "essay",
+        correct: q.correct,
+        answerSchema: q.answerSchema,
+      },
+      a,
+    );
+    if (result.correct) {
+      earned += q.points;
+      correctCount += 1;
+    }
+  }
+  const score = total > 0 ? Math.round((earned / total) * 100) : 0;
+
+  const attempt = await prisma.attempt.create({
+    data: {
+      userId: session.user.id,
+      examId,
+      answers: JSON.stringify(answers),
+      earned,
+      total,
+      score,
+      durationSec,
+      submitted: true,
+    },
+  });
+
+  // Topic-set spawns also write a TopicSession row (drives "Lịch sử luyện tập"
+  // and the user-progress sub-title on the topic detail page).
+  const topicSet = parseTopicSetId(examId);
+  if (topicSet) {
+    await prisma.topicSession.create({
+      data: {
+        userId: session.user.id,
+        topic: topicSet.topic,
+        level: topicSet.level,
+        qcount: exam.questions.length,
+        score: correctCount,
+        setId: examId,
+      },
+    });
+    revalidatePath(`/topics/${topicSet.topic}`);
+  }
+
+  revalidatePath("/home");
+  revalidatePath("/library");
+
+  return { attemptId: attempt.id };
+}

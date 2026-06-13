@@ -1,0 +1,280 @@
+// Cùng Khỉ con vào lớp 6 CLC — data model
+//
+// Static reference data (SCHOOLS, TOPICS) live in lib/static.ts because they
+// rarely change and are needed in React Server Components without a DB roundtrip.
+// Dynamic data (users, exams, questions, attempts, custom sets) lives here.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// ─── Auth (NextAuth Prisma adapter) ──────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  // Application fields
+  role          String    @default("student") // "student" | "admin"
+  plan          String    @default("free")    // "free" | "pro" | "vip"
+  grade         String    @default("Lớp 5")
+  targets       String    @default("[]") // JSON array of school ids
+  hours         Int       @default(5)
+  examDate      String?   // ISO date string
+  readyTarget   Int       @default(75)
+  streak        Int       @default(0)
+  joinedDays    Int       @default(0)
+  // JSON blobs (SQLite has no native JSON, but Prisma marshals strings).
+  topicMastery  String    @default("{}") // { topicId: 0..1 }
+  readiness     String    @default("{}") // { schoolId: 0..100 }
+  activity      String    @default("[]") // last-14-day percent[] (null for no activity)
+
+  accounts Account[]
+  sessions Session[]
+  attempts Attempt[]
+  customSets CustomSet[]
+  topicSessions TopicSession[]
+  referenceExams UserReferenceExam[]
+  topicSets UserTopicSet[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ─── Exam library ────────────────────────────────────────────────────────────
+
+model Exam {
+  id        String   @id
+  school    String   // school id ("cg"|"ntt"|"ltv"|"tx"|"mix")
+  kind      String   // "official" | "reference" | "mixed"
+  year      String   // display label (e.g. "2024-2025")
+  title     String?
+  intro     String?
+  minutes   Int
+  qcount    Int
+  generated Boolean  @default(false)
+  basedOn   String?  // id of source exam (for reference)
+  note      String?
+  mixRatio  String?
+  sections  String   @default("[]") // JSON string of [{ num: number, header: string }]
+
+  questions Question[]
+  attempts  Attempt[]
+  referenceExams UserReferenceExam[]
+
+  createdAt DateTime @default(now())
+}
+
+model Question {
+  id          String  @id @default(cuid())
+  examId      String?
+  num         Int
+  type        String  // "fill" | "mcq" | "essay"
+  topic       String  // topic id
+  grade       String  // "L4" | "L5" | "NC" | "L4+5"
+  points      Int     @default(1)
+  stem        String
+  unit        String?
+  placeholder String?
+  correct     String?
+  // Optional JSON: AnswerSchema for grading (see lib/grading/types.ts).
+  // null → fall back to lenient string equality on `correct`.
+  answerSchema String?
+  // For MCQ — JSON array of { id, text }
+  options     String  @default("[]")
+  modelAnswer String?
+  figure      String?
+  source      String?
+  sourceQuestionId String?  // ID of original bank question (set when cloning into practice sets)
+  active      Boolean @default(true)
+
+  exam Exam? @relation(fields: [examId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+}
+
+model Attempt {
+  id        String   @id @default(cuid())
+  userId    String
+  examId    String
+  // JSON: { qid: answer }
+  answers   String   @default("{}")
+  score     Int      @default(0) // 0..100
+  earned    Int      @default(0)
+  total     Int      @default(0)
+  durationSec Int    @default(0)
+  submitted Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exam Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
+}
+
+// ─── Topic practice sets (admin-managed) ─────────────────────────────────────
+
+model CustomSet {
+  id         String   @id @default(cuid())
+  topic      String
+  name       String
+  qcount     Int
+  minutes    Int      @default(30)
+  difficulty String   @default("L5")
+  kind       String   @default("reference") // "official" | "mixed" | "reference"
+  mixRatio   String?
+  source     String?
+  tags       String   @default("[]") // JSON array
+  createdById String?
+  createdAt  DateTime @default(now())
+
+  createdBy User? @relation(fields: [createdById], references: [id], onDelete: SetNull)
+}
+
+// ─── Topic practice sessions (per-user activity) ─────────────────────────────
+// Records one finished practice run on a topic level CTA (L4/L5/NC/MIX). Drives
+// the topic detail "Lịch sử luyện tập" list and the per-topic progress stats.
+
+model TopicSession {
+  id        String   @id @default(cuid())
+  userId    String
+  topic     String   // topic id ("phan"|"hinh"|...)
+  level     String   // "L4" | "L5" | "NC" | "MIX" | "L4+5"
+  qcount    Int
+  score     Int      // number correct, 0..qcount
+  setId     String?  // spawned set id (e.g. "phan-l5") for traceability
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, topic, createdAt])
+}
+
+// ─── Topic registry (admin-editable) ─────────────────────────────────────────
+// Mirrors the static TOPICS list so the admin's "Quản lý chuyên đề" screen can
+// persist edits. Order is by `position` ascending.
+
+model Topic {
+  id       String @id
+  name     String
+  short    String
+  ico      String
+  color    String
+  position Int    @default(0)
+}
+
+// ─── Reference exam quota (per-user unlock) ───────────────────────────────────
+// Tracks which admin-curated reference exams a user has claimed.
+// Limited by plan: free=5, pro=20, vip=unlimited.
+
+model UserReferenceExam {
+  id      String   @id @default(cuid())
+  userId  String
+  examId  String
+  addedAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exam Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, examId])
+  @@index([userId, addedAt])
+}
+
+// ─── User whitelist (admin-managed) ──────────────────────────────────────────
+// Pre-assigns role and plan to an email before or after they sign up.
+// On each sign-in, auth.ts applies these overrides to the User record.
+
+model UserWhitelist {
+  id        String   @id @default(cuid())
+  email     String   @unique // lowercase
+  role      String   @default("student") // "student" | "admin"
+  plan      String   @default("free")    // "free" | "pro" | "vip"
+  note      String?  // optional label (e.g. "Vinmec account")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Plan config (admin-editable, replaces hardcoded limits) ──────────────────
+// -1 = unlimited. Admin edits via PlansPanel; read via lib/plan-config.ts.
+
+model PlanConfig {
+  plan               String   @id          // "free" | "pro" | "vip"
+  label              String                // "Miễn phí" | "Pro" | "VIP"
+  topicSetLimit      Int      @default(-1) // total lifetime topic-set quota
+  referenceExamLimit Int      @default(-1) // replaces free=5/pro=20/vip=∞
+  position           Int      @default(0)
+  updatedAt          DateTime @updatedAt
+}
+
+// ─── Level config (admin-editable, replaces TOPIC_LEVEL_CONFIG + levels array) ─
+// Admin edits qcount/minutes/active via PlansPanel; read via lib/plan-config.ts.
+
+model LevelConfig {
+  level    String  @id           // "L4" | "L5" | "NC" | "MIX"
+  label    String                // "Cơ bản" …
+  sub      String                // "Lớp 4 — công thức đơn lẻ" …
+  qcount   Int
+  minutes  Int
+  grades   String  @default("[]") // JSON array e.g. ["L5","L4+5"]
+  tone     String
+  position Int     @default(0)
+  active   Boolean @default(true)
+}
+
+// ─── Topic set ledger (per-user quota tracking) ───────────────────────────────
+// One row per spawned topic-practice exam. Used to count lifetime quota
+// (like UserReferenceExam does for reference exams).
+
+model UserTopicSet {
+  id      String   @id @default(cuid())
+  userId  String
+  examId  String
+  topic   String
+  level   String
+  addedAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, addedAt])
+}

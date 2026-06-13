@@ -1,0 +1,956 @@
+{
+  "2019-20": [
+    {
+      "id": "CG-2019-20-C1",
+      "num": 1,
+      "type": "fill",
+      "stem": "Tìm số tự nhiên $x$, biết: $\\frac{134247}{1000} < 134,2x7 < \\frac{134267}{1000}$.",
+      "options": [],
+      "correct": "5",
+      "explanation": "Ta có: 134247/1000 = 134,247 và 134267/1000 = 134,267. Từ đó ta được: 134,247 < 134,2x7 < 134,267. Do đó chữ số x chỉ có thể bằng 5.",
+      "unit": null
+    },
+    {
+      "id": "CG-2019-20-C2",
+      "num": 2,
+      "type": "fill",
+      "stem": "Tìm số hạng thứ 7 của dãy 3, 5, 8, 13, 21, …",
+      "options": [],
+      "correct": "55",
+      "explanation": "Quy luật: Kể từ số hạng thứ ba, mỗi số hạng của dãy bằng tổng hai số hạng đứng liền trước nó. Ta tìm được:\n- Số hạng thứ 6 là: 13 + 21 = 34\n- Số hạng thứ 7 là: 21 + 34 = 55.",
+      "unit": null
+    },
+    {
+      "id": "CG-2019-20-C3",
+      "num": 3,
+      "type": "fill",
+      "stem": "Tính giá trị biểu thức: $101 \\times 34 + 10,1 \\times 130 + 1,01 \\times 2700$.",
+      "options": [],
+      "correct": "2020",
+      "explanation": "Biến đổi biểu thức:\n101 × 34 + 10,1 × 130 - 1,01 × 2700\n= 101 × 34 + 101 × 13 - 101 × 27\n= 101 × (34 + 13 - 27)\n= 101 × 20 = 2020.",
+      "unit": null
+    },
+    {
+      "id": "CG-2019-20-C4",
+      "num": 4,
+      "type": "fill",
+      "stem": "Tìm chữ số tận cùng của tích sau: $11 \\times 13 \\times 15 \\times 17 \\times 19 \\times \\dots \\times 2019$.",
+      "options": [],
+      "correct": "5",
+      "explanation": "Các thừa số trong tích đều là số lẻ và tích chứa thừa số 15 (tận cùng bằng 5). Một số lẻ nhân với một số tận cùng là 5 thì tích luôn có chữ số tận cùng là 5.",
+      "unit": null
+    },
+    {
+      "id": "CG-2019-20-C5",
+      "num": 5,
+      "type": "fill",
+      "stem": "Nam có một số bi. Biết nếu xếp mỗi hộp 5 viên thì còn dư 3 viên. Nếu xếp mỗi hộp 2 viên hoặc 9 viên thì đủ. Hỏi số bi của Nam, biết Nam có nhiều hơn 110 viên bi và ít hơn 250 viên?",
+      "options": [],
+      "correct": "198",
+      "explanation": "Vì nếu xếp mỗi hộp 2 viên hoặc 9 viên thì đủ nên số viên bi là số chia hết cho 2 và 9 (bội của 18).\nSố bi chia 5 dư 3 và chia hết cho 2 nên số bi tận cùng là 8. Bội của 18 trong khoảng từ 110 đến 250 và tận cùng bằng 8 là 198 (vì 198 = 18 × 11).",
+      "unit": "viên"
+    },
+    {
+      "id": "CG-2019-20-C6",
+      "num": 6,
+      "type": "fill",
+      "stem": "Cách đây 4 năm tổng số tuổi 2 chị em là 28 tuổi. Hiện nay tuổi em bằng $\\frac{4}{5}$ tuổi chị. Tính tuổi em hiện nay.",
+      "options": [],
+      "correct": "16",
+      "explanation": "Tổng số tuổi của hai chị em hiện nay là: 28 + 4 × 2 = 36 (tuổi).\nTuổi em hiện nay là: 36 : (4 + 5) × 4 = 16 (tuổi).",
+      "unit": "tuổi"
+    },
+    {
+      "id": "CG-2019-20-C7",
+      "num": 7,
+      "type": "fill",
+      "stem": "Một mảnh đất hình chữ nhật có diện tích là 2020 m². Nếu tăng chiều dài lên 50% và giảm chiều rộng đi 20% thì diện tích mới là bao nhiêu hecta?",
+      "options": [],
+      "correct": "0,2424",
+      "explanation": "Chiều dài mới bằng: 100% + 50% = 150% chiều dài ban đầu.\nChiều rộng mới bằng: 100% - 20% = 80% chiều rộng ban đầu.\nDiện tích mới bằng: 150% × 80% = 120% diện tích ban đầu.\nDiện tích mảnh đất mới là: 2020 × 120% = 2424 m².\nĐổi: 2424 m² = 0,2424 ha.",
+      "unit": "ha"
+    },
+    {
+      "id": "CG-2019-20-C8",
+      "num": 8,
+      "type": "fill",
+      "stem": "Cho một số bóng xanh và vàng. Số bóng vàng bằng $\\frac{1}{3}$ bóng xanh. Nếu thêm 6 bóng vàng thì bóng vàng bằng $\\frac{5}{9}$ bóng xanh. Tính số bóng xanh.",
+      "options": [],
+      "correct": "27",
+      "explanation": "Thêm 6 quả bóng vàng tương ứng với số phần bóng xanh là: 5/9 - 1/3 = 2/9 (số bóng xanh).\nSố bóng xanh là: 6 : 2/9 = 27 (quả).",
+      "unit": "quả"
+    },
+    {
+      "id": "CG-2019-20-B1",
+      "num": 9,
+      "type": "essay",
+      "stem": "Nam dự định đi từ A đến B với vận tốc 40 km/giờ. Đi 1/2 quãng đường AB thì Nam nghỉ 15 phút. Để đến B đúng giờ thì Nam phải tăng vận tốc lên thành 50 km/giờ. Tính quãng đường AB.",
+      "options": [],
+      "correct": null,
+      "explanation": "",
+      "unit": null
+    },
+    {
+      "id": "CG-2019-20-B2",
+      "num": 10,
+      "type": "essay",
+      "stem": "Cho hình tam giác ABC. Lấy điểm M trên AB và N trên AC sao cho AM = BM và 2NC = NA. a) Tính tỉ số diện tích ANM và BMNC. b) Cho MN cắt BC ở D. So sánh BC với CD.",
+      "options": [],
+      "correct": null,
+      "explanation": "",
+      "unit": null
+    }
+  ],
+  "2020-21": [
+    {
+      "id": "CG-2020-21-C1",
+      "num": 1,
+      "type": "fill",
+      "stem": "Tính: $13,28 \\times 9,9 + 13,28 \\times 0,1$.",
+      "options": [],
+      "correct": "132,8",
+      "explanation": "$13,28 \\times 9,9 + 13,28 \\times 0,1 = 13,28 \\times (9,9 + 0,1) = 13,28 \\times 10 = 132,8.$",
+      "unit": null
+    },
+    {
+      "id": "CG-2020-21-C2",
+      "num": 2,
+      "type": "fill",
+      "stem": "Hùng và Cường hẹn gặp nhau lúc 8 giờ 40 phút. Hùng đến lúc 8 giờ 20 phút, Cường đến muộn 12 phút. Hỏi Hùng phải đợi Cường trong bao lâu?",
+      "options": [],
+      "correct": "32",
+      "explanation": "Cường đến lúc: 8 giờ 40 phút + 12 phút = 8 giờ 52 phút.\nHùng phải đợi Cường trong: 8 giờ 52 phút − 8 giờ 20 phút = 32 phút.",
+      "unit": "phút"
+    },
+    {
+      "id": "CG-2020-21-C3",
+      "num": 3,
+      "type": "fill",
+      "stem": "$32\\%$ của một số là $6,4$. Hỏi $\\frac{5}{8}$ số đó là bao nhiêu?",
+      "options": [],
+      "correct": "12,5",
+      "explanation": "Số đó là: $6,4 : 32 \\times 100 = 20.$\n$\\frac{5}{8}$ số đó là: $20 : 8 \\times 5 = 12,5.$",
+      "unit": null
+    },
+    {
+      "id": "CG-2020-21-C4",
+      "num": 4,
+      "type": "fill",
+      "stem": "Một hình lập phương có diện tích toàn phần lớn hơn diện tích xung quanh là $72\\,\\text{cm}^2$. Hỏi thể tích của hình lập phương đó là bao nhiêu?",
+      "options": [],
+      "correct": "216",
+      "explanation": "Diện tích toàn phần lớn hơn diện tích xung quanh đúng bằng 2 lần diện tích một mặt của hình lập phương.\nDiện tích một mặt là: $72 : 2 = 36\\,(\\text{cm}^2).$\nVì $36 = 6 \\times 6$ nên cạnh của hình lập phương là $6\\,\\text{cm}.$\nThể tích hình lập phương là: $6 \\times 6 \\times 6 = 216\\,(\\text{cm}^3).$",
+      "unit": "cm³"
+    },
+    {
+      "id": "CG-2020-21-C5",
+      "num": 5,
+      "type": "fill",
+      "stem": "Cho biểu đồ phần trăm thể hiện số học sinh yêu thích các môn thể thao như hình bên (gồm các phần $50\\%$, $18\\%$, $12\\%$ và phần bơi lội). Có bao nhiêu học sinh thích bơi lội, biết có tất cả $50$ em và mỗi em chỉ thích một môn?",
+      "options": [],
+      "correct": "10",
+      "explanation": "Số học sinh thích bơi lội chiếm: $100\\% - (50\\% + 12\\% + 18\\%) = 20\\%$ tổng số học sinh.\nSố học sinh thích bơi lội là: $50 \\times 20 : 100 = 10$ (em).",
+      "unit": "em"
+    },
+    {
+      "id": "CG-2020-21-C6",
+      "num": 6,
+      "type": "fill",
+      "stem": "Hai số có hiệu là $1554$. Tổng của hai số là $\\overline{2x3y}$ chia hết cho $2,\\,5,\\,9$. Hỏi số lớn là số nào?",
+      "options": [],
+      "correct": "1992",
+      "explanation": "Vì $\\overline{2x3y}$ chia hết cho $2$ và $5$ nên $y = 0$.\nĐể $\\overline{2x30}$ chia hết cho $9$ thì $2 + x + 3 + 0 = 5 + x$ chia hết cho $9$, suy ra $x = 4$.\nVậy tổng hai số là $2430$.\nSố lớn là: $(2430 + 1554) : 2 = 1992.$",
+      "unit": null
+    },
+    {
+      "id": "CG-2020-21-C7",
+      "num": 7,
+      "type": "fill",
+      "stem": "Một người đi từ A lúc $14$ giờ. Đến $14$ giờ $45$ phút người đó dừng lại nghỉ $15$ phút để sửa chữa rồi đi tiếp đến B lúc $16$ giờ $12$ phút. Vận tốc của người đó trước khi sửa xe là $30\\,\\text{km/giờ}$ và sau khi sửa xe là $40\\,\\text{km/giờ}$. Tính quãng đường AB.",
+      "options": [],
+      "correct": "70,5",
+      "explanation": "Thời gian đi với vận tốc $30\\,\\text{km/giờ}$ là: $14$ giờ $45$ phút $- 14$ giờ $= 45$ phút $= 0,75$ giờ.\nThời gian đi với vận tốc $40\\,\\text{km/giờ}$ là: $16$ giờ $12$ phút $- 15$ phút $- 14$ giờ $45$ phút $= 1$ giờ $12$ phút $= 1,2$ giờ.\nQuãng đường AB dài là: $30 \\times 0,75 + 40 \\times 1,2 = 70,5\\,(\\text{km}).$",
+      "unit": "km"
+    },
+    {
+      "id": "CG-2020-21-C8",
+      "num": 8,
+      "type": "fill",
+      "stem": "Cho tam giác $ABC$. Trên cạnh $AB$, $AC$ lấy các điểm $Q$, $K$ sao cho $BQ = \\frac{1}{6} \\times AB$ và $AK = \\frac{1}{3} \\times AC$ (như hình vẽ). Biết diện tích tứ giác $KQBC$ là $26\\,\\text{cm}^2$, tính diện tích tam giác $AKQ$.",
+      "options": [],
+      "correct": "10",
+      "explanation": "Nối $C$ với $Q$.\nXét tam giác $ACQ$ và tam giác $ABC$ có chung chiều cao hạ từ $C$ xuống $AB$ nên $\\frac{S_{ACQ}}{S_{ABC}} = \\frac{AQ}{AB} = \\frac{5}{6}$, suy ra $S_{ACQ} = \\frac{5}{6} \\times S_{ABC}.$\nXét tam giác $AKQ$ và tam giác $ACQ$ có chung chiều cao hạ từ $Q$ xuống $AC$ nên $\\frac{S_{AKQ}}{S_{ACQ}} = \\frac{AK}{AC} = \\frac{1}{3}$, suy ra $S_{AKQ} = \\frac{1}{3} \\times S_{ACQ}.$\nDo đó $S_{AKQ} = \\frac{1}{3} \\times \\frac{5}{6} \\times S_{ABC} = \\frac{5}{18} \\times S_{ABC}.$\nSuy ra $S_{KQBC} = S_{ABC} - S_{AKQ} = \\frac{13}{18} \\times S_{ABC}.$\nDo đó $\\frac{S_{AKQ}}{S_{KQBC}} = \\frac{5}{13}$, nên $S_{AKQ} = \\frac{5}{13} \\times 26 = 10\\,(\\text{cm}^2).$",
+      "unit": "cm²"
+    },
+    {
+      "id": "CG-2020-21-B1",
+      "num": 9,
+      "type": "essay",
+      "stem": "Một giá sách có ba tầng, chứa tất cả $700$ quyển sách. Số sách ngăn $1$ bằng $40\\%$ tổng số sách.\na) Tính số sách ngăn $1$.\nb) Nếu chuyển một nửa số sách từ ngăn $3$ xuống ngăn $2$ thì số sách ngăn $3$ bằng $\\frac{2}{5}$ số sách ngăn $2$. Tính số sách mỗi ngăn lúc đầu.",
+      "options": [],
+      "correct": "a) 280 quyển; b) Ngăn 2: 180 quyển; Ngăn 3: 240 quyển",
+      "explanation": "a) Số sách ngăn $1$ là: $700 \\times 40 : 100 = 280$ (quyển).\nb) Tổng số sách ngăn $2$ và ngăn $3$ là: $700 - 280 = 420$ (quyển).\nSau khi chuyển một nửa số sách từ ngăn $3$ xuống ngăn $2$ thì tổng số sách hai ngăn đó vẫn không thay đổi.\nSố sách ngăn $3$ lúc sau là: $420 : (2 + 5) \\times 2 = 120$ (quyển).\nSố sách ngăn $3$ lúc đầu là: $120 : \\left(1 - \\frac{1}{2}\\right) = 240$ (quyển).\nSố sách ngăn $2$ lúc đầu là: $420 - 240 = 180$ (quyển).\nĐáp số: a) $280$ quyển; b) Ngăn $2$: $180$ quyển; Ngăn $3$: $240$ quyển.",
+      "unit": null
+    },
+    {
+      "id": "CG-2020-21-B2",
+      "num": 10,
+      "type": "essay",
+      "stem": "Nam viết lên bảng $3$ số $1,\\,2,\\,3$. Sau đó, Nam xóa đi $2$ số $a,\\,b$ và thay bằng $1$ số là $c = \\frac{a \\times b}{a + b}$. Nam tiếp tục xóa cho đến khi chỉ còn $1$ số.\na) Hỏi số đó là số nào? Vì sao?\nb) Nam cũng chơi trò chơi đó nhưng với $5$ số là $1,\\,2,\\,3,\\,4,\\,5$. Xong Nam nhận xét lần chơi nào cũng ra số cuối cùng giống nhau. Hỏi Nam nhận xét đúng hay sai? Vì sao?",
+      "options": [],
+      "correct": "a) 6/11; b) Nhận xét của Nam đúng (kết quả luôn là 60/137)",
+      "explanation": "a) Nếu Nam xóa đi hai số $1,\\,2$ thì sẽ thay bằng số $\\frac{1 \\times 2}{1 + 2} = \\frac{2}{3}$. Sau đó tiếp tục xóa $\\frac{2}{3}$ và $3$ sẽ được số $\\frac{\\frac{2}{3} \\times 3}{\\frac{2}{3} + 3} = \\frac{6}{11}.$\nTương tự với hai trường hợp còn lại là xóa $1,\\,3$ hay $2,\\,3$ trước thì cũng ra được kết quả $\\frac{6}{11}.$\nVậy số Nam thu được luôn là $\\frac{6}{11}.$\nb) Bạn Nam nhận xét đúng.\n- Theo câu a, nếu bắt đầu từ ba số $1,\\,2,\\,3$ Nam sẽ thu được số $\\frac{6}{11}$. Giờ tiếp tục với ba số $\\frac{6}{11},\\,4,\\,5$ với cách làm như câu a, ta nhận được kết quả là $\\frac{60}{137}.$\n- Nếu Nam bắt đầu từ ba số $1,\\,2,\\,4$ sẽ thu được số $\\frac{4}{7}$, sau đó tiếp tục với ba số $\\frac{4}{7},\\,3,\\,5$ thì Nam sẽ nhận được kết quả là số $\\frac{60}{137}.$\nHoàn toàn tương tự, ta thấy kết quả Nam thu được sẽ luôn không đổi.\nVậy nhận xét của Nam là đúng.",
+      "unit": null
+    }
+  ],
+  "2021-22": [
+    {
+      "id": "CG-2021-22-C1",
+      "num": 1,
+      "type": "fill",
+      "stem": "Tính giá trị biểu thức: 4,2 × 23/9 + 4,2 × 5/9.",
+      "options": [],
+      "correct": "62,5",
+      "explanation": "$4,2 \\times \\dfrac{23}{9} - 4,2 \\times \\dfrac{5}{9} = 4,2 \\times \\left(\\dfrac{23}{9} - \\dfrac{5}{9}\\right) = 4,2 \\times 2 = 8,4.$",
+      "unit": "%"
+    },
+    {
+      "id": "CG-2021-22-C2",
+      "num": 2,
+      "type": "fill",
+      "stem": "3 ha gấp 75 m² bao nhiêu lần?",
+      "options": [],
+      "correct": "3",
+      "explanation": "Đổi: $3$ ha $= 30\\,000\\,\\text{m}^2$.\nVậy $3$ ha gấp $75\\,\\text{m}^2$ số lần là $30\\,000 : 75 = 400$ (lần).",
+      "unit": null
+    },
+    {
+      "id": "CG-2021-22-C3",
+      "num": 3,
+      "type": "fill",
+      "stem": "Trong đợt giải cứu nông sản do ảnh hưởng của dịch Covid-19, các nhà cứu trợ đã tổ chức thuê xe vào Bắc Giang thu mua vải thiều. Ngày thứ nhất, để chở 20 tấn vải thiều cần 5 xe ô tô. Ngày thứ hai, để chở 36 tấn vải thiều thì cần bao nhiêu xe ô tô cùng loại?",
+      "options": [],
+      "correct": "36",
+      "explanation": "Mỗi xe ô tô chở được số tấn vải thiều là: $20 : 5 = 4$ (tấn).\nĐể chở $36$ tấn vải thiều thì cần số xe cùng loại là: $36 : 4 = 9$ (xe).",
+      "unit": null
+    },
+    {
+      "id": "CG-2021-22-C4",
+      "num": 4,
+      "type": "fill",
+      "stem": "Một bể nước dạng hình hộp chữ nhật có các kích thước đo ở trong lòng bể là: dài 3 m, rộng 2 m, cao 1,5 m. Một vòi nước chảy vào bể 1 phút được 30 lít (1 dm³ = 1 lít). Thời gian để vòi nước đó chảy đầy bể là bao nhiêu?",
+      "options": [],
+      "correct": "36",
+      "explanation": "Thể tích của bể nước hình hộp chữ nhật là: $3 \\times 2 \\times 1,5 = 9\\,(\\text{m}^3)$.\nĐổi: $9\\,\\text{m}^3 = 9\\,000\\,\\text{dm}^3 = 9\\,000$ lít.\nThời gian để vòi nước đó chảy đầy bể là: $9\\,000 : 30 = 300$ (phút) $= 5$ giờ.",
+      "unit": "phút"
+    },
+    {
+      "id": "CG-2021-22-C5",
+      "num": 5,
+      "type": "fill",
+      "stem": "Một can chứa 32,5 lít dầu. Sau khi dùng 40% lượng dầu đó thì trong can còn lại bao nhiêu lít dầu?",
+      "options": [],
+      "correct": "19,5",
+      "explanation": "Số lượng dầu đã dùng là: $32,5 \\times 40 : 100 = 13$ (lít dầu).\nLượng dầu còn lại trong can là: $32,5 - 13 = 19,5$ (lít dầu).",
+      "unit": "lít"
+    },
+    {
+      "id": "CG-2021-22-C6",
+      "num": 6,
+      "type": "fill",
+      "stem": "Cho dãy số: 1; 2; 5; 10; 17; 26; … Số hạng tiếp theo của dãy là số nào?",
+      "options": [],
+      "correct": "16",
+      "explanation": "Quan sát dãy số, ta thấy:\nSố hạng thứ nhất là $1$.\nSố hạng thứ hai là $1 + 1 = 2$.\nSố hạng thứ ba là $2 + 3 = 5$.\nSố hạng thứ tư là $5 + 5 = 10$.\nSố hạng thứ năm là $10 + 7 = 17$.\nSố hạng thứ sáu là $17 + 9 = 26$.\nTiếp tục quy luật trên, số hạng tiếp theo của dãy số là $26 + 11 = 37$.",
+      "unit": "tuổi"
+    },
+    {
+      "id": "CG-2021-22-C7",
+      "num": 7,
+      "type": "fill",
+      "stem": "Một cửa hàng có 400 chai nước rửa tay và cồn sát khuẩn. Cửa hàng đó bán đi 20 chai nước rửa tay và 50 chai cồn thì còn lại số chai nước rửa tay bằng 4/7 số chai cồn. Hỏi lúc đầu cửa hàng đó có bao nhiêu chai nước rửa tay?",
+      "options": [],
+      "correct": "25",
+      "explanation": "Sau khi bán đi, cửa hàng đó còn lại số chai nước rửa tay và cồn sát khuẩn là: $400 - 20 - 50 = 330$ (chai).\nSau khi bán, số chai nước rửa tay bằng $\\dfrac{4}{7}$ số chai cồn nên coi số chai nước rửa tay còn lại là $4$ phần bằng nhau thì số chai cồn còn lại là $7$ phần như vậy.\nSố chai nước rửa tay còn lại là: $330 : (4 + 7) \\times 4 = 120$ (chai).\nLúc đầu cửa hàng đó có số chai nước rửa tay là: $120 + 20 = 140$ (chai).",
+      "unit": "học sinh"
+    },
+    {
+      "id": "CG-2021-22-C8",
+      "num": 8,
+      "type": "fill",
+      "stem": "Cho hình thang ABCD có AB = 2/3 × CD. Trên AD lấy điểm E sao cho AE gấp 2 lần ED. Tính diện tích tam giác ABE, biết diện tích hình thang ABCD là 30 cm².",
+      "options": [],
+      "correct": "6,28",
+      "explanation": "Nối $B$ với $D$.\nXét tam giác $ABD$ có chiều cao hạ từ $D$ xuống $AB$ và tam giác $BDC$ có chiều cao hạ từ $B$ xuống $DC$, hai chiều cao này bằng nhau và cùng bằng chiều cao của hình thang nên $\\dfrac{S_{ABD}}{S_{BDC}} = \\dfrac{AB}{CD} = \\dfrac{2}{3}$ (do $AB = \\dfrac{2}{3} \\times CD$).\nMà $S_{ABD} + S_{BDC} = S_{ABCD} = 30\\,\\text{cm}^2$ nên $S_{ABD} = 30 : (2 + 3) \\times 2 = 12\\,(\\text{cm}^2)$.\nXét tam giác $ABE$ và tam giác $ABD$ có chung chiều cao hạ từ $B$ xuống $AD$ nên $\\dfrac{S_{ABE}}{S_{ABD}} = \\dfrac{AE}{AD} = \\dfrac{2}{3}$ (do $AE = 2 \\times ED$).\nSuy ra $S_{ABE} = \\dfrac{2}{3} \\times S_{ABD} = \\dfrac{2}{3} \\times 12 = 8\\,(\\text{cm}^2)$.",
+      "unit": "cm²"
+    },
+    {
+      "id": "CG-2021-22-B1",
+      "num": 9,
+      "type": "essay",
+      "stem": "Một ô tô khởi hành lúc 7 giờ 15 phút với vận tốc 60 km/giờ. Khi đến B, ô tô nghỉ 1,5 giờ rồi về A với vận tốc 50 km/giờ và về A lúc 14 giờ 15 phút. a) Nếu không tính thời gian nghỉ thì tổng thời gian cả đi và về là bao nhiêu? b) Tính quãng đường AB.",
+      "options": [],
+      "correct": null,
+      "explanation": "Đổi: $1,5$ giờ $= 1$ giờ $30$ phút.\na) Nếu không tính thời gian nghỉ thì tổng thời gian cả đi và về của ô tô là: $14$ giờ $15$ phút $- 7$ giờ $15$ phút $- 1$ giờ $30$ phút $= 5$ giờ $30$ phút.\nb) Trên cùng quãng đường $AB$, tỉ số vận tốc lúc đi so với lúc về của ô tô là: $60 : 50 = \\dfrac{6}{5}$.\nVì trên cùng quãng đường, vận tốc tăng (hay giảm) bao nhiêu lần thì thời gian giảm (hay tăng) bấy nhiêu lần nên tỉ số thời gian lúc đi so với lúc về của ô tô là $\\dfrac{5}{6}$.\nTổng thời gian cả đi lẫn về không tính nghỉ là $5$ giờ $30$ phút $= \\dfrac{11}{2}$ giờ.\nDo đó, thời gian ô tô đi hết quãng đường $AB$ lúc đi là: $\\dfrac{11}{2} : (5 + 6) \\times 5 = \\dfrac{5}{2}$ (giờ).\nQuãng đường $AB$ dài: $\\dfrac{5}{2} \\times 60 = 150\\,(\\text{km})$.\nĐáp số: a) $5$ giờ $30$ phút; b) $150$ km.",
+      "unit": null
+    },
+    {
+      "id": "CG-2021-22-B2",
+      "num": 10,
+      "type": "essay",
+      "stem": "Trong giờ sinh hoạt CLB Toán của trường THCS Cầu Giấy, thầy Tùng lấy 3 hộp bi A, B, C chứa số viên bi lần lượt là 8; 15; 10 và đưa ra câu đố: \"Với mỗi lượt chơi, người chơi được chọn 2 hộp bi bất kì và lấy từ mỗi hộp 1 viên bi rồi cho số bi đó vào hộp còn lại. Cứ chơi như vậy cho đến khi số bi trong mỗi hộp đúng với yêu cầu của thầy\". a) Thầy Tùng yêu cầu A; B; C lần lượt là 10; 11; 12. Lượt 1 Công chọn A; B cho vào C được 7; 14; 12. Em hãy giúp Công hoàn thành các ô trống ở lượt 2 và lượt 3 (để sau 4 lượt được 10; 11; 12). b) Thầy Tùng yêu cầu sau 4 lượt được 3 hộp, mỗi hộp 11 viên. Bạn Công nhận xét: \"Sau nhiều lần thử, số bi ở mỗi hộp có số dư khi chia cho 3 là khác nhau\". Hãy chứng minh nhận xét đúng và suy ra yêu cầu của thầy có thực hiện được không? Vì sao?",
+      "options": [],
+      "correct": null,
+      "explanation": "a) Có thể điền theo một trong hai bảng sau:\nBảng 1: Lượt 1: ($7$; $14$; $12$). Lượt 2: ($9$; $13$; $11$). Lượt 3: ($8$; $12$; $13$). Lượt 4: ($10$; $11$; $12$).\nBảng 2: Lượt 1: ($7$; $14$; $12$). Lượt 2: ($9$; $13$; $11$). Lượt 3: ($11$; $12$; $10$). Lượt 4: ($10$; $11$; $12$).\nb) Nhận xét: số bi ban đầu ở hộp $A$ là số chia $3$ dư $2$, ở hộp $B$ là số chia hết cho $3$, ở hộp $C$ là số chia $3$ dư $1$. Do đó ban đầu số bi ở mỗi hộp khi chia cho $3$ có số dư khác nhau.\nGiả sử nhận xét của bạn Công là sai, tức là tại một lượt chơi nào đó, số bi ở $3$ hộp khi chia cho $3$ có số dư bằng nhau.\nTrường hợp 1: Số bi cả $3$ hộp khi chia $3$ đều dư $0$. Khi đó, trước khi xảy ra lượt chơi này thì $2$ hộp bị lấy $1$ bi ra có số bi chia $3$ dư $1$, hộp được cho vào $2$ bi có số bi chia $3$ dư $1$. Tức là cả $3$ hộp đều có số bi chia $3$ dư $1$.\nTrường hợp 2: Số bi cả $3$ hộp khi chia $3$ đều dư $1$. Khi đó, trước lượt chơi này, $2$ hộp bị lấy $1$ bi có số bi chia $3$ dư $2$, hộp được cho vào $2$ bi có số bi chia $3$ dư $2$. Tức là cả $3$ hộp đều có số bi chia $3$ dư $2$.\nTrường hợp 3: Số bi cả $3$ hộp khi chia $3$ đều dư $2$. Khi đó, trước lượt chơi này, $2$ hộp bị lấy $1$ bi có số bi chia hết cho $3$, hộp được cho vào $2$ bi có số bi chia hết cho $3$. Tức là cả $3$ hộp đều có số bi chia hết cho $3$.\nTừ $3$ trường hợp trên, để $3$ hộp có cùng số dư khi chia $3$ tại một lượt chơi thì $3$ hộp ở lượt trước đó cũng có cùng số dư. Lùi tiếp về ban đầu cũng vậy — mâu thuẫn với nhận xét rằng ban đầu số dư khác nhau.\nSuy ra giả sử sai, tức nhận xét của Công đúng. Vậy không thể thực hiện được yêu cầu của thầy giáo (để $3$ hộp đều có $11$ viên bi — cùng số dư $11 \\bmod 3 = 2$).",
+      "unit": null
+    }
+  ],
+  "2022-23": [
+    {
+      "id": "CG-2022-23-C1",
+      "num": 1,
+      "type": "mcq",
+      "stem": "Tính: 3,5 × 1/4 + 1,5 × 1/4.",
+      "options": [
+        {
+          "id": "A",
+          "text": "0"
+        },
+        {
+          "id": "B",
+          "text": "1/2"
+        },
+        {
+          "id": "C",
+          "text": "5/4"
+        },
+        {
+          "id": "D",
+          "text": "1/8"
+        }
+      ],
+      "correct": "0,5",
+      "explanation": "$3,5 \\times \\dfrac{1}{4} - 1,5 \\times \\dfrac{1}{4} = (3,5 - 1,5) \\times \\dfrac{1}{4} = 2 \\times \\dfrac{1}{4} = \\dfrac{1}{2}.$\nChọn B.",
+      "unit": null
+    },
+    {
+      "id": "CG-2022-23-C2",
+      "num": 2,
+      "type": "mcq",
+      "stem": "0,2 m³ gấp 25 dm³ số lần là:",
+      "options": [
+        {
+          "id": "A",
+          "text": "0,008"
+        },
+        {
+          "id": "B",
+          "text": "0,8"
+        },
+        {
+          "id": "C",
+          "text": "8"
+        },
+        {
+          "id": "D",
+          "text": "80"
+        }
+      ],
+      "correct": "49",
+      "explanation": "Đổi: $0,2\\,\\text{m}^3 = 200\\,\\text{dm}^3$.\n$0,2\\,\\text{m}^3$ gấp $25\\,\\text{dm}^3$ số lần là $200 : 25 = 8$ (lần).\nChọn C.",
+      "unit": null
+    },
+    {
+      "id": "CG-2022-23-C3",
+      "num": 3,
+      "type": "mcq",
+      "stem": "Một ô tô đi với vận tốc 60 km/h, tính quãng đường ô tô đi được trong 12 phút.",
+      "options": [
+        {
+          "id": "A",
+          "text": "0,2 km"
+        },
+        {
+          "id": "B",
+          "text": "5 km"
+        },
+        {
+          "id": "C",
+          "text": "720 km"
+        },
+        {
+          "id": "D",
+          "text": "12 km"
+        }
+      ],
+      "correct": "250",
+      "explanation": "Đổi: $12$ phút $= \\dfrac{1}{5}$ giờ.\nQuãng đường ô tô đi được trong $12$ phút là: $60 \\times \\dfrac{1}{5} = 12$ (km).\nChọn D.",
+      "unit": "g"
+    },
+    {
+      "id": "CG-2022-23-C4",
+      "num": 4,
+      "type": "mcq",
+      "stem": "Một hình hộp chữ nhật có chiều dài là 12 cm, chiều rộng là 8 cm. Một hình lập phương có cạnh bằng trung bình cộng ba kích thước của hình hộp chữ nhật và có diện tích toàn phần là 486 cm². Tìm chiều cao của hình hộp chữ nhật.",
+      "options": [
+        {
+          "id": "A",
+          "text": "7 cm"
+        },
+        {
+          "id": "B",
+          "text": "8 cm"
+        },
+        {
+          "id": "C",
+          "text": "9 cm"
+        },
+        {
+          "id": "D",
+          "text": "81 cm"
+        }
+      ],
+      "correct": "18",
+      "explanation": "Diện tích một mặt của hình lập phương là: $486 : 6 = 81\\,(\\text{cm}^2)$.\nVì $81 = 9 \\times 9$ nên cạnh hình lập phương có độ dài là $9$ cm.\nTổng độ dài ba kích thước của hình hộp chữ nhật là: $9 \\times 3 = 27$ (cm).\nChiều cao của hình hộp chữ nhật là: $27 - 12 - 8 = 7$ (cm).\nChọn A.",
+      "unit": "tuổi"
+    },
+    {
+      "id": "CG-2022-23-C5",
+      "num": 5,
+      "type": "fill",
+      "stem": "Tìm x, biết: 15,23 − 5 × x = 0,78.",
+      "options": [],
+      "correct": "6",
+      "explanation": "$15,23 - 5 \\times x = 0,78$\n$5 \\times x = 15,23 - 0,78$\n$5 \\times x = 14,45$\n$x = 14,45 : 5$\n$x = 2,89$.",
+      "unit": null
+    },
+    {
+      "id": "CG-2022-23-C6",
+      "num": 6,
+      "type": "fill",
+      "stem": "Tổng số học sinh khối 5 của một trường tiểu học là một số có ba chữ số và chữ số hàng trăm là 2. Biết khi xếp học sinh thành 10 hàng thì dư 5 học sinh và xếp thành 9 hàng thì không dư. Hỏi số học sinh khối 5 là bao nhiêu?",
+      "options": [],
+      "correct": "600",
+      "explanation": "Gọi số học sinh khối $5$ là $\\overline{2ab}$ ($a$, $b$ là các chữ số).\nVì khi xếp học sinh thành $10$ hàng thì dư $5$ học sinh nên số học sinh chia $10$ dư $5$, do đó $b = 5$.\nKhi đó số học sinh là $\\overline{2a5}$.\nVì khi xếp thành $9$ hàng thì không dư nên số học sinh chia hết cho $9$, nên $\\overline{2a5}$ chia hết cho $9$, suy ra $(2 + a + 5)$ hay $(a + 7)$ chia hết cho $9$. Do đó $a = 2$.\nVậy khối $5$ có $225$ học sinh.",
+      "unit": "m"
+    },
+    {
+      "id": "CG-2022-23-C7",
+      "num": 7,
+      "type": "fill",
+      "stem": "Tuổi anh bằng 5/4 tuổi em. Biết hai lần tuổi anh cộng với tuổi em là 28 tuổi. Tính số tuổi của anh.",
+      "options": [],
+      "correct": "5",
+      "explanation": "Coi tuổi anh là $5$ phần bằng nhau thì tuổi em là $4$ phần như vậy.\nKhi đó $2$ lần tuổi anh ứng với $10$ phần. $2$ lần tuổi anh cộng với tuổi em ứng với $10 + 4 = 14$ (phần).\n$14$ phần ứng với $28$ tuổi nên $1$ phần là $28 : 14 = 2$ (tuổi).\nTuổi của anh là $2 \\times 5 = 10$ (tuổi).",
+      "unit": "cm"
+    },
+    {
+      "id": "CG-2022-23-C8",
+      "num": 8,
+      "type": "fill",
+      "stem": "Cho hình thang ABCD có hai đáy AB, CD. Hai đường chéo AC và BD cắt nhau tại O. Biết diện tích tam giác OAD là 11 cm², diện tích tam giác OAB là 5 cm². Tính diện tích hình thang ABCD.",
+      "options": [],
+      "correct": "25,12",
+      "explanation": "Vì tam giác $CAB$ và tam giác $DAB$ có chung đáy $AB$, chiều cao hạ từ $C$ xuống $AB$ bằng chiều cao hạ từ $D$ xuống $AB$ (cùng bằng chiều cao hình thang) nên $S_{CAB} = S_{DAB}$.\nMà $S_{DAB} = S_{OAB} + S_{OAD} = 5 + 11 = 16\\,(\\text{cm}^2)$ nên $S_{CAB} = 16\\,\\text{cm}^2$.\nSuy ra $S_{OBC} = S_{CAB} - S_{OAB} = 16 - 5 = 11\\,(\\text{cm}^2)$.\nXét tam giác $AOB$ và tam giác $AOD$ có chung chiều cao hạ từ $A$ xuống $BD$ nên $\\dfrac{S_{AOB}}{S_{AOD}} = \\dfrac{OB}{OD} = \\dfrac{5}{11}$.\nLại có tam giác $COB$ và tam giác $COD$ có chung chiều cao hạ từ $C$ xuống $BD$ nên $\\dfrac{S_{OBC}}{S_{OCD}} = \\dfrac{OB}{OD} = \\dfrac{5}{11}$. Suy ra $\\dfrac{11}{S_{OCD}} = \\dfrac{5}{11}$, hay $S_{OCD} = \\dfrac{11 \\times 11}{5} = 24,2\\,(\\text{cm}^2)$.\nVậy $S_{ABCD} = S_{ABD} + S_{OBC} + S_{OCD} = 16 + 11 + 24,2 = 51,2\\,(\\text{cm}^2)$.",
+      "unit": "cm²"
+    },
+    {
+      "id": "CG-2022-23-B1",
+      "num": 9,
+      "type": "essay",
+      "stem": "Một cuộc thi vẽ có 120 học sinh đạt giải. Số học sinh đạt giải nhất bằng 10% tổng số học sinh đạt giải, số học sinh đạt giải nhì bằng 1/5 tổng số học sinh đạt ba giải còn lại, số học sinh đạt giải ba bằng 3/5 số học sinh đạt giải khuyến khích. a) Tính số học sinh đạt giải nhất. b) Tính số học sinh đạt giải khuyến khích.",
+      "options": [],
+      "correct": null,
+      "explanation": "a) Số học sinh đạt giải nhất là: $120 \\times 10 : 100 = 12$ (học sinh).\nb) Vì số học sinh đạt giải nhì bằng $\\dfrac{1}{5}$ tổng số học sinh đạt ba giải còn lại nên số học sinh đạt giải nhì bằng $\\dfrac{1}{5 + 1} = \\dfrac{1}{6}$ tổng số học sinh đạt giải.\nSố học sinh đạt giải nhì là: $120 \\times \\dfrac{1}{6} = 20$ (học sinh).\nTổng số học sinh đạt giải ba và giải khuyến khích là: $120 - 12 - 20 = 88$ (học sinh).\nVì số học sinh đạt giải ba bằng $\\dfrac{3}{5}$ số học sinh đạt giải khuyến khích nên coi số học sinh đạt giải khuyến khích là $5$ phần thì số học sinh đạt giải ba là $3$ phần như vậy. Tổng $8$ phần ứng với $88$.\nSố học sinh đạt giải khuyến khích là: $88 : (3 + 5) \\times 5 = 55$ (học sinh).\nĐáp số: a) $12$ học sinh; b) $55$ học sinh.",
+      "unit": null
+    },
+    {
+      "id": "CG-2022-23-B2",
+      "num": 10,
+      "type": "essay",
+      "stem": "Trong kì thi chọn HSG có hai môn thi là Toán và Tiếng Anh. Biết 1/10 số học sinh giỏi Tiếng Anh bằng 6/83 số học sinh giỏi Toán. Số học sinh giỏi Toán hơn số học sinh giỏi Tiếng Anh là một số có hai chữ số, chia cho 5 và 9 đều dư 2. Tính số học sinh giỏi Toán, số học sinh giỏi Tiếng Anh.",
+      "options": [],
+      "correct": null,
+      "explanation": "Các số có hai chữ số chia cho $5$ và $9$ đều dư $2$ là $47$ và $92$.\nDo đó số học sinh giỏi Toán hơn số học sinh giỏi Tiếng Anh là $47$ bạn hoặc $92$ bạn.\nVì $\\dfrac{1}{10}$ số học sinh giỏi Tiếng Anh bằng $\\dfrac{6}{83}$ số học sinh giỏi Toán nên $\\dfrac{6}{60}$ số học sinh giỏi Tiếng Anh bằng $\\dfrac{6}{83}$ số học sinh giỏi Toán.\nKhi đó, coi số học sinh giỏi Tiếng Anh là $60$ phần bằng nhau thì số học sinh giỏi Toán là $83$ phần như vậy.\nHiệu số phần bằng nhau là $83 - 60 = 23$ (phần).\nVì $47$ không chia hết cho $23$ còn $92$ chia hết cho $23$ nên số học sinh giỏi Toán hơn số học sinh giỏi Tiếng Anh là $92$ học sinh.\nSố học sinh giỏi Toán là $92 : 23 \\times 83 = 332$ (học sinh).\nSố học sinh giỏi Tiếng Anh là $92 : 23 \\times 60 = 240$ (học sinh).\nĐáp số: Số học sinh giỏi Toán: $332$ học sinh; Số học sinh giỏi Tiếng Anh: $240$ học sinh.",
+      "unit": null
+    }
+  ],
+  "2023-24": [
+    {
+      "id": "CG-2023-24-C1",
+      "num": 1,
+      "type": "mcq",
+      "stem": "Tìm x sao cho: 12/5 < x,2 < 13/4.",
+      "options": [
+        {
+          "id": "A",
+          "text": "5"
+        },
+        {
+          "id": "B",
+          "text": "2"
+        },
+        {
+          "id": "C",
+          "text": "3"
+        },
+        {
+          "id": "D",
+          "text": "4"
+        }
+      ],
+      "correct": "10,1",
+      "explanation": "Ta có $\\dfrac{12}{5} < \\overline{x,2} < \\dfrac{13}{4}$ nên $2,4 < \\overline{x,2} < 3,25$.\nSuy ra $x = 3$.\nChọn C.",
+      "unit": null
+    },
+    {
+      "id": "CG-2023-24-C2",
+      "num": 2,
+      "type": "mcq",
+      "stem": "An đi học lúc 6 giờ 45 phút, xe buýt di chuyển hết 10 phút, thời gian chờ xe buýt là 0,5 giờ. Hỏi An đến trường lúc mấy giờ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "7 giờ 25 phút"
+        },
+        {
+          "id": "B",
+          "text": "8 giờ 25 phút"
+        },
+        {
+          "id": "C",
+          "text": "7 giờ 15 phút"
+        },
+        {
+          "id": "D",
+          "text": "7 giờ 35 phút"
+        }
+      ],
+      "correct": "4",
+      "explanation": "Đổi: $0,5$ giờ $= 30$ phút.\nAn đến trường lúc: $6$ giờ $45$ phút $+ 10$ phút $+ 30$ phút $= 7$ giờ $25$ phút.\nChọn A.",
+      "unit": null
+    },
+    {
+      "id": "CG-2023-24-C3",
+      "num": 3,
+      "type": "mcq",
+      "stem": "Tổ gồm 10 công nhân hoàn thành xong một công việc trong 30 ngày. Nếu tổ có 20 công nhân thì hoàn thành công việc trong thời gian bao lâu?",
+      "options": [
+        {
+          "id": "A",
+          "text": "10 ngày"
+        },
+        {
+          "id": "B",
+          "text": "60 ngày"
+        },
+        {
+          "id": "C",
+          "text": "40 ngày"
+        },
+        {
+          "id": "D",
+          "text": "15 ngày"
+        }
+      ],
+      "correct": "15",
+      "explanation": "Thời gian $1$ công nhân hoàn thành xong công việc là: $30 \\times 10 = 300$ (ngày).\nThời gian $20$ công nhân hoàn thành xong công việc là: $300 : 20 = 15$ (ngày).\nChọn D.",
+      "unit": "ngày"
+    },
+    {
+      "id": "CG-2023-24-C4",
+      "num": 4,
+      "type": "mcq",
+      "stem": "Phòng học có dạng hình hộp chữ nhật chiều dài 7 m, chiều rộng 4,5 m, chiều cao 3 m. Người ta muốn sơn toàn bộ trần nhà và 4 bức tường. Biết tổng diện tích các cửa là 7,5 m². Tính diện tích cần sơn.",
+      "options": [
+        {
+          "id": "A",
+          "text": "83 m²"
+        },
+        {
+          "id": "B",
+          "text": "108 m²"
+        },
+        {
+          "id": "C",
+          "text": "93 m²"
+        },
+        {
+          "id": "D",
+          "text": "98 m²"
+        }
+      ],
+      "correct": "1250",
+      "explanation": "Diện tích xung quanh của phòng học là: $2 \\times (7 + 4,5) \\times 3 = 69\\,(\\text{m}^2)$.\nDiện tích trần nhà là: $7 \\times 4,5 = 31,5\\,(\\text{m}^2)$.\nDiện tích cần sơn là: $69 + 31,5 - 7,5 = 93\\,(\\text{m}^2)$.\nChọn C.",
+      "unit": "đồng"
+    },
+    {
+      "id": "CG-2023-24-C5",
+      "num": 5,
+      "type": "fill",
+      "stem": "Cho A = 52xy. Biết A chia hết cho 2 và 9; chia 5 dư 4. Tìm A.",
+      "options": [],
+      "correct": "63",
+      "explanation": "Vì $A$ chia hết cho $2$ và chia $5$ dư $4$ nên $y = 4$.\nTa có số $A = \\overline{52x4}$.\nVì $A = \\overline{52x4}$ chia hết cho $9$ nên $5 + 2 + x + 4 = 11 + x$ chia hết cho $9$. Suy ra $x = 7$.\nVậy $A = 5274$.",
+      "unit": "học sinh"
+    },
+    {
+      "id": "CG-2023-24-C6",
+      "num": 6,
+      "type": "fill",
+      "stem": "Tổng số gạo kho I và kho II là 46 tấn. Biết 15 lần số gạo kho I bằng 8 lần số gạo kho II. Hỏi kho II chứa bao nhiêu tấn gạo?",
+      "options": [],
+      "correct": "16",
+      "explanation": "Theo đề bài: $15$ lần số gạo kho I bằng $8$ lần số gạo kho II.\nHay $\\dfrac{120}{8}$ số gạo kho I bằng $\\dfrac{120}{15}$ số gạo kho II.\nDo đó, coi số gạo kho I là $8$ phần bằng nhau thì số gạo kho II là $15$ phần như vậy.\nGiá trị $1$ phần là $46 : (8 + 15) = 2$ (tấn gạo).\nKho II chứa số tấn gạo là $2 \\times 15 = 30$ (tấn gạo).",
+      "unit": "tấn"
+    },
+    {
+      "id": "CG-2023-24-C7",
+      "num": 7,
+      "type": "fill",
+      "stem": "Cho biểu đồ thống kê số học sinh thích các loại quả (cam, chuối, táo, xoài). Tính tỉ số phần trăm số học sinh thích ăn cam và chuối so với số học sinh thích ăn táo và xoài.",
+      "options": [],
+      "correct": "12",
+      "explanation": "Số học sinh thích ăn cam và chuối là $4 + 3 = 7$ (học sinh).\nSố học sinh thích ăn táo và xoài là $15 + 10 = 25$ (học sinh).\nTỉ số phần trăm số học sinh thích ăn cam và chuối so với số học sinh thích ăn táo và xoài là: $7 : 25 \\times 100\\% = 28\\%$.",
+      "unit": "%"
+    },
+    {
+      "id": "CG-2023-24-C8",
+      "num": 8,
+      "type": "fill",
+      "stem": "Cho hình vuông ABCD. Vẽ nửa đường tròn đường kính AB và 1/4 đường tròn bán kính AB. Tính diện tích phần tô đậm, biết chu vi đường tròn đường kính AB là 37,68 cm.",
+      "options": [],
+      "correct": "3,44",
+      "explanation": "Độ dài đoạn thẳng $AB$ là: $37,68 : 3,14 = 12$ (cm).\nBán kính đường tròn đường kính $AB$ là: $12 : 2 = 6$ (cm).\nDiện tích nửa hình tròn đường kính $AB$ là: $6 \\times 6 \\times 3,14 : 2 = 56,52\\,(\\text{cm}^2)$.\nDiện tích $\\dfrac{1}{4}$ hình tròn bán kính $AB$ là: $12 \\times 12 \\times 3,14 : 4 = 113,04\\,(\\text{cm}^2)$.\nDiện tích phần tô đậm là: $113,04 - 56,52 = 56,52\\,(\\text{cm}^2)$.",
+      "unit": "cm²"
+    },
+    {
+      "id": "CG-2023-24-B1",
+      "num": 9,
+      "type": "essay",
+      "stem": "Cho đoạn đường AD có 1 đoạn lên dốc, 1 đoạn xuống dốc, 1 đoạn bằng phẳng. Trong đó AB = BC, CD = 4 km (AB là đoạn lên dốc, BC là đoạn xuống dốc, CD là đoạn bằng phẳng). Vận tốc lên dốc 4 km/giờ, xuống dốc 6 km/giờ, đường bằng 5 km/giờ. a) Tính thời gian đi đoạn CD. b) Tính độ dài AD, biết người đó đi từ A lúc 5 giờ và đến D lúc 6 giờ 48 phút.",
+      "options": [],
+      "correct": null,
+      "explanation": "a) Thời gian đi hết đoạn đường $CD$ là $4 : 5 = \\dfrac{4}{5}$ (giờ) $= 48$ phút.\nb) Thời gian đi hết đoạn đường $AC$ là: $6$ giờ $48$ phút $- 5$ giờ $- 48$ phút $= 1$ giờ.\nTỉ số vận tốc trên đoạn đường $AB$ so với trên đoạn đường $BC$ là $4 : 6 = \\dfrac{2}{3}$.\nVì $AB = BC$ nên tỉ số thời gian đi hết đoạn $AB$ so với đoạn $BC$ là $\\dfrac{3}{2}$.\nTổng thời gian đi hết hai đoạn đường này là $1$ giờ.\nThời gian đi hết đoạn đường $AB$ là $1 : (3 + 2) \\times 3 = \\dfrac{3}{5}$ (giờ).\nĐộ dài đoạn đường $AB$ là $\\dfrac{3}{5} \\times 4 = 2,4$ (km).\nĐộ dài đoạn đường $AD$ là $2,4 \\times 2 + 4 = 8,8$ (km).\nĐáp số: a) $48$ phút; b) $8,8$ km.",
+      "unit": null
+    },
+    {
+      "id": "CG-2023-24-B2",
+      "num": 10,
+      "type": "essay",
+      "stem": "Bạn Hưng viết 5 số tự nhiên khác nhau trên một vòng tròn sao cho không có 2 hoặc 3 số nào ở vị trí liên tiếp có tổng chia hết cho 3. a) Tìm 1 bộ 5 số tự nhiên thỏa mãn yêu cầu đề bài. b) Chứng tỏ trong mỗi bộ 5 số thỏa mãn yêu cầu đề bài có ít nhất 1 số chia hết cho 3.",
+      "options": [],
+      "correct": null,
+      "explanation": "a) Một bộ $5$ số thoả mãn yêu cầu, ví dụ $\\{3,\\,1,\\,7,\\,4,\\,6\\}$ xếp quanh vòng tròn theo thứ tự đó.\nb) Giả sử cả $5$ số đều không chia hết cho $3$. Khi đó các số này chia $3$ dư $1$ hoặc dư $2$.\n- Xét một số $a$ chia $3$ dư $1$. Để tổng $2$ số liên tiếp có chứa số $a$ không chia hết cho $3$ thì hai số đứng cạnh $a$ phải chia $3$ dư $1$. Do đó ta có $3$ số liên tiếp cùng chia $3$ dư $1$, tức là tổng $3$ số này chia hết cho $3$ (vô lí).\n- Lập luận tương tự với số chia $3$ dư $2$, ta cũng thấy vô lí.\nVậy trong $5$ số luôn có ít nhất $1$ số phải chia hết cho $3$.",
+      "unit": null
+    }
+  ],
+  "2024-25": [
+    {
+      "id": "CG-2024-25-C1",
+      "num": 1,
+      "type": "fill",
+      "stem": "Viết hỗn số 2 và 3/4 dưới dạng số thập phân.",
+      "options": [],
+      "correct": "1",
+      "explanation": "Ta có: $2\\dfrac{3}{4} = 2\\dfrac{75}{100} = 2,75$.\nVậy hỗn số $2\\dfrac{3}{4}$ được viết dưới dạng số thập phân là $2,75$.",
+      "unit": null
+    },
+    {
+      "id": "CG-2024-25-C2",
+      "num": 2,
+      "type": "fill",
+      "stem": "2 ha 15 m² = ……… ha.",
+      "options": [],
+      "correct": "1350",
+      "explanation": "Ta có: $2$ ha $15\\,\\text{m}^2 = 2$ ha $+ \\dfrac{15}{10000}$ ha $= 2,0015$ ha.",
+      "unit": "m"
+    },
+    {
+      "id": "CG-2024-25-C3",
+      "num": 3,
+      "type": "fill",
+      "stem": "Một người đi 1875 m trong 3 phút. Hỏi 1 giờ người đó đi được bao nhiêu?",
+      "options": [],
+      "correct": "37,5",
+      "explanation": "Mỗi phút người đó đi được số mét là: $1875 : 3 = 625$ (m).\nĐổi: $1$ giờ $= 60$ phút.\nTrong $1$ giờ người đó đi được số mét là: $625 \\times 60 = 37\\,500\\,(\\text{m}) = 37,5$ (km).",
+      "unit": "km/h"
+    },
+    {
+      "id": "CG-2024-25-C4",
+      "num": 4,
+      "type": "fill",
+      "stem": "Một hình hộp chữ nhật, chu vi đáy là 36 cm, chiều rộng là 8 cm, biết chiều cao bằng 3/4 chiều rộng. Tính thể tích của hình hộp chữ nhật đó.",
+      "options": [],
+      "correct": "300",
+      "explanation": "Chiều dài của hình hộp chữ nhật đó là: $36 : 2 - 8 = 10$ (cm).\nChiều cao của hình hộp chữ nhật đó là: $8 \\times \\dfrac{3}{4} = 6$ (cm).\nThể tích của hình hộp chữ nhật đó là: $10 \\times 8 \\times 6 = 480\\,(\\text{cm}^3)$.",
+      "unit": "g"
+    },
+    {
+      "id": "CG-2024-25-C5",
+      "num": 5,
+      "type": "fill",
+      "stem": "Biểu đồ sau cho biết món ăn yêu thích của 1500 du khách nước ngoài đến ăn đồ ăn Việt Nam. Tính số người thích ăn bánh cuốn.",
+      "options": [],
+      "correct": "360",
+      "explanation": "Số người thích ăn bánh cuốn chiếm: $100\\% - (25\\% + 43\\% + 18\\%) = 14\\%$ (tổng số du khách).\nSố người thích ăn bánh cuốn là: $1500 \\times 14 : 100 = 210$ (người).",
+      "unit": "người"
+    },
+    {
+      "id": "CG-2024-25-C6",
+      "num": 6,
+      "type": "fill",
+      "stem": "Một người đi quãng đường 95 km. Lúc 6 giờ sáng, người đó đi với vận tốc 50 km/giờ. Đi được 30 phút, người đó đổi thành đi với vận tốc 40 km/giờ để đi quãng đường còn lại. Hỏi mấy giờ người đó đến nơi?",
+      "options": [],
+      "correct": "60",
+      "explanation": "Đổi: $30$ phút $= \\dfrac{1}{2}$ giờ.\nQuãng đường người đó đi được trong $30$ phút là: $50 \\times \\dfrac{1}{2} = 25$ (km).\nQuãng đường còn lại là: $95 - 25 = 70$ (km).\nThời gian để người đó đi hết quãng đường còn lại là: $70 : 40 = 1,75$ (giờ) $= 1$ giờ $45$ phút.\nNgười đó đến nơi lúc: $6$ giờ $+ 30$ phút $+ 1$ giờ $45$ phút $= 8$ giờ $15$ phút.",
+      "unit": "km/h"
+    },
+    {
+      "id": "CG-2024-25-C7",
+      "num": 7,
+      "type": "fill",
+      "stem": "Tính diện tích hình tô đậm có trong hình sau.",
+      "options": [],
+      "correct": "30,96",
+      "explanation": "Diện tích của hình chữ nhật có chiều dài $30$ cm, chiều rộng $5$ cm là $30 \\times 5 = 150\\,(\\text{cm}^2)$.\nDiện tích của hình chữ nhật có chiều dài $18$ cm, chiều rộng $8$ cm là $18 \\times 8 = 144\\,(\\text{cm}^2)$.\nDiện tích của hình chữ nhật có chiều dài $8$ cm, chiều rộng $5$ cm (phần giao) là $8 \\times 5 = 40\\,(\\text{cm}^2)$.\nDiện tích phần tô đậm là: $150 + 144 - 40 = 254\\,(\\text{cm}^2)$.",
+      "unit": "cm²"
+    },
+    {
+      "id": "CG-2024-25-C8",
+      "num": 8,
+      "type": "fill",
+      "stem": "Năm nay tuổi hai bố con là 50 tuổi. 3 năm trước, tuổi con bằng 2/9 tuổi bố. Hiện nay tuổi bố là bao nhiêu?",
+      "options": [],
+      "correct": "6",
+      "explanation": "Tổng số tuổi của hai bố con $3$ năm trước là: $50 - 3 - 3 = 44$ (tuổi).\nCoi tuổi con $3$ năm trước là $2$ phần bằng nhau thì tuổi bố $3$ năm trước là $9$ phần như thế.\nTuổi bố $3$ năm trước là: $44 : (2 + 9) \\times 9 = 36$ (tuổi).\nTuổi bố hiện nay là: $36 + 3 = 39$ (tuổi).",
+      "unit": null
+    },
+    {
+      "id": "CG-2024-25-B1",
+      "num": 9,
+      "type": "essay",
+      "stem": "Liên đọc một quyển sách có 375 trang trong 4 ngày, ngày đầu đọc được 1/5 số trang sách. Số trang ngày thứ hai đọc bằng 5/6 của ngày thứ ba. Số trang ngày thứ ba đọc gấp 1,5 lần ngày thứ tư. Hỏi: a) Ngày thứ nhất Liên đọc được bao nhiêu trang? b) Ngày thứ tư Liên đọc được bao nhiêu trang?",
+      "options": [],
+      "correct": null,
+      "explanation": "a) Ngày thứ nhất Liên đọc được số trang sách là: $375 : 5 = 75$ (trang).\nb) Đổi: $1,5 = \\dfrac{3}{2}$.\nSau ngày thứ nhất, tổng số trang sách còn lại là: $375 - 75 = 300$ (trang).\nVì số trang sách đọc trong ngày thứ $2$ bằng $\\dfrac{5}{6}$ số trang sách đọc trong ngày thứ $3$, và số trang sách đọc trong ngày thứ $3$ bằng $\\dfrac{3}{2}$ số trang sách đọc trong ngày thứ $4$, nên số trang sách đọc trong ngày thứ $2$ bằng $\\dfrac{3}{2} \\times \\dfrac{5}{6} = \\dfrac{5}{4}$ (số trang sách đọc trong ngày thứ $4$).\n$300$ trang sách ứng với $\\dfrac{5}{4} + \\dfrac{3}{2} + 1 = \\dfrac{15}{4}$ (số trang sách đọc trong ngày thứ $4$).\nSố trang sách Liên đọc được trong ngày thứ $4$ là: $300 : 15 \\times 4 = 80$ (trang).\nĐáp số: a) $75$ trang; b) $80$ trang.",
+      "unit": null
+    },
+    {
+      "id": "CG-2024-25-B2",
+      "num": 10,
+      "type": "essay",
+      "stem": "Cho 2 số tự nhiên a và b (a < b). a) Ta có phép tính: a × b × (a + b) = 30. Tìm các số a và b. b) a × b × (a + b) = 20242025 được không? Giải thích vì sao.",
+      "options": [],
+      "correct": null,
+      "explanation": "a) Ta có: $a \\times b \\times (a + b) = 30$.\nVì $a < b < a + b$ nên ta có thể phân tích $30$ thành tích của các bộ số sau: $30 = 1 \\times 2 \\times 15 = 1 \\times 3 \\times 10 = 1 \\times 5 \\times 6 = 2 \\times 3 \\times 5$.\nTrường hợp 1: $a = 1$; $b = 2$ → $a + b = 3 \\ne 15$. Loại.\nTrường hợp 2: $a = 1$; $b = 3$ → $a + b = 4 \\ne 10$. Loại.\nTrường hợp 3: $a = 1$; $b = 5$ → $a + b = 6$. Thoả mãn.\nTrường hợp 4: $a = 2$; $b = 3$ → $a + b = 5$. Thoả mãn.\nVậy $a = 1$, $b = 5$ hoặc $a = 2$, $b = 3$.\nb) Ta có: $a \\times b \\times (a + b) = 20\\,242\\,025$.\n- Nếu ít nhất một trong hai số $a$, $b$ là số chẵn thì tích $a \\times b \\times (a + b)$ là số chẵn.\n- Nếu cả $a$, $b$ đều là số lẻ thì $a + b$ là số chẵn, do đó tích $a \\times b \\times (a + b)$ là số chẵn.\nVậy trong mọi trường hợp tích $a \\times b \\times (a + b)$ luôn là số chẵn, không thể bằng $20\\,242\\,025$ (số lẻ). Vậy không tìm được các số tự nhiên $a$ và $b$ thoả mãn yêu cầu bài toán.",
+      "unit": null
+    }
+  ],
+  "2025-26": [
+    {
+      "id": "CG-2025-26-C1",
+      "num": 1,
+      "type": "fill",
+      "stem": "Một con voi nặng 4,65 tấn. Hãy làm tròn cân nặng đến số tự nhiên gần nhất.",
+      "options": [],
+      "correct": "10,12",
+      "explanation": "Vì chữ số hàng phần mười là $6 > 5$ nên khi làm tròn $4,65$ đến số tự nhiên gần nhất ta được $5$.\nĐáp số: $5$ tấn.",
+      "unit": null
+    },
+    {
+      "id": "CG-2025-26-C2",
+      "num": 2,
+      "type": "fill",
+      "stem": "Tính: 15 dm³ + 11 cm³ = …… cm³?",
+      "options": [],
+      "correct": "42",
+      "explanation": "Đổi: $15\\,\\text{dm}^3 = 15\\,000\\,\\text{cm}^3$.\n$15\\,000\\,\\text{cm}^3 + 11\\,\\text{cm}^3 = 15\\,011\\,\\text{cm}^3$.",
+      "unit": null
+    },
+    {
+      "id": "CG-2025-26-C3",
+      "num": 3,
+      "type": "fill",
+      "stem": "Quãng đường từ nhà A đến B dài 800 m. Trên bản đồ có tỉ lệ 1 : 20000, quãng đường đó dài bao nhiêu?",
+      "options": [],
+      "correct": "60",
+      "explanation": "Đổi: $800$ m $= 80\\,000$ cm.\n$1$ cm trên bản đồ ứng với $20\\,000$ cm ngoài thực tế.\nQuãng đường đó trên bản đồ dài là: $80\\,000 : 20\\,000 = 4$ (cm).",
+      "unit": "bạn"
+    },
+    {
+      "id": "CG-2025-26-C4",
+      "num": 4,
+      "type": "fill",
+      "stem": "Cho hình lập phương có cạnh 12 cm. Tính diện tích toàn phần của hình lập phương đó.",
+      "options": [],
+      "correct": "864",
+      "explanation": "Diện tích toàn phần của hình lập phương đó là: $12 \\times 12 \\times 6 = 864\\,(\\text{cm}^2)$.",
+      "unit": "cm²"
+    },
+    {
+      "id": "CG-2025-26-C5",
+      "num": 5,
+      "type": "fill",
+      "stem": "Tung cùng lúc hai đồng xu cân đối và đồng chất được kết quả: 2 mặt sấp xuất hiện 10 lần; 2 mặt ngửa xuất hiện 8 lần; 1 ngửa 1 sấp xuất hiện 17 lần. Tính tỉ số giữa số lần xuất hiện 2 mặt sấp với tổng số lần tung.",
+      "options": [],
+      "correct": "8",
+      "explanation": "Tổng số lần tung là: $10 + 8 + 17 = 35$ (lần).\nTỉ số giữa số lần xuất hiện $2$ mặt sấp với tổng số lần tung là: $10 : 35 = \\dfrac{2}{7}$.",
+      "unit": null
+    },
+    {
+      "id": "CG-2025-26-C6",
+      "num": 6,
+      "type": "fill",
+      "stem": "Một người xuất phát lúc 7 giờ đi với vận tốc 30 km/giờ. Đi được 45 km thì dừng lại nghỉ. Sau đó đi hết quãng đường dài 16 km nữa với vận tốc 32 km/giờ. Tính thời gian nghỉ biết người đó đến nơi lúc 9 giờ 15 phút.",
+      "options": [],
+      "correct": "15",
+      "explanation": "Thời gian người đó đi hết quãng đường dài $45$ km là: $45 : 30 = 1,5$ (giờ).\nThời gian người đó đi hết quãng đường dài $16$ km là: $16 : 32 = 0,5$ (giờ).\nTổng thời gian người đó đi hết hai quãng đường và nghỉ là: $9$ giờ $15$ phút $- 7$ giờ $= 2$ giờ $15$ phút $= 2,25$ giờ.\nThời gian người đó nghỉ là: $2,25 - (1,5 + 0,5) = 0,25$ (giờ) $= 15$ phút.",
+      "unit": null
+    },
+    {
+      "id": "CG-2025-26-C7",
+      "num": 7,
+      "type": "fill",
+      "stem": "Nam có một số bi xanh và đỏ, biết số bi xanh ít hơn số bi đỏ là 12 viên. Việt cho Nam 4 viên bi xanh thì tỉ số giữa bi xanh và đỏ bây giờ là 3/5. Hãy tính số bi đỏ.",
+      "options": [],
+      "correct": "48",
+      "explanation": "Sau khi Việt cho Nam $4$ viên bi xanh thì bi đỏ hơn bi xanh số viên là: $12 - 4 = 8$ (viên).\nLúc sau, coi số bi xanh là $3$ phần bằng nhau thì số bi đỏ là $5$ phần như thế.\nHiệu số phần bằng nhau là: $5 - 3 = 2$ (phần).\nSố bi đỏ lúc đầu (cũng là số bi đỏ lúc sau, vì chỉ trao đổi bi xanh) bằng: $8 : 2 \\times 5 = 20$ (viên).\nĐáp số: $20$ viên.",
+      "unit": "tuổi"
+    },
+    {
+      "id": "CG-2025-26-C8",
+      "num": 8,
+      "type": "fill",
+      "stem": "Cho một hình thang có diện tích 100 cm². Người ta mở rộng đáy lớn thêm 5 cm thì phần diện tích tăng thêm bằng 1/5 diện tích hình thang ban đầu. Tính tổng độ dài 2 đáy sau khi mở rộng.",
+      "options": [],
+      "correct": "8000000",
+      "explanation": "Diện tích phần được mở rộng là: $100 : 5 \\times 1 = 20\\,(\\text{cm}^2)$.\nChiều cao hình thang chính là chiều cao hình tam giác được mở rộng và bằng: $20 \\times 2 : 5 = 8$ (cm).\nTổng độ dài hai cạnh đáy ban đầu là: $100 \\times 2 : 8 = 25$ (cm).\nTổng độ dài hai cạnh đáy sau khi mở rộng là: $25 + 5 = 30$ (cm).\nĐáp số: $30$ cm.",
+      "unit": "đồng"
+    },
+    {
+      "id": "CG-2025-26-B1",
+      "num": 9,
+      "type": "essay",
+      "stem": "Nhân dịp 1/6, một tổ chức thiện nguyện chuẩn bị một số phần quà phát cho 4 khu phố: Khu A 50 phần; Khu B 80% số quà của khu A. Sau đó khu C được 5/9 số quà còn lại và 5 phần. Cuối cùng khu D được 4/5 số quà còn lại và 7 phần thì vừa hết. a) Tính tổng số phần quà của cả 2 khu A và B. b) Tính số phần quà tổ chức đã chuẩn bị.",
+      "options": [],
+      "correct": null,
+      "explanation": "a) Khu phố $B$ được phát số phần quà là: $50 \\times 80\\% = 40$ (phần quà).\nTổng số phần quà cả khu $A$ và khu $B$ nhận được là: $50 + 40 = 90$ (phần quà).\nb) Vì khu $D$ được phát $\\dfrac{4}{5}$ số quà còn lại (sau khi phát cho khu $A$, $B$, $C$) và $7$ phần quà thì vừa hết.\nDo đó, $7$ phần chiếm $1 - \\dfrac{4}{5} = \\dfrac{1}{5}$ (số quà còn lại sau khi phát cho khu $A$, $B$, $C$).\nSố quà còn lại sau khi phát cho khu $A$, $B$, $C$ là: $7 : 1 \\times 5 = 35$ (phần quà).\nKhông tính $5$ phần quà, sau khi phát khu $C$ thì còn lại số phần quà là: $5 + 35 = 40$ (phần quà).\n$40$ phần quà tương ứng với số phần quà còn lại sau khi phát cho khu $A$ và $B$ là: $1 - \\dfrac{5}{9} = \\dfrac{4}{9}$ (số quà còn lại sau khi phát cho khu $A$, $B$).\nSố quà còn lại sau khi phát cho khu $A$ và $B$ là: $40 : 4 \\times 9 = 90$ (phần quà).\nSố phần quà tổ chức thiện nguyện đã chuẩn bị là: $90 + 90 = 180$ (phần quà).\nĐáp số: a) $90$ phần quà; b) $180$ phần quà.",
+      "unit": null
+    },
+    {
+      "id": "CG-2025-26-B2",
+      "num": 10,
+      "type": "essay",
+      "stem": "Trong 1 bộ bài có những thẻ ghi số tự nhiên từ 1 đến 16, biết có 1 thẻ ghi số 2; 2 thẻ ghi số 3; 3 thẻ ghi số 4; …; 15 thẻ ghi số 16. Hỏi: a) Tổng số thẻ trong bộ bài là bao nhiêu? b) Không nhìn vào hộp cần lấy ít nhất bao nhiêu thẻ để chắc chắn bốc ra 6 thẻ có số giống nhau?",
+      "options": [],
+      "correct": null,
+      "explanation": "a) Tổng số thẻ trong bộ bài đó là tổng của dãy số $1; 2; 3; \\ldots; 15$ (có $15$ số hạng):\n$1 + 2 + 3 + \\ldots + 15 = \\dfrac{(1 + 15) \\times 15}{2} = 120$.\nVậy tổng số thẻ trong bộ bài là $120$ tấm thẻ.\nb) Trong trường hợp xấu nhất: lấy $1$ thẻ ghi số $2$; $2$ thẻ ghi số $3$; $3$ thẻ ghi số $4$; $4$ thẻ ghi số $5$; $5$ thẻ ghi số $6$ và $5$ thẻ ghi số $7$; $5$ thẻ ghi số $8$; …; $5$ thẻ ghi số $16$.\nDo đó, số thẻ lấy ra được là: $1 + 2 + 3 + 4 + 5 + 5 \\times 10 = 65$ (tấm thẻ).\nĐể chắc chắn lấy được $6$ thẻ có số giống nhau thì chỉ cần lấy thêm $1$ tấm thẻ nữa.\nVậy cần lấy ít nhất $65 + 1 = 66$ tấm thẻ.\nĐáp số: a) $120$ tấm thẻ; b) $66$ tấm thẻ.",
+      "unit": null
+    }
+  ],
+  "2026-27": [
+    {
+      "id": "CG-2026-27-C1",
+      "num": 1,
+      "type": "fill",
+      "stem": "Giá trị của chữ số 3 trong số sau: 21,365.",
+      "options": [],
+      "correct": "0,3",
+      "explanation": "Chữ số 3 nằm ở hàng phần mười sau dấu phẩy, nên giá trị của nó là 3/10 (hay 0,3).",
+      "unit": null
+    },
+    {
+      "id": "CG-2026-27-C2",
+      "num": 2,
+      "type": "fill",
+      "stem": "Bạn An chạy trong 5/6 phút. Bạn Bình chạy trong 7/12 phút. Bạn Cường chạy trong 11/10 phút. Dũng chạy trong 7/15 phút. Hỏi ai chạy nhanh nhất?",
+      "options": [],
+      "correct": "Dũng",
+      "explanation": "Thời gian chạy của mỗi bạn là:\n- An: 5/6 phút = 50/60 phút\n- Bình: 7/12 phút = 35/60 phút\n- Cường: 11/10 phút = 66/60 phút\n- Dũng: 7/15 phút = 28/60 phút\nVì 28/60 < 35/60 < 50/60 < 66/60 nên thời gian chạy của Dũng là ít nhất, tức là Dũng chạy nhanh nhất.",
+      "unit": null
+    },
+    {
+      "id": "CG-2026-27-C3",
+      "num": 3,
+      "type": "fill",
+      "stem": "Khi tung một con xúc xắc nhiều lần, số lần xuất hiện mặt có số chấm lẻ là 7 lần. Số lần xuất hiện mặt có số chấm lẻ ít hơn số lần xuất hiện mặt có số chấm chẵn là 6 lần. Tính tỉ số giữa số lần xuất hiện mặt có số chấm chẵn và tổng số lần tung xúc xắc.",
+      "options": [],
+      "correct": "13/20",
+      "explanation": "Số lần xuất hiện mặt có số chấm lẻ là 7 lần.\nSố lần xuất hiện mặt có số chấm chẵn là: 7 + 6 = 13 (lần).\nTổng số lần tung xúc xắc là: 7 + 13 = 20 (lần).\nTỉ số giữa số lần xuất hiện mặt có số chấm chẵn và tổng số lần tung là: 13/20.",
+      "unit": null
+    },
+    {
+      "id": "CG-2026-27-C4",
+      "num": 4,
+      "type": "fill",
+      "stem": "Tính biểu thức sau: 51,34 × 43 + 5,134 × 570 - 1100.",
+      "options": [],
+      "correct": "4034",
+      "explanation": "Ta có:\n51,34 × 43 + 5,134 × 570 - 1100\n= 51,34 × 43 + 51,34 × 57 - 1100\n= 51,34 × (43 + 57) - 1100\n= 51,34 × 100 - 1100\n= 5134 - 1100 = 4034.",
+      "unit": null
+    },
+    {
+      "id": "CG-2026-27-C5",
+      "num": 5,
+      "type": "fill",
+      "stem": "Một cái bể có chiều rộng 40 cm, chiều dài 60 cm, chiều cao 50 cm. Thể tích nước trong bể là 4/5 thể tích bể. Thể tích nước cần đổ thêm để đầy bể là:",
+      "options": [],
+      "correct": "24",
+      "explanation": "Thể tích của bể nước là: 60 × 40 × 50 = 120000 cm³ = 120 dm³ = 120 lít.\nThể tích nước cần đổ thêm để đầy bể chiếm: 1 - 4/5 = 1/5 (thể tích bể).\nThể tích nước cần đổ thêm là: 120 × 1/5 = 24 lít (hoặc 24000 cm³).",
+      "unit": "lít"
+    },
+    {
+      "id": "CG-2026-27-C6",
+      "num": 6,
+      "type": "fill",
+      "stem": "Một quyển sách giáo khoa có 135 trang. Nếu đánh số trang của quyển sách đấy cần sử dụng bao nhiêu chữ số 5?",
+      "options": [],
+      "correct": "24",
+      "explanation": "Ta đếm số lần chữ số 5 xuất hiện ở các hàng:\n1. Ở hàng đơn vị: 5, 15, 25, 35, 45, 55, 65, 75, 85, 95, 105, 115, 125, 135 (có 14 chữ số 5).\n2. Ở hàng chục: từ 50 đến 59 có 10 chữ số 5 ở hàng chục.\n3. Hàng trăm không có chữ số 5.\nTổng cộng cần dùng: 14 + 10 = 24 chữ số 5.",
+      "unit": null
+    },
+    {
+      "id": "CG-2026-27-C7",
+      "num": 7,
+      "type": "fill",
+      "stem": "Một hãng taxi đang thử nghiệm dịch vụ taxi bay. Một chiếc taxi bay xuất phát từ điểm A bay đến điểm B và di chuyển đều theo một quỹ đạo hình tròn với vận tốc 50 km/giờ. Biết quỹ đạo bay là một đường tròn có bán kính 10 km và điểm B nằm trên quỹ đạo đó. Hỏi sau bao nhiêu giờ kể từ lúc xuất phát, chiếc taxi bay đi qua điểm B lần thứ hai?",
+      "options": [],
+      "correct": "1,57",
+      "explanation": "Taxi bay di chuyển dọc theo quỹ đạo tròn (bán kính 10 km, chu vi = 2 × 3,14 × 10 = 62,8 km).\nTừ A (vị trí 3 giờ) đến B (vị trí 12 giờ) theo chiều ngược chiều kim đồng hồ mất 1/4 vòng tròn, tức là 1/4 × 62,8 = 15,7 km (lần thứ nhất qua B).\nĐể qua B lần thứ hai, taxi bay cần đi thêm 1 vòng tròn nữa (62,8 km).\nTổng quãng đường di chuyển: 15,7 + 62,8 = 78,5 km.\nThời gian cần thiết kể từ lúc xuất phát: 78,5 : 50 = 1,57 giờ.",
+      "unit": "giờ",
+      "figure": "cg-2026-c7"
+    },
+    {
+      "id": "CG-2026-27-C8",
+      "num": 8,
+      "type": "fill",
+      "stem": "Cho diện tích tứ giác ABCD là 87 cm². H là trung điểm AC. K nằm trên DC sao cho tứ giác BDKH là hình thang (như hình vẽ). Biết AB = DK. Tính diện tích tam giác BHD.",
+      "options": [],
+      "correct": "21,75",
+      "explanation": "Vì BDKH là hình thang nên BD || HK. Do đó hai tam giác BHD và BKD có chung đáy BD và chiều cao hạ từ H và K xuống BD bằng nhau, suy ra S(BHD) = S(BKD).\nVì K nằm trên CD và AB = DK nên S(BKD) = (DK / CD) * S(BCD) = (AB / CD) * S(BCD).\nMặt khác, vì BD || HK và H là trung điểm AC, ta chứng minh được tỉ số diện tích tam giác BHD luôn bằng 1/4 diện tích tứ giác ABCD.\nDo đó, S(BHD) = 87 : 4 = 21,75 cm².",
+      "unit": "cm²",
+      "figure": "cg-2026-c8"
+    },
+    {
+      "id": "CG-2026-27-B1",
+      "num": 9,
+      "type": "essay",
+      "stem": "Một trường học có 4 câu lạc bộ: Bóng rổ, Bơi lội, Cầu lông và Cờ vua. Tổng số học sinh tham gia cả 4 câu lạc bộ là 300 học sinh. Tháng 6, số học sinh tham gia câu lạc bộ Bóng rổ chiếm 27% tổng số học sinh tham gia các câu lạc bộ. Sang tháng 7, tổng số học sinh tham gia các câu lạc bộ vẫn là 300 học sinh, nhưng số học sinh tham gia câu lạc bộ Bóng rổ tăng thêm 9 học sinh.\n\na) Hỏi trong tháng 7, số học sinh tham gia câu lạc bộ Bóng rổ chiếm bao nhiêu phần trăm tổng số học sinh tham gia các câu lạc bộ?\n\nb) Hỏi tháng 7, câu lạc bộ Bơi lội có bao nhiêu học sinh, biết số học sinh câu lạc bộ Cờ vua bằng 3/4 tổng số học sinh câu lạc bộ Bơi lội và Cầu lông. Số học sinh câu lạc bộ Bơi lội nhiều hơn số học sinh câu lạc bộ Cầu lông 20 học sinh.",
+      "options": [],
+      "correct": null,
+      "explanation": "a) Số học sinh CLB Bóng rổ trong tháng 6 là: 300 × 27% = 81 học sinh.\nSố học sinh CLB Bóng rổ trong tháng 7 là: 81 + 9 = 90 học sinh.\nTrong tháng 7, tỉ lệ học sinh CLB Bóng rổ chiếm: (90 / 300) × 100% = 30% tổng số học sinh.\nb) Tổng số học sinh tham gia 3 CLB còn lại (Bơi lội, Cầu lông, Cờ vua) trong tháng 7 là: 300 - 90 = 210 học sinh.\nVì số học sinh Cờ vua bằng 3/4 tổng số Bơi lội + Cầu lông nên ta có bài toán tìm hai số khi biết Tổng và Tỉ số:\nCờ vua chiếm 3 phần, (Bơi lội + Cầu lông) chiếm 4 phần.\nTổng số học sinh Bơi lội và Cầu lông là: 210 : (3 + 4) × 4 = 120 học sinh.\nBiết số học sinh Bơi lội nhiều hơn Cầu lông là 20 học sinh (bài toán Tổng - Hiệu):\nSố học sinh CLB Bơi lội là: (120 + 20) : 2 = 70 học sinh.",
+      "unit": null
+    },
+    {
+      "id": "CG-2026-27-B2",
+      "num": 10,
+      "type": "essay",
+      "stem": "Cô giáo có một bộ 3 thẻ, mỗi thẻ có ghi mỗi số 5; 6; 2026 và cô giáo mời học sinh tạo ra một bộ 3 thẻ mới theo quy tắc sau:\n- Bạn thứ nhất tạo ra 3 thẻ mới, mỗi thẻ ghi 1 số bằng tổng của 2 trong 3 số ở bộ thẻ trước.\n- Bạn thứ 2 tiếp tục tạo thẻ theo quy luật như vậy.\n\na) Với quy tắc như vậy, hãy tìm số lớn nhất trong bộ thẻ của bạn học sinh thứ 3.\n\nb) Hỏi nếu cứ tiếp tục quy tắc như vậy, đến bạn thứ 45 thì khoảng cách giữa số lớn nhất và số nhỏ nhất trong bộ thẻ của bạn đó là bao nhiêu? Vì sao?",
+      "options": [],
+      "correct": null,
+      "explanation": "Gọi 3 số ban đầu ở bộ thẻ là a, b, c (ví dụ 5, 6, 2026).\nBạn thứ nhất tạo ra bộ thẻ mới gồm: a + b, b + c, c + a.\nHiệu hai số lớn nhất và nhỏ nhất của bạn thứ nhất là:\n(b+c) - (a+b) = c - a.\nKhoảng cách lớn nhất - nhỏ nhất (hiệu số) ở bộ ban đầu là: 2026 - 5 = 2021.\nHiệu số ở bộ bạn thứ nhất cũng là: (b+c) - (a+b) = c - a = 2021.\nVới bạn thứ 2, bộ thẻ là: (a+b+b+c) = a+2b+c, b+2c+a, c+2a+b.\nHiệu lớn nhất - nhỏ nhất cũng bằng: (b+2c+a) - (c+2a+b) = c - a = 2021.\nBằng quy nạp, ta thấy hiệu lớn nhất - nhỏ nhất ở mỗi lượt (mỗi bạn học sinh) luôn không thay đổi và bằng hiệu của bộ thẻ ban đầu: 2026 - 5 = 2021.\na) Bạn 1: {11, 2031, 2032}\nBạn 2: {2042, 2043, 4063}\nBạn 3: {4085, 6106, 6107}\nSố lớn nhất ở bạn thứ 3 là 6107.\nb) Khoảng cách giữa số lớn nhất và nhỏ nhất ở bạn thứ 45 vẫn luôn là 2021.",
+      "unit": null
+    }
+  ]
+}

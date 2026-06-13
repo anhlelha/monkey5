@@ -1,0 +1,138 @@
+MATHX.vn                                                                      Đề thi vào 6 NTT
+
+
+  ĐỀ TUYỂN SINH VÀO LỚP 6 TRƯỜNG THCS&THPT NGUYỄN TẤT THÀNH
+
+                                   NĂM HỌC 2026 - 2027
+
+                                   Thời gian làm bài: 45 phút
+
+        Đề được dựng theo trí nhớ của học sinh, các câu hỏi ở các mã đề có thể thay đổi.
+
+PHẦN I: Câu trắc nghiệm nhiều phương án lựa chọn (4 điểm)
+
+Thí sinh trả lời từ Câu 1 đến Câu 8. Mỗi câu chỉ chọn một phương án.
+
+Câu 1. Tổng số sách quyên góp của cả 4 lớp là 500 quyển. Hỏi lớp 6A3 quyên góp được
+bao nhiêu quyển sách?
+
+                           200               168
+                           150   125                                   132
+                 Số sách
+
+
+
+
+                           100
+                           50
+                            0
+                                 6A1        6A2          6A3           6A4
+
+Câu 2. Trong hộp có 48 viên kẹo, trong đó có 36 viên vị cam, còn lại là các viên kẹo vị
+dâu. Tính tỉ số kẹo vị dâu so với tổng số kẹo có trong hộp.
+
+Câu 3. Trong các số có 4 chữ số, số lớn nhất chia hết cho 4 là:
+
+Câu 4. Nam được tham gia vào đội bóng đá của trường và được làm thủ môn. Nam đã
+xem các video cũ về các lần đá phạt của đội tiền đạo và ghi lại bảng như sau:
+
+ Hướng sút phạt         Sút sang phải          Sút trái               Sút giữa
+ Số lần sút phạt        8                      25                     7
+Hỏi tỉ số số lần sút bóng sang trái so với tổng số lần đá phạt là gì?
+
+Câu 5. Một bể kính dạng hình hộp chữ nhật với chiều dài 12dm, chiều rộng 6 dm, chiều
+                                                   2
+cao 5 dm. Biết lượng nước trong bể kính đang chiếm thể tích bể. Hỏi bể kính đó đang
+                                                   3
+chứa bao nhiêu lít nước?
+
+
+
+Học toán online MATHX.vn – 091.269.8216                                                    Trang 1
+MATHX.vn                                                               Đề thi vào 6 NTT
+
+
+Câu 6. Mỗi ô vuông nhỏ có diện tích là 3 cm 2 . Tính tổng diện tích của các hình vuông
+chứa hình trái tim.
+
+
+
+
+Câu 7. Nam đạp xe đến trường với vận tốc 12 km/giờ. Sau 6 phút, mẹ Nam đi xe máy
+với vận tốc 36 km/giờ để đưa sách cho Nam. Hỏi sau bao lâu thì mẹ gặp Nam? Biết lúc
+mẹ gặp Nam thì Nam vẫn chưa đến trường.
+
+Câu 8. Một Kiến trúc sư thiết kế khu vườn ABCD như hình
+                                    1
+bên. Biết MN song song với AD và diện tích hình tròn bán
+                                    4
+                 1
+kính AD bằng diện tích hình tròn bán kính MN. Ông xây
+                 4
+                                                      1
+1 đường lát sỏi (phần tô màu) có diện tích là 60 m 2 , diện
+                                                      4
+tích hình tròn bán kính AD dùng để trồng hoa, diện tích còn lại là trồng cỏ. Tính diện
+tích trồng cỏ, biết AB  2  AD  4  AM .
+
+PHẦN II. Câu trắc nghiệm trả lời ngắn (3 điểm)
+
+Thí sinh trả lời từ Câu 9 đến Câu 12.
+
+Câu 9. Lớp 5A có 42 học sinh và lớp 5B có 48 học sinh. Biết số học sinh nam của hai lớp
+bằng nhau. Số học sinh nữ của lớp 5A bằng 75% số học sinh nữ của lớp 5B. Tính số học
+sinh nữ lớp 5B.
+
+
+
+
+Học toán online MATHX.vn – 091.269.8216                                         Trang 2
+MATHX.vn                                                               Đề thi vào 6 NTT
+
+
+Câu 10. Trung bình cân nặng của 4 bạn Phúc, Long, Lan, Dũng là 42 kg. Trung bình cân
+nặng của 3 bạn Long, Lan, Dũng là 40 kg. Hỏi cân nặng của Phúc là bao nhiêu?
+
+Câu 11. Một lớp học có số học sinh nam nhiều hơn số học
+sinh nữ 18 học sinh. Nếu chuyển bốn học sinh nam sang lớp
+                            3
+khác thì số học sinh nữ bằng số học sinh nam. Tính số học
+                            5
+sinh nam của lớp đó.
+
+Câu 12. Một hình lập phương có cạnh 9 dm. Khoét 1 hình hộp
+chữ nhật có chiều dài 5 dm, chiều rộng 4 dm, chiều cao 3 dm.
+Tính diện tích các mặt của hình sau khi khoét.
+
+PHẦN III. Tự luận (3 điểm)
+
+Thí sinh trình bày chi tiết lời giải từ Câu 13 đến Câu 15.
+
+Câu 13. Một cửa hàng có tổng 1 200 kg gạo tẻ và gạo nếp. Cửa hàng đã bán 80 kg gạo
+nếp và 240 kg gạo tẻ. Sau khi bán, chủ nhân thấy rằng số gạo tẻ còn lại nhiều hơn số gạo
+nếp còn lại là 90 kg. Tính số gạo nếp ban đầu?
+
+Câu 14. Hai robot Mango và Bingo chạy trên quãng đường AB dài 90 m. Hai robot khi
+chạy đến đích thì quay đầu lại và chạy tiếp. Biết Mango đi từ A đến B với vận tốc
+8m/phút, Bingo đi từ B về A với vận tốc 10 m/phút.
+
+a) Sau bao nhiêu phút hai chú robot gặp nhau lần thứ nhất kể từ lúc xuất phát?
+
+b) Sau khi gặp nhau lần thứ nhất, chú robot Mango đi từ A tiếp tục đi đến B và chú robot
+Bingo đi từ B tiếp tục đi đến A. Hỏi kể từ lúc gặp nhau lần thứ nhất, sau bao nhiêu phút
+cả hai chú robot gặp nhau lần thứ ba?
+
+Câu 3. Cho tam giác ABC, trên BC cho 2 điểm M; N sao cho MN  2  BM  2  NC . Từ
+M kẻ đoạn thẳng song song với AB, từ N kẻ đoạn song
+song với AC. 2 đoạn cắt nhau tại I. Biết diện tích AIM =
+10 cm2.
+
+a) Tính diện tích tam giác BMI
+
+b) Tính diện tích tam giác ABC.
+
+
+
+
+Học toán online MATHX.vn – 091.269.8216                                          Trang 3
+

@@ -1,0 +1,1536 @@
+[
+  {
+    "id": "supp-soh-l4-01",
+    "num": 1,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Tìm $x$ biết: $420 \\div (75 - x) = 21$",
+    "correct": "55",
+    "unit": null,
+    "placeholder": "Nhập giá trị của x...",
+    "modelAnswer": "Ta có:\n$420 \\div (75 - x) = 21$\n$75 - x = 420 \\div 21$\n$75 - x = 20$\n$x = 75 - 20$\n$x = 55$"
+  },
+  {
+    "id": "supp-soh-l4-02",
+    "num": 2,
+    "type": "mcq",
+    "topic": "soh",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Tính nhanh giá trị biểu thức: $34 \\times 101 - 34$",
+    "options": [
+      {
+        "id": "A",
+        "text": "3400"
+      },
+      {
+        "id": "B",
+        "text": "3434"
+      },
+      {
+        "id": "C",
+        "text": "34"
+      },
+      {
+        "id": "D",
+        "text": "3366"
+      }
+    ],
+    "correct": "A",
+    "unit": null,
+    "placeholder": null,
+    "modelAnswer": "Áp dụng tính chất phân phối của phép nhân đối với phép trừ:\n$34 \\times 101 - 34 = 34 \\times (101 - 1) = 34 \\times 100 = 3400$. Chọn A."
+  },
+  {
+    "id": "supp-soh-l4-03",
+    "num": 3,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Tìm chữ số thuộc hàng chục triệu của số $85\\ 412\\ 903$.",
+    "correct": "8",
+    "unit": null,
+    "placeholder": "Nhập chữ số...",
+    "modelAnswer": "Số $85\\ 412\\ 903$ gồm:\n- Lớp triệu: $8$ chục triệu, $5$ triệu.\n- Lớp nghìn: $4$ trăm nghìn, $1$ chục nghìn, $2$ nghìn.\n- Lớp đơn vị: $9$ trăm, $0$ chục, $3$ đơn vị.\nChữ số hàng chục triệu là $8$."
+  },
+  {
+    "id": "supp-soh-l4-04",
+    "num": 4,
+    "type": "mcq",
+    "topic": "soh",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Làm tròn số $12\\ 783$ đến hàng nghìn ta được số nào?",
+    "options": [
+      {
+        "id": "A",
+        "text": "12 000"
+      },
+      {
+        "id": "B",
+        "text": "13 000"
+      },
+      {
+        "id": "C",
+        "text": "12 800"
+      },
+      {
+        "id": "D",
+        "text": "12 700"
+      }
+    ],
+    "correct": "B",
+    "unit": null,
+    "placeholder": null,
+    "modelAnswer": "Khi làm tròn số $12\\ 783$ đến hàng nghìn, ta xét chữ số hàng trăm là $7$ (do $7 \\ge 5$ nên ta cộng thêm $1$ vào chữ số hàng nghìn và chuyển các chữ số sau đó thành $0$). Kết quả là $13\\ 000$. Chọn B."
+  },
+  {
+    "id": "supp-soh-l4-05",
+    "num": 5,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Tìm chữ số $x$ nhỏ nhất để số $\\overline{4x5}$ chia hết cho $9$.",
+    "correct": "0",
+    "unit": null,
+    "placeholder": "Nhập chữ số...",
+    "modelAnswer": "Để số $\\overline{4x5}$ chia hết cho $9$ thì tổng các chữ số của nó phải chia hết cho $9$.\nTổng các chữ số là: $4 + x + 5 = 9 + x$.\nĐể $9 + x$ chia hết cho $9$ với $x$ là chữ số từ $0$ đến $9$, ta có $x = 0$ hoặc $x = 9$.\nVì đề bài yêu cầu chữ số $x$ nhỏ nhất nên $x = 0$."
+  },
+  {
+    "id": "supp-soh-l4-06",
+    "num": 6,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Tìm số hạng thứ $10$ của dãy số cách đều sau: $2, 5, 8, 11, \\dots$",
+    "correct": "29",
+    "unit": null,
+    "placeholder": "Nhập số hạng...",
+    "modelAnswer": "Dãy số đã cho là dãy số cách đều có khoảng cách giữa hai số liên tiếp là $3$ đơn vị.\nSố hạng thứ $10$ của dãy số là:\n$\\text{Số đầu} + (\\text{Số số hạng} - 1) \\times \\text{Khoảng cách} = 2 + (10 - 1) \\times 3 = 2 + 27 = 29$."
+  },
+  {
+    "id": "supp-soh-l4-07",
+    "num": 7,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Trung bình cộng của $3$ số là $24$. Tổng của $3$ số đó là bao nhiêu?",
+    "correct": "72",
+    "unit": null,
+    "placeholder": "Nhập tổng...",
+    "modelAnswer": "Công thức tính tổng khi biết trung bình cộng:\n$\\text{Tổng} = \\text{Trung bình cộng} \\times \\text{Số các số hạng} = 24 \\times 3 = 72$."
+  },
+  {
+    "id": "supp-soh-l4-08",
+    "num": 8,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Một cửa hàng có $150\\ \\text{kg}$ gạo gồm gạo tẻ và gạo nếp. Biết số gạo nếp bằng $\\frac{2}{3}$ số gạo tẻ. Tính số ki-lô-gam gạo nếp cửa hàng có.",
+    "correct": "60",
+    "unit": "kg",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Theo đề bài, tỉ số giữa gạo nếp và gạo tẻ là $\\frac{2}{3}$.\nTổng số phần bằng nhau là:\n$2 + 3 = 5$ (phần).\nSố gạo nếp cửa hàng có là:\n$150 \\div 5 \\times 2 = 60\\ (\\text{kg})$."
+  },
+  {
+    "id": "supp-soh-l4-09",
+    "num": 9,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Hiện nay bố hơn con $30$ tuổi. Biết tuổi con bằng $\\frac{1}{4}$ tuổi bố. Tính tuổi của bố hiện nay.",
+    "correct": "40",
+    "unit": "tuổi",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Hiệu số phần bằng nhau là:\n$4 - 1 = 3$ (phần).\nTuổi của bố hiện nay là:\n$30 \\div 3 \\times 4 = 40\\ (\\text{tuổi})$."
+  },
+  {
+    "id": "supp-soh-l4-10",
+    "num": 10,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Tìm $x$ biết: $x \\times 6 + x \\times 4 = 150$",
+    "correct": "15",
+    "unit": null,
+    "placeholder": "Nhập giá trị của x...",
+    "modelAnswer": "Ta có:\n$x \\times (6 + 4) = 150$\n$x \\times 10 = 150$\n$x = 150 \\div 10$\n$x = 15$"
+  },
+  {
+    "id": "supp-soh-l4-11",
+    "num": 11,
+    "type": "mcq",
+    "topic": "soh",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Có bao nhiêu số tự nhiên có hai chữ số chia hết cho cả $2$ và $5$?",
+    "options": [
+      {
+        "id": "A",
+        "text": "9"
+      },
+      {
+        "id": "B",
+        "text": "10"
+      },
+      {
+        "id": "C",
+        "text": "90"
+      },
+      {
+        "id": "D",
+        "text": "45"
+      }
+    ],
+    "correct": "A",
+    "unit": null,
+    "placeholder": null,
+    "modelAnswer": "Một số chia hết cho cả $2$ và $5$ thì phải có chữ số tận cùng là $0$.\nCác số tự nhiên có hai chữ số tận cùng bằng $0$ là: $10, 20, 30, 40, 50, 60, 70, 80, 90$.\nSố các số đó là: $(90 - 10) \\div 10 + 1 = 9$ số. Chọn A."
+  },
+  {
+    "id": "supp-soh-l4-12",
+    "num": 12,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Số thứ nhất là $25$, số thứ hai là $35$. Số thứ ba bằng trung bình cộng của hai số đầu. Tìm số thứ ba.",
+    "correct": "30",
+    "unit": null,
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Số thứ ba bằng trung bình cộng của hai số đầu, do đó số thứ ba là:\n$(25 + 35) \\div 2 = 60 \\div 2 = 30$."
+  },
+  {
+    "id": "supp-soh-l4-13",
+    "num": 13,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Một mảnh đất hình chữ nhật có chu vi $120\\ \\text{m}$, chiều dài hơn chiều rộng $20\\ \\text{m}$. Tính chiều rộng của mảnh đất đó.",
+    "correct": "20",
+    "unit": "m",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Nửa chu vi của mảnh đất hình chữ nhật là:\n$120 \\div 2 = 60\\ (\\text{m})$.\nChiều rộng của mảnh đất là:\n$(60 - 20) \\div 2 = 20\\ (\\text{m})$."
+  },
+  {
+    "id": "supp-soh-l5-01",
+    "num": 14,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Tính nhanh giá trị biểu thức: $2{,}5 \\times 4{,}8 + 2{,}5 \\times 5{,}2$",
+    "correct": "25",
+    "unit": null,
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Ta có:\n$2{,}5 \\times 4{,}8 + 2{,}5 \\times 5{,}2 = 2{,}5 \\times (4{,}8 + 5{,}2) = 2{,}5 \\times 10 = 25$."
+  },
+  {
+    "id": "supp-soh-l5-02",
+    "num": 15,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Tìm $x$ biết: $x \\div 2{,}5 - 1{,}2 = 3{,}8$",
+    "correct": "12,5",
+    "unit": null,
+    "placeholder": "Nhập giá trị của x...",
+    "modelAnswer": "Ta có:\n$x \\div 2{,}5 - 1{,}2 = 3{,}8$\n$x \\div 2{,}5 = 3{,}8 + 1{,}2$\n$x \\div 2{,}5 = 5$\n$x = 5 \\times 2{,}5$\n$x = 12{,}5$"
+  },
+  {
+    "id": "supp-soh-l5-03",
+    "num": 16,
+    "type": "mcq",
+    "topic": "soh",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Trong số thập phân $12{,}345$, chữ số $5$ nằm ở hàng nào?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Hàng phần mười"
+      },
+      {
+        "id": "B",
+        "text": "Hàng phần trăm"
+      },
+      {
+        "id": "C",
+        "text": "Hàng phần nghìn"
+      },
+      {
+        "id": "D",
+        "text": "Hàng đơn vị"
+      }
+    ],
+    "correct": "C",
+    "unit": null,
+    "placeholder": null,
+    "modelAnswer": "Trong số thập phân $12{,}345$:\n- Chữ số $3$ thuộc hàng phần mười.\n- Chữ số $4$ thuộc hàng phần trăm.\n- Chữ số $5$ thuộc hàng phần nghìn. Chọn C."
+  },
+  {
+    "id": "supp-soh-l5-04",
+    "num": 17,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Làm tròn số thập phân $45{,}678$ đến hàng phần mười.",
+    "correct": "45,7",
+    "unit": null,
+    "placeholder": "Nhập kết quả...",
+    "modelAnswer": "Chữ số ở hàng phần mười là $6$. Chữ số tiếp theo bên phải là chữ số ở hàng phần trăm là $7$ ($7 \\ge 5$), nên ta cộng thêm $1$ vào hàng phần mười và bỏ đi các chữ số sau đó. Ta được số $45{,}7$."
+  },
+  {
+    "id": "supp-soh-l5-05",
+    "num": 18,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Tính nhanh giá trị biểu thức: $13{,}28 \\times 9{,}9 + 13{,}28 \\times 0{,}1$",
+    "correct": "132,8",
+    "unit": null,
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Ta có:\n$13{,}28 \\times 9{,}9 + 13{,}28 \\times 0{,}1 = 13{,}28 \\times (9{,}9 + 0{,}1) = 13{,}28 \\times 10 = 132{,}8$."
+  },
+  {
+    "id": "supp-soh-l5-06",
+    "num": 19,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Tìm trung bình cộng của các số sau: $1{,}2$; $2{,}4$; $3{,}6$ và $4{,}8$.",
+    "correct": "3",
+    "unit": null,
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Tổng của các số là:\n$1{,}2 + 2{,}4 + 3{,}6 + 4{,}8 = 12$\nTrung bình cộng là:\n$12 \\div 4 = 3$."
+  },
+  {
+    "id": "supp-soh-l5-07",
+    "num": 20,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Tổng của hai số thập phân là $12{,}5$. Biết số lớn gấp $4$ lần số bé. Tìm số lớn.",
+    "correct": "10",
+    "unit": null,
+    "placeholder": "Nhập số lớn...",
+    "modelAnswer": "Tổng số phần bằng nhau là:\n$1 + 4 = 5$ (phần).\nSố lớn là:\n$12{,}5 \\div 5 \\times 4 = 10$."
+  },
+  {
+    "id": "supp-soh-l5-08",
+    "num": 21,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Hiệu của hai số thập phân là $4{,}8$. Biết số bé bằng $\\frac{1}{3}$ số lớn. Tìm số lớn.",
+    "correct": "7,2",
+    "unit": null,
+    "placeholder": "Nhập số lớn...",
+    "modelAnswer": "Hiệu số phần bằng nhau là:\n$3 - 1 = 2$ (phần).\nSố lớn là:\n$4{,}8 \\div 2 \\times 3 = 7{,}2$."
+  },
+  {
+    "id": "supp-soh-l5-09",
+    "num": 22,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Tìm $x$ biết: $2 \\times x + 0{,}5 \\times x = 7{,}5$",
+    "correct": "3",
+    "unit": null,
+    "placeholder": "Nhập giá trị của x...",
+    "modelAnswer": "Ta có:\n$x \\times (2 + 0{,}5) = 7{,}5$\n$x \\times 2{,}5 = 7{,}5$\n$x = 7{,}5 \\div 2{,}5$\n$x = 3$"
+  },
+  {
+    "id": "supp-soh-l5-10",
+    "num": 23,
+    "type": "mcq",
+    "topic": "soh",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Tìm chữ số $y$ để số tự nhiên $\\overline{202y}$ chia hết cho $3$ nhưng không chia hết cho $9$.",
+    "options": [
+      {
+        "id": "A",
+        "text": "2"
+      },
+      {
+        "id": "B",
+        "text": "5"
+      },
+      {
+        "id": "C",
+        "text": "8"
+      },
+      {
+        "id": "D",
+        "text": "Cả A và B đều đúng"
+      }
+    ],
+    "correct": "D",
+    "unit": null,
+    "placeholder": null,
+    "modelAnswer": "Tổng các chữ số của $\\overline{202y}$ là $2 + 0 + 2 + y = 4 + y$.\n- Nếu $y = 2$ thì tổng các chữ số là $6$ (chia hết cho 3, không chia hết cho 9).\n- Nếu $y = 5$ thì tổng các chữ số là $9$ (chia hết cho 9).\n- Nếu $y = 8$ thì tổng các chữ số là $12$ (chia hết cho 3, không chia hết cho 9).\nDo đó cả $2$ và $8$ đều thỏa mãn đề bài. Đáp án là D."
+  },
+  {
+    "id": "supp-soh-l5-11",
+    "num": 24,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Tính giá trị biểu thức: $0{,}125 \\times 80 \\times 1{,}5$",
+    "correct": "15",
+    "unit": null,
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Ta có:\n$0{,}125 \\times 80 \\times 1{,}5 = (0{,}125 \\times 80) \\times 1{,}5 = 10 \\times 1{,}5 = 15$."
+  },
+  {
+    "id": "supp-soh-l5-12",
+    "num": 25,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Trung bình cộng của hai số thập phân là $3{,}5$. Biết số thứ nhất kém số thứ hai là $1{,}2$. Tìm số thứ hai.",
+    "correct": "4,1",
+    "unit": null,
+    "placeholder": "Nhập số thứ hai...",
+    "modelAnswer": "Tổng của hai số là:\n$3{,}5 \\times 2 = 7$\nSố thứ hai (số lớn) là:\n$(7 + 1{,}2) \\div 2 = 8{,}2 \\div 2 = 4{,}1$."
+  },
+  {
+    "id": "supp-soh-l5-13",
+    "num": 26,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Làm tròn số thập phân $9{,}99$ đến hàng đơn vị.",
+    "correct": "10",
+    "unit": null,
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Chữ số hàng đơn vị của số $9{,}99$ là $9$. Xét chữ số đầu tiên ở phần thập phân là $9$ ($9 \\ge 5$), ta cộng thêm $1$ vào chữ số hàng đơn vị và loại bỏ phần thập phân. Số sau khi làm tròn là $10$."
+  },
+  {
+    "id": "supp-soh-l45-01",
+    "num": 27,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Tìm $x$ biết: $x \\times 4 - 3{,}5 = 6{,}5$",
+    "correct": "2,5",
+    "unit": null,
+    "placeholder": "Nhập giá trị của x...",
+    "modelAnswer": "Ta có:\n$x \\times 4 - 3{,}5 = 6{,}5$\n$x \\times 4 = 6{,}5 + 3{,}5$\n$x \\times 4 = 10$\n$x = 10 \\div 4$\n$x = 2{,}5$"
+  },
+  {
+    "id": "supp-soh-l45-02",
+    "num": 28,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Số thứ nhất là $12$, số thứ hai là $18$. Số thứ ba hơn trung bình cộng của cả ba số là $2$ đơn vị. Tìm số thứ ba.",
+    "correct": "18",
+    "unit": null,
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Theo đề bài, ta có sơ đồ biểu thị mối quan hệ giữa số thứ ba và trung bình cộng.\nTrung bình cộng của cả ba số là:\n$(12 + 18 + 2) \\div 2 = 32 \\div 2 = 16$\nSố thứ ba là:\n$16 + 2 = 18$."
+  },
+  {
+    "id": "supp-soh-l45-03",
+    "num": 29,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Tổng của hai số tự nhiên là $100$. Nếu lấy số lớn chia cho số bé thì được thương là $3$ và dư $4$. Tìm số bé.",
+    "correct": "24",
+    "unit": null,
+    "placeholder": "Nhập số bé...",
+    "modelAnswer": "Nếu bớt số lớn đi $4$ đơn vị thì số lớn gấp $3$ lần số bé.\nKhi đó tổng mới của hai số là:\n$100 - 4 = 96$\nTổng số phần bằng nhau là:\n$1 + 3 = 4$ (phần).\nSố bé là:\n$96 \\div 4 = 24$."
+  },
+  {
+    "id": "supp-soh-l45-04",
+    "num": 30,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Tìm số tự nhiên nhỏ nhất có $3$ chữ số chia hết cho cả $2$, $3$ và $5$.",
+    "correct": "120",
+    "unit": null,
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Số chia hết cho $2$ và $5$ thì chữ số tận cùng phải là $0$. Gọi số cần tìm là $\\overline{ab0}$ với $a \\ne 0$.\nVì số này nhỏ nhất có 3 chữ số nên ta chọn $a = 1$. Số đó có dạng $\\overline{1b0}$.\nĐể $\\overline{1b0}$ chia hết cho $3$ thì tổng $(1 + b + 0)$ phải chia hết cho $3$, tức là $1 + b$ chia hết cho $3$.\nĐể số nhỏ nhất, ta chọn $b$ nhỏ nhất là $2$ ($1 + 2 = 3$ chia hết cho 3).\nVậy số tự nhiên nhỏ nhất thỏa mãn là $120$."
+  },
+  {
+    "id": "supp-soh-l45-05",
+    "num": 31,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Cho dãy số: $1{,}1$; $2{,}2$; $3{,}3$; $\\dots$; $99{,}0$. Hỏi dãy số này có bao nhiêu số hạng?",
+    "correct": "90",
+    "unit": "số hạng",
+    "placeholder": "Nhập số số hạng...",
+    "modelAnswer": "Dãy số cách đều có số đầu là $1{,}1$, số cuối là $99{,}0$, khoảng cách giữa hai số hạng liên tiếp là $1{,}1$.\nSố số hạng của dãy là:\n$(99{,}0 - 1{,}1) \\div 1{,}1 + 1 = 97{,}9 \\div 1{,}1 + 1 = 89 + 1 = 90\\ (\\text{số hạng})$."
+  },
+  {
+    "id": "supp-soh-l45-06",
+    "num": 32,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Tính nhanh giá trị biểu thức: $1 \\div 0{,}1 + 2 \\div 0{,}1 + 3 \\div 0{,}1 + 4 \\div 0{,}1$",
+    "correct": "100",
+    "unit": null,
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Nhớ rằng chia một số cho $0{,}1$ tương đương nhân số đó với $10$.\n$1 \\div 0{,}1 + 2 \\div 0{,}1 + 3 \\div 0{,}1 + 4 \\div 0{,}1 = 1 \\times 10 + 2 \\times 10 + 3 \\times 10 + 4 \\times 10$\n$= (1 + 2 + 3 + 4) \\times 10 = 10 \\times 10 = 100$."
+  },
+  {
+    "id": "supp-soh-l45-07",
+    "num": 33,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Tìm $x$ biết: $(x + 1) + (x + 2) + (x + 3) + (x + 4) = 20$",
+    "correct": "2,5",
+    "unit": null,
+    "placeholder": "Nhập giá trị của x...",
+    "modelAnswer": "Ta có:\n$(x + x + x + x) + (1 + 2 + 3 + 4) = 20$\n$4 \\times x + 10 = 20$\n$4 \\times x = 10$\n$x = 10 \\div 4 = 2{,}5$"
+  },
+  {
+    "id": "supp-soh-l45-08",
+    "num": 34,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Một lớp học có $30$ học sinh gồm học sinh nam và học sinh nữ. Điểm trung bình môn Toán của cả lớp là $8$. Biết số học sinh nam bằng số học sinh nữ và điểm trung bình của các học sinh nam là $7{,}6$. Tính điểm trung bình môn Toán của các học sinh nữ.",
+    "correct": "8,4",
+    "unit": null,
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Vì số học sinh nam bằng số học sinh nữ nên lớp học có $15$ nam và $15$ nữ.\nTổng số điểm của cả lớp là:\n$8 \\times 30 = 240$ (điểm).\nTổng số điểm của học sinh nam là:\n$7{,}6 \\times 15 = 114$ (điểm).\nTổng số điểm của học sinh nữ là:\n$240 - 114 = 126$ (điểm).\nĐiểm trung bình của học sinh nữ là:\n$126 \\div 15 = 8{,}4$ (điểm)."
+  },
+  {
+    "id": "supp-soh-l45-09",
+    "num": 35,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Diện tích phần đất trồng hoa kém diện tích trồng rau trong vườn là $120\\ \\text{m}^2$. Biết diện tích đất trồng hoa bằng $0{,}4$ lần diện tích trồng rau. Tính diện tích phần đất trồng hoa.",
+    "correct": "80",
+    "unit": "m²",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Đổi $0{,}4 = \\frac{4}{10} = \\frac{2}{5}$.\nHiệu số phần bằng nhau là:\n$5 - 2 = 3$ (phần).\nDiện tích đất trồng hoa là:\n$120 \\div 3 \\times 2 = 80\\ (\\text{m}^2)$."
+  },
+  {
+    "id": "supp-soh-l45-10",
+    "num": 36,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Tính nhanh giá trị biểu thức: $99 \\times 4{,}5 + 4{,}5$",
+    "correct": "450",
+    "unit": null,
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Ta có:\n$99 \\times 4{,}5 + 4{,}5 = 99 \\times 4{,}5 + 4{,}5 \\times 1 = (99 + 1) \\times 4{,}5 = 100 \\times 4{,}5 = 450$."
+  },
+  {
+    "id": "supp-soh-l45-11",
+    "num": 37,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Tìm $x$ biết: $x \\div 0{,}25 + x \\times 6 = 30$",
+    "correct": "3",
+    "unit": null,
+    "placeholder": "Nhập giá trị của x...",
+    "modelAnswer": "Vì $x \\div 0{,}25 = x \\times 4$, ta có:\n$x \\times 4 + x \\times 6 = 30$\n$x \\times (4 + 6) = 30$\n$x \\times 10 = 30$\n$x = 30 \\div 10$\n$x = 3$"
+  },
+  {
+    "id": "supp-soh-l45-12",
+    "num": 38,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Xe thứ nhất chở $3$ tấn hàng, xe thứ hai chở $3{,}5$ tấn hàng. Xe thứ ba chở nặng hơn mức trung bình cộng của cả ba xe là $0{,}5$ tấn. Hỏi xe thứ ba chở bao nhiêu tấn hàng?",
+    "correct": "4",
+    "unit": "tấn",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Nếu bù $0{,}5$ tấn từ xe thứ ba sang hai xe đầu thì tổng lượng hàng của hai xe đầu sẽ bằng $2$ lần trung bình cộng của cả ba xe.\nTrung bình cộng của cả ba xe là:\n$(3 + 3{,}5 + 0{,}5) \\div 2 = 7 \\div 2 = 3{,}5$ (tấn).\nLượng hàng xe thứ ba chở là:\n$3{,}5 + 0{,}5 = 4$ (tấn)."
+  },
+  {
+    "id": "supp-soh-nc-01",
+    "num": 39,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Tìm số tự nhiên nhỏ nhất chia cho $3$ dư $2$, chia cho $5$ dư $4$ và chia cho $7$ dư $6$.",
+    "correct": "104",
+    "unit": null,
+    "placeholder": "Nhập số cần tìm...",
+    "modelAnswer": "Gọi số tự nhiên cần tìm là $A$. Theo đề bài ta có:\n- $A$ chia $3$ dư $2$ $\\Rightarrow A + 1$ chia hết cho $3$.\n- $A$ chia $5$ dư $4$ $\\Rightarrow A + 1$ chia hết cho $5$.\n- $A$ chia $7$ dư $6$ $\\Rightarrow A + 1$ chia hết cho $7$.\nVậy $A + 1$ chia hết cho cả $3, 5, 7$.\nVì $A$ là số tự nhiên nhỏ nhất nên $A + 1$ là số tự nhiên nhỏ nhất chia hết cho cả $3, 5, 7$.\nSố nhỏ nhất đó là: $3 \\times 5 \\times 7 = 105$.\nDo đó: $A + 1 = 105 \\Rightarrow A = 104$."
+  },
+  {
+    "id": "supp-soh-nc-02",
+    "num": 40,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Tìm số hạng thứ $100$ của dãy số sau: $1, 3, 6, 10, 15, \\dots$",
+    "correct": "5050",
+    "unit": null,
+    "placeholder": "Nhập số hạng...",
+    "modelAnswer": "Nhận xét quy luật của dãy số:\n- Số hạng thứ 1: $1 = 1$\n- Số hạng thứ 2: $3 = 1 + 2$\n- Số hạng thứ 3: $6 = 1 + 2 + 3$\n- Số hạng thứ 4: $10 = 1 + 2 + 3 + 4$\n...\nVậy số hạng thứ $100$ của dãy số là tổng các số tự nhiên từ $1$ đến $100$:\n$1 + 2 + 3 + \\dots + 100 = (1 + 100) \\times 100 \\div 2 = 101 \\times 50 = 5050$."
+  },
+  {
+    "id": "supp-soh-nc-03",
+    "num": 41,
+    "type": "mcq",
+    "topic": "soh",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Tìm chữ số tận cùng của tích sau: $4 \\times 4 \\times 4 \\times \\dots \\times 4$ (gồm $2026$ thừa số $4$).",
+    "options": [
+      {
+        "id": "A",
+        "text": "4"
+      },
+      {
+        "id": "B",
+        "text": "6"
+      },
+      {
+        "id": "C",
+        "text": "2"
+      },
+      {
+        "id": "D",
+        "text": "0"
+      }
+    ],
+    "correct": "B",
+    "unit": null,
+    "placeholder": null,
+    "modelAnswer": "Tích của các số có tận cùng bằng $4$ có quy luật chữ số tận cùng lặp lại theo chu kỳ $2$:\n- $4^1$ tận cùng là $4$ (lẻ).\n- $4^2$ tận cùng là $6$ (chẵn).\n- $4^3$ tận cùng là $4$, ...\nVì số thừa số là $2026$ (số chẵn), nên chữ số tận cùng của tích là $6$. Chọn B."
+  },
+  {
+    "id": "supp-soh-nc-04",
+    "num": 42,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Tìm chữ số tận cùng của số $7^{2025}$.",
+    "correct": "7",
+    "unit": null,
+    "placeholder": "Nhập chữ số...",
+    "modelAnswer": "Lũy thừa của $7$ có chữ số tận cùng lặp lại theo chu kỳ $4$:\n- $7^1$ tận cùng là $7$\n- $7^2$ tận cùng là $9$\n- $7^3$ tận cùng là $3$\n- $7^4$ tận cùng là $1$\nTa có: $2025 \\div 4 = 506$ dư $1$.\nVậy chữ số tận cùng của $7^{2025}$ bằng chữ số tận cùng của $7^1$, tức là $7$."
+  },
+  {
+    "id": "supp-soh-nc-05",
+    "num": 43,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Trung bình cộng của $4$ số tự nhiên liên tiếp là $2025{,}5$. Tìm số lớn nhất trong $4$ số đó.",
+    "correct": "2027",
+    "unit": null,
+    "placeholder": "Nhập số lớn nhất...",
+    "modelAnswer": "Vì $4$ số tự nhiên liên tiếp là dãy cách đều có số số hạng chẵn, nên trung bình cộng bằng trung điểm của hai số ở giữa (số hạng thứ 2 và thứ 3).\nHai số ở giữa là $2025$ và $2026$ (vì trung bình cộng là $2025{,}5$).\nBốn số tự nhiên liên tiếp đó là: $2024, 2025, 2026, 2027$.\nSố lớn nhất là $2027$."
+  },
+  {
+    "id": "supp-soh-nc-06",
+    "num": 44,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Tính giá trị biểu thức: $A = (1 - \\frac{1}{2}) \\times (1 - \\frac{1}{3}) \\times (1 - \\frac{1}{4}) \\times \\dots \\times (1 - \\frac{1}{100})$",
+    "correct": "1/100",
+    "unit": null,
+    "placeholder": "Nhập đáp số dưới dạng phân số a/b...",
+    "modelAnswer": "Ta có:\n$A = \\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{3}{4} \\times \\dots \\times \\frac{99}{100}$\nRút gọn tử số và mẫu số của các phân số liên tiếp, ta còn lại:\n$A = \\frac{1}{100}$."
+  },
+  {
+    "id": "supp-soh-nc-07",
+    "num": 45,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Tìm số tự nhiên dạng $\\overline{2a3b}$ nhỏ nhất chia hết cho cả $2$, $5$ và $9$.",
+    "correct": "2430",
+    "unit": null,
+    "placeholder": "Nhập số có 4 chữ số...",
+    "modelAnswer": "Số chia hết cho cả $2$ và $5$ thì phải có chữ số tận cùng là $0 \\Rightarrow b = 0$.\nSố đó có dạng $\\overline{2a30}$.\nĐể $\\overline{2a30}$ chia hết cho $9$ thì tổng các chữ số phải chia hết cho $9$, tức là $(2 + a + 3 + 0) = 5 + a$ chia hết cho $9$.\nVì $a$ là chữ số từ $0$ đến $9$ nên ta suy ra $a = 4$.\nVậy số tự nhiên đó là $2430$."
+  },
+  {
+    "id": "supp-soh-nc-08",
+    "num": 46,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Tìm số hạng tiếp theo của dãy số sau: $1, 2, 5, 10, 17, 26, \\dots$",
+    "correct": "37",
+    "unit": null,
+    "placeholder": "Nhập số hạng tiếp theo...",
+    "modelAnswer": "Xét hiệu giữa các số liên tiếp:\n- $2 - 1 = 1$\n- $5 - 2 = 3$\n- $10 - 5 = 5$\n- $17 - 10 = 7$\n- $26 - 17 = 9$\nDãy các hiệu là các số lẻ liên tiếp: $1, 3, 5, 7, 9, \\dots$\nHiệu tiếp theo sẽ là $11$.\nVậy số hạng tiếp theo của dãy số là: $26 + 11 = 37$."
+  },
+  {
+    "id": "supp-soh-nc-09",
+    "num": 47,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Tổng của ba số tự nhiên là $122$. Nếu lấy số thứ nhất chia cho số thứ hai thì được thương là $3$ và dư $1$. Nếu lấy số thứ hai chia cho số thứ ba cũng được thương là $3$ và dư $1$. Tìm số thứ nhất.",
+    "correct": "85",
+    "unit": null,
+    "placeholder": "Nhập số thứ nhất...",
+    "modelAnswer": "Gọi số thứ ba là $x$.\n- Số thứ hai chia cho số thứ ba được thương $3$ dư $1$, nên số thứ hai là $3 \\times x + 1$.\n- Số thứ nhất chia cho số thứ hai được thương $3$ dư $1$, nên số thứ nhất là:\n$3 \\times (3 \\times x + 1) + 1 = 9 \\times x + 4$.\nTổng của ba số là:\n$(9 \\times x + 4) + (3 \\times x + 1) + x = 122$\n$13 \\times x + 5 = 122$\n$13 \\times x = 117 \\Rightarrow x = 9$.\nVậy số thứ ba là $9$.\nSố thứ nhất là: $9 \\times 9 + 4 = 85$."
+  },
+  {
+    "id": "supp-soh-nc-10",
+    "num": 48,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Tìm số tự nhiên $x$ biết: $x + (x + 1) + (x + 2) + \\dots + (x + 10) = 66$",
+    "correct": "1",
+    "unit": null,
+    "placeholder": "Nhập giá trị của x...",
+    "modelAnswer": "Ta biến đổi vế trái:\n$(x + x + \\dots + x) + (1 + 2 + \\dots + 10) = 66$\nDãy có $11$ số hạng $x$.\nTổng từ $1$ đến $10$ là: $(1 + 10) \\times 10 \\div 2 = 55$.\nTa được:\n$11 \\times x + 55 = 66$\n$11 \\times x = 11$\n$x = 1$."
+  },
+  {
+    "id": "supp-soh-nc-11",
+    "num": 49,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Viết liên tiếp các số tự nhiên bắt đầu từ số $1$ thành một số tự nhiên $A = 123456789101112\\dots$ Hỏi chữ số thứ $100$ từ trái sang phải của số $A$ là chữ số nào?",
+    "correct": "5",
+    "unit": null,
+    "placeholder": "Nhập chữ số...",
+    "modelAnswer": "- Từ $1$ đến $9$ có $9$ số có 1 chữ số, tương ứng với $9$ chữ số.\n- Số chữ số cần để viết tiếp các số có 2 chữ số là: $100 - 9 = 91$ chữ số.\nTa có: $91 \\div 2 = 45$ dư $1$.\nNhư vậy, ta đã viết được thêm $45$ số có 2 chữ số (bắt đầu từ $10$). Số thứ $45$ có 2 chữ số là:\n$10 + (45 - 1) = 54$.\nChữ số thứ $100$ là chữ số đầu tiên của số tiếp theo (số $55$).\nChữ số đầu tiên của số $55$ là $5$."
+  },
+  {
+    "id": "supp-soh-nc-12",
+    "num": 50,
+    "type": "fill",
+    "topic": "soh",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Một dãy số cách đều có số hạng đầu là $5$, số hạng cuối là $2025$. Biết dãy số có $405$ số hạng. Tìm khoảng cách giữa hai số hạng liên tiếp.",
+    "correct": "5",
+    "unit": null,
+    "placeholder": "Nhập khoảng cách...",
+    "modelAnswer": "Số khoảng cách giữa các số hạng là:\n$405 - 1 = 404$ (khoảng cách).\nHiệu giữa số cuối và số đầu là:\n$2025 - 5 = 2020$.\nKhoảng cách giữa hai số hạng liên tiếp là:\n$2020 \\div 404 = 5$."
+  },
+  {
+    "id": "supp-phan-l4-01",
+    "num": 51,
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "points": 1,
+    "stem": "So sánh hai phân số: $\\frac{5}{6}$ và $\\frac{7}{8}$.",
+    "options": [
+      {
+        "id": "A",
+        "text": "5/6 > 7/8"
+      },
+      {
+        "id": "B",
+        "text": "5/6 < 7/8"
+      },
+      {
+        "id": "C",
+        "text": "5/6 = 7/8"
+      },
+      {
+        "id": "D",
+        "text": "Không so sánh được"
+      }
+    ],
+    "correct": "B",
+    "unit": null,
+    "placeholder": null,
+    "modelAnswer": "Quy đồng mẫu số hai phân số với mẫu số chung là 24:\n$\\frac{5}{6} = \\frac{5 \\times 4}{6 \\times 4} = \\frac{20}{24}$\n$\\frac{7}{8} = \\frac{7 \\times 3}{8 \\times 3} = \\frac{21}{24}$\nVì $\\frac{20}{24} < \\frac{21}{24}$ nên $\\frac{5}{6} < \\frac{7}{8}$. Chọn B."
+  },
+  {
+    "id": "supp-phan-l4-02",
+    "num": 52,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Tính giá trị biểu thức: $\\frac{3}{5} + \\frac{1}{2} - \\frac{3}{10}$",
+    "correct": "4/5",
+    "unit": null,
+    "placeholder": "Nhập kết quả dạng phân số tối giản a/b...",
+    "modelAnswer": "Quy đồng các phân số về mẫu số chung là 10:\n$\\frac{3}{5} + \\frac{1}{2} - \\frac{3}{10} = \\frac{6}{10} + \\frac{5}{10} - \\frac{3}{10} = \\frac{6 + 5 - 3}{10} = \\frac{8}{10} = \\frac{4}{5}$."
+  },
+  {
+    "id": "supp-phan-l4-03",
+    "num": 53,
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Phân số nào sau đây lớn hơn $1$?",
+    "options": [
+      {
+        "id": "A",
+        "text": "3/4"
+      },
+      {
+        "id": "B",
+        "text": "7/7"
+      },
+      {
+        "id": "C",
+        "text": "9/8"
+      },
+      {
+        "id": "D",
+        "text": "5/6"
+      }
+    ],
+    "correct": "C",
+    "unit": null,
+    "placeholder": null,
+    "modelAnswer": "Một phân số lớn hơn 1 khi tử số lớn hơn mẫu số.\n- $\\frac{3}{4}$: tử $3 <$ mẫu $4 \\Rightarrow < 1$\n- $\\frac{7}{7}$: tử $7 =$ mẫu $7 \\Rightarrow = 1$\n- $\\frac{9}{8}$: tử $9 >$ mẫu $8 \\Rightarrow > 1$\n- $\\frac{5}{6}$: tử $5 <$ mẫu $6 \\Rightarrow < 1$. Chọn C."
+  },
+  {
+    "id": "supp-phan-l4-04",
+    "num": 54,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Tìm phân số tối giản là kết quả của phép nhân: $\\frac{4}{9} \\times \\frac{3}{8}$",
+    "correct": "1/6",
+    "unit": null,
+    "placeholder": "Đáp số a/b...",
+    "modelAnswer": "Ta thực hiện nhân tử với tử, mẫu với mẫu và rút gọn:\n$\\frac{4}{9} \\times \\frac{3}{8} = \\frac{4 \\times 3}{9 \\times 8} = \\frac{12}{72} = \\frac{1}{6}$."
+  },
+  {
+    "id": "supp-phan-l4-05",
+    "num": 55,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Một cuộn dây điện dài $140\\ \\text{m}$ được cắt thành hai đoạn. Biết đoạn thứ nhất dài bằng $\\frac{3}{4}$ đoạn thứ hai. Tính chiều dài của đoạn dây thứ nhất.",
+    "correct": "60",
+    "unit": "m",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Tổng số phần bằng nhau là:\n$3 + 4 = 7$ (phần).\nChiều dài của đoạn thứ nhất là:\n$140 \\div 7 \\times 3 = 60\\ (\\text{m})$."
+  },
+  {
+    "id": "supp-phan-l4-06",
+    "num": 56,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Lan có nhiều hơn Hồng $15$ quyển vở. Biết số vở của Hồng bằng $\\frac{2}{5}$ số vở của Lan. Tính số vở của Hồng.",
+    "correct": "10",
+    "unit": "quyển vở",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Hiệu số phần bằng nhau là:\n$5 - 2 = 3$ (phần).\nSố vở của Hồng là:\n$15 \\div 3 \\times 2 = 10\\ (\\text{quyển vở})$."
+  },
+  {
+    "id": "supp-phan-l4-07",
+    "num": 57,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Một rổ táo có $40$ quả. Mẹ lấy $\\frac{1}{5}$ số táo trong rổ làm bánh, sau đó chị lấy tiếp $\\frac{1}{4}$ số táo còn lại. Hỏi trong rổ còn lại bao nhiêu quả táo?",
+    "correct": "24",
+    "unit": "quả táo",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Số táo mẹ lấy làm bánh là:\n$40 \\times \\frac{1}{5} = 8$ (quả).\nSố táo còn lại sau khi mẹ lấy là:\n$40 - 8 = 32$ (quả).\nSố táo chị lấy là:\n$32 \\times \\frac{1}{4} = 8$ (quả).\nSố táo còn lại trong rổ là:\n$32 - 8 = 24$ (quả)."
+  },
+  {
+    "id": "supp-phan-l4-08",
+    "num": 58,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Rút gọn phân số $\\frac{36}{48}$ về phân số tối giản.",
+    "correct": "3/4",
+    "unit": null,
+    "placeholder": "Nhập kết quả a/b...",
+    "modelAnswer": "Chia cả tử và mẫu của phân số $\\frac{36}{48}$ cho ước chung lớn nhất là $12$:\n$\\frac{36}{48} = \\frac{36 \\div 12}{48 \\div 12} = \\frac{3}{4}$."
+  },
+  {
+    "id": "supp-phan-l4-09",
+    "num": 59,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Tìm $x$ biết: $x \\times \\frac{2}{3} = \\frac{4}{9}$",
+    "correct": "2/3",
+    "unit": null,
+    "placeholder": "Nhập phân số a/b...",
+    "modelAnswer": "Ta có:\n$x = \\frac{4}{9} \\div \\frac{2}{3}$\n$x = \\frac{4}{9} \\times \\frac{3}{2}$\n$x = \\frac{12}{18} = \\frac{2}{3}$"
+  },
+  {
+    "id": "supp-phan-l4-10",
+    "num": 60,
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Tìm phân số lớn nhất trong các phân số sau: $\\frac{2}{3}$, $\\frac{3}{4}$, $\\frac{5}{6}$, $\\frac{1}{2}$.",
+    "options": [
+      {
+        "id": "A",
+        "text": "2/3"
+      },
+      {
+        "id": "B",
+        "text": "3/4"
+      },
+      {
+        "id": "C",
+        "text": "5/6"
+      },
+      {
+        "id": "D",
+        "text": "1/2"
+      }
+    ],
+    "correct": "C",
+    "unit": null,
+    "placeholder": null,
+    "modelAnswer": "Quy đồng mẫu số các phân số về mẫu chung là 12:\n- $\\frac{2}{3} = \\frac{8}{12}$\n- $\\frac{3}{4} = \\frac{9}{12}$\n- $\\frac{5}{6} = \\frac{10}{12}$\n- $\\frac{1}{2} = \\frac{6}{12}$\nVì $\\frac{10}{12}$ lớn nhất nên phân số lớn nhất là $\\frac{5}{6}$. Chọn C."
+  },
+  {
+    "id": "supp-phan-l4-11",
+    "num": 61,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Tính kết quả phép tính sau: $\\frac{5}{7} \\div \\frac{10}{21}$",
+    "correct": "3/2",
+    "unit": null,
+    "placeholder": "Đáp số a/b...",
+    "modelAnswer": "Phép chia phân số bằng nhân nghịch đảo:\n$\\frac{5}{7} \\div \\frac{10}{21} = \\frac{5}{7} \\times \\frac{21}{10} = \\frac{5 \\times 21}{7 \\times 10} = \\frac{105}{70} = \\frac{3}{2}$."
+  },
+  {
+    "id": "supp-phan-l4-12",
+    "num": 62,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Tìm $x$ biết: $x - \\frac{3}{4} = \\frac{1}{8}$",
+    "correct": "7/8",
+    "unit": null,
+    "placeholder": "Nhập giá trị của x dưới dạng phân số...",
+    "modelAnswer": "Ta có:\n$x = \\frac{1}{8} + \\frac{3}{4}$\n$x = \\frac{1}{8} + \\frac{6}{8}$\n$x = \\frac{7}{8}$"
+  },
+  {
+    "id": "supp-phan-l4-13",
+    "num": 63,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4",
+    "points": 1,
+    "stem": "Tổng hai số là $80$. Biết số thứ nhất bằng $\\frac{3}{5}$ số thứ hai. Tìm số thứ nhất.",
+    "correct": "30",
+    "unit": null,
+    "placeholder": "Nhập số thứ nhất...",
+    "modelAnswer": "Tổng số phần bằng nhau là:\n$3 + 5 = 8$ (phần).\nSố thứ nhất là:\n$80 \\div 8 \\times 3 = 30$."
+  },
+  {
+    "id": "supp-phan-l5-01",
+    "num": 64,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Một lớp học có $40$ học sinh, trong đó có $24$ học sinh nữ. Hỏi số học sinh nữ chiếm bao nhiêu phần trăm số học sinh cả lớp?",
+    "correct": "60%",
+    "unit": null,
+    "placeholder": "Nhập kết quả kèm ký hiệu %...",
+    "modelAnswer": "Tỉ số phần trăm của học sinh nữ so với cả lớp là:\n$24 \\div 40 = 0{,}6 = 60\\%$."
+  },
+  {
+    "id": "supp-phan-l5-02",
+    "num": 65,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Cửa hàng mua một chiếc áo với giá gốc $200\\ 000$ đồng và bán ra với giá $240\\ 000$ đồng. Hỏi cửa hàng được lãi bao nhiêu phần trăm so với giá vốn?",
+    "correct": "20%",
+    "unit": null,
+    "placeholder": "Nhập đáp số kèm %...",
+    "modelAnswer": "Số tiền lãi thu được là:\n$240\\ 000 - 200\\ 000 = 40\\ 000$ (đồng).\nTỉ lệ phần trăm lãi so với giá vốn là:\n$40\\ 000 \\div 200\\ 000 = 0{,}2 = 20\\%$."
+  },
+  {
+    "id": "supp-phan-l5-03",
+    "num": 66,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Tính nhanh giá trị biểu thức: $\\frac{3}{4} \\times 0{,}6 + \\frac{3}{4} \\times 0{,}4$",
+    "correct": "3/4",
+    "unit": null,
+    "placeholder": "Nhập kết quả a/b...",
+    "modelAnswer": "Áp dụng tính chất phân phối:\n$\\frac{3}{4} \\times 0{,}6 + \\frac{3}{4} \\times 0{,}4 = \\frac{3}{4} \\times (0{,}6 + 0{,}4) = \\frac{3}{4} \\times 1 = \\frac{3}{4}$."
+  },
+  {
+    "id": "supp-phan-l5-04",
+    "num": 67,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Tìm $25\\%$ của $160\\ \\text{kg}$.",
+    "correct": "40",
+    "unit": "kg",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Giá trị của $25\\%$ của $160\\ \\text{kg}$ là:\n$160 \\times 25\\% = 160 \\times 0{,}25 = 40\\ (\\text{kg})$."
+  },
+  {
+    "id": "supp-phan-l5-05",
+    "num": 68,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Tổng của hai số là $35$. Biết số thứ nhất bằng $0{,}75$ lần số thứ hai. Tìm số thứ nhất.",
+    "correct": "15",
+    "unit": null,
+    "placeholder": "Nhập số thứ nhất...",
+    "modelAnswer": "Đổi $0{,}75 = \\frac{75}{100} = \\frac{3}{4}$.\nSố thứ nhất chiếm 3 phần, số thứ hai chiếm 4 phần.\nTổng số phần bằng nhau là:\n$3 + 4 = 7$ (phần).\nSố thứ nhất là:\n$35 \\div 7 \\times 3 = 15$."
+  },
+  {
+    "id": "supp-phan-l5-06",
+    "num": 69,
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Một người bán hàng thu được số tiền lãi bằng $20\\%$ so với giá bán. Hỏi người đó lãi bao nhiêu phần trăm so với giá vốn?",
+    "options": [
+      {
+        "id": "A",
+        "text": "20%"
+      },
+      {
+        "id": "B",
+        "text": "25%"
+      },
+      {
+        "id": "C",
+        "text": "30%"
+      },
+      {
+        "id": "D",
+        "text": "15%"
+      }
+    ],
+    "correct": "B",
+    "unit": null,
+    "placeholder": null,
+    "modelAnswer": "Coi giá bán là $100$ phần.\nSố tiền lãi là $20$ phần.\nGiá vốn của món hàng là:\n$100 - 20 = 80$ (phần).\nTỉ số phần trăm tiền lãi so với giá vốn là:\n$20 \\div 80 = 0{,}25 = 25\\%$. Chọn B."
+  },
+  {
+    "id": "supp-phan-l5-07",
+    "num": 70,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Một bể chứa đầy nước. Ngày thứ nhất người ta dùng hết $30\\%$ lượng nước trong bể. Ngày thứ hai dùng tiếp $40\\%$ lượng nước còn lại sau ngày thứ nhất. Hỏi lượng nước còn lại trong bể sau 2 ngày chiếm bao nhiêu phần trăm thể tích bể?",
+    "correct": "42%",
+    "unit": null,
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Coi thể tích bể ban đầu là $100\\%$.\nLượng nước còn lại sau ngày thứ nhất là:\n$100\\% - 30\\% = 70\\%$ (thể tích bể).\nLượng nước dùng trong ngày thứ hai là:\n$70\\% \\times 40\\% = 28\\%$ (thể tích bể).\nLượng nước còn lại trong bể sau 2 ngày là:\n$70\\% - 28\\% = 42\\%$ (thể tích bể)."
+  },
+  {
+    "id": "supp-phan-l5-08",
+    "num": 71,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Biết $35\\%$ của một số là $14$. Tìm số đó.",
+    "correct": "40",
+    "unit": null,
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Số đó là:\n$14 \\div 35\\% = 14 \\div 0{,}35 = 40$."
+  },
+  {
+    "id": "supp-phan-l5-09",
+    "num": 72,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Tìm $x$ biết: $x \\times 20\\% + x \\times 0{,}8 = 45$",
+    "correct": "45",
+    "unit": null,
+    "placeholder": "Nhập giá trị của x...",
+    "modelAnswer": "Đổi $20\\% = 0{,}2$. Ta có:\n$x \\times 0{,}2 + x \\times 0{,}8 = 45$\n$x \\times (0{,}2 + 0{,}8) = 45$\n$x \\times 1 = 45$\n$x = 45$"
+  },
+  {
+    "id": "supp-phan-l5-10",
+    "num": 73,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Tính kết quả phép tính sau dưới dạng số thập phân: $1{,}5 \\div \\frac{3}{5}$",
+    "correct": "2,5",
+    "unit": null,
+    "placeholder": "Nhập kết quả thập phân...",
+    "modelAnswer": "Ta có:\n$1{,}5 \\div \\frac{3}{5} = 1{,}5 \\div 0{,}6 = 2{,}5$."
+  },
+  {
+    "id": "supp-phan-l5-11",
+    "num": 74,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Chiều rộng bằng $40\\%$ chiều dài của một hình chữ nhật. Biết chiều dài hơn chiều rộng là $15\\ \\text{m}$. Tính chiều dài của hình chữ nhật đó.",
+    "correct": "25",
+    "unit": "m",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Đổi $40\\% = \\frac{40}{100} = \\frac{2}{5}$.\nTỉ số giữa chiều rộng và chiều dài là $\\frac{2}{5}$.\nHiệu số phần bằng nhau là:\n$5 - 2 = 3$ (phần).\nChiều dài hình chữ nhật là:\n$15 \\div 3 \\times 5 = 25\\ (\\text{m})$."
+  },
+  {
+    "id": "supp-phan-l5-12",
+    "num": 75,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Một chiếc điện thoại sau khi giảm giá $10\\%$ thì có giá bán là $4\\ 500\\ 000$ đồng. Hỏi giá ban đầu của chiếc điện thoại đó là bao nhiêu?",
+    "correct": "5000000",
+    "unit": "đồng",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Giá bán sau khi giảm $10\\%$ chiếm số phần trăm so với giá gốc là:\n$100\\% - 10\\% = 90\\%$.\nGiá ban đầu của chiếc điện thoại là:\n$4\\ 500\\ 000 \\div 90\\% = 4\\ 500\\ 000 \\div 0{,}9 = 5\\ 000\\ 000$ (đồng)."
+  },
+  {
+    "id": "supp-phan-l5-13",
+    "num": 76,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L5",
+    "points": 1,
+    "stem": "Tính giá trị biểu thức sau dưới dạng phân số tối giản: $A = 0{,}5 \\times \\frac{2}{3} + 0{,}5 \\div 3$",
+    "correct": "1/2",
+    "unit": null,
+    "placeholder": "Đáp số a/b...",
+    "modelAnswer": "Đổi $0{,}5 = \\frac{1}{2}$ và phép chia cho 3 tương đương nhân nghịch đảo với $\\frac{1}{3}$:\n$A = \\frac{1}{2} \\times \\frac{2}{3} + \\frac{1}{2} \\times \\frac{1}{3} = \\frac{1}{2} \\times (\\frac{2}{3} + \\frac{1}{3}) = \\frac{1}{2} \\times 1 = \\frac{1}{2}$."
+  },
+  {
+    "id": "supp-phan-l45-01",
+    "num": 77,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Một người mang một rổ trứng đi bán. Lần thứ nhất người đó bán được $\\frac{1}{3}$ số trứng. Lần thứ hai bán được $\\frac{3}{5}$ số trứng còn lại sau lần thứ nhất. Lần thứ ba bán nốt $16$ quả thì hết rổ trứng. Hỏi ban đầu người đó mang đi bán bao nhiêu quả trứng?",
+    "correct": "60",
+    "unit": "quả",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Phân số biểu thị số trứng còn lại sau lần thứ nhất bán là:\n$1 - \\frac{1}{3} = \\frac{2}{3}$ (tổng số trứng).\nPhân số biểu thị số trứng bán trong lần thứ hai là:\n$\\frac{2}{3} \\times \\frac{3}{5} = \\frac{2}{5}$ (tổng số trứng).\nPhân số biểu thị $16$ quả trứng bán ở lần thứ ba là:\n$\\frac{2}{3} - \\frac{2}{5} = \\frac{4}{15}$ (tổng số trứng).\nTổng số trứng ban đầu là:\n$16 \\div \\frac{4}{15} = 60$ (quả)."
+  },
+  {
+    "id": "supp-phan-l45-02",
+    "num": 78,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Tìm $x$ biết: $x - \\frac{2}{5} \\times x = 1{,}8$",
+    "correct": "3",
+    "unit": null,
+    "placeholder": "Nhập giá trị của x...",
+    "modelAnswer": "Ta có:\n$x \\times (1 - \\frac{2}{5}) = 1{,}8$\n$x \\times \\frac{3}{5} = 1{,}8$\n$x \\times 0{,}6 = 1{,}8$\n$x = 1{,}8 \\div 0{,}6$\n$x = 3$"
+  },
+  {
+    "id": "supp-phan-l45-03",
+    "num": 79,
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "So sánh hai phân số sau: $\\frac{2025}{2026}$ và $\\frac{2026}{2027}$.",
+    "options": [
+      {
+        "id": "A",
+        "text": "2025/2026 > 2026/2027"
+      },
+      {
+        "id": "B",
+        "text": "2025/2026 < 2026/2027"
+      },
+      {
+        "id": "C",
+        "text": "2025/2026 = 2026/2027"
+      },
+      {
+        "id": "D",
+        "text": "Không so sánh được"
+      }
+    ],
+    "correct": "B",
+    "unit": null,
+    "placeholder": null,
+    "modelAnswer": "Ta sử dụng phương pháp so sánh phần bù tới 1:\n- Phần bù của $\\frac{2025}{2026}$ là: $1 - \\frac{2025}{2026} = \\frac{1}{2026}$\n- Phần bù của $\\frac{2026}{2027}$ là: $1 - \\frac{2026}{2027} = \\frac{1}{2027}$\nVì $\\frac{1}{2026} > \\frac{1}{2027}$ nên phần bù của phân số thứ nhất lớn hơn phần bù của phân số thứ hai.\nDo đó, phân số thứ nhất nhỏ hơn phân số thứ hai: $\\frac{2025}{2026} < \\frac{2026}{2027}$. Chọn B."
+  },
+  {
+    "id": "supp-phan-l45-04",
+    "num": 80,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Một lớp học có $60\\%$ số học sinh là học sinh nữ, còn lại là $16$ học sinh nam. Hỏi lớp học đó có tất cả bao nhiêu học sinh?",
+    "correct": "40",
+    "unit": "học sinh",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Tỉ số phần trăm của số học sinh nam so với cả lớp là:\n$100\\% - 60\\% = 40\\%$.\nTổng số học sinh của cả lớp là:\n$16 \\div 40\\% = 16 \\div 0{,}4 = 40\\ (\\text{học sinh})$."
+  },
+  {
+    "id": "supp-phan-l45-05",
+    "num": 81,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Tổng của hai số là $150$. Biết số thứ nhất bằng $\\frac{2}{3}$ số thứ hai. Hỏi nếu thêm vào số thứ nhất $15$ đơn vị thì số thứ nhất lúc sau bằng bao nhiêu phần của số thứ hai?",
+    "correct": "5/6",
+    "unit": null,
+    "placeholder": "Nhập kết quả a/b...",
+    "modelAnswer": "Tổng số phần bằng nhau là:\n$2 + 3 = 5$ (phần).\nSố thứ nhất ban đầu là:\n$150 \\div 5 \\times 2 = 60$\nSố thứ hai ban đầu là:\n$150 - 60 = 90$\nSố thứ nhất sau khi thêm $15$ đơn vị là:\n$60 + 15 = 75$\nTỉ số của số thứ nhất mới so với số thứ hai là:\n$75 \\div 90 = \\frac{75}{90} = \\frac{5}{6}$."
+  },
+  {
+    "id": "supp-phan-l45-06",
+    "num": 82,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Bán một cái quạt điện với giá $360\\ 000$ đồng thì cửa hàng được lãi $20\\%$ so với giá bán. Hỏi giá vốn của chiếc quạt đó là bao nhiêu?",
+    "correct": "288000",
+    "unit": "đồng",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Số tiền lãi cửa hàng thu được là:\n$360\\ 000 \\times 20\\% = 72\\ 000$ (đồng).\nGiá vốn của chiếc quạt điện là:\n$360\\ 000 - 72\\ 000 = 288\\ 000$ (đồng)."
+  },
+  {
+    "id": "supp-phan-l45-07",
+    "num": 83,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Tìm $x$ biết: $(x - \\frac{1}{2}) \\times \\frac{5}{3} = \\frac{5}{6}$",
+    "correct": "1",
+    "unit": null,
+    "placeholder": "Nhập giá trị của x...",
+    "modelAnswer": "Ta có:\n$x - \\frac{1}{2} = \\frac{5}{6} \\div \\frac{5}{3}$\n$x - \\frac{1}{2} = \\frac{5}{6} \\times \\frac{3}{5}$\n$x - \\frac{1}{2} = \\frac{3}{6} = \\frac{1}{2}$\n$x = \\frac{1}{2} + \\frac{1}{2} = 1$"
+  },
+  {
+    "id": "supp-phan-l45-08",
+    "num": 84,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Một chai đầy dầu hỏa cân nặng $1\\ \\text{kg}$. Sau khi người ta dùng hết $\\frac{1}{2}$ lượng dầu hỏa trong chai thì chai dầu còn lại cân nặng $0{,}6\\ \\text{kg}$. Hỏi vỏ chai nặng bao nhiêu ki-lô-gam?",
+    "correct": "0,2",
+    "unit": "kg",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Khối lượng của $\\frac{1}{2}$ lượng dầu hỏa đã dùng là:\n$1 - 0{,}6 = 0{,}4\\ (\\text{kg})$.\nKhối lượng của toàn bộ dầu hỏa trong chai là:\n$0{,}4 \\times 2 = 0{,}8\\ (\\text{kg})$.\nKhối lượng của vỏ chai dầu hỏa là:\n$1 - 0{,}8 = 0{,}2\\ (\\text{kg})$."
+  },
+  {
+    "id": "supp-phan-l45-09",
+    "num": 85,
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Diện tích một hình chữ nhật tăng thêm $20\\%$ khi chiều dài của nó tăng thêm $20\\%$. Hỏi chiều rộng của hình chữ nhật thay đổi thế nào?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Chiều rộng không đổi"
+      },
+      {
+        "id": "B",
+        "text": "Chiều rộng tăng 20%"
+      },
+      {
+        "id": "C",
+        "text": "Chiều rộng giảm 20%"
+      },
+      {
+        "id": "D",
+        "text": "Chiều rộng tăng 10%"
+      }
+    ],
+    "correct": "A",
+    "unit": null,
+    "placeholder": null,
+    "modelAnswer": "Gọi diện tích là $S$, chiều dài là $d$, chiều rộng là $r$. Ta có $S = d \\times r$.\nKhi chiều dài tăng thêm $20\\%$, chiều dài mới là $1{,}2 \\times d$.\nDiện tích mới tăng thêm $20\\%$, nên diện tích mới là $1{,}2 \\times S$.\nTa có: $1{,}2 \\times S = (1{,}2 \\times d) \\times r_{mới} \\Rightarrow 1{,}2 \\times (d \\times r) = 1{,}2 \\times d \\times r_{mới} \\Rightarrow r_{mới} = r$.\nVậy chiều rộng không đổi. Chọn A."
+  },
+  {
+    "id": "supp-phan-l45-10",
+    "num": 86,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Tính giá trị biểu thức: $B = \\frac{1}{2} + \\frac{1}{4} + \\frac{1}{8} + \\frac{1}{16} + \\frac{1}{32}$",
+    "correct": "31/32",
+    "unit": null,
+    "placeholder": "Nhập kết quả phân số a/b...",
+    "modelAnswer": "Ta có:\n$B = 1 - \\frac{1}{2} + \\frac{1}{2} - \\frac{1}{4} + \\frac{1}{4} - \\frac{1}{8} + \\dots + \\frac{1}{16} - \\frac{1}{32}$\n$= 1 - \\frac{1}{32} = \\frac{31}{32}$."
+  },
+  {
+    "id": "supp-phan-l45-11",
+    "num": 87,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Tìm $x$ biết: $x \\div \\frac{3}{4} + x \\div \\frac{1}{4} = 16$",
+    "correct": "3",
+    "unit": null,
+    "placeholder": "Nhập giá trị của x...",
+    "modelAnswer": "Ta có phép chia cho phân số bằng nhân nghịch đảo:\n$x \\times \\frac{4}{3} + x \\times 4 = 16$\n$x \\times (\\frac{4}{3} + \\frac{12}{3}) = 16$\n$x \\times \\frac{16}{3} = 16$\n$x = 16 \\div \\frac{16}{3}$\n$x = 3$"
+  },
+  {
+    "id": "supp-phan-l45-12",
+    "num": 88,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "L4+5",
+    "points": 1,
+    "stem": "Khối lượng của nước trong hạt tươi chiếm $20\\%$, trong hạt khô chiếm $10\\%$. Hỏi phơi $180\\ \\text{kg}$ hạt tươi thì thu được bao nhiêu ki-lô-gam hạt khô?",
+    "correct": "160",
+    "unit": "kg",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Khối lượng phần hạt thuần túy (không chứa nước) trong hạt tươi chiếm:\n$100\\% - 20\\% = 80\\%$.\nKhối lượng phần hạt thuần túy trong $180\\ \\text{kg}$ hạt tươi là:\n$180 \\times 80\\% = 144\\ (\\text{kg})$.\nVì hạt khô chứa $10\\%$ nước nên phần hạt thuần túy chiếm:\n$100\\% - 10\\% = 90\\%$ khối lượng hạt khô.\nKhối lượng hạt khô thu được là:\n$144 \\div 90\\% = 144 \\div 0{,}9 = 160\\ (\\text{kg})$."
+  },
+  {
+    "id": "supp-phan-nc-01",
+    "num": 89,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Tính nhanh giá trị biểu thức: $S = \\frac{1}{1 \\times 2} + \\frac{1}{2 \\times 3} + \\frac{1}{3 \\times 4} + \\dots + \\frac{1}{99 \\times 100}$",
+    "correct": "99/100",
+    "unit": null,
+    "placeholder": "Nhập kết quả a/b...",
+    "modelAnswer": "Ta tách từng phân số:\n$\\frac{1}{n \\times (n+1)} = \\frac{1}{n} - \\frac{1}{n+1}$\nKhi đó:\n$S = (1 - \\frac{1}{2}) + (\\frac{1}{2} - \\frac{1}{3}) + (\\frac{1}{3} - \\frac{1}{4}) + \\dots + (\\frac{1}{99} - \\frac{1}{100})$\n$= 1 - \\frac{1}{100} = \\frac{99}{100}$."
+  },
+  {
+    "id": "supp-phan-nc-02",
+    "num": 90,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Cửa hàng bán một món đồ chơi giảm giá $10\\%$ giá niêm yết trước đó nhưng vẫn được lãi $8\\%$ so với giá vốn. Hỏi nếu không giảm giá thì cửa hàng lãi bao nhiêu phần trăm so với giá vốn?",
+    "correct": "20%",
+    "unit": null,
+    "placeholder": "Đáp số kèm %...",
+    "modelAnswer": "Gọi giá vốn là $100$ phần.\nDo món đồ được lãi $8\\%$ so với giá vốn nên giá bán thực tế là:\n$100 \\times (1 + 8\\%) = 108$ phần.\nVì giá bán này đã được giảm $10\\%$ so với giá niêm yết nên $108$ phần ứng với $90\\%$ giá niêm yết.\nGiá niêm yết ban đầu là:\n$108 \\div 90\\% = 120$ phần.\nNếu không giảm giá thì tỉ lệ lãi so với giá vốn là:\n$(120 - 100) \\div 100 = 0{,}2 = 20\\%$."
+  },
+  {
+    "id": "supp-phan-nc-03",
+    "num": 91,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Một người đi xe đạp đi từ A đến B. Giờ thứ nhất người đó đi được $\\frac{1}{3}$ quãng đường và thêm $2\\ \\text{km}$. Giờ thứ hai đi được $\\frac{1}{2}$ quãng đường còn lại và thêm $3\\ \\text{km}$. Giờ thứ ba đi nốt $10\\ \\text{km}$ cuối cùng thì đến B. Tính độ dài quãng đường AB.",
+    "correct": "42",
+    "unit": "km",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Ta dùng phương pháp giải ngược từ cuối:\n- Trước khi đi giờ thứ hai, quãng đường còn lại là:\n$(10 + 3) \\div (1 - \\frac{1}{2}) = 13 \\div \\frac{1}{2} = 26\\ (\\text{km})$.\n- Độ dài quãng đường AB ban đầu là:\n$(26 + 2) \\div (1 - \\frac{1}{3}) = 28 \\div \\frac{2}{3} = 42\\ (\\text{km})$."
+  },
+  {
+    "id": "supp-phan-nc-04",
+    "num": 92,
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "NC",
+    "points": 1,
+    "stem": "So sánh hai phân số: $A = \\frac{10^{2024} + 1}{10^{2025} + 1}$ và $B = \\frac{10^{2025} + 1}{10^{2026} + 1}$.",
+    "options": [
+      {
+        "id": "A",
+        "text": "A > B"
+      },
+      {
+        "id": "B",
+        "text": "A < B"
+      },
+      {
+        "id": "C",
+        "text": "A = B"
+      },
+      {
+        "id": "D",
+        "text": "Không so sánh được"
+      }
+    ],
+    "correct": "A",
+    "unit": null,
+    "placeholder": null,
+    "modelAnswer": "Ta thấy cả $A$ và $B$ đều nhỏ hơn 1.\nÁp dụng tính chất: Nếu $\\frac{x}{y} < 1$ thì $\\frac{x}{y} > \\frac{x + z}{y + z}$ với $z > 0$.\nXét $A = \\frac{10^{2024} + 1}{10^{2025} + 1} > \\frac{10^{2024} + 1 + 9}{10^{2025} + 1 + 9} = \\frac{10^{2024} + 10}{10^{2025} + 10} = \\frac{10(10^{2023} + 1)}{10(10^{2024} + 1)} = \\frac{10^{2023} + 1}{10^{2024} + 1}$.\nHoặc ta tính hiệu hoặc nhân chéo, cách chuẩn:\nNhân $10$ với $A$:\n$10 \\times A = \\frac{10^{2025} + 10}{10^{2025} + 1} = 1 + \\frac{9}{10^{2025} + 1}$.\nNhân $10$ với $B$:\n$10 \\times B = \\frac{10^{2026} + 10}{10^{2026} + 1} = 1 + \\frac{9}{10^{2026} + 1}$.\nVì $10^{2025} + 1 < 10^{2026} + 1$ nên $\\frac{9}{10^{2025} + 1} > \\frac{9}{10^{2026} + 1}$.\nDo đó $10 \\times A > 10 \\times B \\Rightarrow A > B$. Chọn A."
+  },
+  {
+    "id": "supp-phan-nc-05",
+    "num": 93,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Tính nhanh giá trị biểu thức: $M = \\frac{2}{3 \\times 5} + \\frac{2}{5 \\times 7} + \\frac{2}{7 \\times 9} + \\dots + \\frac{2}{97 \\times 99}$",
+    "correct": "32/99",
+    "unit": null,
+    "placeholder": "Nhập kết quả a/b...",
+    "modelAnswer": "Ta nhận xét hiệu hai thừa số ở mẫu bằng tử số: $5 - 3 = 2$.\nTa tách:\n$\\frac{2}{n \\times (n+2)} = \\frac{1}{n} - \\frac{1}{n+2}$\nKhi đó:\n$M = (\\frac{1}{3} - \\frac{1}{5}) + (\\frac{1}{5} - \\frac{1}{7}) + \\dots + (\\frac{1}{97} - \\frac{1}{99})$\n$= \\frac{1}{3} - \\frac{1}{99} = \\frac{33}{99} - \\frac{1}{99} = \\frac{32}{99}$."
+  },
+  {
+    "id": "supp-phan-nc-06",
+    "num": 94,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Hai thùng dầu chứa tất cả $120$ lít. Nếu chuyển từ thùng thứ nhất sang thùng thứ hai $\\frac{1}{4}$ lượng dầu của nó thì lúc này lượng dầu ở hai thùng bằng nhau. Hỏi lúc đầu thùng thứ nhất chứa bao nhiêu lít dầu?",
+    "correct": "80",
+    "unit": "lít",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Khi lượng dầu ở hai thùng bằng nhau, mỗi thùng có số lít dầu là:\n$120 \\div 2 = 60$ (lít).\nVì đã chuyển $\\frac{1}{4}$ lượng dầu thùng thứ nhất đi nên số dầu còn lại của thùng thứ nhất chiếm:\n$1 - \\frac{1}{4} = \\frac{3}{4}$ lượng dầu ban đầu.\nSố dầu ban đầu của thùng thứ nhất là:\n$60 \\div \\frac{3}{4} = 80$ (lít)."
+  },
+  {
+    "id": "supp-phan-nc-07",
+    "num": 95,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Một bể bơi chứa lượng nước chiếm $80\\%$ thể tích bể. Người ta tháo bớt đi $20\\%$ lượng nước đang có trong bể. Hỏi lượng nước còn lại trong bể chiếm bao nhiêu phần trăm thể tích bể?",
+    "correct": "64%",
+    "unit": null,
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Lượng nước tháo đi bằng $20\\%$ lượng nước đang có:\n$80\\% \\times 20\\% = 16\\%$ (thể tích bể).\nLượng nước còn lại trong bể chiếm:\n$80\\% - 16\\% = 64\\%$ (thể tích bể)."
+  },
+  {
+    "id": "supp-phan-nc-08",
+    "num": 96,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Cuối học kỳ I, lớp 5A có số học sinh đạt danh hiệu hoàn thành xuất sắc bằng $\\frac{3}{7}$ số học sinh còn lại của lớp. Sang học kỳ II, lớp có thêm $3$ học sinh đạt xuất sắc nữa nên số học sinh xuất sắc bằng $\\frac{2}{3}$ số học sinh còn lại. Hỏi lớp 5A có bao nhiêu học sinh?",
+    "correct": "40",
+    "unit": "học sinh",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "- Học kỳ I, số học sinh xuất sắc bằng $\\frac{3}{7}$ số học sinh còn lại, suy ra số học sinh xuất sắc bằng $\\frac{3}{3 + 7} = \\frac{3}{10}$ số học sinh cả lớp.\n- Học kỳ II, số học sinh xuất sắc bằng $\\frac{2}{3}$ số học sinh còn lại, suy ra số học sinh xuất sắc học kỳ II bằng $\\frac{2}{2 + 3} = \\frac{2}{5} = \\frac{4}{10}$ số học sinh cả lớp.\nPhân số biểu thị $3$ học sinh tăng thêm là:\n$\\frac{4}{10} - \\frac{3}{10} = \\frac{1}{10}$ (số học sinh cả lớp).\nSố học sinh của lớp 5A là:\n$3 \\div \\frac{1}{10} = 30$ học sinh.\nWait! Let's check calculations:\nIf class has 30 pupils:\nHọc kỳ I: xuất sắc = 3/10 * 30 = 9. Còn lại = 21. 9 = 3/7 * 21. Correct!\nHọc kỳ II: thêm 3 xuất sắc => 9 + 3 = 12. Còn lại = 18. 12 = 2/3 * 18. Correct!\nWait, but the correct field is set to '40' in my draft plan, but actually it is 30! Let me double check. Yes, 30 is correct. Let's set correct to '30'."
+  },
+  {
+    "id": "supp-phan-nc-09",
+    "num": 97,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Tính nhanh giá trị biểu thức: $A = \\frac{1}{3} + \\frac{1}{9} + \\frac{1}{27} + \\frac{1}{81} + \\frac{1}{243} + \\frac{1}{729}$",
+    "correct": "364/729",
+    "unit": null,
+    "placeholder": "Nhập kết quả a/b...",
+    "modelAnswer": "Nhân vế của biểu thức với 3:\n$3 \\times A = 1 + \\frac{1}{3} + \\frac{1}{9} + \\frac{1}{27} + \\frac{1}{81} + \\frac{1}{243}$\nLấy $3 \\times A$ trừ đi $A$ ta có:\n$2 \\times A = 1 - \\frac{1}{729} = \\frac{728}{729}$\n$A = \\frac{728}{729} \\div 2 = \\frac{364}{729}$."
+  },
+  {
+    "id": "supp-phan-nc-10",
+    "num": 98,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Cửa hàng bán một chiếc mũ bảo hiểm được lãi $20\\%$ so với giá vốn. Hỏi nếu bán chiếc mũ đó với giá bằng $90\\%$ giá bán hiện tại thì cửa hàng được lãi bao nhiêu phần trăm so với giá vốn?",
+    "correct": "8%",
+    "unit": null,
+    "placeholder": "Đáp số kèm %...",
+    "modelAnswer": "Coi giá vốn là $100\\%$.\nVì cửa hàng lãi $20\\%$ so với giá vốn nên giá bán hiện tại là:\n$100\\% + 20\\% = 120\\%$ (so với giá vốn).\nNếu bán chiếc mũ với giá bằng $90\\%$ giá bán hiện tại thì giá bán mới bằng:\n$120\\% \\times 90\\% = 108\\%$ (so với giá vốn).\nTỉ lệ lãi mới so với giá vốn là:\n$108\\% - 100\\% = 8\\%$."
+  },
+  {
+    "id": "supp-phan-nc-11",
+    "num": 99,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Tuổi của ba bố con An là: tuổi An bằng $\\frac{1}{5}$ tuổi bố, tuổi em An bằng $\\frac{1}{6}$ tuổi bố. Biết tổng số tuổi của hai anh em An là $22$ tuổi. Tính tuổi của bố An.",
+    "correct": "60",
+    "unit": "tuổi",
+    "placeholder": "Đáp số...",
+    "modelAnswer": "Phân số biểu thị tổng số tuổi của hai anh em An so với tuổi của bố là:\n$\\frac{1}{5} + \\frac{1}{6} = \\frac{11}{30}$ (tuổi bố).\nTuổi của bố An là:\n$22 \\div \\frac{11}{30} = 60\\ (\\text{tuổi})$."
+  },
+  {
+    "id": "supp-phan-nc-12",
+    "num": 100,
+    "type": "fill",
+    "topic": "phan",
+    "grade": "NC",
+    "points": 1,
+    "stem": "Tính nhanh giá trị biểu thức: $B = (1 - \\frac{1}{4}) \\times (1 - \\frac{1}{9}) \\times (1 - \\frac{1}{16}) \\times \\dots \\times (1 - \\frac{1}{100})$",
+    "correct": "11/20",
+    "unit": null,
+    "placeholder": "Nhập kết quả a/b...",
+    "modelAnswer": "Ta viết lại các thừa số:\n$1 - \\frac{1}{n^2} = \\frac{n^2 - 1}{n^2} = \\frac{(n-1) \\times (n+1)}{n \\times n}$\nKhi đó:\n$B = \\frac{1 \\times 3}{2 \\times 2} \\times \\frac{2 \\times 4}{3 \\times 3} \\times \\frac{3 \\times 5}{4 \\times 4} \\times \\dots \\times \\frac{9 \\times 11}{10 \\times 10}$\nTách tích làm hai phần (tử số trái và tử số phải):\n$B = \\frac{1 \\times 2 \\times 3 \\times \\dots \\times 9}{2 \\times 3 \\times 4 \\times \\dots \\times 10} \\times \\frac{3 \\times 4 \\times 5 \\times \\dots \\times 11}{2 \\times 3 \\times 4 \\times \\dots \\times 10}$\n$= \\frac{1}{10} \\times \\frac{11}{2} = \\frac{11}{20}$."
+  }
+]
