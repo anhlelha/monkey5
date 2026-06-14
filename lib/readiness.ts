@@ -8,7 +8,11 @@ export const READINESS_MIN = 0;
 export const READINESS_MAX = 100;
 export const ALPHA = 80;
 export const BETA = 60;
-export const DIFF_K = 0.3;
+// DIFF_K is the per-point penalty applied for difficulty above the mean
+// across all known schools. With school difficulties spanning ~10 units in
+// the current dataset, DIFF_K = 1.0 widens the new-user readiness spread to
+// roughly 10 percentage points (hardest vs. easiest).
+export const DIFF_K = 1.0;
 export const TARGET_MASTERY = 0.7;
 
 const clamp = (n: number, lo: number, hi: number): number => Math.max(lo, Math.min(hi, n));
@@ -25,6 +29,7 @@ export function computeReadiness(
   topicMastery: Record<string, number>,
   levelMastery: Record<Level, number>,
   profile: SchoolProfileData,
+  referenceDifficulty: number = 50,
 ): number {
   let topicTerm = 0;
   for (const t of Object.keys(profile.topicWeights)) {
@@ -38,7 +43,7 @@ export function computeReadiness(
     levelTerm += profile.levelWeights[l] * (m - 0.5);
   }
 
-  const diffPenalty = (profile.difficulty - 50) * DIFF_K;
+  const diffPenalty = (profile.difficulty - referenceDifficulty) * DIFF_K;
   const raw = READINESS_BASELINE + topicTerm * ALPHA + levelTerm * BETA - diffPenalty;
   return clamp(Math.round(raw), READINESS_MIN, READINESS_MAX);
 }
@@ -48,9 +53,19 @@ export function computeAllReadiness(
   levelMastery: Record<Level, number>,
   profiles: Record<string, SchoolProfileData>,
 ): Record<string, number> {
+  const profileList = Object.values(profiles);
+  // Re-center difficulty around the mean so new users (mastery = 0.5)
+  // sit around the baseline (50%) rather than being pushed up by the
+  // hard-coded "50" reference. Combined with DIFF_K = 1.0 this gives a
+  // ~10-point spread between hardest and easiest school.
+  const referenceDifficulty =
+    profileList.length > 0
+      ? profileList.reduce((s, p) => s + p.difficulty, 0) / profileList.length
+      : 50;
+
   const out: Record<string, number> = {};
   for (const school of Object.keys(profiles)) {
-    out[school] = computeReadiness(topicMastery, levelMastery, profiles[school]);
+    out[school] = computeReadiness(topicMastery, levelMastery, profiles[school], referenceDifficulty);
   }
   return out;
 }

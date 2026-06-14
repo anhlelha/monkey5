@@ -17,9 +17,17 @@
 | 5. Verify | ✅ Done | tsc clean, build pass, dev server lên cleanly, /home → 200 (auth-aware redirect) |
 
 **Số liệu thực tế từ DB**:
-- difficulty: cg=23.8, ltv=23.3, ntt=27.2, tx=28.6, nn=30.2, ntl=26.4 (thấp hơn dashboard HTML do timePressure formula khác sample size; tỉ lệ tương đối đúng)
-- Readiness baseline cho user chưa luyện gì: ~56-59% (do diff <50 nên penalty âm, đẩy baseline lên)
+- difficulty: cg=23.8, ltv=23.3, ntt=27.2, tx=28.6, nn=30.2, ntl=26.4, nshn≈33.3 (thấp hơn dashboard HTML do timePressure formula khác sample size; tỉ lệ tương đối đúng)
+- ~~Readiness baseline cho user chưa luyện gì: ~56-59% (do diff <50 nên penalty âm, đẩy baseline lên)~~
 - Note: nếu muốn baseline đúng 50% cho mọi trường khi mastery=0.5, cần re-center difficulty hoặc đổi `DIFF_K` — admin có thể chỉnh sau khi có dữ liệu thực
+
+**Cập nhật calibration 2026-06-14 (round 2)** — đã apply:
+- `DIFF_K`: 0.3 → **1.0** (mỗi đơn vị độ khó chênh = 1 điểm readiness).
+- Tham chiếu difficulty: hằng số `50` → **mean dynamic** của tất cả `SchoolProfile.difficulty` (compute trong `computeAllReadiness`).
+- Hiệu ứng: new user (mastery toàn 0.5) → readiness centered quanh 50% với spread ~10 điểm (LTV/CG ≈ 54%, NSHN ≈ 44%). Trước đó cả 7 trường rơi vào 55-58% (spread 3 điểm — quá sát).
+- Backward-compat: `computeReadiness(...)` thêm param `referenceDifficulty` (default = 50) để pure function vẫn callable từ unit test cũ. Caller production luôn đi qua `computeAllReadiness` để có mean dynamic.
+- UI Admin: thêm card "Tóm tắt readiness theo trường" trong `/admin?tab=readiness` — hiển thị TB readiness mỗi trường + spread max-min trên 1 thẻ duy nhất, thay vì phải scan từng card histogram.
+- Required action: bấm "Recompute all readiness" sau deploy để cập nhật `User.readiness` đã persist.
 
 **File đã chạy thử**:
 - `npx tsx scripts/seed-schools.ts` ✓
@@ -38,7 +46,7 @@
 | 3 | **Nguồn mastery** | Cả `TopicSession` + `Attempt` |
 | 4 | **Profile trường** | Compute từ DB tại runtime |
 | 5 | **Lưu profile** | Bảng `SchoolProfile` mới (Prisma) |
-| 6 | **Độ khó** | Penalty dịch baseline (`DIFF_K = 0.3`) |
+| 6 | **Độ khó** | Penalty dịch baseline (`DIFF_K = 1.0`, reference = mean difficulty dynamic — calibration 2026-06-14 round 2) |
 | 7 | **Trigger rebuild profile** | (a) mỗi `submitExam` + (b) admin button "Refresh profiles" |
 | 8 | **Cơ chế phát hiện thay đổi** | Hash-based (`sourceHash = qcount-latestCreatedAt`) — độc lập với mọi script upload |
 | 9 | **Discover trường mới** | Auto qua `GROUP BY Exam.school` |
@@ -508,12 +516,13 @@ interface SchoolProfile {
 
 const ALPHA = 80;   // độ nhạy theo topic — mastery lệch 0.5 → ±40
 const BETA = 60;    // độ nhạy theo level
-const DIFF_K = 0.3; // hệ số penalty độ khó
+const DIFF_K = 1.0; // hệ số penalty độ khó (cập nhật 2026-06-14 round 2: 0.3 → 1.0)
 
 function computeReadiness(
   topicMastery: Record<TopicId, number>,
   levelMastery: Record<LevelId, number>,
   profile: SchoolProfile,
+  referenceDifficulty: number = 50, // production: mean của tất cả profiles
 ): number {
   // Topic term: trung bình weighted của (mastery - 0.5)
   let topicTerm = 0;
@@ -530,12 +539,29 @@ function computeReadiness(
     levelTerm += profile.levelWeight[l] * diff;
   }
 
-  // Difficulty penalty: dịch baseline. Trường khó → trừ nhiều hơn
-  const diffPenalty = (profile.difficulty - 50) * DIFF_K;
+  // Difficulty penalty: re-centered quanh mean của các trường (calib 2026-06-14)
+  // → new user (0.5 mastery) sẽ sit quanh 50%, spread = DIFF_K × difficulty_range
+  const diffPenalty = (profile.difficulty - referenceDifficulty) * DIFF_K;
 
   // Tổng hợp
   const raw = 50 + topicTerm * ALPHA + levelTerm * BETA - diffPenalty;
   return clamp(Math.round(raw), 0, 100);
+}
+
+// computeAllReadiness compute mean dynamic và truyền xuống
+function computeAllReadiness(
+  topicMastery, levelMastery,
+  profiles: Record<string, SchoolProfile>,
+): Record<string, number> {
+  const list = Object.values(profiles);
+  const refDiff = list.length > 0
+    ? list.reduce((s, p) => s + p.difficulty, 0) / list.length
+    : 50;
+  const out = {};
+  for (const id of Object.keys(profiles)) {
+    out[id] = computeReadiness(topicMastery, levelMastery, profiles[id], refDiff);
+  }
+  return out;
 }
 ```
 
@@ -546,7 +572,8 @@ function computeReadiness(
 | `0.5` (baseline mastery) | Mặc định khi chưa luyện | Cố định | Học sinh mới → mastery 0.5 → topic/level term = 0 |
 | `ALPHA = 80` | Độ nhạy theo chuyên đề | 80 | Mastery lệch ±0.5 → ±40% readiness từ topic term |
 | `BETA = 60` | Độ nhạy theo cấp độ | 60 | Mastery lệch ±0.5 → ±30% readiness từ level term |
-| `DIFF_K = 0.3` | Penalty độ khó | 0.3 | Trường khó hơn TB 10 đơn vị → baseline thấp 3% |
+| `DIFF_K = 1.0` (calib 2026-06-14) | Penalty độ khó | 1.0 (đã chỉnh từ 0.3) | Trường khó hơn mean 10 đơn vị → baseline thấp 10% (spread 10 điểm giữa hardest/easiest) |
+| `referenceDifficulty` (mới 2026-06-14) | Anchor để dịch baseline | mean(profile.difficulty) dynamic | Re-center sao cho new user (0.5 mastery) ≈ 50% mọi trường — tránh đẩy lên 55-58% như trước |
 | `MIN_SAMPLE = 5` | Ngưỡng tin cậy mastery | 5 câu | Dưới 5 câu coi như chưa biết, dùng 0.5 |
 
 **Tổng dao động lý thuyết**: readiness ∈ [50 - 40 - 30 - penalty, 50 + 40 + 30 - penalty]. Sau clamp 0-100, hầu hết user thực tế sẽ thấy readiness trong khoảng 20-90%.
@@ -558,15 +585,21 @@ function computeReadiness(
 - `topicMastery = { hinh: 0.5, soh: 0.5, ... }` (tất cả 0.5)
 - `levelMastery = { L4: 0.5, L5: 0.5, L4+5: 0.5, NC: 0.5 }`
 - `topicTerm = 0`, `levelTerm = 0`
-- Giả sử `difficulty = { cg: 56, ltv: 58, tx: 54, ntt: 52 }`
+- `difficulty` thực tế DB: `{ ltv: 23.3, cg: 23.8, ntl: 26.4, ntt: 27.2, tx: 28.6, nn: 30.2, nshn: 33.3 }`
+- Mean = (23.3+23.8+26.4+27.2+28.6+30.2+33.3)/7 ≈ **27.5** → `referenceDifficulty = 27.5`
 
-Kết quả:
-- `readiness[cg]  = 50 - (56-50)*0.3 = 50 - 1.8 = 48%`
-- `readiness[ltv] = 50 - (58-50)*0.3 = 50 - 2.4 = 48%`
-- `readiness[tx]  = 50 - (54-50)*0.3 = 50 - 1.2 = 49%`
-- `readiness[ntt] = 50 - (52-50)*0.3 = 50 - 0.6 = 49%`
+Kết quả (calib 2026-06-14, DIFF_K = 1.0):
+- `readiness[ltv]  = 50 - (23.3-27.5)*1.0 ≈ 54%`
+- `readiness[cg]   = 50 - (23.8-27.5)*1.0 ≈ 54%`
+- `readiness[ntl]  = 50 - (26.4-27.5)*1.0 ≈ 51%`
+- `readiness[ntt]  = 50 - (27.2-27.5)*1.0 ≈ 50%`
+- `readiness[tx]   = 50 - (28.6-27.5)*1.0 ≈ 49%`
+- `readiness[nn]   = 50 - (30.2-27.5)*1.0 ≈ 47%`
+- `readiness[nshn] = 50 - (33.3-27.5)*1.0 ≈ 44%`
 
-→ User mới thấy ~48-49% ở tất cả trường, hơi thấp ở trường khó hơn. Bức tranh tổng quát rõ ngay.
+→ Spread giữa trường dễ nhất (LTV) và khó nhất (NSHN) = 10 điểm. New user thấy bức tranh rõ: phù hợp nhất LTV/CG, khó nhất NSHN.
+
+*(Cũ — DIFF_K=0.3, ref=50: tất cả 7 trường rơi vào 55-58%, spread 3 điểm — quá sát.)*
 
 **Tình huống**: Sau khi luyện được 1 tháng, có mastery:
 - `hinh: 0.7, soh: 0.65, phan: 0.6, ...` (trên trung bình)
@@ -841,7 +874,8 @@ Các giá trị bạn có thể muốn tinh chỉnh khi có dữ liệu thực:
 |---|---|---|---|
 | `ALPHA` (topic sensitivity) | 80 | `lib/readiness.ts` | Nếu thấy readiness nhảy quá nhanh/chậm theo chuyên đề |
 | `BETA` (level sensitivity) | 60 | `lib/readiness.ts` | Tương tự cho cấp độ |
-| `DIFF_K` (difficulty penalty) | 0.3 | `lib/readiness.ts` | Tăng nếu muốn phân biệt rõ hơn giữa trường khó/dễ |
+| `DIFF_K` (difficulty penalty) | **1.0** (calib 2026-06-14, was 0.3) | `lib/readiness.ts` | Tăng nếu muốn phân biệt rõ hơn giữa trường khó/dễ. Spread = DIFF_K × difficulty_range. |
+| `referenceDifficulty` (anchor) | mean dynamic (compute trong `computeAllReadiness`) | `lib/readiness.ts` | Để hằng số nếu muốn baseline lệch theo độ khó tuyệt đối; để dynamic nếu muốn new user ≈ 50% mọi trường |
 | `MIN_SAMPLE` (sample threshold) | 5 | `lib/mastery.ts` | Tăng nếu thấy mastery biến động nhiều khi mới làm vài câu |
 | Baseline mastery | 0.5 | `lib/mastery.ts` | Có thể đổi nếu muốn khởi đầu lạc quan/bi quan hơn |
 | Difficulty weights (6 yếu tố) | 30/15/20/15/10/10 | `lib/school-profiles.ts` | Theo công thức HTML; có thể tinh chỉnh sau khi có dữ liệu |
@@ -985,16 +1019,17 @@ Các giá trị bạn có thể muốn tinh chỉnh khi có dữ liệu thực:
 - [x] **Q4 (gap advice)** = Top 3 đơn giản
 - [x] **Q5 (timeseries)** = Bỏ qua vòng đầu
 - [x] **Q6 (sync vs background)** = Sync với spinner
-- [ ] Tham số ALPHA=80 / BETA=60 / DIFF_K=0.3 / MIN_SAMPLE=5 — giữ default, có thể tinh chỉnh sau
+- [x] Tham số ALPHA=80 / BETA=60 / ~~DIFF_K=0.3~~ → **DIFF_K=1.0 + reference=mean dynamic** (calib 2026-06-14 round 2) / MIN_SAMPLE=5
 - [ ] **READY TO IMPLEMENT** — sẵn sàng bắt đầu Phase 0
 
 ### Quyết định cuối: chốt giữ default tham số hay điều chỉnh trước khi code?
 
-Các tham số trong `lib/readiness.ts`:
+Các tham số trong `lib/readiness.ts` (cập nhật 2026-06-14 round 2):
 - `ALPHA = 80` — độ nhạy theo chuyên đề
 - `BETA = 60` — độ nhạy theo cấp độ
-- `DIFF_K = 0.3` — penalty độ khó
+- `DIFF_K = 1.0` — penalty độ khó (calibrated từ 0.3 sau khi xem dashboard new user spread quá sát 55-58%)
+- `referenceDifficulty = mean(profile.difficulty)` — anchor động trong `computeAllReadiness` (đổi từ hằng số 50) để new user (0.5 mastery) trải xung quanh 50%, spread = 10 điểm giữa LTV/CG (dễ nhất) và NSHN (khó nhất)
 - `MIN_SAMPLE = 5` — ngưỡng tin cậy mastery
 - `targetMastery = 0.7` — ngưỡng "đạt mục tiêu" cho gap advice
 
-→ Đề xuất giữ default, đợi dữ liệu thực 1-2 tuần rồi calibrate.
+→ Đợi data thêm 1-2 tháng nữa rồi xem có cần tinh chỉnh tiếp ALPHA/BETA không.
