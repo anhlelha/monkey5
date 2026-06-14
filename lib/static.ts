@@ -89,6 +89,17 @@ export const SCHOOLS: readonly School[] = [
     minutes: 50,
     style: "Số học + hình học cevian, có suy luận logic.",
   },
+  {
+    id: "nshn",
+    short: "NSHN",
+    name: "Ngôi Sao Hà Nội",
+    full: "Trường Liên cấp Tiểu học & THCS Ngôi Sao Hà Nội",
+    color: "var(--nshn)",
+    tone: "nshn",
+    desc: "Học bổng khối 5 — 9 câu điền đáp số + 3 bài tự luận. 60 phút.",
+    minutes: 60,
+    style: "Phân số, %, hình học và bài toán đếm.",
+  },
 ] as const;
 
 export const DEFAULT_TOPICS: readonly Topic[] = [

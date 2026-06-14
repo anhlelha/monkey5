@@ -7303,6 +7303,160 @@
           "figure": null
         }
       ]
+    },
+    {
+      "id": "nshn-2026",
+      "school": "nshn",
+      "kind": "official",
+      "year": "2026-2027",
+      "title": "Đề thi học bổng — Trường Ngôi Sao Hà Nội (Khối 5)",
+      "intro": "Học sinh làm bài trên giấy thi. Phần trắc nghiệm chỉ ghi đáp án, phần tự luận trình bày lời giải chi tiết.",
+      "minutes": 60,
+      "note": "Đề chính thức kỳ thi học bổng Ngôi Sao Hà Nội — Khối 5, năm học 2026-2027 (nguồn: ảnh đề + lời giải MathExpress)",
+      "sections": [
+        {
+          "num": 1,
+          "header": "I. TRẮC NGHIỆM: Học sinh chỉ ghi đáp án vào giấy thi, không cần giải thích"
+        },
+        {
+          "num": 10,
+          "header": "II. TỰ LUẬN: Học sinh trình bày bài giải chi tiết vào giấy thi"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NSHN-2026-27-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "3050,78",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2026-27-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1080",
+          "unit": "con",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2026-27-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "292",
+          "unit": "kg",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2026-27-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "22",
+          "unit": "cái bánh",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2026-27-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2,073",
+          "unit": "%",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2026-27-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "86; 68",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2026-27-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "13 câu tự luận; 17 câu trắc nghiệm",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2026-27-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "30",
+          "unit": "hình",
+          "figure": "nshn-2026-c8"
+        },
+        {
+          "id": "NSHN-2026-27-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "8",
+          "unit": "cm²",
+          "figure": "nshn-2026-c9"
+        },
+        {
+          "id": "NSHN-2026-27-B1",
+          "num": 10,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 2,
+          "correct": "a) 59,5; b) 20/3",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2026-27-B2",
+          "num": 11,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "a) 2400 cm²; b) S_AOD = S_BOC; c) OA/OC = 3/5",
+          "unit": null,
+          "figure": "nshn-2026-b2"
+        },
+        {
+          "id": "NSHN-2026-27-B3",
+          "num": 12,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 2,
+          "correct": "15 số",
+          "unit": null,
+          "figure": null
+        }
+      ]
     }
   ]
 }

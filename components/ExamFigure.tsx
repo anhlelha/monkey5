@@ -2468,6 +2468,138 @@ export function ExamFigure({ figure }: Props) {
       );
     }
 
+    // ─── NSHN 2026-27 ──────────────────────────────────────────────────────
+    // Bài 8: lưới 3×4, ô N tại (hàng 1, cột 2) và ô S tại (hàng 2, cột 4)
+    case "nshn-2026-c8": {
+      const cell = 44;
+      const W = cell * 4;
+      const H = cell * 3;
+      const pad = 16;
+      const cells: { r: number; c: number; label: string }[] = [
+        { r: 0, c: 1, label: "N" },
+        { r: 1, c: 3, label: "S" },
+      ];
+      return (
+        <div className="q-figure-wrapper" style={{ margin: "16px 0", maxWidth: "240px" }}>
+          <svg viewBox={`0 0 ${W + pad * 2} ${H + pad * 2}`} width="100%" style={{ display: "block", height: "auto" }}>
+            <g transform={`translate(${pad}, ${pad})`}>
+              {/* Cells outline */}
+              <rect x={0} y={0} width={W} height={H} fill="none" stroke="var(--ink)" strokeWidth="1.6" />
+              {/* Vertical grid lines */}
+              {[1, 2, 3].map((i) => (
+                <line key={`v${i}`} x1={i * cell} y1={0} x2={i * cell} y2={H} stroke="var(--ink)" strokeWidth="1.2" />
+              ))}
+              {/* Horizontal grid lines */}
+              {[1, 2].map((i) => (
+                <line key={`h${i}`} x1={0} y1={i * cell} x2={W} y2={i * cell} stroke="var(--ink)" strokeWidth="1.2" />
+              ))}
+              {/* Labels N and S */}
+              {cells.map(({ r, c, label }) => (
+                <text
+                  key={label}
+                  x={c * cell + cell / 2}
+                  y={r * cell + cell / 2 + 6}
+                  fill="var(--ink)"
+                  fontSize="20"
+                  textAnchor="middle"
+                  style={{ fontFamily: "Times, serif" }}
+                >
+                  {label}
+                </text>
+              ))}
+            </g>
+          </svg>
+        </div>
+      );
+    }
+
+    // Bài 9: hình vuông ABCD (trái) + hình vuông DEGF (xoay 45°) ghép tại D
+    case "nshn-2026-c9": {
+      // Math coords (SVG y-down): cạnh hình vuông = 60px
+      const s = 60;
+      // ABCD square (trái): A(0,0) D(s,0) B(0,s) C(s,s)
+      const A = { x: 0, y: 0 };
+      const D = { x: s, y: 0 };
+      const B = { x: 0, y: s };
+      const C = { x: s, y: s };
+      // E: trên đường thẳng BC kéo dài, CE = BC = s. E = C + (s, 0) = (2s, s)
+      const E = { x: 2 * s, y: s };
+      // DE vector = E - D = (s, s). G = E + perp(DE) where perp is (s, -s) rotates DE 90° CW in SVG
+      // (rotate (x,y) by -90°: (y, -x) → for (s, s) → (s, -s))
+      const G = { x: E.x + s, y: E.y - s }; // (3s, 0)
+      const F = { x: D.x + s, y: D.y - s }; // (2s, -s)
+      const pad = 30;
+      const minX = Math.min(A.x, F.x) - pad;
+      const minY = Math.min(F.y, A.y) - pad;
+      const maxX = G.x + pad;
+      const maxY = C.y + pad;
+      const w = maxX - minX;
+      const h = maxY - minY;
+      const off = (p: { x: number; y: number }) => ({ x: p.x - minX, y: p.y - minY });
+      const a = off(A), b = off(B), c = off(C), d = off(D), e = off(E), f = off(F), g = off(G);
+      return (
+        <div className="q-figure-wrapper" style={{ margin: "16px 0", maxWidth: "360px" }}>
+          <svg viewBox={`0 0 ${w} ${h}`} width="100%" style={{ display: "block", height: "auto" }}>
+            {/* Hình vuông ABCD (trái) */}
+            <polygon points={`${a.x},${a.y} ${b.x},${b.y} ${c.x},${c.y} ${d.x},${d.y}`} fill="none" stroke="var(--ink)" strokeWidth="1.6" />
+            {/* Hình vuông DEGF (phải, xoay 45°): D-E-G-F */}
+            <polygon points={`${d.x},${d.y} ${e.x},${e.y} ${g.x},${g.y} ${f.x},${f.y}`} fill="none" stroke="var(--ink)" strokeWidth="1.6" />
+            {/* Đường chéo của hình vuông DEGF (D-G và E-F) */}
+            <line x1={d.x} y1={d.y} x2={g.x} y2={g.y} stroke="var(--ink)" strokeWidth="1.2" />
+            <line x1={e.x} y1={e.y} x2={f.x} y2={f.y} stroke="var(--ink)" strokeWidth="1.2" />
+            {/* BC kéo dài tới E và đoạn nối F-C theo đề bài */}
+            <line x1={c.x} y1={c.y} x2={e.x} y2={e.y} stroke="var(--ink)" strokeWidth="1.2" />
+            <line x1={f.x} y1={f.y} x2={c.x} y2={c.y} stroke="var(--ink)" strokeWidth="1.2" />
+            {/* Vertices */}
+            {[a, b, c, d, e, f, g].map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r={3.2} fill="orange" stroke="orange" />
+            ))}
+            {/* Labels */}
+            <text x={a.x - 6} y={a.y - 4} fill="var(--ink)" fontSize="16" textAnchor="end" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>A</text>
+            <text x={d.x} y={d.y - 6} fill="var(--ink)" fontSize="16" textAnchor="middle" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>D</text>
+            <text x={b.x - 6} y={b.y + 14} fill="var(--ink)" fontSize="16" textAnchor="end" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>B</text>
+            <text x={c.x - 4} y={c.y + 14} fill="var(--ink)" fontSize="16" textAnchor="end" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>C</text>
+            <text x={e.x + 4} y={e.y + 14} fill="var(--ink)" fontSize="16" textAnchor="start" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>E</text>
+            <text x={f.x} y={f.y - 6} fill="var(--ink)" fontSize="16" textAnchor="middle" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>F</text>
+            <text x={g.x + 6} y={g.y + 4} fill="var(--ink)" fontSize="16" textAnchor="start" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>G</text>
+          </svg>
+        </div>
+      );
+    }
+
+    // Tự luận Bài 2: hình thang ABCD (AB đáy nhỏ, CD đáy lớn), chéo AC ∩ BD = O
+    case "nshn-2026-b2": {
+      // Real proportions: AB=30, CD=50, h=60 — scale 5
+      const A = { x: 100, y: 30 };
+      const B = { x: 250, y: 30 };
+      const D = { x: 50, y: 330 };
+      const C = { x: 300, y: 330 };
+      // O = intersection of AC and BD
+      // AC: t=3/8 from A → O = (100 + (300-100)*3/8, 30 + (330-30)*3/8) = (175, 142.5)
+      const O = { x: 175, y: 142.5 };
+      return (
+        <div className="q-figure-wrapper" style={{ margin: "16px 0", maxWidth: "320px" }}>
+          <svg viewBox="0 0 350 380" width="100%" style={{ display: "block", height: "auto" }}>
+            {/* Trapezoid ABCD */}
+            <polygon points={`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y} ${D.x},${D.y}`} fill="none" stroke="var(--ink)" strokeWidth="1.6" />
+            {/* Diagonals AC and BD */}
+            <line x1={A.x} y1={A.y} x2={C.x} y2={C.y} stroke="var(--ink)" strokeWidth="1.2" />
+            <line x1={B.x} y1={B.y} x2={D.x} y2={D.y} stroke="var(--ink)" strokeWidth="1.2" />
+            {/* Vertices */}
+            {[A, B, C, D, O].map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r={3.5} fill="orange" stroke="orange" />
+            ))}
+            {/* Labels */}
+            <text x={A.x - 8} y={A.y - 4} fill="var(--ink)" fontSize="18" textAnchor="end" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>A</text>
+            <text x={B.x + 8} y={B.y - 4} fill="var(--ink)" fontSize="18" textAnchor="start" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>B</text>
+            <text x={D.x - 8} y={D.y + 18} fill="var(--ink)" fontSize="18" textAnchor="end" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>D</text>
+            <text x={C.x + 8} y={C.y + 18} fill="var(--ink)" fontSize="18" textAnchor="start" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>C</text>
+            <text x={O.x + 8} y={O.y + 6} fill="var(--ink)" fontSize="18" textAnchor="start" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>O</text>
+          </svg>
+        </div>
+      );
+    }
+
     default:
       return null;
   }
