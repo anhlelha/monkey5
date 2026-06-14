@@ -5,6 +5,9 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { parseTopicSetId } from "@/lib/spawn-exam";
 import { gradeAnswer } from "@/lib/grading";
+import { computeMastery } from "@/lib/mastery";
+import { ensureSchoolProfilesFresh, getAllSchoolProfiles } from "@/lib/school-profiles";
+import { computeAllReadiness } from "@/lib/readiness";
 
 interface SubmitArgs {
   examId: string;
@@ -15,6 +18,7 @@ interface SubmitArgs {
 export async function submitExam({ examId, answers, durationSec }: SubmitArgs) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Unauthorized");
+  const userId = session.user.id;
 
   const exam = await prisma.exam.findUnique({
     where: { id: examId },
@@ -49,7 +53,7 @@ export async function submitExam({ examId, answers, durationSec }: SubmitArgs) {
 
   const attempt = await prisma.attempt.create({
     data: {
-      userId: session.user.id,
+      userId,
       examId,
       answers: JSON.stringify(answers),
       earned,
@@ -66,7 +70,7 @@ export async function submitExam({ examId, answers, durationSec }: SubmitArgs) {
   if (topicSet) {
     await prisma.topicSession.create({
       data: {
-        userId: session.user.id,
+        userId,
         topic: topicSet.topic,
         level: topicSet.level,
         qcount: exam.questions.length,
@@ -75,6 +79,24 @@ export async function submitExam({ examId, answers, durationSec }: SubmitArgs) {
       },
     });
     revalidatePath(`/topics/${topicSet.topic}`);
+  }
+
+  // Recompute mastery + readiness — hash-based ensureFresh detects new exams.
+  try {
+    await ensureSchoolProfilesFresh();
+    const profiles = await getAllSchoolProfiles();
+    const mastery = await computeMastery(userId);
+    const readiness = computeAllReadiness(mastery.topicMastery, mastery.levelMastery, profiles);
+    await prisma.user.update({
+      where: { id: userId },
+      data: {
+        topicMastery: JSON.stringify(mastery.topicMastery),
+        readiness: JSON.stringify(readiness),
+      },
+    });
+  } catch (err) {
+    // Don't fail the submission if readiness compute fails — log and continue.
+    console.error("[submitExam] readiness recompute failed:", err);
   }
 
   revalidatePath("/home");

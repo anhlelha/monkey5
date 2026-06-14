@@ -2,7 +2,8 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { hydrateUser } from "@/lib/user-data";
-import { SCHOOLS, DEFAULT_TOPICS } from "@/lib/static";
+import { DEFAULT_TOPICS } from "@/lib/static";
+import { getAllSchools, getActiveSchools } from "@/lib/schools";
 import { TopBar } from "@/components/TopBar";
 import { Icon } from "@/components/Icon";
 import { Bar, Card, Pill } from "@/components/ui";
@@ -12,6 +13,8 @@ import { WhitelistPanel } from "./WhitelistPanel";
 import { BankPanel } from "./BankPanel";
 import { PlansPanel } from "./PlansPanel";
 import { ExamsPanel } from "./ExamsPanel";
+import { SchoolsPanel } from "./SchoolsPanel";
+import { ReadinessPanel } from "./ReadinessPanel";
 import {
   getAuditResults,
   getQuestionsWithFigures,
@@ -19,6 +22,7 @@ import {
   getBankQuestions,
   getPlanConfigs,
   getLevelConfigRows,
+  getReadinessDistribution,
 } from "./actions";
 
 interface Props {
@@ -60,6 +64,11 @@ export default async function AdminPage({ searchParams }: Props) {
   const planConfigs  = tab === "plans" ? await getPlanConfigs()      : [];
   const levelConfigs = tab === "plans" ? await getLevelConfigRows()  : [];
 
+  const schoolsList    = tab === "schools"   ? await getAllSchools()             : [];
+  const readinessData  = tab === "readiness" ? await getReadinessDistribution() : [];
+  const readinessSchools = tab === "readiness" ? await getActiveSchools()       : [];
+  const activeSchools  = tab === "overview"  ? await getActiveSchools()         : [];
+
   const TOPICS = topics.length > 0 ? topics : [...DEFAULT_TOPICS].map((t, i) => ({ ...t, position: i }));
 
   const TAB_META: Record<string, { crumb: string; title: string; sub: string }> = {
@@ -73,6 +82,8 @@ export default async function AdminPage({ searchParams }: Props) {
     topics:   { crumb: "Chuyên đề", title: "Cấu hình chuyên đề", sub: "Danh sách và thứ tự các chuyên đề luyện tập." },
     qa:       { crumb: "QA câu hỏi", title: "QA câu hỏi", sub: "Soát lỗi và rà soát câu hỏi bị flag / có hình." },
     plans:    { crumb: "Gói thành viên", title: "Gói VIP · Pro · Free", sub: "Cấu hình giới hạn và quyền lợi từng gói." },
+    schools:  { crumb: "Trường", title: "Cấu hình trường", sub: "Quản lý danh sách trường + metadata hiển thị." },
+    readiness:{ crumb: "Mức phù hợp", title: "Phân tích readiness", sub: "Phân bố user theo mức sẵn sàng + tools rebuild profile / recompute." },
   };
   const meta = TAB_META[tab] ?? TAB_META.overview;
 
@@ -118,7 +129,7 @@ export default async function AdminPage({ searchParams }: Props) {
 
             <Card title="Phân bố trường mục tiêu" sub="Học sinh nhắm tới trường nào nhiều nhất">
               <div className="col" style={{ gap: 10 }}>
-                {SCHOOLS.map((s) => {
+                {activeSchools.map((s) => {
                   const count = users.filter((u) => {
                     try {
                       return (JSON.parse(u.targets) as string[]).includes(s.id);
@@ -236,10 +247,9 @@ export default async function AdminPage({ searchParams }: Props) {
                           <span className="muted">Chưa chọn</span>
                         ) : (
                           targets.map((id) => {
-                            const s = SCHOOLS.find((x) => x.id === id);
-                            return s ? (
-                              <Pill key={id} tone={s.tone}>{s.short}</Pill>
-                            ) : null;
+                            return (
+                              <Pill key={id}>{id.toUpperCase()}</Pill>
+                            );
                           })
                         )}
                       </td>
@@ -266,6 +276,15 @@ export default async function AdminPage({ searchParams }: Props) {
 
         {tab === "plans" && (
           <PlansPanel planConfigs={planConfigs} levelConfigs={levelConfigs} />
+        )}
+
+        {tab === "schools" && <SchoolsPanel schools={schoolsList} />}
+
+        {tab === "readiness" && (
+          <ReadinessPanel
+            histograms={readinessData}
+            schools={readinessSchools.map((s) => ({ id: s.id, full: s.full, tone: s.tone }))}
+          />
         )}
 
         {tab === "settings" && (

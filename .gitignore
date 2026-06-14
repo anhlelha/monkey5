@@ -37,6 +37,7 @@ yarn-error.log*
 # Prisma local DB
 /prisma/dev.db
 /prisma/dev.db-journal
+/prisma/dev.db.bak*
 
 # Design handoff (large, not part of source)
 /design-reference/

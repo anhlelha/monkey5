@@ -70,6 +70,13 @@ const ADMIN_GROUPS: NavGroup[] = [
     title: "Gói thành viên",
     items: [{ href: "/admin?tab=plans", icon: "star", label: "VIP / Pro / Free", adminTab: "plans" }],
   },
+  {
+    title: "Cấu hình nội dung",
+    items: [
+      { href: "/admin?tab=schools", icon: "school", label: "Trường", adminTab: "schools" },
+      { href: "/admin?tab=readiness", icon: "target", label: "Mức phù hợp", adminTab: "readiness" },
+    ],
+  },
 ];
 
 export function Sidebar({ user, examLibraryBadge }: SidebarProps) {

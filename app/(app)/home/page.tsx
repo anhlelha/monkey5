@@ -9,7 +9,8 @@ import {
   getActivityStats,
   getTopicProgress,
 } from "@/lib/user-data";
-import { SCHOOLS, DEFAULT_TOPICS } from "@/lib/static";
+import { DEFAULT_TOPICS } from "@/lib/static";
+import { getActiveSchools } from "@/lib/schools";
 import { TopBar } from "@/components/TopBar";
 import { Icon } from "@/components/Icon";
 import { Bar, Card, Pill } from "@/components/ui";
@@ -25,16 +26,46 @@ export default async function Dashboard() {
 
   const topics = (await prisma.topic.findMany({ orderBy: { position: "asc" } })) ?? [];
   const TOPICS = topics.length > 0 ? topics : DEFAULT_TOPICS;
-  const [history, activity, topicProgress] = await Promise.all([
+  const [history, activity, topicProgress, SCHOOLS] = await Promise.all([
     getExamHistory(user.id),
     getActivityStats(user.id),
     getTopicProgress(user.id),
+    getActiveSchools(),
   ]);
   const recent = history.slice(0, 5);
 
   const daysToExam = user.examDate ? daysBetween(user.examDate) : null;
   const greet = greeting();
   const fn = firstName(user.name);
+
+  const targetIds = user.targets;
+  const primaryTargetId = targetIds[0] ?? null;
+  let gapAdvice: {
+    school: { id: string; full: string; tone: string; r: number };
+    items: { topicId: string; topicName: string; currentMastery: number; gain: number }[];
+  } | null = null;
+  if (primaryTargetId) {
+    const { getSchoolProfile } = await import("@/lib/school-profiles");
+    const { computeGapTop3 } = await import("@/lib/readiness");
+    const profile = await getSchoolProfile(primaryTargetId);
+    const targetSchool = SCHOOLS.find((s) => s.id === primaryTargetId);
+    if (profile && targetSchool) {
+      const gapItems = computeGapTop3(user.topicMastery, profile, 0.7, 3);
+      const items = gapItems.map((g) => {
+        const topic = TOPICS.find((t) => t.id === g.topicId);
+        return {
+          topicId: g.topicId,
+          topicName: topic?.name ?? g.topicId,
+          currentMastery: g.currentMastery,
+          gain: g.potentialReadinessGain,
+        };
+      });
+      gapAdvice = {
+        school: { id: targetSchool.id, full: targetSchool.full, tone: targetSchool.tone, r: user.readiness[targetSchool.id] ?? 50 },
+        items,
+      };
+    }
+  }
 
   const radarData = TOPICS.map((t) => ({
     label: t.short,
@@ -101,10 +132,22 @@ export default async function Dashboard() {
           </span>
         </div>
 
+        {(() => {
+          const sortedR = SCHOOLS.map((s) => ({ ...s, r: user.readiness[s.id] ?? 50 }))
+            .sort((a, b) => b.r - a.r);
+          const top = sortedR[0];
+          if (!top) return null;
+          return (
+            <div className="muted" style={{ fontSize: 13, marginBottom: 14 }}>
+              💡 Hiện tại con phù hợp nhất với <b style={{ color: "var(--ink)" }}>{top.full}</b> ({top.r}%)
+            </div>
+          );
+        })()}
+
         <div className="grid cols-4">
           {SCHOOLS.map((s) => {
             const isTarget = user.targets.includes(s.id);
-            const r = user.readiness[s.id] ?? 0;
+            const r = user.readiness[s.id] ?? 50;
             const tone = r >= 75 ? "green" : r >= 60 ? "amber" : "red";
             const status = r >= 75 ? "Sẵn sàng" : r >= 60 ? "Đang tiến triển" : "Cần luyện thêm";
             return (
@@ -112,7 +155,6 @@ export default async function Dashboard() {
                 key={s.id}
                 href={`/library?school=${s.id}`}
                 className={"school-card " + s.tone}
-                style={{ opacity: isTarget ? 1 : 0.7 }}
               >
                 <div className="row between">
                   <div>
@@ -136,6 +178,33 @@ export default async function Dashboard() {
             );
           })}
         </div>
+
+        {gapAdvice && gapAdvice.items.length > 0 && (
+          <Card
+            title={`🎯 Để đạt mục tiêu ${gapAdvice.school.full}`}
+            sub={`Hiện ${gapAdvice.school.r}% — luyện thêm các chuyên đề sau để tăng:`}
+            style={{ marginTop: 24 }}
+          >
+            <div className="col" style={{ gap: 12 }}>
+              {gapAdvice.items.map((g, i) => (
+                <div key={g.topicId} className="row" style={{ gap: 12, alignItems: "center" }}>
+                  <span className="mono muted" style={{ width: 18, fontSize: 13 }}>{i + 1}.</span>
+                  <div style={{ flex: 1 }}>
+                    <div className="row between" style={{ marginBottom: 4 }}>
+                      <b style={{ fontSize: 13.5 }}>{g.topicName}</b>
+                      <span className="mono" style={{ fontSize: 12.5 }}>
+                        {Math.round(g.currentMastery * 100)}% → 70%
+                        <Pill tone="green" style={{ marginLeft: 8 }}>+{g.gain}%</Pill>
+                      </span>
+                    </div>
+                    <Bar value={g.currentMastery * 100} tone={gapAdvice!.school.tone} />
+                  </div>
+                  <Link href={`/topics/${g.topicId}`} className="btn sm">Luyện</Link>
+                </div>
+              ))}
+            </div>
+          </Card>
+        )}
 
         {/* Topic mastery + activity */}
         <div className="grid cols-2" style={{ marginTop: 24 }}>

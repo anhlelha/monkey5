@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard So sánh Đề thi vào lớp 6 - 4 Trường</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+<link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+<style>
+:root {
+  --primary: #1e40af; --bg: #f8fafc; --card: #ffffff;
+  --text: #0f172a; --text-muted: #64748b; --border: #e2e8f0; --accent: #f59e0b;
+  --grade4: #22c55e; --grade5: #3b82f6; --grade45: #a855f7; --gradeNC: #f43f5e;
+  --cg: #3b82f6; --ntt: #ef4444; --ltv: #f59e0b; --tx: #8b5cf6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+.container { padding: 24px; }
+.header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #6366f1 100%); color: white; padding: 32px; border-radius: 16px; box-shadow: 0 10px 30px rgba(30,58,138,0.15); }
+.header h1 { font-size: 28px; margin-bottom: 8px; font-weight: 700; }
+.header p { opacity: 0.92; font-size: 15px; }
+.tabs { display: flex; gap: 0; background: var(--card); margin: 16px 0 24px 0; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); flex-wrap: wrap; }
+.tab-btn { flex: 1; padding: 14px 16px; background: transparent; border: none; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--text-muted); transition: all 0.2s; border-bottom: 3px solid transparent; font-family: inherit; min-width: 140px; }
+.tab-btn:hover { background: #f1f5f9; color: var(--primary); }
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); background: linear-gradient(180deg, #f8fafc 0%, white 100%); }
+.tab-btn.cg.active { color: var(--cg); border-bottom-color: var(--cg); }
+.tab-btn.ntt.active { color: var(--ntt); border-bottom-color: var(--ntt); }
+.tab-btn.ltv.active { color: var(--ltv); border-bottom-color: var(--ltv); }
+.tab-btn.tx.active { color: var(--tx); border-bottom-color: var(--tx); }
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.kpi-card { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.kpi-card.grade4 { border-left: 4px solid var(--grade4); }
+.kpi-card.grade5 { border-left: 4px solid var(--grade5); }
+.kpi-card.grade45 { border-left: 4px solid var(--grade45); }
+.kpi-card.gradeNC { border-left: 4px solid var(--gradeNC); }
+.kpi-card.cg { border-left: 4px solid var(--cg); }
+.kpi-card.ntt { border-left: 4px solid var(--ntt); }
+.kpi-card.ltv { border-left: 4px solid var(--ltv); }
+.kpi-card.tx { border-left: 4px solid var(--tx); }
+.kpi-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; }
+.kpi-value { font-size: 32px; font-weight: 700; color: var(--primary); }
+.kpi-value.g4 { color: var(--grade4); } .kpi-value.g5 { color: var(--grade5); }
+.kpi-value.g45 { color: var(--grade45); } .kpi-value.gNC { color: var(--gradeNC); }
+.kpi-value.cg { color: var(--cg); } .kpi-value.ntt { color: var(--ntt); }
+.kpi-value.ltv { color: var(--ltv); } .kpi-value.tx { color: var(--tx); }
+.kpi-sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+@media (max-width: 900px) { .row { grid-template-columns: 1fr; } }
+.card { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.card h2 { font-size: 16px; margin-bottom: 16px; color: var(--text); font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.card h2::before { content: ""; width: 4px; height: 18px; background: var(--primary); border-radius: 2px; }
+.chart-wrap { position: relative; height: 320px; }
+.chart-wrap.tall { height: 380px; }
+.chart-wrap.xtall { height: 460px; }
+.insights { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid var(--accent); padding: 18px 20px; border-radius: 8px; margin-bottom: 24px; }
+.insights h3 { font-size: 14px; color: #92400e; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+.insights ul { list-style: none; padding: 0; }
+.insights li { font-size: 14px; color: #78350f; padding: 4px 0; padding-left: 18px; position: relative; }
+.insights li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+.section-title { margin: 32px 0 16px 0; padding-bottom: 8px; border-bottom: 2px solid var(--border); font-size: 18px; color: var(--primary); font-weight: 700; }
+.compare-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.compare-table th, .compare-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+.compare-table th { background: #f1f5f9; font-weight: 700; color: var(--primary); }
+.compare-table .label { font-weight: 600; }
+.compare-table .cg-col { background: rgba(59,130,246,0.05); }
+.compare-table .ntt-col { background: rgba(239,68,68,0.05); }
+.compare-table .ltv-col { background: rgba(245,158,11,0.05); }
+.compare-table .tx-col { background: rgba(139,92,246,0.05); }
+.footer { text-align: center; color: var(--text-muted); font-size: 13px; padding: 24px; }
+.pill { display: inline-block; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 700; margin-right: 8px; }
+.pill.cg { background: #dbeafe; color: #1e40af; }
+.pill.ntt { background: #fee2e2; color: #b91c1c; }
+.pill.ltv { background: #fef3c7; color: #92400e; }
+.pill.tx { background: #f3e8ff; color: #6b21a8; }
+.difficulty-card { background: var(--card); padding: 24px; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 16px; position: relative; overflow: hidden; }
+.difficulty-card::before { content: ""; position: absolute; top: 0; left: 0; height: 6px; width: 100%; }
+.difficulty-card.cg::before { background: var(--cg); }
+.difficulty-card.ntt::before { background: var(--ntt); }
+.difficulty-card.ltv::before { background: var(--ltv); }
+.difficulty-card.tx::before { background: var(--tx); }
+.difficulty-score { font-size: 56px; font-weight: 800; line-height: 1; margin: 12px 0; }
+.difficulty-rank { display: inline-block; padding: 4px 16px; border-radius: 20px; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white; }
+.difficulty-bar { height: 12px; background: #e2e8f0; border-radius: 6px; margin: 16px 0; overflow: hidden; }
+.difficulty-bar-fill { height: 100%; border-radius: 6px; transition: width 0.6s; }
+.factor-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; font-size: 13px; border-bottom: 1px dashed var(--border); }
+.factor-row:last-child { border-bottom: none; }
+.factor-row .factor-label { color: var(--text-muted); }
+.factor-row .factor-value { font-weight: 600; }
+.medal { font-size: 24px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>📊 Dashboard So sánh Đề thi vào lớp 6 - 4 trường top Hà Nội</h1>
+    <p>THCS Cầu Giấy · THCS&amp;THPT Nguyễn Tất Thành · THCS&amp;THPT Lương Thế Vinh · THCS Thanh Xuân<br>
+    Tổng: <b>476 câu hỏi</b> từ <b>38 đề thi</b> (2006-2026) · Phân loại theo nhóm chuyên đề + cấp lớp</p>
+  </div>
+
+  <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); color: #92400e; padding: 12px 20px; border-radius: 8px; margin: 16px 0; font-size: 13px; border-left: 4px solid var(--accent);">
+    <b>⚠️ Sửa lỗi 25/05/2026:</b> Trước đây tôi nhầm LTV là "100% tự luận", nhưng thực tế <b>LTV chỉ yêu cầu ghi đáp số</b> vào ô bên phải (tương tự "điền đáp án"). Điểm độ khó LTV đã giảm tương ứng. CG/NTT/TX có phần "Tự luận - Trình bày bài làm chi tiết" rõ ràng nên không đổi.
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn cg active" data-tab="cg"><span>🟦</span> Cầu Giấy</button>
+    <button class="tab-btn ntt" data-tab="ntt"><span>🟥</span> Nguyễn Tất Thành</button>
+    <button class="tab-btn ltv" data-tab="ltv"><span>🟨</span> Lương Thế Vinh</button>
+    <button class="tab-btn tx" data-tab="tx"><span>🟪</span> Thanh Xuân</button>
+    <button class="tab-btn" data-tab="compare"><span>⚖️</span> So sánh 4 trường</button>
+    <button class="tab-btn" data-tab="difficulty"><span>🎯</span> Đánh giá độ khó</button>
+  </div>
+
+  <!-- Each school tab: KPI + insights + charts -->
+  <div class="tab-content active" id="tab-cg"><div class="kpi-grid" id="cgKpis"></div><div id="cgContent"></div></div>
+  <div class="tab-content" id="tab-ntt"><div class="kpi-grid" id="nttKpis"></div><div id="nttContent"></div></div>
+  <div class="tab-content" id="tab-ltv"><div class="kpi-grid" id="ltvKpis"></div><div id="ltvContent"></div></div>
+  <div class="tab-content" id="tab-tx"><div class="kpi-grid" id="txKpis"></div><div id="txContent"></div></div>
+
+  <!-- Compare tab -->
+  <div class="tab-content" id="tab-compare">
+    <div class="insights">
+      <h3>🆚 So sánh tổng quan 4 trường</h3>
+      <ul>
+        <li><b>Quy mô dữ liệu:</b> LTV nhiều nhất (216 câu / 12 năm) → có lịch sử dài và đa dạng nhất.</li>
+        <li><b>Phong cách đề:</b> LTV và CG ưu tiên gọn nhẹ; NTT "kể chuyện thực tế"; TX cân bằng.</li>
+        <li><b>LTV chỉ ghi đáp số:</b> Tất cả câu hỏi LTV (kể cả Hình học phức tạp) đều chỉ yêu cầu ghi <b>đáp số cuối cùng</b> vào ô bên phải, KHÔNG phải tự luận trình bày.</li>
+        <li><b>Tỉ lệ Nâng cao:</b> NTT 18.5%, TX ~22%, LTV ~16%, CG 11.4%.</li>
+        <li><b>Điểm chung:</b> 4/4 trường đều bổ sung <b>Xác suất</b> trong đề 2025-2026 (GDPT 2018).</li>
+      </ul>
+    </div>
+    <div id="compareContent"></div>
+  </div>
+
+  <!-- Difficulty assessment tab -->
+  <div class="tab-content" id="tab-difficulty">
+    <div class="insights">
+      <h3>🎯 Phương pháp đánh giá độ khó</h3>
+      <ul>
+        <li><b>Chỉ số độ khó (0-100)</b> = tổng hợp 6 yếu tố có trọng số:</li>
+        <li>① <b>% câu Nâng cao</b> (trọng số 30%) · ② <b>% câu Tổng hợp L4+5</b> (15%)</li>
+        <li>③ <b>Áp lực thời gian</b> = câu/phút (20%) · ④ <b>% câu Tự luận</b> trình bày (15%)</li>
+        <li>⑤ <b>Tỉ lệ Hình học Olympic</b> (10%) · ⑥ <b>Đa dạng dạng bài</b> (10%)</li>
+        <li>[Inference] Đây là chỉ số tổng hợp do tôi xây dựng, không phải chuẩn quốc gia.</li>
+      </ul>
+    </div>
+    <div id="difficultyContent"></div>
+  </div>
+
+  <div class="footer">
+    Nguồn: Tổng hợp đề thi chính thức - MathExpress Education<br>
+    Tham chiếu phân loại: Toán cuối tuần lớp 4 (Debai.md - 34 tuần)<br>
+    Dashboard tạo bởi Claude · 25/05/2026
+  </div>
+</div>
+
+<script>
+// ============ COMMON ============
+const categories = [
+  { name: "Số học & Số tự nhiên", color: "#3b82f6" },
+  { name: "Hình học",              color: "#10b981" },
+  { name: "Phân số, Tỉ số & %",    color: "#f59e0b" },
+  { name: "Chuyển động",           color: "#ef4444" },
+  { name: "Suy luận logic",        color: "#8b5cf6" },
+  { name: "Đo lường & Đổi đơn vị", color: "#06b6d4" },
+  { name: "Biểu đồ, Thống kê & Xác suất", color: "#ec4899" },
+  { name: "Toán tuổi",             color: "#84cc16" },
+  { name: "Đại lượng tỉ lệ & Bản đồ", color: "#f97316" },
+  { name: "Thời gian (giờ - phút)",color: "#64748b" }
+];
+const catNames = categories.map(c => c.name);
+const catColors = {};
+categories.forEach(c => catColors[c.name] = c.color);
+const gradeColors = { "L4": "#22c55e", "L5": "#3b82f6", "L4+5": "#a855f7", "NC": "#f43f5e" };
+const gradeFullName = { "L4": "Lớp 4", "L5": "Lớp 5", "L4+5": "Tổng hợp L4+5", "NC": "Nâng cao" };
+
+// ============ SCHOOLS DATA ============
+// Each problem: [year, qCode, summary, group, type, grade]
+
+const cgProblems = [
+  ["2019-20","C1","Tìm x từ phân số","Số học & Số tự nhiên","Điền","L5"],["2019-20","C2","Dãy Fibonacci 3,5,8,13,21","Số học & Số tự nhiên","Điền","L4"],["2019-20","C3","101×34+10,1×130+1,01×2700","Số học & Số tự nhiên","Điền","L5"],["2019-20","C4","Chữ số tận cùng 11×13×...×2019","Số học & Số tự nhiên","Điền","L4"],["2019-20","C5","Bài toán bi (chia hết)","Phân số, Tỉ số & %","Điền","L4"],["2019-20","C6","Tuổi 2 chị em","Toán tuổi","Điền","L4"],["2019-20","C7","DT HCN tăng/giảm cạnh","Hình học","Điền","L5"],["2019-20","C8","Bóng xanh vàng phân số","Phân số, Tỉ số & %","Điền","L4+5"],["2019-20","B1","Chuyển động A→B nghỉ 15p","Chuyển động","Tự luận","L5"],["2019-20","B2","Tam giác tỉ số DT","Hình học","Tự luận","NC"],
+  ["2020-21","C1","13,28×9,9+13,28×0,1","Số học & Số tự nhiên","Điền","L5"],["2020-21","C2","Hùng đợi Cường","Thời gian (giờ - phút)","Điền","L4+5"],["2020-21","C3","32% của số là 6,4","Phân số, Tỉ số & %","Điền","L5"],["2020-21","C4","Lập phương Stp-Sxq=72","Hình học","Điền","L5"],["2020-21","C5","Biểu đồ thể thao bơi","Biểu đồ, Thống kê & Xác suất","Điền","L5"],["2020-21","C6","2 số hiệu 1554 chia hết","Suy luận logic","Điền","L4"],["2020-21","C7","Chuyển động sửa xe","Chuyển động","Điền","L5"],["2020-21","C8","Tam giác KQBC","Hình học","Điền","NC"],["2020-21","B1","Giá sách 3 ngăn","Phân số, Tỉ số & %","Tự luận","L5"],["2020-21","B2","Trò chơi xóa số","Suy luận logic","Tự luận","NC"],
+  ["2021-22","C1","4,2×23/9 + 4,2×5/9","Số học & Số tự nhiên","Điền","L5"],["2021-22","C2","3ha gấp 75m² lần","Đo lường & Đổi đơn vị","Điền","L4"],["2021-22","C3","Vải thiều tỉ lệ thuận","Đại lượng tỉ lệ & Bản đồ","Điền","L4"],["2021-22","C4","Bể nước vòi 30L/p","Hình học","Điền","L5"],["2021-22","C5","32,5L dầu dùng 40%","Phân số, Tỉ số & %","Điền","L5"],["2021-22","C6","Dãy 1,2,5,10,17,26","Số học & Số tự nhiên","Điền","L4"],["2021-22","C7","Cửa hàng nước rửa tay","Phân số, Tỉ số & %","Điền","L4"],["2021-22","C8","Hình thang ABCD-ABE","Hình học","Điền","L5"],["2021-22","B1","Chuyển động về A","Chuyển động","Tự luận","L5"],["2021-22","B2","3 hộp bi chứng minh","Suy luận logic","Tự luận","NC"],
+  ["2022-23","C1","3,5×1/4 + 1,5×1/4","Số học & Số tự nhiên","TN","L5"],["2022-23","C2","0,2m³ gấp 25dm³","Đo lường & Đổi đơn vị","TN","L5"],["2022-23","C3","Ô tô 60km/h 12p","Chuyển động","TN","L5"],["2022-23","C4","Hộp CN+LP 486cm²","Hình học","TN","L5"],["2022-23","C5","Tìm x 15,23-5x=0,78","Số học & Số tự nhiên","Điền","L5"],["2022-23","C6","HS khối 5 chia hết","Suy luận logic","Điền","L4"],["2022-23","C7","Tuổi anh = 5/4 em","Toán tuổi","Điền","L4+5"],["2022-23","C8","Hình thang 2 đường chéo","Hình học","Điền","NC"],["2022-23","B1","Thi vẽ 120 HS","Phân số, Tỉ số & %","Tự luận","L5"],["2022-23","B2","HSG Toán Anh","Phân số, Tỉ số & %","Tự luận","L4+5"],
+  ["2023-24","C1","Tìm x 12/5<x,2<13/4","Số học & Số tự nhiên","TN","L5"],["2023-24","C2","An đi học 6h45","Thời gian (giờ - phút)","TN","L4+5"],["2023-24","C3","10 CN 30 ngày tỉ lệ nghịch","Đại lượng tỉ lệ & Bản đồ","TN","L4"],["2023-24","C4","Phòng sơn trần+4 tường","Hình học","TN","L5"],["2023-24","C5","A=52xy chia hết","Số học & Số tự nhiên","Điền","L4"],["2023-24","C6","2 kho gạo 15×=8×","Phân số, Tỉ số & %","Điền","L4+5"],["2023-24","C7","Biểu đồ % cam chuối","Biểu đồ, Thống kê & Xác suất","Điền","L5"],["2023-24","C8","HV+nửa đường tròn","Hình học","Điền","L5"],["2023-24","B1","Lên dốc xuống dốc","Chuyển động","Tự luận","L5"],["2023-24","B2","5 số vòng tròn chia 3","Suy luận logic","Tự luận","NC"],
+  ["2024-25","C1","Hỗn số 2¾ STP","Số học & Số tự nhiên","Điền","L5"],["2024-25","C2","2ha 15m²=ha","Đo lường & Đổi đơn vị","Điền","L4"],["2024-25","C3","1875m/3p","Chuyển động","Điền","L5"],["2024-25","C4","Hộp CN chu vi đáy 36","Hình học","Điền","L5"],["2024-25","C5","Biểu đồ món ăn 1500","Biểu đồ, Thống kê & Xác suất","Điền","L5"],["2024-25","C6","95km 30p 50-40km/h","Chuyển động","Điền","L5"],["2024-25","C7","DT hình tô đậm","Hình học","Điền","L5"],["2024-25","C8","Tuổi bố con 3 năm trước","Toán tuổi","Điền","L4+5"],["2024-25","B1","Liên đọc 375 trang","Phân số, Tỉ số & %","Tự luận","L5"],["2024-25","B2","a×b×(a+b)=30","Suy luận logic","Tự luận","NC"],
+  ["2025-26","C1","Làm tròn 4,65 tấn","Số học & Số tự nhiên","TN","L5"],["2025-26","C2","15dm³+11cm³","Đo lường & Đổi đơn vị","TN","L5"],["2025-26","C3","Bản đồ 1:20000","Đại lượng tỉ lệ & Bản đồ","TN","L5"],["2025-26","C4","LP cạnh 12cm Stp","Hình học","TN","L5"],["2025-26","C5","Tung 2 đồng xu","Biểu đồ, Thống kê & Xác suất","Điền","NC"],["2025-26","C6","Người đi 7h, 45km nghỉ","Chuyển động","Điền","L5"],["2025-26","C7","Bi xanh đỏ cho 4 viên","Phân số, Tỉ số & %","Điền","L4"],["2025-26","C8","Hình thang 100cm²","Hình học","Điền","L5"],["2025-26","B1","Quà 4 khu phố","Phân số, Tỉ số & %","Tự luận","L5"],["2025-26","B2","Bộ bài Dirichlet","Suy luận logic","Tự luận","L4+5"]
+];
+
+const nttProblems = [
+  ["2006-07","B1","Tính A:B biểu thức phức","Số học & Số tự nhiên","Tự luận","NC"],["2006-07","B2","STN tổng=12 + 2007","Số học & Số tự nhiên","Tự luận","NC"],["2006-07","B3","1554 chia 2x3y","Số học & Số tự nhiên","Tự luận","L4"],["2006-07","B4","Chia tổ 9/10 (giả thiết tạm)","Suy luận logic","Tự luận","L4"],["2006-07","B5","Tam giác AND=10","Hình học","Tự luận","NC"],
+  ["2007-08","B1","TB 3 số 17,5","Số học & Số tự nhiên","Tự luận","L4"],["2007-08","B2","STN 3 chữ số chia 45","Số học & Số tự nhiên","Tự luận","L4"],["2007-08","B3","Cha 30 sinh con","Toán tuổi","Tự luận","L4+5"],["2007-08","B4","45 HS điểm 9/10","Suy luận logic","Tự luận","L4"],["2007-08","B5","Lập phương sơn Stp=600","Hình học","Tự luận","NC"],
+  ["2008-09","B1","1,257a+1,743a","Số học & Số tự nhiên","Tự luận","L5"],["2008-09","B2","(1-½)(1-⅓)...(1-1/100)","Số học & Số tự nhiên","Tự luận","L4+5"],["2008-09","B3","Nền nhà lát gạch","Hình học","Tự luận","L5"],["2008-09","B4","Hiệu 1,25 tăng 3 lần","Suy luận logic","Tự luận","L5"],["2008-09","B5","5 tổ trồng 4-5 cây","Suy luận logic","Tự luận","L4"],
+  ["2009-10","B1","20ab chia 2,3,5","Số học & Số tự nhiên","Tự luận","L4+5"],["2009-10","B2","500 bát vỡ lãi 20%","Phân số, Tỉ số & %","Tự luận","L5"],["2009-10","B3","Xe tải taxi AB=210","Chuyển động","Tự luận","L5"],["2009-10","B4","AM=MN=NB AP=PQ=QC","Hình học","Tự luận","NC"],["2009-10","B5","40 HS giỏi khá TB","Phân số, Tỉ số & %","Tự luận","L4"],
+  ["2010-11","B1","46 HS 3 loại","Phân số, Tỉ số & %","Tự luận","L4"],["2010-11","B2","AB+BC=8 BC+CA=9","Số học & Số tự nhiên","Tự luận","L4"],["2010-11","B3","Hiệu 2,25 tăng 3","Suy luận logic","Tự luận","L5"],["2010-11","B4","Tam giác AG=2GD","Hình học","Tự luận","NC"],["2010-11","B5","Xe lửa qua cầu","Chuyển động","Tự luận","NC"],
+  ["2018-19","C1","Biểu đồ học lực","Biểu đồ, Thống kê & Xác suất","TN","L5"],["2018-19","C2","Đất 220×130 dọn 1,2ha","Đo lường & Đổi đơn vị","TN","L5"],["2018-19","C3","Thịt+khoai 3:2=4kg","Phân số, Tỉ số & %","TN","L4"],["2018-19","C4","NTT 20 lần đếm chu kỳ","Suy luận logic","TN","L4"],["2018-19","C5","HN-HG gặp 9h","Chuyển động","Điền","L5"],["2018-19","C6","Venn 2 CLB","Suy luận logic","Điền","L4+5"],["2018-19","C7","Thùng 3 LP vòi nước","Hình học","Điền","L5"],["2018-19","C8","10 chim tỉ 2/3","Phân số, Tỉ số & %","Điền","L4+5"],["2018-19","C9","Tranh 10%-10%-5%","Phân số, Tỉ số & %","Điền","L5"],["2018-19","C10","200 sữa khuyến mại","Số học & Số tự nhiên","Điền","L4+5"],["2018-19","B1","HS dự án 2/5, 1/3","Phân số, Tỉ số & %","Tự luận","L5"],["2018-19","B2","Nam+anh chạy bộ","Chuyển động","Tự luận","NC"],
+  ["2019-20","C1","Giao thông biểu tượng","Suy luận logic","Điền","NC"],["2019-20","C2","Sinh nhật thứ Ba","Thời gian (giờ - phút)","Điền","L4"],["2019-20","C3","Bể tràn 54L LP","Hình học","Điền","L5"],["2019-20","C4","Sân chu vi 142 vuông","Hình học","Điền","L5"],["2019-20","C5","3/14 M → 3/4 M","Phân số, Tỉ số & %","Điền","L5"],["2019-20","C6","Xe đạp ĐK 0,7 và 0,9","Hình học","Điền","L5"],["2019-20","C7","V 40 và 50","Chuyển động","Điền","L5"],["2019-20","C8","2 ngăn sách tỉ 2/3","Phân số, Tỉ số & %","Điền","L4+5"],["2019-20","C9","Lan 5h Hoa 7h cùng làm","Suy luận logic","Điền","NC"],["2019-20","C10","9 người 30m² 60p","Đại lượng tỉ lệ & Bản đồ","Điền","L5"],["2019-20","B1","Trồng cây 3 ngày","Phân số, Tỉ số & %","Tự luận","L5"],["2019-20","B2","3 xe HN-HG","Chuyển động","Tự luận","NC"],
+  ["2020-21","C1","Lãi 20% giá bán","Phân số, Tỉ số & %","Điền","L5"],["2020-21","C2","Bán kính ×2 DT","Hình học","Điền","L5"],["2020-21","C3","Bể + hòn non bộ","Hình học","Điền","L5"],["2020-21","C4","Giấy 1/4, 3/5, 36kg","Phân số, Tỉ số & %","Điền","L5"],["2020-21","C5","Tàu qua hầm 1840m","Chuyển động","Điền","NC"],["2020-21","C6","Covid % châu Á/TQ","Phân số, Tỉ số & %","Điền","L5"],["2020-21","C7","56 gà vịt 1/2=2/3","Phân số, Tỉ số & %","Điền","L4"],["2020-21","C8","HCN ABCD E,F","Hình học","Điền","NC"],["2020-21","C9","Pha nước tính tiền","Số học & Số tự nhiên","Điền","L4+5"],["2020-21","C10","STP 4đv 3 phần mười","Số học & Số tự nhiên","Điền","L5"],["2020-21","B1","CLB KH 1/5=5/11","Phân số, Tỉ số & %","Tự luận","L5"],["2020-21","B2","ASEAN 5/12","Suy luận logic","Tự luận","NC"],
+  ["2022-23","C1","27%×45,6+23%×45,6","Số học & Số tự nhiên","TN","L5"],["2022-23","C2","2/5 khẩu trang còn 12","Phân số, Tỉ số & %","TN","L4"],["2022-23","C3","V 12km/h 6h35-7h","Chuyển động","TN","L5"],["2022-23","C4","HCN V=336 đáy 48","Hình học","TN","L5"],["2022-23","C5","3 STN liên tiếp tổng 2022","Số học & Số tự nhiên","Điền","L4"],["2022-23","C6","SeaGames vàng+bạc","Phân số, Tỉ số & %","Điền","L4"],["2022-23","C7","Quạt 1800k lãi 20%","Phân số, Tỉ số & %","Điền","L5"],["2022-23","C8","2 HV ABCD AEFG","Hình học","Điền","NC"],["2022-23","B1","2 thùng dầu chuyển 8L","Phân số, Tỉ số & %","Tự luận","L5"],["2022-23","B2","Ca nô xuôi/ngược","Chuyển động","Tự luận","NC"],
+  ["2023-24","C1","2,75×0,99+2,75:100","Số học & Số tự nhiên","TN","L5"],["2023-24","C2","360 bóng xanh 3/5","Phân số, Tỉ số & %","TN","L4"],["2023-24","C3","Bể HCN nước 2/3","Hình học","TN","L5"],["2023-24","C4","Biểu đồ CLB nghệ thuật","Biểu đồ, Thống kê & Xác suất","TN","L5"],["2023-24","C5","TB 3 số 15,3","Số học & Số tự nhiên","Điền","L4"],["2023-24","C6","Váy giảm 15% mua 212500","Phân số, Tỉ số & %","Điền","L5"],["2023-24","C7","a1024b chia hết 45","Số học & Số tự nhiên","Điền","L4"],["2023-24","C8","HCN AD=4 2 hình tròn","Hình học","Điền","NC"],["2023-24","C9","An+Bình đạp xe SVĐ","Chuyển động","Tự luận","L5"],["2023-24","B2","HCN ABCD AB=3AE","Hình học","Tự luận","NC"],
+  ["2024-25","C1","12,7×5+12,7×95","Số học & Số tự nhiên","TN","L5"],["2024-25","C2","9/1000=?%","Phân số, Tỉ số & %","TN","L5"],["2024-25","C3","1/3 nam=nữ 24","Phân số, Tỉ số & %","TN","L4"],["2024-25","C4","Biểu đồ bóng vàng","Biểu đồ, Thống kê & Xác suất","TN","L5"],["2024-25","C5","Bể 2×1×1m 1300L","Hình học","TN","L5"],["2024-25","C6","Hình trái tim","Hình học","TN","NC"],["2024-25","C7","Tổng tuổi 25 hơn 5","Toán tuổi","Điền","L4"],["2024-25","C8","12 người 10 ngày tỉ lệ","Đại lượng tỉ lệ & Bản đồ","Điền","L4"],["2024-25","C9","Ô tô 6h30 về 10h40","Chuyển động","Điền","L5"],["2024-25","C10","12 HV nhỏ DT 25","Hình học","Điền","L5"],["2024-25","C11","CLB 30 nữ=60%","Phân số, Tỉ số & %","Tự luận","L5"],["2024-25","C12","Hình thang CD=2AB","Hình học","Tự luận","NC"],
+  ["2025-26","C1","Biểu đồ HS khối 9","Biểu đồ, Thống kê & Xác suất","TN","L5"],["2025-26","C2","Xúc xắc 20 lần","Biểu đồ, Thống kê & Xác suất","TN","NC"],["2025-26","C3","3/26<.../26<4/25","Số học & Số tự nhiên","TN","L5"],["2025-26","C4","20,25×24,6+20,25×75,4","Số học & Số tự nhiên","TN","L5"],["2025-26","C5","2/5 đất còn 60m²","Phân số, Tỉ số & %","TN","L4"],["2025-26","C6","7h khách 7h30 tải ngược","Chuyển động","TN","L5"],["2025-26","C7","Cắt góc bìa 25cm","Hình học","TN","L5"],["2025-26","C8","½ tròn ĐK 80","Hình học","TN","L5"],["2025-26","C9","STN 2cs đv kém chục 5","Số học & Số tự nhiên","Điền","L4"],["2025-26","C10","Giày giảm 20% rồi 40%","Phân số, Tỉ số & %","Điền","L5"],["2025-26","C11","Lớp 4A nam=4/7 nữ","Phân số, Tỉ số & %","Điền","L4"],["2025-26","C12","Xếp 15 LP Stp max","Hình học","Điền","NC"],["2025-26","B1","6A 6B hiệu 2tr TB 5tr","Số học & Số tự nhiên","Tự luận","L4"],["2025-26","B2","2 xe AB=180 45-60","Chuyển động","Tự luận","L5"],["2025-26","B3","Tam giác AD=2BD","Hình học","Tự luận","NC"]
+];
+
+const ltvProblems = [
+  // 2011-12 (20 câu)
+  ["2011-12","C1","STN 2 chữ số đảo lớn 72","Số học & Số tự nhiên","Tự luận","L4"],["2011-12","C2","4×4×...(2007) chữ số cuối","Số học & Số tự nhiên","Tự luận","L4"],["2011-12","C3","Tam giác đều chu vi gấp 2 DT","Hình học","Tự luận","L5"],["2011-12","C4","Chia 15 dư 13, chia 3 dư?","Số học & Số tự nhiên","Tự luận","L4"],["2011-12","C5","Tìm x: x×2/3×(x+9)=1","Số học & Số tự nhiên","Tự luận","L4+5"],["2011-12","C6","HCN chu vi 24m DT max","Hình học","Tự luận","L5"],["2011-12","C7","15 xe đạp+xích lô 36 bánh","Suy luận logic","Tự luận","L4"],["2011-12","C8","Tổng 15 tích 26","Số học & Số tự nhiên","Tự luận","L4"],["2011-12","C9","51/136 × 65/104","Phân số, Tỉ số & %","Tự luận","L4"],["2011-12","C10","Anh+bạn+em tuổi 40","Toán tuổi","Tự luận","L4+5"],["2011-12","C11","HCN tăng 10% 2 chiều","Phân số, Tỉ số & %","Tự luận","L5"],["2011-12","C12","Hình thang CD=2AB DT 63","Hình học","Tự luận","L5"],["2011-12","C13","19! 3 chữ số cuối","Số học & Số tự nhiên","Tự luận","NC"],["2011-12","C14","STN lớn nhất khác 0 tổng 8","Số học & Số tự nhiên","Tự luận","L4"],["2011-12","C15","3 hình tròn R=5,12,?","Hình học","Tự luận","L5"],["2011-12","C16","VTB 12 và 10","Chuyển động","Tự luận","L5"],["2011-12","C17","LP ghép từ LP nhỏ","Hình học","Tự luận","L5"],["2011-12","C18","HCN 3 kích thước ×11","Hình học","Tự luận","L5"],["2011-12","C19","1/6 thứ Sáu năm sau?","Thời gian (giờ - phút)","Tự luận","L4"],["2011-12","C20","Sắp xếp 4 phân số","Phân số, Tỉ số & %","Tự luận","L4"],
+  // 2012-13
+  ["2012-13","C1","Tổng 847 số 1=3/4 số 2","Phân số, Tỉ số & %","Tự luận","L4"],["2012-13","C2","Cha 43 con 12 cha=2con","Toán tuổi","Tự luận","L4+5"],["2012-13","C3","7×7×...(77) tận cùng","Số học & Số tự nhiên","Tự luận","L4"],["2012-13","C4","43×45×...+63×65×... tận cùng","Số học & Số tự nhiên","Tự luận","L4"],["2012-13","C5","Hình thang CD=2AB DT 612","Hình học","Tự luận","L5"],["2012-13","C6","HCN dài=2 rộng DT 288","Hình học","Tự luận","L5"],["2012-13","C7","R tròn tăng 50% DT","Hình học","Tự luận","L5"],["2012-13","C8","Sắp xếp 10/11, 9/11, 199/220","Phân số, Tỉ số & %","Tự luận","L4"],["2012-13","C9","a+b=30, b+c=37, c+a=33","Số học & Số tự nhiên","Tự luận","L4"],["2012-13","C10","VTB 60 và 50","Chuyển động","Tự luận","L5"],["2012-13","C11","HV nội tiếp tròn DT 18","Hình học","Tự luận","NC"],["2012-13","C12","LP Stp 486 V","Hình học","Tự luận","L5"],["2012-13","C13","TB 19 hiệu 18","Số học & Số tự nhiên","Tự luận","L4"],["2012-13","C14","Máy bay 7/4h 1500km/p","Chuyển động","Tự luận","L5"],["2012-13","C15","HCN rộng 4 dài 10 V=LP8","Hình học","Tự luận","L5"],["2012-13","C16","1/3 A=1/4 B tổng 63","Phân số, Tỉ số & %","Tự luận","L4"],["2012-13","C17","2 số lẻ liên tiếp hàng trăm 3","Số học & Số tự nhiên","Tự luận","L4"],["2012-13","C18","x=11/15+(3-x)/5","Số học & Số tự nhiên","Tự luận","L4+5"],["2012-13","C19","a,b=2c TB 3 số=60","Số học & Số tự nhiên","Tự luận","L4"],["2012-13","C20","6 đội bóng đấu lượt đi+về","Suy luận logic","Tự luận","NC"],
+  // 2013-14
+  ["2013-14","C1","Tam giác M,N trung điểm DT MNCB","Hình học","Tự luận","L5"],["2013-14","C2","Sinh sau 76 trước 84 SN 4 năm","Suy luận logic","Tự luận","L4+5"],["2013-14","C3","Hình thang DT 50 đáy lớn 13","Hình học","Tự luận","L5"],["2013-14","C4","3 STN cách đều tích 935","Suy luận logic","Tự luận","L4"],["2013-14","C5","3 LP 3,4,5 đúc 1 LP","Hình học","Tự luận","L5"],["2013-14","C6","a, 5a TB 33","Số học & Số tự nhiên","Tự luận","L4"],["2013-14","C7","3 STN lẻ liên tiếp tổng 1113","Số học & Số tự nhiên","Tự luận","L4"],["2013-14","C8","Kim phút 12cm 15p","Hình học","Tự luận","L5"],["2013-14","C9","Bể 2,5×1,5×2 vòi 900L/h","Hình học","Tự luận","L5"],["2013-14","C10","Tính biểu thức STP","Số học & Số tự nhiên","Tự luận","L5"],["2013-14","C11","A 2cs chia 9, A+1 chia 11","Số học & Số tự nhiên","Tự luận","L4"],["2013-14","C12","4 HV xếp T DT ABC","Hình học","Tự luận","NC"],["2013-14","C13","PS mẫu>tử 1 đv","Phân số, Tỉ số & %","Tự luận","L4+5"],["2013-14","C14","DT tròn R=10 vs HCN 20×15,65","Hình học","Tự luận","L5"],["2013-14","C15","4 ô liên tiếp tổng bằng nhau","Suy luận logic","Tự luận","L4"],["2013-14","C16","Nam=3/4 nữ kém 4","Phân số, Tỉ số & %","Tự luận","L4"],["2013-14","C17","Rút gọn 1111/98879","Số học & Số tự nhiên","Tự luận","NC"],["2013-14","C18","HV nội tiếp tròn R=10","Hình học","Tự luận","NC"],["2013-14","C19","HCN DT 60 tăng 1m dài","Hình học","Tự luận","L5"],["2013-14","C20","1/(1×2)+...+1/(99×100)","Phân số, Tỉ số & %","Tự luận","L4+5"],
+  // 2014-15
+  ["2014-15","C1","Tìm x: 420:(75-(x+10))=21","Số học & Số tự nhiên","Tự luận","L4"],["2014-15","C2","Ông bố Nam 108 tuổi","Toán tuổi","Tự luận","L4+5"],["2014-15","C3","Liên đọc sách 3 ngày","Phân số, Tỉ số & %","Tự luận","L5"],["2014-15","C4","STN 2cs thêm 2 trái tổng 346","Số học & Số tự nhiên","Tự luận","L4"],["2014-15","C5","4 bạn 55 sách điều chỉnh","Suy luận logic","Tự luận","L4"],["2014-15","C6","Tính biểu thức 17×1313/5151","Phân số, Tỉ số & %","Tự luận","L5"],["2014-15","C7","STN nhỏ nhất 4cs tổng 15","Số học & Số tự nhiên","Tự luận","L4"],["2014-15","C8","2014 chữ số 7 thêm chia 21","Số học & Số tự nhiên","Tự luận","NC"],["2014-15","C9","Xe máy 40 ô tô 60 gặp","Chuyển động","Tự luận","L5"],["2014-15","C10","Sắp xếp 5/9 12/25 2/5 14/27","Phân số, Tỉ số & %","Tự luận","L4"],["2014-15","C11","Tôn cắt 4 góc HV gấp hộp","Hình học","Tự luận","L5"],["2014-15","C12","1a89b chia 2,5,9","Số học & Số tự nhiên","Tự luận","L4"],["2014-15","C13","Tam giác AB=3AM CA=4CN DT","Hình học","Tự luận","NC"],["2014-15","C14","Dãy 1,2,4,7,11,16","Số học & Số tự nhiên","Tự luận","L4"],["2014-15","C15","Tàu qua cầu 980m 12s,82s","Chuyển động","Tự luận","NC"],["2014-15","C16","Thửa ruộng HCN dài hơn 5m","Hình học","Tự luận","L5"],["2014-15","C17","Đếm chữ số ngày năm 2014","Suy luận logic","Tự luận","L4"],["2014-15","C18","3 STN TB 37 (3,2,1 cs)","Số học & Số tự nhiên","Tự luận","L4"],["2014-15","C19","HCN tô màu LP 1 mặt","Hình học","Tự luận","NC"],["2014-15","C20","Số 7 tạo thành tổng 798","Suy luận logic","Tự luận","NC"],
+  // 2018-19 (14 câu)
+  ["2018-19","C1","Viết 10 số lẻ xóa 10 cs","Suy luận logic","Tự luận","NC"],["2018-19","C2","LP cạnh 20 đục lỗ vuông 3","Hình học","Tự luận","NC"],["2018-19","C3","3 CN trùng ngày chẵn 25 thứ?","Suy luận logic","Tự luận","L4"],["2018-19","C4","Vé phim giảm KG tăng 20%","Phân số, Tỉ số & %","Tự luận","L5"],["2018-19","C5","Tìm x: x×3,5=6,72+3,28","Số học & Số tự nhiên","Tự luận","L4"],["2018-19","C6","Chi đi 12km/h 3km, 7h20","Chuyển động","Tự luận","L5"],["2018-19","C7","2/5<x/8<3/5","Phân số, Tỉ số & %","Tự luận","L4"],["2018-19","C8","HCN dài=2 rộng DT 200","Hình học","Tự luận","L5"],["2018-19","C9","25 bộ 70m → 8 bộ?","Đại lượng tỉ lệ & Bản đồ","Tự luận","L4"],["2018-19","C10","AE=EF=FB DT GHEF","Hình học","Tự luận","NC"],["2018-19","C11","3/7×5/13+3/7×8/13","Phân số, Tỉ số & %","Tự luận","L5"],["2018-19","C12","Bố 42 chị 12 em 7","Toán tuổi","Tự luận","L4+5"],["2018-19","C13","DT 4cm tròn tô màu","Hình học","Tự luận","L5"],["2018-19","C14","Dãy Fibonacci số 12","Số học & Số tự nhiên","Tự luận","L4"],
+  // 2019-20
+  ["2019-20","C1","6,5×5,16+7,16×2,5","Số học & Số tự nhiên","Tự luận","L5"],["2019-20","C2","120:x×1/4=7×3/4","Số học & Số tự nhiên","Tự luận","L4+5"],["2019-20","C3","TB 75 hiệu 30","Số học & Số tự nhiên","Tự luận","L4"],["2019-20","C4","2x5y chia 2,5,9","Số học & Số tự nhiên","Tự luận","L4"],["2019-20","C5","HCN chu vi 252 dài=2 rộng","Hình học","Tự luận","L5"],["2019-20","C6","15% của 90","Phân số, Tỉ số & %","Tự luận","L5"],["2019-20","C7","Hộp CN đáy HV 25 cao 1,5dm","Hình học","Tự luận","L5"],["2019-20","C8","Tìm số bé nhất 1,001/7/8/...","Phân số, Tỉ số & %","Tự luận","L4+5"],["2019-20","C9","Xe máy 40 sau 30p xe 30","Chuyển động","Tự luận","L5"],["2019-20","C10","PS nhỏ nhất tử+mẫu=2019","Phân số, Tỉ số & %","Tự luận","NC"],["2019-20","C11","Lego giảm 10%-10% còn 405k","Phân số, Tỉ số & %","Tự luận","L5"],["2019-20","C12","Chu vi tròn lớn 1234","Hình học","Tự luận","NC"],["2019-20","C13","9+19+29+...+2019","Số học & Số tự nhiên","Tự luận","L4"],["2019-20","C14","Mẹ sinh con 2019 mẹ 26","Toán tuổi","Tự luận","L4+5"],["2019-20","C15","Đánh số trang 642 cs","Số học & Số tự nhiên","Tự luận","L4"],["2019-20","C16","STN 3cs chia 3 dư 2, 5 dư 4","Số học & Số tự nhiên","Tự luận","NC"],["2019-20","C17","Chọn 2 số 1-20 tích chia 9","Suy luận logic","Tự luận","NC"],["2019-20","C18","LP cạnh 6 bỏ LP 1 mặt","Hình học","Tự luận","NC"],["2019-20","C19","A=1+2+..+100 chia B 10^k","Số học & Số tự nhiên","Tự luận","NC"],["2019-20","C20","Đếm hình vuông trong hình","Suy luận logic","Tự luận","L4"],
+  // 2020-21
+  ["2020-21","C1","3/4 x+3/2=9/2","Số học & Số tự nhiên","Tự luận","L4+5"],["2020-21","C2","Hộp CN rộng×3 dài/2","Hình học","Tự luận","L5"],["2020-21","C3","Bố=10 con, 6 năm=4 con","Toán tuổi","Tự luận","L4+5"],["2020-21","C4","3,48:0,58×4,5×13,6","Số học & Số tự nhiên","Tự luận","L5"],["2020-21","C5","TB 20 hiệu 10","Số học & Số tự nhiên","Tự luận","L4"],["2020-21","C6","HCN rộng 15,21 dài hơn 3,24","Hình học","Tự luận","L5"],["2020-21","C7","3/4 lớp=27","Phân số, Tỉ số & %","Tự luận","L4"],["2020-21","C8","20 khẩu trang 160k → 50?","Đại lượng tỉ lệ & Bản đồ","Tự luận","L4"],["2020-21","C9","So sánh 119/117 và 201/202","Phân số, Tỉ số & %","Tự luận","L4+5"],["2020-21","C10","15 CN 8h 12 ngày +1 +2h","Đại lượng tỉ lệ & Bản đồ","Tự luận","L5"],["2020-21","C11","Xe đạp 15 xe máy 45 AB 66","Chuyển động","Tự luận","L5"],["2020-21","C12","1/3 tiền + 1/3 còn = 400k","Phân số, Tỉ số & %","Tự luận","L5"],["2020-21","C13","Tổng <300 chia hết 3","Số học & Số tự nhiên","Tự luận","L4"],["2020-21","C14","27xy chia 3,4,5","Số học & Số tự nhiên","Tự luận","L4"],["2020-21","C15","HV+HCN tô đậm DT","Hình học","Tự luận","L5"],["2020-21","C16","40 gà vịt 50% gà=1/3 vịt","Phân số, Tỉ số & %","Tự luận","L4"],["2020-21","C17","x×(1/2+1/6+...+1/30)","Phân số, Tỉ số & %","Tự luận","NC"],["2020-21","C18","184 trang 3 cs khác nhau","Số học & Số tự nhiên","Tự luận","L4"],["2020-21","C19","Tôn 24×18 cắt 4 góc 4cm","Hình học","Tự luận","L5"],["2020-21","C20","Tam giác BM=MC AN=1/5","Hình học","Tự luận","NC"],
+  // 2021-22 (10 câu)
+  ["2021-22","C1","1+1/7 km 1 tuần","Phân số, Tỉ số & %","Tự luận","L4"],["2021-22","C2","72% nữ, nam %?","Phân số, Tỉ số & %","Tự luận","L5"],["2021-22","C3","Máy 1,2p/dụng cụ 175 SP","Đại lượng tỉ lệ & Bản đồ","Tự luận","L4"],["2021-22","C4","DT tròn ĐK 7cm","Hình học","Tự luận","L5"],["2021-22","C5","HCN +10% dài -10% rộng","Phân số, Tỉ số & %","Tự luận","L5"],["2021-22","C6","50 trâu+bò 2/5 trâu+3/4 bò","Phân số, Tỉ số & %","Tự luận","L4+5"],["2021-22","C7","Đĩa=2 bát to, bát cơm=4 đĩa","Phân số, Tỉ số & %","Tự luận","L4"],["2021-22","C8","Stp khối phức tạp","Hình học","Tự luận","L5"],["2021-22","C9","480 HS 25 ngày +20 HS","Đại lượng tỉ lệ & Bản đồ","Tự luận","L5"],["2021-22","C10","77...7 (2022 cs) chia hết","Số học & Số tự nhiên","Tự luận","NC"],
+  // 2022-23
+  ["2022-23","C1","Sắp xếp 9/10, 7/8, 4/3","Phân số, Tỉ số & %","Tự luận","L4"],["2022-23","C2","TB 2 số 21,35","Số học & Số tự nhiên","Tự luận","L4"],["2022-23","C3","2/5+3/5:1×1/2","Phân số, Tỉ số & %","Tự luận","L4"],["2022-23","C4","2/3 nữ 11 nam","Phân số, Tỉ số & %","Tự luận","L4"],["2022-23","C5","LP Stp 54 V","Hình học","Tự luận","L5"],["2022-23","C6","HCN chu vi 100 rộng 20","Hình học","Tự luận","L4"],["2022-23","C7","Đếm số chia 5 trong dãy","Số học & Số tự nhiên","Tự luận","L4"],["2022-23","C8","20m²5dm² = dm²","Đo lường & Đổi đơn vị","Tự luận","L4"],["2022-23","C9","STN lớn nhất 3cs + STN lẻ nhỏ nhất","Số học & Số tự nhiên","Tự luận","L4"],["2022-23","C10","Bể 2×1,5×12dm 75%","Hình học","Tự luận","L5"],["2022-23","C11","Bản đồ 1:1000 HCN 10×8","Đại lượng tỉ lệ & Bản đồ","Tự luận","L5"],["2022-23","C12","Áo 200k giảm 160k %","Phân số, Tỉ số & %","Tự luận","L5"],["2022-23","C13","Pizza 24cm vs 16cm","Hình học","Tự luận","L5"],["2022-23","C14","2 hình thang DT=","Hình học","Tự luận","L5"],["2022-23","C15","45% nữ +50 -50 nam","Phân số, Tỉ số & %","Tự luận","NC"],["2022-23","C16","STN 2cs thêm 7 phải hơn 565","Số học & Số tự nhiên","Tự luận","L4"],["2022-23","C17","Mẹ=3 con 4 năm trước=4","Toán tuổi","Tự luận","L4+5"],["2022-23","C18","42 bậc tầng 3 lên tầng 5","Số học & Số tự nhiên","Tự luận","L4"],["2022-23","C19","Tìm x trong 3 hình quy luật","Suy luận logic","Tự luận","L4"],["2022-23","C20","AB=3AD CE=4DE BDE=10","Hình học","Tự luận","NC"],
+  // 2023-24
+  ["2023-24","C1","2×a×3/4=57/4","Số học & Số tự nhiên","Tự luận","L4"],["2023-24","C2","V bể dài 2,4 rộng=2/3 cao 15dm","Hình học","Tự luận","L5"],["2023-24","C3","DT mặt LP=25 V","Hình học","Tự luận","L5"],["2023-24","C4","75% của 64","Phân số, Tỉ số & %","Tự luận","L5"],["2023-24","C5","Sắp xếp 5/8 11/12 7/8 10/9","Phân số, Tỉ số & %","Tự luận","L4"],["2023-24","C6","Số chia hết 2,5","Số học & Số tự nhiên","Tự luận","L4"],["2023-24","C7","TB 2 số 95","Số học & Số tự nhiên","Tự luận","L4"],["2023-24","C8","HCN dài 20 hơn rộng 6","Hình học","Tự luận","L4"],["2023-24","C9","DT phần tô đậm ô vuông","Hình học","Tự luận","L5"],["2023-24","C10","60%=1tấn 200kg","Phân số, Tỉ số & %","Tự luận","L5"],["2023-24","C11","STN 2cs thêm 4 trái gấp 17","Số học & Số tự nhiên","Tự luận","L4"],["2023-24","C12","Con 4 mẹ sinh 26","Toán tuổi","Tự luận","L4"],["2023-24","C13","DT tròn chu vi 37,68","Hình học","Tự luận","L5"],["2023-24","C14","1,2×1,5×1,8×...×4,8","Số học & Số tự nhiên","Tự luận","L4+5"],["2023-24","C15","3 vòi chảy bể 2 vòi","Suy luận logic","Tự luận","NC"],["2023-24","C16","Sách-vở hoa việc tốt","Suy luận logic","Tự luận","L5"],["2023-24","C17","HV nội tròn AC=8","Hình học","Tự luận","NC"],["2023-24","C18","Trồng cây 2/5, 28 cây, 1/3","Phân số, Tỉ số & %","Tự luận","L5"],["2023-24","C19","7 que diêm xếp tam giác","Suy luận logic","Tự luận","NC"],["2023-24","C20","HCN M trung điểm tỉ DT","Hình học","Tự luận","NC"],
+  // 2024-25
+  ["2024-25","C1","3/7×8/5+4/7×48/30","Phân số, Tỉ số & %","Tự luận","L5"],["2024-25","C2","2×a-2/5=47/5","Số học & Số tự nhiên","Tự luận","L4"],["2024-25","C3","STN nhỏ nhất 2cs chia 5,7","Số học & Số tự nhiên","Tự luận","L4"],["2024-25","C4","52,39+28,23+21,77","Số học & Số tự nhiên","Tự luận","L4"],["2024-25","C5","Tổng 1989 tỉ 4/5","Số học & Số tự nhiên","Tự luận","L4"],["2024-25","C6","4 STN chẵn liên tiếp TB 27","Số học & Số tự nhiên","Tự luận","L4"],["2024-25","C7","32 HS nam=3/8","Phân số, Tỉ số & %","Tự luận","L4"],["2024-25","C8","HCN chu vi 30 rộng kém 5","Hình học","Tự luận","L4"],["2024-25","C9","3m 45k 8,5m?","Đại lượng tỉ lệ & Bản đồ","Tự luận","L4"],["2024-25","C10","1 tấn 3 tạ = kg","Đo lường & Đổi đơn vị","Tự luận","L4"],["2024-25","C11","Bể 20,5×16,2 298,89m³ 3/4","Hình học","Tự luận","L5"],["2024-25","C12","18 CN 12 ngày làm 9 ngày","Đại lượng tỉ lệ & Bản đồ","Tự luận","L5"],["2024-25","C13","2 năm trước mẹ=8 con","Toán tuổi","Tự luận","L4+5"],["2024-25","C14","HV M,N,P,Q TĐ 2 nửa tròn","Hình học","Tự luận","NC"],["2024-25","C15","STN lớn nhất tích cs=105","Số học & Số tự nhiên","Tự luận","L4"],["2024-25","C16","A=TB 50 STN lẻ B=50 STN","Số học & Số tự nhiên","Tự luận","NC"],["2024-25","C17","HV chứa mèo","Suy luận logic","Tự luận","L5"],["2024-25","C18","STN 4cs xóa hàng chục+đv","Số học & Số tự nhiên","Tự luận","L4"],["2024-25","C19","Xúc xích sáng/chiều giá","Phân số, Tỉ số & %","Tự luận","L5"],["2024-25","C20","HV lớn 5 nhỏ 3 DT tam giác","Hình học","Tự luận","NC"],
+  // 2025-26 (12 câu)
+  ["2025-26","C1","5/6+3,4+19/6-2,4","Số học & Số tự nhiên","Tự luận","L5"],["2025-26","C2","Tổng 2 chẵn liên tiếp 202","Số học & Số tự nhiên","Tự luận","L4"],["2025-26","C3","15 câu đúng 4 sai -1 (giả thiết tạm)","Suy luận logic","Tự luận","L4"],["2025-26","C4","Tung 2 đồng xu 20 lần","Biểu đồ, Thống kê & Xác suất","Tự luận","NC"],["2025-26","C5","3 tam giác quy luật","Suy luận logic","Tự luận","L4"],["2025-26","C6","90% công việc=6,3km","Phân số, Tỉ số & %","Tự luận","L5"],["2025-26","C7","HCN 40×20 chia HV cạnh 5","Hình học","Tự luận","L4"],["2025-26","C8","Tuổi anh Sơn ×6=3cs","Suy luận logic","Tự luận","NC"],["2025-26","C9","Bể HCN 12×5×2,2 nước 1,2","Hình học","Tự luận","L5"],["2025-26","C10","12 người 9 ngày → 18","Đại lượng tỉ lệ & Bản đồ","Tự luận","L4"],["2025-26","C11","Dãy 1/3, 3/5, 5/7,...,9/11","Số học & Số tự nhiên","Tự luận","L4"],["2025-26","C12","2 chú kiến quãng đường","Hình học","Tự luận","NC"]
+];
+
+const txProblems = [
+  // 2019-20 (12)
+  ["2019-20","C1","28,5×20,19+71,5×20,19","Số học & Số tự nhiên","Điền","L5"],["2019-20","C2","42m²134cm²=m²","Đo lường & Đổi đơn vị","Điền","L5"],["2019-20","C3","19 nam, nữ hơn 2, nữ %","Phân số, Tỉ số & %","Điền","L5"],["2019-20","C4","8 ngày 4 thợ 160 → 12,16","Đại lượng tỉ lệ & Bản đồ","Điền","L4+5"],["2019-20","C5","DT tròn ĐK 8","Hình học","Điền","L5"],["2019-20","C6","y×(1/2+1/4+...+1/32)=1","Phân số, Tỉ số & %","Điền","L4+5"],["2019-20","C7","Mẹ hơn con 25, sau 5 năm 2/7","Toán tuổi","Điền","L4+5"],["2019-20","C8","2019ab chia 2 dư 1, 5 dư 3, 9 dư 4","Số học & Số tự nhiên","Điền","L4"],["2019-20","C9","Xếp gạch LP 20cm thành tháp","Hình học","Điền","NC"],["2019-20","C10","Dãy 2,20,56,110,182","Số học & Số tự nhiên","Điền","NC"],["2019-20","B1","V 45-30 gặp 9h30","Chuyển động","Tự luận","L5"],["2019-20","B2","Tam giác MNC=30","Hình học","Tự luận","NC"],
+  // 2020-21 (5)
+  ["2020-21","C1","20%×1/2×5+40%","Số học & Số tự nhiên","Điền","L5"],["2020-21","C2","1331 LP sơn 4 mặt+đáy trên","Hình học","Điền","NC"],["2020-21","C3","0,202×16+12,5×50","Số học & Số tự nhiên","Tự luận","NC"],["2020-21","B4","Hình thang vuông chia 2","Hình học","Tự luận","NC"],["2020-21","B5","(extra)","Hình học","Tự luận","NC"],
+  // 2021-22 (10)
+  ["2021-22","C1","GT chữ số 8 trong 24,684","Số học & Số tự nhiên","TN","L4"],["2021-22","C2","4,8×4,8×4,8×4,8×4,8×6","Số học & Số tự nhiên","TN","L4"],["2021-22","C3","Số dư 1,385:15","Số học & Số tự nhiên","TN","L4"],["2021-22","C4","4 người 8 ngày 800 → 12,16","Đại lượng tỉ lệ & Bản đồ","TN","L4+5"],["2021-22","C5","Đi 7h20 mất 2h nghỉ 15p","Chuyển động","TN","L4"],["2021-22","C6","2 số hiệu 50 gấp 5 và 3","Suy luận logic","Tự luận","L4"],["2021-22","C7","2/3+2/15+...+2/n(n+2)=100/101","Phân số, Tỉ số & %","Tự luận","L4+5"],["2021-22","C8","HV ABCD cạnh 10 tô màu","Hình học","Tự luận","NC"],["2021-22","C9","Đọc sách 4 ngày PS phức","Phân số, Tỉ số & %","Tự luận","L5"],["2021-22","C10","V 25 muộn 2h V 30 muộn 1h","Chuyển động","Tự luận","L5"],
+  // 2022-23 (8)
+  ["2022-23","C1","CS tận cùng 2×12×...×2022","Số học & Số tự nhiên","Điền","L4"],["2022-23","C2","LP Stp 484 bỏ 4 đỉnh","Hình học","Điền","NC"],["2022-23","C3","DT tô màu 4cm tròn","Hình học","Điền","L5"],["2022-23","C4","Hình thang TB đáy 20,5 +4m","Hình học","Điền","L5"],["2022-23","C5","Cửa hàng thóc 2/5+280+1/3","Phân số, Tỉ số & %","Điền","L5"],["2022-23","C6","AB 88km 8h20-10h20 nghỉ 10p","Chuyển động","Điền","L5"],["2022-23","B1","20 lọ 30k vỡ lãi 20%","Phân số, Tỉ số & %","Tự luận","L5"],["2022-23","B2","6/(1×3)+...+6/(97×99)","Phân số, Tỉ số & %","Tự luận","L4+5"],
+  // 2023-24 (16)
+  ["2023-24","C1","CS 9 ở hàng phần trăm","Số học & Số tự nhiên","TN","L5"],["2023-24","C2","20dm²23cm²=m²","Đo lường & Đổi đơn vị","TN","L5"],["2023-24","C3","2×3/10+75%-1/4×0,7","Phân số, Tỉ số & %","TN","L5"],["2023-24","C4","1000 sách tăng 10% 2 năm","Phân số, Tỉ số & %","TN","L5"],["2023-24","C5","Tổng STP 8,3 số 1×3","Số học & Số tự nhiên","TN","L4+5"],["2023-24","C6","Nam đi tàu đến 7h30","Suy luận logic","TN","L5"],["2023-24","C7","LP cạnh ×3 Stp tăng?","Hình học","TN","L5"],["2023-24","C8","Bể 60×40 96L","Hình học","TN","L4"],["2023-24","C9","5 khối quyên góp khối 5 hơn TB 20","Số học & Số tự nhiên","TN","L4"],["2023-24","C10","HT vuông đáy bé=3/5","Hình học","Điền","L5"],["2023-24","C11","4 lần bán cam còn 2 quả","Phân số, Tỉ số & %","Điền","NC"],["2023-24","C12","x:4×36+x:7×28+x:4×20=180","Số học & Số tự nhiên","Điền","NC"],["2023-24","C13","AD=8 DT 2 phần tô bằng","Hình học","Điền","L5"],["2023-24","C14","Dãy 1/8, 1/35, 1/80, 1/143","Phân số, Tỉ số & %","Điền","NC"],["2023-24","C15","32 HS 15 ngày sau 5 ngày +","Đại lượng tỉ lệ & Bản đồ","Tự luận","L5"],["2023-24","C16","V 30 muộn 30p V 40 sớm 15p","Chuyển động","Tự luận","L5"],
+  // 2024-25 (16)
+  ["2024-25","C1","50cm²×8+6dm²","Đo lường & Đổi đơn vị","TN","L4"],["2024-25","C2","0,36×4+36%×2+2×4×0,18","Phân số, Tỉ số & %","TN","L5"],["2024-25","C3","5 người 3 ngày 180 → 7,2","Đại lượng tỉ lệ & Bản đồ","TN","L4+5"],["2024-25","C4","Dãy 1+1/8,1+1/15,1+1/24","Phân số, Tỉ số & %","TN","NC"],["2024-25","C5","5 bao gạo lấy 1 tẻ=3 nếp","Suy luận logic","TN","L4+5"],["2024-25","C6","Giảm 10% giá bán lãi 8% vốn","Phân số, Tỉ số & %","TN","NC"],["2024-25","C7","4,8:3,5 số dư STP 2cs","Số học & Số tự nhiên","TN","L4"],["2024-25","C8","454 HS xe 29-35 tổng 14","Suy luận logic","TN","L4"],["2024-25","C9","57/165 +n bằng 2/5","Phân số, Tỉ số & %","TN","NC"],["2024-25","C10","Bể thả LP 10 dâng, LP 20 dâng 12","Hình học","TN","NC"],["2024-25","C11","DT phần tô đậm","Hình học","Điền","L5"],["2024-25","C12","HT ABCD AB/CD=3/4 S OAB=3,6","Hình học","Điền","NC"],["2024-25","C13","Tổng 2 số lẻ 504 giữa 10","Số học & Số tự nhiên","Điền","L4"],["2024-25","C14","x lớn nhất 15,25<x<18,35","Số học & Số tự nhiên","Điền","L4"],["2024-25","B1","4 bạn góp 1/n tổng còn","Phân số, Tỉ số & %","Tự luận","NC"],["2024-25","B2","Ô tô 6h ô tô 4h gặp","Chuyển động","Tự luận","L5"],
+  // 2025-26 (15)
+  ["2025-26","C1","7 trăm 7 phần trăm","Số học & Số tự nhiên","TN","L4"],["2025-26","C2","DT tròn chu vi 37,68","Hình học","TN","L5"],["2025-26","C3","Cạnh LP ×4 V tăng?","Hình học","TN","L5"],["2025-26","C4","4 loại cờ lá 150","Suy luận logic","TN","L4"],["2025-26","C5","2 ngày 8h 112 → 7,9","Đại lượng tỉ lệ & Bản đồ","TN","L4+5"],["2025-26","C6","Bản đồ 1:3000 3×4","Đại lượng tỉ lệ & Bản đồ","TN","L5"],["2025-26","C7","LP 2cm 120 khối V","Hình học","TN","L5"],["2025-26","C8","7-8-10 bi lấy 2 xanh (Dirichlet)","Suy luận logic","TN","L4"],["2025-26","C9","Tổng tuổi 110 sau 4 năm","Toán tuổi","TN","L4+5"],["2025-26","C10","HCN tổng cạnh 84 chu vi 32","Hình học","TN","L5"],["2025-26","C11","(2,5-0,5×1/8):0,125+2025","Số học & Số tự nhiên","TN","L4+5"],["2025-26","C12","Rạp xiếc giảm 150k → 120k","Phân số, Tỉ số & %","TN","L5"],["2025-26","C13","Vào học 7h30 đến 7h kém 5","Thời gian (giờ - phút)","TN","L4"],["2025-26","B1","Ô tô dự 9h30 quay lại 6km","Chuyển động","Tự luận","NC"],["2025-26","B2","HV ABCD MNDP DT tam giác","Hình học","Tự luận","NC"]
+];
+
+// LTV thực tế là điền đáp số (KHÔNG phải tự luận) - học sinh chỉ ghi đáp số vào ô bên phải
+ltvProblems.forEach(p => { if (p[4] === "Tự luận") p[4] = "Điền"; });
+
+// School metadata
+const schools = {
+  cg:  { name: "THCS Cầu Giấy", short: "CG", color: "#3b82f6", problems: cgProblems, years: ["2019-20","2020-21","2021-22","2022-23","2023-24","2024-25","2025-26"], minutes: 42.5, freeText: 0.20 },
+  ntt: { name: "THCS&THPT Nguyễn Tất Thành", short: "NTT", color: "#ef4444", problems: nttProblems, years: ["2006-07","2007-08","2008-09","2009-10","2010-11","2018-19","2019-20","2020-21","2022-23","2023-24","2024-25","2025-26"], minutes: 52.5, freeText: 0.32 },
+  ltv: { name: "THCS&THPT Lương Thế Vinh", short: "LTV", color: "#f59e0b", problems: ltvProblems, years: ["2011-12","2012-13","2013-14","2014-15","2018-19","2019-20","2020-21","2021-22","2022-23","2023-24","2024-25","2025-26"], minutes: 53.75, freeText: 0.00 },
+  tx:  { name: "THCS Thanh Xuân", short: "TX", color: "#8b5cf6", problems: txProblems, years: ["2019-20","2020-21","2021-22","2022-23","2023-24","2024-25","2025-26"], minutes: 40, freeText: 0.30 }
+};
+
+// ============ COMPUTE ============
+function computeAggregates(problems, years) {
+  const counts = {}, heatmap = {}, gradeCounts = {"L4":0,"L5":0,"L4+5":0,"NC":0};
+  const gradeByYear = {"L4":[], "L5":[], "L4+5":[], "NC":[]};
+  const groupByGrade = {};
+  catNames.forEach(c => { counts[c] = 0; heatmap[c] = years.map(() => 0); groupByGrade[c] = {"L4":0,"L5":0,"L4+5":0,"NC":0}; });
+  Object.keys(gradeByYear).forEach(g => gradeByYear[g] = years.map(() => 0));
+  let olympicGeo = 0;
+  problems.forEach(p => {
+    const [yr, q, sum, group, type, grade] = p;
+    const yi = years.indexOf(yr); if (yi < 0) return;
+    counts[group] = (counts[group] || 0) + 1;
+    heatmap[group][yi] += 1;
+    gradeCounts[grade] = (gradeCounts[grade] || 0) + 1;
+    gradeByYear[grade][yi] += 1;
+    groupByGrade[group][grade] = (groupByGrade[group][grade] || 0) + 1;
+    if (group === "Hình học" && grade === "NC") olympicGeo++;
+  });
+  return { counts: catNames.map(c => counts[c]), heatmap, gradeCounts, gradeByYear, groupByGrade, total: problems.length, olympicGeo };
+}
+
+Object.keys(schools).forEach(k => schools[k].agg = computeAggregates(schools[k].problems, schools[k].years));
+
+// ============ DIFFICULTY INDEX ============
+function calcDifficulty(school) {
+  const a = school.agg, total = a.total;
+  const ncPct = a.gradeCounts.NC / total * 100;
+  const l45Pct = a.gradeCounts["L4+5"] / total * 100;
+  const timePressure = total / (school.years.length * school.minutes); // câu/phút
+  const freeText = school.freeText * 100; // % tự luận
+  const olympicGeoPct = a.olympicGeo / total * 100;
+  // Số nhóm có ≥1 câu (diversity)
+  const diversity = a.counts.filter(c => c > 0).length;
+  // Weights
+  const score =
+    ncPct * 0.30 +
+    l45Pct * 0.15 +
+    (timePressure * 100) * 0.20 +  // normalize: 0.25 câu/phút → 25
+    freeText * 0.15 +
+    olympicGeoPct * 0.10 +
+    diversity * 1.0; // mỗi nhóm thêm 1 điểm
+  return {
+    score: score.toFixed(1),
+    ncPct: ncPct.toFixed(1),
+    l45Pct: l45Pct.toFixed(1),
+    timePressure: timePressure.toFixed(3),
+    freeText: freeText.toFixed(0),
+    olympicGeoPct: olympicGeoPct.toFixed(1),
+    diversity,
+    raw: parseFloat(score.toFixed(1))
+  };
+}
+
+// ============ TAB SWITCHING ============
+const tabBtns = document.querySelectorAll(".tab-btn");
+const tabContents = document.querySelectorAll(".tab-content");
+const inited = new Set();
+tabBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const tab = btn.dataset.tab;
+    tabBtns.forEach(b => b.classList.remove("active"));
+    tabContents.forEach(c => c.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById("tab-" + tab).classList.add("active");
+    if (!inited.has(tab)) { renderTab(tab); inited.add(tab); }
+  });
+});
+
+// ============ RENDER HELPERS ============
+function makeDoughnut(canvasId, labels, data, colors, total) {
+  new Chart(document.getElementById(canvasId), {
+    type: "doughnut",
+    data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 3, borderColor: "#fff" }] },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: "right", labels: { font: { size: 11 } } },
+        tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${ctx.parsed} câu (${(ctx.parsed/total*100).toFixed(1)}%)` } } } }
+  });
+}
+
+function makeTable(elemId, problems) {
+  new gridjs.Grid({
+    columns: [
+      { name: "Năm", width: "85px" }, { name: "Câu", width: "60px" },
+      { name: "Nội dung", width: "auto" },
+      { name: "Nhóm", width: "180px", formatter: (cell) => {
+          const c = catColors[cell] || "#94a3b8";
+          return gridjs.html(`<span style="display:inline-block;padding:3px 10px;border-radius:12px;background:${c}20;color:${c};font-weight:600;font-size:12px;">${cell}</span>`);
+        } },
+      { name: "Dạng", width: "75px" },
+      { name: "Cấp lớp", width: "115px", formatter: (cell) => {
+          const c = gradeColors[cell] || "#94a3b8";
+          return gridjs.html(`<span style="display:inline-block;padding:3px 10px;border-radius:12px;background:${c};color:white;font-weight:700;font-size:11px;">${gradeFullName[cell]||cell}</span>`);
+        } }
+    ],
+    data: problems, search: true, sort: true,
+    pagination: { limit: 15, summary: true }, resizable: true,
+    style: { table: { "font-size": "13px" }, th: { "background": "#f1f5f9" } }
+  }).render(document.getElementById(elemId));
+}
+
+function renderSchoolTab(key) {
+  const s = schools[key];
+  const a = s.agg, total = a.total;
+  // KPIs
+  const kpiHTML = `
+    <div class="kpi-card ${key}">
+      <div class="kpi-label">Tổng số câu</div>
+      <div class="kpi-value ${key}">${total}</div>
+      <div class="kpi-sub">${s.years.length} năm · ${s.minutes} phút/đề</div>
+    </div>
+    <div class="kpi-card grade4"><div class="kpi-label">🟢 Lớp 4</div><div class="kpi-value g4">${a.gradeCounts.L4}</div><div class="kpi-sub">${(a.gradeCounts.L4/total*100).toFixed(1)}%</div></div>
+    <div class="kpi-card grade5"><div class="kpi-label">🔵 Lớp 5</div><div class="kpi-value g5">${a.gradeCounts.L5}</div><div class="kpi-sub">${(a.gradeCounts.L5/total*100).toFixed(1)}%</div></div>
+    <div class="kpi-card grade45"><div class="kpi-label">🟣 Tổng hợp</div><div class="kpi-value g45">${a.gradeCounts["L4+5"]}</div><div class="kpi-sub">${(a.gradeCounts["L4+5"]/total*100).toFixed(1)}%</div></div>
+    <div class="kpi-card gradeNC"><div class="kpi-label">🔴 Nâng cao</div><div class="kpi-value gNC">${a.gradeCounts.NC}</div><div class="kpi-sub">${(a.gradeCounts.NC/total*100).toFixed(1)}%</div></div>
+  `;
+  document.getElementById(`${key}Kpis`).innerHTML = kpiHTML;
+
+  // Content
+  document.getElementById(`${key}Content`).innerHTML = `
+    <div class="section-title">📚 PHÂN TÍCH THEO CẤP LỚP</div>
+    <div class="row">
+      <div class="card"><h2>Phân bố cấp lớp</h2><div class="chart-wrap"><canvas id="${key}GradeChart"></canvas></div></div>
+      <div class="card"><h2>Cấp lớp × Năm</h2><div class="chart-wrap"><canvas id="${key}GradeYearChart"></canvas></div></div>
+    </div>
+    <div class="card" style="margin-bottom:24px;"><h2>Nhóm × Cấp lớp</h2><div class="chart-wrap tall"><canvas id="${key}GroupGradeChart"></canvas></div></div>
+    <div class="section-title">🎨 PHÂN TÍCH THEO NHÓM CHUYÊN ĐỀ</div>
+    <div class="row">
+      <div class="card"><h2>Phân bố nhóm</h2><div class="chart-wrap"><canvas id="${key}PieChart"></canvas></div></div>
+      <div class="card"><h2>Số câu theo nhóm</h2><div class="chart-wrap"><canvas id="${key}BarChart"></canvas></div></div>
+    </div>
+    <div class="card" style="margin-bottom:24px;"><h2>Nhóm × Năm thi</h2><div class="chart-wrap xtall"><canvas id="${key}StackedChart"></canvas></div></div>
+    <div class="card" style="margin-bottom:24px;"><h2>Chi tiết câu hỏi - ${s.name}</h2><div id="${key}DetailTable"></div></div>
+  `;
+
+  // Render charts
+  makeDoughnut(`${key}GradeChart`, ["Lớp 4","Lớp 5","Tổng hợp","Nâng cao"],
+    [a.gradeCounts.L4, a.gradeCounts.L5, a.gradeCounts["L4+5"], a.gradeCounts.NC],
+    [gradeColors.L4, gradeColors.L5, gradeColors["L4+5"], gradeColors.NC], total);
+
+  new Chart(document.getElementById(`${key}GradeYearChart`), {
+    type: "bar",
+    data: { labels: s.years, datasets: [
+      { label: "Lớp 4", data: a.gradeByYear.L4, backgroundColor: gradeColors.L4 },
+      { label: "Lớp 5", data: a.gradeByYear.L5, backgroundColor: gradeColors.L5 },
+      { label: "Tổng hợp", data: a.gradeByYear["L4+5"], backgroundColor: gradeColors["L4+5"] },
+      { label: "Nâng cao", data: a.gradeByYear.NC, backgroundColor: gradeColors.NC }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: "bottom" } },
+      scales: { x: { stacked: true, ticks: { font: { size: 10 } } }, y: { stacked: true, beginAtZero: true } } }
+  });
+
+  const grades = ["L4","L5","L4+5","NC"];
+  new Chart(document.getElementById(`${key}GroupGradeChart`), {
+    type: "bar",
+    data: { labels: catNames, datasets: grades.map(g => ({
+      label: gradeFullName[g], data: catNames.map(c => a.groupByGrade[c][g]),
+      backgroundColor: gradeColors[g], borderRadius: 4 })) },
+    options: { indexAxis: "y", responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: "bottom" } },
+      scales: { x: { stacked: true, beginAtZero: true }, y: { stacked: true, ticks: { font: { size: 11 } } } } }
+  });
+
+  new Chart(document.getElementById(`${key}PieChart`), {
+    type: "doughnut",
+    data: { labels: catNames, datasets: [{ data: a.counts, backgroundColor: catNames.map(c => catColors[c]), borderWidth: 2, borderColor: "#fff" }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "right", labels: { font: { size: 10 } } } } }
+  });
+
+  new Chart(document.getElementById(`${key}BarChart`), {
+    type: "bar",
+    data: { labels: catNames, datasets: [{ data: a.counts, backgroundColor: catNames.map(c => catColors[c]), borderRadius: 6 }] },
+    options: { indexAxis: "y", responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true } } }
+  });
+
+  new Chart(document.getElementById(`${key}StackedChart`), {
+    type: "bar",
+    data: { labels: s.years, datasets: catNames.map(c => ({ label: c, data: a.heatmap[c], backgroundColor: catColors[c] })) },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: "bottom", labels: { font: { size: 9 }, boxWidth: 8 } } },
+      scales: { x: { stacked: true, ticks: { font: { size: 10 } } }, y: { stacked: true, beginAtZero: true } } }
+  });
+
+  makeTable(`${key}DetailTable`, s.problems);
+}
+
+function renderCompareTab() {
+  const total = Object.values(schools).reduce((s, x) => s + x.agg.total, 0);
+  document.getElementById("compareContent").innerHTML = `
+    <div class="kpi-grid">
+      <div class="kpi-card cg"><div class="kpi-label">🟦 Cầu Giấy</div><div class="kpi-value cg">${schools.cg.agg.total}</div><div class="kpi-sub">7 năm · 42.5p</div></div>
+      <div class="kpi-card ntt"><div class="kpi-label">🟥 NTT</div><div class="kpi-value ntt">${schools.ntt.agg.total}</div><div class="kpi-sub">12 năm · 52.5p</div></div>
+      <div class="kpi-card ltv"><div class="kpi-label">🟨 LTV</div><div class="kpi-value ltv">${schools.ltv.agg.total}</div><div class="kpi-sub">12 năm · 53.8p</div></div>
+      <div class="kpi-card tx"><div class="kpi-label">🟪 TX</div><div class="kpi-value tx">${schools.tx.agg.total}</div><div class="kpi-sub">7 năm · 40p</div></div>
+    </div>
+
+    <div class="section-title">📊 SO SÁNH KPI</div>
+    <div class="row">
+      <div class="card"><h2>Phân bố cấp lớp (% từng trường)</h2><div class="chart-wrap tall"><canvas id="cmpGradeChart"></canvas></div></div>
+      <div class="card"><h2>So sánh tổng quan</h2><div class="chart-wrap tall"><canvas id="cmpRadarChart"></canvas></div></div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;"><h2>So sánh phân bố Nhóm chuyên đề (%)</h2>
+      <div class="chart-wrap xtall"><canvas id="cmpGroupChart"></canvas></div>
+    </div>
+
+    <div class="row">
+      <div class="card"><h2>🟦 Cầu Giấy</h2><div class="chart-wrap"><canvas id="cmpPieCG"></canvas></div></div>
+      <div class="card"><h2>🟥 NTT</h2><div class="chart-wrap"><canvas id="cmpPieNTT"></canvas></div></div>
+    </div>
+    <div class="row">
+      <div class="card"><h2>🟨 LTV</h2><div class="chart-wrap"><canvas id="cmpPieLTV"></canvas></div></div>
+      <div class="card"><h2>🟪 TX</h2><div class="chart-wrap"><canvas id="cmpPieTX"></canvas></div></div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <h2>Bảng so sánh chi tiết</h2>
+      <table class="compare-table" id="cmpDetail"></table>
+    </div>
+  `;
+
+  // % grade
+  const gradePctData = {};
+  Object.keys(schools).forEach(k => {
+    const a = schools[k].agg;
+    gradePctData[k] = ["L4","L5","L4+5","NC"].map(g => (a.gradeCounts[g]/a.total*100).toFixed(1));
+  });
+
+  new Chart(document.getElementById("cmpGradeChart"), {
+    type: "bar",
+    data: { labels: ["Lớp 4","Lớp 5","Tổng hợp L4+5","Nâng cao"],
+      datasets: Object.keys(schools).map(k => ({ label: schools[k].short, data: gradePctData[k], backgroundColor: schools[k].color, borderRadius: 4 })) },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "top" } },
+      scales: { y: { beginAtZero: true, ticks: { callback: (v) => v + "%" } } } }
+  });
+
+  // Radar
+  const radarLabels = ["Tổng câu","% Nâng cao","% Lớp 4","Câu/phút (×10)","% Tự luận","Đa dạng nhóm"];
+  new Chart(document.getElementById("cmpRadarChart"), {
+    type: "radar",
+    data: { labels: radarLabels, datasets: Object.keys(schools).map(k => {
+      const s = schools[k], a = s.agg;
+      return { label: s.short,
+        data: [a.total/3, a.gradeCounts.NC/a.total*100, a.gradeCounts.L4/a.total*100,
+               (a.total/(s.years.length*s.minutes))*100, s.freeText*100, a.counts.filter(c=>c>0).length*5],
+        backgroundColor: s.color + "33", borderColor: s.color, borderWidth: 2 };
+    }) },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "bottom" } } }
+  });
+
+  // Group %
+  const groupPctData = {};
+  Object.keys(schools).forEach(k => { groupPctData[k] = schools[k].agg.counts.map(c => (c/schools[k].agg.total*100).toFixed(1)); });
+  new Chart(document.getElementById("cmpGroupChart"), {
+    type: "bar",
+    data: { labels: catNames,
+      datasets: Object.keys(schools).map(k => ({ label: schools[k].short, data: groupPctData[k], backgroundColor: schools[k].color, borderRadius: 4 })) },
+    options: { indexAxis: "y", responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: "top" } },
+      scales: { x: { beginAtZero: true, ticks: { callback: (v) => v + "%" } }, y: { ticks: { font: { size: 11 } } } } }
+  });
+
+  // 4 pies
+  Object.keys(schools).forEach(k => {
+    new Chart(document.getElementById(`cmpPie${k.toUpperCase()}`), {
+      type: "doughnut",
+      data: { labels: catNames, datasets: [{ data: schools[k].agg.counts, backgroundColor: catNames.map(c => catColors[c]), borderWidth: 2, borderColor: "#fff" }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "right", labels: { font: { size: 9 } } } } }
+    });
+  });
+
+  // Detail table
+  const cmpRows = [
+    ["Khoảng năm thi", "2019→2026 (7)", "2006→2026 (12, gap)", "2011→2026 (12)", "2019→2026 (7)"],
+    ["Tổng câu", schools.cg.agg.total, schools.ntt.agg.total, schools.ltv.agg.total, schools.tx.agg.total],
+    ["Thời lượng TB (phút)", "40-45", "45-60", "30-60", "40"],
+    ["Số câu/đề TB", (schools.cg.agg.total/schools.cg.years.length).toFixed(1), (schools.ntt.agg.total/schools.ntt.years.length).toFixed(1), (schools.ltv.agg.total/schools.ltv.years.length).toFixed(1), (schools.tx.agg.total/schools.tx.years.length).toFixed(1)],
+    ["% Tự luận (trình bày)", "20%", "32%", "<b>0%</b> (chỉ ghi đáp số)", "30%"],
+    ["% Lớp 4", gradePctData.cg[0]+"%", gradePctData.ntt[0]+"%", gradePctData.ltv[0]+"%", gradePctData.tx[0]+"%"],
+    ["% Lớp 5", gradePctData.cg[1]+"%", gradePctData.ntt[1]+"%", gradePctData.ltv[1]+"%", gradePctData.tx[1]+"%"],
+    ["% Tổng hợp L4+5", gradePctData.cg[2]+"%", gradePctData.ntt[2]+"%", gradePctData.ltv[2]+"%", gradePctData.tx[2]+"%"],
+    ["% Nâng cao", gradePctData.cg[3]+"%", gradePctData.ntt[3]+"%", gradePctData.ltv[3]+"%", gradePctData.tx[3]+"%"],
+    ["Số nhóm có ≥1 câu", schools.cg.agg.counts.filter(c=>c>0).length, schools.ntt.agg.counts.filter(c=>c>0).length, schools.ltv.agg.counts.filter(c=>c>0).length, schools.tx.agg.counts.filter(c=>c>0).length],
+    ["Hình học Olympic (NC)", schools.cg.agg.olympicGeo, schools.ntt.agg.olympicGeo, schools.ltv.agg.olympicGeo, schools.tx.agg.olympicGeo],
+    ["Phong cách", "Gọn, nhịp nhanh", "Kể chuyện thực tế", "Điền đáp số, nhiều Olympic HH", "Cân bằng"],
+    ["Xác suất 2025-2026", "✓ (đồng xu)", "✓ (xúc xắc)", "✓ (đồng xu)", "✓ (Dirichlet+chu kỳ)"]
+  ];
+  document.getElementById("cmpDetail").innerHTML = `
+    <thead><tr>
+      <th>Tiêu chí</th>
+      <th class="cg-col"><span class="pill cg">CG</span>Cầu Giấy</th>
+      <th class="ntt-col"><span class="pill ntt">NTT</span>NTT</th>
+      <th class="ltv-col"><span class="pill ltv">LTV</span>Lương Thế Vinh</th>
+      <th class="tx-col"><span class="pill tx">TX</span>Thanh Xuân</th>
+    </tr></thead>
+    <tbody>
+      ${cmpRows.map(r => `<tr><td class="label">${r[0]}</td><td class="cg-col">${r[1]}</td><td class="ntt-col">${r[2]}</td><td class="ltv-col">${r[3]}</td><td class="tx-col">${r[4]}</td></tr>`).join("")}
+    </tbody>`;
+}
+
+function renderDifficultyTab() {
+  const diffs = {};
+  Object.keys(schools).forEach(k => diffs[k] = calcDifficulty(schools[k]));
+  // Rank
+  const ranking = Object.keys(schools).sort((a, b) => diffs[b].raw - diffs[a].raw);
+  const maxScore = Math.max(...Object.values(diffs).map(d => d.raw));
+
+  let html = `
+    <div class="section-title">🏆 BẢNG XẾP HẠNG ĐỘ KHÓ TỔNG HỢP</div>
+    <div class="row">
+      <div class="card"><h2>Chỉ số độ khó tổng hợp</h2><div class="chart-wrap"><canvas id="diffScoreChart"></canvas></div></div>
+      <div class="card"><h2>Phân tích 6 yếu tố</h2><div class="chart-wrap"><canvas id="diffRadarChart"></canvas></div></div>
+    </div>
+  `;
+
+  const medals = ["🥇", "🥈", "🥉", "🏅"];
+  ranking.forEach((k, i) => {
+    const s = schools[k], d = diffs[k];
+    const pctOfMax = (d.raw / maxScore * 100).toFixed(0);
+    html += `
+      <div class="difficulty-card ${k}">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div>
+            <span class="medal">${medals[i]}</span>
+            <span class="pill ${k}">${s.short}</span>
+            <b style="font-size:18px;">${s.name}</b>
+            <div style="margin-top:8px;color:var(--text-muted);font-size:13px;">${s.years.length} năm · ${s.agg.total} câu · ${s.minutes} phút/đề</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="difficulty-rank">Hạng ${i+1}/4</div>
+            <div class="difficulty-score" style="color:${s.color};">${d.score}</div>
+            <div style="color:var(--text-muted);font-size:12px;">Điểm độ khó / 100</div>
+          </div>
+        </div>
+        <div class="difficulty-bar"><div class="difficulty-bar-fill" style="width:${pctOfMax}%;background:${s.color};"></div></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:16px;">
+          <div class="factor-row"><span class="factor-label">% Nâng cao</span><span class="factor-value" style="color:${s.color};">${d.ncPct}%</span></div>
+          <div class="factor-row"><span class="factor-label">% Tổng hợp L4+5</span><span class="factor-value">${d.l45Pct}%</span></div>
+          <div class="factor-row"><span class="factor-label">Câu/phút</span><span class="factor-value">${d.timePressure}</span></div>
+          <div class="factor-row"><span class="factor-label">% Tự luận</span><span class="factor-value">${d.freeText}%</span></div>
+          <div class="factor-row"><span class="factor-label">% Hình học Olympic</span><span class="factor-value">${d.olympicGeoPct}%</span></div>
+          <div class="factor-row"><span class="factor-label">Số nhóm</span><span class="factor-value">${d.diversity}/10</span></div>
+        </div>
+      </div>
+    `;
+  });
+
+  // Final assessment
+  html += `
+    <div class="insights" style="margin-top:32px;">
+      <h3>💡 Đánh giá tổng quan độ khó</h3>
+      <ul>
+        <li><b>🥇 ${schools[ranking[0]].short}:</b> Điểm cao nhất ${diffs[ranking[0]].score} — khó nhất theo cấu trúc đề (kết hợp các yếu tố NC, thời gian, dạng bài).</li>
+        <li><b>🥈 ${schools[ranking[1]].short}:</b> ${diffs[ranking[1]].score} điểm — đứng nhì về độ phức tạp tổng thể.</li>
+        <li><b>🥉 ${schools[ranking[2]].short}:</b> ${diffs[ranking[2]].score} điểm — mức cân bằng giữa cốt lõi và nâng cao.</li>
+        <li><b>🏅 ${schools[ranking[3]].short}:</b> ${diffs[ranking[3]].score} điểm — đề nhẹ nhất theo chỉ số tính toán.</li>
+        <li><b>📝 Cập nhật quan trọng:</b> Đã sửa lỗi phân loại LTV — trước đây tôi nhầm LTV là 100% tự luận, nhưng thực tế LTV chỉ <b>ghi đáp số</b> vào ô bên phải (giống điền đáp án). Sau khi sửa, điểm độ khó LTV giảm đáng kể vì mất yếu tố "trình bày lời giải" (trọng số 15%).</li>
+        <li><b>Lưu ý quan trọng:</b> [Inference] "Độ khó" ở đây tính theo cấu trúc đề; <b>độ khó cảm nhận</b> còn phụ thuộc vào điểm chuẩn (tỉ lệ chọi) và khả năng cá nhân. Đề nhẹ hơn không có nghĩa là dễ đỗ hơn.</li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <h2>📋 Chi tiết tính điểm độ khó</h2>
+      <table class="compare-table">
+        <thead><tr><th>Yếu tố</th><th>Trọng số</th><th class="cg-col">CG</th><th class="ntt-col">NTT</th><th class="ltv-col">LTV</th><th class="tx-col">TX</th></tr></thead>
+        <tbody>
+          <tr><td>% Nâng cao</td><td>30%</td><td class="cg-col">${diffs.cg.ncPct}%</td><td class="ntt-col">${diffs.ntt.ncPct}%</td><td class="ltv-col">${diffs.ltv.ncPct}%</td><td class="tx-col">${diffs.tx.ncPct}%</td></tr>
+          <tr><td>% Tổng hợp L4+5</td><td>15%</td><td class="cg-col">${diffs.cg.l45Pct}%</td><td class="ntt-col">${diffs.ntt.l45Pct}%</td><td class="ltv-col">${diffs.ltv.l45Pct}%</td><td class="tx-col">${diffs.tx.l45Pct}%</td></tr>
+          <tr><td>Câu/phút (áp lực t.gian)</td><td>20%</td><td class="cg-col">${diffs.cg.timePressure}</td><td class="ntt-col">${diffs.ntt.timePressure}</td><td class="ltv-col">${diffs.ltv.timePressure}</td><td class="tx-col">${diffs.tx.timePressure}</td></tr>
+          <tr><td>% Tự luận</td><td>15%</td><td class="cg-col">${diffs.cg.freeText}%</td><td class="ntt-col">${diffs.ntt.freeText}%</td><td class="ltv-col">${diffs.ltv.freeText}%</td><td class="tx-col">${diffs.tx.freeText}%</td></tr>
+          <tr><td>% Hình học Olympic</td><td>10%</td><td class="cg-col">${diffs.cg.olympicGeoPct}%</td><td class="ntt-col">${diffs.ntt.olympicGeoPct}%</td><td class="ltv-col">${diffs.ltv.olympicGeoPct}%</td><td class="tx-col">${diffs.tx.olympicGeoPct}%</td></tr>
+          <tr><td>Đa dạng nhóm</td><td>10%</td><td class="cg-col">${diffs.cg.diversity}/10</td><td class="ntt-col">${diffs.ntt.diversity}/10</td><td class="ltv-col">${diffs.ltv.diversity}/10</td><td class="tx-col">${diffs.tx.diversity}/10</td></tr>
+          <tr style="background:#fef3c7;font-weight:700;"><td>TỔNG ĐIỂM</td><td>100%</td><td class="cg-col">${diffs.cg.score}</td><td class="ntt-col">${diffs.ntt.score}</td><td class="ltv-col">${diffs.ltv.score}</td><td class="tx-col">${diffs.tx.score}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  document.getElementById("difficultyContent").innerHTML = html;
+
+  // Score bar chart
+  new Chart(document.getElementById("diffScoreChart"), {
+    type: "bar",
+    data: { labels: ranking.map(k => schools[k].short),
+      datasets: [{ label: "Điểm độ khó", data: ranking.map(k => diffs[k].raw), backgroundColor: ranking.map(k => schools[k].color), borderRadius: 6 }] },
+    options: { indexAxis: "y", responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true } } }
+  });
+
+  // Radar
+  new Chart(document.getElementById("diffRadarChart"), {
+    type: "radar",
+    data: { labels: ["% NC", "% L4+5", "Câu/phút×100", "% Tự luận", "% HH Olympic", "Đa dạng×5"],
+      datasets: Object.keys(schools).map(k => ({ label: schools[k].short,
+        data: [parseFloat(diffs[k].ncPct), parseFloat(diffs[k].l45Pct), parseFloat(diffs[k].timePressure)*100,
+               parseFloat(diffs[k].freeText), parseFloat(diffs[k].olympicGeoPct), diffs[k].diversity*5],
+        backgroundColor: schools[k].color + "33", borderColor: schools[k].color, borderWidth: 2 })) },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "bottom" } } }
+  });
+}
+
+function renderTab(tab) {
+  if (tab === "compare") renderCompareTab();
+  else if (tab === "difficulty") renderDifficultyTab();
+  else renderSchoolTab(tab);
+}
+
+// Init first tab
+renderTab("cg"); inited.add("cg");
+</script>
+
+</body>
+</html>

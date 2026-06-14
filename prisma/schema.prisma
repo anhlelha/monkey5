@@ -278,3 +278,42 @@ model UserTopicSet {
 
   @@index([userId, addedAt])
 }
+
+// ─── School metadata (admin-editable, was SCHOOLS array in lib/static.ts) ─────
+// Tên / màu / minutes / tone CSS / desc — admin sửa qua /admin?tab=schools.
+// Trường mới phát hiện trong Exam.school sẽ tự sinh row default qua
+// ensureSchoolMetadata() (lib/school-profiles.ts).
+
+model School {
+  id        String   @id              // "cg" | "ltv" | "tx" | "ntt" | "nn" | "ntl" | ...
+  short     String                    // "CG"
+  name      String                    // "THCS Cầu Giấy"
+  full      String                    // "THCS Cầu Giấy"
+  color     String                    // "var(--cg)" hoặc "#3b82f6"
+  tone      String                    // CSS class hậu tố — "cg"
+  desc      String                    @default("")
+  minutes   Int                       @default(60)
+  style     String                    @default("")
+  position  Int                       @default(0)
+  active    Boolean                   @default(true)
+  createdAt DateTime                  @default(now())
+  updatedAt DateTime                  @updatedAt
+}
+
+// ─── School profile (auto-computed statistics for readiness scoring) ──────────
+// Mỗi row = 1 trường. Auto rebuild khi DB có thay đổi qua ensureSchoolProfilesFresh().
+// Phát hiện thay đổi qua sourceHash = "{qcount}-{latestCreatedAt.ISO}".
+
+model SchoolProfile {
+  school          String   @id                // FK soft tới School.id
+  topicWeights    String                      // JSON: { topicId: 0..1 }, tổng = 1.0
+  levelWeights    String                      // JSON: { "L4": 0..1, ... }
+  difficulty      Float                       // 0-100 (công thức 6 yếu tố)
+  minutes         Float                       // thời lượng đề trung bình
+  totalQuestions  Int                         // số câu compute từ
+  freeTextPct     Float    @default(0)
+  olympicGeoPct   Float    @default(0)
+  diversity       Int      @default(0)
+  sourceHash      String                      // "{qcount}-{latestCreatedAt.ISO}"
+  updatedAt       DateTime @updatedAt
+}

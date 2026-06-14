@@ -28,7 +28,7 @@ interface Props {
   answers: Record<string, unknown>;
   attempt: { earned: number; total: number; score: number; durationSec: number };
   topics: { id: string; name: string; short: string; color: string }[];
-  targetSchools: { id: string; short: string; name: string; tone: string; before: number }[];
+  targetSchools: { id: string; short: string; name: string; tone: string; current: number }[];
 }
 
 interface Graded {
@@ -199,41 +199,24 @@ export function ResultsView({
             </div>
           </Card>
 
-          <Card title="Tác động đến % sẵn sàng" sub="Sau bài này, mức sẵn sàng được cập nhật">
+          <Card title="Mức độ sẵn sàng hiện tại" sub="Cập nhật sau khi nộp bài">
             <div className="col" style={{ gap: 14 }}>
-              {targetSchools.map((s) => {
-                const delta = s.id === school.short.toLowerCase() ? 3 : 1;
-                const after = Math.min(100, s.before + delta);
-                return (
-                  <div key={s.id}>
-                    <div className="row between" style={{ marginBottom: 4 }}>
-                      <span className="row" style={{ gap: 8 }}>
-                        <span className={"pill " + s.tone}>{s.short}</span>
-                        <span style={{ fontSize: 13 }}>{s.name}</span>
-                      </span>
-                      <span className="mono" style={{ fontSize: 13 }}>
-                        <span className="muted">{s.before}%</span>
-                        <span style={{ color: "var(--success)", margin: "0 6px" }}>→ {after}%</span>
-                        <Pill tone="green">+{delta}</Pill>
-                      </span>
-                    </div>
-                    <div style={{ position: "relative" }}>
-                      <Bar value={after} tone={s.tone} tall />
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: 0,
-                          left: 0,
-                          height: "100%",
-                          width: s.before + "%",
-                          borderRight: "2px dashed white",
-                          opacity: 0.7,
-                        }}
-                      />
-                    </div>
+              {targetSchools.map((s) => (
+                <div key={s.id}>
+                  <div className="row between" style={{ marginBottom: 4 }}>
+                    <span className="row" style={{ gap: 8 }}>
+                      <span className={"pill " + s.tone}>{s.short}</span>
+                      <span style={{ fontSize: 13 }}>{s.name}</span>
+                    </span>
+                    <span className="mono" style={{ fontSize: 13 }}>
+                      <b style={{ color: s.current >= 70 ? "var(--success)" : s.current >= 50 ? "var(--ink)" : "var(--danger)" }}>
+                        {s.current}%
+                      </b>
+                    </span>
                   </div>
-                );
-              })}
+                  <Bar value={s.current} tone={s.tone} tall />
+                </div>
+              ))}
               <div
                 style={{
                   marginTop: 4,
@@ -244,7 +227,7 @@ export function ResultsView({
                   color: "var(--accent-ink)",
                 }}
               >
-                <b><Icon name="sparkle" size={12} /> Gợi ý của Khỉ con:</b> Tập trung vào các câu sai phía dưới và hỏi AI để hiểu lý do nhé.
+                <b><Icon name="sparkle" size={12} /> Gợi ý của Khỉ con:</b> Xem chi tiết phân tích chuyên đề cần cải thiện trên trang chính.
               </div>
             </div>
           </Card>

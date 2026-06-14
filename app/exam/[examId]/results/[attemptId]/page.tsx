@@ -1,7 +1,8 @@
 import { notFound, redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { SCHOOLS, MIX_SCHOOL, DEFAULT_TOPICS } from "@/lib/static";
+import { DEFAULT_TOPICS } from "@/lib/static";
+import { getActiveSchools, MIX_SCHOOL } from "@/lib/schools";
 import { hydrateUser } from "@/lib/user-data";
 import { ResultsView } from "./ResultsView";
 import type { ExamQuestion } from "@/lib/exam";
@@ -64,6 +65,7 @@ export default async function ResultsPage({ params }: Props) {
   }));
 
   const answers = parseAnswers(attempt.answers);
+  const SCHOOLS = await getActiveSchools();
   const school = SCHOOLS.find((s) => s.id === exam.school) ?? MIX_SCHOOL;
 
   const topics = (await prisma.topic.findMany({ orderBy: { position: "asc" } })) ?? [];
@@ -79,7 +81,7 @@ export default async function ResultsPage({ params }: Props) {
     short: s.short,
     name: s.name,
     tone: s.tone,
-    before: user.readiness[s.id] ?? 0,
+    current: user.readiness[s.id] ?? 50,
   }));
 
   let parsedSections = [];

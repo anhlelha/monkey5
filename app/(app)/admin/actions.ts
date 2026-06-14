@@ -584,6 +584,164 @@ export async function updateLevelConfig(
   return { ok: true };
 }
 
+// ─── Schools CRUD ────────────────────────────────────────────────────────────
+
+import { invalidateSchoolsCache } from "@/lib/schools";
+import { ensureSchoolProfilesFresh, getAllSchoolProfiles } from "@/lib/school-profiles";
+import { computeMastery } from "@/lib/mastery";
+import { computeAllReadiness } from "@/lib/readiness";
+
+const schoolUpsertSchema = z.object({
+  id: z.string().min(1).max(16).regex(/^[a-z][a-z0-9]*$/, "id phải là chữ thường+số, bắt đầu bằng chữ"),
+  short: z.string().min(1).max(8),
+  name: z.string().min(1).max(80),
+  full: z.string().min(1).max(120),
+  color: z.string().min(1).max(60),
+  tone: z.string().max(20).default(""),
+  desc: z.string().max(200).default(""),
+  minutes: z.coerce.number().int().min(1).max(180),
+  style: z.string().max(200).default(""),
+  position: z.coerce.number().int().min(0).max(999).default(0),
+  active: z.coerce.boolean().default(true),
+});
+
+export async function createSchool(payload: unknown) {
+  await requireAdmin();
+  const data = schoolUpsertSchema.parse(payload);
+  const existing = await prisma.school.findUnique({ where: { id: data.id } });
+  if (existing) throw new Error(`School với id "${data.id}" đã tồn tại`);
+  await prisma.school.create({ data });
+  invalidateSchoolsCache();
+  revalidatePath("/admin");
+  revalidatePath("/home");
+  return { ok: true };
+}
+
+export async function updateSchool(payload: unknown) {
+  await requireAdmin();
+  const data = schoolUpsertSchema.parse(payload);
+  await prisma.school.update({
+    where: { id: data.id },
+    data: {
+      short: data.short, name: data.name, full: data.full,
+      color: data.color, tone: data.tone, desc: data.desc,
+      minutes: data.minutes, style: data.style, position: data.position,
+      active: data.active,
+    },
+  });
+  invalidateSchoolsCache();
+  revalidatePath("/admin");
+  revalidatePath("/home");
+  return { ok: true };
+}
+
+export async function deactivateSchool(id: string) {
+  await requireAdmin();
+  await prisma.school.update({ where: { id }, data: { active: false } });
+  invalidateSchoolsCache();
+  revalidatePath("/admin");
+  revalidatePath("/home");
+  return { ok: true };
+}
+
+// ─── Readiness admin ─────────────────────────────────────────────────────────
+
+export async function refreshSchoolProfilesAction() {
+  await requireAdmin();
+  const result = await ensureSchoolProfilesFresh();
+  revalidatePath("/admin");
+  return result;
+}
+
+export interface RecomputeResult {
+  processed: number;
+  total: number;
+  errors: { userId: string; email: string | null; error: string }[];
+  durationMs: number;
+}
+
+export async function recomputeAllReadinessAction(): Promise<RecomputeResult> {
+  await requireAdmin();
+  const t0 = Date.now();
+  await ensureSchoolProfilesFresh();
+  const profiles = await getAllSchoolProfiles();
+  const users = await prisma.user.findMany({ select: { id: true, email: true } });
+  const errors: RecomputeResult["errors"] = [];
+  let processed = 0;
+  for (const u of users) {
+    try {
+      const mastery = await computeMastery(u.id);
+      const readiness = computeAllReadiness(mastery.topicMastery, mastery.levelMastery, profiles);
+      await prisma.user.update({
+        where: { id: u.id },
+        data: {
+          topicMastery: JSON.stringify(mastery.topicMastery),
+          readiness: JSON.stringify(readiness),
+        },
+      });
+      processed++;
+    } catch (err) {
+      errors.push({ userId: u.id, email: u.email, error: String(err) });
+    }
+  }
+  revalidatePath("/admin");
+  revalidatePath("/home");
+  return { processed, total: users.length, errors, durationMs: Date.now() - t0 };
+}
+
+export interface ReadinessHistogramBucket {
+  range: string;
+  min: number;
+  max: number;
+  count: number;
+  label: string;
+}
+
+export interface ReadinessHistogram {
+  school: string;
+  total: number;
+  avg: number;
+  median: number;
+  buckets: ReadinessHistogramBucket[];
+}
+
+export async function getReadinessDistribution(): Promise<ReadinessHistogram[]> {
+  await requireAdmin();
+  const users = await prisma.user.findMany({ select: { readiness: true } });
+  const schools = await prisma.school.findMany({ where: { active: true }, orderBy: { position: "asc" } });
+
+  const histograms: ReadinessHistogram[] = [];
+  const bucketDefs = [
+    { min: 80, max: 101, label: "Sẵn sàng (80-100%)" },
+    { min: 60, max: 80, label: "Đang tiến (60-79%)" },
+    { min: 40, max: 60, label: "Cần luyện (40-59%)" },
+    { min: 20, max: 40, label: "Yếu (20-39%)" },
+    { min: 0, max: 20, label: "Rất yếu (0-19%)" },
+  ];
+
+  for (const school of schools) {
+    const values: number[] = [];
+    for (const u of users) {
+      let r: Record<string, number> = {};
+      try { r = JSON.parse(u.readiness) as Record<string, number>; } catch { /* ignore */ }
+      values.push(r[school.id] ?? 50);
+    }
+    const total = values.length;
+    const avg = total > 0 ? values.reduce((s, v) => s + v, 0) / total : 0;
+    const sorted = [...values].sort((a, b) => a - b);
+    const median = total > 0 ? sorted[Math.floor(total / 2)] : 0;
+    const buckets = bucketDefs.map((b) => ({
+      range: `${b.min}-${b.max - 1}`,
+      min: b.min,
+      max: b.max,
+      label: b.label,
+      count: values.filter((v) => v >= b.min && v < b.max).length,
+    }));
+    histograms.push({ school: school.id, total, avg: Math.round(avg), median, buckets });
+  }
+  return histograms;
+}
+
 // ─── QA: Get flagged questions (server-side audit) ───────────────────────────
 
 export async function getAuditResults(
