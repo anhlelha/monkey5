@@ -1,8 +1,16 @@
 import Script from "next/script";
 import { TryButton } from "./TryButton";
+import { LandingNavActions, LandingHeroActions } from "./LandingUserActions";
+
+interface LandingUser {
+  name: string | null;
+  image: string | null;
+  role: string;
+}
 
 interface LandingProps {
   hasGoogle: boolean;
+  user?: LandingUser | null;
 }
 
 // SVG icon for the right-arrow inside primary CTAs
@@ -51,7 +59,8 @@ function PlusIcon() {
   );
 }
 
-export function Landing({ hasGoogle }: LandingProps) {
+export function Landing({ hasGoogle, user }: LandingProps) {
+  const isLoggedIn = Boolean(user);
   return (
     <>
       <link rel="stylesheet" href="/landing.css" />
@@ -77,12 +86,18 @@ export function Landing({ hasGoogle }: LandingProps) {
             <a href="#faq">Câu hỏi</a>
           </nav>
           <div className="nav-cta">
-            <TryButton plan="demo" hasGoogle={hasGoogle} className="btn ghost">
-              Xem demo
-            </TryButton>
-            <TryButton plan="free" hasGoogle={hasGoogle} className="btn primary">
-              Dùng thử miễn phí
-            </TryButton>
+            {isLoggedIn && user ? (
+              <LandingNavActions user={user} />
+            ) : (
+              <>
+                <TryButton plan="demo" hasGoogle={hasGoogle} className="btn ghost">
+                  Xem demo
+                </TryButton>
+                <TryButton plan="free" hasGoogle={hasGoogle} className="btn primary">
+                  Dùng thử miễn phí
+                </TryButton>
+              </>
+            )}
           </div>
         </div>
       </header>
@@ -101,12 +116,18 @@ export function Landing({ hasGoogle }: LandingProps) {
               Ứng dụng luyện thi toán dành riêng cho học sinh lớp 5: đo đúng điểm mạnh — yếu, luyện đúng dạng đề của từng trường, và cho ba mẹ thấy chỉ số sẵn sàng tăng dần đến ngày thi.
             </p>
             <div className="hero-actions">
-              <TryButton plan="free" hasGoogle={hasGoogle} className="btn primary lg">
-                Dùng thử miễn phí <ArrowIcon />
-              </TryButton>
-              <a className="btn lg" href="#how">
-                Xem cách hoạt động
-              </a>
+              {isLoggedIn && user ? (
+                <LandingHeroActions user={user} size="lg" />
+              ) : (
+                <>
+                  <TryButton plan="free" hasGoogle={hasGoogle} className="btn primary lg">
+                    Dùng thử miễn phí <ArrowIcon />
+                  </TryButton>
+                  <a className="btn lg" href="#how">
+                    Xem cách hoạt động
+                  </a>
+                </>
+              )}
             </div>
             <div className="hero-trust">
               <span className="lbl">Bám sát đề thi thật của các trường CLC hàng đầu Hà Nội:</span>
@@ -485,17 +506,32 @@ export function Landing({ hasGoogle }: LandingProps) {
       <section className="section" style={{ paddingTop: 24 }}>
         <div className="wrap">
           <div className="cta-band reveal">
-            <h2>Bắt đầu hành trình vào lớp 6 CLC cùng con</h2>
-            <p>Đăng ký dùng thử miễn phí hôm nay — đo năng lực, nhận lộ trình riêng và thấy chỉ số sẵn sàng tăng dần.</p>
-            <div className="row">
-              <TryButton plan="free" hasGoogle={hasGoogle} className="btn primary lg">
-                Dùng thử miễn phí <ArrowIcon />
-              </TryButton>
-              <TryButton plan="demo" hasGoogle={hasGoogle} className="btn lg">
-                Xem demo sản phẩm
-              </TryButton>
-            </div>
-            <div className="fine">Không cần thẻ thanh toán · Bắt đầu trong 2 phút</div>
+            {isLoggedIn && user ? (
+              <>
+                <h2>
+                  Chào {user.name?.split(/\s+/).slice(-1)[0] ?? "bạn"} — tiếp tục hành
+                  trình thôi nào!
+                </h2>
+                <p>Lộ trình học của bạn đã sẵn sàng. Quay lại học bất cứ lúc nào.</p>
+                <div className="row">
+                  <LandingHeroActions user={user} size="lg" />
+                </div>
+              </>
+            ) : (
+              <>
+                <h2>Bắt đầu hành trình vào lớp 6 CLC cùng con</h2>
+                <p>Đăng ký dùng thử miễn phí hôm nay — đo năng lực, nhận lộ trình riêng và thấy chỉ số sẵn sàng tăng dần.</p>
+                <div className="row">
+                  <TryButton plan="free" hasGoogle={hasGoogle} className="btn primary lg">
+                    Dùng thử miễn phí <ArrowIcon />
+                  </TryButton>
+                  <TryButton plan="demo" hasGoogle={hasGoogle} className="btn lg">
+                    Xem demo sản phẩm
+                  </TryButton>
+                </div>
+                <div className="fine">Không cần thẻ thanh toán · Bắt đầu trong 2 phút</div>
+              </>
+            )}
           </div>
         </div>
       </section>

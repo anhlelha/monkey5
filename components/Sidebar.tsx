@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Icon, type IconName } from "./Icon";
 import { Brand } from "./ui";
+import { UserMenu } from "./UserMenu";
 import { SettingsButton } from "@/app/(app)/home/SettingsButton";
 
 interface SidebarProps {
@@ -93,15 +94,6 @@ export function Sidebar({ user, examLibraryBadge }: SidebarProps) {
     { href: "/results", icon: "trend", label: "Kết quả gần đây" },
   ];
 
-  const initials =
-    (user.name ?? "K")
-      .trim()
-      .split(/\s+/)
-      .slice(-2)
-      .map((s) => s[0])
-      .join("")
-      .toUpperCase() || "K";
-
   return (
     <aside className="sidebar">
       <div className="brand">
@@ -116,66 +108,15 @@ export function Sidebar({ user, examLibraryBadge }: SidebarProps) {
         <SidebarBody learnItems={learnItems} user={user} />
       </Suspense>
 
-      <Link href="/home" className="sidebar-user">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        {user.image ? (
-          <img
-            src={user.image}
-            alt=""
-            className="avatar"
-            style={{ objectFit: "cover", borderRadius: "50%" }}
-          />
-        ) : (
-          <div className="avatar">{initials}</div>
-        )}
-        <div className="meta">
-          <b>{user.name ?? "Học sinh"}</b>
-          <span className="row" style={{ gap: 4, marginTop: 2, display: "inline-flex" }}>
-            <span>{user.grade}</span>
-            {user.role === "admin" ? (
-              <>
-                <span className="muted">·</span>
-                <span
-                  className="pill"
-                  style={{
-                    padding: "0 6px",
-                    fontSize: "9px",
-                    lineHeight: "13px",
-                    fontWeight: 700,
-                    textTransform: "uppercase",
-                    background: "var(--accent)",
-                    color: "white",
-                    borderColor: "transparent",
-                    borderRadius: "4px",
-                  }}
-                >
-                  Admin
-                </span>
-              </>
-            ) : user.plan && user.plan !== "free" ? (
-              <>
-                <span className="muted">·</span>
-                <span
-                  className="pill"
-                  style={{
-                    padding: "0 6px",
-                    fontSize: "9px",
-                    lineHeight: "13px",
-                    fontWeight: 700,
-                    textTransform: "uppercase",
-                    background: user.plan === "vip" ? "var(--ink)" : "var(--success-soft)",
-                    color: user.plan === "vip" ? "white" : "var(--success)",
-                    borderColor: "transparent",
-                    borderRadius: "4px",
-                  }}
-                >
-                  {user.plan}
-                </span>
-              </>
-            ) : null}
-          </span>
-        </div>
-      </Link>
+      <UserMenu
+        user={{
+          name: user.name,
+          image: user.image,
+          grade: user.grade,
+          role: user.role,
+          plan: user.plan,
+        }}
+      />
     </aside>
   );
 }
@@ -208,6 +149,9 @@ interface NavBodyProps {
 }
 
 function NavBody({ learnItems, adminGroups, user, isAdmin, pathname, currentTab }: NavBodyProps) {
+  const isAdminContext =
+    pathname.startsWith("/admin") || pathname.startsWith("/create");
+
   const isActive = (it: NavItem) => {
     if (it.adminTab) {
       if (it.adminTab === "exams" && pathname.startsWith("/admin/exam")) return true;
@@ -215,49 +159,56 @@ function NavBody({ learnItems, adminGroups, user, isAdmin, pathname, currentTab 
       if (it.adminTab === "overview") return currentTab === null || currentTab === "overview";
       return currentTab === it.adminTab;
     }
-    if (pathname === "/admin" || pathname.startsWith("/admin/")) return false;
+    if (isAdminContext) return false;
     const candidates = it.match ?? [it.href];
     return candidates.some((p) => pathname === p || pathname.startsWith(p + "/"));
   };
 
+  const settingsBlock = (
+    <SettingsButton
+      initialUser={{
+        name: user.name ?? "",
+        email: user.email ?? "",
+        grade: user.grade,
+        targets: user.targets,
+        hours: user.hours,
+        examDate: user.examDate ?? "2026-09-01",
+        readyTarget: user.readyTarget,
+        theme: user.theme,
+      }}
+      trigger={
+        <div className="nav-item">
+          <Icon name="settings" />
+          <span>Cài đặt</span>
+        </div>
+      }
+    />
+  );
+
   return (
     <>
-      <div className="nav-section">
-        <h6>Học tập</h6>
-        {learnItems.map((it) => (
-          <Link
-            key={it.href}
-            href={it.href}
-            className={"nav-item " + (isActive(it) ? "active" : "")}
-          >
-            <Icon name={it.icon} />
-            <span>{it.label}</span>
-            {it.badge !== undefined && it.badge !== null && (
-              <span className="badge">{it.badge}</span>
-            )}
-          </Link>
-        ))}
-        <SettingsButton
-          initialUser={{
-            name: user.name ?? "",
-            email: user.email ?? "",
-            grade: user.grade,
-            targets: user.targets,
-            hours: user.hours,
-            examDate: user.examDate ?? "2026-09-01",
-            readyTarget: user.readyTarget,
-            theme: user.theme,
-          }}
-          trigger={
-            <div className="nav-item">
-              <Icon name="settings" />
-              <span>Cài đặt</span>
-            </div>
-          }
-        />
-      </div>
+      {!isAdminContext && (
+        <div className="nav-section">
+          <h6>Học tập</h6>
+          {learnItems.map((it) => (
+            <Link
+              key={it.href}
+              href={it.href}
+              className={"nav-item " + (isActive(it) ? "active" : "")}
+            >
+              <Icon name={it.icon} />
+              <span>{it.label}</span>
+              {it.badge !== undefined && it.badge !== null && (
+                <span className="badge">{it.badge}</span>
+              )}
+            </Link>
+          ))}
+          {settingsBlock}
+        </div>
+      )}
 
-      {isAdmin &&
+      {isAdminContext &&
+        isAdmin &&
         adminGroups.map((group) => (
           <div className="nav-section" key={group.title}>
             <h6>{group.title}</h6>
@@ -274,6 +225,13 @@ function NavBody({ learnItems, adminGroups, user, isAdmin, pathname, currentTab 
             ))}
           </div>
         ))}
+
+      {isAdminContext && isAdmin && (
+        <div className="nav-section">
+          <h6>Tài khoản</h6>
+          {settingsBlock}
+        </div>
+      )}
     </>
   );
 }
