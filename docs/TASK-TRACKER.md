@@ -1,6 +1,6 @@
 # 📋 Task Tracker — Monkey5
 
-> Last updated: 2026-06-14 10:49
+> Last updated: 2026-06-14 10:55
 
 ## Status Legend
 - ✅ Done — Task completed successfully
@@ -51,8 +51,8 @@
 - **Result:** Opened ports 80 and 443 in the GCP firewall rule. Configured Nginx on the VM as a reverse proxy from `monkey5.ai4all.vn` to port 3000. Obtained and configured Let's Encrypt SSL certificate automatically using Certbot with HTTP-to-HTTPS redirect.
 - **Verification:** Verified successful HTTPS connection to `https://monkey5.ai4all.vn` returning HTTP 200 OK.
 
-### ✅ Agent Skill & Workflow Upgrade for Socratic Discovery
+### ✅ Agent Skill & Workflow Upgrade for Socratic Discovery & OAuth
 - **Status:** Done
-- **Completed:** 2026-06-14 10:49
-- **Files:** [.agent/skills/infra-provisioner/SKILL.md](file:///Users/anhlh48/00.AIProjects/99.Monkey5/.agent/skills/infra-provisioner/SKILL.md), [.agent/workflows/gcp-provision.md](file:///Users/anhlh48/00.AIProjects/99.Monkey5/.agent/workflows/gcp-provision.md), [.agent/AGENT-CHANGELOG.md](file:///Users/anhlh48/00.AIProjects/99.Monkey5/.agent/AGENT-CHANGELOG.md)
-- **Result:** Rewrote the provisioning skill and workflow files to enforce the Socratic Discovery Protocol (interactive upfront input questionnaire) and the complete unified deployment pipeline. Recorded the modification in the Agent Changelog.
+- **Completed:** 2026-06-14 10:55
+- **Files:** [.agent/skills/infra-provisioner/SKILL.md](file:///Users/anhlh48/00.AIProjects/99.Monkey5/.agent/skills/infra-provisioner/SKILL.md), [.agent/workflows/gcp-provision.md](file:///Users/anhlh48/00.AIProjects/99.Monkey5/.agent/workflows/gcp-provision.md), [.agent/AGENT-CHANGELOG.md](file:///Users/anhlh48/00.AIProjects/99.Monkey5/.agent/AGENT-CHANGELOG.md), [scripts/deploy.sh](file:///Users/anhlh48/00.AIProjects/99.Monkey5/scripts/deploy.sh)
+- **Result:** Rewrote the provisioning skill, workflow, and deployment files to enforce the Socratic Discovery Protocol (interactive upfront input questionnaire), include detailed Google OAuth instructions, and handle `AUTH_TRUST_HOST=true` automatically. Recorded the modification in the Agent Changelog.
