@@ -21,10 +21,10 @@ echo "Creating GCE VM instance '$VM_NAME'..."
 gcloud compute instances create "$VM_NAME" \
     --project="$GCP_PROJECT" \
     --zone="$GCP_ZONE" \
-    --machine-type="e2-medium" \
+    --machine-type="${VM_MACHINE_TYPE:-e2-medium}" \
     --image-family="ubuntu-2204-lts" \
     --image-project="ubuntu-os-cloud" \
-    --boot-disk-size="20GB" \
+    --boot-disk-size="${VM_DISK_SIZE:-20GB}" \
     --tags="monkey5-server,http-server,https-server" \
     --metadata-from-file ssh-keys=<(echo "$GCP_USER:$(cat "${GCP_KEY}.pub")")
 

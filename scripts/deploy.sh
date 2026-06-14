@@ -23,7 +23,7 @@ echo "Ensuring Git is installed on VM..."
 ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "sudo apt-get update -y && sudo apt-get install -y git"
 
 echo "Deploying Git Deploy Key to VM..."
-GIT_KEY_PATH="$HOME/.ssh/git_deploy_key_monkey5"
+GIT_KEY_PATH="$HOME/.ssh/${GIT_KEY_NAME:-git_deploy_key_monkey5}"
 if [ -f "$GIT_KEY_PATH" ]; then
     # Ensure remote .ssh directory exists
     ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "mkdir -p ~/.ssh && chmod 700 ~/.ssh"
@@ -41,7 +41,7 @@ echo "Setting up/Updating codebase on VM via Git..."
 ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "
     if [ ! -d \"$REMOTE_PROJECT_PATH/.git\" ]; then
         echo 'Cloning repository from GitHub...'
-        git clone git@github.com:anhlelha/monkey5.git \"$REMOTE_PROJECT_PATH\"
+        git clone \"$GIT_REPO_URL\" \"$REMOTE_PROJECT_PATH\"
     else
         echo 'Pulling latest changes from GitHub...'
         cd \"$REMOTE_PROJECT_PATH\"
@@ -79,6 +79,6 @@ ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "
 # 4. Run Remote Setup
 echo "Running remote setup on VM..."
 scp -i "$GCP_KEY" -o StrictHostKeyChecking=no "$SCRIPT_DIR/setup-remote.sh" "$GCP_USER@$GCP_IP:~/setup-remote.sh"
-ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "bash ~/setup-remote.sh"
+ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "REMOTE_PROJECT_PATH=$REMOTE_PROJECT_PATH VM_NAME=$VM_NAME bash ~/setup-remote.sh"
 
 echo "=== Deployment Complete! ==="

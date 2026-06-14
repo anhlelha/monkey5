@@ -24,7 +24,7 @@ if ! command -v pm2 &> /dev/null; then
 fi
 
 # 3. Setup Project
-cd ~/monkey5
+cd "${REMOTE_PROJECT_PATH:-$HOME/monkey5}"
 echo "Installing project dependencies..."
 npm install
 
@@ -38,11 +38,12 @@ echo "Building Next.js application..."
 npm run build
 
 echo "Starting application with PM2..."
+APP_NAME="${VM_NAME:-monkey5}"
 # Check if pm2 process exists, otherwise start it
-if pm2 show monkey5 &>/dev/null; then
-    pm2 restart monkey5
+if pm2 show "$APP_NAME" &>/dev/null; then
+    pm2 restart "$APP_NAME"
 else
-    pm2 start npm --name "monkey5" -- start
+    pm2 start npm --name "$APP_NAME" -- start
 fi
 
 # Save PM2 process list

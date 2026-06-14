@@ -1,9 +1,33 @@
 
-### [2026-06-14] — UPGRADE: GCP Provisioning Skill & Socratic Discovery Protocol
+### [2026-06-14] — UPGRADE & CREATE: Global GCP Provisioning Skill & Generic Workflow
 
-- **File:** `.agent/skills/infra-provisioner/SKILL.md`, `.agent/workflows/gcp-provision.md`
+- **File:** `/Users/anhlh48/.gemini/config/skills/gcloud-provisioner/SKILL.md`, `.agent/workflows/gcp-provision.md`
+- **Loại:** `CREATE` / `MODIFY`
+- **Mô tả:** Đưa skill `gcloud-provisioner` thành skill global của IDE (nằm tại thư mục cấu hình global `~/.gemini/config/skills/`). Đồng thời, refactor workflow `gcp-provision.md` tại local dự án hiện tại thành hoàn toàn generic, loại bỏ mọi default value và cổng ứng dụng cố định của Monkey5, đảm bảo không có vết tích dự án cũ khi chạy workflow này.
+
+---
+
+### [2026-06-14] — CREATE: Global Skill deployment for Infra Provisioner
+
+- **File:** `/Users/anhlh48/.gemini/config/skills/infra-provisioner/SKILL.md`
+- **Loại:** `CREATE`
+- **Mô tả:** Đưa skill `infra-provisioner` thành skill global của IDE (nằm tại thư mục cấu hình global `~/.gemini/config/skills/`). Điều này cho phép mọi dự án mới được khởi tạo sau này đều có thể áp dụng ngay giao thức provisioning tổng quát và bảo mật mà không bị phụ thuộc vào codebase của Monkey5.
+
+---
+
+### [2026-06-14] — UPGRADE: Generic Refactoring of Infra Provisioner Skill
+
+- **File:** `.agent/skills/infra-provisioner/SKILL.md`
 - **Loại:** `MODIFY`
-- **Mô tả:** Nâng cấp skill `infra-provisioner` và workflow `gcp-provision` để tích hợp quy trình cài đặt Nginx Reverse Proxy và SSL Certbot. Thiết lập giao thức Socratic Discovery Protocol (bắt buộc hỏi người dùng tất cả thông tin đầu vào liên quan đến dự án trước khi chạy, không dùng thông tin cũ) và thực thi trọn gói một mạch sau khi xác nhận.
+- **Mô tả:** Chuyển đổi skill `infra-provisioner` thành hoàn toàn generic và project-agnostic. Loại bỏ toàn bộ các thông tin cụ thể (monkey5, email, tên repo cụ thể, v.v.). Bổ sung yêu cầu bắt buộc hỏi đáp cấu hình VM (Small/Medium/Large), kích thước disk, cổng nội bộ của ứng dụng, tên PM2, v.v. trước khi triển khai dự án mới.
+
+---
+
+### [2026-06-14] — UPGRADE: GCP Provisioning Skill, Socratic Discovery & OAuth Rules
+
+- **File:** `.agent/skills/infra-provisioner/SKILL.md`, `.agent/workflows/gcp-provision.md`, `scripts/deploy.sh`
+- **Loại:** `MODIFY`
+- **Mô tả:** Nâng cấp skill `infra-provisioner` và workflow `gcp-provision` để tự động hóa Nginx Reverse Proxy, Certbot SSL và cấu hình Google OAuth. Thiết lập giao thức Socratic Discovery Protocol (bắt buộc hỏi người dùng tất cả thông tin đầu vào liên quan đến dự án trước khi chạy, không dùng thông tin cũ) và hiển thị trực quan thông số đăng ký Google OAuth (Redirect URIs, JavaScript Origins) cho người dùng cấu hình ngay từ đầu. Tự động tiêm `AUTH_TRUST_HOST=true` để tránh lỗi UntrustedHost NextAuth.
 
 ### [2026-04-14] — ARCHITECTURE: 2-Step Deployment Pipeline (Skills & Workflows)
 

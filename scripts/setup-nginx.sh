@@ -4,21 +4,30 @@ set -e
 
 # Load config to get variables
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-if [ -f "/home/anhlh48/monkey5/scripts/config.sh" ]; then
-    source "/home/anhlh48/monkey5/scripts/config.sh"
+# Guess home folder and check remote project path
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REMOTE_PATH="${REMOTE_PROJECT_PATH:-$HOME/monkey5}"
+if [ -f "$REMOTE_PATH/scripts/config.sh" ]; then
+    source "$REMOTE_PATH/scripts/config.sh"
 elif [ -f "$SCRIPT_DIR/config.sh" ]; then
     source "$SCRIPT_DIR/config.sh"
 fi
 
-DOMAIN="${CUSTOM_DOMAIN:-monkey5.ai4all.vn}"
-EMAIL="anhle.viettel@gmail.com"
+DOMAIN="${CUSTOM_DOMAIN}"
+EMAIL="${SSL_EMAIL:-anhle.viettel@gmail.com}"
+CONFIG_NAME="${VM_NAME:-monkey5-server}"
+
+if [ -z "$DOMAIN" ]; then
+    echo "Error: CUSTOM_DOMAIN is not set in config.sh. SSL cannot be configured without a domain."
+    exit 1
+fi
 
 echo "=== Installing Nginx & Certbot ==="
 sudo apt-get update -y
 sudo apt-get install -y nginx certbot python3-certbot-nginx
 
 echo "=== Creating Nginx Configuration ==="
-sudo tee /etc/nginx/sites-available/monkey5 > /dev/null <<EOF
+sudo tee "/etc/nginx/sites-available/$CONFIG_NAME" > /dev/null <<EOF
 server {
     listen 80;
     server_name $DOMAIN;
@@ -38,7 +47,7 @@ server {
 EOF
 
 echo "=== Enabling Nginx Configuration ==="
-sudo ln -sf /etc/nginx/sites-available/monkey5 /etc/nginx/sites-enabled/
+sudo ln -sf "/etc/nginx/sites-available/$CONFIG_NAME" /etc/nginx/sites-enabled/
 sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t
 sudo systemctl restart nginx
