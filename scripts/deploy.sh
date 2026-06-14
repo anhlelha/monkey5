@@ -69,6 +69,13 @@ elif [ ! -z "$GCP_IP" ]; then
     ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "sed -i 's|NEXTAUTH_URL=.*|NEXTAUTH_URL=http://$GCP_IP:3000|g' $REMOTE_PROJECT_PATH/.env"
 fi
 
+# Ensure AUTH_TRUST_HOST=true is set in remote .env to prevent UntrustedHost error
+ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "
+    if ! grep -q 'AUTH_TRUST_HOST' $REMOTE_PROJECT_PATH/.env; then
+        echo 'AUTH_TRUST_HOST=true' >> $REMOTE_PROJECT_PATH/.env
+    fi
+"
+
 # 4. Run Remote Setup
 echo "Running remote setup on VM..."
 scp -i "$GCP_KEY" -o StrictHostKeyChecking=no "$SCRIPT_DIR/setup-remote.sh" "$GCP_USER@$GCP_IP:~/setup-remote.sh"

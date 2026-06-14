@@ -9,7 +9,7 @@ Configure GCP settings, spin up a GCE instance, update firewalls, deploy code vi
 
 ### Phase 1: Socratic Interactive Discovery
 1. **Gate**: Halt execution. Do not read from old cached variables or previous sessions.
-2. **Interact**: Ask the user all configuration questions up front:
+2. **Interact**: Ask the user all configuration questions up front in a single prompt:
    - Target GCP Project ID
    - Target GCP Gmail account
    - Target Custom Domain Name
@@ -17,7 +17,11 @@ Configure GCP settings, spin up a GCE instance, update firewalls, deploy code vi
    - Target VM instance name (default: `monkey5-server`)
    - Target GCP zone (default: `asia-southeast1-a`)
    - Cloudflare proxy status (Proxied vs DNS Only)
-3. **Write**: Configure `scripts/config.sh` with the values provided.
+3. **OAuth Setup Guidance**: Along with the questions, output the exact Google OAuth setup parameters:
+   - **Authorized JavaScript origins**: `https://[CUSTOM_DOMAIN]`
+   - **Authorized redirect URIs**: `https://[CUSTOM_DOMAIN]/api/auth/callback/google`
+   - Ask the user to confirm they have updated these values in their GCP Console and configured the matching `GOOGLE_CLIENT_ID`/`GOOGLE_CLIENT_SECRET` in `.env.local`.
+4. **Write**: Configure `scripts/config.sh` with the values provided.
 
 ### Phase 2: Infrastructure Provisioning
 1. **Authorize**: Verify gcloud login:
@@ -30,7 +34,7 @@ Configure GCP settings, spin up a GCE instance, update firewalls, deploy code vi
 ### Phase 3: Application & Env Deployment
 1. **Sync and Run Deploy**:
    `bash scripts/deploy.sh`
-   *Syncs repository deploy keys to VM, runs git clone/pull on VM, SCPs environment variables, rewrites NEXTAUTH_URL, and runs setup-remote.sh to compile Next.js and start server under PM2.*
+   *Syncs repository deploy keys to VM, runs git clone/pull on VM, SCPs environment variables, rewrites NEXTAUTH_URL, appends AUTH_TRUST_HOST=true to remote .env, and runs setup-remote.sh to compile Next.js and start server under PM2.*
 
 ### Phase 4: Nginx & Certbot SSL setup
 1. **Execute Nginx & SSL Script**:
@@ -46,6 +50,7 @@ Configure GCP settings, spin up a GCE instance, update firewalls, deploy code vi
 - [ ] GCE instance is `RUNNING` on GCP.
 - [ ] Firewall rules permit ports 22, 80, 443, 3000, 8000.
 - [ ] Codebase pulled from GitHub remote on VM.
+- [ ] `AUTH_TRUST_HOST=true` configured in remote `.env`.
 - [ ] Application starts successfully and runs under PM2.
 - [ ] Nginx proxies port 80/443 traffic to port 3000.
 - [ ] Valid Let's Encrypt SSL certificate installed and redirects active.
