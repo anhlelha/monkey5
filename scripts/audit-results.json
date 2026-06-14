@@ -976,6 +976,54 @@
     "correct": "40"
   },
   {
+    "examId": "nshn-2021",
+    "school": "nshn",
+    "year": "2021-2022",
+    "num": 13,
+    "type": "essay",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình thang $ABCD$ có đáy bé $AB$ bằng $\\dfrac{1}{3}$ đáy lớn. Chiều cao bằng $12{,}6$ m và bằng hiệu độ dài hai đáy.…",
+    "figure": null,
+    "correct": "a) 158,76 m²; b) S(OBC) = S(OAD); c) S(DBP)/S(DPC) = 1/3"
+  },
+  {
+    "examId": "nshn-2022",
+    "school": "nshn",
+    "year": "2022-2023",
+    "num": 8,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Trường Ngôi Sao Hà Nội $2$ dự định mở cuộc thi chạy \"Vì nụ cười trẻ thơ\". Các vận động viên chạy xung quanh một khu đất …",
+    "figure": null,
+    "correct": "22"
+  },
+  {
+    "examId": "nshn-2022",
+    "school": "nshn",
+    "year": "2022-2023",
+    "num": 14,
+    "type": "essay",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho tam giác $ABC$ có $BC = 6$ cm. Trên cạnh $BC$ lấy điểm $D$ cách $C$ là $2$ cm. Nối $A$ với $D$ được tam giác $ADC$ c…",
+    "figure": null,
+    "correct": "a) S(ABC) = 12 cm²; b) S(BDE) = 16/3 cm²"
+  },
+  {
     "examId": "ntl-2020",
     "school": "ntl",
     "year": "2020-2021",

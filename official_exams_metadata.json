@@ -7457,6 +7457,358 @@
           "figure": null
         }
       ]
+    },
+    {
+      "id": "nshn-2021",
+      "school": "nshn",
+      "kind": "official",
+      "year": "2021-2022",
+      "title": "Đề thi học bổng Ngôi Sao Hà Nội — Môn Toán Lớp 5",
+      "intro": "Học sinh làm bài trên phiếu trả lời. Phần trắc nghiệm chỉ ghi đáp số; phần tự luận trình bày bài giải chi tiết.",
+      "minutes": 60,
+      "note": "Đề chính thức kỳ thi học bổng Ngôi Sao Hà Nội — Khối 5, năm học 2021-2022 (nguồn: PDF MathExpress 2022).",
+      "sections": [
+        {
+          "num": 1,
+          "header": "I. Phần trắc nghiệm (10 điểm). Học sinh chỉ ghi đáp số vào phiếu trả lời, không cần giải thích"
+        },
+        {
+          "num": 11,
+          "header": "Phần II (5 điểm). Phần tự luận: Học sinh trình bày bài giải chi tiết vào phiếu trả lời"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NSHN-2021-22-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "10",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2021-22-C2",
+          "num": 2,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2021-22-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "105",
+          "unit": "m vải",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2021-22-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "8",
+          "unit": "em",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2021-22-C5",
+          "num": 5,
+          "type": "mcq",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": "nshn-2021-c5"
+        },
+        {
+          "id": "NSHN-2021-22-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "12",
+          "unit": "ngày",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2021-22-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "7",
+          "unit": "bạn",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2021-22-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 1,
+          "correct": "400",
+          "unit": "km",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2021-22-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "60",
+          "unit": "cm²",
+          "figure": "nshn-2021-c9"
+        },
+        {
+          "id": "NSHN-2021-22-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "147187",
+          "unit": "hình",
+          "figure": "nshn-2021-c10"
+        },
+        {
+          "id": "NSHN-2021-22-B1",
+          "num": 11,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "a) x = 32,6; b) x = 12",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2021-22-B2",
+          "num": 12,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "a) 31,25%; b) 56,25%; c) 32 học sinh; d) 14 học sinh",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2021-22-B3",
+          "num": 13,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "a) 158,76 m²; b) S(OBC) = S(OAD); c) S(DBP)/S(DPC) = 1/3",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "nshn-2022",
+      "school": "nshn",
+      "kind": "official",
+      "year": "2022-2023",
+      "title": "Đề thi học bổng Lớp 6 — Trường Ngôi Sao Hà Nội (Môn Toán)",
+      "intro": "Học sinh làm bài trên giấy thi. Phần trắc nghiệm chỉ ghi đáp án; phần tự luận trình bày bài giải chi tiết.",
+      "minutes": 60,
+      "note": "Đề chính thức kỳ thi học bổng vào Lớp 6 Ngôi Sao Hà Nội, năm học 2022-2023 (nguồn: PDF MathExpress 2023).",
+      "sections": [
+        {
+          "num": 1,
+          "header": "I. TRẮC NGHIỆM (5,0 điểm): Học sinh ghi đáp án vào giấy thi, không cần giải thích"
+        },
+        {
+          "num": 11,
+          "header": "II. TỰ LUẬN (5,0 điểm): Học sinh trình bày bài giải chi tiết vào giấy thi"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NSHN-2022-23-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 2,
+          "correct": "50",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2022-23-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 2,
+          "correct": "30",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2022-23-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 2,
+          "correct": "50",
+          "unit": "ngày",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2022-23-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 2,
+          "correct": "15",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2022-23-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 2,
+          "correct": "100",
+          "unit": "bông hoa",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2022-23-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 2,
+          "correct": "lỗ 125000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2022-23-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "24",
+          "unit": "cm²",
+          "figure": "nshn-2022-c7"
+        },
+        {
+          "id": "NSHN-2022-23-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "22",
+          "unit": "chặng",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2022-23-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "24",
+          "unit": "cm²",
+          "figure": "nshn-2022-c9"
+        },
+        {
+          "id": "NSHN-2022-23-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 2,
+          "correct": "113",
+          "unit": "lần",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2022-23-B1",
+          "num": 11,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 3,
+          "correct": "12",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2022-23-B2",
+          "num": 12,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 3,
+          "correct": "x = 0,9",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2022-23-B3",
+          "num": 13,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 4,
+          "correct": "37,9",
+          "unit": "lít",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2022-23-B4",
+          "num": 14,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 6,
+          "correct": "a) S(ABC) = 12 cm²; b) S(BDE) = 16/3 cm²",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2022-23-B5",
+          "num": 15,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 4,
+          "correct": "Không thể",
+          "unit": null,
+          "figure": null
+        }
+      ]
     }
   ]
 }

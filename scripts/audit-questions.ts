@@ -46,6 +46,8 @@ const IMPLEMENTED_FIGURES = new Set([
   "ntl-2022-c11", "ntl-2022-b2", "ntl-2023-c7", "ntl-2023-c10", "ntl-2023-b2",
   "ntl-2025-c8", "ntl-2025-c9", "ntl-2025-b2",
   "nshn-2026-c8", "nshn-2026-c9", "nshn-2026-b2",
+  "nshn-2021-c5", "nshn-2021-c9", "nshn-2021-c10",
+  "nshn-2022-c7", "nshn-2022-c9",
 ]);
 
 // ─── Heuristics for unformatted math ─────────────────────────────────────────

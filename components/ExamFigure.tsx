@@ -2600,6 +2600,260 @@ export function ExamFigure({ figure }: Props) {
       );
     }
 
+    case "nshn-2021-c5": {
+      // 8×8 chessboard. Convention from the PDF: bottom-left square (col 1, row 1)
+      // is WHITE; squares alternate. Knight "M" sits at column 2 from left, row 2
+      // from bottom — which is also a white square (same diagonal parity).
+      const N = 8;
+      const cell = 40;
+      const W = N * cell;
+      // Position in 1-indexed (col from left, row from bottom):
+      const mColFromLeft = 2;
+      const mRowFromBottom = 2;
+      // Convert to (r, c) where r is 0-indexed from top:
+      const mC = mColFromLeft - 1;
+      const mR = N - mRowFromBottom;
+      const squares: React.ReactElement[] = [];
+      for (let r = 0; r < N; r++) {
+        for (let c = 0; c < N; c++) {
+          // Bottom-left = (r=N-1, c=0). Want it WHITE. So dark when (r+c) odd
+          // makes (N-1, 0) parity = (N-1) odd? For N=8: r=7, c=0 → sum 7 → odd → dark.
+          // We want bottom-left WHITE, so flip: dark when (r + c) is EVEN.
+          const isDark = (r + c) % 2 === 0;
+          squares.push(
+            <rect
+              key={`${r}-${c}`}
+              x={c * cell}
+              y={r * cell}
+              width={cell}
+              height={cell}
+              fill={isDark ? "var(--ink)" : "white"}
+              stroke="var(--ink)"
+              strokeWidth={0.5}
+            />
+          );
+        }
+      }
+      // M centred inside square (mR, mC).
+      const mx = (mC + 0.5) * cell;
+      const my = (mR + 0.5) * cell + 9;
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 380 }}>
+          <svg viewBox={`-2 -2 ${W + 4} ${W + 4}`} width="100%" style={{ display: "block", height: "auto" }}>
+            {squares}
+            <text
+              x={mx}
+              y={my}
+              fill="var(--ink)"
+              fontSize={26}
+              textAnchor="middle"
+              style={{ fontStyle: "italic", fontFamily: "Times, serif", fontWeight: "bold" }}
+            >
+              M
+            </text>
+          </svg>
+        </div>
+      );
+    }
+
+    case "nshn-2021-c9": {
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 360 }}>
+          <img
+            src="/figures/nshn-2021-c9.png"
+            alt="Hình lập phương ghép — Bài 9 NSHN 2021"
+            style={{ maxWidth: "100%", width: "100%", height: "auto", display: "block" }}
+          />
+        </div>
+      );
+    }
+
+    case "nshn-2021-c10": {
+      // 3 honeycomb shapes: hình thứ 1 (1 lục giác), hình thứ 2 (7), hình thứ 3 (19).
+      // Pointy-top hexagons in honeycomb tiling.
+      const R = 14; // radius
+      const w = Math.sqrt(3) * R; // horizontal spacing
+      const h = 1.5 * R; // vertical spacing
+      // Honeycomb hexagon (pointy-top). Points relative to centre (cx, cy).
+      const hexPoints = (cx: number, cy: number) =>
+        [0, 1, 2, 3, 4, 5]
+          .map((i) => {
+            const a = (Math.PI / 3) * i - Math.PI / 2;
+            return `${(cx + R * Math.cos(a)).toFixed(2)},${(cy + R * Math.sin(a)).toFixed(2)}`;
+          })
+          .join(" ");
+
+      // Centres of a hexagonal pattern of "rings" (rings = 0..n-1).
+      // rings=1 → 1 hex; rings=2 → 7; rings=3 → 19.
+      const ringCenters = (rings: number): Array<[number, number]> => {
+        const out: Array<[number, number]> = [[0, 0]];
+        for (let k = 1; k < rings; k++) {
+          let q = k, r = 0;
+          const dirs: Array<[number, number]> = [[-1, 1], [-1, 0], [0, -1], [1, -1], [1, 0], [0, 1]];
+          for (let d = 0; d < 6; d++) {
+            for (let step = 0; step < k; step++) {
+              out.push([q, r]);
+              q += dirs[d][0];
+              r += dirs[d][1];
+            }
+          }
+        }
+        return out;
+      };
+      const drawCluster = (rings: number, ox: number) => {
+        const centers = ringCenters(rings);
+        return centers.map(([q, r], i) => {
+          const cx = ox + w * (q + r / 2);
+          const cy = h * r;
+          return (
+            <polygon
+              key={`r${rings}-${i}`}
+              points={hexPoints(cx, cy)}
+              fill="#FFD83C"
+              stroke="var(--ink)"
+              strokeWidth={1.2}
+            />
+          );
+        });
+      };
+
+      const oxA = 80;
+      const oxB = 200;
+      const oxC = 360;
+      const W2 = 480;
+      const H2 = 200;
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 540 }}>
+          <svg viewBox={`0 -${H2 / 2} ${W2} ${H2}`} width="100%" style={{ display: "block", height: "auto" }}>
+            {drawCluster(1, oxA)}
+            {drawCluster(2, oxB)}
+            {drawCluster(3, oxC)}
+            <text x={oxA} y={H2 / 2 - 10} fill="var(--ink)" fontSize={13} textAnchor="middle">Hình 1</text>
+            <text x={oxB} y={H2 / 2 - 10} fill="var(--ink)" fontSize={13} textAnchor="middle">Hình 2</text>
+            <text x={oxC} y={H2 / 2 - 10} fill="var(--ink)" fontSize={13} textAnchor="middle">Hình 3</text>
+          </svg>
+        </div>
+      );
+    }
+
+    case "nshn-2022-c7": {
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 320 }}>
+          <img
+            src="/figures/nshn-2022-c7.png"
+            alt="Tam giác đều 36 ô — Bài 7 NSHN 2022"
+            style={{ maxWidth: "100%", width: "100%", height: "auto", display: "block" }}
+          />
+        </div>
+      );
+    }
+
+    case "nshn-2022-c9": {
+      // Right triangle ABC, right angle at A; AB=6, AC=8, BC=10.
+      // B at bottom-left, C at bottom-right, A above (same side as all 3 semicircles).
+      // Math coords (y-up): B=(0,0), C=(10,0), A=(3.6, 4.8). Verify: AB=√(3.6²+4.8²)=6 ✓.
+      // All 3 semicircles bulge UP (positive math y, smaller SVG y) — same side as A.
+      const Bx = 0, By = 0;
+      const Cx = 10, Cy = 0;
+      const Ax = 3.6, Ay = 4.8;
+      const scale = 30; // px per math unit
+      const ox = 30;   // SVG x-offset
+      const oy = 210;  // SVG y-offset for math y=0
+      const sx = (x: number) => ox + x * scale;
+      const sy = (y: number) => oy - y * scale;
+      // Polygon approximation of a semicircle. start/end in math coords (y-up);
+      // upPos = +1 picks the bulge direction with positive component along upward (math y+).
+      // For our figure all semicircles bulge "upward" relative to BC line (math y+).
+      const semiPoints = (sX: number, sY: number, eX: number, eY: number, n = 48): string => {
+        const mx = (sX + eX) / 2;
+        const my = (sY + eY) / 2;
+        const dx = eX - sX;
+        const dy = eY - sY;
+        const len = Math.hypot(dx, dy);
+        const r = len / 2;
+        // Unit chord direction
+        const ux = dx / len;
+        const uy = dy / len;
+        // Two candidate perpendiculars in math: (-uy, ux) and (uy, -ux).
+        // Pick the one with positive y-component (so bulge goes "up" in math).
+        const p1y = ux;
+        const ny = p1y >= 0 ? 1 : -1;
+        const px = -uy * ny;
+        const py = ux * ny;
+        // Parametric semicircle: start at sX,sY (t=π), through top at mid + r*perp (t=π/2), end at eX,eY (t=0).
+        const out: string[] = [];
+        for (let i = 0; i <= n; i++) {
+          const t = Math.PI * (1 - i / n); // π → 0
+          const mxC = mx + r * Math.cos(t) * ux + r * Math.sin(t) * px;
+          const myC = my + r * Math.cos(t) * uy + r * Math.sin(t) * py;
+          // Actually: starting at sX,sY when t=π (cos=-1, sin=0): mid - r*ux + 0 = sX. ✓
+          // At t=0 (cos=1, sin=0): mid + r*ux + 0 = eX. ✓
+          // At t=π/2: mid + r*perp (bulge direction). ✓
+          out.push(`${sx(mxC).toFixed(2)},${sy(myC).toFixed(2)}`);
+        }
+        return out.join(" ");
+      };
+      const triPoints = `${sx(Bx)},${sy(By)} ${sx(Cx)},${sy(Cy)} ${sx(Ax)},${sy(Ay)}`;
+      const lune = "#FFB732"; // yellow-orange lune fill
+      const arcStroke = "var(--ink)";
+      // Midpoints for "1" / "2" labels on sides AB and AC (slightly offset toward interior).
+      const ab_mx = (Ax + Bx) / 2;
+      const ab_my = (Ay + By) / 2;
+      const ac_mx = (Ax + Cx) / 2;
+      const ac_my = (Ay + Cy) / 2;
+      // Offsets pushing labels toward the triangle interior (slightly toward centroid).
+      const cx0 = (Ax + Bx + Cx) / 3;
+      const cy0 = (Ay + By + Cy) / 3;
+      const ab_lx = ab_mx + 0.55 * (cx0 - ab_mx);
+      const ab_ly = ab_my + 0.55 * (cy0 - ab_my);
+      const ac_lx = ac_mx + 0.55 * (cx0 - ac_mx);
+      const ac_ly = ac_my + 0.55 * (cy0 - ac_my);
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 420 }}>
+          <svg viewBox="0 0 380 250" width="100%" style={{ display: "block", height: "auto" }}>
+            {/* Step 1: fill AB and AC semicircles in yellow (these are wholly above BC and
+                form the union with the triangle that hosts the lunes). */}
+            <polygon
+              points={semiPoints(Bx, By, Ax, Ay)}
+              fill={lune}
+              stroke="none"
+            />
+            <polygon
+              points={semiPoints(Ax, Ay, Cx, Cy)}
+              fill={lune}
+              stroke="none"
+            />
+            {/* Step 2: white-fill the BC semicircle to "subtract" its area, leaving only
+                the lune regions yellow (parts of AB / AC semicircles outside BC semicircle). */}
+            <polygon
+              points={semiPoints(Bx, By, Cx, Cy)}
+              fill="white"
+              stroke="none"
+            />
+            {/* Step 3: also white-fill the triangle so its interior is white (lunes only). */}
+            <polygon points={triPoints} fill="white" stroke="none" />
+            {/* Step 4: draw the 3 semicircle arc OUTLINES (as polylines — only the curved part,
+                not the diameter) on top, so the boundary is visible. */}
+            <polyline points={semiPoints(Bx, By, Ax, Ay)} fill="none" stroke={arcStroke} strokeWidth={1.5} />
+            <polyline points={semiPoints(Ax, Ay, Cx, Cy)} fill="none" stroke={arcStroke} strokeWidth={1.5} />
+            <polyline points={semiPoints(Bx, By, Cx, Cy)} fill="none" stroke={arcStroke} strokeWidth={1.5} />
+            {/* Step 5: draw the triangle sides on top. */}
+            <polygon points={triPoints} fill="none" stroke="var(--ink)" strokeWidth={1.8} />
+            {/* Step 6: side labels "1" (on AB) and "2" (on AC), as in the PDF. */}
+            <text x={sx(ab_lx)} y={sy(ab_ly) + 5} fill="var(--ink)" fontSize={14} textAnchor="middle" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>1</text>
+            <text x={sx(ac_lx)} y={sy(ac_ly) + 5} fill="var(--ink)" fontSize={14} textAnchor="middle" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>2</text>
+            {/* Step 7: vertex dots and vertex labels. */}
+            <circle cx={sx(Ax)} cy={sy(Ay)} r={4} fill="orange" stroke="orange" />
+            <circle cx={sx(Bx)} cy={sy(By)} r={4} fill="orange" stroke="orange" />
+            <circle cx={sx(Cx)} cy={sy(Cy)} r={4} fill="orange" stroke="orange" />
+            <text x={sx(Ax)} y={sy(Ay) - 10} fill="var(--ink)" fontSize={16} textAnchor="middle" style={{ fontStyle: "italic", fontFamily: "Times, serif", fontWeight: "bold" }}>A</text>
+            <text x={sx(Bx) - 10} y={sy(By) + 18} fill="var(--ink)" fontSize={16} textAnchor="end" style={{ fontStyle: "italic", fontFamily: "Times, serif", fontWeight: "bold" }}>B</text>
+            <text x={sx(Cx) + 10} y={sy(Cy) + 18} fill="var(--ink)" fontSize={16} textAnchor="start" style={{ fontStyle: "italic", fontFamily: "Times, serif", fontWeight: "bold" }}>C</text>
+          </svg>
+        </div>
+      );
+    }
+
     default:
       return null;
   }

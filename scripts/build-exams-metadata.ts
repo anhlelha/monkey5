@@ -96,7 +96,17 @@ function getSections(schoolCode: string, yearStr: string): any[] {
       ];
     }
   } else if (normSchool === "nshn") {
-    if (startYear === "2026") {
+    if (startYear === "2021") {
+      return [
+        { num: 1,  header: "I. Phần trắc nghiệm (10 điểm). Học sinh chỉ ghi đáp số vào phiếu trả lời, không cần giải thích" },
+        { num: 11, header: "Phần II (5 điểm). Phần tự luận: Học sinh trình bày bài giải chi tiết vào phiếu trả lời" }
+      ];
+    } else if (startYear === "2022") {
+      return [
+        { num: 1,  header: "I. TRẮC NGHIỆM (5,0 điểm): Học sinh ghi đáp án vào giấy thi, không cần giải thích" },
+        { num: 11, header: "II. TỰ LUẬN (5,0 điểm): Học sinh trình bày bài giải chi tiết vào giấy thi" }
+      ];
+    } else if (startYear === "2026") {
       return [
         { num: 1, header: "I. TRẮC NGHIỆM: Học sinh chỉ ghi đáp án vào giấy thi, không cần giải thích" },
         { num: 10, header: "II. TỰ LUẬN: Học sinh trình bày bài giải chi tiết vào giấy thi" }

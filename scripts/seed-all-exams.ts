@@ -264,6 +264,14 @@ async function main() {
       if (override.modelAnswer) {
         modelAnswer = override.modelAnswer;
       }
+      // Override options take precedence — handles MCQ from schools without a
+      // parsed-JSON source (e.g. NSHN) and any non-standard option counts.
+      if (override.options && override.options.length > 0) {
+        optionsJson = JSON.stringify(override.options);
+        // If the auto-split converted qType to "fill" earlier (because the
+        // parsed stem was empty), restore the original mcq type now.
+        qType = q.type;
+      }
 
       const isEssay = qType === "essay";
 
