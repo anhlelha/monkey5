@@ -56,7 +56,7 @@ export function Landing({ hasGoogle }: LandingProps) {
     <>
       <link rel="stylesheet" href="/landing.css" />
       <Script id="landing-tweaks" strategy="beforeInteractive">
-        {`window.TWEAKS = { theme: "forest" };`}
+        {`window.TWEAKS = { theme: "ocean" };`}
       </Script>
       <Script src="/landing.js" strategy="afterInteractive" />
 
