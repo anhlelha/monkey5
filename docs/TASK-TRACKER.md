@@ -1,6 +1,6 @@
 # 📋 Task Tracker — Monkey5
 
-> Last updated: 2026-06-14 10:41
+> Last updated: 2026-06-14 10:46
 
 ## Status Legend
 - ✅ Done — Task completed successfully
@@ -43,3 +43,10 @@
 - **Completed:** 2026-06-14 10:41
 - **Files:** [scripts/config.sh](file:///Users/anhlh48/00.AIProjects/99.Monkey5/scripts/config.sh), [scripts/deploy.sh](file:///Users/anhlh48/00.AIProjects/99.Monkey5/scripts/deploy.sh)
 - **Result:** Introduced `CUSTOM_DOMAIN` parameter to configuration. Updated deployment script to dynamically rewrite `NEXTAUTH_URL` in the remote `.env` to `https://monkey5.ai4all.vn` when a custom domain is defined.
+
+### ✅ SSL/HTTPS & Nginx Reverse Proxy Setup
+- **Status:** Done
+- **Completed:** 2026-06-14 10:46
+- **Files:** [scripts/setup-nginx.sh](file:///Users/anhlh48/00.AIProjects/99.Monkey5/scripts/setup-nginx.sh)
+- **Result:** Opened ports 80 and 443 in the GCP firewall rule. Configured Nginx on the VM as a reverse proxy from `monkey5.ai4all.vn` to port 3000. Obtained and configured Let's Encrypt SSL certificate automatically using Certbot with HTTP-to-HTTPS redirect.
+- **Verification:** Verified successful HTTPS connection to `https://monkey5.ai4all.vn` returning HTTP 200 OK.
