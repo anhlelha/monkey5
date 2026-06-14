@@ -1,6 +1,6 @@
 # 📋 Task Tracker — Monkey5
 
-> Last updated: 2026-06-14 10:55
+> Last updated: 2026-06-14 16:30
 
 ## Status Legend
 - ✅ Done — Task completed successfully
@@ -56,3 +56,42 @@
 - **Completed:** 2026-06-14 10:55
 - **Files:** [.agent/skills/infra-provisioner/SKILL.md](file:///Users/anhlh48/00.AIProjects/99.Monkey5/.agent/skills/infra-provisioner/SKILL.md), [.agent/workflows/gcp-provision.md](file:///Users/anhlh48/00.AIProjects/99.Monkey5/.agent/workflows/gcp-provision.md), [.agent/AGENT-CHANGELOG.md](file:///Users/anhlh48/00.AIProjects/99.Monkey5/.agent/AGENT-CHANGELOG.md), [scripts/deploy.sh](file:///Users/anhlh48/00.AIProjects/99.Monkey5/scripts/deploy.sh)
 - **Result:** Rewrote the provisioning skill, workflow, and deployment files to enforce the Socratic Discovery Protocol (interactive upfront input questionnaire), include detailed Google OAuth instructions, and handle `AUTH_TRUST_HOST=true` automatically. Recorded the modification in the Agent Changelog.
+
+---
+
+## Readiness Redesign — snapshot/derived model (2026-06-14)
+
+### ✅ Phase 0–5: Implement school-aware readiness scoring
+- **Status:** Done
+- **Completed:** 2026-06-14 14:59 (commit `1923200`)
+- **Docs:** [docs/READINESS-REDESIGN.md](./READINESS-REDESIGN.md)
+- **Files created:**
+  - `lib/schools.ts` — DB-backed School fetch with 60s cache
+  - `lib/mastery.ts` — `computeMastery()` aggregates TopicSession + Attempt
+  - `lib/school-profiles.ts` — hash-based `ensureSchoolProfilesFresh()`, auto-discovers new schools
+  - `lib/readiness.ts` — pure `computeReadiness()`, `computeAllReadiness()`, `computeGapTop3()`
+  - `app/(app)/admin/SchoolsPanel.tsx` — CRUD bảng School
+  - `app/(app)/admin/ReadinessPanel.tsx` — user distribution histogram + buttons
+  - `scripts/seed-schools.ts`, `scripts/recompute-mastery-readiness.ts`, `scripts/preview-school-profiles.ts`
+- **Schema changes:** + `School` + `SchoolProfile` models in `prisma/schema.prisma`
+- **Result:**
+  - Baseline đổi từ 0% → 50% (lazy default `?? 50`).
+  - Mỗi `submitExam` → tự recompute mastery + readiness từ toàn bộ history.
+  - Readiness tính cho cả 6 trường bất kể user chọn target nào (target chỉ là tracking + nguồn gap-advice).
+  - Profile trường auto-detect thay đổi qua `sourceHash` — không phụ thuộc workflow upload nào.
+  - Admin tabs `?tab=schools` + `?tab=readiness` thêm vào Sidebar.
+  - Difficulty thực tế tính ra ~20-30 (HTML formula tham chiếu cho 50-65); diffPenalty âm → baseline ~56-59% cho user mới. Có thể calibrate `DIFF_K` sau khi có dữ liệu thực.
+- **Verification:** TSC clean, build pass, dev + production deploy OK (`https://monkey5.ai4all.vn`).
+
+### ✅ Landing page default theme → ocean (biển xanh)
+- **Status:** Done
+- **Completed:** 2026-06-14 15:55 (commit `521177b`)
+- **Files:** [app/(landing)/Landing.tsx](file:///Users/anhlh48/00.AIProjects/99.Monkey5/app/%28landing%29/Landing.tsx)
+- **Plan:** [/Users/anhlh48/.claude/plans/system-reminder-message-sent-at-sun-jiggly-crown.md](file:///Users/anhlh48/.claude/plans/system-reminder-message-sent-at-sun-jiggly-crown.md)
+- **Result:** Đổi `window.TWEAKS.theme` từ `"forest"` → `"ocean"` (hue 248). CSS `[data-theme="ocean"]` block đã có sẵn ở `public/landing.css` — không cần thay đổi gì khác.
+
+### ✅ User theme picker in Settings modal
+- **Status:** Done
+- **Completed:** 2026-06-14 16:18 (commit `c7c6608`)
+- **Files:** `prisma/schema.prisma` (+`User.theme`), `app/globals.css` (+4 `[data-theme="X"]` blocks), `app/layout.tsx` (SSR `<html data-theme>`), `app/(app)/home/SettingsButton.tsx` (UI section "Giao diện"), `app/(app)/home/actions.ts` (theme field), `lib/user-data.ts`, `components/Sidebar.tsx`, `app/(app)/layout.tsx`
+- **Result:** User logged-in có thể chọn 1 trong 5 palette (clay/ocean/forest/grape/coral) từ modal Cài đặt. Optimistic live preview khi click, revert khi cancel, persist khi save. SSR theme vào `<html>` để không bị flash màu cũ. Theme sync giữa các thiết bị qua `User.theme`. Landing giữ độc lập (ocean default).

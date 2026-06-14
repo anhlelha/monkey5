@@ -1,4 +1,4 @@
-<!-- Generated: 2026-06-12 | Files scanned: 1 (schema.prisma) | Token estimate: ~700 -->
+<!-- Generated: 2026-06-12 | Updated: 2026-06-14 (readiness redesign + theme) | Files scanned: 1 (schema.prisma) | Token estimate: ~850 -->
 
 # Data Model
 
@@ -23,6 +23,12 @@ Question ── sourceQuestionId → Question (self ref, for bank → set clones
 CustomSet ── creator (User) — admin practice sets, no FK to Question
 
 Topic — 10 fixed rows (soh, hinh, phan, cd, log, do, xs, tuoi, ti, tg)
+
+School        ── per-school metadata (name/color/tone/minutes); 6 default rows
+                  (cg, ltv, tx, ntt, nn, ntl) + mix (inactive). Admin-editable.
+SchoolProfile ── auto-computed statistics per school (topicWeights,
+                  levelWeights, difficulty, sourceHash). Rebuilt by
+                  lib/school-profiles.ts whenever DB hash changes.
 
 UserWhitelist ── seeded admin emails
 PlanConfig    ── free/pro/vip feature flags
@@ -99,12 +105,55 @@ fixes won't update it unless `scripts/regrade-attempts.ts` is run.
 
 ```
 User.targets       JSON string: ["cg", "ntt"]            (max 3 schools)
-User.topicMastery  JSON string: { [topicId]: 0..1 }
-User.readiness     JSON string: { [schoolId]: 0..100 }
+User.topicMastery  JSON string: { [topicId]: 0..1 }       baseline 0.5
+User.readiness     JSON string: { [schoolId]: 0..100 }    baseline 50
 User.activity      JSON string: number[] (last-14-day percent, null = no activity)
+User.theme         "clay" | "ocean" | "forest" | "grape" | "coral"   default "clay"
 ```
 
 All stored as strings (SQLite has no JSON type). Hydrated via `lib/user-data.ts`.
+
+**`topicMastery` + `readiness` are auto-recomputed** after every `submitExam`
+via `lib/mastery.ts:computeMastery()` + `lib/readiness.ts:computeAllReadiness()`.
+Per-school readiness uses the matching `SchoolProfile` row (topic-weighted +
+level-weighted + difficulty-adjusted, formula in [`docs/READINESS-REDESIGN.md`](../READINESS-REDESIGN.md) §5).
+
+## School + SchoolProfile (readiness backbone)
+
+```
+School {
+  id       String  @id              // "cg" | "ltv" | "tx" | "ntt" | "nn" | "ntl"
+  short    String                   // "CG"
+  name     String                   // "THCS Cầu Giấy"
+  full     String
+  color    String                   // "var(--cg)" | hex
+  tone     String                   // CSS class hậu tố
+  desc     String
+  minutes  Int       @default(60)
+  style    String
+  position Int       @default(0)
+  active   Boolean   @default(true)
+}
+
+SchoolProfile {
+  school          String   @id      // FK soft → School.id
+  topicWeights    String             // JSON { topicId: 0..1 }, sum = 1.0
+  levelWeights    String             // JSON { "L4"|"L5"|"L4+5"|"NC": 0..1 }
+  difficulty      Float              // 0-100 (6-factor formula)
+  minutes         Float              // avg exam duration
+  totalQuestions  Int
+  freeTextPct     Float
+  olympicGeoPct   Float
+  diversity       Int                // # of topics with ≥1 question
+  sourceHash      String             // "{qcount}-{maxCreatedAt.ISO}"
+  updatedAt       DateTime @updatedAt
+}
+```
+
+`sourceHash` is the auto-detection key. `ensureSchoolProfilesFresh()` queries
+`GROUP BY Exam.school` on Question rows, compares hash → rebuilds only what
+changed. New schools auto-create both School (default metadata) and
+SchoolProfile rows on first detection.
 
 ## Topic table (10 fixed rows)
 
