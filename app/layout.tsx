@@ -1,7 +1,26 @@
 import type { Metadata, Viewport } from "next";
 import { Be_Vietnam_Pro, JetBrains_Mono } from "next/font/google";
+import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
 import "./globals.css";
 import "katex/dist/katex.min.css";
+
+const VALID_THEMES = new Set(["clay", "ocean", "forest", "grape", "coral"]);
+
+async function resolveTheme(): Promise<string> {
+  try {
+    const session = await auth();
+    if (!session?.user?.id) return "clay";
+    const u = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { theme: true },
+    });
+    const t = u?.theme ?? "clay";
+    return VALID_THEMES.has(t) ? t : "clay";
+  } catch {
+    return "clay";
+  }
+}
 
 const beVietnam = Be_Vietnam_Pro({
   subsets: ["latin", "vietnamese"],
@@ -28,11 +47,17 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const theme = await resolveTheme();
   return (
-    <html lang="vi" className={`${beVietnam.variable} ${jetbrains.variable}`} suppressHydrationWarning>
+    <html
+      lang="vi"
+      className={`${beVietnam.variable} ${jetbrains.variable}`}
+      data-theme={theme}
+      suppressHydrationWarning
+    >
       <body>{children}</body>
     </html>
   );

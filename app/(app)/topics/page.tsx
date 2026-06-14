@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { hydrateUser } from "@/lib/user-data";
 import { DEFAULT_TOPICS } from "@/lib/static";
+import { BASELINE_MASTERY } from "@/lib/mastery";
 import { TopBar } from "@/components/TopBar";
 import { Icon } from "@/components/Icon";
 import { Bar, Pill } from "@/components/ui";
@@ -41,7 +42,7 @@ export default async function TopicsPage() {
 
         <div className="grid cols-4" style={{ gap: 14 }}>
           {TOPICS.map((t) => {
-            const v = user.topicMastery[t.id] ?? 0;
+            const v = user.topicMastery[t.id] ?? BASELINE_MASTERY;
             const pct = Math.round(v * 100);
             const setCount = setMap.get(t.id) ?? 4;
             return (

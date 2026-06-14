@@ -62,6 +62,37 @@
   --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
+/* =========================================================
+   User-selectable themes (data-theme on <html>)
+   Default = clay (warm terracotta) — implicit in :root above.
+   Other themes override only the --accent family to keep
+   surface/ink/school colors stable.
+   ========================================================= */
+[data-theme="ocean"] {
+  --accent: oklch(0.56 0.13 248);
+  --accent-hover: oklch(0.5 0.13 248);
+  --accent-soft: oklch(0.96 0.03 248);
+  --accent-ink: oklch(0.42 0.12 248);
+}
+[data-theme="forest"] {
+  --accent: oklch(0.54 0.11 158);
+  --accent-hover: oklch(0.48 0.11 158);
+  --accent-soft: oklch(0.95 0.04 158);
+  --accent-ink: oklch(0.38 0.09 158);
+}
+[data-theme="grape"] {
+  --accent: oklch(0.54 0.15 300);
+  --accent-hover: oklch(0.48 0.15 300);
+  --accent-soft: oklch(0.96 0.04 300);
+  --accent-ink: oklch(0.4 0.12 300);
+}
+[data-theme="coral"] {
+  --accent: oklch(0.62 0.13 28);
+  --accent-hover: oklch(0.56 0.13 28);
+  --accent-soft: oklch(0.96 0.04 28);
+  --accent-ink: oklch(0.42 0.12 28);
+}
+
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body {

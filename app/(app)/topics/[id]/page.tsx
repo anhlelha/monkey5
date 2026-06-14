@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { getTopicSessions, hydrateUser } from "@/lib/user-data";
 import { DEFAULT_TOPICS, SCHOOLS } from "@/lib/static";
+import { BASELINE_MASTERY } from "@/lib/mastery";
 import { effectivePlan, getLevelConfigs, remainingTopicSets } from "@/lib/plan-config";
 import { TopBar } from "@/components/TopBar";
 import { Icon } from "@/components/Icon";
@@ -72,7 +73,7 @@ export default async function TopicDetail({ params, searchParams }: Props) {
   const totalCorrect = sessions.reduce((s, x) => s + x.score, 0);
   const accuracy = totalQs > 0 ? Math.round((totalCorrect / totalQs) * 100) : null;
 
-  const v = user.topicMastery[id] ?? 0;
+  const v = user.topicMastery[id] ?? BASELINE_MASTERY;
   const pct = Math.round(v * 100);
   const maxCount = Math.max(1, ...Object.values(schoolCounts));
 

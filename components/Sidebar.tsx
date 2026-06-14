@@ -19,6 +19,7 @@ interface SidebarProps {
     hours: number;
     examDate: string | null;
     readyTarget: number;
+    theme: string;
   };
   examLibraryBadge?: number;
 }
@@ -245,6 +246,7 @@ function NavBody({ learnItems, adminGroups, user, isAdmin, pathname, currentTab 
             hours: user.hours,
             examDate: user.examDate ?? "2026-09-01",
             readyTarget: user.readyTarget,
+            theme: user.theme,
           }}
           trigger={
             <div className="nav-item">

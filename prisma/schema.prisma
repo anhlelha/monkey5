@@ -35,6 +35,7 @@ model User {
   topicMastery  String    @default("{}") // { topicId: 0..1 }
   readiness     String    @default("{}") // { schoolId: 0..100 }
   activity      String    @default("[]") // last-14-day percent[] (null for no activity)
+  theme         String    @default("clay") // UI theme: clay | ocean | forest | grape | coral
 
   accounts Account[]
   sessions Session[]

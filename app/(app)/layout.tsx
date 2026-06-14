@@ -31,6 +31,7 @@ export default async function AppShell({ children }: { children: React.ReactNode
           hours: user.hours,
           examDate: user.examDate,
           readyTarget: user.readyTarget,
+          theme: user.theme,
         }}
         examLibraryBadge={examCount}
       />

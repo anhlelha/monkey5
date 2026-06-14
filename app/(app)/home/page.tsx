@@ -11,6 +11,7 @@ import {
 } from "@/lib/user-data";
 import { DEFAULT_TOPICS } from "@/lib/static";
 import { getActiveSchools } from "@/lib/schools";
+import { BASELINE_MASTERY } from "@/lib/mastery";
 import { TopBar } from "@/components/TopBar";
 import { Icon } from "@/components/Icon";
 import { Bar, Card, Pill } from "@/components/ui";
@@ -69,10 +70,14 @@ export default async function Dashboard() {
 
   const radarData = TOPICS.map((t) => ({
     label: t.short,
-    value: user.topicMastery[t.id] ?? 0,
+    value: user.topicMastery[t.id] ?? BASELINE_MASTERY,
   }));
 
-  const weakestEntry = Object.entries(user.topicMastery).sort((a, b) => a[1] - b[1])[0] ?? ["soh", 0.5];
+  // For "weakest topic" suggestion, only consider topics user has actually
+  // practiced. If none have data, fall back to the first TOPIC at baseline.
+  const masteredEntries = Object.entries(user.topicMastery).filter(([, v]) => Number.isFinite(v));
+  const weakestEntry = masteredEntries.sort((a, b) => a[1] - b[1])[0]
+    ?? [TOPICS[0]?.id ?? "soh", BASELINE_MASTERY];
   const weakest = TOPICS.find((t) => t.id === weakestEntry[0]) ?? TOPICS[0];
 
   return (
@@ -453,7 +458,7 @@ export default async function Dashboard() {
             </thead>
             <tbody>
               {TOPICS.map((t) => {
-                const v = user.topicMastery[t.id] ?? 0;
+                const v = user.topicMastery[t.id] ?? BASELINE_MASTERY;
                 const pct = Math.round(v * 100);
                 const gap = 70 - pct;
                 const prog = topicProgress[t.id] ?? { sessions: 0, questions: 0 };

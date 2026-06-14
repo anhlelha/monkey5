@@ -19,6 +19,7 @@ export interface UserShape {
   topicMastery: Record<string, number>;
   readiness: Record<string, number>;
   activity: (number | null)[];
+  theme: string;
 }
 
 type RawUser = {
@@ -38,6 +39,7 @@ type RawUser = {
   topicMastery: string;
   readiness: string;
   activity: string;
+  theme: string;
 };
 
 const parseJson = <T,>(raw: string, fallback: T): T => {
@@ -71,6 +73,7 @@ export function hydrateUser(raw: RawUser): UserShape {
     topicMastery,
     readiness,
     activity,
+    theme: raw.theme ?? "clay",
   };
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition, useEffect } from "react";
+import { useState, useTransition, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { signOut } from "next-auth/react";
 import { Icon } from "@/components/Icon";
@@ -16,7 +16,23 @@ interface UserDraft {
   hours: number;
   examDate: string;
   readyTarget: number;
+  theme: string;
 }
+
+interface ThemeOption {
+  id: "clay" | "ocean" | "forest" | "grape" | "coral";
+  name: string;
+  desc: string;
+  color: string;
+}
+
+const THEMES: readonly ThemeOption[] = [
+  { id: "clay",   name: "Đất sét",   desc: "Cam ấm mặc định",  color: "oklch(0.6 0.14 40)"  },
+  { id: "ocean",  name: "Biển xanh", desc: "Xanh dương biển",  color: "oklch(0.56 0.13 248)" },
+  { id: "forest", name: "Rừng xanh", desc: "Xanh lá tự nhiên", color: "oklch(0.54 0.11 158)" },
+  { id: "grape",  name: "Nho tím",   desc: "Tím dịu nhẹ",      color: "oklch(0.54 0.15 300)" },
+  { id: "coral",  name: "San hô",    desc: "Đỏ cam tươi",      color: "oklch(0.62 0.13 28)"  },
+] as const;
 
 export function SettingsButton({
   initialUser,
@@ -63,7 +79,22 @@ function SettingsPanel({
   const [hours, setHours] = useState(initialUser.hours);
   const [examDate, setExamDate] = useState(initialUser.examDate);
   const [readyTarget, setReadyTarget] = useState(initialUser.readyTarget);
+  const [theme, setTheme] = useState(initialUser.theme);
   const [pending, startTransition] = useTransition();
+
+  // Optimistic theme preview: apply to <html> immediately. Revert on unmount
+  // (cancel / close) UNLESS save() has committed the new value.
+  const committedRef = useRef(false);
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+  useEffect(() => {
+    return () => {
+      if (!committedRef.current) {
+        document.documentElement.setAttribute("data-theme", initialUser.theme);
+      }
+    };
+  }, [initialUser.theme]);
 
   const toggle = (id: string) =>
     setTargets((t) => (t.includes(id) ? t.filter((x) => x !== id) : [...t, id]));
@@ -73,7 +104,8 @@ function SettingsPanel({
     hours !== initialUser.hours ||
     examDate !== initialUser.examDate ||
     targets.join() !== initialUser.targets.join() ||
-    readyTarget !== initialUser.readyTarget;
+    readyTarget !== initialUser.readyTarget ||
+    theme !== initialUser.theme;
 
   const days = daysBetween(examDate);
 
@@ -84,8 +116,10 @@ function SettingsPanel({
     form.set("hours", String(hours));
     form.set("examDate", examDate);
     form.set("readyTarget", String(readyTarget));
+    form.set("theme", theme);
     startTransition(async () => {
       await updateProfile(form);
+      committedRef.current = true;
       onClose();
     });
   };
@@ -248,6 +282,64 @@ function SettingsPanel({
             </div>
             <div className="muted" style={{ fontSize: 11.5, marginTop: 6 }}>
               Khi đạt mức này cho trường mục tiêu, hệ thống sẽ báo "Đã sẵn sàng".
+            </div>
+          </div>
+
+          <div>
+            <div className="eyebrow" style={{ marginBottom: 10 }}>Giao diện</div>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+                gap: 8,
+              }}
+            >
+              {THEMES.map((t) => {
+                const active = theme === t.id;
+                return (
+                  <button
+                    key={t.id}
+                    type="button"
+                    onClick={() => setTheme(t.id)}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
+                      padding: "10px 12px",
+                      borderRadius: 10,
+                      border: `1.5px solid ${active ? "var(--accent)" : "var(--border)"}`,
+                      background: active ? "var(--accent-soft)" : "var(--surface)",
+                      cursor: "pointer",
+                      transition: "all 0.15s",
+                      textAlign: "left",
+                      font: "inherit",
+                      color: "inherit",
+                      boxShadow: active ? "0 0 0 1px var(--accent)" : "none",
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: 22,
+                        height: 22,
+                        borderRadius: 6,
+                        background: t.color,
+                        flexShrink: 0,
+                        boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.08)",
+                      }}
+                    />
+                    <span style={{ flex: 1, minWidth: 0 }}>
+                      <span style={{ display: "block", fontWeight: 600, fontSize: 13 }}>{t.name}</span>
+                      <span style={{ display: "block", fontSize: 11, color: "var(--ink-muted)" }}>
+                        {t.desc}
+                      </span>
+                    </span>
+                    {active && <Icon name="check" size={12} stroke={2.5} />}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="muted" style={{ fontSize: 11.5, marginTop: 8 }}>
+              Xem trước ngay — bấm <b>Lưu thay đổi</b> để áp dụng vĩnh viễn, hoặc <b>Huỷ</b> để quay lại.
             </div>
           </div>
 

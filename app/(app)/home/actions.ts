@@ -4,6 +4,13 @@ import { revalidatePath } from "next/cache";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
+const VALID_THEMES = ["clay", "ocean", "forest", "grape", "coral"] as const;
+type Theme = (typeof VALID_THEMES)[number];
+
+function safeTheme(raw: string): Theme {
+  return (VALID_THEMES as readonly string[]).includes(raw) ? (raw as Theme) : "clay";
+}
+
 export async function updateProfile(formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Unauthorized");
@@ -16,6 +23,7 @@ export async function updateProfile(formData: FormData) {
   const hours = Number(formData.get("hours") ?? 5);
   const examDate = String(formData.get("examDate") ?? "");
   const readyTarget = Number(formData.get("readyTarget") ?? 75);
+  const theme = safeTheme(String(formData.get("theme") ?? "clay"));
 
   if (targets.length === 0) throw new Error("Phải chọn ít nhất 1 trường mục tiêu");
 
@@ -27,8 +35,9 @@ export async function updateProfile(formData: FormData) {
       hours: Number.isFinite(hours) ? hours : 5,
       examDate: examDate || null,
       readyTarget: Number.isFinite(readyTarget) ? readyTarget : 75,
+      theme,
     },
   });
 
-  revalidatePath("/home");
+  revalidatePath("/", "layout");
 }
