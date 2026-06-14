@@ -134,6 +134,67 @@ export async function getExamHistory(userId: string): Promise<ExamHistoryItem[]>
   }));
 }
 
+// Aggregate activity stats for the dashboard's "Tiến độ 14 ngày qua" card.
+// Counts every submitted attempt (full exams) plus every topic session
+// (per-topic practice runs).
+export interface ActivityStats {
+  setsDone: number;       // total exam attempts + topic sessions
+  questionsAnswered: number;
+  avgAccuracy: number | null; // 0..100, null when no activity
+}
+
+export async function getActivityStats(userId: string): Promise<ActivityStats> {
+  const [attempts, sessions] = await Promise.all([
+    prisma.attempt.findMany({
+      where: { userId, submitted: true },
+      select: { score: true, total: true, earned: true },
+    }),
+    prisma.topicSession.findMany({
+      where: { userId },
+      select: { qcount: true, score: true },
+    }),
+  ]);
+
+  const examQs = attempts.reduce((s, a) => s + a.total, 0);
+  const examCorrect = attempts.reduce((s, a) => s + a.earned, 0);
+  const topicQs = sessions.reduce((s, t) => s + t.qcount, 0);
+  const topicCorrect = sessions.reduce((s, t) => s + t.score, 0);
+
+  const totalQs = examQs + topicQs;
+  const totalCorrect = examCorrect + topicCorrect;
+  const setsDone = attempts.length + sessions.length;
+
+  return {
+    setsDone,
+    questionsAnswered: totalQs,
+    avgAccuracy: totalQs > 0 ? Math.round((totalCorrect / totalQs) * 100) : null,
+  };
+}
+
+// Per-topic counts of attempted questions + finished sessions for the dashboard
+// "Chi tiết theo chuyên đề" table. Returns a map keyed by topic id.
+export interface TopicProgress {
+  sessions: number;       // completed topic sessions
+  questions: number;      // questions answered in topic sessions
+}
+
+export async function getTopicProgress(
+  userId: string,
+): Promise<Record<string, TopicProgress>> {
+  const sessions = await prisma.topicSession.findMany({
+    where: { userId },
+    select: { topic: true, qcount: true },
+  });
+  const map: Record<string, TopicProgress> = {};
+  for (const s of sessions) {
+    const cur = map[s.topic] ?? { sessions: 0, questions: 0 };
+    cur.sessions += 1;
+    cur.questions += s.qcount;
+    map[s.topic] = cur;
+  }
+  return map;
+}
+
 export interface TopicSessionItem {
   id: string;
   level: string;

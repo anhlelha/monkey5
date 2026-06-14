@@ -16,11 +16,39 @@ interface Props {
   searchParams: Promise<{ limit?: string }>;
 }
 
-const SCHOOL_BREAKDOWN: Record<string, number> = {
-  soh: 28, hinh: 42, phan: 38, cd: 18, log: 22, do: 12, xs: 14, tuoi: 10, ti: 10, tg: 6,
-};
-
 const randStub = () => Math.random().toString(36).slice(-4);
+
+// Counts of active official-exam questions for this topic, grouped by school.
+// Drives the "Tần suất trong đề thật" card on the right rail.
+async function getOfficialQuestionCountsBySchool(
+  topicId: string,
+): Promise<Record<string, number>> {
+  const officialExams = await prisma.exam.findMany({
+    where: { kind: "official" },
+    select: { id: true, school: true },
+  });
+  const examSchool = new Map<string, string>();
+  for (const e of officialExams) examSchool.set(e.id, e.school);
+
+  const rows = await prisma.question.groupBy({
+    by: ["examId"],
+    where: {
+      topic: topicId,
+      active: true,
+      examId: { in: officialExams.map((e) => e.id) },
+    },
+    _count: { _all: true },
+  });
+
+  const bySchool: Record<string, number> = {};
+  for (const r of rows) {
+    if (!r.examId) continue;
+    const school = examSchool.get(r.examId);
+    if (!school) continue;
+    bySchool[school] = (bySchool[school] ?? 0) + r._count._all;
+  }
+  return bySchool;
+}
 
 export default async function TopicDetail({ params, searchParams }: Props) {
   const { id } = await params;
@@ -36,14 +64,17 @@ export default async function TopicDetail({ params, searchParams }: Props) {
   const topic = TOPICS.find((t) => t.id === id);
   if (!topic) notFound();
 
-  const sessions = await getTopicSessions(user.id, id);
+  const [sessions, schoolCounts] = await Promise.all([
+    getTopicSessions(user.id, id),
+    getOfficialQuestionCountsBySchool(id),
+  ]);
   const totalQs = sessions.reduce((s, x) => s + x.qcount, 0);
   const totalCorrect = sessions.reduce((s, x) => s + x.score, 0);
   const accuracy = totalQs > 0 ? Math.round((totalCorrect / totalQs) * 100) : null;
 
   const v = user.topicMastery[id] ?? 0;
   const pct = Math.round(v * 100);
-  const totalCount = SCHOOL_BREAKDOWN[id] ?? 15;
+  const maxCount = Math.max(1, ...Object.values(schoolCounts));
 
   // Build levels from DB config; fall back to defaults if DB is empty.
   const levelCfgs = await getLevelConfigs();
@@ -139,29 +170,24 @@ export default async function TopicDetail({ params, searchParams }: Props) {
               </div>
             </Card>
 
-            <Card title="Tần suất trong đề thật" sub="Số câu thuộc chuyên đề này">
+            <Card title="Tần suất trong đề thật" sub="Số câu thuộc chuyên đề này trong các đề chính thức">
               <div className="col" style={{ gap: 10 }}>
-                {SCHOOLS.map((school) => (
-                  <div key={school.id}>
-                    <div className="row between" style={{ marginBottom: 4 }}>
-                      <span className="row" style={{ gap: 6, fontSize: 13 }}>
-                        <span style={{ width: 8, height: 8, borderRadius: 2, background: school.color }} />
-                        {school.short}
-                      </span>
-                      <b className="mono" style={{ fontSize: 13 }}>{totalCount} câu</b>
+                {SCHOOLS.map((school) => {
+                  const count = schoolCounts[school.id] ?? 0;
+                  return (
+                    <div key={school.id}>
+                      <div className="row between" style={{ marginBottom: 4 }}>
+                        <span className="row" style={{ gap: 6, fontSize: 13 }}>
+                          <span style={{ width: 8, height: 8, borderRadius: 2, background: school.color }} />
+                          {school.short}
+                        </span>
+                        <b className="mono" style={{ fontSize: 13 }}>{count} câu</b>
+                      </div>
+                      <Bar value={count} max={maxCount} tone={school.tone} />
                     </div>
-                    <Bar value={totalCount} max={50} tone={school.tone} />
-                  </div>
-                ))}
+                  );
+                })}
               </div>
-            </Card>
-
-            <Card title="Sai sót thường gặp" sub="Tổng hợp từ bài làm của con">
-              <ul style={{ margin: 0, padding: "0 0 0 18px", fontSize: 13, color: "var(--ink-soft)", lineHeight: 1.7 }}>
-                <li>Quên đổi đơn vị (m → km, phút → giờ)</li>
-                <li>Nhầm khi đề có 2 vận tốc khác nhau</li>
-                <li>Bỏ qua thời gian nghỉ giữa chừng</li>
-              </ul>
             </Card>
           </div>
         </div>

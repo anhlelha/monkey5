@@ -146,8 +146,8 @@ export function OnboardingForm({ firstName, schools }: Props) {
                 border: "1px solid oklch(0.92 0.04 40)",
               }}
             >
-              <Icon name="sparkle" size={14} /> Với {hours} giờ/tuần và mục tiêu hiện tại, Khỉ con
-              dự tính lộ trình ~14 tuần để đạt 85% sẵn sàng.
+              <Icon name="sparkle" size={14} /> Với {hours} giờ/tuần, Khỉ con sẽ chia nhỏ
+              lộ trình luyện đề theo từng tuần — có thể tinh chỉnh sau trong Cài đặt.
             </div>
 
             <div style={{ display: "flex", justifyContent: "space-between", marginTop: 24 }}>

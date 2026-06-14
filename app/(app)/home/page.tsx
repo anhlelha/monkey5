@@ -2,7 +2,13 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { hydrateUser, firstName, getExamHistory } from "@/lib/user-data";
+import {
+  hydrateUser,
+  firstName,
+  getExamHistory,
+  getActivityStats,
+  getTopicProgress,
+} from "@/lib/user-data";
 import { SCHOOLS, DEFAULT_TOPICS } from "@/lib/static";
 import { TopBar } from "@/components/TopBar";
 import { Icon } from "@/components/Icon";
@@ -19,9 +25,14 @@ export default async function Dashboard() {
 
   const topics = (await prisma.topic.findMany({ orderBy: { position: "asc" } })) ?? [];
   const TOPICS = topics.length > 0 ? topics : DEFAULT_TOPICS;
-  const recent = (await getExamHistory(user.id)).slice(0, 5);
+  const [history, activity, topicProgress] = await Promise.all([
+    getExamHistory(user.id),
+    getActivityStats(user.id),
+    getTopicProgress(user.id),
+  ]);
+  const recent = history.slice(0, 5);
 
-  const daysToExam = user.examDate ? daysBetween(user.examDate) : 96;
+  const daysToExam = user.examDate ? daysBetween(user.examDate) : null;
   const greet = greeting();
   const fn = firstName(user.name);
 
@@ -51,7 +62,16 @@ export default async function Dashboard() {
         <div className="page-head">
           <div>
             <div className="eyebrow" style={{ marginBottom: 8 }}>
-              {greet} · Còn <b className="mono" style={{ color: "var(--accent-ink)" }}>{daysToExam} ngày</b> đến kỳ thi mục tiêu
+              {greet}
+              {daysToExam !== null && (
+                <>
+                  {" "}· Còn{" "}
+                  <b className="mono" style={{ color: "var(--accent-ink)" }}>
+                    {daysToExam} ngày
+                  </b>{" "}
+                  đến kỳ thi mục tiêu
+                </>
+              )}
             </div>
             <h2>{greet}, {fn} 👋</h2>
             <p>
@@ -177,15 +197,38 @@ export default async function Dashboard() {
             <div className="grid cols-3" style={{ gap: 12, fontSize: 12 }}>
               <div>
                 <div className="muted">Bài đã làm</div>
-                <div className="kpi" style={{ fontSize: 22, marginTop: 2 }}>23</div>
+                <div className="kpi" style={{ fontSize: 22, marginTop: 2 }}>
+                  {activity.setsDone}
+                </div>
               </div>
               <div>
                 <div className="muted">Câu đã trả lời</div>
-                <div className="kpi" style={{ fontSize: 22, marginTop: 2 }}>184</div>
+                <div className="kpi" style={{ fontSize: 22, marginTop: 2 }}>
+                  {activity.questionsAnswered}
+                </div>
               </div>
               <div>
                 <div className="muted">Tỉ lệ đúng TB</div>
-                <div className="kpi" style={{ fontSize: 22, marginTop: 2, color: "var(--success)" }}>68<small>%</small></div>
+                <div
+                  className="kpi"
+                  style={{
+                    fontSize: 22,
+                    marginTop: 2,
+                    color:
+                      activity.avgAccuracy !== null && activity.avgAccuracy >= 70
+                        ? "var(--success)"
+                        : "var(--ink)",
+                  }}
+                >
+                  {activity.avgAccuracy !== null ? (
+                    <>
+                      {activity.avgAccuracy}
+                      <small>%</small>
+                    </>
+                  ) : (
+                    <span className="muted" style={{ fontSize: 14 }}>—</span>
+                  )}
+                </div>
               </div>
             </div>
           </Card>
@@ -295,7 +338,13 @@ export default async function Dashboard() {
               </div>
               <h3 style={{ margin: 0, fontSize: 16, letterSpacing: "-0.01em" }}>{weakest.name}</h3>
               <p className="muted" style={{ fontSize: 12.5, margin: "4px 0 12px" }}>
-                Mức {Math.round(weakestEntry[1] * 100)}% — thấp hơn TB mục tiêu 25%
+                {(() => {
+                  const pct = Math.round(weakestEntry[1] * 100);
+                  const gap = Math.max(0, 70 - pct);
+                  return gap > 0
+                    ? `Mức ${pct}% — cách mục tiêu 70% còn ${gap}%`
+                    : `Mức ${pct}% — đã đạt mục tiêu 70%`;
+                })()}
               </p>
               <Bar value={weakestEntry[1] * 100} tone="ntt" tall />
               <Link
@@ -307,39 +356,6 @@ export default async function Dashboard() {
               </Link>
             </Card>
 
-            <Card title="Lộ trình tuần này" sub="3 / 5 nhiệm vụ hoàn thành">
-              <Bar value={60} tall />
-              <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 10 }}>
-                {[
-                  { done: true, txt: "1 đề Cầu Giấy đầy đủ" },
-                  { done: true, txt: "20 bài Phân số" },
-                  { done: true, txt: "1 đề Thanh Xuân" },
-                  { done: false, txt: "20 bài Chuyển động" },
-                  { done: false, txt: "1 đề NTT (60 phút)" },
-                ].map((t, i) => (
-                  <div key={i} className="row" style={{ gap: 10, fontSize: 13 }}>
-                    <div
-                      style={{
-                        width: 16,
-                        height: 16,
-                        borderRadius: 4,
-                        border: "1.5px solid " + (t.done ? "var(--success)" : "var(--border-strong)"),
-                        background: t.done ? "var(--success)" : "transparent",
-                        display: "grid",
-                        placeItems: "center",
-                        color: "white",
-                        flexShrink: 0,
-                      }}
-                    >
-                      {t.done && <Icon name="check" size={11} stroke={3} />}
-                    </div>
-                    <span style={{ color: t.done ? "var(--ink-muted)" : "var(--ink)", textDecoration: t.done ? "line-through" : "none" }}>
-                      {t.txt}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </Card>
           </div>
         </div>
 
@@ -371,6 +387,7 @@ export default async function Dashboard() {
                 const v = user.topicMastery[t.id] ?? 0;
                 const pct = Math.round(v * 100);
                 const gap = 70 - pct;
+                const prog = topicProgress[t.id] ?? { sessions: 0, questions: 0 };
                 return (
                   <tr key={t.id}>
                     <td>
@@ -393,10 +410,10 @@ export default async function Dashboard() {
                     <td>
                       <div style={{ fontWeight: 500 }}>{t.name}</div>
                       <div className="muted" style={{ fontSize: 11.5 }}>
-                        {12 + Math.round(v * 28)} câu đã chấm
+                        {prog.questions > 0 ? `${prog.questions} câu đã chấm` : "Chưa luyện"}
                       </div>
                     </td>
-                    <td className="mono muted">{Math.round(v * 30) + 6}</td>
+                    <td className="mono muted">{prog.sessions}</td>
                     <td>
                       <Bar value={pct} tone={pct >= 70 ? "" : pct >= 55 ? "ltv" : "ntt"} />
                     </td>
