@@ -18,7 +18,39 @@ if [ ! -f "$GCP_KEY" ]; then
     exit 1
 fi
 
-# 1. Sync environment files (Secrets)
+# 1. Ensure Git is installed and setup SSH Key on VM
+echo "Ensuring Git is installed on VM..."
+ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "sudo apt-get update -y && sudo apt-get install -y git"
+
+echo "Deploying Git Deploy Key to VM..."
+GIT_KEY_PATH="$HOME/.ssh/git_deploy_key_monkey5"
+if [ -f "$GIT_KEY_PATH" ]; then
+    # Ensure remote .ssh directory exists
+    ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "mkdir -p ~/.ssh && chmod 700 ~/.ssh"
+    # Copy key
+    scp -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GIT_KEY_PATH" "$GCP_USER@$GCP_IP:~/.ssh/id_rsa"
+    # Set permissions and scan github.com host key
+    ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "chmod 600 ~/.ssh/id_rsa && ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts 2>/dev/null"
+else
+    echo "Error: Local Git Deploy Key not found at $GIT_KEY_PATH"
+    exit 1
+fi
+
+# 2. Clone or Pull codebase via Git on VM
+echo "Setting up/Updating codebase on VM via Git..."
+ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "
+    if [ ! -d \"$REMOTE_PROJECT_PATH/.git\" ]; then
+        echo 'Cloning repository from GitHub...'
+        git clone git@github.com:anhlelha/monkey5.git \"$REMOTE_PROJECT_PATH\"
+    else
+        echo 'Pulling latest changes from GitHub...'
+        cd \"$REMOTE_PROJECT_PATH\"
+        git fetch --all
+        git reset --hard origin/main
+    fi
+"
+
+# 3. Sync environment files (Secrets)
 echo "Deploying environment configuration..."
 if [ -f "$SCRIPT_DIR/../.env.local" ]; then
     scp -i "$GCP_KEY" -o StrictHostKeyChecking=no "$SCRIPT_DIR/../.env.local" "$GCP_USER@$GCP_IP:$REMOTE_PROJECT_PATH/.env"
@@ -28,21 +60,13 @@ else
     echo "Warning: No .env or .env.local found locally to copy."
 fi
 
-# 2. Sync codebase using rsync
-echo "Synchronizing codebase..."
-# Create remote dir if not exists
-ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "mkdir -p $REMOTE_PROJECT_PATH"
+# Update NEXTAUTH_URL to remote IP in the remote .env file
+if [ ! -z "$GCP_IP" ]; then
+    echo "Updating NEXTAUTH_URL to http://$GCP_IP:3000 in remote .env..."
+    ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "sed -i 's|NEXTAUTH_URL=.*|NEXTAUTH_URL=http://$GCP_IP:3000|g' $REMOTE_PROJECT_PATH/.env"
+fi
 
-rsync -avz -e "ssh -i $GCP_KEY -o StrictHostKeyChecking=no" \
-    --exclude="node_modules" \
-    --exclude=".next" \
-    --exclude="prisma/dev.db*" \
-    --exclude=".git" \
-    --exclude=".env*" \
-    --exclude="*.tsbuildinfo" \
-    "$SCRIPT_DIR/../" "$GCP_USER@$GCP_IP:$REMOTE_PROJECT_PATH/"
-
-# 3. Run Remote Setup
+# 4. Run Remote Setup
 echo "Running remote setup on VM..."
 scp -i "$GCP_KEY" -o StrictHostKeyChecking=no "$SCRIPT_DIR/setup-remote.sh" "$GCP_USER@$GCP_IP:~/setup-remote.sh"
 ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "bash ~/setup-remote.sh"

@@ -1,10 +1,10 @@
 #!/bin/bash
 # GCP Deployment Configuration
 
-GCP_PROJECT="ai4all-492802"
+GCP_PROJECT="monkey5-499403"
 GCP_ZONE="asia-southeast1-a"
 VM_NAME="monkey5-server"
 GCP_USER="anhlh48"
-GCP_KEY="$HOME/.ssh/gcp-jobfair-key"
-GCP_IP="REPLACEME_IP"
+GCP_KEY="$HOME/.ssh/gcp-monkey5-499403-key"
+GCP_IP="35.247.148.192"
 REMOTE_PROJECT_PATH="~/monkey5"
