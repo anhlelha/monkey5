@@ -3,6 +3,12 @@ import { prisma } from "./prisma";
 const LEVELS = ["L4", "L5", "L4+5", "NC"] as const;
 type Level = (typeof LEVELS)[number];
 
+// School IDs that look like schools in `Exam.school` but aren't real schools —
+// excluded from auto-rebuild of School + SchoolProfile tables. "mix" is a
+// style/placeholder used by spawn-exam.ts for topic-practice sets and by
+// admin's "MIX (tổng hợp)" exams; it should not get its own readiness profile.
+const PSEUDO_SCHOOL_IDS = new Set<string>(["mix"]);
+
 export interface SchoolProfileData {
   school: string;
   topicWeights: Record<string, number>;
@@ -114,6 +120,7 @@ async function getSchoolDigests(): Promise<SchoolDigest[]> {
 }
 
 async function ensureSchoolMetadata(schoolId: string): Promise<void> {
+  if (PSEUDO_SCHOOL_IDS.has(schoolId)) return;
   const existing = await prisma.school.findUnique({ where: { id: schoolId } });
   if (existing) return;
   const palette = ["#3b82f6", "#ef4444", "#f59e0b", "#8b5cf6", "#10b981", "#ec4899"];
@@ -142,6 +149,7 @@ export async function ensureSchoolProfilesFresh(): Promise<{ rebuilt: string[]; 
   const unchanged: string[] = [];
 
   for (const { school, qcount, latest } of digests) {
+    if (PSEUDO_SCHOOL_IDS.has(school)) continue;
     const sourceHash = `${qcount}-${latest}`;
     const existing = await prisma.schoolProfile.findUnique({ where: { school } });
 
