@@ -1,6 +1,6 @@
 # 📋 Task Tracker — Monkey5
 
-> Last updated: 2026-06-14 10:30
+> Last updated: 2026-06-14 10:41
 
 ## Status Legend
 - ✅ Done — Task completed successfully
@@ -37,3 +37,9 @@
 - **Files:** [scripts/seed-all-exams.ts](file:///Users/anhlh48/00.AIProjects/99.Monkey5/scripts/seed-all-exams.ts)
 - **Result:** Configured SQLite database via Prisma db push. Successfully parsed and seeded 48 exams to DB. Built Next.js application in production mode and ran server under PM2 daemon.
 - **Verification:** Verified HTTP `200 OK` response from `http://35.247.148.192:3000`.
+
+### ✅ Custom Domain NEXTAUTH_URL Configuration
+- **Status:** Done
+- **Completed:** 2026-06-14 10:41
+- **Files:** [scripts/config.sh](file:///Users/anhlh48/00.AIProjects/99.Monkey5/scripts/config.sh), [scripts/deploy.sh](file:///Users/anhlh48/00.AIProjects/99.Monkey5/scripts/deploy.sh)
+- **Result:** Introduced `CUSTOM_DOMAIN` parameter to configuration. Updated deployment script to dynamically rewrite `NEXTAUTH_URL` in the remote `.env` to `https://monkey5.ai4all.vn` when a custom domain is defined.

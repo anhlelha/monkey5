@@ -60,8 +60,11 @@ else
     echo "Warning: No .env or .env.local found locally to copy."
 fi
 
-# Update NEXTAUTH_URL to remote IP in the remote .env file
-if [ ! -z "$GCP_IP" ]; then
+# Update NEXTAUTH_URL in the remote .env file (supports custom domain or fallback to IP)
+if [ ! -z "$CUSTOM_DOMAIN" ]; then
+    echo "Updating NEXTAUTH_URL to https://$CUSTOM_DOMAIN in remote .env..."
+    ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "sed -i 's|NEXTAUTH_URL=.*|NEXTAUTH_URL=https://$CUSTOM_DOMAIN|g' $REMOTE_PROJECT_PATH/.env"
+elif [ ! -z "$GCP_IP" ]; then
     echo "Updating NEXTAUTH_URL to http://$GCP_IP:3000 in remote .env..."
     ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "sed -i 's|NEXTAUTH_URL=.*|NEXTAUTH_URL=http://$GCP_IP:3000|g' $REMOTE_PROJECT_PATH/.env"
 fi
