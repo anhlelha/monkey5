@@ -1,12 +1,14 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Icon, type IconName } from "./Icon";
 import { Brand } from "./ui";
 import { UserMenu } from "./UserMenu";
 import { SettingsButton } from "@/app/(app)/home/SettingsButton";
+
+const SIDEBAR_COLLAPSED_KEY = "sidebar-collapsed";
 
 interface SidebarProps {
   user: {
@@ -82,6 +84,41 @@ const ADMIN_GROUPS: NavGroup[] = [
 ];
 
 export function Sidebar({ user, examLibraryBadge }: SidebarProps) {
+  const [collapsed, setCollapsed] = useState(false);
+
+  // Restore persisted state on mount.
+  useEffect(() => {
+    try {
+      if (window.localStorage.getItem(SIDEBAR_COLLAPSED_KEY) === "1") {
+        setCollapsed(true);
+      }
+    } catch {
+      // ignore (storage disabled)
+    }
+  }, []);
+
+  // Propagate collapsed state to the parent `.app` grid so the main column
+  // can widen. The class lives on `.app` because that is where the CSS grid
+  // template-columns are defined.
+  useEffect(() => {
+    const app = document.querySelector(".app");
+    if (!app) return;
+    if (collapsed) app.classList.add("sidebar-collapsed");
+    else app.classList.remove("sidebar-collapsed");
+  }, [collapsed]);
+
+  const toggleCollapsed = useCallback(() => {
+    setCollapsed((c) => {
+      const next = !c;
+      try {
+        window.localStorage.setItem(SIDEBAR_COLLAPSED_KEY, next ? "1" : "0");
+      } catch {
+        // ignore
+      }
+      return next;
+    });
+  }, []);
+
   const learnItems: NavItem[] = [
     { href: "/home", icon: "home", label: "Trang chính" },
     {
@@ -95,17 +132,26 @@ export function Sidebar({ user, examLibraryBadge }: SidebarProps) {
   ];
 
   return (
-    <aside className="sidebar">
+    <aside className={"sidebar" + (collapsed ? " collapsed" : "")}>
       <div className="brand">
         <Brand />
         <div className="brand-text">
           <b>Cùng Khỉ con</b>
           <span>vào lớp 6 CLC</span>
         </div>
+        <button
+          type="button"
+          className="sidebar-toggle"
+          onClick={toggleCollapsed}
+          aria-label={collapsed ? "Mở rộng menu" : "Thu hẹp menu"}
+          title={collapsed ? "Mở rộng menu" : "Thu hẹp menu"}
+        >
+          <Icon name={collapsed ? "chevR" : "chevL"} size={14} />
+        </button>
       </div>
 
-      <Suspense fallback={<NavBody learnItems={learnItems} adminGroups={[]} user={user} isAdmin={false} pathname="" currentTab={null} />}>
-        <SidebarBody learnItems={learnItems} user={user} />
+      <Suspense fallback={<NavBody learnItems={learnItems} adminGroups={[]} user={user} isAdmin={false} pathname="" currentTab={null} collapsed={collapsed} />}>
+        <SidebarBody learnItems={learnItems} user={user} collapsed={collapsed} />
       </Suspense>
 
       <UserMenu
@@ -121,7 +167,7 @@ export function Sidebar({ user, examLibraryBadge }: SidebarProps) {
   );
 }
 
-function SidebarBody({ learnItems, user }: { learnItems: NavItem[]; user: SidebarProps["user"] }) {
+function SidebarBody({ learnItems, user, collapsed }: { learnItems: NavItem[]; user: SidebarProps["user"]; collapsed: boolean }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentTab = searchParams.get("tab");
@@ -135,6 +181,7 @@ function SidebarBody({ learnItems, user }: { learnItems: NavItem[]; user: Sideba
       isAdmin={isAdmin}
       pathname={pathname ?? ""}
       currentTab={currentTab}
+      collapsed={collapsed}
     />
   );
 }
@@ -146,9 +193,10 @@ interface NavBodyProps {
   isAdmin: boolean;
   pathname: string;
   currentTab: string | null;
+  collapsed: boolean;
 }
 
-function NavBody({ learnItems, adminGroups, user, isAdmin, pathname, currentTab }: NavBodyProps) {
+function NavBody({ learnItems, adminGroups, user, isAdmin, pathname, currentTab, collapsed }: NavBodyProps) {
   const isAdminContext =
     pathname.startsWith("/admin") || pathname.startsWith("/create");
 
@@ -177,7 +225,7 @@ function NavBody({ learnItems, adminGroups, user, isAdmin, pathname, currentTab 
         theme: user.theme,
       }}
       trigger={
-        <div className="nav-item">
+        <div className="nav-item" title={collapsed ? "Cài đặt" : undefined}>
           <Icon name="settings" />
           <span>Cài đặt</span>
         </div>
@@ -195,6 +243,7 @@ function NavBody({ learnItems, adminGroups, user, isAdmin, pathname, currentTab 
               key={it.href}
               href={it.href}
               className={"nav-item " + (isActive(it) ? "active" : "")}
+              title={collapsed ? it.label : undefined}
             >
               <Icon name={it.icon} />
               <span>{it.label}</span>
@@ -218,6 +267,7 @@ function NavBody({ learnItems, adminGroups, user, isAdmin, pathname, currentTab 
                 href={it.href}
                 className={"nav-item " + (isActive(it) ? "active" : "")}
                 replace={Boolean(it.adminTab)}
+                title={collapsed ? it.label : undefined}
               >
                 <Icon name={it.icon} />
                 <span>{it.label}</span>
