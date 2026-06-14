@@ -1,33 +1,73 @@
 ---
 name: infra-provisioner
-description: Skill for Step 1 of the deployment pipeline. Handles GCE instance creation, firewall setup, and identity management on Google Cloud.
-version: 1.0.0
+description: Handles GCP Compute Engine VM creation, network firewall rule updates, Git SSH keys setup, Nginx reverse proxy, and Let's Encrypt SSL/HTTPS configurations.
+version: 1.1.0
 ---
 
-# Infra Provisioner Skill
+# GCP Infrastructure Provisioner & Deployment Skill
 
-> This skill manages the birth of the infrastructure on Google Cloud.
+> Standardized principles and procedures for setting up VM instances, firewall rules, codebase synchronization via Git, reverse proxy via Nginx, and SSL certificates via Certbot on Google Cloud Platform.
+
+---
 
 ## 1. Responsibilities
 
-- **Identity**: Generate and manage project-specific SSH keys (`gcp-jobfair-key`).
-- **Compute**: Provision `e2-medium` instances with Ubuntu 22.04 LTS.
-- **Networking**: Configure firewall rules for SSH, HTTP/HTTPS, and Backend API (8000).
-- **Handover**: Auto-update `scripts/config.sh` with the new VM's External IP.
+- **Interactive Discovery (Socratic Gate)**: Always prompt the user for project-specific configurations before executing any commands. Never reuse old parameters from previous sessions or assume default configurations.
+- **Identity & Security**: Generate project-specific GCP SSH keys (named `gcp-[PROJECT_ID]-key`) and deploy repository Git SSH keys.
+- **Compute & Networking**: Provision Ubuntu virtual machines and configure GCP firewalls for SSH (22), HTTP (80), HTTPS (443), and custom application ports (3000, 8000).
+- **Codebase & Environment Deployment**: Sync codebase using Git clone/pull on the VM and deploy environment secrets (.env) with dynamic `NEXTAUTH_URL` domain mapping.
+- **Reverse Proxy & SSL**: Configure Nginx to forward port 80/443 traffic to Next.js (port 3000) and request Let's Encrypt certificates using Certbot.
 
-## 2. Master Tool: `scripts/provision.sh`
+---
 
-Always use `scripts/provision.sh` to execute the full provisioning flow. This script wraps:
-1. `ssh-keygen` for identity.
-2. `gcloud compute instances create` for the VM.
-3. `gcloud compute firewall-rules create` for networking.
-4. `scripts/update-ip.sh` for configuration syncing.
+## 2. Interactive Discovery Protocol (MANDATORY)
 
-## 3. Usage Pattern
+Every time the provisioning or deployment is triggered, the agent **MUST** halt and ask the user for the following parameters in a single Socratic request. **DO NOT** reuse values from past sessions:
 
-Trigger this skill via the `/gcp-provision` command.
+1. **GCP Project ID**: The target GCP project identifier (e.g., `monkey5-499403`).
+2. **GCP Active Account**: The Gmail account linked to the GCP project (e.g., `anhle.viettel@gmail.com`).
+3. **VM Instance Name**: Name of the Compute Engine instance (default: `monkey5-server`).
+4. **GCP Zone**: The target deployment zone (default: `asia-southeast1-a`).
+5. **Custom Domain**: The target public domain name (e.g., `monkey5.ai4all.vn`).
+6. **SSL Notification Email**: Email address used for Let's Encrypt certificate renewal alerts (e.g., `anhle.viettel@gmail.com`).
+7. **Cloudflare Proxy Status**: Whether the domain is currently proxied through Cloudflare (Proxied vs DNS Only).
 
-## 4. Verification
+Once the user provides these parameters and confirms, configure `scripts/config.sh` and execute the entire workflow in one go.
 
-- [ ] Check instance status: `gcloud compute instances list`.
-- [ ] Verify `scripts/config.sh` has a valid IP (not `REPLACEME_IP`).
+---
+
+## 3. Tool Pipeline & Workflow
+
+The provisioning and deployment workflow consists of running:
+
+### A. Infrastructure Setup (`scripts/provision.sh`)
+Wraps GCP CLI commands to:
+1. Generate a project-specific key: `ssh-keygen -t rsa -f ~/.ssh/gcp-[PROJECT_ID]-key -C "[USER]"`
+2. Set target project: `gcloud config set project [PROJECT_ID]`
+3. Create GCE instance (Ubuntu 22.04 LTS, `e2-medium`) with keys injected.
+4. Create firewall rule `allow-monkey5-ports` for ports `3000, 8000, 80, 443`.
+5. Run `scripts/update-ip.sh` to fetch VM external IP and write to `config.sh`.
+
+### B. Application Setup (`scripts/deploy.sh`)
+Performs codebase and environment synchronization:
+1. Copies local Git Deploy Key (`~/.ssh/git_deploy_key_monkey5`) to the VM's `~/.ssh/id_rsa`.
+2. Clones/pulls codebase directly from the Git remote on the VM.
+3. SCPs `.env.local` to VM and updates `NEXTAUTH_URL` to the custom domain (with `https://`) or the raw IP.
+4. Triggers `scripts/setup-remote.sh` on the VM to install packages (Node, SQLite, PM2), run Prisma migrations/seeds, build Next.js, and start server under PM2.
+
+### C. Nginx & SSL Setup (`scripts/setup-nginx.sh`)
+Configures Nginx reverse proxy and SSL certificates:
+1. Installs `nginx` and `certbot` on the VM.
+2. Creates an Nginx site configuration forwarding port 80/443 traffic to `http://127.0.0.1:3000`.
+3. Runs `certbot --nginx -d [DOMAIN]` to request and install Let's Encrypt certificates, automatically configuring HTTP-to-HTTPS redirects.
+
+---
+
+## 4. Verification Checklist
+
+- [ ] Verify GCP project is set correctly: `gcloud config get-value project`.
+- [ ] Verify VM instance status is `RUNNING` with valid External IP.
+- [ ] Verify firewall rules allow ports `80` and `443`.
+- [ ] Confirm VM SSH connectivity using `gcp-[PROJECT_ID]-key`.
+- [ ] Verify PM2 status: `pm2 show monkey5`.
+- [ ] Verify HTTPS endpoint returns HTTP `200 OK`: `curl -I https://[DOMAIN]`.

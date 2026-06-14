@@ -1,4 +1,10 @@
 
+### [2026-06-14] — UPGRADE: GCP Provisioning Skill & Socratic Discovery Protocol
+
+- **File:** `.agent/skills/infra-provisioner/SKILL.md`, `.agent/workflows/gcp-provision.md`
+- **Loại:** `MODIFY`
+- **Mô tả:** Nâng cấp skill `infra-provisioner` và workflow `gcp-provision` để tích hợp quy trình cài đặt Nginx Reverse Proxy và SSL Certbot. Thiết lập giao thức Socratic Discovery Protocol (bắt buộc hỏi người dùng tất cả thông tin đầu vào liên quan đến dự án trước khi chạy, không dùng thông tin cũ) và thực thi trọn gói một mạch sau khi xác nhận.
+
 ### [2026-04-14] — ARCHITECTURE: 2-Step Deployment Pipeline (Skills & Workflows)
 
 - **Skills:** `.agent/skills/infra-provisioner/`, `.agent/skills/app-deployer/`
