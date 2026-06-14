@@ -221,3 +221,53 @@ npx tsx scripts/seed-all-exams.ts
 There's no migration history under `prisma/migrations/` checked in for these
 schema iterations — local dev uses `db push`. If a real migration history is
 needed later, switch to `prisma migrate dev`.
+
+## Infrastructure & Deployment (GCP)
+
+The project is deployed on Google Cloud Platform (GCP) Compute Engine using a set of bash scripts under the `scripts/` directory.
+
+### Configuration
+All deployment settings are defined in [scripts/config.sh](file:///Users/anhlh48/00.AIProjects/99.Monkey5/scripts/config.sh):
+- `GCP_PROJECT`: Current active project ID (`monkey5-499403`).
+- `GCP_ZONE`: Zone for the VM (`asia-southeast1-a`).
+- `VM_NAME`: Instance name (`monkey5-server`).
+- `GCP_KEY`: Dedicated SSH private key for VM login (`~/.ssh/gcp-monkey5-499403-key`).
+- `GCP_IP`: Dynamically populated external IP of the GCE VM.
+- `REMOTE_PROJECT_PATH`: Target absolute path on the VM (`/home/anhlh48/monkey5`).
+
+### 1. Provisioning Infrastructure
+To provision a brand new VM instance and configure networking:
+```bash
+bash scripts/provision.sh
+```
+This script performs the following actions:
+1. Generates a dedicated project SSH key pair at `~/.ssh/gcp-monkey5-499403-key` (if it does not exist).
+2. Enables the `compute.googleapis.com` service API on the GCP project.
+3. Spins up a GCE virtual machine `monkey5-server` (machine-type `e2-medium`, Ubuntu 22.04 LTS) with public HTTP/HTTPS tags and the local SSH public key injected.
+4. Configures a VPC ingress firewall rule `allow-monkey5-ports` to permit TCP traffic on ports `3000` (Next.js app) and `8000`.
+5. Queries the external IP of the VM and auto-updates `GCP_IP` in `scripts/config.sh`.
+
+### 2. Application Deployment
+Since codebase synchronization is performed by **cloning/pulling from GitHub directly on the VM**, any local changes (e.g. scripts or config changes) must be committed and pushed to GitHub prior to running the deployment:
+```bash
+git add .
+git commit -m "commit message"
+git push origin main
+bash scripts/deploy.sh
+```
+The deploy script:
+1. Establishes the VM's SSH directory and copies the local private Git Deploy Key `~/.ssh/git_deploy_key_monkey5` to the VM's `~/.ssh/id_rsa` (scoped strictly to the private repository).
+2. Runs `git clone` (first-time) or `git pull` (updates) on the VM to fetch the latest code directly from GitHub.
+3. SCPs `.env.local` to the VM as `.env` and automatically rewrites `NEXTAUTH_URL` from `http://localhost:3000` to `http://<VM_IP>:3000` (so Google OAuth works).
+4. Executes the remote setup script [scripts/setup-remote.sh](file:///Users/anhlh48/00.AIProjects/99.Monkey5/scripts/setup-remote.sh) on the VM:
+   - Installs system prerequisites (Node.js 20, SQLite3, build-essential, git, and PM2 globally).
+   - Installs NPM dependencies.
+   - Runs Prisma schema synchronization (`npx prisma db push`) and seeds the SQLite database (`npx tsx scripts/seed-all-exams.ts`).
+   - Compiles and builds the production Next.js application.
+   - Launches or restarts the Next.js process using PM2 under the process name `monkey5` and persists it (`pm2 save`).
+
+### Verification & Monitoring
+- **App URL**: The application runs on `http://<VM_IP>:3000`.
+- **View VM Logs**: SSH into the VM and run `pm2 logs monkey5`.
+- **Process Status**: Run `pm2 status`.
+
