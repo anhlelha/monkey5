@@ -122,8 +122,14 @@ async function main() {
   const exams = meta.exams || [];
 
   // Load LTV, TX, NTT Stems
-  const rawSmartData = fs.readFileSync("/Users/anhlh48/.gemini/antigravity-ide/brain/97d27547-8a7b-44a6-85f6-4041ad9b5fc3/scratch/smart_parsed_exams.json", "utf8");
-  const smartJson = JSON.parse(rawSmartData);
+  let smartJson;
+  if (fs.existsSync("ref_exam/smart_parsed_exams.json")) {
+    const rawSmartData = fs.readFileSync("ref_exam/smart_parsed_exams.json", "utf8");
+    smartJson = JSON.parse(rawSmartData);
+  } else {
+    const rawSmartData = fs.readFileSync("/Users/anhlh48/.gemini/antigravity-ide/brain/97d27547-8a7b-44a6-85f6-4041ad9b5fc3/scratch/smart_parsed_exams.json", "utf8");
+    smartJson = JSON.parse(rawSmartData);
+  }
 
   // Load CG Stems
   const rawCgData = fs.readFileSync("ref_exam/CG_parsed_questions.json", "utf8");
