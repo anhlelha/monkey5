@@ -311,6 +311,22 @@ async function main() {
   }
 
   console.log("\n✓ Database seeding from metadata completed successfully!");
+
+  // Refresh school profiles so anything driven by them (mức phù hợp / readiness,
+  // school-vs-school difficulty spread, library cards) reflects the new exams.
+  // Without this, importing a new school or adding exams to an existing school
+  // leaves SchoolProfile stale and readiness silently falls back to 50.
+  try {
+    const { ensureSchoolProfilesFresh } = await import("../lib/school-profiles");
+    const result = await ensureSchoolProfilesFresh();
+    if (result.rebuilt.length > 0 || result.created.length > 0) {
+      console.log(`✓ School profiles refreshed — created: [${result.created.join(", ")}], rebuilt: [${result.rebuilt.join(", ")}]`);
+    } else {
+      console.log("✓ School profiles already up-to-date.");
+    }
+  } catch (e) {
+    console.warn("⚠ Failed to refresh school profiles (non-fatal):", e);
+  }
 }
 
 main()

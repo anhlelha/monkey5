@@ -1,4 +1,7 @@
 import type { SchoolProfileData } from "./school-profiles";
+import { prisma } from "./prisma";
+import { computeMastery } from "./mastery";
+import { getAllSchoolProfiles } from "./school-profiles";
 
 const LEVELS = ["L4", "L5", "L4+5", "NC"] as const;
 type Level = (typeof LEVELS)[number];
@@ -68,6 +71,50 @@ export function computeAllReadiness(
     out[school] = computeReadiness(topicMastery, levelMastery, profiles[school], referenceDifficulty);
   }
   return out;
+}
+
+/**
+ * Returns the readiness map a page should display for `userId`. If the
+ * persisted map already covers every school in `requiredSchools`, it is
+ * returned as-is (no DB write). Otherwise we recompute from mastery + school
+ * profiles, write the result back to User.readiness (so subsequent loads are
+ * fast and consistent across pages), and return the new map.
+ *
+ * This is what gives a brand-new user a meaningful "mức độ phù hợp" the
+ * very first time they reach /home or /library — before this, the persisted
+ * map was "{}" so every school fell back to a hard-coded 50.
+ */
+export async function getEffectiveReadiness(
+  userId: string,
+  persistedReadiness: Record<string, number>,
+  requiredSchools: string[],
+): Promise<Record<string, number>> {
+  const hasAll =
+    requiredSchools.length > 0 &&
+    requiredSchools.every((s) => typeof persistedReadiness[s] === "number");
+  if (hasAll) return persistedReadiness;
+
+  const [mastery, profiles] = await Promise.all([
+    computeMastery(userId),
+    getAllSchoolProfiles(),
+  ]);
+  // If profiles are not yet built (fresh DB), keep whatever we had.
+  if (Object.keys(profiles).length === 0) return persistedReadiness;
+
+  const fresh = computeAllReadiness(mastery.topicMastery, mastery.levelMastery, profiles);
+  // Merge: prefer freshly computed values for required schools; preserve any
+  // existing entries for schools not in `profiles` (defensive).
+  const merged: Record<string, number> = { ...persistedReadiness, ...fresh };
+  await prisma.user
+    .update({
+      where: { id: userId },
+      data: { readiness: JSON.stringify(merged) },
+    })
+    .catch(() => {
+      // Best-effort persistence; surfacing a write error to the page render
+      // would be worse than just rendering with the computed values.
+    });
+  return merged;
 }
 
 export function computeGapTop3(

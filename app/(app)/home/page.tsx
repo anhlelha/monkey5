@@ -35,6 +35,18 @@ export default async function Dashboard() {
   ]);
   const recent = history.slice(0, 5);
 
+  // Ensure readiness covers every active school. For brand-new users (who
+  // haven't submitted anything yet) `user.readiness` is "{}", and a plain
+  // `?? 50` fallback would render every school at 50%. The helper computes
+  // from mastery + school profiles and persists, so subsequent loads stay
+  // consistent across pages.
+  const { getEffectiveReadiness } = await import("@/lib/readiness");
+  const readiness = await getEffectiveReadiness(
+    user.id,
+    user.readiness,
+    SCHOOLS.map((s) => s.id),
+  );
+
   const daysToExam = user.examDate ? daysBetween(user.examDate) : null;
   const greet = greeting();
   const fn = firstName(user.name);
@@ -62,7 +74,7 @@ export default async function Dashboard() {
         };
       });
       gapAdvice = {
-        school: { id: targetSchool.id, full: targetSchool.full, tone: targetSchool.tone, r: user.readiness[targetSchool.id] ?? 50 },
+        school: { id: targetSchool.id, full: targetSchool.full, tone: targetSchool.tone, r: readiness[targetSchool.id] ?? 50 },
         items,
       };
     }
@@ -138,7 +150,7 @@ export default async function Dashboard() {
         </div>
 
         {(() => {
-          const sortedR = SCHOOLS.map((s) => ({ ...s, r: user.readiness[s.id] ?? 50 }))
+          const sortedR = SCHOOLS.map((s) => ({ ...s, r: readiness[s.id] ?? 50 }))
             .sort((a, b) => b.r - a.r);
           const top = sortedR[0];
           if (!top) return null;
@@ -152,7 +164,7 @@ export default async function Dashboard() {
         <div className="grid cols-4">
           {SCHOOLS.map((s) => {
             const isTarget = user.targets.includes(s.id);
-            const r = user.readiness[s.id] ?? 50;
+            const r = readiness[s.id] ?? 50;
             const tone = r >= 75 ? "green" : r >= 60 ? "amber" : "red";
             const status = r >= 75 ? "Sẵn sàng" : r >= 60 ? "Đang tiến triển" : "Cần luyện thêm";
             return (

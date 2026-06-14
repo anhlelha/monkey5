@@ -17,6 +17,15 @@ export default async function LibraryPage({ searchParams }: Props) {
   if (!dbUser) redirect("/signin");
   const user = hydrateUser(dbUser);
 
+  // Ensure readiness is filled for new users before rendering the school
+  // grid (otherwise every card would render at 50% via fallback).
+  const { getEffectiveReadiness } = await import("@/lib/readiness");
+  const readiness = await getEffectiveReadiness(
+    user.id,
+    user.readiness,
+    SCHOOLS.map((s) => s.id),
+  );
+
   const sp = await searchParams;
 
   const plan = effectivePlan(dbUser);
@@ -108,7 +117,7 @@ export default async function LibraryPage({ searchParams }: Props) {
         style: MIX_SCHOOL.style,
         desc: MIX_SCHOOL.desc,
       }}
-      readiness={user.readiness}
+      readiness={readiness}
       referenceHistory={referenceHistory}
       userDoneOfficial={userDoneOfficial}
       userDoneReference={userDoneReference}
