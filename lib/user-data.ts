@@ -372,3 +372,263 @@ export async function getTopicSessions(
     attemptId: r.setId ? attemptMap.get(r.setId) ?? null : null,
   }));
 }
+
+// ─── Admin: mastery overview (dashboard) ─────────────────────────────────────
+// Aggregates `User.topicMastery` JSON across all users. A user "learns" a topic
+// when their mastery for it is > 0; the average is computed only over those
+// learners to avoid pulling weights toward 0 from users who never touched it.
+
+export interface MasteryTopicStat {
+  topicId: string;
+  avg: number;          // 0..100 (rounded), averaged across learners
+  learnerCount: number; // users with mastery > 0 on this topic
+  weakCount: number;    // learners with mastery < 0.5
+}
+
+export interface MasteryStats {
+  totalUsers: number;
+  activeUsers: number;             // users with at least one topic > 0
+  globalAvg: number;               // 0..100 — avg per-user-avg of learned topics
+  perTopic: MasteryTopicStat[];    // sorted by topicId order of TOPICS
+  distribution: [number, number, number, number]; // bucket counts: <25, 25-50, 50-75, ≥75
+}
+
+export async function getMasteryStats(): Promise<MasteryStats> {
+  const rows = await prisma.user.findMany({
+    select: { topicMastery: true },
+  });
+
+  const totals: Record<string, { sum: number; learners: number; weak: number }> = {};
+  const perUserAvgs: number[] = [];
+
+  for (const r of rows) {
+    const m = parseJson<Record<string, number>>(r.topicMastery, {});
+    const learnedValues: number[] = [];
+    for (const [tid, raw] of Object.entries(m)) {
+      const v = typeof raw === "number" && isFinite(raw) ? raw : 0;
+      if (v <= 0) continue;
+      const slot = totals[tid] ?? { sum: 0, learners: 0, weak: 0 };
+      slot.sum += v;
+      slot.learners += 1;
+      if (v < 0.5) slot.weak += 1;
+      totals[tid] = slot;
+      learnedValues.push(v);
+    }
+    if (learnedValues.length > 0) {
+      const userAvg = learnedValues.reduce((s, v) => s + v, 0) / learnedValues.length;
+      perUserAvgs.push(userAvg);
+    }
+  }
+
+  const perTopic: MasteryTopicStat[] = Object.entries(totals).map(([topicId, t]) => ({
+    topicId,
+    avg: t.learners > 0 ? Math.round((t.sum / t.learners) * 100) : 0,
+    learnerCount: t.learners,
+    weakCount: t.weak,
+  }));
+
+  const globalAvg =
+    perUserAvgs.length > 0
+      ? Math.round((perUserAvgs.reduce((s, v) => s + v, 0) / perUserAvgs.length) * 100)
+      : 0;
+
+  const distribution: [number, number, number, number] = [0, 0, 0, 0];
+  for (const v of perUserAvgs) {
+    const pct = v * 100;
+    if (pct < 25) distribution[0] += 1;
+    else if (pct < 50) distribution[1] += 1;
+    else if (pct < 75) distribution[2] += 1;
+    else distribution[3] += 1;
+  }
+
+  return {
+    totalUsers: rows.length,
+    activeUsers: perUserAvgs.length,
+    globalAvg,
+    perTopic,
+    distribution,
+  };
+}
+
+// ─── Admin: per-user activity summary ────────────────────────────────────────
+// For the admin users table + user detail header. Returns aggregate counts so
+// the table can show "X bài · TB Y%" without N+1 queries.
+
+export interface UserActivitySummary {
+  attemptCount: number;       // submitted attempts (full exams)
+  topicSessionCount: number;
+  avgScore: number | null;    // 0..100, null when no activity
+  lastActiveAt: Date | null;
+}
+
+export async function getUserActivityStats(
+  userIds: string[],
+): Promise<Map<string, UserActivitySummary>> {
+  const map = new Map<string, UserActivitySummary>();
+  for (const id of userIds) {
+    map.set(id, {
+      attemptCount: 0,
+      topicSessionCount: 0,
+      avgScore: null,
+      lastActiveAt: null,
+    });
+  }
+  if (userIds.length === 0) return map;
+
+  const [attempts, sessions] = await Promise.all([
+    prisma.attempt.findMany({
+      where: { userId: { in: userIds }, submitted: true },
+      select: { userId: true, score: true, createdAt: true },
+    }),
+    prisma.topicSession.findMany({
+      where: { userId: { in: userIds } },
+      select: { userId: true, qcount: true, score: true, createdAt: true },
+    }),
+  ]);
+
+  const sums: Record<string, { num: number; den: number }> = {};
+
+  for (const a of attempts) {
+    const slot = map.get(a.userId);
+    if (!slot) continue;
+    slot.attemptCount += 1;
+    if (!slot.lastActiveAt || a.createdAt > slot.lastActiveAt) slot.lastActiveAt = a.createdAt;
+    const s = sums[a.userId] ?? { num: 0, den: 0 };
+    s.num += a.score;
+    s.den += 1;
+    sums[a.userId] = s;
+  }
+
+  for (const t of sessions) {
+    const slot = map.get(t.userId);
+    if (!slot) continue;
+    slot.topicSessionCount += 1;
+    if (!slot.lastActiveAt || t.createdAt > slot.lastActiveAt) slot.lastActiveAt = t.createdAt;
+    if (t.qcount > 0) {
+      const pct = (t.score / t.qcount) * 100;
+      const s = sums[t.userId] ?? { num: 0, den: 0 };
+      s.num += pct;
+      s.den += 1;
+      sums[t.userId] = s;
+    }
+  }
+
+  for (const [uid, s] of Object.entries(sums)) {
+    const slot = map.get(uid);
+    if (slot && s.den > 0) slot.avgScore = Math.round(s.num / s.den);
+  }
+
+  return map;
+}
+
+// ─── Admin: paginated attempts for a specific user ───────────────────────────
+
+export interface AdminAttemptRow {
+  id: string;                 // attemptId
+  examId: string;
+  school: string;
+  examTitle: string | null;
+  examYear: string;
+  kind: "official" | "reference" | "mixed";
+  qcount: number;
+  minutes: number;
+  score: number;
+  earned: number;
+  total: number;
+  durationSec: number;
+  createdAt: Date;
+}
+
+export async function getAttemptsForAdmin(
+  userId: string,
+  page = 1,
+  pageSize = 20,
+): Promise<{ rows: AdminAttemptRow[]; total: number; page: number; pageSize: number }> {
+  const safePage = Math.max(1, page);
+  const [total, attempts] = await Promise.all([
+    prisma.attempt.count({ where: { userId, submitted: true } }),
+    prisma.attempt.findMany({
+      where: { userId, submitted: true },
+      include: { exam: true },
+      orderBy: { createdAt: "desc" },
+      skip: (safePage - 1) * pageSize,
+      take: pageSize,
+    }),
+  ]);
+
+  const rows: AdminAttemptRow[] = attempts.map((a) => ({
+    id: a.id,
+    examId: a.examId,
+    school: a.exam.school,
+    examTitle: a.exam.title,
+    examYear: a.exam.year,
+    kind: a.exam.kind as "official" | "reference" | "mixed",
+    qcount: a.exam.qcount,
+    minutes: a.exam.minutes,
+    score: a.score,
+    earned: a.earned,
+    total: a.total,
+    durationSec: a.durationSec,
+    createdAt: a.createdAt,
+  }));
+
+  return { rows, total, page: safePage, pageSize };
+}
+
+// ─── Admin: topic sessions for a user (paired with attemptId when possible) ──
+
+export interface AdminTopicSessionRow {
+  id: string;
+  topic: string;
+  level: string;
+  qcount: number;
+  correctCount: number;
+  score: number;            // 0..100
+  examId: string | null;
+  attemptId: string | null;
+  createdAt: Date;
+}
+
+export async function getTopicSessionsForAdmin(
+  userId: string,
+  page = 1,
+  pageSize = 20,
+): Promise<{ rows: AdminTopicSessionRow[]; total: number; page: number; pageSize: number }> {
+  const safePage = Math.max(1, page);
+  const [total, sessions] = await Promise.all([
+    prisma.topicSession.count({ where: { userId } }),
+    prisma.topicSession.findMany({
+      where: { userId },
+      orderBy: { createdAt: "desc" },
+      skip: (safePage - 1) * pageSize,
+      take: pageSize,
+    }),
+  ]);
+
+  const setIds = sessions.map((s) => s.setId).filter((v): v is string => Boolean(v));
+  const attemptMap = new Map<string, string>();
+  if (setIds.length > 0) {
+    const attempts = await prisma.attempt.findMany({
+      where: { userId, examId: { in: setIds }, submitted: true },
+      orderBy: { createdAt: "desc" },
+      select: { id: true, examId: true },
+    });
+    for (const a of attempts) {
+      if (!attemptMap.has(a.examId)) attemptMap.set(a.examId, a.id);
+    }
+  }
+
+  const rows: AdminTopicSessionRow[] = sessions.map((s) => ({
+    id: s.id,
+    topic: s.topic,
+    level: s.level,
+    qcount: s.qcount,
+    correctCount: s.score,
+    score: s.qcount > 0 ? Math.round((s.score / s.qcount) * 100) : 0,
+    examId: s.setId,
+    attemptId: s.setId ? attemptMap.get(s.setId) ?? null : null,
+    createdAt: s.createdAt,
+  }));
+
+  return { rows, total, page: safePage, pageSize };
+}

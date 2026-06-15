@@ -1,13 +1,19 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { hydrateUser } from "@/lib/user-data";
+import {
+  hydrateUser,
+  getMasteryStats,
+  getUserActivityStats,
+} from "@/lib/user-data";
 import { DEFAULT_TOPICS } from "@/lib/static";
 import { getAllSchools, getActiveSchools } from "@/lib/schools";
 import { TopBar } from "@/components/TopBar";
 import { Icon } from "@/components/Icon";
 import { Bar, Card, Pill } from "@/components/ui";
 import { TopicsEditor } from "./TopicsEditor";
+import { MasteryOverviewCard } from "./MasteryOverviewCard";
 import { QAPanel } from "./QAPanel";
 import { WhitelistPanel } from "./WhitelistPanel";
 import { BankPanel } from "./BankPanel";
@@ -28,7 +34,7 @@ import {
 } from "./actions";
 
 interface Props {
-  searchParams: Promise<{ tab?: string }>;
+  searchParams: Promise<{ tab?: string; q?: string }>;
 }
 
 export default async function AdminPage({ searchParams }: Props) {
@@ -39,18 +45,36 @@ export default async function AdminPage({ searchParams }: Props) {
   const user = hydrateUser(dbUser);
   if (user.role !== "admin") redirect("/home");
 
-  const { tab = "overview" } = await searchParams;
+  const { tab = "overview", q } = await searchParams;
+  const searchQuery = (q ?? "").trim();
+  const userWhere =
+    tab === "users" && searchQuery
+      ? {
+          OR: [
+            { name: { contains: searchQuery } },
+            { email: { contains: searchQuery } },
+          ],
+        }
+      : undefined;
 
-  const [examsCount, topicsCount, attemptsCount, usersCount, exams, topics, users] =
+  const [examsCount, questionsCount, attemptsCount, usersCount, exams, topics, users] =
     await Promise.all([
       prisma.exam.count(),
-      prisma.customSet.count(),
+      prisma.question.count({ where: { active: true } }),
       prisma.attempt.count({ where: { submitted: true } }),
       prisma.user.count(),
       prisma.exam.findMany({ orderBy: [{ kind: "asc" }, { year: "desc" }] }),
       prisma.topic.findMany({ orderBy: { position: "asc" } }),
-      prisma.user.findMany({ orderBy: { createdAt: "desc" }, take: 50 }),
+      prisma.user.findMany({
+        where: userWhere,
+        orderBy: { createdAt: "desc" },
+        take: 50,
+      }),
     ]);
+
+  const masteryStats = tab === "overview" ? await getMasteryStats() : null;
+  const userActivityMap =
+    tab === "users" ? await getUserActivityStats(users.map((u) => u.id)) : null;
 
   // Only fetch QA data when on QA tab (expensive)
   const flaggedQuestions = tab === "qa" ? await getAuditResults() : [];
@@ -119,7 +143,7 @@ export default async function AdminPage({ searchParams }: Props) {
               {[
                 { k: "Người dùng đang học", v: usersCount.toLocaleString("vi-VN"), d: "tổng tài khoản", tone: "var(--accent-ink)" },
                 { k: "Đề đã có", v: String(examsCount), d: "trong thư viện", tone: "var(--cg)" },
-                { k: "Bộ luyện chuyên đề", v: String(topicsCount), d: "đã tạo", tone: "var(--ltv)" },
+                { k: "Câu hỏi", v: questionsCount.toLocaleString("vi-VN"), d: "trong ngân hàng", tone: "var(--ltv)" },
                 { k: "Đã hoàn thành", v: attemptsCount.toLocaleString("vi-VN"), d: "lượt làm bài", tone: "var(--success)" },
               ].map((s, i) => (
                 <Card key={i} tight>
@@ -156,6 +180,21 @@ export default async function AdminPage({ searchParams }: Props) {
                 })}
               </div>
             </Card>
+
+            {masteryStats && (
+              <div style={{ marginTop: 22 }}>
+                <MasteryOverviewCard
+                  stats={masteryStats}
+                  topics={TOPICS.map((t) => ({
+                    id: t.id,
+                    name: t.name,
+                    short: t.short,
+                    color: t.color,
+                    position: t.position ?? 0,
+                  }))}
+                />
+              </div>
+            )}
           </>
         )}
 
@@ -195,10 +234,35 @@ export default async function AdminPage({ searchParams }: Props) {
 
         {tab === "users" && (
           <Card>
-            <div className="row between" style={{ marginBottom: 16 }}>
-              <input className="input" placeholder="Tìm theo tên hoặc email…" style={{ width: 320 }} />
-              <span className="muted" style={{ fontSize: 12 }}>{usersCount} người dùng</span>
-            </div>
+            <form
+              method="GET"
+              className="row between"
+              style={{ marginBottom: 16, gap: 12, alignItems: "center" }}
+            >
+              <input type="hidden" name="tab" value="users" />
+              <div className="row" style={{ gap: 8, alignItems: "center" }}>
+                <input
+                  className="input"
+                  name="q"
+                  defaultValue={searchQuery}
+                  placeholder="Tìm theo tên hoặc email…"
+                  style={{ width: 320 }}
+                />
+                <button className="btn sm" type="submit">
+                  Tìm
+                </button>
+                {searchQuery && (
+                  <Link href="/admin?tab=users" className="btn sm ghost">
+                    Xoá
+                  </Link>
+                )}
+              </div>
+              <span className="muted" style={{ fontSize: 12 }}>
+                {searchQuery
+                  ? `${users.length} kết quả · trên tổng ${usersCount}`
+                  : `${usersCount} người dùng`}
+              </span>
+            </form>
             <table className="tbl">
               <thead>
                 <tr>
@@ -208,7 +272,9 @@ export default async function AdminPage({ searchParams }: Props) {
                   <th>Gói</th>
                   <th>Lớp</th>
                   <th>Trường mục tiêu</th>
+                  <th>Hoạt động</th>
                   <th>Tham gia</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -229,14 +295,26 @@ export default async function AdminPage({ searchParams }: Props) {
                       .toUpperCase() || "?";
                   const planTone = u.plan === "vip" ? "solid" : u.plan === "pro" ? "green" : "";
                   const planLabel = u.plan === "vip" ? "VIP" : u.plan === "pro" ? "Pro" : "Free";
+                  const activity = userActivityMap?.get(u.id);
+                  const totalDone =
+                    (activity?.attemptCount ?? 0) + (activity?.topicSessionCount ?? 0);
+                  const avgScore = activity?.avgScore;
+                  const detailHref = `/admin/users/${u.id}`;
                   return (
                     <tr key={u.id}>
                       <td>
-                        <div className="avatar">{initials}</div>
+                        <Link href={detailHref} className="avatar" style={{ textDecoration: "none" }}>
+                          {initials}
+                        </Link>
                       </td>
                       <td>
-                        <b style={{ fontWeight: 500 }}>{u.name ?? "—"}</b>
-                        <div className="muted" style={{ fontSize: 11.5 }}>{u.email}</div>
+                        <Link
+                          href={detailHref}
+                          style={{ textDecoration: "none", color: "inherit" }}
+                        >
+                          <b style={{ fontWeight: 500 }}>{u.name ?? "—"}</b>
+                          <div className="muted" style={{ fontSize: 11.5 }}>{u.email}</div>
+                        </Link>
                       </td>
                       <td>
                         <Pill tone={u.role === "admin" ? "solid" : ""}>{u.role}</Pill>
@@ -256,10 +334,40 @@ export default async function AdminPage({ searchParams }: Props) {
                           })
                         )}
                       </td>
+                      <td>
+                        {totalDone === 0 ? (
+                          <span className="muted" style={{ fontSize: 12 }}>—</span>
+                        ) : (
+                          <span className="row" style={{ gap: 6, alignItems: "center" }}>
+                            <b className="mono" style={{ fontSize: 13 }}>{totalDone} bài</b>
+                            {avgScore !== null && avgScore !== undefined && (
+                              <Pill
+                                tone={
+                                  avgScore >= 70 ? "green" : avgScore >= 50 ? "amber" : "red"
+                                }
+                              >
+                                TB {avgScore}%
+                              </Pill>
+                            )}
+                          </span>
+                        )}
+                      </td>
                       <td className="muted">{new Date(u.createdAt).toLocaleDateString("vi-VN")}</td>
+                      <td>
+                        <Link href={detailHref} className="btn sm ghost">
+                          Xem
+                        </Link>
+                      </td>
                     </tr>
                   );
                 })}
+                {users.length === 0 && (
+                  <tr>
+                    <td colSpan={9} className="empty" style={{ textAlign: "center" }}>
+                      Không có người dùng nào khớp.
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </Card>

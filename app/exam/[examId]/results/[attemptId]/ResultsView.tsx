@@ -29,6 +29,7 @@ interface Props {
   attempt: { earned: number; total: number; score: number; durationSec: number };
   topics: { id: string; name: string; short: string; color: string }[];
   targetSchools: { id: string; short: string; name: string; tone: string; current: number }[];
+  adminView?: { ownerName: string } | null;
 }
 
 interface Graded {
@@ -54,9 +55,11 @@ export function ResultsView({
   attempt,
   topics,
   targetSchools,
+  adminView = null,
 }: Props) {
   const router = useRouter();
   const [tutorQ, setTutorQ] = useState<ExamQuestion | null>(null);
+  const isAdminView = Boolean(adminView);
 
   const graded: Graded[] = questions.map((q) => {
     const a = flatAnswer(answers[q.id]);
@@ -91,22 +94,49 @@ export function ResultsView({
   return (
     <div className="main">
       <TopBar
-        crumbs={[
-          { label: "Trang chính", href: "/home" },
-          { label: "Đề thi mẫu", href: "/library" },
-          "Kết quả",
-        ]}
+        crumbs={
+          isAdminView
+            ? [
+                { label: "Quản trị", href: "/admin?tab=overview" },
+                { label: "Tài khoản", href: "/admin?tab=users" },
+                `Bài làm của ${adminView?.ownerName ?? "học sinh"}`,
+              ]
+            : [
+                { label: "Trang chính", href: "/home" },
+                { label: "Đề thi mẫu", href: "/library" },
+                "Kết quả",
+              ]
+        }
         actions={
-          <Fragment>
-            <button className="btn" onClick={() => router.push(`/exam/${examMeta.id}`)}>
-              <Icon name="refresh" /> Làm lại đề này
-            </button>
-            <Link href="/library" className="btn">
-              <Icon name="library" /> Chọn đề khác
+          isAdminView ? (
+            <Link href="/admin?tab=users" className="btn">
+              <Icon name="chevR" size={12} /> Trở lại danh sách
             </Link>
-          </Fragment>
+          ) : (
+            <Fragment>
+              <button className="btn" onClick={() => router.push(`/exam/${examMeta.id}`)}>
+                <Icon name="refresh" /> Làm lại đề này
+              </button>
+              <Link href="/library" className="btn">
+                <Icon name="library" /> Chọn đề khác
+              </Link>
+            </Fragment>
+          )
         }
       />
+      {isAdminView && (
+        <div
+          style={{
+            padding: "8px 14px",
+            background: "var(--surface-2)",
+            borderBottom: "1px solid var(--border)",
+            fontSize: 12.5,
+          }}
+        >
+          <b>Chế độ admin:</b> đang xem bài làm của{" "}
+          <b>{adminView?.ownerName}</b> · tính năng &quot;Hỏi AI&quot; bị tắt.
+        </div>
+      )}
       <div className="content">
         <div className="score-hero" style={{ marginBottom: 24 }}>
           <Donut
@@ -314,7 +344,7 @@ export function ResultsView({
                   </div>
 
                   <div className="actions">
-                    {!g.correct ? (
+                    {isAdminView ? null : !g.correct ? (
                       <button className="btn sm primary" onClick={() => setTutorQ(g.q)}>
                         <Icon name="sparkle" size={12} /> Hỏi AI
                       </button>
@@ -332,7 +362,7 @@ export function ResultsView({
         </div>
       </div>
 
-      {tutorQ && (
+      {tutorQ && !isAdminView && (
         <AITutor
           question={tutorQ}
           topicShort={(topics.find((t) => t.id === tutorQ.topic) ?? { short: tutorQ.topic }).short}

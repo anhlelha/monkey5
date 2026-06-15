@@ -34,17 +34,21 @@ export default async function ResultsPage({ params }: Props) {
   if (!session?.user?.id) redirect("/signin");
 
   const attempt = await prisma.attempt.findUnique({ where: { id: attemptId } });
-  if (!attempt || attempt.userId !== session.user.id || attempt.examId !== examId) notFound();
+  if (!attempt || attempt.examId !== examId) notFound();
+
+  const dbUser = await prisma.user.findUnique({ where: { id: session.user.id } });
+  if (!dbUser) redirect("/signin");
+  const user = hydrateUser(dbUser);
+
+  const isOwner = attempt.userId === session.user.id;
+  const isAdminViewing = !isOwner && user.role === "admin";
+  if (!isOwner && !isAdminViewing) notFound();
 
   const exam = await prisma.exam.findUnique({
     where: { id: examId },
     include: { questions: { orderBy: { num: "asc" } } },
   });
   if (!exam) notFound();
-
-  const dbUser = await prisma.user.findUnique({ where: { id: session.user.id } });
-  if (!dbUser) redirect("/signin");
-  const user = hydrateUser(dbUser);
 
   const questions: ExamQuestion[] = exam.questions.map((q) => ({
     id: q.id,
@@ -76,12 +80,18 @@ export default async function ResultsPage({ params }: Props) {
     color: t.color,
   }));
 
-  const targetSchools = SCHOOLS.filter((s) => user.targets.includes(s.id)).map((s) => ({
+  // When admin views another user's attempt, show that user's readiness, not the admin's.
+  const contextUser = isAdminViewing
+    ? (await prisma.user.findUnique({ where: { id: attempt.userId } })) ?? dbUser
+    : dbUser;
+  const contextHydrated = hydrateUser(contextUser);
+
+  const targetSchools = SCHOOLS.filter((s) => contextHydrated.targets.includes(s.id)).map((s) => ({
     id: s.id,
     short: s.short,
     name: s.name,
     tone: s.tone,
-    current: user.readiness[s.id] ?? 50,
+    current: contextHydrated.readiness[s.id] ?? 50,
   }));
 
   let parsedSections = [];
@@ -110,6 +120,7 @@ export default async function ResultsPage({ params }: Props) {
       }}
       topics={TOPICS}
       targetSchools={targetSchools}
+      adminView={isAdminViewing ? { ownerName: contextHydrated.name ?? contextHydrated.email ?? "học sinh" } : null}
     />
   );
 }

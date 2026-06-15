@@ -276,13 +276,6 @@ function NavBody({ learnItems, adminGroups, user, isAdmin, pathname, currentTab,
             ))}
           </div>
         ))}
-
-      {isAdminContext && isAdmin && (
-        <div className="nav-section">
-          <h6>Tài khoản</h6>
-          {settingsBlock}
-        </div>
-      )}
     </>
   );
 }
