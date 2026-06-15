@@ -13,8 +13,15 @@ const PUBLIC_PREFIX = [
 
 export default auth((req) => {
   const { pathname } = req.nextUrl;
-  if (PUBLIC_EXACT.includes(pathname)) return;
-  if (PUBLIC_PREFIX.some((p) => pathname.startsWith(p))) return;
+
+  // Forward the active path to server components (used by the (app) shell to
+  // decide whether to render the quiet-hours lock screen).
+  const requestHeaders = new Headers(req.headers);
+  requestHeaders.set("x-pathname", pathname);
+  const passThrough = NextResponse.next({ request: { headers: requestHeaders } });
+
+  if (PUBLIC_EXACT.includes(pathname)) return passThrough;
+  if (PUBLIC_PREFIX.some((p) => pathname.startsWith(p))) return passThrough;
 
   const session = req.auth;
   if (!session?.user?.id) {
@@ -31,6 +38,8 @@ export default auth((req) => {
       return NextResponse.redirect(url);
     }
   }
+
+  return passThrough;
 });
 
 export const config = {

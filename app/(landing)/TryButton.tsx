@@ -3,7 +3,7 @@
 import { signIn } from "next-auth/react";
 import type { ReactNode } from "react";
 
-type Plan = "free" | "pro" | "vip" | "demo";
+type Plan = "free" | "pro" | "vip" | "demo" | "login";
 
 interface Props {
   plan?: Plan;

@@ -1,4 +1,4 @@
-<!-- Generated: 2026-06-12 | Files scanned: package.json + helper scripts | Token estimate: ~600 -->
+<!-- Generated: 2026-06-14 | Files scanned: package.json + helper scripts | Token estimate: ~650 -->
 
 # Dependencies
 
@@ -8,11 +8,11 @@
 |---|---|---|
 | `next` | 16.2.6 | Next.js App Router framework |
 | `react` / `react-dom` | 19.2.4 | React renderer (RSC + client) |
-| `@prisma/client` | ^5.22.0 | Generated DB client |
+| `@prisma/client` | ^5.22.0 | Generated DB client (incl. School + SchoolProfile models added 2026-06-14) |
 | `next-auth` | 5.0.0-beta.31 | Auth.js v5 (Google + Credentials) |
 | `@auth/prisma-adapter` | ^2.7.4 | Wires next-auth ↔ Prisma schema |
 | `katex` | ^0.17.0 | Math typesetting (in `MathText.tsx`) |
-| `zod` | ^3.23.8 | Schema validation (input, env, classify) |
+| `zod` | ^3.23.8 | Schema validation (admin actions: School CRUD, profile updates) |
 
 **No** state library (Redux/Zustand/Jotai), **no** CSS framework, **no** chart
 library, **no** request library (uses native `fetch` + Server Actions),
@@ -55,11 +55,14 @@ Source of truth: `.env.example`. Documented in `README.md` (auto-gen block).
 
 ```
 AUTH_SECRET             yes  NextAuth session signing (32 bytes base64)
+AUTH_TRUST_HOST         prod Required behind reverse proxy / custom domain
+NEXTAUTH_URL            auto Auto-rewritten by scripts/deploy.sh to VM/domain
 GOOGLE_CLIENT_ID        no   Google OAuth (Demo fallback works)
 GOOGLE_CLIENT_SECRET    no   Google OAuth
 ADMIN_EMAILS            rec  Comma-separated emails → role=admin on first sign-in
 DATABASE_URL            no   Default "file:./dev.db"
-GEMINI_API_KEY          no   Only for figure-drawing helper
+GEMINI_API_KEY          no   Only for figure-drawing helper (Gemini fallback)
+OPENAI_API_KEY          no   Only for figure-drawing helper (Codex default)
 ```
 
 ## CLI tools (used by scripts, not bundled)
@@ -74,10 +77,26 @@ GEMINI_API_KEY          no   Only for figure-drawing helper
 ## Database
 
 - **SQLite** via `prisma/dev.db` (binary in repo, local-dev only).
+- On production VM: same SQLite file at `/home/anhlh48/monkey5/prisma/dev.db`,
+  re-seeded on each deploy from metadata.
 - No managed Postgres / no connection pool — single-file DB.
+- Current schema has 17 models (added `School` + `SchoolProfile` on 2026-06-14).
 - For migration to Postgres later: change `provider = "sqlite"` to
   `"postgresql"` in `prisma/schema.prisma`, set `DATABASE_URL`, then
   `npx prisma migrate dev`.
+
+## Infrastructure (GCP, prod-only)
+
+| Component | Purpose |
+|---|---|
+| Compute Engine `monkey5-server` (e2-medium, asia-southeast1-a) | Single VM running PM2 + Nginx + Next.js |
+| Nginx | Reverse proxy `monkey5.ai4all.vn` → `:3000` |
+| Let's Encrypt + Certbot | SSL certificate (HTTPS) |
+| PM2 | Process manager — `monkey5-server` daemon |
+| GitHub Deploy Key (`git_deploy_key_monkey5`) | Read-only SSH access to clone/pull on VM |
+| VPC firewall rule `allow-monkey5-ports` | Opens 80, 443, 3000, 8000 |
+
+See [`CLAUDE.md`](../../CLAUDE.md) §"Infrastructure & Deployment" for the full provisioning + deploy runbook.
 
 ## Vendored / hand-written replacements
 

@@ -305,6 +305,18 @@ model School {
 // Mỗi row = 1 trường. Auto rebuild khi DB có thay đổi qua ensureSchoolProfilesFresh().
 // Phát hiện thay đổi qua sourceHash = "{qcount}-{latestCreatedAt.ISO}".
 
+// ─── App-wide settings (admin singleton) ─────────────────────────────────────
+// Single row (id="singleton"). Currently stores the "quiet hours" window when
+// student accounts are blocked from accessing learning pages (sức khỏe học sinh).
+
+model AppSetting {
+  id                 String   @id @default("singleton")
+  quietHoursEnabled  Boolean  @default(true)
+  quietHoursStart    String   @default("22:00") // HH:mm 24h, Asia/Ho_Chi_Minh
+  quietHoursEnd      String   @default("07:00")
+  updatedAt          DateTime @updatedAt
+}
+
 model SchoolProfile {
   school          String   @id                // FK soft tới School.id
   topicWeights    String                      // JSON: { topicId: 0..1 }, tổng = 1.0

@@ -828,3 +828,24 @@ export async function getAuditResults(
 
   return flagged;
 }
+
+// ─── App settings: quiet hours ───────────────────────────────────────────────
+
+const quietHoursSchema = z.object({
+  enabled: z.boolean(),
+  start: z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, "Sai định dạng HH:mm"),
+  end: z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, "Sai định dạng HH:mm"),
+});
+
+export async function updateQuietHours(payload: unknown) {
+  await requireAdmin();
+  const parsed = quietHoursSchema.parse(payload);
+  if (parsed.start === parsed.end) {
+    throw new Error("Giờ bắt đầu và kết thúc phải khác nhau");
+  }
+  const { setQuietHours } = await import("@/lib/app-settings");
+  const saved = await setQuietHours(parsed);
+  revalidatePath("/admin");
+  revalidatePath("/guide");
+  return saved;
+}

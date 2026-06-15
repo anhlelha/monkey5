@@ -90,8 +90,8 @@ export function Landing({ hasGoogle, user }: LandingProps) {
               <LandingNavActions user={user} />
             ) : (
               <>
-                <TryButton plan="demo" hasGoogle={hasGoogle} className="btn ghost">
-                  Xem demo
+                <TryButton plan="login" hasGoogle={hasGoogle} className="btn ghost">
+                  Đăng nhập
                 </TryButton>
                 <TryButton plan="free" hasGoogle={hasGoogle} className="btn primary">
                   Dùng thử miễn phí
@@ -220,6 +220,20 @@ export function Landing({ hasGoogle, user }: LandingProps) {
                   <span className="meter"><i className="ns"></i></span>
                   <span className="pct">0%</span>
                 </div>
+              </div>
+
+              <div className="preview-divider"></div>
+
+              <div className="preview-label">
+                Tiến bộ theo nhóm chuyên đề
+                <span className="up">▲ mở rộng</span>
+              </div>
+              <div className="radar-wrap">
+                <svg id="radarSvg" viewBox="0 0 240 188" aria-hidden="true"></svg>
+              </div>
+              <div className="radar-legend">
+                <span><i className="dash"></i>Lúc bắt đầu</span>
+                <span><i className="solid"></i>Hiện tại</span>
               </div>
             </div>
 
@@ -525,8 +539,8 @@ export function Landing({ hasGoogle, user }: LandingProps) {
                   <TryButton plan="free" hasGoogle={hasGoogle} className="btn primary lg">
                     Dùng thử miễn phí <ArrowIcon />
                   </TryButton>
-                  <TryButton plan="demo" hasGoogle={hasGoogle} className="btn lg">
-                    Xem demo sản phẩm
+                  <TryButton plan="login" hasGoogle={hasGoogle} className="btn lg">
+                    Đã có tài khoản? Đăng nhập
                   </TryButton>
                 </div>
                 <div className="fine">Không cần thẻ thanh toán · Bắt đầu trong 2 phút</div>

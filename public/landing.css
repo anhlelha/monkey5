@@ -390,6 +390,16 @@ button { font-family: inherit; cursor: pointer; }
   letter-spacing: -0.02em;
 }
 
+/* radar inside the dashboard card */
+.preview-divider { height: 1px; background: var(--border-soft); margin: 20px 0 0; }
+.radar-wrap { display: flex; justify-content: center; margin-top: 6px; }
+.radar-wrap svg { width: 270px; max-width: 100%; height: auto; overflow: visible; }
+.radar-legend { display: flex; justify-content: center; gap: 18px; margin-top: 2px; }
+.radar-legend span { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 600; color: var(--ink-muted); }
+.radar-legend i { width: 16px; height: 0; border-top: 2.5px solid var(--accent); border-radius: 2px; flex-shrink: 0; }
+.radar-legend i.dash { border-top: 2px dashed var(--ink-faint); }
+.radar-poly { transition: none; }
+
 /* floating cards around the preview */
 .float {
   position: absolute;

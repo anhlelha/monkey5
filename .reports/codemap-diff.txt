@@ -1,49 +1,95 @@
-Codemap Generation Report
-─────────────────────────────────────────────────────────────────
-Generated: 2026-06-12
-Mode: initial (no prior codemaps existed in docs/CODEMAPS/)
+Codemap Refresh Report
+======================
+Generated: 2026-06-14
+Trigger: /update-codemaps slash command
+Previous generation: 2026-06-12 (2 days stale)
 
-Files created:
-  docs/CODEMAPS/architecture.md   (~750 tokens)
-  docs/CODEMAPS/backend.md        (~900 tokens)
-  docs/CODEMAPS/frontend.md       (~850 tokens)
-  docs/CODEMAPS/data.md           (~700 tokens)
-  docs/CODEMAPS/dependencies.md   (~600 tokens)
+Files scanned
+─────────────
+  app/         : 48 .tsx / .ts files
+  components/  : 12 .tsx files
+  lib/         : 21 .ts files
+  Total source : 81 files
+  Schema       : prisma/schema.prisma (17 models)
 
-Project type: Single Next.js 16 App Router app + Prisma 5 + SQLite.
-                No monorepo, no microservices.
+Codemap diff (this run)
+───────────────────────
+  docs/CODEMAPS/architecture.md   +95 lines / -19 lines  (~30% rewrite)
+  docs/CODEMAPS/backend.md        already updated in /update-docs (Phase 1)
+  docs/CODEMAPS/data.md           already updated in /update-docs (Phase 1)
+  docs/CODEMAPS/dependencies.md   +20 lines / -7 lines   (~15% delta)
+  docs/CODEMAPS/frontend.md       +90 lines / -46 lines  (~30% rewrite)
 
-Scanned:
-  app/                      27 routes (page.tsx + actions.ts + route.ts)
-  components/               12 components (incl 1920-line ExamFigure.tsx)
-  lib/                      8 modules + lib/grading/ (8 files)
-  scripts/                  ~30 utilities, key: seed/build/audit/classify
-  prisma/schema.prisma      15 models
+Major changes since 2026-06-12
+──────────────────────────────
+  + lib/schools.ts            (DB-backed school metadata fetch + cache)
+  + lib/mastery.ts            (TopicSession+Attempt aggregation)
+  + lib/school-profiles.ts    (hash-based auto-detection + 6-factor difficulty)
+  + lib/readiness.ts          (pure computeReadiness + computeGapTop3)
+  + app/(app)/admin/SchoolsPanel.tsx    (School CRUD UI)
+  + app/(app)/admin/ReadinessPanel.tsx  (user distribution histogram)
+  + scripts/seed-schools.ts
+  + scripts/recompute-mastery-readiness.ts
+  + scripts/preview-school-profiles.ts
 
-Architecture highlights:
-  - Next.js Server Actions are the main backend surface (only 1 custom HTTP
-    route besides auth.js handlers: POST /api/reference-exams/claim).
-  - Grading library has 3-layer architecture (classify → dispatch → matchers).
-    Called at BOTH submit and render — UI updates on refresh.
-  - Exam content pipeline: override map → metadata JSON (generated) →
-    seed-all-exams.ts (destructive) → SQLite. App reads DB only.
-  - Figure rendering: hand-written SVG cases in components/ExamFigure.tsx
-    keyed by Question.figure string. ~50 cases.
+Schema additions
+  + model School (id, short, name, full, color, tone, desc, minutes, …)
+  + model SchoolProfile (school, topicWeights, levelWeights, difficulty,
+                         minutes, totalQuestions, freeTextPct, olympicGeoPct,
+                         diversity, sourceHash, updatedAt)
+  + User.theme String @default("clay")
 
-External services: minimal (Google OAuth optional, Gemini API for figure
-gen only). No analytics/email/payment/CDN wired.
+Subsystems documented in architecture.md
+  + Readiness subsystem (submitExam → ensureFresh → recompute → persist)
+  + Theme subsystem (SSR <html data-theme> + optimistic preview)
 
-Architecture changes since last codemap: N/A (first generation).
+Routes / actions added (backend.md)
+  + admin: createSchool / updateSchool / deactivateSchool
+  + admin: refreshSchoolProfilesAction / recomputeAllReadinessAction
+  + admin: getReadinessDistribution (histogram aggregation)
+  + submitExam now triggers ensureSchoolProfilesFresh + recompute
 
-Staleness warnings:
-  README.md         updated 2026-06-11 (1 day ago)  — current
-  CLAUDE.md         updated 2026-06-12 — current
-  .claude/commands/exam-import.md  updated 2026-06-12 — current
-  docs/AUDIT-NTT-stems-2026-06-11.md  frozen snapshot — do not regenerate
+UI additions (frontend.md)
+  + 2 new admin tabs: ?tab=schools, ?tab=readiness
+  + SettingsButton "Giao diện" section with 5 swatches
+  + Home: "Top match" hint line + Gap Top 3 card
+  + Results page: unified Attempt + TopicSession feed via getRecentActivityFeed
 
-Next refresh recommended after:
-  - Adding new HTTP API routes
-  - Adding new Prisma models or schema changes
-  - Refactoring grading library structure
-  - Adding new external service dependencies
-─────────────────────────────────────────────────────────────────
+Dependencies (dependencies.md)
+  No new npm packages (zod still used; expanded usage).
+  + AUTH_TRUST_HOST, NEXTAUTH_URL, OPENAI_API_KEY documented in env table
+  + Production infrastructure section added (GCP / Nginx / PM2 / SSL)
+
+External integrations (no change in graph)
+  Google OAuth · OpenAI Codex CLI · Google Gemini CLI
+
+Approval threshold check
+────────────────────────
+  architecture.md   ~30% rewrite → at threshold, applied in place
+  frontend.md       ~30% rewrite → at threshold, applied in place
+  dependencies.md   ~15% delta   → under threshold, applied in place
+
+  All updates are additive (existing manual prose preserved). No content
+  removed except the stale claim "no dark mode toggle wired yet" (replaced
+  with explicit current scope note).
+
+Staleness warnings
+──────────────────
+  None. All 5 codemaps refreshed within the last 2 days.
+
+Token estimates (updated)
+─────────────────────────
+  architecture.md   ~900 tokens (was ~750)
+  backend.md        ~1050 tokens (was ~900)
+  data.md           ~850 tokens (was ~700)
+  dependencies.md   ~650 tokens (was ~600)
+  frontend.md       ~1000 tokens (was ~850)
+  Total            ~4450 tokens (was ~3800)
+
+Sources of truth verified
+─────────────────────────
+  ✓ prisma/schema.prisma → data.md
+  ✓ package.json + .env.example → dependencies.md
+  ✓ app/ + components/ structure → frontend.md
+  ✓ Server Actions surfaces → backend.md
+  ✓ Subsystem diagrams → architecture.md

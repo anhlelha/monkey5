@@ -138,6 +138,154 @@
     setInterval(function () { fillBars(false); }, 6000);
   }
 
+  /* ---- radar chart inside the dashboard preview ---- */
+  var radarSvg = document.getElementById("radarSvg");
+  if (radarSvg) {
+    var AXES = [
+      { label: "Số học" },
+      { label: "Đại số" },
+      { label: "Hình" },
+      { label: "Đếm & Logic" },
+      { label: "Chuyển động" },
+      { label: "Tỉ lệ" },
+      { label: "Phân số" },
+    ];
+    var baseline = [0.38, 0.30, 0.42, 0.34, 0.28, 0.40, 0.46];
+    var current  = [0.78, 0.66, 0.82, 0.70, 0.62, 0.74, 0.86];
+    var cx = 120, cy = 92, R = 70;
+    var N = AXES.length;
+    var SVG_NS = "http://www.w3.org/2000/svg";
+
+    function ptFor(i, value) {
+      var angle = (Math.PI * 2 * i) / N - Math.PI / 2;
+      var r = R * value;
+      return [cx + Math.cos(angle) * r, cy + Math.sin(angle) * r];
+    }
+    function pointsAttr(values) {
+      return values.map(function (v, i) {
+        var p = ptFor(i, v);
+        return p[0].toFixed(1) + "," + p[1].toFixed(1);
+      }).join(" ");
+    }
+    function el(tag, attrs) {
+      var node = document.createElementNS(SVG_NS, tag);
+      Object.keys(attrs).forEach(function (k) { node.setAttribute(k, attrs[k]); });
+      return node;
+    }
+
+    // grid rings (4 levels)
+    [0.25, 0.5, 0.75, 1].forEach(function (lv) {
+      var pts = AXES.map(function (_, i) {
+        var p = ptFor(i, lv);
+        return p[0].toFixed(1) + "," + p[1].toFixed(1);
+      }).join(" ");
+      radarSvg.appendChild(el("polygon", {
+        points: pts,
+        fill: "none",
+        stroke: "var(--border-soft)",
+        "stroke-width": lv === 1 ? "1.2" : "1",
+        opacity: lv === 1 ? "0.9" : "0.6",
+      }));
+    });
+    // axis lines
+    AXES.forEach(function (_, i) {
+      var p = ptFor(i, 1);
+      radarSvg.appendChild(el("line", {
+        x1: cx, y1: cy,
+        x2: p[0].toFixed(1), y2: p[1].toFixed(1),
+        stroke: "var(--border-soft)",
+        "stroke-width": "1",
+        opacity: "0.5",
+      }));
+    });
+    // axis labels
+    AXES.forEach(function (ax, i) {
+      var p = ptFor(i, 1.18);
+      var anchor = "middle";
+      if (p[0] < cx - 4) anchor = "end";
+      else if (p[0] > cx + 4) anchor = "start";
+      var lbl = el("text", {
+        x: p[0].toFixed(1),
+        y: p[1].toFixed(1),
+        "text-anchor": anchor,
+        "dominant-baseline": "middle",
+        "font-size": "9.5",
+        "font-weight": "600",
+        fill: "var(--ink-muted)",
+      });
+      lbl.textContent = ax.label;
+      radarSvg.appendChild(lbl);
+    });
+    // baseline polygon (static, dashed)
+    var basePoly = el("polygon", {
+      points: pointsAttr(baseline),
+      fill: "none",
+      stroke: "var(--ink-faint)",
+      "stroke-width": "1.6",
+      "stroke-dasharray": "4 4",
+      class: "radar-poly base",
+    });
+    radarSvg.appendChild(basePoly);
+    // current polygon (animated)
+    var curPoly = el("polygon", {
+      points: pointsAttr(baseline.map(function (v) { return v; })),
+      fill: "var(--accent)",
+      "fill-opacity": "0.18",
+      stroke: "var(--accent)",
+      "stroke-width": "2.2",
+      "stroke-linejoin": "round",
+      class: "radar-poly cur",
+    });
+    radarSvg.appendChild(curPoly);
+    // vertex dots on current polygon
+    var dots = [];
+    current.forEach(function (_, i) {
+      var d = el("circle", {
+        r: "2.6",
+        fill: "var(--accent)",
+        stroke: "var(--surface)",
+        "stroke-width": "1.5",
+      });
+      radarSvg.appendChild(d);
+      dots.push(d);
+    });
+
+    function setRadarValues(values) {
+      curPoly.setAttribute("points", pointsAttr(values));
+      dots.forEach(function (d, i) {
+        var p = ptFor(i, values[i]);
+        d.setAttribute("cx", p[0].toFixed(1));
+        d.setAttribute("cy", p[1].toFixed(1));
+      });
+    }
+
+    function animateRadar(from, to, dur) {
+      if (reduce) { setRadarValues(to); return; }
+      var t0 = null;
+      function step(ts) {
+        if (!t0) t0 = ts;
+        var p = Math.min((ts - t0) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        var values = from.map(function (v, i) { return v + (to[i] - v) * eased; });
+        setRadarValues(values);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    // initial state: baseline; then climb to "current" once.
+    setRadarValues(baseline);
+    setTimeout(function () { animateRadar(baseline, current, 1600); }, 900);
+    // gently breathe so the hero stays alive (small contraction + re-expand)
+    if (!reduce) {
+      setInterval(function () {
+        var dip = current.map(function (v) { return v * 0.86; });
+        animateRadar(current, dip, 900);
+        setTimeout(function () { animateRadar(dip, current, 1100); }, 950);
+      }, 6000);
+    }
+  }
+
   /* NOTE: data-plan CTA clicks are handled by the React <TryButton> component.
      Original landing.js had a vanilla handler that redirected to a demo HTML file —
      removed during Next.js integration. */

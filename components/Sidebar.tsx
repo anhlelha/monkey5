@@ -129,6 +129,7 @@ export function Sidebar({ user, examLibraryBadge }: SidebarProps) {
     },
     { href: "/topics", icon: "grid", label: "Luyện chuyên đề", match: ["/topics"] },
     { href: "/results", icon: "trend", label: "Kết quả gần đây" },
+    { href: "/guide", icon: "book", label: "Hướng dẫn sử dụng" },
   ];
 
   return (

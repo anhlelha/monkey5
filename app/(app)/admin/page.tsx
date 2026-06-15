@@ -15,6 +15,8 @@ import { PlansPanel } from "./PlansPanel";
 import { ExamsPanel } from "./ExamsPanel";
 import { SchoolsPanel } from "./SchoolsPanel";
 import { ReadinessPanel } from "./ReadinessPanel";
+import { SettingsPanel } from "./SettingsPanel";
+import { getQuietHours } from "@/lib/app-settings";
 import {
   getAuditResults,
   getQuestionsWithFigures,
@@ -68,6 +70,7 @@ export default async function AdminPage({ searchParams }: Props) {
   const readinessData  = tab === "readiness" ? await getReadinessDistribution() : [];
   const readinessSchools = tab === "readiness" ? await getActiveSchools()       : [];
   const activeSchools  = tab === "overview"  ? await getActiveSchools()         : [];
+  const quietHours     = tab === "settings"  ? await getQuietHours()             : null;
 
   const TOPICS = topics.length > 0 ? topics : [...DEFAULT_TOPICS].map((t, i) => ({ ...t, position: i }));
 
@@ -287,23 +290,8 @@ export default async function AdminPage({ searchParams }: Props) {
           />
         )}
 
-        {tab === "settings" && (
-          <Card title="Cấu hình chung" sub="Áp dụng toàn bộ ứng dụng">
-            <div className="col" style={{ gap: 14, maxWidth: 480 }}>
-              <div className="field">
-                <label>Ngày thi mục tiêu mặc định</label>
-                <input className="input mono" defaultValue="01/06/2026" readOnly />
-              </div>
-              <div className="field">
-                <label>Mục tiêu giờ học/tuần mặc định</label>
-                <input className="input mono" defaultValue="5" readOnly />
-              </div>
-              <div className="field">
-                <label>Mức yêu cầu sẵn sàng để báo &quot;Đủ điều kiện&quot;</label>
-                <input className="input mono" defaultValue="75%" readOnly />
-              </div>
-            </div>
-          </Card>
+        {tab === "settings" && quietHours && (
+          <SettingsPanel initialQuietHours={quietHours} />
         )}
 
         {tab === "llm" && (
