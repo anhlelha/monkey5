@@ -1485,3 +1485,284 @@ a { color: inherit; text-decoration: none; }
 }
 .admin-tabs .tab:hover { color: var(--ink); }
 .admin-tabs .tab.active { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+
+/* =========================================================
+   Responsive overrides (desktop-first, additive only)
+   Breakpoints:
+     lg: ≤1080px  laptop / tablet ngang
+     md: ≤768px   tablet dọc
+     sm: ≤480px   phone
+   Quy ước: chỉ dùng max-width @media để override.
+   Không sửa rule nào ở phía trên — desktop layout giữ nguyên.
+   ========================================================= */
+
+/* ----- ≤1080px : laptop / tablet ngang ----- */
+@media (max-width: 1080px) {
+  .content { padding: 24px 22px 56px; }
+  .grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid.cols-5 { grid-template-columns: repeat(3, 1fr); }
+  .wizard { grid-template-columns: 200px 1fr; gap: 22px; }
+  .score-stats { gap: 20px; }
+}
+
+/* ----- ≤768px : tablet dọc / phone lớn ----- */
+@media (max-width: 768px) {
+  /* App shell — force sidebar về icon-only bất kể trạng thái collapsed */
+  .app,
+  .app.sidebar-collapsed { grid-template-columns: 56px 1fr; }
+  .app.fullscreen { grid-template-columns: 1fr; }
+
+  .sidebar { padding: 16px 6px; }
+  .sidebar .brand {
+    flex-direction: column;
+    gap: 10px;
+    padding: 6px 0 12px;
+  }
+  .sidebar .brand-text { display: none; }
+  .sidebar .sidebar-toggle { display: none; }
+  .sidebar .nav-section h6 { display: none; }
+  .sidebar .nav-item {
+    justify-content: center;
+    padding: 9px 4px;
+    gap: 0;
+  }
+  .sidebar .nav-item span,
+  .sidebar .nav-item .badge { display: none; }
+  .sidebar-user { justify-content: center; padding: 8px 4px; }
+  .sidebar-user .meta { display: none; }
+  .user-menu-popover { left: 4px; right: auto; min-width: 200px; }
+
+  /* Topbar — gọn lại, cho phép xuống dòng */
+  .topbar { padding: 12px 16px; gap: 10px; flex-wrap: wrap; }
+  .topbar h1 { font-size: 16px; }
+  .topbar .actions { gap: 6px; }
+
+  /* Content */
+  .content { padding: 20px 16px 48px; }
+  .page-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .page-head h2 { font-size: 22px; }
+
+  /* Tất cả multi-col grid → 1 cột */
+  .grid.cols-2,
+  .grid.cols-3,
+  .grid.cols-4,
+  .grid.cols-5 { grid-template-columns: 1fr; }
+
+  /* Cards */
+  .card { padding: 16px; }
+  .card.tight { padding: 12px; }
+  .card-head { flex-wrap: wrap; gap: 8px; }
+
+  /* Tables — gọn padding/font, container nên cuộn ngang nếu vẫn quá rộng */
+  .tbl { font-size: 12.5px; }
+  .tbl th, .tbl td { padding: 8px 10px; }
+
+  /* Exam runner */
+  .exam-topbar {
+    padding: 10px 14px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .exam-timer { font-size: 16px; padding: 5px 12px; }
+  .exam-body { padding: 22px 14px 100px; }
+  .question {
+    grid-template-columns: 32px 1fr;
+    gap: 12px;
+    padding: 20px 0 22px;
+  }
+  .q-stem { font-size: 14.5px; line-height: 1.6; }
+  .q-input-row { flex-wrap: wrap; }
+  .q-input-row .input { max-width: none; flex: 1 1 180px; }
+
+  /* MCQ — chạm thoải mái */
+  .mcq-opt { padding: 12px 14px; min-height: 44px; }
+
+  /* Draw modal — phá min-width 680px */
+  .draw-card {
+    min-width: 0;
+    width: calc(100vw - 20px);
+    max-width: 680px;
+    padding: 16px;
+    gap: 12px;
+  }
+  .draw-canvas { max-width: 100%; height: auto; }
+  .drawing-thumb { width: 120px; height: 86px; }
+
+  /* Tutor panel — full chiều rộng */
+  .tutor-panel { width: 100%; max-width: none; }
+
+  /* Math toolbar */
+  .math-toolbar { padding: 5px 6px; gap: 2px; }
+  .units-menu { min-width: 240px; grid-template-columns: repeat(3, 1fr); }
+
+  /* Results */
+  .score-hero {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+    gap: 20px;
+    justify-items: center;
+    text-align: center;
+  }
+  .score-ring { width: 120px; height: 120px; }
+  .score-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    justify-items: start;
+    text-align: left;
+    width: 100%;
+  }
+  .review-q {
+    grid-template-columns: 28px 1fr;
+    gap: 10px;
+    padding: 14px;
+  }
+  .review-q .actions {
+    grid-column: 1 / -1;
+    flex-wrap: wrap;
+  }
+
+  /* Library list — gộp về 2 dòng */
+  .exam-row {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "badge title"
+      "badge meta"
+      "stat   stat"
+      "stat2  stat2";
+    row-gap: 6px;
+    column-gap: 12px;
+    padding: 12px 14px;
+  }
+  .exam-row > .badge { grid-area: badge; align-self: start; }
+  .exam-row .stat { text-align: left; }
+
+  /* Wizard — steps thành tab cuộn ngang */
+  .wizard {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .wizard-steps {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 6px;
+    padding-bottom: 4px;
+  }
+  .wizard-steps .step { flex-shrink: 0; }
+
+  /* Onboarding */
+  .onboard-wrap { padding: 32px 16px; }
+  .onboard-card { padding: 24px; }
+  .onboard-card h2 { font-size: 22px; }
+
+  /* Admin tabs cuộn ngang */
+  .admin-tabs { overflow-x: auto; flex-wrap: nowrap; }
+  .admin-tabs .tab { flex-shrink: 0; }
+
+  /* Radar / sparkline / SVG figures */
+  .radar-wrap { padding: 12px; }
+  .radar-wrap svg,
+  .spark,
+  .donut { max-width: 100%; height: auto; }
+
+  /* Generic figure wrapper trong question stem */
+  .q-figure-wrapper { max-width: 100% !important; }
+  .q-figure-wrapper svg { max-width: 100%; height: auto; }
+
+  /* Auth */
+  .auth-shell { padding: 16px; }
+  .auth-card { padding: 28px 22px 22px; }
+
+  /* School card — pct number bớt to */
+  .school-card .pct .num { font-size: 28px; }
+
+  /* KPI */
+  .kpi { font-size: 24px; }
+}
+
+/* ----- ≤480px : phone ----- */
+@media (max-width: 480px) {
+  body { font-size: 13.5px; }
+
+  /* Sidebar hẹp hơn chút */
+  .app,
+  .app.sidebar-collapsed { grid-template-columns: 52px 1fr; }
+  .sidebar { padding: 14px 4px; }
+  .brand-mark { width: 26px; height: 26px; font-size: 12px; }
+
+  /* Topbar tối giản */
+  .topbar { padding: 10px 12px; }
+  .topbar h1 { font-size: 15px; }
+  .topbar .crumbs { display: none; }
+
+  .content { padding: 16px 12px 40px; }
+  .page-head h2 { font-size: 20px; }
+  .page-head p { font-size: 13px; }
+
+  /* Cards */
+  .card { padding: 14px; border-radius: var(--r-md); }
+
+  /* Buttons */
+  .btn { padding: 8px 12px; font-size: 13px; }
+  .btn.lg { padding: 10px 14px; font-size: 14px; }
+
+  /* Exam */
+  .exam-topbar { padding: 8px 10px; }
+  .exam-timer { font-size: 15px; padding: 5px 10px; }
+  .exam-body { padding: 18px 10px 80px; }
+  .question {
+    grid-template-columns: 26px 1fr;
+    gap: 8px;
+    padding: 16px 0 18px;
+  }
+  .q-num { font-size: 13px; }
+  .q-stem { font-size: 14px; }
+
+  /* MCQ */
+  .mcq-opt { padding: 11px 12px; font-size: 13.5px; }
+  .mcq-opt .marker { width: 24px; height: 24px; font-size: 11px; }
+
+  /* Math + Draw */
+  .draw-card { padding: 12px; }
+  .draw-toolbar { gap: 4px; }
+  .drawing-thumb { width: 100px; height: 72px; }
+  .units-menu { min-width: 200px; grid-template-columns: repeat(2, 1fr); }
+
+  /* Tutor */
+  .tutor-head { padding: 12px 14px; }
+  .tutor-body { padding: 14px; }
+  .tutor-input { padding: 12px; }
+  .msg { max-width: 96%; font-size: 13px; }
+
+  /* Results */
+  .score-hero { padding: 20px 16px; gap: 16px; }
+  .score-summary h2 { font-size: 22px; }
+  .score-ring { width: 100px; height: 100px; }
+  .score-stats { gap: 12px; }
+  .score-stats .stat .v { font-size: 18px; }
+
+  /* Library */
+  .exam-row { padding: 12px; gap: 10px; }
+  .exam-row .badge { width: 32px; height: 32px; }
+  .exam-row .title { font-size: 13.5px; }
+
+  /* Onboarding */
+  .onboard-wrap { padding: 20px 12px; }
+  .onboard-card { padding: 18px; }
+  .onboard-card h2 { font-size: 20px; }
+
+  /* Auth */
+  .auth-shell { padding: 14px; }
+  .auth-card { padding: 24px 18px 20px; }
+  .auth-card h1 { font-size: 20px; }
+
+  /* School card */
+  .school-card { padding: 14px; }
+  .school-card .pct .num { font-size: 24px; }
+
+  /* KPI */
+  .kpi { font-size: 22px; }
+}
