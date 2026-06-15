@@ -22,7 +22,7 @@ import { ExamsPanel } from "./ExamsPanel";
 import { SchoolsPanel } from "./SchoolsPanel";
 import { ReadinessPanel } from "./ReadinessPanel";
 import { SettingsPanel } from "./SettingsPanel";
-import { getQuietHours } from "@/lib/app-settings";
+import { getQuietHours, getLandingTheme } from "@/lib/app-settings";
 import {
   getAuditResults,
   getQuestionsWithFigures,
@@ -95,6 +95,7 @@ export default async function AdminPage({ searchParams }: Props) {
   const readinessSchools = tab === "readiness" ? await getActiveSchools()       : [];
   const activeSchools  = tab === "overview"  ? await getActiveSchools()         : [];
   const quietHours     = tab === "settings"  ? await getQuietHours()             : null;
+  const landingTheme   = tab === "settings"  ? await getLandingTheme()            : null;
 
   const TOPICS = topics.length > 0 ? topics : [...DEFAULT_TOPICS].map((t, i) => ({ ...t, position: i }));
 
@@ -401,8 +402,8 @@ export default async function AdminPage({ searchParams }: Props) {
           />
         )}
 
-        {tab === "settings" && quietHours && (
-          <SettingsPanel initialQuietHours={quietHours} />
+        {tab === "settings" && quietHours && landingTheme && (
+          <SettingsPanel initialQuietHours={quietHours} initialLandingTheme={landingTheme} />
         )}
 
         {tab === "llm" && (

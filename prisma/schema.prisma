@@ -315,6 +315,7 @@ model AppSetting {
   quietHoursEnabled  Boolean  @default(true)
   quietHoursStart    String   @default("22:00") // HH:mm 24h, Asia/Ho_Chi_Minh
   quietHoursEnd      String   @default("07:00")
+  landingTheme       String   @default("ocean") // clay | ocean | forest | grape | coral
   updatedAt          DateTime @updatedAt
 }
 

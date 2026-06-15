@@ -3,7 +3,7 @@
 import { useState, useTransition } from "react";
 import { Card } from "@/components/ui";
 import { Icon } from "@/components/Icon";
-import { updateQuietHours } from "./actions";
+import { updateQuietHours, updateLandingTheme } from "./actions";
 
 interface QuietHours {
   enabled: boolean;
@@ -11,14 +11,30 @@ interface QuietHours {
   end: string;
 }
 
+type LandingTheme = "clay" | "ocean" | "forest" | "grape" | "coral";
+
 interface Props {
   initialQuietHours: QuietHours;
+  initialLandingTheme: LandingTheme;
 }
 
-export function SettingsPanel({ initialQuietHours }: Props) {
+const THEME_OPTIONS: { id: LandingTheme; label: string; swatch: string }[] = [
+  { id: "clay",   label: "Clay (đất nung)", swatch: "oklch(0.6 0.14 40)"  },
+  { id: "ocean",  label: "Ocean (xanh dương)", swatch: "oklch(0.56 0.13 248)" },
+  { id: "forest", label: "Forest (xanh lá)", swatch: "oklch(0.54 0.11 158)" },
+  { id: "grape",  label: "Grape (tím)",    swatch: "oklch(0.54 0.15 300)" },
+  { id: "coral",  label: "Coral (san hô)", swatch: "oklch(0.62 0.13 28)"  },
+];
+
+export function SettingsPanel({ initialQuietHours, initialLandingTheme }: Props) {
   const [quiet, setQuiet] = useState<QuietHours>(initialQuietHours);
   const [pending, startTransition] = useTransition();
   const [status, setStatus] = useState<{ tone: "ok" | "err"; msg: string } | null>(null);
+
+  const [theme, setTheme] = useState<LandingTheme>(initialLandingTheme);
+  const [themePending, startThemeTransition] = useTransition();
+  const [themeStatus, setThemeStatus] = useState<{ tone: "ok" | "err"; msg: string } | null>(null);
+  const themeDirty = theme !== initialLandingTheme;
 
   const dirty =
     quiet.enabled !== initialQuietHours.enabled ||
@@ -42,6 +58,19 @@ export function SettingsPanel({ initialQuietHours }: Props) {
     });
   };
 
+  const onSaveTheme = () => {
+    setThemeStatus(null);
+    startThemeTransition(async () => {
+      try {
+        await updateLandingTheme({ theme });
+        setThemeStatus({ tone: "ok", msg: "Đã lưu theme landing page." });
+      } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : "Không thể lưu theme.";
+        setThemeStatus({ tone: "err", msg });
+      }
+    });
+  };
+
   return (
     <div className="col" style={{ gap: 16 }}>
       <Card
@@ -60,6 +89,63 @@ export function SettingsPanel({ initialQuietHours }: Props) {
           <div className="field">
             <label>Mức yêu cầu sẵn sàng để báo &quot;Đủ điều kiện&quot;</label>
             <input className="input mono" defaultValue="75%" readOnly />
+          </div>
+        </div>
+      </Card>
+
+      <Card
+        title="Theme landing page"
+        sub="Màu chủ đạo của trang giới thiệu (/) — áp dụng cho mọi khách truy cập."
+      >
+        <div className="col" style={{ gap: 14, maxWidth: 560 }}>
+          <div className="field">
+            <label>Bảng màu</label>
+            <div className="chip-group" style={{ flexWrap: "wrap" }}>
+              {THEME_OPTIONS.map((opt) => (
+                <button
+                  key={opt.id}
+                  type="button"
+                  className={"chip" + (theme === opt.id ? " active" : "")}
+                  onClick={() => setTheme(opt.id)}
+                  disabled={themePending}
+                >
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      display: "inline-block",
+                      width: 14,
+                      height: 14,
+                      borderRadius: 4,
+                      background: opt.swatch,
+                      marginRight: 8,
+                      verticalAlign: -2,
+                      boxShadow: "inset 0 -1px 0 rgba(0,0,0,0.12)",
+                    }}
+                  />
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ color: "var(--muted)", fontSize: 13 }}>
+            Theme hiện tại: <b>{THEME_OPTIONS.find((t) => t.id === theme)?.label ?? theme}</b>
+          </div>
+
+          <div className="row" style={{ gap: 8, alignItems: "center" }}>
+            <button
+              className="btn primary"
+              type="button"
+              onClick={onSaveTheme}
+              disabled={themePending || !themeDirty}
+            >
+              <Icon name="check" /> {themePending ? "Đang lưu…" : "Lưu theme"}
+            </button>
+            {themeStatus ? (
+              <span style={{ color: themeStatus.tone === "ok" ? "var(--success)" : "var(--danger)", fontSize: 13 }}>
+                {themeStatus.msg}
+              </span>
+            ) : null}
           </div>
         </div>
       </Card>

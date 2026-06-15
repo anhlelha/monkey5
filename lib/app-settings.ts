@@ -17,6 +17,14 @@ const DEFAULT_QUIET_HOURS: QuietHours = {
   end: "07:00",
 };
 
+export const LANDING_THEMES = ["clay", "ocean", "forest", "grape", "coral"] as const;
+export type LandingTheme = (typeof LANDING_THEMES)[number];
+const DEFAULT_LANDING_THEME: LandingTheme = "ocean";
+
+export function isLandingTheme(value: string): value is LandingTheme {
+  return (LANDING_THEMES as readonly string[]).includes(value);
+}
+
 /** Read the quiet-hours config, lazily creating the singleton row on first read. */
 export async function getQuietHours(): Promise<QuietHours> {
   const row = await prisma.appSetting.findUnique({ where: { id: SINGLETON_ID } });
@@ -59,6 +67,40 @@ export async function setQuietHours(next: QuietHours): Promise<QuietHours> {
     start: row.quietHoursStart,
     end: row.quietHoursEnd,
   };
+}
+
+/** Read the landing-page theme, lazily creating the singleton row on first read. */
+export async function getLandingTheme(): Promise<LandingTheme> {
+  const row = await prisma.appSetting.findUnique({ where: { id: SINGLETON_ID } });
+  if (!row) {
+    await prisma.appSetting.create({
+      data: {
+        id: SINGLETON_ID,
+        quietHoursEnabled: DEFAULT_QUIET_HOURS.enabled,
+        quietHoursStart: DEFAULT_QUIET_HOURS.start,
+        quietHoursEnd: DEFAULT_QUIET_HOURS.end,
+        landingTheme: DEFAULT_LANDING_THEME,
+      },
+    });
+    return DEFAULT_LANDING_THEME;
+  }
+  return isLandingTheme(row.landingTheme) ? row.landingTheme : DEFAULT_LANDING_THEME;
+}
+
+/** Persist a new landing-page theme. */
+export async function setLandingTheme(next: LandingTheme): Promise<LandingTheme> {
+  const row = await prisma.appSetting.upsert({
+    where: { id: SINGLETON_ID },
+    create: {
+      id: SINGLETON_ID,
+      quietHoursEnabled: DEFAULT_QUIET_HOURS.enabled,
+      quietHoursStart: DEFAULT_QUIET_HOURS.start,
+      quietHoursEnd: DEFAULT_QUIET_HOURS.end,
+      landingTheme: next,
+    },
+    update: { landingTheme: next },
+  });
+  return isLandingTheme(row.landingTheme) ? row.landingTheme : DEFAULT_LANDING_THEME;
 }
 
 /** Convert "HH:mm" to total minutes-of-day (0..1439). Returns null if invalid. */

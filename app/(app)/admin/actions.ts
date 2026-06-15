@@ -850,6 +850,22 @@ export async function updateQuietHours(payload: unknown) {
   return saved;
 }
 
+// ─── App settings: landing theme ─────────────────────────────────────────────
+
+const landingThemeSchema = z.object({
+  theme: z.enum(["clay", "ocean", "forest", "grape", "coral"]),
+});
+
+export async function updateLandingTheme(payload: unknown) {
+  await requireAdmin();
+  const parsed = landingThemeSchema.parse(payload);
+  const { setLandingTheme } = await import("@/lib/app-settings");
+  const saved = await setLandingTheme(parsed.theme);
+  revalidatePath("/admin");
+  revalidatePath("/");
+  return { theme: saved };
+}
+
 // ─── User lifecycle management ───────────────────────────────────────────────
 
 const userIdSchema = z.object({ userId: z.string().min(1) });

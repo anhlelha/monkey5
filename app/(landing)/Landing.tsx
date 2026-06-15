@@ -8,9 +8,75 @@ interface LandingUser {
   role: string;
 }
 
+type LandingTheme = "clay" | "ocean" | "forest" | "grape" | "coral";
+
+interface LandingQuietHours {
+  enabled: boolean;
+  start: string; // "HH:mm"
+  end: string;   // "HH:mm"
+}
+
 interface LandingProps {
   hasGoogle: boolean;
   user?: LandingUser | null;
+  theme?: LandingTheme;
+  quietHours?: LandingQuietHours;
+}
+
+const DEFAULT_QUIET_HOURS: LandingQuietHours = { enabled: true, start: "22:00", end: "07:00" };
+
+function parseHHmmHours(value: string): number {
+  const [h, m] = value.split(":").map(Number);
+  return (Number.isFinite(h) ? h : 0) + (Number.isFinite(m) ? m : 0) / 60;
+}
+
+interface TimelineSegment {
+  kind: "day" | "night";
+  hours: number;
+}
+
+function buildTimeline(qh: LandingQuietHours): TimelineSegment[] {
+  const s = parseHHmmHours(qh.start);
+  const e = parseHHmmHours(qh.end);
+  if (s === e) return [{ kind: "day", hours: 24 }];
+  if (s > e) {
+    // Wraps midnight: night(0→e) day(e→s) night(s→24)
+    return [
+      { kind: "night", hours: e },
+      { kind: "day", hours: s - e },
+      { kind: "night", hours: 24 - s },
+    ];
+  }
+  // Same-day window: day(0→s) night(s→e) day(e→24)
+  return [
+    { kind: "day", hours: s },
+    { kind: "night", hours: e - s },
+    { kind: "day", hours: 24 - e },
+  ];
+}
+
+function studyWindowLabel(qh: LandingQuietHours): string {
+  const s = parseHHmmHours(qh.start);
+  const e = parseHHmmHours(qh.end);
+  if (s > e) return `${qh.end}–${qh.start}`; // wraps: study window is end → start
+  return `00:00–${qh.start}, ${qh.end}–24:00`;
+}
+
+function MoonIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z" />
+    </svg>
+  );
+}
+
+function SunIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4" />
+    </svg>
+  );
 }
 
 // SVG icon for the right-arrow inside primary CTAs
@@ -59,13 +125,16 @@ function PlusIcon() {
   );
 }
 
-export function Landing({ hasGoogle, user }: LandingProps) {
+export function Landing({ hasGoogle, user, theme = "ocean", quietHours = DEFAULT_QUIET_HOURS }: LandingProps) {
   const isLoggedIn = Boolean(user);
+  const safeTheme = JSON.stringify(theme);
+  const segments = buildTimeline(quietHours);
+  const studyRange = studyWindowLabel(quietHours);
   return (
     <>
       <link rel="stylesheet" href="/landing.css" />
       <Script id="landing-tweaks" strategy="beforeInteractive">
-        {`window.TWEAKS = { theme: "ocean" };`}
+        {`window.TWEAKS = { theme: ${safeTheme} };`}
       </Script>
       <Script src="/landing.js" strategy="afterInteractive" />
 
@@ -371,6 +440,109 @@ export function Landing({ hasGoogle, user }: LandingProps) {
               <div className="v" data-text="24/7">24/7</div>
               <div className="k">Gia sư AI đồng hành</div>
               <div className="sub">Gợi ý ngay khi con bí</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================ HEALTH / WELLBEING ============================ */}
+      <section className="section" id="health">
+        <div className="wrap">
+          <div className="sec-head reveal">
+            <span className="eyebrow"><span className="dot"></span>Học khoẻ, không học vội</span>
+            <h2>Ôn luyện là tốt — nhưng con vẫn cần được là trẻ con</h2>
+            <p>
+              Chúng tôi tin một đứa trẻ học hiệu quả là một đứa trẻ được nghỉ ngơi đủ.
+              App chủ động đặt ra giới hạn lành mạnh, thay vì khuyến khích con học không ngừng.
+            </p>
+          </div>
+
+          <div className="health-grid reveal">
+            <div className="health-items">
+              <div className="health-item">
+                <div className="ico" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v5l3 2" />
+                  </svg>
+                </div>
+                <div className="body">
+                  <h3>Giới hạn thời gian mỗi ngày</h3>
+                  <p>
+                    Mặc định tối đa <b>45 phút/ngày</b>. Hết hạn mức, app nhẹ nhàng mời con dừng lại —
+                    ba mẹ có thể điều chỉnh.
+                  </p>
+                </div>
+              </div>
+
+              <div className="health-item">
+                <div className="ico" aria-hidden="true">
+                  <MoonIcon size={22} />
+                </div>
+                <div className="body">
+                  <h3>Khoá nghỉ ban đêm</h3>
+                  <p>
+                    Từ <b>{quietHours.start} đến {quietHours.end}</b> app tự khoá để con đi ngủ đúng giờ.
+                    Không học khuya, không màn hình trước giấc ngủ.
+                  </p>
+                </div>
+              </div>
+
+              <div className="health-item">
+                <div className="ico" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </div>
+                <div className="body">
+                  <h3>Nhắc giải lao &amp; bảo vệ mắt</h3>
+                  <p>
+                    Sau mỗi <b>20 phút</b>, app nhắc con nghỉ mắt và vươn vai. Không xếp hạng,
+                    không &ldquo;chuỗi ngày&rdquo; gây áp lực phải học liên tục.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="health-panel" aria-label="Nhịp học lành mạnh trong ngày">
+              <div className="health-panel-head">
+                <b>Nhịp học lành mạnh trong ngày</b>
+                <span className="health-pill">45 phút / ngày</span>
+              </div>
+
+              <div
+                className="health-timeline"
+                role="img"
+                aria-label={`Khoá nghỉ ban đêm ${quietHours.start}–${quietHours.end}, giờ học ${studyRange}`}
+              >
+                {segments.map((seg, i) =>
+                  seg.hours <= 0 ? null : (
+                    <div
+                      key={i}
+                      className={`seg ${seg.kind}`}
+                      style={{ flexGrow: seg.hours }}
+                    >
+                      {seg.hours >= 1.5 ? (
+                        seg.kind === "night" ? <MoonIcon /> : <SunIcon />
+                      ) : null}
+                    </div>
+                  ),
+                )}
+              </div>
+
+              <div className="health-axis">
+                <span>0h</span>
+                <span>6h</span>
+                <span>12h</span>
+                <span>18h</span>
+                <span>24h</span>
+              </div>
+
+              <div className="health-legend">
+                <span><i className="day"></i>Giờ học ({studyRange})</span>
+                <span><i className="night"></i>Khoá nghỉ ban đêm ({quietHours.start}–{quietHours.end})</span>
+              </div>
             </div>
           </div>
         </div>

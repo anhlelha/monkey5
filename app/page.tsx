@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { getLandingTheme, getQuietHours } from "@/lib/app-settings";
 import { Landing } from "./(landing)/Landing";
 
 export default async function Root() {
@@ -16,5 +17,10 @@ export default async function Root() {
       }
     : null;
 
-  return <Landing hasGoogle={hasGoogle} user={user} />;
+  const [theme, quietHours] = await Promise.all([
+    getLandingTheme(),
+    getQuietHours(),
+  ]);
+
+  return <Landing hasGoogle={hasGoogle} user={user} theme={theme} quietHours={quietHours} />;
 }
