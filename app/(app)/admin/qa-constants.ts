@@ -19,6 +19,7 @@ export const IMPLEMENTED_FIGURES_LIST = [
   "nshn-2026-c8", "nshn-2026-c9", "nshn-2026-b2",
   "nshn-2021-c5", "nshn-2021-c9", "nshn-2021-c10",
   "nshn-2022-c7", "nshn-2022-c9",
+  "nshm-2026-c6", "nshm-2026-c9", "nshm-2026-b2",
 ] as const;
 
 export const IMPLEMENTED_FIGURES = new Set<string>(IMPLEMENTED_FIGURES_LIST);

@@ -47,6 +47,8 @@
   --ntl-soft: oklch(0.96 0.03 320);
   --nshn: oklch(0.6 0.13 200);
   --nshn-soft: oklch(0.96 0.03 200);
+  --nshm: oklch(0.6 0.13 130);
+  --nshm-soft: oklch(0.96 0.03 130);
 
   /* Radii / shadows */
   --r-xs: 6px;
@@ -523,6 +525,7 @@ a { color: inherit; text-decoration: none; }
 .pill.nn  { background: var(--nn-soft);  color: var(--nn);  border-color: transparent; }
 .pill.ntl { background: var(--ntl-soft); color: var(--ntl); border-color: transparent; }
 .pill.nshn { background: var(--nshn-soft); color: var(--nshn); border-color: transparent; }
+.pill.nshm { background: var(--nshm-soft); color: var(--nshm); border-color: transparent; }
 .pill.green { background: var(--success-soft); color: var(--success); border-color: transparent; }
 .pill.red { background: var(--danger-soft); color: var(--danger); border-color: transparent; }
 .pill.amber { background: var(--warn-soft); color: oklch(0.5 0.13 70); border-color: transparent; }
@@ -552,6 +555,7 @@ a { color: inherit; text-decoration: none; }
 .bar.nn .bar-fill { background: var(--nn); }
 .bar.ntl .bar-fill { background: var(--ntl); }
 .bar.nshn .bar-fill { background: var(--nshn); }
+.bar.nshm .bar-fill { background: var(--nshm); }
 .bar.tall { height: 10px; }
 .bar.thin { height: 4px; }
 

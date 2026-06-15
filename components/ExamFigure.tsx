@@ -2854,6 +2854,279 @@ export function ExamFigure({ figure }: Props) {
       );
     }
 
+    // NSHM 2026 Câu 6 — khu đất hình chữ L theo nguồn PDF:
+    //   Khối dưới (đáy): 10 cm × 10 cm (vuông, có đáy 10 cm).
+    //   Khối trên       : 7 cm × 8 cm (rộng 10-3, cao 8), nằm trên khối dưới
+    //                     và căn lề PHẢI → bậc 3 cm ở phía trái lộ ra mặt
+    //                     trên của khối dưới.
+    //   Bounding box    : 10 cm × 18 cm → chu vi L-shape = 2(10+18) = 56 cm.
+    //   Đường nét đứt   : ranh giới giữa khối trên và phần lộ của khối dưới
+    //                     (đỉnh khối dưới, ẩn dưới khối trên ở 7 cm bên phải).
+    case "nshm-2026-c6": {
+      // Scale: 1 cm = 20 px. Bounding box 10 × 18 cm = 200 × 360 px.
+      const pad = 36;
+      const W = 200;
+      const H = 360;
+      const lowerH = 200; // 10 cm
+      const upperH = 160; // 8 cm
+      const stepW = 60;   // 3 cm (visible top of lower, on the LEFT)
+      const upperW = W - stepW; // 7 cm (right-aligned)
+      // L-shape outline (clockwise from upper-LEFT corner of UPPER rect):
+      //   (stepW, 0) → (W, 0)          top of upper        : 7 cm
+      //   (W, 0)     → (W, H)          right side (full)   : 10 + 8 = 18 cm
+      //   (W, H)     → (0, H)          bottom              : 10 cm
+      //   (0, H)     → (0, upperH)     left of lower       : 10 cm
+      //   (0, upperH)→ (stepW, upperH) step (top of lower) : 3 cm
+      //   (stepW, upperH) → (stepW, 0) left of upper       : 8 cm
+      const points = [
+        [stepW, 0],
+        [W, 0],
+        [W, H],
+        [0, H],
+        [0, upperH],
+        [stepW, upperH],
+      ]
+        .map(([x, y]) => `${x + pad},${y + pad}`)
+        .join(" ");
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 260 }}>
+          <svg
+            viewBox={`0 0 ${W + 2 * pad} ${H + 2 * pad + 14}`}
+            width="100%"
+            style={{ display: "block", height: "auto" }}
+          >
+            {/* L-shape outline */}
+            <polygon points={points} fill="none" stroke="var(--ink)" strokeWidth={1.6} />
+            {/* Dashed boundary line between upper rect and the hidden top of
+                lower rect (covered by upper). Shows the "interior" step like
+                the PDF does. */}
+            <line
+              x1={pad + stepW}
+              y1={pad + upperH}
+              x2={pad + W}
+              y2={pad + upperH}
+              stroke="var(--ink)"
+              strokeWidth={1}
+              strokeDasharray="6 4"
+              opacity={0.85}
+            />
+            {/* Label: 10 cm (bottom width) — with simple curly-bracket */}
+            <path
+              d={`M ${pad + 4} ${pad + H + 14}
+                  Q ${pad + W / 2} ${pad + H + 28} ${pad + W - 4} ${pad + H + 14}`}
+              fill="none"
+              stroke="var(--ink)"
+              strokeWidth={0.9}
+            />
+            <text
+              x={pad + W / 2}
+              y={pad + H + 38}
+              fill="var(--ink)"
+              fontSize={15}
+              textAnchor="middle"
+              style={{ fontFamily: "Times, serif" }}
+            >
+              10 cm
+            </text>
+            {/* Label: 8 cm (right side of UPPER rect only) — bracket on right */}
+            <path
+              d={`M ${pad + W + 8} ${pad + 2}
+                  Q ${pad + W + 20} ${pad + upperH / 2} ${pad + W + 8} ${pad + upperH - 2}`}
+              fill="none"
+              stroke="var(--ink)"
+              strokeWidth={0.9}
+            />
+            <text
+              x={pad + W + 26}
+              y={pad + upperH / 2 + 5}
+              fill="var(--ink)"
+              fontSize={15}
+              textAnchor="start"
+              style={{ fontFamily: "Times, serif" }}
+            >
+              8 cm
+            </text>
+            {/* Label: 3 cm (step on the left) — bracket above the step */}
+            <path
+              d={`M ${pad + 1} ${pad + upperH - 6}
+                  Q ${pad + stepW / 2} ${pad + upperH - 18} ${pad + stepW - 1} ${pad + upperH - 6}`}
+              fill="none"
+              stroke="var(--ink)"
+              strokeWidth={0.9}
+            />
+            <text
+              x={pad + stepW / 2}
+              y={pad + upperH - 24}
+              fill="var(--ink)"
+              fontSize={14}
+              textAnchor="middle"
+              style={{ fontFamily: "Times, serif" }}
+            >
+              3 cm
+            </text>
+          </svg>
+        </div>
+      );
+    }
+
+    // NSHM 2026 Câu 9 — dãy "Hình 1..4" với quy luật ô xám:
+    //   Một ô (r, c) trong lưới N×N được tô XÁM nếu nằm trên một trong hai
+    //   đường chéo: r == c (chéo chính) hoặc r == N-1-c (chéo phụ).
+    //   Vùng trắng = các ô còn lại, hợp thành phần "phần màu trắng" mà
+    //   bài toán yêu cầu tính chu vi cho Hình 16 (17×17).
+    //   Sizes: Hình 1 → 2×2 (cả 4 ô xám), Hình 2 → 3×3, Hình 3 → 4×4,
+    //          Hình 4 → 5×5 (X-pattern).
+    case "nshm-2026-c9": {
+      const sizes = [2, 3, 4, 5];
+      const cell = 16;
+      const gap = 28;
+      const labelH = 22;
+      const padX = 10;
+      const padTop = 10;
+      const W =
+        sizes.reduce((acc, n) => acc + n * cell, 0) +
+        gap * (sizes.length - 1) +
+        padX * 2;
+      const maxH = Math.max(...sizes) * cell;
+      const H = padTop + maxH + labelH + 6;
+
+      let xCursor = padX;
+      const grids: React.ReactElement[] = [];
+      sizes.forEach((n, idx) => {
+        const gridW = n * cell;
+        const y0 = padTop + (maxH - gridW); // align all grids at bottom
+        for (let r = 0; r < n; r++) {
+          for (let c = 0; c < n; c++) {
+            const onDiag = r === c || r === n - 1 - c;
+            grids.push(
+              <rect
+                key={`g${idx}-${r}-${c}`}
+                x={xCursor + c * cell}
+                y={y0 + r * cell}
+                width={cell}
+                height={cell}
+                fill={onDiag ? "#bdbdbd" : "white"}
+                stroke="var(--ink)"
+                strokeWidth={0.9}
+              />
+            );
+          }
+        }
+        grids.push(
+          <text
+            key={`l${idx}`}
+            x={xCursor + gridW / 2}
+            y={padTop + maxH + labelH - 4}
+            fill="var(--ink)"
+            fontSize={12}
+            textAnchor="middle"
+            style={{ fontFamily: "Times, serif", fontStyle: "italic" }}
+          >
+            {`Hình ${idx + 1}`}
+          </text>
+        );
+        xCursor += gridW + gap;
+      });
+
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 460 }}>
+          <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display: "block", height: "auto" }}>
+            {grids}
+          </svg>
+        </div>
+      );
+    }
+
+    // NSHM 2026 Bài 2 — hình vuông ABCD, E ∈ AB, F ∈ DC, chia thành 4 phần
+    // S1 (△ADE), S2 (△DEF), S3 (△EFB), S4 (△FBC).
+    case "nshm-2026-b2": {
+      // Square 10 dm × 10 dm. Use 280×280 with margin.
+      const pad = 30;
+      const S = 280;
+      const A = { x: pad, y: pad };
+      const B = { x: pad + S, y: pad };
+      const C = { x: pad + S, y: pad + S };
+      const D = { x: pad, y: pad + S };
+      // E on AB — placed so the diagram looks balanced (closer to A).
+      const E = { x: pad + S * 0.38, y: pad };
+      // F on DC — DF = 6.6, DC = 10 → F at 66% along DC (from D toward C).
+      const F = { x: pad + S * 0.66, y: pad + S };
+      const labelStyle = { fontStyle: "italic", fontFamily: "Times, serif" } as const;
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 340 }}>
+          <svg
+            viewBox={`0 0 ${S + 2 * pad} ${S + 2 * pad}`}
+            width="100%"
+            style={{ display: "block", height: "auto" }}
+          >
+            {/* Square ABCD */}
+            <polygon
+              points={`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y} ${D.x},${D.y}`}
+              fill="none"
+              stroke="var(--ink)"
+              strokeWidth={1.6}
+            />
+            {/* Internal segments: DE, EF, FB */}
+            <line x1={D.x} y1={D.y} x2={E.x} y2={E.y} stroke="var(--ink)" strokeWidth={1.4} />
+            <line x1={E.x} y1={E.y} x2={F.x} y2={F.y} stroke="var(--ink)" strokeWidth={1.4} />
+            <line x1={F.x} y1={F.y} x2={B.x} y2={B.y} stroke="var(--ink)" strokeWidth={1.4} />
+            {/* Region labels — placed at centroids of the 4 triangles */}
+            <text
+              x={(A.x + D.x + E.x) / 3}
+              y={(A.y + D.y + E.y) / 3 + 6}
+              fill="var(--ink)"
+              fontSize={16}
+              textAnchor="middle"
+              style={labelStyle}
+            >
+              S<tspan baselineShift="sub" fontSize={11}>1</tspan>
+            </text>
+            <text
+              x={(D.x + E.x + F.x) / 3}
+              y={(D.y + E.y + F.y) / 3 + 6}
+              fill="var(--ink)"
+              fontSize={16}
+              textAnchor="middle"
+              style={labelStyle}
+            >
+              S<tspan baselineShift="sub" fontSize={11}>2</tspan>
+            </text>
+            <text
+              x={(E.x + F.x + B.x) / 3}
+              y={(E.y + F.y + B.y) / 3 + 6}
+              fill="var(--ink)"
+              fontSize={16}
+              textAnchor="middle"
+              style={labelStyle}
+            >
+              S<tspan baselineShift="sub" fontSize={11}>3</tspan>
+            </text>
+            <text
+              x={(F.x + B.x + C.x) / 3}
+              y={(F.y + B.y + C.y) / 3 + 6}
+              fill="var(--ink)"
+              fontSize={16}
+              textAnchor="middle"
+              style={labelStyle}
+            >
+              S<tspan baselineShift="sub" fontSize={11}>4</tspan>
+            </text>
+            {/* Vertex dots */}
+            {[A, B, C, D, E, F].map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r={3.5} fill="orange" stroke="orange" />
+            ))}
+            {/* Vertex labels */}
+            <text x={A.x - 6} y={A.y - 6} fill="var(--ink)" fontSize={16} textAnchor="end" style={labelStyle}>A</text>
+            <text x={E.x} y={E.y - 6} fill="var(--ink)" fontSize={16} textAnchor="middle" style={labelStyle}>E</text>
+            <text x={B.x + 6} y={B.y - 6} fill="var(--ink)" fontSize={16} textAnchor="start" style={labelStyle}>B</text>
+            <text x={D.x - 6} y={D.y + 16} fill="var(--ink)" fontSize={16} textAnchor="end" style={labelStyle}>D</text>
+            <text x={F.x} y={F.y + 18} fill="var(--ink)" fontSize={16} textAnchor="middle" style={labelStyle}>F</text>
+            <text x={C.x + 6} y={C.y + 16} fill="var(--ink)" fontSize={16} textAnchor="start" style={labelStyle}>C</text>
+          </svg>
+        </div>
+      );
+    }
+
     default:
       return null;
   }

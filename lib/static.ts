@@ -100,6 +100,17 @@ export const SCHOOLS: readonly School[] = [
     minutes: 60,
     style: "Phân số, %, hình học và bài toán đếm.",
   },
+  {
+    id: "nshm",
+    short: "NSHM",
+    name: "Ngôi Sao Hoàng Mai",
+    full: "Trường Liên cấp Tiểu học & THCS Ngôi Sao Hoàng Mai",
+    color: "var(--nshm)",
+    tone: "nshm",
+    desc: "Học bổng khối 5 — 10 câu điền đáp số + 2 bài tự luận. 60 phút.",
+    minutes: 60,
+    style: "Số học, đo lường, tỉ lệ phần trăm và hình học.",
+  },
 ] as const;
 
 export const DEFAULT_TOPICS: readonly Topic[] = [

@@ -21,7 +21,8 @@ const SCHOOLS = [
   { code: "NTT", dbCode: "ntt", name: "Nguyễn Tất Thành" },
   { code: "NN", dbCode: "nn", name: "Ngoại ngữ" },
   { code: "NTL", dbCode: "ntl", name: "Nam Từ Liêm" },
-  { code: "NSHN", dbCode: "nshn", name: "Ngôi Sao Hà Nội" }
+  { code: "NSHN", dbCode: "nshn", name: "Ngôi Sao Hà Nội" },
+  { code: "NSHM", dbCode: "nshm", name: "Ngôi Sao Hoàng Mai" }
 ];
 
 
@@ -110,6 +111,13 @@ function getSections(schoolCode: string, yearStr: string): any[] {
       return [
         { num: 1, header: "I. TRẮC NGHIỆM: Học sinh chỉ ghi đáp án vào giấy thi, không cần giải thích" },
         { num: 10, header: "II. TỰ LUẬN: Học sinh trình bày bài giải chi tiết vào giấy thi" }
+      ];
+    }
+  } else if (normSchool === "nshm") {
+    if (startYear === "2026") {
+      return [
+        { num: 1,  header: "I. TRẮC NGHIỆM: Học sinh chỉ ghi đáp án vào giấy thi, không cần giải thích" },
+        { num: 11, header: "II. TỰ LUẬN: Học sinh trình bày bài giải chi tiết vào giấy thi" }
       ];
     }
   } else if (normSchool === "nn") {

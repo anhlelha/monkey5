@@ -1,4 +1,5 @@
 import { prisma } from "./prisma";
+import { SCHOOLS as STATIC_SCHOOLS } from "./static";
 
 const LEVELS = ["L4", "L5", "L4+5", "NC"] as const;
 type Level = (typeof LEVELS)[number];
@@ -123,6 +124,25 @@ async function ensureSchoolMetadata(schoolId: string): Promise<void> {
   if (PSEUDO_SCHOOL_IDS.has(schoolId)) return;
   const existing = await prisma.school.findUnique({ where: { id: schoolId } });
   if (existing) return;
+  const fromStatic = STATIC_SCHOOLS.find((s) => s.id === schoolId);
+  if (fromStatic) {
+    await prisma.school.create({
+      data: {
+        id: fromStatic.id,
+        short: fromStatic.short,
+        name: fromStatic.name,
+        full: fromStatic.full,
+        color: fromStatic.color,
+        tone: fromStatic.tone,
+        desc: fromStatic.desc,
+        minutes: fromStatic.minutes,
+        style: fromStatic.style,
+        position: 100,
+        active: true,
+      },
+    });
+    return;
+  }
   const palette = ["#3b82f6", "#ef4444", "#f59e0b", "#8b5cf6", "#10b981", "#ec4899"];
   const color = palette[Math.floor(Math.random() * palette.length)];
   await prisma.school.create({

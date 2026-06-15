@@ -410,8 +410,11 @@ export default async function AdminExamPreviewPage({ params, searchParams }: Pro
                     </div>
                   )}
 
-                  {/* Essay model answer */}
-                  {q.type === "essay" && q.modelAnswer && (
+                  {/* Model answer / lời giải mẫu — hiển thị cho mọi loại
+                      câu có modelAnswer (mcq / fill / essay). Trước đây bị
+                      gate "type === essay" → admin không thấy lời giải cho
+                      ~600 câu fill, mặc dù học sinh đã thấy ở ResultsView. */}
+                  {q.modelAnswer && (
                     <div
                       style={{
                         marginTop: 12,
@@ -423,7 +426,7 @@ export default async function AdminExamPreviewPage({ params, searchParams }: Pro
                       }}
                     >
                       <div className="eyebrow" style={{ marginBottom: 4 }}>
-                        Đáp số / lời giải mẫu
+                        {q.type === "essay" ? "Đáp số / lời giải mẫu" : "Lời giải"}
                       </div>
                       <MathText text={q.modelAnswer} />
                     </div>

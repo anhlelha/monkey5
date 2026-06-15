@@ -7809,6 +7809,160 @@
           "figure": null
         }
       ]
+    },
+    {
+      "id": "nshm-2026",
+      "school": "nshm",
+      "kind": "official",
+      "year": "2026-2027",
+      "title": "Đề thi học bổng — Trường Ngôi Sao Hoàng Mai (Khối 5)",
+      "intro": "Học sinh làm bài trên giấy thi. Phần trắc nghiệm chỉ ghi đáp án, phần tự luận trình bày bài giải chi tiết.",
+      "minutes": 60,
+      "note": "Đề chính thức kỳ thi học bổng Ngôi Sao Hoàng Mai — Khối 5, năm 2026 (nguồn: MathX).",
+      "sections": [
+        {
+          "num": 1,
+          "header": "I. TRẮC NGHIỆM: Học sinh chỉ ghi đáp án vào giấy thi, không cần giải thích"
+        },
+        {
+          "num": 11,
+          "header": "II. TỰ LUẬN: Học sinh trình bày bài giải chi tiết vào giấy thi"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NSHM-2026-27-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "29,5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHM-2026-27-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "135",
+          "unit": "cm²",
+          "figure": null
+        },
+        {
+          "id": "NSHM-2026-27-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "26,76",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHM-2026-27-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "do",
+          "grade": "L5",
+          "points": 1,
+          "correct": "206",
+          "unit": "dm²",
+          "figure": null
+        },
+        {
+          "id": "NSHM-2026-27-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "125",
+          "unit": "m",
+          "figure": null
+        },
+        {
+          "id": "NSHM-2026-27-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "6540000",
+          "unit": "đồng",
+          "figure": "nshm-2026-c6"
+        },
+        {
+          "id": "NSHM-2026-27-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "3000000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "NSHM-2026-27-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "200",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHM-2026-27-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "368",
+          "unit": "cm",
+          "figure": "nshm-2026-c9"
+        },
+        {
+          "id": "NSHM-2026-27-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "26",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHM-2026-27-B1",
+          "num": 11,
+          "type": "essay",
+          "topic": "do",
+          "grade": "L5",
+          "points": 2,
+          "correct": "a) 150 kg; b) Chưa được xếp vào giới siêu giàu (624 tỉ < 750 tỉ)",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHM-2026-27-B2",
+          "num": 12,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 3,
+          "correct": "a) 100 dm²; b) DF = 6,6 dm",
+          "unit": null,
+          "figure": "nshm-2026-b2"
+        }
+      ]
     }
   ]
 }
