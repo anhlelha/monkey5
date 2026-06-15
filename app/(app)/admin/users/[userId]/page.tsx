@@ -84,6 +84,7 @@ export default async function AdminUserDetail({ params, searchParams }: Props) {
           attempts={attempts}
           topicSessions={topicSessions}
           activeTab={activeTab}
+          isSelf={session.user.id === userId}
         />
       </div>
     </div>

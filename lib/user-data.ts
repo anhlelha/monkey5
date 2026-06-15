@@ -9,6 +9,7 @@ export interface UserShape {
   image: string | null;
   role: string;
   plan: string;
+  disabled: boolean;
   grade: string;
   targets: string[];
   hours: number;
@@ -29,6 +30,7 @@ type RawUser = {
   image: string | null;
   role: string;
   plan: string;
+  disabled: boolean;
   grade: string;
   targets: string;
   hours: number;
@@ -63,6 +65,7 @@ export function hydrateUser(raw: RawUser): UserShape {
     image: raw.image,
     role: raw.role,
     plan: raw.plan,
+    disabled: raw.disabled ?? false,
     grade: raw.grade,
     targets,
     hours: raw.hours,

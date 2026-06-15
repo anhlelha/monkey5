@@ -61,6 +61,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (!user.email) return true;
       const email = user.email.toLowerCase();
 
+      // Reject sign-in if the existing account is disabled by an admin.
+      const existing = await prisma.user.findUnique({
+        where: { email },
+        select: { disabled: true },
+      });
+      if (existing?.disabled) return "/signin?disabled=1";
+
       // Look up whitelist entry for this email
       const whitelist = await prisma.userWhitelist.findUnique({ where: { email } });
 

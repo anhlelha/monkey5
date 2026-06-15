@@ -4,27 +4,35 @@ import { prisma } from "@/lib/prisma";
 import { SignInForm } from "./SignInForm";
 
 interface Props {
-  searchParams: Promise<{ callbackUrl?: string; error?: string }>;
+  searchParams: Promise<{ callbackUrl?: string; error?: string; disabled?: string }>;
 }
 
 export default async function SignInPage({ searchParams }: Props) {
   const session = await auth();
-  const { callbackUrl, error } = await searchParams;
+  const { callbackUrl, error, disabled } = await searchParams;
+  const isDisabledNotice = disabled === "1";
 
-  // Only redirect if the session points to a user that still exists in DB.
-  // Stale cookies from a previous run / db:reset fall through to the form
-  // (next sign-in writes a fresh cookie that overwrites the stale one).
-  if (session?.user?.id) {
-    const exists = await prisma.user.findUnique({
+  // Only redirect if the session points to a user that still exists AND is not
+  // disabled. The "?disabled=1" notice must always render the form, never
+  // bounce back into the app.
+  if (session?.user?.id && !isDisabledNotice) {
+    const existing = await prisma.user.findUnique({
       where: { id: session.user.id },
-      select: { id: true },
+      select: { id: true, disabled: true },
     });
-    if (exists) redirect(callbackUrl ?? "/home");
+    if (existing && !existing.disabled) redirect(callbackUrl ?? "/home");
   }
 
   const hasGoogle = Boolean(
     process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET,
   );
 
-  return <SignInForm callbackUrl={callbackUrl ?? "/home"} hasGoogle={hasGoogle} error={error} />;
+  return (
+    <SignInForm
+      callbackUrl={callbackUrl ?? "/home"}
+      hasGoogle={hasGoogle}
+      error={error}
+      disabledNotice={isDisabledNotice}
+    />
+  );
 }

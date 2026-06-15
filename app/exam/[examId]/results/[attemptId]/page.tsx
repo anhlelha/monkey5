@@ -39,6 +39,7 @@ export default async function ResultsPage({ params }: Props) {
   const dbUser = await prisma.user.findUnique({ where: { id: session.user.id } });
   if (!dbUser) redirect("/signin");
   const user = hydrateUser(dbUser);
+  if (user.disabled) redirect("/signin?disabled=1");
 
   const isOwner = attempt.userId === session.user.id;
   const isAdminViewing = !isOwner && user.role === "admin";

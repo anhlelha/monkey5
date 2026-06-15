@@ -24,6 +24,7 @@ model User {
   // Application fields
   role          String    @default("student") // "student" | "admin"
   plan          String    @default("free")    // "free" | "pro" | "vip"
+  disabled      Boolean   @default(false)     // Soft-disable: blocks sign-in + access
   grade         String    @default("Lớp 5")
   targets       String    @default("[]") // JSON array of school ids
   hours         Int       @default(5)

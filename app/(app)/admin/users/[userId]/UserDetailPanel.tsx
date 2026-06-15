@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Bar, Card, Pill } from "@/components/ui";
 import { Icon } from "@/components/Icon";
+import { UserAdminControls } from "./UserAdminControls";
 import type {
   AdminAttemptRow,
   AdminTopicSessionRow,
@@ -41,6 +42,7 @@ interface Props {
     pageSize: number;
   };
   activeTab: "exams" | "topics";
+  isSelf: boolean;
 }
 
 const toneFor = (pct: number): "" | "ltv" | "ntt" => {
@@ -66,6 +68,7 @@ export function UserDetailPanel({
   attempts,
   topicSessions,
   activeTab,
+  isSelf,
 }: Props) {
   const topicById = new Map(topics.map((t) => [t.id, t]));
   const schoolById = new Map(schools.map((s) => [s.id, s]));
@@ -128,6 +131,7 @@ export function UserDetailPanel({
               <Pill tone={user.role === "admin" ? "solid" : ""}>{user.role}</Pill>
               <Pill tone={planTone}>{planLabel}</Pill>
               <Pill>{user.grade}</Pill>
+              {user.disabled && <Pill tone="red">Đã khoá</Pill>}
             </div>
             <div className="muted" style={{ fontSize: 13, marginTop: 4 }}>
               {user.email ?? "—"}
@@ -166,6 +170,15 @@ export function UserDetailPanel({
           </div>
         </div>
       </Card>
+
+      <UserAdminControls
+        userId={user.id}
+        initialRole={user.role}
+        initialPlan={user.plan}
+        initialDisabled={user.disabled}
+        isSelf={isSelf}
+        displayName={user.name ?? user.email ?? "(không tên)"}
+      />
 
       <div className="grid cols-4" style={{ gap: 12 }}>
         <Card tight>

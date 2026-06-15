@@ -301,7 +301,7 @@ export default async function AdminPage({ searchParams }: Props) {
                   const avgScore = activity?.avgScore;
                   const detailHref = `/admin/users/${u.id}`;
                   return (
-                    <tr key={u.id}>
+                    <tr key={u.id} style={u.disabled ? { opacity: 0.55 } : undefined}>
                       <td>
                         <Link href={detailHref} className="avatar" style={{ textDecoration: "none" }}>
                           {initials}
@@ -312,7 +312,10 @@ export default async function AdminPage({ searchParams }: Props) {
                           href={detailHref}
                           style={{ textDecoration: "none", color: "inherit" }}
                         >
-                          <b style={{ fontWeight: 500 }}>{u.name ?? "—"}</b>
+                          <span className="row" style={{ gap: 6, alignItems: "center" }}>
+                            <b style={{ fontWeight: 500 }}>{u.name ?? "—"}</b>
+                            {u.disabled && <Pill tone="red">Đã khoá</Pill>}
+                          </span>
                           <div className="muted" style={{ fontSize: 11.5 }}>{u.email}</div>
                         </Link>
                       </td>

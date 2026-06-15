@@ -19,6 +19,7 @@ export default async function AppShell({ children }: { children: React.ReactNode
   if (!dbUser) redirect("/signin");
 
   const user = hydrateUser(dbUser);
+  if (user.disabled) redirect("/signin?disabled=1");
   // Anyone without selected target schools goes through onboarding.
   if (user.targets.length === 0) redirect("/onboarding");
 

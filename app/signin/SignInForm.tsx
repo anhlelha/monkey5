@@ -7,9 +7,10 @@ interface Props {
   callbackUrl: string;
   hasGoogle: boolean;
   error?: string;
+  disabledNotice?: boolean;
 }
 
-export function SignInForm({ callbackUrl, hasGoogle, error }: Props) {
+export function SignInForm({ callbackUrl, hasGoogle, error, disabledNotice }: Props) {
   const onGoogle = () => {
     void signIn("google", { callbackUrl });
   };
@@ -24,6 +25,22 @@ export function SignInForm({ callbackUrl, hasGoogle, error }: Props) {
           <br />
           Dành cho học sinh lớp 5 thi vào trường chất lượng cao
         </p>
+
+        {disabledNotice && (
+          <div
+            style={{
+              background: "var(--danger-soft)",
+              color: "var(--danger)",
+              padding: "10px 14px",
+              borderRadius: 8,
+              fontSize: 13,
+              marginBottom: 16,
+              textAlign: "left",
+            }}
+          >
+            Tài khoản này đã bị quản trị viên khoá. Vui lòng liên hệ để được hỗ trợ.
+          </div>
+        )}
 
         {error && (
           <div

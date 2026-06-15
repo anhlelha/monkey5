@@ -24,6 +24,12 @@ export default async function ExamPage({ params }: Props) {
   const session = await auth();
   if (!session?.user?.id) redirect("/signin");
 
+  const sessionUser = await prisma.user.findUnique({
+    where: { id: session.user.id },
+    select: { disabled: true },
+  });
+  if (sessionUser?.disabled) redirect("/signin?disabled=1");
+
   const exam = await prisma.exam.findUnique({
     where: { id: examId },
     include: { questions: { orderBy: { num: "asc" } } },

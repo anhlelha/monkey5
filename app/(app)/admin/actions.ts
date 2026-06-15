@@ -849,3 +849,90 @@ export async function updateQuietHours(payload: unknown) {
   revalidatePath("/guide");
   return saved;
 }
+
+// ─── User lifecycle management ───────────────────────────────────────────────
+
+const userIdSchema = z.object({ userId: z.string().min(1) });
+const userDisabledSchema = z.object({
+  userId: z.string().min(1),
+  disabled: z.boolean(),
+});
+const userRoleSchema = z.object({
+  userId: z.string().min(1),
+  role: z.enum(["student", "admin"]),
+});
+const userPlanSchema = z.object({
+  userId: z.string().min(1),
+  plan: z.enum(["free", "pro", "vip"]),
+});
+
+const assertNotSelf = (adminId: string, userId: string, action: string) => {
+  if (adminId === userId) {
+    throw new Error(`Bạn không thể tự ${action} tài khoản đang đăng nhập.`);
+  }
+};
+
+const assertNotLastAdmin = async (userId: string, action: string) => {
+  const target = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { role: true, disabled: true },
+  });
+  if (!target) throw new Error("Không tìm thấy người dùng.");
+  if (target.role !== "admin") return;
+  const otherAdmins = await prisma.user.count({
+    where: { role: "admin", disabled: false, id: { not: userId } },
+  });
+  if (otherAdmins === 0) {
+    throw new Error(`Không thể ${action} admin hoạt động duy nhất còn lại.`);
+  }
+};
+
+export async function setUserDisabled(payload: unknown) {
+  const admin = await requireAdmin();
+  const { userId, disabled } = userDisabledSchema.parse(payload);
+  assertNotSelf(admin.id, userId, "khoá");
+  if (disabled) await assertNotLastAdmin(userId, "khoá");
+  await prisma.user.update({
+    where: { id: userId },
+    data: { disabled },
+  });
+  // Revoke active sessions so a disabled user is kicked out on next request.
+  if (disabled) {
+    await prisma.session.deleteMany({ where: { userId } });
+  }
+  revalidatePath("/admin");
+  revalidatePath(`/admin/users/${userId}`);
+  return { ok: true, disabled };
+}
+
+export async function setUserRole(payload: unknown) {
+  const admin = await requireAdmin();
+  const { userId, role } = userRoleSchema.parse(payload);
+  if (role !== "admin") {
+    assertNotSelf(admin.id, userId, "huỷ quyền admin");
+    await assertNotLastAdmin(userId, "huỷ quyền admin");
+  }
+  await prisma.user.update({ where: { id: userId }, data: { role } });
+  revalidatePath("/admin");
+  revalidatePath(`/admin/users/${userId}`);
+  return { ok: true, role };
+}
+
+export async function setUserPlan(payload: unknown) {
+  await requireAdmin();
+  const { userId, plan } = userPlanSchema.parse(payload);
+  await prisma.user.update({ where: { id: userId }, data: { plan } });
+  revalidatePath("/admin");
+  revalidatePath(`/admin/users/${userId}`);
+  return { ok: true, plan };
+}
+
+export async function deleteUser(payload: unknown) {
+  const admin = await requireAdmin();
+  const { userId } = userIdSchema.parse(payload);
+  assertNotSelf(admin.id, userId, "xoá");
+  await assertNotLastAdmin(userId, "xoá");
+  await prisma.user.delete({ where: { id: userId } });
+  revalidatePath("/admin");
+  return { ok: true };
+}
