@@ -66,6 +66,7 @@ export default async function ResultsPage({ params }: Props) {
     modelAnswer: q.modelAnswer,
     figure: q.figure,
     source: q.source,
+    sourceQuestionId: q.sourceQuestionId,
     answerSchema: q.answerSchema,
   }));
 
@@ -121,7 +122,14 @@ export default async function ResultsPage({ params }: Props) {
       }}
       topics={TOPICS}
       targetSchools={targetSchools}
-      adminView={isAdminViewing ? { ownerName: contextHydrated.name ?? contextHydrated.email ?? "học sinh" } : null}
+      adminView={
+        isAdminViewing
+          ? {
+              ownerName: contextHydrated.name ?? contextHydrated.email ?? "học sinh",
+              userId: attempt.userId,
+            }
+          : null
+      }
     />
   );
 }

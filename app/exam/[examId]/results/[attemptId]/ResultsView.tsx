@@ -29,7 +29,7 @@ interface Props {
   attempt: { earned: number; total: number; score: number; durationSec: number };
   topics: { id: string; name: string; short: string; color: string }[];
   targetSchools: { id: string; short: string; name: string; tone: string; current: number }[];
-  adminView?: { ownerName: string } | null;
+  adminView?: { ownerName: string; userId: string } | null;
 }
 
 interface Graded {
@@ -99,7 +99,11 @@ export function ResultsView({
             ? [
                 { label: "Quản trị", href: "/admin?tab=overview" },
                 { label: "Tài khoản", href: "/admin?tab=users" },
-                `Bài làm của ${adminView?.ownerName ?? "học sinh"}`,
+                {
+                  label: adminView?.ownerName ?? "Chi tiết HS",
+                  href: `/admin/users/${adminView?.userId}`,
+                },
+                "Bài làm",
               ]
             : [
                 { label: "Trang chính", href: "/home" },
@@ -109,8 +113,8 @@ export function ResultsView({
         }
         actions={
           isAdminView ? (
-            <Link href="/admin?tab=users" className="btn">
-              <Icon name="chevR" size={12} /> Trở lại danh sách
+            <Link href={`/admin/users/${adminView?.userId}`} className="btn">
+              <Icon name="chevL" size={12} /> Trở lại hồ sơ HS
             </Link>
           ) : (
             <Fragment>
@@ -307,6 +311,27 @@ export function ResultsView({
                           <span className="dot" style={{ background: t.color }} />{t.short}
                         </Pill>
                         <Pill tone={g.q.grade === "NC" ? "red" : ""}>{g.q.grade}</Pill>
+                        {g.q.source && (
+                          <Pill tone={g.q.source.startsWith("Trích đề") ? "cg" : ""}>
+                            <Icon name="school" size={11} /> {g.q.source}
+                          </Pill>
+                        )}
+                        {isAdminView && g.q.sourceQuestionId && (
+                          <span
+                            className="mono"
+                            title="ID câu hỏi trong ngân hàng (truy vết)"
+                            style={{
+                              fontSize: 11,
+                              padding: "2px 6px",
+                              border: "1px dashed var(--border)",
+                              borderRadius: 4,
+                              color: "var(--ink-muted)",
+                              background: "var(--surface-2)",
+                            }}
+                          >
+                            {g.q.sourceQuestionId}
+                          </span>
+                        )}
                         <span style={{ fontSize: 13 }}>
                           Trả lời:{" "}
                           {g.empty ? (

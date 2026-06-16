@@ -78,11 +78,23 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
   "LTV-2011-12-C20": {
     stem: "Viết các phân số sau đây theo thứ tự từ nhỏ đến lớn: $\\dfrac{26}{27}; \\dfrac{25}{26}; \\dfrac{51}{52}; \\dfrac{52}{53}$.",
     correct: "25/26; 26/27; 51/52; 52/53",
+    modelAnswer:
+      "Ta viết mỗi phân số dưới dạng $1$ trừ đi một phần đơn vị:\n" +
+      "$\\dfrac{25}{26} = 1 - \\dfrac{1}{26}$; $\\dfrac{26}{27} = 1 - \\dfrac{1}{27}$; $\\dfrac{51}{52} = 1 - \\dfrac{1}{52}$; $\\dfrac{52}{53} = 1 - \\dfrac{1}{53}$.\n" +
+      "Vì $\\dfrac{1}{26} > \\dfrac{1}{27} > \\dfrac{1}{52} > \\dfrac{1}{53}$ nên $1 - \\dfrac{1}{26} < 1 - \\dfrac{1}{27} < 1 - \\dfrac{1}{52} < 1 - \\dfrac{1}{53}$.\n" +
+      "Suy ra $\\dfrac{25}{26} < \\dfrac{26}{27} < \\dfrac{51}{52} < \\dfrac{52}{53}$.\n" +
+      "Vậy thứ tự từ nhỏ đến lớn là: $\\dfrac{25}{26}; \\dfrac{26}{27}; \\dfrac{51}{52}; \\dfrac{52}{53}$.",
   },
 
   // ─── LTV 2012-13 — full audit pass against PDF Mathexpress ──────────────
   "LTV-2012-13-C1": {
     stem: "Tổng hai số bằng 847. Số thứ nhất bằng $\\dfrac{3}{4}$ số thứ hai. Tìm hai số đó.",
+    modelAnswer:
+      "Coi số thứ nhất gồm $3$ phần bằng nhau thì số thứ hai gồm $4$ phần như thế.\n" +
+      "Tổng số phần bằng nhau là: $3 + 4 = 7$ (phần).\n" +
+      "Số thứ nhất là: $847 : 7 \\times 3 = 363$.\n" +
+      "Số thứ hai là: $847 - 363 = 484$.\n" +
+      "**Đáp số**: $363$ và $484$.",
   },
   "LTV-2012-13-C2": { correct: "19", unit: "năm" },
   "LTV-2012-13-C5": {
@@ -116,6 +128,13 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
   "LTV-2012-13-C16": {
     stem: "Một phần ba học sinh lớp 6A bằng một phần tư học sinh lớp 6B. Tổng số học sinh cả hai lớp là 63. Tìm số học sinh mỗi lớp.",
     correct: "Lớp 6A: 27 học sinh; Lớp 6B: 36 học sinh",
+    modelAnswer:
+      "Vì $\\dfrac{1}{3}$ số HS lớp 6A bằng $\\dfrac{1}{4}$ số HS lớp 6B nên tỉ số HS 6A so với 6B là $\\dfrac{1}{4} : \\dfrac{1}{3} = \\dfrac{3}{4}$.\n" +
+      "Tức là nếu lớp 6A có $3$ phần thì lớp 6B có $4$ phần bằng nhau.\n" +
+      "Tổng số phần là: $3 + 4 = 7$ (phần).\n" +
+      "Số HS lớp 6A là: $63 : 7 \\times 3 = 27$ (học sinh).\n" +
+      "Số HS lớp 6B là: $63 - 27 = 36$ (học sinh).\n" +
+      "**Đáp số**: Lớp 6A: $27$ HS; Lớp 6B: $36$ HS.",
   },
   "LTV-2012-13-C17": {
     stem: "Tìm hai số lẻ liên tiếp biết rằng tích của chúng là một số có ba chữ số mà chữ số hàng trăm bằng 3.",
@@ -267,6 +286,12 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
   "LTV-2018-19-C7": {
     stem: "Tìm số tự nhiên $x$, biết: $\\dfrac{2}{5} < \\dfrac{x}{8} < \\dfrac{3}{5}$.",
     correct: "x = 4",
+    modelAnswer:
+      "Quy đồng các phân số về cùng mẫu số $40$:\n" +
+      "$\\dfrac{2}{5} = \\dfrac{16}{40}$; $\\dfrac{x}{8} = \\dfrac{5 \\times x}{40}$; $\\dfrac{3}{5} = \\dfrac{24}{40}$.\n" +
+      "Bất đẳng thức trở thành: $16 < 5 \\times x < 24$.\n" +
+      "Suy ra $5 \\times x$ là số tự nhiên lớn hơn $16$ và nhỏ hơn $24$, đồng thời chia hết cho $5$. Số duy nhất thoả mãn là $20$, nên $5 \\times x = 20$, hay $x = 4$.\n" +
+      "**Đáp số**: $x = 4$.",
   },
   "LTV-2018-19-C8": { correct: "60", unit: "mét" },
   "LTV-2018-19-C10": {
@@ -450,6 +475,11 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
   "LTV-2022-23-C1": {
     stem: "Sắp xếp các số sau theo thứ tự từ bé đến lớn: $\\dfrac{9}{10}; \\dfrac{7}{8}; \\dfrac{4}{3}$.",
     correct: "7/8; 9/10; 4/3",
+    modelAnswer:
+      "Ta có $\\dfrac{9}{10} = 1 - \\dfrac{1}{10}$ và $\\dfrac{7}{8} = 1 - \\dfrac{1}{8}$.\n" +
+      "Vì $\\dfrac{1}{8} > \\dfrac{1}{10}$ nên $1 - \\dfrac{1}{8} < 1 - \\dfrac{1}{10}$, tức là $\\dfrac{7}{8} < \\dfrac{9}{10}$.\n" +
+      "Mặt khác $\\dfrac{9}{10} < 1 < \\dfrac{4}{3}$, suy ra $\\dfrac{7}{8} < \\dfrac{9}{10} < \\dfrac{4}{3}$.\n" +
+      "Vậy thứ tự từ bé đến lớn là: $\\dfrac{7}{8}; \\dfrac{9}{10}; \\dfrac{4}{3}$.",
   },
   "LTV-2022-23-C2": {
     stem: "Trung bình cộng của hai số bằng 21,35. Biết một trong hai số bằng 22,1 thì số còn lại bằng bao nhiêu?",
@@ -462,6 +492,10 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
     stem: "Một lớp có $\\dfrac{2}{3}$ số học sinh là nữ, còn lại là 11 học sinh nam. Tính số học sinh của lớp đó.",
     correct: "33",
     unit: "học sinh",
+    modelAnswer:
+      "Số học sinh nam chiếm: $1 - \\dfrac{2}{3} = \\dfrac{1}{3}$ (số học sinh cả lớp).\n" +
+      "Mà số học sinh nam là $11$, vậy số học sinh cả lớp là: $11 : \\dfrac{1}{3} = 33$ (học sinh).\n" +
+      "**Đáp số**: $33$ học sinh.",
   },
   "LTV-2022-23-C7": { correct: "5", unit: "số" },
   "LTV-2022-23-C8": {
@@ -515,6 +549,12 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
   "LTV-2023-24-C5": {
     stem: "Sắp xếp các phân số sau theo thứ tự từ bé đến lớn: $\\dfrac{5}{8}; \\dfrac{11}{12}; \\dfrac{7}{8}; \\dfrac{10}{9}$.",
     correct: "5/8; 7/8; 11/12; 10/9",
+    modelAnswer:
+      "Ta thấy $\\dfrac{5}{8} < 1$, $\\dfrac{7}{8} < 1$, $\\dfrac{11}{12} < 1$ và $\\dfrac{10}{9} > 1$. Vậy $\\dfrac{10}{9}$ là phân số lớn nhất.\n" +
+      "So sánh $\\dfrac{5}{8}$ và $\\dfrac{7}{8}$: cùng mẫu, $5 < 7$ nên $\\dfrac{5}{8} < \\dfrac{7}{8}$.\n" +
+      "So sánh $\\dfrac{7}{8}$ và $\\dfrac{11}{12}$: $\\dfrac{7}{8} = 1 - \\dfrac{1}{8}$ và $\\dfrac{11}{12} = 1 - \\dfrac{1}{12}$. Vì $\\dfrac{1}{8} > \\dfrac{1}{12}$ nên $1 - \\dfrac{1}{8} < 1 - \\dfrac{1}{12}$, tức là $\\dfrac{7}{8} < \\dfrac{11}{12}$.\n" +
+      "Suy ra $\\dfrac{5}{8} < \\dfrac{7}{8} < \\dfrac{11}{12} < \\dfrac{10}{9}$.\n" +
+      "Vậy thứ tự từ bé đến lớn là: $\\dfrac{5}{8}; \\dfrac{7}{8}; \\dfrac{11}{12}; \\dfrac{10}{9}$.",
   },
   "LTV-2023-24-C6": {
     stem: "Tìm các số chia hết cho 2 và 5 trong các số sau: 35; 120; 68; 250; 222.",
@@ -575,6 +615,10 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
     stem: "Một lớp học có 32 học sinh, trong đó số học sinh nam chiếm $\\dfrac{3}{8}$ số học sinh của lớp. Hỏi lớp đó có bao nhiêu học sinh nữ?",
     correct: "20",
     unit: "học sinh nữ",
+    modelAnswer:
+      "Số học sinh nam của lớp đó là: $32 \\times \\dfrac{3}{8} = 12$ (học sinh).\n" +
+      "Số học sinh nữ của lớp đó là: $32 - 12 = 20$ (học sinh).\n" +
+      "**Đáp số**: $20$ học sinh nữ.",
   },
   "LTV-2024-25-C9": {
     stem: "Mua 3m vải phải trả 45 000 đồng. Hỏi nếu mua 8,5m vải cùng loại thì phải trả nhiều hơn bao nhiêu tiền?",

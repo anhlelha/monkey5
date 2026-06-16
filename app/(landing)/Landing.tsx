@@ -132,7 +132,7 @@ export function Landing({ hasGoogle, user, theme = "ocean", quietHours = DEFAULT
   const studyRange = studyWindowLabel(quietHours);
   return (
     <>
-      <link rel="stylesheet" href="/landing.css?v=2" />
+      <link rel="stylesheet" href="/landing.css" />
       <Script id="landing-tweaks" strategy="beforeInteractive">
         {`window.TWEAKS = { theme: ${safeTheme} };`}
       </Script>

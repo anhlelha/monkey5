@@ -20,6 +20,7 @@ export interface ExamQuestion {
   modelAnswer: string | null;
   figure: string | null;
   source?: string | null;
+  sourceQuestionId?: string | null;
   // Optional JSON-serialized AnswerSchema. null/undefined → fall back to exact match.
   answerSchema?: string | null;
 }
