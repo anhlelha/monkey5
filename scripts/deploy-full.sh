@@ -77,12 +77,12 @@ ssh_vm "cd $REMOTE_PROJECT_PATH && npx tsx scripts/regrade-attempts.ts --dry-run
 if [[ "$AUTO_YES" -eq 0 ]]; then
   echo
   read -rp "Apply regrade thật? [y/N] " ans
-  case "${ans,,}" in
-    y|yes) ;;
-    *) echo "✗ Bỏ qua regrade. Backup vẫn còn trên VM, chạy lại bằng:"
-       echo "   ssh -i $GCP_KEY $REMOTE 'cd $REMOTE_PROJECT_PATH && npx tsx scripts/regrade-attempts.ts'"
-       exit 0 ;;
-  esac
+  # POSIX-safe lowercase test (works on macOS bash 3.2; ${var,,} is bash 4+).
+  if [[ ! "$ans" =~ ^[Yy] ]]; then
+    echo "✗ Bỏ qua regrade. Backup vẫn còn trên VM, chạy lại bằng:"
+    echo "   ssh -i $GCP_KEY $REMOTE 'cd $REMOTE_PROJECT_PATH && npx tsx scripts/regrade-attempts.ts'"
+    exit 0
+  fi
 fi
 
 ssh_vm "cd $REMOTE_PROJECT_PATH && npx tsx scripts/regrade-attempts.ts"
