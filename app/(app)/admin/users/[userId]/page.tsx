@@ -4,8 +4,8 @@ import { prisma } from "@/lib/prisma";
 import {
   hydrateUser,
   getUserActivityStats,
-  getAttemptsForAdmin,
-  getTopicSessionsForAdmin,
+  getUserActivityForAdmin,
+  type AdminActivityFilter,
 } from "@/lib/user-data";
 import { DEFAULT_TOPICS } from "@/lib/static";
 import { getActiveSchools } from "@/lib/schools";
@@ -14,10 +14,15 @@ import { UserDetailPanel } from "./UserDetailPanel";
 
 interface Props {
   params: Promise<{ userId: string }>;
-  searchParams: Promise<{ tab?: string; page?: string }>;
+  searchParams: Promise<{ filter?: string; page?: string }>;
 }
 
 const PAGE_SIZE = 20;
+
+const parseFilter = (raw: string | undefined): AdminActivityFilter => {
+  if (raw === "exam" || raw === "topic") return raw;
+  return "all";
+};
 
 export default async function AdminUserDetail({ params, searchParams }: Props) {
   const session = await auth();
@@ -28,18 +33,17 @@ export default async function AdminUserDetail({ params, searchParams }: Props) {
   if (hydratedAdmin.role !== "admin") redirect("/home");
 
   const { userId } = await params;
-  const { tab: rawTab, page: rawPage } = await searchParams;
-  const activeTab: "exams" | "topics" = rawTab === "topics" ? "topics" : "exams";
+  const { filter: rawFilter, page: rawPage } = await searchParams;
+  const filter = parseFilter(rawFilter);
   const page = Math.max(1, Number.parseInt(rawPage ?? "1", 10) || 1);
 
   const targetRaw = await prisma.user.findUnique({ where: { id: userId } });
   if (!targetRaw) notFound();
   const targetUser = hydrateUser(targetRaw);
 
-  const [summaryMap, attempts, topicSessions, topicRows, schools] = await Promise.all([
+  const [summaryMap, activity, topicRows, schools] = await Promise.all([
     getUserActivityStats([userId]),
-    getAttemptsForAdmin(userId, activeTab === "exams" ? page : 1, PAGE_SIZE),
-    getTopicSessionsForAdmin(userId, activeTab === "topics" ? page : 1, PAGE_SIZE),
+    getUserActivityForAdmin(userId, filter, page, PAGE_SIZE),
     prisma.topic.findMany({ orderBy: { position: "asc" } }),
     getActiveSchools(),
   ]);
@@ -81,9 +85,8 @@ export default async function AdminUserDetail({ params, searchParams }: Props) {
           summary={summary}
           topics={TOPICS}
           schools={schoolMeta}
-          attempts={attempts}
-          topicSessions={topicSessions}
-          activeTab={activeTab}
+          activity={activity}
+          filter={filter}
           isSelf={session.user.id === userId}
         />
       </div>

@@ -481,21 +481,37 @@ export async function getUserActivityStats(
   const [attempts, sessions] = await Promise.all([
     prisma.attempt.findMany({
       where: { userId: { in: userIds }, submitted: true },
-      select: { userId: true, score: true, createdAt: true },
+      select: { userId: true, examId: true, score: true, createdAt: true },
     }),
     prisma.topicSession.findMany({
       where: { userId: { in: userIds } },
-      select: { userId: true, qcount: true, score: true, createdAt: true },
+      select: { userId: true, setId: true, qcount: true, score: true, createdAt: true },
     }),
   ]);
+
+  // A topic-practice run writes BOTH a TopicSession and an Attempt with
+  // matching setId/examId. Treat that pair as ONE topic activity so the KPI
+  // and table counts don't double-count.
+  const topicSetIdsByUser = new Map<string, Set<string>>();
+  for (const t of sessions) {
+    if (!t.setId) continue;
+    let bag = topicSetIdsByUser.get(t.userId);
+    if (!bag) {
+      bag = new Set<string>();
+      topicSetIdsByUser.set(t.userId, bag);
+    }
+    bag.add(t.setId);
+  }
 
   const sums: Record<string, { num: number; den: number }> = {};
 
   for (const a of attempts) {
     const slot = map.get(a.userId);
     if (!slot) continue;
-    slot.attemptCount += 1;
     if (!slot.lastActiveAt || a.createdAt > slot.lastActiveAt) slot.lastActiveAt = a.createdAt;
+    const isPairedTopic = topicSetIdsByUser.get(a.userId)?.has(a.examId) ?? false;
+    if (isPairedTopic) continue; // counted via the TopicSession loop below
+    slot.attemptCount += 1;
     const s = sums[a.userId] ?? { num: 0, den: 0 };
     s.num += a.score;
     s.den += 1;
@@ -524,114 +540,143 @@ export async function getUserActivityStats(
   return map;
 }
 
-// ─── Admin: paginated attempts for a specific user ───────────────────────────
+// ─── Admin: unified activity feed (exam + topic, deduped) ───────────────────
+// A finished topic-practice run writes BOTH a TopicSession and a paired
+// Attempt (same examId === setId). Naive listing would double-count it. This
+// helper merges them: if a TopicSession has a matching Attempt, the row is
+// classified as "topic" and links to the attempt's results. Pure exam
+// attempts (no matching topic session) remain "exam".
 
-export interface AdminAttemptRow {
-  id: string;                 // attemptId
-  examId: string;
-  school: string;
-  examTitle: string | null;
-  examYear: string;
-  kind: "official" | "reference" | "mixed";
-  qcount: number;
-  minutes: number;
-  score: number;
-  earned: number;
-  total: number;
-  durationSec: number;
+export type AdminActivityFilter = "all" | "exam" | "topic";
+
+export interface AdminActivityRow {
+  kind: "exam" | "topic";
+  id: string;                                  // attempt id or topic session id
+  attemptId: string | null;                    // for linking to results page
+  examId: string | null;                       // attempt.examId or setId
   createdAt: Date;
+  score: number;                               // 0..100
+  correctCount: number;
+  total: number;                               // points total (exam) or qcount (topic)
+  // Exam-only
+  school?: string;
+  examTitle?: string | null;
+  examYear?: string;
+  examKind?: "official" | "reference" | "mixed";
+  durationSec?: number;
+  minutes?: number;
+  // Topic-only
+  topic?: string;
+  level?: string;
+  qcount?: number;
 }
 
-export async function getAttemptsForAdmin(
+export interface AdminActivityFeed {
+  rows: AdminActivityRow[];
+  page: number;
+  pageSize: number;
+  total: number;
+  counts: { all: number; exam: number; topic: number };
+}
+
+export async function getUserActivityForAdmin(
   userId: string,
+  filter: AdminActivityFilter = "all",
   page = 1,
   pageSize = 20,
-): Promise<{ rows: AdminAttemptRow[]; total: number; page: number; pageSize: number }> {
+): Promise<AdminActivityFeed> {
   const safePage = Math.max(1, page);
-  const [total, attempts] = await Promise.all([
-    prisma.attempt.count({ where: { userId, submitted: true } }),
+
+  const [attempts, sessions] = await Promise.all([
     prisma.attempt.findMany({
       where: { userId, submitted: true },
       include: { exam: true },
       orderBy: { createdAt: "desc" },
-      skip: (safePage - 1) * pageSize,
-      take: pageSize,
     }),
-  ]);
-
-  const rows: AdminAttemptRow[] = attempts.map((a) => ({
-    id: a.id,
-    examId: a.examId,
-    school: a.exam.school,
-    examTitle: a.exam.title,
-    examYear: a.exam.year,
-    kind: a.exam.kind as "official" | "reference" | "mixed",
-    qcount: a.exam.qcount,
-    minutes: a.exam.minutes,
-    score: a.score,
-    earned: a.earned,
-    total: a.total,
-    durationSec: a.durationSec,
-    createdAt: a.createdAt,
-  }));
-
-  return { rows, total, page: safePage, pageSize };
-}
-
-// ─── Admin: topic sessions for a user (paired with attemptId when possible) ──
-
-export interface AdminTopicSessionRow {
-  id: string;
-  topic: string;
-  level: string;
-  qcount: number;
-  correctCount: number;
-  score: number;            // 0..100
-  examId: string | null;
-  attemptId: string | null;
-  createdAt: Date;
-}
-
-export async function getTopicSessionsForAdmin(
-  userId: string,
-  page = 1,
-  pageSize = 20,
-): Promise<{ rows: AdminTopicSessionRow[]; total: number; page: number; pageSize: number }> {
-  const safePage = Math.max(1, page);
-  const [total, sessions] = await Promise.all([
-    prisma.topicSession.count({ where: { userId } }),
     prisma.topicSession.findMany({
       where: { userId },
       orderBy: { createdAt: "desc" },
-      skip: (safePage - 1) * pageSize,
-      take: pageSize,
     }),
   ]);
 
-  const setIds = sessions.map((s) => s.setId).filter((v): v is string => Boolean(v));
-  const attemptMap = new Map<string, string>();
-  if (setIds.length > 0) {
-    const attempts = await prisma.attempt.findMany({
-      where: { userId, examId: { in: setIds }, submitted: true },
-      orderBy: { createdAt: "desc" },
-      select: { id: true, examId: true },
-    });
-    for (const a of attempts) {
-      if (!attemptMap.has(a.examId)) attemptMap.set(a.examId, a.id);
+  // Map TopicSession.setId → session so we can find the pair for an attempt.
+  const sessionBySetId = new Map<string, (typeof sessions)[number]>();
+  for (const s of sessions) {
+    if (s.setId && !sessionBySetId.has(s.setId)) sessionBySetId.set(s.setId, s);
+  }
+
+  const merged: AdminActivityRow[] = [];
+  const consumedSessionIds = new Set<string>();
+
+  for (const a of attempts) {
+    const matched = a.examId ? sessionBySetId.get(a.examId) : undefined;
+    if (matched) {
+      // Render as topic row, link to attempt.
+      consumedSessionIds.add(matched.id);
+      const correctCount = matched.score;
+      const pct = matched.qcount > 0 ? Math.round((correctCount / matched.qcount) * 100) : 0;
+      merged.push({
+        kind: "topic",
+        id: matched.id,
+        attemptId: a.id,
+        examId: matched.setId,
+        createdAt: a.createdAt,
+        score: pct,
+        correctCount,
+        total: matched.qcount,
+        topic: matched.topic,
+        level: matched.level,
+        qcount: matched.qcount,
+      });
+    } else {
+      merged.push({
+        kind: "exam",
+        id: a.id,
+        attemptId: a.id,
+        examId: a.examId,
+        createdAt: a.createdAt,
+        score: a.score,
+        correctCount: a.earned,
+        total: a.total,
+        school: a.exam.school,
+        examTitle: a.exam.title,
+        examYear: a.exam.year,
+        examKind: a.exam.kind as "official" | "reference" | "mixed",
+        durationSec: a.durationSec,
+        minutes: a.exam.minutes,
+      });
     }
   }
 
-  const rows: AdminTopicSessionRow[] = sessions.map((s) => ({
-    id: s.id,
-    topic: s.topic,
-    level: s.level,
-    qcount: s.qcount,
-    correctCount: s.score,
-    score: s.qcount > 0 ? Math.round((s.score / s.qcount) * 100) : 0,
-    examId: s.setId,
-    attemptId: s.setId ? attemptMap.get(s.setId) ?? null : null,
-    createdAt: s.createdAt,
-  }));
+  for (const s of sessions) {
+    if (consumedSessionIds.has(s.id)) continue;
+    const pct = s.qcount > 0 ? Math.round((s.score / s.qcount) * 100) : 0;
+    merged.push({
+      kind: "topic",
+      id: s.id,
+      attemptId: null,
+      examId: s.setId,
+      createdAt: s.createdAt,
+      score: pct,
+      correctCount: s.score,
+      total: s.qcount,
+      topic: s.topic,
+      level: s.level,
+      qcount: s.qcount,
+    });
+  }
 
-  return { rows, total, page: safePage, pageSize };
+  merged.sort((x, y) => y.createdAt.getTime() - x.createdAt.getTime());
+
+  const counts = {
+    all: merged.length,
+    exam: merged.filter((r) => r.kind === "exam").length,
+    topic: merged.filter((r) => r.kind === "topic").length,
+  };
+
+  const filtered = filter === "all" ? merged : merged.filter((r) => r.kind === filter);
+  const total = filtered.length;
+  const rows = filtered.slice((safePage - 1) * pageSize, safePage * pageSize);
+
+  return { rows, page: safePage, pageSize, total, counts };
 }

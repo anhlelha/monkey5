@@ -3,8 +3,8 @@ import { Bar, Card, Pill } from "@/components/ui";
 import { Icon } from "@/components/Icon";
 import { UserAdminControls } from "./UserAdminControls";
 import type {
-  AdminAttemptRow,
-  AdminTopicSessionRow,
+  AdminActivityFeed,
+  AdminActivityFilter,
   UserActivitySummary,
   UserShape,
 } from "@/lib/user-data";
@@ -29,19 +29,8 @@ interface Props {
   summary: UserActivitySummary;
   topics: TopicMeta[];
   schools: SchoolMeta[];
-  attempts: {
-    rows: AdminAttemptRow[];
-    total: number;
-    page: number;
-    pageSize: number;
-  };
-  topicSessions: {
-    rows: AdminTopicSessionRow[];
-    total: number;
-    page: number;
-    pageSize: number;
-  };
-  activeTab: "exams" | "topics";
+  activity: AdminActivityFeed;
+  filter: AdminActivityFilter;
   isSelf: boolean;
 }
 
@@ -65,9 +54,8 @@ export function UserDetailPanel({
   summary,
   topics,
   schools,
-  attempts,
-  topicSessions,
-  activeTab,
+  activity,
+  filter,
   isSelf,
 }: Props) {
   const topicById = new Map(topics.map((t) => [t.id, t]));
@@ -99,11 +87,10 @@ export function UserDetailPanel({
     .map((id) => schoolById.get(id))
     .filter((s): s is SchoolMeta => Boolean(s));
 
-  const attemptTotalPages = Math.max(1, Math.ceil(attempts.total / attempts.pageSize));
-  const topicTotalPages = Math.max(1, Math.ceil(topicSessions.total / topicSessions.pageSize));
+  const activityTotalPages = Math.max(1, Math.ceil(activity.total / activity.pageSize));
 
-  const pageHrefBuilder = (tab: "exams" | "topics", page: number) =>
-    `/admin/users/${user.id}?tab=${tab}&page=${page}`;
+  const filterHref = (f: AdminActivityFilter, page = 1) =>
+    `/admin/users/${user.id}?filter=${f}&page=${page}`;
 
   const activityMax = Math.max(
     1,
@@ -362,170 +349,148 @@ export function UserDetailPanel({
         </div>
       </Card>
 
-      <Card>
+      <Card
+        title="Lịch sử làm bài"
+        sub="Toàn bộ đề thi và chuyên đề HS đã hoàn thành. Lọc theo loại bằng các chip bên dưới."
+      >
         <div className="row" style={{ gap: 8, marginBottom: 14 }}>
-          <Link
-            href={pageHrefBuilder("exams", 1)}
-            className={"chip " + (activeTab === "exams" ? "active" : "")}
-          >
-            Đề thi · {attempts.total}
-          </Link>
-          <Link
-            href={pageHrefBuilder("topics", 1)}
-            className={"chip " + (activeTab === "topics" ? "active" : "")}
-          >
-            Chuyên đề · {topicSessions.total}
-          </Link>
+          {(
+            [
+              { id: "all" as const, label: `Tất cả · ${activity.counts.all}` },
+              { id: "exam" as const, label: `Đề thi · ${activity.counts.exam}` },
+              { id: "topic" as const, label: `Chuyên đề · ${activity.counts.topic}` },
+            ]
+          ).map((f) => (
+            <Link
+              key={f.id}
+              href={filterHref(f.id, 1)}
+              className={"chip " + (filter === f.id ? "active" : "")}
+            >
+              {f.label}
+            </Link>
+          ))}
         </div>
 
-        {activeTab === "exams" &&
-          (attempts.rows.length === 0 ? (
-            <div className="empty">HS chưa nộp đề nào.</div>
-          ) : (
-            <>
-              <table className="tbl">
-                <thead>
-                  <tr>
-                    <th>Trường</th>
-                    <th>Đề</th>
-                    <th>Loại</th>
-                    <th>Điểm</th>
-                    <th>Đúng / Tổng</th>
-                    <th>Thời gian</th>
-                    <th>Nộp lúc</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {attempts.rows.map((r) => {
-                    const s = schoolById.get(r.school);
-                    return (
-                      <tr key={r.id}>
-                        <td>
-                          <span className={"pill " + (s?.tone ?? "")}>
-                            {s?.short ?? r.school.toUpperCase()}
+        {activity.rows.length === 0 ? (
+          <div className="empty">
+            {filter === "exam"
+              ? "HS chưa nộp đề thi nào."
+              : filter === "topic"
+                ? "HS chưa hoàn thành phiên chuyên đề nào."
+                : "HS chưa có hoạt động nào."}
+          </div>
+        ) : (
+          <>
+            <table className="tbl">
+              <thead>
+                <tr>
+                  <th>Loại</th>
+                  <th>Bối cảnh</th>
+                  <th>Chi tiết</th>
+                  <th>Điểm</th>
+                  <th>Đúng / Tổng</th>
+                  <th>Thời gian</th>
+                  <th>Khi nào</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {activity.rows.map((r) => {
+                  const isExam = r.kind === "exam";
+                  const school = isExam && r.school ? schoolById.get(r.school) : undefined;
+                  const topic = !isExam && r.topic ? topicById.get(r.topic) : undefined;
+                  const detailHref = r.examId && r.attemptId
+                    ? `/exam/${r.examId}/results/${r.attemptId}`
+                    : null;
+                  return (
+                    <tr key={r.id}>
+                      <td>
+                        <Pill tone={isExam ? "solid" : ""}>
+                          {isExam ? "Đề thi" : "Chuyên đề"}
+                        </Pill>
+                      </td>
+                      <td>
+                        {isExam ? (
+                          <span className={"pill " + (school?.tone ?? "")}>
+                            {school?.short ?? r.school?.toUpperCase() ?? "—"}
                           </span>
-                        </td>
-                        <td>
-                          <b style={{ fontWeight: 500 }}>{r.examTitle ?? r.examYear}</b>
-                          <div className="muted" style={{ fontSize: 11.5 }}>
-                            {r.qcount} câu · {r.minutes}p · {r.examYear}
-                          </div>
-                        </td>
-                        <td>
-                          <Pill tone={r.kind === "official" ? "solid" : ""}>
-                            {r.kind === "official"
-                              ? "Chính thức"
-                              : r.kind === "reference"
-                                ? "Tham khảo"
-                                : "Trộn"}
-                          </Pill>
-                        </td>
-                        <td>
-                          <Pill tone={pillToneFor(r.score)}>{r.score}%</Pill>
-                        </td>
-                        <td className="mono">
-                          {r.earned}/{r.total}
-                        </td>
-                        <td className="mono">
-                          {Math.round(r.durationSec / 60)}p
-                        </td>
-                        <td className="muted" style={{ fontSize: 12 }}>
-                          {fmtDateTime(r.createdAt)}
-                        </td>
-                        <td>
-                          <Link
-                            href={`/exam/${r.examId}/results/${r.id}`}
-                            className="btn sm ghost"
-                          >
-                            Xem chi tiết <Icon name="chevR" size={11} />
-                          </Link>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-              <Pager
-                page={attempts.page}
-                totalPages={attemptTotalPages}
-                hrefFor={(p) => pageHrefBuilder("exams", p)}
-              />
-            </>
-          ))}
-
-        {activeTab === "topics" &&
-          (topicSessions.rows.length === 0 ? (
-            <div className="empty">HS chưa hoàn thành phiên chuyên đề nào.</div>
-          ) : (
-            <>
-              <table className="tbl">
-                <thead>
-                  <tr>
-                    <th>Chuyên đề</th>
-                    <th>Mức</th>
-                    <th>Điểm</th>
-                    <th>Đúng / Tổng</th>
-                    <th>Khi nào</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {topicSessions.rows.map((r) => {
-                    const t = topicById.get(r.topic);
-                    return (
-                      <tr key={r.id}>
-                        <td>
+                        ) : (
                           <span className="row" style={{ gap: 8, alignItems: "center" }}>
                             <span
                               style={{
                                 width: 8,
                                 height: 8,
-                                background: t?.color ?? "var(--ink-muted)",
+                                background: topic?.color ?? "var(--ink-muted)",
                                 borderRadius: 2,
                               }}
                             />
-                            <b style={{ fontWeight: 500 }}>{t?.name ?? r.topic}</b>
+                            <b style={{ fontWeight: 500, fontSize: 13 }}>
+                              {topic?.short ?? r.topic}
+                            </b>
                           </span>
-                        </td>
-                        <td>
-                          <Pill tone={r.level === "NC" ? "red" : ""}>{r.level}</Pill>
-                        </td>
-                        <td>
-                          <Pill tone={pillToneFor(r.score)}>{r.score}%</Pill>
-                        </td>
-                        <td className="mono">
-                          {r.correctCount}/{r.qcount}
-                        </td>
-                        <td className="muted" style={{ fontSize: 12 }}>
-                          {fmtDateTime(r.createdAt)}
-                        </td>
-                        <td>
-                          {r.examId && r.attemptId ? (
-                            <Link
-                              href={`/exam/${r.examId}/results/${r.attemptId}`}
-                              className="btn sm ghost"
-                            >
-                              Xem chi tiết <Icon name="chevR" size={11} />
-                            </Link>
-                          ) : (
-                            <span className="muted" style={{ fontSize: 12 }}>
-                              Không còn dữ liệu
-                            </span>
-                          )}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-              <Pager
-                page={topicSessions.page}
-                totalPages={topicTotalPages}
-                hrefFor={(p) => pageHrefBuilder("topics", p)}
-              />
-            </>
-          ))}
+                        )}
+                      </td>
+                      <td>
+                        {isExam ? (
+                          <>
+                            <b style={{ fontWeight: 500 }}>{r.examTitle ?? r.examYear}</b>
+                            <div className="muted" style={{ fontSize: 11.5 }}>
+                              {r.examKind === "official"
+                                ? "Chính thức"
+                                : r.examKind === "reference"
+                                  ? "Tham khảo"
+                                  : "Trộn"}{" "}
+                              · {r.examYear}
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <b style={{ fontWeight: 500 }}>
+                              Luyện chuyên đề · {r.level}
+                            </b>
+                            <div className="muted" style={{ fontSize: 11.5 }}>
+                              {r.qcount} câu
+                            </div>
+                          </>
+                        )}
+                      </td>
+                      <td>
+                        <Pill tone={pillToneFor(r.score)}>{r.score}%</Pill>
+                      </td>
+                      <td className="mono">
+                        {r.correctCount}/{r.total}
+                      </td>
+                      <td className="mono">
+                        {isExam && typeof r.durationSec === "number"
+                          ? `${Math.round(r.durationSec / 60)}p`
+                          : "—"}
+                      </td>
+                      <td className="muted" style={{ fontSize: 12 }}>
+                        {fmtDateTime(r.createdAt)}
+                      </td>
+                      <td>
+                        {detailHref ? (
+                          <Link href={detailHref} className="btn sm ghost">
+                            Xem chi tiết <Icon name="chevR" size={11} />
+                          </Link>
+                        ) : (
+                          <span className="muted" style={{ fontSize: 12 }}>
+                            Không còn dữ liệu
+                          </span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <Pager
+              page={activity.page}
+              totalPages={activityTotalPages}
+              hrefFor={(p) => filterHref(filter, p)}
+            />
+          </>
+        )}
       </Card>
     </div>
   );
