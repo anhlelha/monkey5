@@ -109,9 +109,18 @@ export interface ExtractOptions {
 export function extractNumbers(input: string, opts?: ExtractOptions): number[] {
   if (!input) return [];
   if (opts?.commasAsListSeparators) {
-    // Replace commas with whitespace so each digit group is a standalone chunk,
-    // then run the standard extractor on the rewritten string.
-    return extractNumbers(input.replace(/,/g, " "));
+    // Split into items by comma/semicolon first, then extract from each item
+    // independently. Doing this instead of replacing commas with whitespace
+    // prevents the mixed-fraction regex from joining across boundaries
+    // (e.g. "7/8,9/10" becoming "7/8 9/10" then misreading "8 9/10" as 8.9).
+    const items = input.split(/[,;]+/);
+    const result: number[] = [];
+    for (const item of items) {
+      const trimmed = item.trim();
+      if (!trimmed) continue;
+      for (const n of extractNumbers(trimmed)) result.push(n);
+    }
+    return result;
   }
   const result: number[] = [];
 

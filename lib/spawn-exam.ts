@@ -11,6 +11,24 @@ import {
   getLevelConfig,
   countTopicSets,
 } from "@/lib/plan-config";
+import { classifyAnswer } from "@/lib/grading/classify";
+
+// Spawned clones lose their answerSchema if we just copy q.answerSchema — older
+// source rows in the bank may still be null because seed-all-exams hasn't been
+// re-run after the auto-classify integration landed. Fall back to live
+// classification so the clone always has a usable schema.
+function resolveAnswerSchema(
+  type: string,
+  correct: string | null,
+  existing: string | null,
+): string | null {
+  if (existing) return existing;
+  if (type !== "fill" || !correct) return null;
+  const cls = classifyAnswer(correct);
+  if (cls.confidence === "low") return null;
+  if (cls.schema.kind === "exact") return null;
+  return JSON.stringify(cls.schema);
+}
 
 export class TopicSetLimitError extends Error {
   constructor() {
@@ -95,6 +113,7 @@ export async function spawnReferenceExam(schoolId: string): Promise<string> {
           unit: q.unit,
           placeholder: q.placeholder,
           correct: q.correct,
+          answerSchema: resolveAnswerSchema(q.type, q.correct, q.answerSchema),
           options: q.options,
           modelAnswer: q.modelAnswer,
           figure: q.figure,
@@ -252,6 +271,7 @@ export async function spawnTopicSetExam(
           unit: q.unit,
           placeholder: q.placeholder,
           correct: q.correct,
+          answerSchema: resolveAnswerSchema(q.type, q.correct, q.answerSchema),
           options: q.options,
           modelAnswer: q.modelAnswer,
           figure: q.figure,
