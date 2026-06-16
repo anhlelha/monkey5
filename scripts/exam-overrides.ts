@@ -449,8 +449,25 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
     stem: "Hằng ngày, bạn Hưng chạy bộ được $1\\dfrac{1}{7}$ km. Hỏi trong 1 tuần, bạn Hưng chạy được bao nhiêu km?",
     correct: "8",
     unit: "km",
+    modelAnswer:
+      "Đổi $1\\dfrac{1}{7} = \\dfrac{8}{7}$ (km).\n" +
+      "Quãng đường bạn Hưng chạy được trong 1 tuần là: $\\dfrac{8}{7} \\times 7 = 8$ (km).\n" +
+      "**Đáp số**: $8$ km.",
   },
-  "LTV-2021-22-C4": { correct: "38,465", unit: "cm²" },
+  "LTV-2021-22-C3": {
+    modelAnswer:
+      "Thời gian máy làm xong 175 dụng cụ là: $1{,}2 \\times 175 = 210$ (phút) $= 3$ giờ $30$ phút.\n" +
+      "Máy bắt đầu lúc 7 giờ 30 phút và làm trong 3 giờ 30 phút nên thời điểm làm xong là $11$ giờ.\n" +
+      "**Đáp số**: 11 giờ.",
+  },
+  "LTV-2021-22-C4": {
+    correct: "38,465",
+    unit: "cm²",
+    modelAnswer:
+      "Bán kính hình tròn là: $7 : 2 = 3{,}5$ (cm).\n" +
+      "Diện tích hình tròn là: $3{,}5 \\times 3{,}5 \\times 3{,}14 = 38{,}465$ (cm²).\n" +
+      "**Đáp số**: $38{,}465$ cm².",
+  },
   "LTV-2021-22-C5": {
     stem: "Có một hình chữ nhật đã được tăng chiều dài thêm $10\\%$ và giảm chiều rộng đi $10\\%$ thì diện tích hình chữ nhật đó thay đổi như thế nào?",
     correct: "Giảm 1% so với diện tích ban đầu",
@@ -458,6 +475,16 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
   "LTV-2021-22-C6": {
     stem: "Cả đàn có tất cả 50 con bò và trâu, biết rằng nếu đem $\\dfrac{2}{5}$ số trâu và $\\dfrac{3}{4}$ số bò thì có tất cả 27 con. Tính số trâu và số bò.",
     correct: "30 con trâu và 20 con bò",
+    modelAnswer:
+      "Gọi số con trâu là $T$, số con bò là $B$. Theo đề bài ta có hệ:\n" +
+      "$$\\begin{cases} T + B = 50 \\\\ \\dfrac{2}{5}T + \\dfrac{3}{4}B = 27 \\end{cases}$$\n" +
+      "Nhân hai vế phương trình thứ hai với $20$ (mẫu số chung của $5$ và $4$):\n" +
+      "$$8T + 15B = 540. \\quad (1)$$\n" +
+      "Nhân hai vế phương trình thứ nhất với $8$:\n" +
+      "$$8T + 8B = 400. \\quad (2)$$\n" +
+      "Trừ $(1)$ cho $(2)$ theo vế: $7B = 540 - 400 = 140$, suy ra $B = 20$.\n" +
+      "Do đó $T = 50 - 20 = 30$.\n\n" +
+      "**Đáp số**: $30$ con trâu và $20$ con bò.",
   },
   "LTV-2021-22-C8": {
     stem: "Tính diện tích toàn phần hình bên, biết các hình nhỏ đều bằng nhau, chiều dài 4dm, chiều rộng 3dm, chiều cao 3,5dm.",
