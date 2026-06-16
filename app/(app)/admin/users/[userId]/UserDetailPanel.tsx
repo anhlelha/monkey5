@@ -364,6 +364,7 @@ export function UserDetailPanel({
             <Link
               key={f.id}
               href={filterHref(f.id, 1)}
+              scroll={false}
               className={"chip " + (filter === f.id ? "active" : "")}
             >
               {f.label}
@@ -509,7 +510,7 @@ function Pager({
   return (
     <div className="row" style={{ gap: 8, marginTop: 12, justifyContent: "center" }}>
       {page > 1 ? (
-        <Link href={hrefFor(page - 1)} className="btn sm ghost">
+        <Link href={hrefFor(page - 1)} scroll={false} className="btn sm ghost">
           <Icon name="chevR" size={11} /> Trước
         </Link>
       ) : (
@@ -521,7 +522,7 @@ function Pager({
         Trang {page} / {totalPages}
       </span>
       {page < totalPages ? (
-        <Link href={hrefFor(page + 1)} className="btn sm ghost">
+        <Link href={hrefFor(page + 1)} scroll={false} className="btn sm ghost">
           Sau <Icon name="chevR" size={11} />
         </Link>
       ) : (
