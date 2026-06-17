@@ -59,11 +59,16 @@ export default async function AdminPage({ searchParams }: Props) {
 
   const [examsCount, questionsCount, attemptsCount, usersCount, exams, topics, users] =
     await Promise.all([
-      prisma.exam.count(),
+      // Admin chỉ quản lý đề do admin tạo/upload (generated=false).
+      // Đề "Phỏng tự động" (set-*/ref-*) sinh ra khi user luyện tập bị loại trừ.
+      prisma.exam.count({ where: { generated: false } }),
       prisma.question.count({ where: { active: true } }),
       prisma.attempt.count({ where: { submitted: true } }),
       prisma.user.count(),
-      prisma.exam.findMany({ orderBy: [{ kind: "asc" }, { year: "desc" }] }),
+      prisma.exam.findMany({
+        where: { generated: false },
+        orderBy: [{ kind: "asc" }, { year: "desc" }],
+      }),
       prisma.topic.findMany({ orderBy: { position: "asc" } }),
       prisma.user.findMany({
         where: userWhere,
