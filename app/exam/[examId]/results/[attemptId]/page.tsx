@@ -71,6 +71,27 @@ export default async function ResultsPage({ params }: Props) {
   }));
 
   const answers = parseAnswers(attempt.answers);
+
+  // AI essay grades (one row per essay question), keyed by questionId.
+  const essayGradeRows = await prisma.essayGrade.findMany({ where: { attemptId } });
+  const essayGrades = Object.fromEntries(
+    essayGradeRows.map((g) => [
+      g.questionId,
+      {
+        earned: g.earned,
+        points: g.points,
+        fraction: g.fraction,
+        answerCorrect: g.answerCorrect,
+        methodScore: g.methodScore,
+        guessed: g.guessed,
+        feedback: g.feedback,
+        provider: g.provider,
+        model: g.model,
+        status: g.status as "graded" | "error",
+      },
+    ]),
+  );
+
   const SCHOOLS = await getActiveSchools();
   const school = SCHOOLS.find((s) => s.id === exam.school) ?? MIX_SCHOOL;
 
@@ -114,6 +135,8 @@ export default async function ResultsPage({ params }: Props) {
       school={{ short: school.short, tone: school.tone }}
       questions={questions}
       answers={answers}
+      essayGrades={essayGrades}
+      attemptId={attempt.id}
       attempt={{
         earned: attempt.earned,
         total: attempt.total,

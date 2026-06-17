@@ -12,7 +12,20 @@ import { AITutor } from "./AITutor";
 import { getExamSectionHeader } from "@/lib/exam";
 import type { ExamQuestion } from "@/lib/exam";
 import { gradeAnswer } from "@/lib/grading";
+import { regradeEssays } from "../../actions";
 
+export interface EssayGradeView {
+  earned: number;
+  points: number;
+  fraction: number;
+  answerCorrect: boolean;
+  methodScore: number;
+  guessed: boolean;
+  feedback: string;
+  provider: string;
+  model: string;
+  status: "graded" | "error";
+}
 
 interface Props {
   examMeta: {
@@ -26,6 +39,8 @@ interface Props {
   school: { short: string; tone: string };
   questions: ExamQuestion[];
   answers: Record<string, unknown>;
+  essayGrades: Record<string, EssayGradeView>;
+  attemptId: string;
   attempt: { earned: number; total: number; score: number; durationSec: number };
   topics: { id: string; name: string; short: string; color: string }[];
   targetSchools: { id: string; short: string; name: string; tone: string; current: number }[];
@@ -38,7 +53,14 @@ interface Graded {
   correct: boolean;
   empty: boolean;
   earned: number;
+  essay?: EssayGradeView;
 }
+
+/** An essay counts as a "correct" question (stats only) at/above this fraction. */
+const ESSAY_PASS_FRACTION = 0.5;
+/** Round earned points for display (quarter-point granularity). */
+const fmtPts = (n: number): string =>
+  (Math.round(n * 100) / 100).toLocaleString("vi-VN", { maximumFractionDigits: 2 });
 
 const flatAnswer = (a: unknown): string => {
   if (a === undefined || a === null) return "";
@@ -52,6 +74,8 @@ export function ResultsView({
   school,
   questions,
   answers,
+  essayGrades,
+  attemptId,
   attempt,
   topics,
   targetSchools,
@@ -59,11 +83,18 @@ export function ResultsView({
 }: Props) {
   const router = useRouter();
   const [tutorQ, setTutorQ] = useState<ExamQuestion | null>(null);
+  const [regrading, setRegrading] = useState(false);
+  const [regradeMsg, setRegradeMsg] = useState<{ tone: "ok" | "err"; msg: string } | null>(null);
   const isAdminView = Boolean(adminView);
 
   const graded: Graded[] = questions.map((q) => {
     const a = flatAnswer(answers[q.id]);
     const empty = a === "";
+    if (q.type === "essay") {
+      const eg = essayGrades[q.id];
+      const correct = Boolean(eg) && eg.fraction >= ESSAY_PASS_FRACTION;
+      return { q, answer: a, correct, empty, earned: eg?.earned ?? 0, essay: eg };
+    }
     const correct = !empty && gradeAnswer({
       type: q.type,
       correct: q.correct,
@@ -71,6 +102,23 @@ export function ResultsView({
     }, a).correct;
     return { q, answer: a, correct, empty, earned: correct ? q.points : 0 };
   });
+
+  const hasEssays = questions.some((q) => q.type === "essay");
+
+  const onRegrade = async () => {
+    setRegradeMsg(null);
+    setRegrading(true);
+    try {
+      await regradeEssays({ examId: examMeta.id, attemptId });
+      router.refresh();
+      setRegradeMsg({ tone: "ok", msg: "Đã chấm lại các câu tự luận bằng AI." });
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Không chấm lại được.";
+      setRegradeMsg({ tone: "err", msg });
+    } finally {
+      setRegrading(false);
+    }
+  };
 
   const correctCount = graded.filter((g) => g.correct).length;
   const wrongCount = graded.filter((g) => !g.correct && !g.empty).length;
@@ -84,10 +132,8 @@ export function ResultsView({
     const slot = byTopic.get(tid) ?? { correct: 0, total: 0, points: 0, max: 0 };
     slot.total += 1;
     slot.max += g.q.points;
-    if (g.correct) {
-      slot.correct += 1;
-      slot.points += g.q.points;
-    }
+    slot.points += g.earned;
+    if (g.correct) slot.correct += 1;
     byTopic.set(tid, slot);
   });
 
@@ -137,8 +183,24 @@ export function ResultsView({
             fontSize: 12.5,
           }}
         >
-          <b>Chế độ admin:</b> đang xem bài làm của{" "}
-          <b>{adminView?.ownerName}</b> · tính năng &quot;Hỏi AI&quot; bị tắt.
+          <div className="row between" style={{ alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+            <span>
+              <b>Chế độ admin:</b> đang xem bài làm của{" "}
+              <b>{adminView?.ownerName}</b> · tính năng &quot;Hỏi AI&quot; bị tắt.
+            </span>
+            {hasEssays && (
+              <span className="row" style={{ gap: 8, alignItems: "center" }}>
+                {regradeMsg && (
+                  <span style={{ color: regradeMsg.tone === "ok" ? "var(--success)" : "var(--danger)", fontSize: 12 }}>
+                    {regradeMsg.msg}
+                  </span>
+                )}
+                <button className="btn sm primary" onClick={onRegrade} disabled={regrading}>
+                  <Icon name="sparkle" size={12} /> {regrading ? "Đang chấm…" : "Chấm lại tự luận bằng AI"}
+                </button>
+              </span>
+            )}
+          </div>
         </div>
       )}
       <div className="content">
@@ -346,6 +408,73 @@ export function ResultsView({
                         </span>
                       </div>
                     </div>
+                    {g.q.type === "essay" && (g.essay ? (
+                      <div
+                        style={{
+                          marginTop: 12,
+                          padding: "12px 14px",
+                          background: "var(--surface-2)",
+                          borderRadius: 8,
+                          fontSize: 13,
+                          borderLeft: `3px solid ${g.essay.status === "error" ? "var(--danger)" : "var(--accent)"}`,
+                          color: "var(--ink)",
+                        }}
+                      >
+                        <div className="row between" style={{ marginBottom: 6 }}>
+                          <span className="row" style={{ gap: 8, alignItems: "center" }}>
+                            <div className="ai-mark">AI</div>
+                            <b>AI chấm: {fmtPts(g.essay.earned)}/{g.essay.points} điểm</b>
+                          </span>
+                          {g.essay.model && (
+                            <span className="muted" style={{ fontSize: 11 }}>
+                              {g.essay.provider} · {g.essay.model}
+                            </span>
+                          )}
+                        </div>
+                        {g.essay.status === "error" ? (
+                          <div style={{ color: "var(--danger)" }}>
+                            AI chưa chấm được câu này.{g.essay.feedback ? ` ${g.essay.feedback}` : ""}
+                          </div>
+                        ) : (
+                          <>
+                            <div className="row" style={{ gap: 6, flexWrap: "wrap", marginBottom: 6 }}>
+                              <Pill tone={g.essay.answerCorrect ? "green" : "red"}>
+                                {g.essay.answerCorrect ? "Đáp số đúng" : "Đáp số sai"}
+                              </Pill>
+                              <Pill tone={g.essay.methodScore >= 0.7 ? "green" : g.essay.methodScore >= 0.4 ? "amber" : "red"}>
+                                Cách làm {Math.round(g.essay.methodScore * 100)}%
+                              </Pill>
+                              {g.essay.guessed && <Pill tone="amber">Nghi đoán mò ra đáp số</Pill>}
+                            </div>
+                            {g.essay.feedback && (
+                              <div style={{ lineHeight: 1.6 }} className="solution-text">
+                                {g.essay.feedback}
+                              </div>
+                            )}
+                          </>
+                        )}
+                        {g.q.correct && (
+                          <div className="muted" style={{ fontSize: 12, marginTop: 6 }}>
+                            Đáp số đúng: <b>{g.q.correct}</b>{g.q.unit ? ` ${g.q.unit}` : ""}
+                          </div>
+                        )}
+                      </div>
+                    ) : !g.empty ? (
+                      <div
+                        style={{
+                          marginTop: 12,
+                          padding: "10px 14px",
+                          background: "var(--surface-2)",
+                          borderRadius: 8,
+                          fontSize: 12.5,
+                          color: "var(--ink-muted)",
+                        }}
+                      >
+                        Câu tự luận chưa được AI chấm.{" "}
+                        {isAdminView ? 'Bấm "Chấm lại bằng AI" ở đầu trang.' : "Quản trị viên sẽ chấm sau."}
+                      </div>
+                    ) : null)}
+
                     {g.q.modelAnswer && (
                       <div
                         style={{

@@ -74,6 +74,20 @@ async function main() {
   });
   const examMap = new Map(exams.map((e) => [e.id, e]));
 
+  // Preserve AI essay grades: gradeAnswer() scores essays as 0, so we add the
+  // stored EssayGrade.earned back in. This script never re-calls the LLM (that
+  // would be slow/costly on deploy) — use the results-page "Chấm lại bằng AI"
+  // button or scripts that call recomputeAttemptScore for a fresh AI pass.
+  const essayGradeRows = await prisma.essayGrade.findMany({
+    where: { attemptId: { in: attempts.map((a) => a.id) } },
+  });
+  const essayByAttempt = new Map<string, { earned: number; fraction: number }[]>();
+  for (const g of essayGradeRows) {
+    const arr = essayByAttempt.get(g.attemptId) ?? [];
+    arr.push({ earned: g.earned, fraction: g.fraction });
+    essayByAttempt.set(g.attemptId, arr);
+  }
+
   const backups: AttemptBackup[] = [];
   const stats = {
     unchanged: 0,
@@ -115,6 +129,13 @@ async function main() {
         correctCount += 1;
       }
     }
+
+    // Add back AI-graded essay points (gradeAnswer scored them as 0 above).
+    for (const eg of essayByAttempt.get(attempt.id) ?? []) {
+      earned += eg.earned;
+      if (eg.fraction >= 0.5) correctCount += 1;
+    }
+    earned = Math.round(earned * 100) / 100;
 
     const score = total > 0 ? Math.round((earned / total) * 100) : 0;
 

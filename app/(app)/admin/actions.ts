@@ -952,3 +952,75 @@ export async function deleteUser(payload: unknown) {
   revalidatePath("/admin");
   return { ok: true };
 }
+
+// ─── AI essay grading (LLM settings + connectivity + regrade) ─────────────────
+
+const llmSettingsSchema = z.object({
+  enabled: z.boolean(),
+  provider: z.enum(["anthropic", "openai", "google"]),
+  model: z.string().min(1).max(200),
+  apiKey: z.string().max(400).optional(),
+  gradingPrompt: z.string().max(8000),
+  methodWeight: z.number().int().min(0).max(100),
+  answerWeight: z.number().int().min(0).max(100),
+  guessCredit: z.number().int().min(0).max(100),
+  maxTokens: z.number().int().min(256).max(8192),
+});
+
+export async function saveLLMSettingsAction(payload: unknown) {
+  await requireAdmin();
+  const parsed = llmSettingsSchema.parse(payload);
+  const { saveLLMSettings } = await import("@/lib/llm-settings");
+  const saved = await saveLLMSettings(parsed);
+  revalidatePath("/admin");
+  return saved;
+}
+
+const llmTestSchema = z.object({
+  provider: z.enum(["anthropic", "openai", "google"]),
+  model: z.string().min(1).max(200),
+  apiKey: z.string().max(400).optional(),
+});
+
+export async function testLLMConnection(payload: unknown): Promise<{ ok: boolean; message: string }> {
+  await requireAdmin();
+  const parsed = llmTestSchema.parse(payload);
+  const { resolveForTest } = await import("@/lib/llm-settings");
+  const settings = await resolveForTest(parsed);
+  if (!settings) {
+    return { ok: false, message: "Chưa có API key (CSDL hoặc biến môi trường) cho nhà cung cấp này." };
+  }
+  try {
+    const { callLLM, extractJson } = await import("@/lib/llm/client");
+    const raw = await callLLM({
+      provider: settings.provider,
+      model: settings.model,
+      apiKey: settings.apiKey,
+      system: "Bạn là dịch vụ kiểm tra kết nối. Chỉ trả về JSON.",
+      user: 'Trả về đúng JSON này: {"ok": true}',
+      maxTokens: 64,
+      timeoutMs: 20000,
+    });
+    extractJson(raw); // throws if not valid JSON
+    return { ok: true, message: `Kết nối thành công tới ${settings.provider} · ${settings.model}.` };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Lỗi không xác định.";
+    return { ok: false, message: `Kết nối thất bại: ${message}` };
+  }
+}
+
+const regradeSchema = z.object({ attemptId: z.string().min(1) });
+
+export async function regradeAttemptEssays(payload: unknown) {
+  await requireAdmin();
+  const { attemptId } = regradeSchema.parse(payload);
+  const { getResolvedLLMSettings } = await import("@/lib/llm-settings");
+  const settings = await getResolvedLLMSettings();
+  if (!settings) {
+    throw new Error("AI chấm bài chưa được bật hoặc thiếu API key. Vào tab 'Setup AI LLMs' để cấu hình.");
+  }
+  const { recomputeAttemptScore } = await import("@/lib/grading/essay-attempt");
+  const summary = await recomputeAttemptScore(attemptId, { gradeEssays: true, settings });
+  revalidatePath("/admin");
+  return { ok: true, ...summary };
+}

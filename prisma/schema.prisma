@@ -145,7 +145,8 @@ model Attempt {
   // JSON: { qid: answer }
   answers   String   @default("{}")
   score     Int      @default(0) // 0..100
-  earned    Int      @default(0)
+  // Float (not Int) since AI-graded essays award fractional points (e.g. 0,5 / 0,75).
+  earned    Float    @default(0)
   total     Int      @default(0)
   durationSec Int    @default(0)
   submitted Boolean  @default(false)
@@ -153,6 +154,7 @@ model Attempt {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   exam Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
+  essayGrades EssayGrade[]
 }
 
 // ─── Topic practice sets (admin-managed) ─────────────────────────────────────
@@ -317,6 +319,52 @@ model AppSetting {
   quietHoursEnd      String   @default("07:00")
   landingTheme       String   @default("ocean") // clay | ocean | forest | grape | coral
   updatedAt          DateTime @updatedAt
+}
+
+// ─── AI essay grading config (admin singleton) ───────────────────────────────
+// Single row (id="singleton"). Drives the LLM essay-grader: provider, model,
+// API key (nullable → falls back to env), the editable grading rubric prompt,
+// and the scoring policy weights. See lib/llm-settings.ts + lib/llm/.
+model LLMSetting {
+  id            String   @id @default("singleton")
+  enabled       Boolean  @default(false)
+  provider      String   @default("anthropic") // anthropic | openai | google
+  model         String   @default("claude-opus-4-8")
+  // API key for the provider. Null/empty → fall back to the provider's env var.
+  apiKey        String?
+  // Editable system rubric. Null → built-in DEFAULT_GRADING_PROMPT.
+  gradingPrompt String?
+  // Scoring policy (percent of the question's points):
+  methodWeight  Int      @default(70)  // weight for a correct method / reasoning
+  answerWeight  Int      @default(30)  // weight for a correct final answer
+  guessCredit   Int      @default(20)  // credit when answer is right but method is wrong (đoán mò)
+  maxTokens     Int      @default(1024)
+  updatedAt     DateTime @updatedAt
+}
+
+// ─── AI essay grade (one row per essay question per attempt) ──────────────────
+// Source of truth for essay scoring. Created at submit time and on regrade.
+model EssayGrade {
+  id            String   @id @default(cuid())
+  attemptId     String
+  questionId    String
+  fraction      Float    // 0..1 of the question's points
+  earned        Float    // fraction * points (the points actually awarded)
+  points        Int      // snapshot of Question.points at grade time
+  answerCorrect Boolean  @default(false)
+  methodScore   Float    @default(0) // 0..1 — correctness/completeness of the working
+  guessed       Boolean  @default(false) // right answer, wrong/absent method
+  feedback      String   @default("")
+  provider      String   @default("")
+  model         String   @default("")
+  status        String   @default("graded") // graded | error
+  error         String?
+  createdAt     DateTime @default(now())
+
+  attempt Attempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+
+  @@unique([attemptId, questionId])
+  @@index([attemptId])
 }
 
 model SchoolProfile {

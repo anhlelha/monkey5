@@ -30,7 +30,10 @@ npm install
 
 echo "Preparing database..."
 # Prisma db push is idempotent and cheap — always run so schema stays in sync.
-npx prisma db push
+# --accept-data-loss is required for lossless column-type changes (e.g.
+# Attempt.earned Int→Float for AI essay grading); without it db push aborts when
+# a column it would alter holds existing rows, breaking the deploy.
+npx prisma db push --accept-data-loss
 # Re-seed is DESTRUCTIVE (deleteMany + insert per exam). Only run when exam
 # content sources actually changed. Caller sets RUN_SEED=0 to skip. Default on
 # so a bare `bash scripts/setup-remote.sh` / `deploy.sh` keeps old behavior.

@@ -136,7 +136,48 @@ instead extend `classify.ts` or attach a manual `answerSchema` via override.
   populate `options` in parsed JSON.
 - One numeric/text answer? → `type: "fill"`, `correct` is the value, `unit`
   separately. Auto-classifier handles the schema.
-- "Trình bày lời giải"? → `type: "essay"`, `correct: null`.
+- "Trình bày lời giải"? → `type: "essay"`, `correct: null`. (Set `correct` to
+  the đáp số when known — the AI essay grader uses it as the answer key.)
+
+## AI essay grading
+
+Essay (`type: "essay"`) questions are graded by an LLM, configured by admin in
+the **Setup AI LLMs** tab (`/admin?tab=llm`). The pipeline spans:
+
+```
+LLMSetting (singleton, DB)          lib/llm-settings.ts  (get/save/resolve key db||env)
+   provider | model | apiKey?       │
+   gradingPrompt | weights          │ getResolvedLLMSettings() → null when off/keyless
+                                     ▼
+lib/llm/client.ts   callLLM() — fetch to Anthropic / OpenAI / Gemini REST (no SDK dep)
+lib/llm/grade-essay.ts   gradeEssaySafe() — builds prompt, parses JSON verdict,
+                         computes points from weights (scoreFraction). Never throws.
+                                     ▼
+lib/grading/essay-attempt.ts   recomputeAttemptScore(attemptId, {gradeEssays})
+   — single source of truth: rule-grades mcq/fill + AI-grades essays, writes
+     EssayGrade rows + updates Attempt.earned/score. Used by BOTH submit & regrade.
+```
+
+Key facts:
+- **`Attempt.earned` is `Float`** (was Int) — essays award fractional points
+  (0,25 granularity via `roundQuarter`). `total` stays Int (sum of `points`).
+- **Scoring policy** (admin-editable %): `methodWeight` (cách làm đúng),
+  `answerWeight` (đáp số đúng), `guessCredit` (đúng đáp số nhưng đoán mò → cách
+  làm sai). Computed deterministically in code from the model's verdict
+  (`answerCorrect`/`methodScore`/`guessed`), NOT trusted from the model directly.
+- **API key**: stored in `LLMSetting.apiKey` (admin UI, masked) OR the provider's
+  env var (`ANTHROPIC_API_KEY` / `OPENAI_API_KEY` / `GEMINI_API_KEY`); DB wins.
+- **Model catalog + default rubric**: `lib/llm/providers.ts` (latest models as of
+  June 2026; admin can also type a custom model id). Editing the rubric can't break
+  data injection — stem/answer/JSON-contract are always appended in code.
+- **`submitExam`** grades essays inline on submit (parallel, 45s timeout each);
+  on any failure it falls back to rule-based scoring so submission never breaks.
+- **Results page** loads `EssayGrade` rows → `ResultsView` shows per-essay AI
+  feedback (đáp số/cách làm/đoán mò badges). Admin view has a "Chấm lại bằng AI"
+  button (`regradeEssays` action, admin-gated).
+- **`scripts/regrade-attempts.ts`** (runs on deploy) was patched to ADD stored
+  `EssayGrade.earned` back in — it scores essays as 0 via `gradeAnswer` otherwise,
+  which would wipe AI essay scores on every deploy. It never re-calls the LLM.
 
 ## Figure rendering
 

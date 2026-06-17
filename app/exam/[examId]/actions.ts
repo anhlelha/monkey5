@@ -4,7 +4,8 @@ import { revalidatePath } from "next/cache";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { parseTopicSetId } from "@/lib/spawn-exam";
-import { gradeAnswer } from "@/lib/grading";
+import { recomputeAttemptScore } from "@/lib/grading/essay-attempt";
+import { isLLMGradingEnabled } from "@/lib/llm-settings";
 import { computeMastery } from "@/lib/mastery";
 import { ensureSchoolProfilesFresh, getAllSchoolProfiles } from "@/lib/school-profiles";
 import { computeAllReadiness } from "@/lib/readiness";
@@ -26,43 +27,32 @@ export async function submitExam({ examId, answers, durationSec }: SubmitArgs) {
   });
   if (!exam) throw new Error("Exam not found");
 
-  let earned = 0;
-  let total = 0;
-  let correctCount = 0;
-  for (const q of exam.questions) {
-    total += q.points;
-    const a = answers[q.id] as
-      | string
-      | { text?: string; drawings?: string[] }
-      | null
-      | undefined;
-    const result = gradeAnswer(
-      {
-        type: q.type as "fill" | "mcq" | "essay",
-        correct: q.correct,
-        answerSchema: q.answerSchema,
-      },
-      a,
-    );
-    if (result.correct) {
-      earned += q.points;
-      correctCount += 1;
-    }
-  }
-  const score = total > 0 ? Math.round((earned / total) * 100) : 0;
-
+  // Persist the raw attempt first; recomputeAttemptScore reads answers back and
+  // sets earned/total/score (rule-based for mcq/fill, AI for essays).
   const attempt = await prisma.attempt.create({
     data: {
       userId,
       examId,
       answers: JSON.stringify(answers),
-      earned,
-      total,
-      score,
       durationSec,
       submitted: true,
     },
   });
+
+  // Score the attempt. AI-grade essays only when configured; on any failure,
+  // fall back to rule-based scoring so the submission never breaks.
+  let correctCount = 0;
+  try {
+    const gradeEssays = await isLLMGradingEnabled();
+    const summary = await recomputeAttemptScore(attempt.id, { gradeEssays });
+    correctCount = summary.correctCount;
+  } catch (err) {
+    console.error("[submitExam] scoring failed, falling back to rule-based:", err);
+    const summary = await recomputeAttemptScore(attempt.id, { gradeEssays: false }).catch(
+      () => null,
+    );
+    correctCount = summary?.correctCount ?? 0;
+  }
 
   // Topic-set spawns also write a TopicSession row (drives "Lịch sử luyện tập"
   // and the user-progress sub-title on the topic detail page).
@@ -103,4 +93,27 @@ export async function submitExam({ examId, answers, durationSec }: SubmitArgs) {
   revalidatePath("/library");
 
   return { attemptId: attempt.id };
+}
+
+interface RegradeArgs {
+  examId: string;
+  attemptId: string;
+}
+
+/**
+ * Admin-only: re-run AI grading on every essay question of an attempt and
+ * refresh its earned/score. Used from the results page's admin view.
+ */
+export async function regradeEssays({ examId, attemptId }: RegradeArgs) {
+  const session = await auth();
+  if (!session?.user?.id || session.user.role !== "admin") throw new Error("Unauthorized");
+
+  const { getResolvedLLMSettings } = await import("@/lib/llm-settings");
+  const settings = await getResolvedLLMSettings();
+  if (!settings) {
+    throw new Error("AI chấm bài chưa được bật hoặc thiếu API key (xem tab 'Setup AI LLMs').");
+  }
+  const summary = await recomputeAttemptScore(attemptId, { gradeEssays: true, settings });
+  revalidatePath(`/exam/${examId}/results/${attemptId}`);
+  return { ok: true, ...summary };
 }

@@ -22,7 +22,9 @@ import { ExamsPanel } from "./ExamsPanel";
 import { SchoolsPanel } from "./SchoolsPanel";
 import { ReadinessPanel } from "./ReadinessPanel";
 import { SettingsPanel } from "./SettingsPanel";
+import { LLMPanel } from "./LLMPanel";
 import { getQuietHours, getLandingTheme } from "@/lib/app-settings";
+import { getPublicLLMSettings } from "@/lib/llm-settings";
 import {
   getAuditResults,
   getQuestionsWithFigures,
@@ -101,6 +103,7 @@ export default async function AdminPage({ searchParams }: Props) {
   const activeSchools  = tab === "overview"  ? await getActiveSchools()         : [];
   const quietHours     = tab === "settings"  ? await getQuietHours()             : null;
   const landingTheme   = tab === "settings"  ? await getLandingTheme()            : null;
+  const llmSettings    = tab === "llm"        ? await getPublicLLMSettings()       : null;
 
   const TOPICS = topics.length > 0 ? topics : [...DEFAULT_TOPICS].map((t, i) => ({ ...t, position: i }));
 
@@ -111,7 +114,7 @@ export default async function AdminPage({ searchParams }: Props) {
     users:    { crumb: "Tài khoản", title: "Tài khoản người dùng", sub: "Danh sách học sinh và quản trị viên trong hệ thống." },
     whitelist:{ crumb: "Whitelist", title: "Whitelist truy cập", sub: "Quản lý email được phép đăng nhập / nâng cấp." },
     settings: { crumb: "Cấu hình chung", title: "Cấu hình chung", sub: "Tham số mặc định áp dụng cho toàn bộ ứng dụng." },
-    llm:      { crumb: "AI LLMs", title: "Setup AI LLMs", sub: "Cấu hình nhà cung cấp & hành vi trợ giảng (sắp có)." },
+    llm:      { crumb: "AI LLMs", title: "Setup AI LLMs", sub: "Cấu hình nhà cung cấp AI & cách chấm câu tự luận tự động." },
     topics:   { crumb: "Chuyên đề", title: "Cấu hình chuyên đề", sub: "Danh sách và thứ tự các chuyên đề luyện tập." },
     qa:       { crumb: "QA câu hỏi", title: "QA câu hỏi", sub: "Soát lỗi và rà soát câu hỏi bị flag / có hình." },
     plans:    { crumb: "Gói thành viên", title: "Gói VIP · Pro · Free", sub: "Cấu hình giới hạn và quyền lợi từng gói." },
@@ -411,45 +414,8 @@ export default async function AdminPage({ searchParams }: Props) {
           <SettingsPanel initialQuietHours={quietHours} initialLandingTheme={landingTheme} />
         )}
 
-        {tab === "llm" && (
-          <Card title="Setup AI LLMs" sub="Cấu hình các nhà cung cấp mô hình & hành vi trợ giảng (sắp có)">
-            <div className="col" style={{ gap: 14, maxWidth: 520 }}>
-              <div className="field">
-                <label>Nhà cung cấp mặc định</label>
-                <div className="chip-group">
-                  <button className="chip active" type="button">Anthropic</button>
-                  <button className="chip" type="button">OpenAI</button>
-                  <button className="chip" type="button">Google</button>
-                  <button className="chip" type="button">Local</button>
-                </div>
-              </div>
-              <div className="field">
-                <label>Model mặc định cho trợ giảng</label>
-                <input className="input mono" placeholder="claude-opus-4-7" disabled />
-              </div>
-              <div className="field">
-                <label>Số gợi ý tối đa / câu</label>
-                <input className="input mono" defaultValue="5" readOnly />
-              </div>
-              <div className="field">
-                <label>Cho phép AI tiết lộ đáp án cuối?</label>
-                <div className="chip-group">
-                  <button className="chip active" type="button">Có (sau gợi ý cuối)</button>
-                  <button className="chip" type="button">Không bao giờ</button>
-                </div>
-              </div>
-              <div className="field">
-                <label>Cho phép hỏi AI trong khi làm đề?</label>
-                <div className="chip-group">
-                  <button className="chip" type="button">Cho phép</button>
-                  <button className="chip active" type="button">Khoá (mặc định)</button>
-                </div>
-              </div>
-              <p className="muted" style={{ fontSize: 12, marginTop: 4 }}>
-                Tính năng cấu hình LLM provider/API key đang trong kế hoạch phát triển.
-              </p>
-            </div>
-          </Card>
+        {tab === "llm" && llmSettings && (
+          <LLMPanel initial={llmSettings} />
         )}
       </div>
     </div>
