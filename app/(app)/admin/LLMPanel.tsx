@@ -111,6 +111,7 @@ export function LLMPanel({ initial }: Props) {
 
   const { hasStoredKey, hasEnvKey } = latestSettings;
   const envVar = PROVIDER_META[provider].envVar;
+  const keyTyped = apiKeyInput.trim() !== "";
 
   return (
     <div className="col" style={{ gap: 16 }}>
@@ -209,7 +210,11 @@ export function LLMPanel({ initial }: Props) {
             </div>
 
             <div style={{ fontSize: 13 }}>
-              {hasStoredKey ? (
+              {keyTyped ? (
+                <span style={{ color: "var(--accent-ink)" }}>
+                  Đã nhập key mới — bấm “Lưu thay đổi” bên dưới để áp dụng.
+                </span>
+              ) : hasStoredKey ? (
                 <span style={{ color: "var(--success)" }}>
                   Đã lưu một API key. Để trống để giữ nguyên, hoặc nhập key mới để thay.
                 </span>
