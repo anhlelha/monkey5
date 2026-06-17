@@ -5,7 +5,17 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/config.sh"
 
-echo "=== Application Deployment ==="
+# RUN_SEED=1 (default): re-seed exam content on the VM (destructive).
+# Pass --no-seed (or env RUN_SEED=0) to skip when no exam-content changed.
+RUN_SEED="${RUN_SEED:-1}"
+for arg in "$@"; do
+    case "$arg" in
+        --no-seed) RUN_SEED=0 ;;
+        *) echo "Unknown flag: $arg" >&2; exit 1 ;;
+    esac
+done
+
+echo "=== Application Deployment (RUN_SEED=$RUN_SEED) ==="
 
 # Check IP & Key
 if [ "$GCP_IP" = "REPLACEME_IP" ] || [ -z "$GCP_IP" ]; then
@@ -79,6 +89,6 @@ ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "
 # 4. Run Remote Setup
 echo "Running remote setup on VM..."
 scp -i "$GCP_KEY" -o StrictHostKeyChecking=no "$SCRIPT_DIR/setup-remote.sh" "$GCP_USER@$GCP_IP:~/setup-remote.sh"
-ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "REMOTE_PROJECT_PATH=$REMOTE_PROJECT_PATH VM_NAME=$VM_NAME bash ~/setup-remote.sh"
+ssh -i "$GCP_KEY" -o StrictHostKeyChecking=no "$GCP_USER@$GCP_IP" "REMOTE_PROJECT_PATH=$REMOTE_PROJECT_PATH VM_NAME=$VM_NAME RUN_SEED=$RUN_SEED bash ~/setup-remote.sh"
 
 echo "=== Deployment Complete! ==="

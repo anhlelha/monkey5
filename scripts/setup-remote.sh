@@ -29,10 +29,18 @@ echo "Installing project dependencies..."
 npm install
 
 echo "Preparing database..."
-# Run Prisma push and seed the exams database
+# Prisma db push is idempotent and cheap — always run so schema stays in sync.
 npx prisma db push
-npx tsx scripts/build-exams-metadata.ts
-npx tsx scripts/seed-all-exams.ts
+# Re-seed is DESTRUCTIVE (deleteMany + insert per exam). Only run when exam
+# content sources actually changed. Caller sets RUN_SEED=0 to skip. Default on
+# so a bare `bash scripts/setup-remote.sh` / `deploy.sh` keeps old behavior.
+if [ "${RUN_SEED:-1}" = "1" ]; then
+    echo "Re-seeding exam content (destructive)..."
+    npx tsx scripts/build-exams-metadata.ts
+    npx tsx scripts/seed-all-exams.ts
+else
+    echo "Skipping exam re-seed (RUN_SEED=0) — no exam-content changes detected."
+fi
 
 echo "Building Next.js application..."
 npm run build

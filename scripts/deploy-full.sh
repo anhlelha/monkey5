@@ -1,18 +1,36 @@
 #!/bin/bash
-# Full prod deploy pipeline: backup → deploy → backfill → regrade.
+# Context-aware prod deploy pipeline: backup → deploy → backfill → regrade.
 #
-# Vì sao tồn tại: scripts/deploy.sh chỉ làm git pull + re-seed + PM2 restart,
-# NHƯNG (1) không backup prod DB trước khi seed (destructive), và (2) không
-# động đến clone exams (set-*/ref-*) cũng như Attempt rows đã đóng băng. Script
-# này gói toàn bộ rollout vào 1 lệnh, với backup hai tầng và dry-run gate trước
-# khi mutate Attempt.
+# Vì sao tồn tại: scripts/deploy.sh + setup-remote.sh trước đây LUÔN re-seed DB
+# (destructive) mỗi lần deploy, và deploy-full.sh cũ LUÔN chạy backfill + regrade.
+# Phần lớn deploy chỉ đụng UI/app code → re-seed/backfill/regrade là thừa và rủi
+# ro. Script này tự PHÁT HIỆN file nào đổi giữa commit đang chạy trên VM và HEAD,
+# rồi chỉ chạy step DB cần thiết:
+#
+#   File đổi                                              │ Step bật
+#   ──────────────────────────────────────────────────────┼──────────────────────
+#   scripts/exam-overrides.ts, seed-*.ts,                 │ SEED (kéo theo
+#   build-exams-metadata.ts, official_exams_metadata.json,│   BACKFILL + REGRADE
+#   ref_exam/**, prisma/schema.prisma                     │   vì đáp án có thể đổi)
+#   lib/grading/**, scripts/regrade-attempts.ts           │ REGRADE
+#   lib/grading/classify.ts, backfill-answer-schema.ts    │ BACKFILL
+#   chỉ UI/app code khác                                  │ (không step DB)
+#
+# Build + PM2 restart + `prisma db push` luôn chạy (an toàn, idempotent).
+# Backup prod DB luôn chạy trước deploy (rẻ, an toàn).
 #
 # Usage:
-#   bash scripts/deploy-full.sh              # interactive, prompt y/N trước regrade
-#   bash scripts/deploy-full.sh --yes        # auto-apply regrade (không hỏi)
-#   bash scripts/deploy-full.sh --no-regrade # chỉ deploy + backfill, bỏ regrade
+#   bash scripts/deploy-full.sh              # tự phát hiện, prompt y/N trước regrade
+#   bash scripts/deploy-full.sh --yes        # tự phát hiện, auto-apply regrade
+#   bash scripts/deploy-full.sh --full       # ép chạy SEED + BACKFILL + REGRADE
+#   bash scripts/deploy-full.sh --app-only   # bỏ mọi step DB (chỉ build + restart)
+#   bash scripts/deploy-full.sh --no-seed    # ép tắt SEED
+#   bash scripts/deploy-full.sh --no-backfill# ép tắt BACKFILL
+#   bash scripts/deploy-full.sh --no-regrade # ép tắt REGRADE
+# (các cờ có thể kết hợp, ví dụ: --full --yes)
 #
-# Yêu cầu: GCP_KEY tồn tại; GCP_IP trong scripts/config.sh đúng IP hiện tại.
+# Yêu cầu: GCP_KEY tồn tại; GCP_IP trong scripts/config.sh đúng IP hiện tại;
+# code đã commit + push lên origin/main (VM pull từ GitHub).
 
 set -euo pipefail
 
@@ -24,13 +42,21 @@ cd "$SCRIPT_DIR/.."
 source scripts/config.sh
 
 AUTO_YES=0
-SKIP_REGRADE=0
+FORCE_FULL=0
+APP_ONLY=0
+FORCE_NO_SEED=0
+FORCE_NO_BACKFILL=0
+FORCE_NO_REGRADE=0
 for arg in "$@"; do
   case "$arg" in
     --yes|-y)        AUTO_YES=1 ;;
-    --no-regrade)    SKIP_REGRADE=1 ;;
+    --full)          FORCE_FULL=1 ;;
+    --app-only)      APP_ONLY=1 ;;
+    --no-seed)       FORCE_NO_SEED=1 ;;
+    --no-backfill)   FORCE_NO_BACKFILL=1 ;;
+    --no-regrade)    FORCE_NO_REGRADE=1 ;;
     -h|--help)
-      sed -n '2,18p' "$0"; exit 0 ;;
+      sed -n '2,38p' "$0"; exit 0 ;;
     *)
       echo "Unknown flag: $arg" >&2; exit 1 ;;
   esac
@@ -51,24 +77,107 @@ banner() {
   echo "════════════════════════════════════════════════════════════════════════"
 }
 
+# ── Detect what changed vs the commit currently deployed on the VM ──────────
+banner "Step 0/4 — Phân tích thay đổi để quyết định step"
+
+NEW_SHA=$(git rev-parse HEAD)
+PREV_SHA=$(ssh_vm "cd $REMOTE_PROJECT_PATH && git rev-parse HEAD 2>/dev/null" 2>/dev/null || echo "")
+
+NEEDS_SEED=0
+NEEDS_BACKFILL=0
+NEEDS_REGRADE=0
+DETECT_MODE="auto"
+
+if [[ -z "$PREV_SHA" ]] || ! git cat-file -e "${PREV_SHA}^{commit}" 2>/dev/null; then
+  # Không biết commit trên VM (lần đầu / force-push / không reachable) → an toàn:
+  # chạy hết.
+  DETECT_MODE="unknown→full"
+  NEEDS_SEED=1; NEEDS_BACKFILL=1; NEEDS_REGRADE=1
+  echo "⚠ Không xác định được commit đang chạy trên VM — bật hết step cho an toàn."
+else
+  CHANGED=$(git diff --name-only "$PREV_SHA" "$NEW_SHA")
+  if [[ -z "$CHANGED" ]]; then
+    echo "Không có file nào đổi giữa $PREV_SHA và $NEW_SHA (deploy lại cùng commit)."
+  else
+    echo "File đổi ($PREV_SHA → $NEW_SHA):"
+    echo "$CHANGED" | sed 's/^/  /'
+    while IFS= read -r f; do
+      [[ -z "$f" ]] && continue
+      case "$f" in
+        scripts/exam-overrides.ts|scripts/seed-*.ts|scripts/build-exams-metadata.ts|official_exams_metadata.json|prisma/schema.prisma|ref_exam/*)
+          NEEDS_SEED=1 ;;
+      esac
+      case "$f" in
+        lib/grading/*|scripts/regrade-attempts.ts) NEEDS_REGRADE=1 ;;
+      esac
+      case "$f" in
+        lib/grading/classify.ts|scripts/backfill-answer-schema.ts) NEEDS_BACKFILL=1 ;;
+      esac
+    done <<< "$CHANGED"
+    # Re-seed có thể đổi đáp án/câu hỏi → kéo theo backfill schema + regrade.
+    if [[ "$NEEDS_SEED" -eq 1 ]]; then NEEDS_BACKFILL=1; NEEDS_REGRADE=1; fi
+  fi
+fi
+
+# ── Apply overrides ─────────────────────────────────────────────────────────
+if [[ "$FORCE_FULL" -eq 1 ]]; then
+  DETECT_MODE="--full"
+  NEEDS_SEED=1; NEEDS_BACKFILL=1; NEEDS_REGRADE=1
+fi
+if [[ "$APP_ONLY" -eq 1 ]]; then
+  DETECT_MODE="--app-only"
+  NEEDS_SEED=0; NEEDS_BACKFILL=0; NEEDS_REGRADE=0
+fi
+[[ "$FORCE_NO_SEED" -eq 1 ]]     && NEEDS_SEED=0
+[[ "$FORCE_NO_BACKFILL" -eq 1 ]] && NEEDS_BACKFILL=0
+[[ "$FORCE_NO_REGRADE" -eq 1 ]]  && NEEDS_REGRADE=0
+
+yn() { [[ "$1" -eq 1 ]] && echo "YES" || echo "no"; }
+echo
+echo "Kế hoạch deploy (mode: $DETECT_MODE):"
+echo "  • build + PM2 restart  : YES (luôn)"
+echo "  • prisma db push       : YES (luôn, idempotent)"
+echo "  • re-seed exam content : $(yn $NEEDS_SEED)"
+echo "  • backfill schema      : $(yn $NEEDS_BACKFILL)"
+echo "  • regrade attempts     : $(yn $NEEDS_REGRADE)"
+
+# ── Step 1: backup before deploy (always — cheap safety net) ────────────────
 banner "Step 1/4 — Backup prod DB BEFORE deploy"
 ssh_vm "cd $REMOTE_PROJECT_PATH && \
   cp prisma/dev.db prisma/dev.db.bak-pre-deploy-$STAMP && \
   ls -lh prisma/dev.db.bak-pre-deploy-$STAMP"
 
-banner "Step 2/4 — Run scripts/deploy.sh (pull + re-seed bank + PM2 restart)"
-bash scripts/deploy.sh
+# ── Step 2: deploy (pull + build + restart; re-seed only if needed) ─────────
+if [[ "$NEEDS_SEED" -eq 1 ]]; then
+  banner "Step 2/4 — deploy.sh (pull + RE-SEED bank + PM2 restart)"
+  RUN_SEED=1 bash scripts/deploy.sh
+else
+  banner "Step 2/4 — deploy.sh (pull + build + PM2 restart, KHÔNG re-seed)"
+  bash scripts/deploy.sh --no-seed
+fi
 
-banner "Step 3/4 — Backup prod DB pre-regrade, then backfill clone schemas"
-ssh_vm "cd $REMOTE_PROJECT_PATH && \
-  cp prisma/dev.db prisma/dev.db.bak-pre-regrade-$STAMP && \
-  npx tsx scripts/backfill-answer-schema.ts"
+# ── Step 3: backfill answer schemas (only if needed) ────────────────────────
+if [[ "$NEEDS_BACKFILL" -eq 1 ]]; then
+  banner "Step 3/4 — Backup pre-regrade + backfill clone schemas"
+  ssh_vm "cd $REMOTE_PROJECT_PATH && \
+    cp prisma/dev.db prisma/dev.db.bak-pre-regrade-$STAMP && \
+    npx tsx scripts/backfill-answer-schema.ts"
+else
+  banner "Step 3/4 — SKIPPED backfill (không có thay đổi grading/content)"
+fi
 
-if [[ "$SKIP_REGRADE" -eq 1 ]]; then
-  banner "Step 4/4 — SKIPPED regrade (--no-regrade)"
-  echo "Để chạy regrade sau:"
-  echo "  ssh -i $GCP_KEY $REMOTE 'cd $REMOTE_PROJECT_PATH && npx tsx scripts/regrade-attempts.ts'"
+# ── Step 4: regrade attempts (only if needed; dry-run gate) ─────────────────
+if [[ "$NEEDS_REGRADE" -ne 1 ]]; then
+  banner "Step 4/4 — SKIPPED regrade (không có thay đổi grading/content)"
+  banner "Done"
+  echo "Rollback nếu cần:"
+  echo "  ssh -i $GCP_KEY $REMOTE 'cd $REMOTE_PROJECT_PATH && cp prisma/dev.db.bak-pre-deploy-$STAMP prisma/dev.db && pm2 restart monkey5'"
   exit 0
+fi
+
+# Backfill chạy backup pre-regrade rồi; nếu backfill bị skip, tạo backup ở đây.
+if [[ "$NEEDS_BACKFILL" -ne 1 ]]; then
+  ssh_vm "cd $REMOTE_PROJECT_PATH && cp prisma/dev.db prisma/dev.db.bak-pre-regrade-$STAMP"
 fi
 
 banner "Step 4/4 — Re-grade Attempts (dry-run trước)"
