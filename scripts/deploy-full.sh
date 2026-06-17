@@ -27,10 +27,16 @@
 #   bash scripts/deploy-full.sh --no-seed    # ép tắt SEED
 #   bash scripts/deploy-full.sh --no-backfill# ép tắt BACKFILL
 #   bash scripts/deploy-full.sh --no-regrade # ép tắt REGRADE
-# (các cờ có thể kết hợp, ví dụ: --full --yes)
+#   bash scripts/deploy-full.sh -m "msg"     # đặt commit message cho auto-commit
+#   bash scripts/deploy-full.sh --no-git     # bỏ qua git (code đã commit+push rồi)
+# (các cờ có thể kết hợp, ví dụ: --full --yes -m "fix X")
 #
-# Yêu cầu: GCP_KEY tồn tại; GCP_IP trong scripts/config.sh đúng IP hiện tại;
-# code đã commit + push lên origin/main (VM pull từ GitHub).
+# GIT TÍCH HỢP: trước khi deploy, script tự `git add -A` + commit (message từ -m,
+# hoặc auto-gen từ danh sách file) + `git push` lên branch hiện tại. Vì VM
+# `git reset --hard origin/main`, branch phải là main để thay đổi tới được prod.
+# Chỉ cần gõ "deploy" là xong: commit → push → deploy theo ngữ cảnh.
+#
+# Yêu cầu: GCP_KEY tồn tại; GCP_IP trong scripts/config.sh đúng IP hiện tại.
 
 set -euo pipefail
 
@@ -47,19 +53,24 @@ APP_ONLY=0
 FORCE_NO_SEED=0
 FORCE_NO_BACKFILL=0
 FORCE_NO_REGRADE=0
-for arg in "$@"; do
-  case "$arg" in
+NO_GIT=0
+COMMIT_MSG=""
+while [[ $# -gt 0 ]]; do
+  case "$1" in
     --yes|-y)        AUTO_YES=1 ;;
     --full)          FORCE_FULL=1 ;;
     --app-only)      APP_ONLY=1 ;;
     --no-seed)       FORCE_NO_SEED=1 ;;
     --no-backfill)   FORCE_NO_BACKFILL=1 ;;
     --no-regrade)    FORCE_NO_REGRADE=1 ;;
+    --no-git)        NO_GIT=1 ;;
+    -m|--message)    COMMIT_MSG="${2:-}"; shift ;;
     -h|--help)
-      sed -n '2,38p' "$0"; exit 0 ;;
+      sed -n '2,43p' "$0"; exit 0 ;;
     *)
-      echo "Unknown flag: $arg" >&2; exit 1 ;;
+      echo "Unknown flag: $1" >&2; exit 1 ;;
   esac
+  shift
 done
 
 REMOTE="$GCP_USER@$GCP_IP"
@@ -76,6 +87,33 @@ banner() {
   echo "  $*"
   echo "════════════════════════════════════════════════════════════════════════"
 }
+
+# ── Git: commit + push local changes (VM pulls from GitHub) ─────────────────
+if [[ "$NO_GIT" -eq 1 ]]; then
+  banner "Git — SKIPPED (--no-git)"
+else
+  banner "Git — commit + push thay đổi local"
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  if [[ "$BRANCH" != "main" ]]; then
+    echo "⚠ Đang ở branch '$BRANCH' nhưng VM reset --hard về origin/main."
+    echo "  Thay đổi trên branch này sẽ KHÔNG tới prod cho đến khi merge vào main."
+  fi
+  if [[ -n "$(git status --porcelain)" ]]; then
+    git add -A
+    if [[ -z "$COMMIT_MSG" ]]; then
+      _files=$(git diff --cached --name-only | head -8 | tr '\n' ' ')
+      _n=$(git diff --cached --name-only | wc -l | tr -d ' ')
+      COMMIT_MSG="chore(deploy): $_n file(s) — $_files"
+    fi
+    git commit -m "$COMMIT_MSG"
+    echo "✓ Committed: $COMMIT_MSG"
+  else
+    echo "Working tree sạch — không có gì để commit."
+  fi
+  # Always push current branch; git no-ops (\"Everything up-to-date\") if nothing new.
+  git push origin "$BRANCH"
+  echo "✓ Pushed → origin/$BRANCH"
+fi
 
 # ── Detect what changed vs the commit currently deployed on the VM ──────────
 banner "Step 0/4 — Phân tích thay đổi để quyết định step"
