@@ -651,6 +651,7 @@ export async function getUserActivityForAdmin(
         topic: matched.topic,
         level: matched.level,
         qcount: matched.qcount,
+        durationSec: a.durationSec,
       });
     } else {
       merged.push({

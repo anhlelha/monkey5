@@ -462,7 +462,7 @@ export function UserDetailPanel({
                         {r.correctCount}/{r.total}
                       </td>
                       <td className="mono">
-                        {isExam && typeof r.durationSec === "number"
+                        {typeof r.durationSec === "number" && r.durationSec > 0
                           ? `${Math.round(r.durationSec / 60)}p`
                           : "—"}
                       </td>
