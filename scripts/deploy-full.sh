@@ -14,6 +14,8 @@
 #   ref_exam/**, prisma/schema.prisma                     │   vì đáp án có thể đổi)
 #   lib/grading/**, scripts/regrade-attempts.ts           │ REGRADE
 #   lib/grading/classify.ts, backfill-answer-schema.ts    │ BACKFILL
+#   lib/mastery.ts, lib/readiness.ts,                     │ RECOMPUTE MASTERY
+#   lib/school-profiles.ts, recompute-mastery-readiness.ts│   (+ readiness mọi user)
 #   chỉ UI/app code khác                                  │ (không step DB)
 #
 # Build + PM2 restart + `prisma db push` luôn chạy (an toàn, idempotent).
@@ -27,6 +29,7 @@
 #   bash scripts/deploy-full.sh --no-seed    # ép tắt SEED
 #   bash scripts/deploy-full.sh --no-backfill# ép tắt BACKFILL
 #   bash scripts/deploy-full.sh --no-regrade # ép tắt REGRADE
+#   bash scripts/deploy-full.sh --recompute-mastery  # ép recompute mastery+readiness
 #   bash scripts/deploy-full.sh -m "msg"     # đặt commit message cho auto-commit
 #   bash scripts/deploy-full.sh --no-git     # bỏ qua git (code đã commit+push rồi)
 # (các cờ có thể kết hợp, ví dụ: --full --yes -m "fix X")
@@ -53,6 +56,7 @@ APP_ONLY=0
 FORCE_NO_SEED=0
 FORCE_NO_BACKFILL=0
 FORCE_NO_REGRADE=0
+FORCE_RECOMPUTE_MASTERY=0
 NO_GIT=0
 COMMIT_MSG=""
 while [[ $# -gt 0 ]]; do
@@ -63,10 +67,11 @@ while [[ $# -gt 0 ]]; do
     --no-seed)       FORCE_NO_SEED=1 ;;
     --no-backfill)   FORCE_NO_BACKFILL=1 ;;
     --no-regrade)    FORCE_NO_REGRADE=1 ;;
+    --recompute-mastery) FORCE_RECOMPUTE_MASTERY=1 ;;
     --no-git)        NO_GIT=1 ;;
     -m|--message)    COMMIT_MSG="${2:-}"; shift ;;
     -h|--help)
-      sed -n '2,43p' "$0"; exit 0 ;;
+      sed -n '2,46p' "$0"; exit 0 ;;
     *)
       echo "Unknown flag: $1" >&2; exit 1 ;;
   esac
@@ -124,13 +129,14 @@ PREV_SHA=$(ssh_vm "cd $REMOTE_PROJECT_PATH && git rev-parse HEAD 2>/dev/null" 2>
 NEEDS_SEED=0
 NEEDS_BACKFILL=0
 NEEDS_REGRADE=0
+NEEDS_MASTERY=0
 DETECT_MODE="auto"
 
 if [[ -z "$PREV_SHA" ]] || ! git cat-file -e "${PREV_SHA}^{commit}" 2>/dev/null; then
   # Không biết commit trên VM (lần đầu / force-push / không reachable) → an toàn:
   # chạy hết.
   DETECT_MODE="unknown→full"
-  NEEDS_SEED=1; NEEDS_BACKFILL=1; NEEDS_REGRADE=1
+  NEEDS_SEED=1; NEEDS_BACKFILL=1; NEEDS_REGRADE=1; NEEDS_MASTERY=1
   echo "⚠ Không xác định được commit đang chạy trên VM — bật hết step cho an toàn."
 else
   CHANGED=$(git diff --name-only "$PREV_SHA" "$NEW_SHA")
@@ -151,21 +157,26 @@ else
       case "$f" in
         lib/grading/classify.ts|scripts/backfill-answer-schema.ts) NEEDS_BACKFILL=1 ;;
       esac
+      case "$f" in
+        lib/mastery.ts|lib/readiness.ts|lib/school-profiles.ts|scripts/recompute-mastery-readiness.ts) NEEDS_MASTERY=1 ;;
+      esac
     done <<< "$CHANGED"
-    # Re-seed có thể đổi đáp án/câu hỏi → kéo theo backfill schema + regrade.
-    if [[ "$NEEDS_SEED" -eq 1 ]]; then NEEDS_BACKFILL=1; NEEDS_REGRADE=1; fi
+    # Re-seed có thể đổi đáp án/câu hỏi → kéo theo backfill schema + regrade +
+    # recompute mastery (profile trường đổi → readiness đổi).
+    if [[ "$NEEDS_SEED" -eq 1 ]]; then NEEDS_BACKFILL=1; NEEDS_REGRADE=1; NEEDS_MASTERY=1; fi
   fi
 fi
 
 # ── Apply overrides ─────────────────────────────────────────────────────────
 if [[ "$FORCE_FULL" -eq 1 ]]; then
   DETECT_MODE="--full"
-  NEEDS_SEED=1; NEEDS_BACKFILL=1; NEEDS_REGRADE=1
+  NEEDS_SEED=1; NEEDS_BACKFILL=1; NEEDS_REGRADE=1; NEEDS_MASTERY=1
 fi
 if [[ "$APP_ONLY" -eq 1 ]]; then
   DETECT_MODE="--app-only"
-  NEEDS_SEED=0; NEEDS_BACKFILL=0; NEEDS_REGRADE=0
+  NEEDS_SEED=0; NEEDS_BACKFILL=0; NEEDS_REGRADE=0; NEEDS_MASTERY=0
 fi
+[[ "$FORCE_RECOMPUTE_MASTERY" -eq 1 ]] && NEEDS_MASTERY=1
 [[ "$FORCE_NO_SEED" -eq 1 ]]     && NEEDS_SEED=0
 [[ "$FORCE_NO_BACKFILL" -eq 1 ]] && NEEDS_BACKFILL=0
 [[ "$FORCE_NO_REGRADE" -eq 1 ]]  && NEEDS_REGRADE=0
@@ -178,61 +189,68 @@ echo "  • prisma db push       : YES (luôn, idempotent)"
 echo "  • re-seed exam content : $(yn $NEEDS_SEED)"
 echo "  • backfill schema      : $(yn $NEEDS_BACKFILL)"
 echo "  • regrade attempts     : $(yn $NEEDS_REGRADE)"
+echo "  • recompute mastery    : $(yn $NEEDS_MASTERY)"
 
 # ── Step 1: backup before deploy (always — cheap safety net) ────────────────
-banner "Step 1/4 — Backup prod DB BEFORE deploy"
+banner "Step 1/5 — Backup prod DB BEFORE deploy"
 ssh_vm "cd $REMOTE_PROJECT_PATH && \
   cp prisma/dev.db prisma/dev.db.bak-pre-deploy-$STAMP && \
   ls -lh prisma/dev.db.bak-pre-deploy-$STAMP"
 
 # ── Step 2: deploy (pull + build + restart; re-seed only if needed) ─────────
 if [[ "$NEEDS_SEED" -eq 1 ]]; then
-  banner "Step 2/4 — deploy.sh (pull + RE-SEED bank + PM2 restart)"
+  banner "Step 2/5 — deploy.sh (pull + RE-SEED bank + PM2 restart)"
   RUN_SEED=1 bash scripts/deploy.sh
 else
-  banner "Step 2/4 — deploy.sh (pull + build + PM2 restart, KHÔNG re-seed)"
+  banner "Step 2/5 — deploy.sh (pull + build + PM2 restart, KHÔNG re-seed)"
   bash scripts/deploy.sh --no-seed
 fi
 
 # ── Step 3: backfill answer schemas (only if needed) ────────────────────────
 if [[ "$NEEDS_BACKFILL" -eq 1 ]]; then
-  banner "Step 3/4 — Backup pre-regrade + backfill clone schemas"
+  banner "Step 3/5 — Backup pre-regrade + backfill clone schemas"
   ssh_vm "cd $REMOTE_PROJECT_PATH && \
     cp prisma/dev.db prisma/dev.db.bak-pre-regrade-$STAMP && \
     npx tsx scripts/backfill-answer-schema.ts"
 else
-  banner "Step 3/4 — SKIPPED backfill (không có thay đổi grading/content)"
+  banner "Step 3/5 — SKIPPED backfill (không có thay đổi grading/content)"
 fi
 
 # ── Step 4: regrade attempts (only if needed; dry-run gate) ─────────────────
-if [[ "$NEEDS_REGRADE" -ne 1 ]]; then
-  banner "Step 4/4 — SKIPPED regrade (không có thay đổi grading/content)"
-  banner "Done"
-  echo "Rollback nếu cần:"
-  echo "  ssh -i $GCP_KEY $REMOTE 'cd $REMOTE_PROJECT_PATH && cp prisma/dev.db.bak-pre-deploy-$STAMP prisma/dev.db && pm2 restart monkey5'"
-  exit 0
-fi
-
-# Backfill chạy backup pre-regrade rồi; nếu backfill bị skip, tạo backup ở đây.
-if [[ "$NEEDS_BACKFILL" -ne 1 ]]; then
-  ssh_vm "cd $REMOTE_PROJECT_PATH && cp prisma/dev.db prisma/dev.db.bak-pre-regrade-$STAMP"
-fi
-
-banner "Step 4/4 — Re-grade Attempts (dry-run trước)"
-ssh_vm "cd $REMOTE_PROJECT_PATH && npx tsx scripts/regrade-attempts.ts --dry-run"
-
-if [[ "$AUTO_YES" -eq 0 ]]; then
-  echo
-  read -rp "Apply regrade thật? [y/N] " ans
-  # POSIX-safe lowercase test (works on macOS bash 3.2; ${var,,} is bash 4+).
-  if [[ ! "$ans" =~ ^[Yy] ]]; then
-    echo "✗ Bỏ qua regrade. Backup vẫn còn trên VM, chạy lại bằng:"
-    echo "   ssh -i $GCP_KEY $REMOTE 'cd $REMOTE_PROJECT_PATH && npx tsx scripts/regrade-attempts.ts'"
-    exit 0
+if [[ "$NEEDS_REGRADE" -eq 1 ]]; then
+  # Backfill chạy backup pre-regrade rồi; nếu backfill bị skip, tạo backup ở đây.
+  if [[ "$NEEDS_BACKFILL" -ne 1 ]]; then
+    ssh_vm "cd $REMOTE_PROJECT_PATH && cp prisma/dev.db prisma/dev.db.bak-pre-regrade-$STAMP"
   fi
+
+  banner "Step 4/5 — Re-grade Attempts (dry-run trước)"
+  ssh_vm "cd $REMOTE_PROJECT_PATH && npx tsx scripts/regrade-attempts.ts --dry-run"
+
+  RUN_REGRADE=1
+  if [[ "$AUTO_YES" -eq 0 ]]; then
+    echo
+    read -rp "Apply regrade thật? [y/N] " ans
+    # POSIX-safe lowercase test (works on macOS bash 3.2; ${var,,} is bash 4+).
+    if [[ ! "$ans" =~ ^[Yy] ]]; then
+      RUN_REGRADE=0
+      echo "✗ Bỏ qua regrade. Backup vẫn còn trên VM, chạy lại bằng:"
+      echo "   ssh -i $GCP_KEY $REMOTE 'cd $REMOTE_PROJECT_PATH && npx tsx scripts/regrade-attempts.ts'"
+    fi
+  fi
+  [[ "$RUN_REGRADE" -eq 1 ]] && ssh_vm "cd $REMOTE_PROJECT_PATH && npx tsx scripts/regrade-attempts.ts"
+else
+  banner "Step 4/5 — SKIPPED regrade (không có thay đổi grading/content)"
 fi
 
-ssh_vm "cd $REMOTE_PROJECT_PATH && npx tsx scripts/regrade-attempts.ts"
+# ── Step 5: recompute mastery + readiness for all users (only if needed) ────
+# Bật khi đổi lib/mastery.ts / readiness.ts / school-profiles.ts hoặc re-seed
+# (profile trường đổi). Backfill số liệu đã persist trên User để hiển thị ngay.
+if [[ "$NEEDS_MASTERY" -eq 1 ]]; then
+  banner "Step 5/5 — Recompute mastery + readiness cho mọi user"
+  ssh_vm "cd $REMOTE_PROJECT_PATH && npx tsx scripts/recompute-mastery-readiness.ts 2>&1 | tail -20"
+else
+  banner "Step 5/5 — SKIPPED recompute mastery (không đổi công thức mastery/readiness)"
+fi
 
 banner "Done"
 ssh_vm "cd $REMOTE_PROJECT_PATH && ls -lh prisma/dev.db.bak-*-$STAMP regrade-backup-*.json 2>/dev/null | tail -10 || true"
