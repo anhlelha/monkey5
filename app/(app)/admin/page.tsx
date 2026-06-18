@@ -64,7 +64,15 @@ export default async function AdminPage({ searchParams }: Props) {
       // Admin chỉ quản lý đề do admin tạo/upload (generated=false).
       // Đề "Phỏng tự động" (set-*/ref-*) sinh ra khi user luyện tập bị loại trừ.
       prisma.exam.count({ where: { generated: false } }),
-      prisma.question.count({ where: { active: true } }),
+      // Ngân hàng câu hỏi gốc: chỉ tính câu trong đề thật + câu bổ sung.
+      // Loại trừ bản clone trong đề "Phỏng tự động" (set-*/ref-*, generated=true)
+      // do spawn-exam.ts sinh ra mỗi lần user luyện tập — nếu không sẽ phình số.
+      prisma.question.count({
+        where: {
+          active: true,
+          OR: [{ exam: { generated: false } }, { examId: null }],
+        },
+      }),
       prisma.attempt.count({ where: { submitted: true } }),
       prisma.user.count(),
       prisma.exam.findMany({
