@@ -37,6 +37,83 @@
 - `npm run build` ✓
 - `npm run dev` ✓ (localhost:3000 sẵn sàng)
 
+---
+
+## Cập nhật 2026-06-18 (round 3): Mastery v2 — bỏ đếm trùng + Beta smoothing + trọng số dải
+
+**Bối cảnh**: tài khoản `mikayeubo@gmail.com` luyện chuyên đề **Thời gian L4 6/6** → mastery hiện **100%**, dù mới làm mình mức L4. Audit phát hiện 3 lỗi trong `computeMastery` cũ; bản v2 này sửa cả 3. File đổi: `lib/mastery.ts` (giữ nguyên `computeReadiness`).
+
+### 3 lỗi của bản cũ
+1. **Đếm trùng**: bài luyện chuyên đề tạo *cả* `TopicSession` *và* `Attempt` cùng bộ `set-*`; `computeMastery` gộp cả hai → Thời gian n=**12** thay vì 6 (trọng số gấp đôi đề thật).
+2. **Vách đá MIN_SAMPLE**: `n<5 → 0.5`, `n≥5 → đúng/tổng` thô → **6/6 = 100%**, nhảy bậc.
+3. **Không xét độ phủ mức độ**: mastery chuyên đề gộp mọi câu bất kể L4/L5/NC → luyện mình L4 vẫn ra cao.
+
+### Công thức v2 (đã implement)
+```
+# (a) Gom CHỈ từ Attempt theo từng câu (mỗi câu 1 lần) → hết đếm trùng.
+#     TopicSession không còn dùng (mọi topic-set đã có Attempt tương ứng).
+
+# (b) Beta smoothing — prior K=4 quan sát ở 0.5 (PRIOR_STRENGTH, PRIOR_MASTERY):
+smooth(đúng, tổng) = (đúng + K·0.5) / (tổng + K)
+#   6/6 → (6+2)/(6+4) = 0.80   |   0/0 → 0.50 (prior)   |   bỏ vách đá
+
+# (c) Mastery chuyên đề = trung bình có trọng số theo 3 dải, dải chưa làm = prior 0.5:
+BAND_WEIGHTS = { L4: 0.30, L5: 0.45, NC: 0.25 }   (L4+5 gộp vào dải L4)
+topicMastery[t] = Σ_band BAND_WEIGHTS[band] · smooth(đúng_band, tổng_band)
+
+# Mastery cấp độ = smooth theo từng grade tag (L4/L5/L4+5/NC).
+```
+**Hệ quả**: muốn topic đạt cao phải làm tốt **cả L4/L5/NC với mẫu đủ**. Topic chỉ-L4 (làm hoàn hảo) bị chặn ở `0.30·0.8 + 0.45·0.5 + 0.25·0.5 = 0.59`. (band chưa làm giữ ở 0.5 — chốt 2026-06-18; knob nghiêm hơn = kéo về 0.40.)
+
+### Dữ liệu trường thật (prod, để tái lập readiness)
+**Difficulty 8 trường** (công thức 6 yếu tố — xem dưới) và **mean = 27.35** (anchor `referenceDifficulty`):
+
+| school | cg | ltv | nshm | nn | nshn | ntl | ntt | tx |
+|---|---|---|---|---|---|---|---|---|
+| difficulty | 23.79 | 23.32 | 23.17 | 30.21 | 36.07 | 26.44 | 27.24 | 28.57 |
+
+Công thức difficulty (`lib/school-profiles.ts`, 0-100):
+```
+difficulty = %NC·100·0.30 + %L4+5·100·0.15 + (câu/phút)·100·0.20
+           + %Tự_luận·0.15 + %Hình_Olympic(hinh&NC)·0.10 + (số_chuyên_đề_có_câu)·1.0
+```
+
+**CG topicWeights** (tổng=1): `soh 0.23 · hinh 0.16 · phan 0.14 · log 0.12 · cd 0.11 · xs 0.07 · do 0.06 · ti 0.05 · tuoi 0.04 · tg 0.02`
+**CG levelWeights**: `L4 0.20 · L5 0.56 · L4+5 0.09 · NC 0.15`
+**Hệ số readiness**: `ALPHA=80 (topic) · BETA=60 (level) · DIFF_K=1.0`, công thức:
+```
+readiness = 50 + (Σ wₜ·(mₜ−0.5))·80 + (Σ wₗ·(mₗ−0.5))·60 − (difficulty − 27.35)·1.0
+```
+
+### Ví dụ cụ thể — mika, readiness CG qua 3 giai đoạn
+
+**① Lúc mới đăng ký (chưa làm gì)** — mọi mastery = 0.5 → topicTerm=0, levelTerm=0:
+```
+readiness CG = 50 + 0 + 0 − (23.79 − 27.35) = 50 + 3.56 = 53.56 → 54%
+```
+(CG dễ hơn mean nên được +3.56 — đây là lý do "lúc đầu" không phải 50% mà ~54%.)
+
+**② Sau khi luyện, công thức CŨ (lỗi)** — Thời gian = **100%** (6/6 đếm trùng thành 12/12), các topic/level inflate:
+```
+readiness CG = 73%
+```
+
+**③ Công thức v2 (sau sửa)** — mastery thật của mika:
+- topic: tg **59.0%** (was 100%), phan 56.4%, soh 61.6%, hinh 45.5%
+- level: L4 76.0%, L5 66.7%, L4+5 71.4%, **NC 50.0% (n=0 — chưa làm câu NC nào)**
+```
+topicTerm·ALPHA = 0.0426·80 = +3.40
+levelTerm·BETA  = 0.1646·60 = +9.88   (chủ yếu từ L5, weight 0.56)
+diffPenalty     = (23.79−27.35)·1 = −3.56  → trừ đi = +3.56
+readiness CG    = 50 + 3.40 + 9.88 + 3.56 = 66.84 → 67%
+```
+
+**Tóm tắt**: `54% (mới) → 73% (cũ, lỗi) → 67% (v2)`. Topic "Thời gian 100%" tụt về 59% (đúng kỳ vọng), nhưng readiness CG chỉ giảm 73→67 vì trọng số tg trong CG rất nhỏ (0.02); readiness phản ánh chủ yếu qua soh/phan (topic nặng) và L5 (level nặng nhất). NC vẫn 50% vì chưa làm câu nào — muốn phạt mạnh hơn cần knob band-chưa-làm < 0.5 (chưa bật).
+
+> ⚠️ **§3 bên dưới (MIN_SAMPLE) đã LỖI THỜI** — giữ lại để tham chiếu lịch sử; logic hiện hành là round-3 ở trên.
+
+---
+
 ## Quyết định đã chốt (cập nhật 2026-06-14)
 
 | # | Quyết định | Chi tiết |
