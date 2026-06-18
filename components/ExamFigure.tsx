@@ -2600,6 +2600,31 @@ export function ExamFigure({ figure }: Props) {
       );
     }
 
+    case "nshn-2020-c7": {
+      // Hình vuông cam cạnh 21cm + 2 nửa đường tròn đường kính bằng cạnh (21cm).
+      // B là tâm nửa đường tròn trên (bụng lên), C là tâm nửa đường tròn dưới
+      // (bụng xuống). Hai nửa ghép lại thành một hình tròn bán kính 10,5cm.
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: "200px" }}>
+          <svg viewBox="0 0 200 230" width="100%" style={{ display: "block", height: "auto" }}>
+            {/* Nửa đường tròn trên (tâm B) */}
+            <path d="M 50,60 A 50,50 0 0 1 150,60" fill="none" stroke="var(--ink)" strokeWidth="1.5" />
+            {/* Nửa đường tròn dưới (tâm C) */}
+            <path d="M 50,160 A 50,50 0 0 0 150,160" fill="none" stroke="var(--ink)" strokeWidth="1.5" />
+            {/* Hình vuông màu cam */}
+            <rect x="50" y="60" width="100" height="100" fill="orange" stroke="var(--ink)" strokeWidth="1.5" />
+            {/* Tâm B và C */}
+            <circle cx="100" cy="60" r="3" fill="var(--ink)" />
+            <circle cx="100" cy="160" r="3" fill="var(--ink)" />
+            <text x="100" y="78" textAnchor="middle" fill="var(--ink)" fontSize="13" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>B</text>
+            <text x="100" y="150" textAnchor="middle" fill="var(--ink)" fontSize="13" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>C</text>
+            {/* Nhãn cạnh 21cm */}
+            <text x="156" y="114" fill="var(--ink)" fontSize="11" style={{ fontFamily: "Times, serif" }}>21cm</text>
+          </svg>
+        </div>
+      );
+    }
+
     case "nshn-2021-c5": {
       // 8×8 chessboard. Convention from the PDF: bottom-left square (col 1, row 1)
       // is WHITE; squares alternate. Knight "M" sits at column 2 from left, row 2
@@ -3122,6 +3147,60 @@ export function ExamFigure({ figure }: Props) {
             <text x={D.x - 6} y={D.y + 16} fill="var(--ink)" fontSize={16} textAnchor="end" style={labelStyle}>D</text>
             <text x={F.x} y={F.y + 18} fill="var(--ink)" fontSize={16} textAnchor="middle" style={labelStyle}>F</text>
             <text x={C.x + 6} y={C.y + 16} fill="var(--ink)" fontSize={16} textAnchor="start" style={labelStyle}>C</text>
+          </svg>
+        </div>
+      );
+    }
+
+    case "nshm-2024-c10": {
+      // Complex shaded-circle composition (large circle + 4 inner circles, green
+      // petal/lens regions). Faithfully reproduced from the source scan via PNG.
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 240 }}>
+          <img
+            src="/figures/nshm-2024-c10.png"
+            alt="Hình tròn lớn và các hình tròn nhỏ với phần tô đậm — Câu 10 NSHM 2024"
+            style={{ maxWidth: "100%", width: "100%", height: "auto", display: "block" }}
+          />
+        </div>
+      );
+    }
+
+    case "nshm-2024-c12": {
+      // Trapezoid ABCD: AB (top) = đáy bé 12, DC (bottom) = đáy lớn 15, height = 6.
+      // Diagonal AC drawn; M on AC with AM = 1/3·AC; segment DM drawn (→ triangle MCD).
+      // SVG coords (y-down). Scale chosen so the figure sits in a 340×230 box.
+      const A = { x: 65, y: 67 };
+      const B = { x: 281, y: 67 };
+      const C = { x: 305, y: 175 };
+      const D = { x: 35, y: 175 };
+      // M = A + 1/3·(C - A)
+      const M = { x: A.x + (C.x - A.x) / 3, y: A.y + (C.y - A.y) / 3 };
+      const labelStyle = { fontStyle: "italic", fontFamily: "Times, serif" } as const;
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 340 }}>
+          <svg viewBox="0 0 340 230" width="100%" style={{ display: "block", height: "auto" }}>
+            {/* Trapezoid ABCD */}
+            <polygon
+              points={`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y} ${D.x},${D.y}`}
+              fill="none"
+              stroke="var(--ink)"
+              strokeWidth={1.6}
+            />
+            {/* Diagonal AC */}
+            <line x1={A.x} y1={A.y} x2={C.x} y2={C.y} stroke="var(--ink)" strokeWidth={1.4} />
+            {/* Segment DM */}
+            <line x1={D.x} y1={D.y} x2={M.x} y2={M.y} stroke="var(--ink)" strokeWidth={1.4} />
+            {/* Vertex + M dots */}
+            {[A, B, C, D, M].map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r={3.5} fill="orange" stroke="orange" />
+            ))}
+            {/* Labels */}
+            <text x={A.x - 8} y={A.y - 6} fill="var(--ink)" fontSize={16} textAnchor="end" style={labelStyle}>A</text>
+            <text x={B.x + 8} y={B.y - 6} fill="var(--ink)" fontSize={16} textAnchor="start" style={labelStyle}>B</text>
+            <text x={C.x + 8} y={C.y + 16} fill="var(--ink)" fontSize={16} textAnchor="start" style={labelStyle}>C</text>
+            <text x={D.x - 8} y={D.y + 16} fill="var(--ink)" fontSize={16} textAnchor="end" style={labelStyle}>D</text>
+            <text x={M.x + 8} y={M.y - 4} fill="var(--ink)" fontSize={16} textAnchor="start" style={labelStyle}>M</text>
           </svg>
         </div>
       );

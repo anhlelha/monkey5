@@ -7963,6 +7963,349 @@
           "figure": "nshm-2026-b2"
         }
       ]
+    },
+    {
+      "id": "nshm-2024",
+      "school": "nshm",
+      "kind": "official",
+      "year": "2024-2025",
+      "title": "Đề thi học bổng — Trường Ngôi Sao Hoàng Mai (Cơ sở 2, 02/03/2024)",
+      "intro": "Học sinh làm bài trên giấy thi. Phần 1 chỉ ghi đáp số, phần 2 trình bày bài giải chi tiết.",
+      "minutes": 60,
+      "note": "Đề số 26 — kỳ thi học bổng Ngôi Sao Hoàng Mai (Cơ sở 2 — Hoàng Mai), ngày thi 02/03/2024 (nguồn: CLB MathFun).",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN 1: ĐIỀN ĐÁP SỐ"
+        },
+        {
+          "num": 11,
+          "header": "PHẦN 2: TỰ LUẬN"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NSHM-2024-25-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2024",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHM-2024-25-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "1/8",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHM-2024-25-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "30",
+          "unit": "người",
+          "figure": null
+        },
+        {
+          "id": "NSHM-2024-25-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "39; 65",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHM-2024-25-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "7",
+          "unit": "cm",
+          "figure": null
+        },
+        {
+          "id": "NSHM-2024-25-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "60",
+          "unit": "số",
+          "figure": null
+        },
+        {
+          "id": "NSHM-2024-25-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "105",
+          "unit": "số",
+          "figure": null
+        },
+        {
+          "id": "NSHM-2024-25-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "6",
+          "unit": "giờ",
+          "figure": null
+        },
+        {
+          "id": "NSHM-2024-25-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHM-2024-25-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "314",
+          "unit": "cm²",
+          "figure": "nshm-2024-c10"
+        },
+        {
+          "id": "NSHM-2024-25-B1",
+          "num": 11,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 2,
+          "correct": "210 000 đồng",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHM-2024-25-B2",
+          "num": 12,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 3,
+          "correct": "a) 81 cm²; b) 30 cm²",
+          "unit": null,
+          "figure": "nshm-2024-c12"
+        },
+        {
+          "id": "NSHM-2024-25-B3",
+          "num": 13,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 3,
+          "correct": "124 trận",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "nshn-2020",
+      "school": "nshn",
+      "kind": "official",
+      "year": "2020-2021",
+      "title": "Đề thi học bổng Ngôi Sao Hà Nội — Môn Toán Vào Lớp 6",
+      "intro": "Học sinh chỉ ghi đáp số vào phiếu trả lời. Thời gian làm bài 60 phút.",
+      "minutes": 60,
+      "note": "Đề thi học bổng Ngôi Sao Hà Nội — Vào lớp 6, năm học 2020-2021 (nguồn: PDF MathX). Đáp án do Claude tự giải — PDF gốc không có đáp án/lời giải kèm theo.",
+      "sections": [],
+      "questions": [
+        {
+          "id": "NSHN-2020-21-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "85",
+          "unit": "%",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2020-21-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "51",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2020-21-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "23",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2020-21-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "36",
+          "unit": "cm²",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2020-21-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "29",
+          "unit": "viên",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2020-21-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "30",
+          "unit": "giờ",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2020-21-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "787,5",
+          "unit": "cm²",
+          "figure": "nshn-2020-c7"
+        },
+        {
+          "id": "NSHN-2020-21-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2020-21-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2020-21-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "24",
+          "unit": "ngày",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2020-21-C11",
+          "num": 11,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2020-21-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "42",
+          "unit": "quả",
+          "figure": null
+        },
+        {
+          "id": "NSHN-2020-21-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "0",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2020-21-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "78,4",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2020-21-C15",
+          "num": 15,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "<",
+          "unit": null,
+          "figure": null
+        }
+      ]
     }
   ]
 }
