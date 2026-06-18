@@ -37,7 +37,7 @@ export function TopicHistory({ sessions, topicName }: Props) {
       ) : (
         <div className="col" style={{ gap: 8 }}>
           {sessions.map((h) => {
-            const pct = h.qcount > 0 ? Math.round((h.score / h.qcount) * 100) : 0;
+            const pct = h.scorePct;
             const tone = pct >= 70 ? "" : pct >= 50 ? "ltv" : "ntt";
             return (
               <div

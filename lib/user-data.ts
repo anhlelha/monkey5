@@ -212,7 +212,7 @@ export type ActivityFeedItem =
       topic: string;
       level: string;
       qcount: number;
-      score: number;          // 0..100 (computed from correctCount/qcount)
+      score: number;          // 0..100 (points-based; matches results detail view)
       correctCount: number;
     };
 
@@ -252,7 +252,9 @@ export async function getRecentActivityFeed(
       // Render as topic row, link to attempt.
       consumedSessionIds.add(matched.id);
       const correctCount = matched.score;
-      const pct = matched.qcount > 0 ? Math.round((correctCount / matched.qcount) * 100) : 0;
+      // Points-based % from the paired Attempt (essays weigh >1pt) so it matches
+      // the results detail view. correctCount/qcount stays for the "đúng/tổng" column.
+      const pct = a.score;
       items.push({
         kind: "topic",
         id: matched.id,
@@ -333,7 +335,8 @@ export interface TopicSessionItem {
   id: string;
   level: string;
   qcount: number;
-  score: number;
+  score: number;          // number correct (drives "đúng/tổng")
+  scorePct: number;       // 0..100, points-based (from paired Attempt); matches detail view
   when: string;
   when_full: string;
   examId: string | null;   // setId of the spawned exam (also the Attempt.examId)
@@ -352,28 +355,37 @@ export async function getTopicSessions(
   // Resolve attempt ids in one round-trip via groupBy on `examId`.
   const setIds = rows.map((r) => r.setId).filter((v): v is string => Boolean(v));
   const attemptMap = new Map<string, string>();
+  const attemptScoreMap = new Map<string, number>();
   if (setIds.length > 0) {
     const attempts = await prisma.attempt.findMany({
       where: { userId, examId: { in: setIds }, submitted: true },
       orderBy: { createdAt: "desc" },
-      select: { id: true, examId: true },
+      select: { id: true, examId: true, score: true },
     });
     // findMany returns desc → first-seen-per-examId is the latest.
     for (const a of attempts) {
-      if (!attemptMap.has(a.examId)) attemptMap.set(a.examId, a.id);
+      if (!attemptMap.has(a.examId)) {
+        attemptMap.set(a.examId, a.id);
+        attemptScoreMap.set(a.examId, a.score);
+      }
     }
   }
 
-  return rows.map((r) => ({
-    id: r.id,
-    level: r.level,
-    qcount: r.qcount,
-    score: r.score,
-    when: relativeVi(r.createdAt),
-    when_full: fmtDateShortVi(r.createdAt),
-    examId: r.setId,
-    attemptId: r.setId ? attemptMap.get(r.setId) ?? null : null,
-  }));
+  return rows.map((r) => {
+    const pairedScore = r.setId ? attemptScoreMap.get(r.setId) : undefined;
+    return {
+      id: r.id,
+      level: r.level,
+      qcount: r.qcount,
+      score: r.score,
+      // Points-based when a paired Attempt exists; count-based fallback otherwise.
+      scorePct: pairedScore ?? (r.qcount > 0 ? Math.round((r.score / r.qcount) * 100) : 0),
+      when: relativeVi(r.createdAt),
+      when_full: fmtDateShortVi(r.createdAt),
+      examId: r.setId,
+      attemptId: r.setId ? attemptMap.get(r.setId) ?? null : null,
+    };
+  });
 }
 
 // ─── Admin: mastery overview (dashboard) ─────────────────────────────────────
@@ -503,6 +515,14 @@ export async function getUserActivityStats(
     bag.add(t.setId);
   }
 
+  // Index attempt scores by "userId|examId" so paired topic sessions can use the
+  // points-based Attempt score instead of count-based correct/qcount.
+  const attemptScoreByKey = new Map<string, number>();
+  for (const a of attempts) {
+    const key = `${a.userId}|${a.examId}`;
+    if (!attemptScoreByKey.has(key)) attemptScoreByKey.set(key, a.score);
+  }
+
   const sums: Record<string, { num: number; den: number }> = {};
 
   for (const a of attempts) {
@@ -523,8 +543,11 @@ export async function getUserActivityStats(
     if (!slot) continue;
     slot.topicSessionCount += 1;
     if (!slot.lastActiveAt || t.createdAt > slot.lastActiveAt) slot.lastActiveAt = t.createdAt;
-    if (t.qcount > 0) {
-      const pct = (t.score / t.qcount) * 100;
+    // Prefer the paired Attempt's points-based score; fall back to count-based for
+    // orphan sessions with no paired Attempt.
+    const paired = t.setId ? attemptScoreByKey.get(`${t.userId}|${t.setId}`) : undefined;
+    const pct = paired ?? (t.qcount > 0 ? (t.score / t.qcount) * 100 : null);
+    if (pct !== null) {
       const s = sums[t.userId] ?? { num: 0, den: 0 };
       s.num += pct;
       s.den += 1;
@@ -614,7 +637,8 @@ export async function getUserActivityForAdmin(
       // Render as topic row, link to attempt.
       consumedSessionIds.add(matched.id);
       const correctCount = matched.score;
-      const pct = matched.qcount > 0 ? Math.round((correctCount / matched.qcount) * 100) : 0;
+      // Points-based % from the paired Attempt, consistent with results detail view.
+      const pct = a.score;
       merged.push({
         kind: "topic",
         id: matched.id,
