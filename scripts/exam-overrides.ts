@@ -253,6 +253,7 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
   "LTV-2014-15-C10": {
     stem: "Sắp xếp các số sau theo thứ tự tăng dần: $\\dfrac{5}{9}; \\dfrac{12}{25}; \\dfrac{2}{5}; \\dfrac{14}{27}$.",
     correct: "2/5; 12/25; 14/27; 5/9",
+    modelAnswer: "So sánh các phân số với phân số trung gian $\\dfrac{1}{2}$:\n$$\\dfrac{5}{9} > \\dfrac{5}{10} = \\dfrac{1}{2}; \\qquad \\dfrac{14}{27} > \\dfrac{14}{28} = \\dfrac{1}{2}.$$\n$$\\dfrac{12}{25} < \\dfrac{12}{24} = \\dfrac{1}{2}; \\qquad \\dfrac{2}{5} < \\dfrac{2}{4} = \\dfrac{1}{2}.$$\nVậy $\\dfrac{5}{9}$ và $\\dfrac{14}{27}$ lớn hơn $\\dfrac{1}{2}$; còn $\\dfrac{12}{25}$ và $\\dfrac{2}{5}$ nhỏ hơn $\\dfrac{1}{2}$.\n\n**So sánh hai phân số lớn hơn $\\dfrac{1}{2}$:** quy đồng $\\dfrac{5}{9} = \\dfrac{15}{27}$, mà $\\dfrac{15}{27} > \\dfrac{14}{27}$ nên $\\dfrac{14}{27} < \\dfrac{5}{9}$.\n\n**So sánh hai phân số nhỏ hơn $\\dfrac{1}{2}$:** quy đồng $\\dfrac{2}{5} = \\dfrac{10}{25}$, mà $\\dfrac{10}{25} < \\dfrac{12}{25}$ nên $\\dfrac{2}{5} < \\dfrac{12}{25}$.\n\nSắp xếp theo thứ tự tăng dần:\n$$\\dfrac{2}{5} < \\dfrac{12}{25} < \\dfrac{14}{27} < \\dfrac{5}{9}.$$\n\n**Đáp số**: $\\dfrac{2}{5}; \\ \\dfrac{12}{25}; \\ \\dfrac{14}{27}; \\ \\dfrac{5}{9}$.",
   },
   "LTV-2014-15-C12": {
     stem: "Tìm các chữ số $a$ và $b$ biết số $\\overline{1a89b}$ đồng thời chia hết cho các số 2; 5 và 9.",
