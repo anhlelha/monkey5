@@ -7305,6 +7305,127 @@
       ]
     },
     {
+      "id": "nshn-2025",
+      "school": "nshn",
+      "kind": "official",
+      "year": "2025-2026",
+      "title": "Đề thi học bổng — Trường Ngôi Sao Hà Nội (Khối 5)",
+      "intro": "Học sinh làm bài trên giấy thi. Phần trắc nghiệm chỉ ghi đáp số, phần tự luận trình bày lời giải chi tiết.",
+      "minutes": 60,
+      "note": "Một số bài toán trong kỳ thi học bổng Ngôi Sao Hà Nội — Môn Toán Lớp 5, năm học 2025-2026 (nguồn: PDF Loigiaihay, có đáp án + lời giải chi tiết).",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN 1. TRẮC NGHIỆM"
+        },
+        {
+          "num": 7,
+          "header": "PHẦN 2. TỰ LUẬN"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NSHN-2025-26-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "306,02",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2025-26-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "40,035",
+          "unit": "cm²",
+          "figure": "nshn-2025-c2"
+        },
+        {
+          "id": "NSHN-2025-26-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "NC",
+          "points": 1,
+          "correct": "anh 21 tuổi; em 12 tuổi",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2025-26-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "người thứ nhất 7,5 giờ; người thứ hai 15 giờ",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2025-26-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "511/510",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2025-26-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "120",
+          "unit": "cm²",
+          "figure": "nshn-2025-c6"
+        },
+        {
+          "id": "NSHN-2025-26-B1",
+          "num": 7,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 2,
+          "correct": "x = 1,45",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2025-26-B2",
+          "num": 8,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 2,
+          "correct": "ngày thứ nhất 41 tạ; ngày thứ hai 12,3 tạ; ngày thứ ba 72,3 tạ",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NSHN-2025-26-B3",
+          "num": 9,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 2,
+          "correct": "a) 16 hình tam giác",
+          "unit": null,
+          "figure": "nshn-2025-b3"
+        }
+      ]
+    },
+    {
       "id": "nshn-2026",
       "school": "nshn",
       "kind": "official",
@@ -8303,6 +8424,1739 @@
           "points": 1,
           "correct": "<",
           "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ams-2023",
+      "school": "ams",
+      "kind": "official",
+      "year": "2023-2024",
+      "title": "Đề thi tuyển sinh vào lớp 6 môn Toán — Trường THCS Hà Nội – Amsterdam (2023-2024)",
+      "intro": "Phần I học sinh chỉ điền đáp số vào ô trống; Phần II trình bày lời giải chi tiết.",
+      "minutes": 45,
+      "note": "Đề thi tuyển sinh vào lớp 6 trường Amsterdam, năm học 2023-2024 (nguồn: Loigiaihay.com).",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN I: ĐIỀN ĐÁP SỐ"
+        },
+        {
+          "num": 13,
+          "header": "PHẦN II: TỰ LUẬN"
+        }
+      ],
+      "questions": [
+        {
+          "id": "AMS-2023-24-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "8",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2023-24-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "0",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2023-24-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1/7",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2023-24-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "20",
+          "unit": "người",
+          "figure": null
+        },
+        {
+          "id": "AMS-2023-24-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "N",
+          "unit": null,
+          "figure": "ams-2023-c5"
+        },
+        {
+          "id": "AMS-2023-24-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "200",
+          "unit": "cm²",
+          "figure": "ams-2023-c6"
+        },
+        {
+          "id": "AMS-2023-24-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "5",
+          "unit": "bao lì xì",
+          "figure": null
+        },
+        {
+          "id": "AMS-2023-24-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "66",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2023-24-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "2024",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2023-24-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "10,88",
+          "unit": "%",
+          "figure": null
+        },
+        {
+          "id": "AMS-2023-24-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "7",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2023-24-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "101/299",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2023-24-B1",
+          "num": 13,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "3,2",
+          "unit": "cm²",
+          "figure": "ams-2023-b1"
+        },
+        {
+          "id": "AMS-2023-24-B2",
+          "num": 14,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 2,
+          "correct": "6",
+          "unit": "bàn",
+          "figure": null
+        },
+        {
+          "id": "AMS-2023-24-B3",
+          "num": 15,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 2,
+          "correct": "10",
+          "unit": "lần",
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "ams-2022",
+      "school": "ams",
+      "kind": "official",
+      "year": "2022-2023",
+      "title": "Đề thi tuyển sinh vào lớp 6 môn Toán — Trường THCS Hà Nội – Amsterdam (2022-2023)",
+      "intro": "Phần I học sinh chỉ điền đáp số vào ô trống; Phần II trình bày lời giải chi tiết.",
+      "minutes": 45,
+      "note": "Đề thi tuyển sinh vào lớp 6 trường Amsterdam, năm học 2022-2023 (nguồn: Loigiaihay.com).",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN I: ĐIỀN ĐÁP SỐ"
+        },
+        {
+          "num": 13,
+          "header": "PHẦN II: TỰ LUẬN"
+        }
+      ],
+      "questions": [
+        {
+          "id": "AMS-2022-23-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "84",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2022-23-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "35",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2022-23-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1/2022",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2022-23-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "1011",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2022-23-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 1,
+          "correct": "300",
+          "unit": "km",
+          "figure": null
+        },
+        {
+          "id": "AMS-2022-23-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "do",
+          "grade": "L5",
+          "points": 1,
+          "correct": "1155",
+          "unit": "lít",
+          "figure": null
+        },
+        {
+          "id": "AMS-2022-23-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "4110736",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2022-23-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "27",
+          "unit": "chai",
+          "figure": null
+        },
+        {
+          "id": "AMS-2022-23-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "27",
+          "unit": "viên",
+          "figure": null
+        },
+        {
+          "id": "AMS-2022-23-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "18",
+          "unit": "cm",
+          "figure": "ams-2022-c10"
+        },
+        {
+          "id": "AMS-2022-23-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "48",
+          "unit": "cm²",
+          "figure": "ams-2022-c11"
+        },
+        {
+          "id": "AMS-2022-23-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "20",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2022-23-B1",
+          "num": 13,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 2,
+          "correct": "30",
+          "unit": "học sinh",
+          "figure": null
+        },
+        {
+          "id": "AMS-2022-23-B2",
+          "num": 14,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 2,
+          "correct": "16",
+          "unit": "km",
+          "figure": null
+        },
+        {
+          "id": "AMS-2022-23-B3",
+          "num": 15,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "2",
+          "unit": null,
+          "figure": "ams-2022-b3"
+        }
+      ]
+    },
+    {
+      "id": "ams-2020",
+      "school": "ams",
+      "kind": "official",
+      "year": "2020-2021",
+      "title": "Đề thi tuyển sinh vào lớp 6 môn Toán — Trường THCS Hà Nội – Amsterdam (2020-2021)",
+      "intro": "Phần I học sinh ghi đáp án vào ô trống; Phần II trình bày lời giải chi tiết.",
+      "minutes": 45,
+      "note": "Đề thi tuyển sinh vào lớp 6 trường Amsterdam, năm học 2020-2021 (nguồn: Loigiaihay.com).",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN I: TRẮC NGHIỆM (ghi đáp án)"
+        },
+        {
+          "num": 13,
+          "header": "PHẦN II: TỰ LUẬN"
+        }
+      ],
+      "questions": [
+        {
+          "id": "AMS-2020-21-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "96",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2020-21-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "700",
+          "unit": "cm²",
+          "figure": null
+        },
+        {
+          "id": "AMS-2020-21-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "40",
+          "unit": "ngày",
+          "figure": null
+        },
+        {
+          "id": "AMS-2020-21-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "5",
+          "unit": "đơn vị",
+          "figure": null
+        },
+        {
+          "id": "AMS-2020-21-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "125",
+          "unit": "cm³",
+          "figure": null
+        },
+        {
+          "id": "AMS-2020-21-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "50",
+          "unit": "%",
+          "figure": null
+        },
+        {
+          "id": "AMS-2020-21-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "135",
+          "unit": "cái bắt tay",
+          "figure": null
+        },
+        {
+          "id": "AMS-2020-21-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "24",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "AMS-2020-21-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "66",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "AMS-2020-21-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L5",
+          "points": 1,
+          "correct": "23",
+          "unit": "câu",
+          "figure": null
+        },
+        {
+          "id": "AMS-2020-21-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "150",
+          "unit": "hộp",
+          "figure": null
+        },
+        {
+          "id": "AMS-2020-21-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "120",
+          "unit": "kg",
+          "figure": null
+        },
+        {
+          "id": "AMS-2020-21-B1",
+          "num": 13,
+          "type": "essay",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 2,
+          "correct": "40",
+          "unit": "m",
+          "figure": null
+        },
+        {
+          "id": "AMS-2020-21-B2",
+          "num": 14,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "100",
+          "unit": "cm²",
+          "figure": "ams-2020-b2"
+        },
+        {
+          "id": "AMS-2020-21-B3",
+          "num": 15,
+          "type": "essay",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 2,
+          "correct": "3",
+          "unit": "giờ",
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "arc-2020cb",
+      "school": "arc",
+      "kind": "official",
+      "year": "2020-2021",
+      "title": "Đề thi vào lớp 6 — THCS Archimedes (Vòng cơ bản)",
+      "intro": "Học sinh ghi đáp số cho mỗi câu.",
+      "minutes": 60,
+      "note": "Đề thi tuyển sinh vào lớp 6 môn Toán — Trường THCS Archimedes, vòng cơ bản, năm học 2020–2021 (nguồn: loigiaihay.com).",
+      "sections": [],
+      "questions": [
+        {
+          "id": "ARC-2020-21-CB-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "21",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "26,64",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "4,5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "110",
+          "unit": "mảnh",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "38",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "log",
+          "grade": "L5",
+          "points": 1,
+          "correct": "5",
+          "unit": "bạn",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "8",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 1,
+          "correct": "11",
+          "unit": "giờ",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L5",
+          "points": 1,
+          "correct": "6",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "76",
+          "unit": "hình",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "650000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "40",
+          "unit": "sản phẩm",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1200",
+          "unit": "m²",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "323",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C15",
+          "num": 15,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "280; 290",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C16",
+          "num": 16,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "27",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-CB-C17",
+          "num": 17,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "10 lần và 9 đơn vị",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "arc-2020nc",
+      "school": "arc",
+      "kind": "official",
+      "year": "2020-2021",
+      "title": "Đề thi vào lớp 6 — THCS Archimedes (Vòng nâng cao)",
+      "intro": "Học sinh ghi đáp số cho mỗi câu. Đề nâng cao, nhiều câu suy luận.",
+      "minutes": 90,
+      "note": "Đề thi tuyển sinh vào lớp 6 môn Toán — Trường THCS Archimedes, vòng nâng cao, năm học 2020–2021 (nguồn: loigiaihay.com).",
+      "sections": [],
+      "questions": [
+        {
+          "id": "ARC-2020-21-NC-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "75",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "72",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1515/2021",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "7",
+          "unit": "đơn vị",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "1536",
+          "unit": "cm³",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "253000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1012",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "16",
+          "unit": "ngày",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "123,5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C11",
+          "num": 11,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "81",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C12",
+          "num": 12,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1296",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C13",
+          "num": 13,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "72",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C14",
+          "num": 14,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "NC",
+          "points": 1,
+          "correct": "38",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C15",
+          "num": 15,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "38",
+          "unit": "bạn",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C16",
+          "num": 16,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "360",
+          "unit": "trang",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C17",
+          "num": 17,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "4",
+          "unit": "số",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C18",
+          "num": 18,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "1331",
+          "unit": "cm³",
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C19",
+          "num": 19,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "367509",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2020-21-NC-C20",
+          "num": 20,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "NC",
+          "points": 1,
+          "correct": "88",
+          "unit": "phút",
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "arc-2022",
+      "school": "arc",
+      "kind": "official",
+      "year": "2022-2023",
+      "title": "Đề thi vào lớp 6 — THCS Archimedes (Bài cơ bản)",
+      "intro": "Đề trắc nghiệm — chọn một đáp án đúng cho mỗi câu.",
+      "minutes": 60,
+      "note": "Đề thi tuyển sinh vào lớp 6 môn Toán — Trường THCS Archimedes, bài cơ bản (trắc nghiệm), năm học 2022–2023 (nguồn: loigiaihay.com).",
+      "sections": [],
+      "questions": [
+        {
+          "id": "ARC-2022-23-C1",
+          "num": 1,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C2",
+          "num": 2,
+          "type": "mcq",
+          "topic": "tg",
+          "grade": "L4",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C3",
+          "num": 3,
+          "type": "mcq",
+          "topic": "do",
+          "grade": "L5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C4",
+          "num": 4,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C5",
+          "num": 5,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C6",
+          "num": 6,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C7",
+          "num": 7,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C8",
+          "num": 8,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C9",
+          "num": 9,
+          "type": "mcq",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C10",
+          "num": 10,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C11",
+          "num": 11,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C12",
+          "num": 12,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C13",
+          "num": 13,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C14",
+          "num": 14,
+          "type": "mcq",
+          "topic": "tuoi",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C15",
+          "num": 15,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C16",
+          "num": 16,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C17",
+          "num": 17,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C18",
+          "num": 18,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C19",
+          "num": 19,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C20",
+          "num": 20,
+          "type": "mcq",
+          "topic": "tg",
+          "grade": "L4",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C21",
+          "num": 21,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C22",
+          "num": 22,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C23",
+          "num": 23,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C24",
+          "num": 24,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C25",
+          "num": 25,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C26",
+          "num": 26,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L4",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C27",
+          "num": 27,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C28",
+          "num": 28,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C29",
+          "num": 29,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C30",
+          "num": 30,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C31",
+          "num": 31,
+          "type": "mcq",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C32",
+          "num": 32,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C33",
+          "num": 33,
+          "type": "mcq",
+          "topic": "log",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C34",
+          "num": 34,
+          "type": "mcq",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C35",
+          "num": 35,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C36",
+          "num": 36,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C37",
+          "num": 37,
+          "type": "mcq",
+          "topic": "log",
+          "grade": "L5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C38",
+          "num": 38,
+          "type": "mcq",
+          "topic": "log",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C39",
+          "num": 39,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": "arc-2022-c39"
+        },
+        {
+          "id": "ARC-2022-23-C40",
+          "num": 40,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": "arc-2022-c40"
+        },
+        {
+          "id": "ARC-2022-23-C41",
+          "num": 41,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C42",
+          "num": 42,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "D",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C43",
+          "num": 43,
+          "type": "mcq",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C44",
+          "num": 44,
+          "type": "mcq",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C45",
+          "num": 45,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "B",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C46",
+          "num": 46,
+          "type": "mcq",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C47",
+          "num": 47,
+          "type": "mcq",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C48",
+          "num": 48,
+          "type": "mcq",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C49",
+          "num": 49,
+          "type": "mcq",
+          "topic": "ti",
+          "grade": "L5",
+          "points": 1,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2022-23-C50",
+          "num": 50,
+          "type": "mcq",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "A",
+          "unit": null,
+          "figure": null
+        }
+      ]
+    },
+    {
+      "id": "arc-2021",
+      "school": "arc",
+      "kind": "official",
+      "year": "2021-2022",
+      "title": "Đề thi vào lớp 6 — THCS Archimedes (Vòng nâng cao)",
+      "intro": "Phần I học sinh ghi đáp số cho mỗi câu; Phần II trình bày lời giải chi tiết.",
+      "minutes": 90,
+      "note": "Đề thi tuyển sinh vào lớp 6 môn Toán — Trường THCS Archimedes, vòng nâng cao, năm học 2021–2022 (nguồn: loigiaihay.com).",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN I: TRẮC NGHIỆM (ghi đáp số)"
+        },
+        {
+          "num": 11,
+          "header": "PHẦN II: TỰ LUẬN"
+        }
+      ],
+      "questions": [
+        {
+          "id": "ARC-2021-22-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "1001",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2021-22-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "2069",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2021-22-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "15",
+          "unit": "số",
+          "figure": null
+        },
+        {
+          "id": "ARC-2021-22-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "L5",
+          "points": 1,
+          "correct": "900",
+          "unit": "cm²",
+          "figure": null
+        },
+        {
+          "id": "ARC-2021-22-C5",
+          "num": 5,
+          "type": "fill",
+          "topic": "tuoi",
+          "grade": "L5",
+          "points": 1,
+          "correct": "12",
+          "unit": "tuổi",
+          "figure": null
+        },
+        {
+          "id": "ARC-2021-22-C6",
+          "num": 6,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "L5",
+          "points": 1,
+          "correct": "390000",
+          "unit": "đồng",
+          "figure": null
+        },
+        {
+          "id": "ARC-2021-22-C7",
+          "num": 7,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "5",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2021-22-C8",
+          "num": 8,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "8",
+          "unit": null,
+          "figure": "arc-2021-c8"
+        },
+        {
+          "id": "ARC-2021-22-C9",
+          "num": 9,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "480",
+          "unit": "cm²",
+          "figure": "arc-2021-c9"
+        },
+        {
+          "id": "ARC-2021-22-C10",
+          "num": 10,
+          "type": "fill",
+          "topic": "log",
+          "grade": "NC",
+          "points": 1,
+          "correct": "12",
+          "unit": "cách",
+          "figure": null
+        },
+        {
+          "id": "ARC-2021-22-C11",
+          "num": 11,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 2,
+          "correct": "C",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2021-22-C12",
+          "num": 12,
+          "type": "essay",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "14",
+          "unit": "cm²",
+          "figure": "arc-2021-c12"
+        },
+        {
+          "id": "ARC-2021-22-C13",
+          "num": 13,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "191",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "ARC-2021-22-C14",
+          "num": 14,
+          "type": "essay",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 2,
+          "correct": "774",
+          "unit": "chữ số",
           "figure": null
         }
       ]

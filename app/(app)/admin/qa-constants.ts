@@ -17,11 +17,17 @@ export const IMPLEMENTED_FIGURES_LIST = [
   "ntl-2022-c11", "ntl-2022-b2", "ntl-2023-c7", "ntl-2023-c10", "ntl-2023-b2",
   "ntl-2025-c8", "ntl-2025-c9", "ntl-2025-b2",
   "nshn-2026-c8", "nshn-2026-c9", "nshn-2026-b2",
+  "nshn-2025-c2", "nshn-2025-c6", "nshn-2025-b3",
   "nshn-2020-c7",
   "nshn-2021-c5", "nshn-2021-c9", "nshn-2021-c10",
   "nshn-2022-c7", "nshn-2022-c9",
   "nshm-2026-c6", "nshm-2026-c9", "nshm-2026-b2",
   "nshm-2024-c10", "nshm-2024-c12",
+  "ams-2023-c5", "ams-2023-c6", "ams-2023-b1",
+  "ams-2022-c10", "ams-2022-c11", "ams-2022-b3",
+  "ams-2020-b2",
+  "arc-2022-c39", "arc-2022-c40",
+  "arc-2021-c8", "arc-2021-c9", "arc-2021-c12",
 ] as const;
 
 export const IMPLEMENTED_FIGURES = new Set<string>(IMPLEMENTED_FIGURES_LIST);

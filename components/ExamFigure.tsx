@@ -2600,6 +2600,100 @@ export function ExamFigure({ figure }: Props) {
       );
     }
 
+    // ─── NSHN 2025-26 ──────────────────────────────────────────────────────
+    case "nshn-2025-c2": {
+      // Phần tô đậm = vành khăn giữa hai đường tròn đồng tâm.
+      // Đường tròn lớn d=10cm (r=5), bé d=7cm (r=3,5). Scale ×10 → R=50, r=35.
+      // Annulus dùng path fillRule="evenodd" để lỗ ở giữa trong suốt (an toàn dark mode).
+      return (
+        <div className="q-figure-wrapper" style={{ margin: "12px 0", maxWidth: "160px" }}>
+          <svg viewBox="0 0 120 120" width="100%" style={{ display: "block", height: "auto" }}>
+            <path
+              d="M 10,60 a 50,50 0 1,0 100,0 a 50,50 0 1,0 -100,0 Z M 25,60 a 35,35 0 1,0 70,0 a 35,35 0 1,0 -70,0 Z"
+              fillRule="evenodd"
+              fill="orange"
+              stroke="var(--ink)"
+              strokeWidth="1.2"
+            />
+          </svg>
+        </div>
+      );
+    }
+
+    case "nshn-2025-c6": {
+      // Tam giác ABC; M trung điểm AB, N trung điểm AC; nối M–C và N–B cắt nhau tại O.
+      const A = { x: 150, y: 30 };
+      const B = { x: 40, y: 250 };
+      const C = { x: 320, y: 250 };
+      const M = { x: (A.x + B.x) / 2, y: (A.y + B.y) / 2 }; // (95,140)
+      const N = { x: (A.x + C.x) / 2, y: (A.y + C.y) / 2 }; // (235,140)
+      // Giao điểm MC ∩ NB: do đối xứng tham số t = s = 1/3 → O = (170, 176.7)
+      const O = { x: 170, y: 176.7 };
+      return (
+        <div className="q-figure-wrapper" style={{ margin: "12px 0", maxWidth: "320px" }}>
+          <svg viewBox="0 0 360 290" width="100%" style={{ display: "block", height: "auto" }}>
+            <polygon points={`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y}`} fill="none" stroke="var(--ink)" strokeWidth="1.6" />
+            <line x1={M.x} y1={M.y} x2={C.x} y2={C.y} stroke="var(--ink)" strokeWidth="1.2" />
+            <line x1={N.x} y1={N.y} x2={B.x} y2={B.y} stroke="var(--ink)" strokeWidth="1.2" />
+            {[A, B, C, M, N, O].map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r={3.5} fill="orange" stroke="orange" />
+            ))}
+            <text x={A.x} y={A.y - 8} fill="var(--ink)" fontSize="18" textAnchor="middle" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>A</text>
+            <text x={B.x - 8} y={B.y + 16} fill="var(--ink)" fontSize="18" textAnchor="end" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>B</text>
+            <text x={C.x + 8} y={C.y + 16} fill="var(--ink)" fontSize="18" textAnchor="start" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>C</text>
+            <text x={M.x - 12} y={M.y - 2} fill="var(--ink)" fontSize="18" textAnchor="end" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>M</text>
+            <text x={N.x + 12} y={N.y - 2} fill="var(--ink)" fontSize="18" textAnchor="start" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>N</text>
+            <text x={O.x + 6} y={O.y + 18} fill="var(--ink)" fontSize="18" textAnchor="start" style={{ fontStyle: "italic", fontFamily: "Times, serif" }}>O</text>
+          </svg>
+        </div>
+      );
+    }
+
+    case "nshn-2025-b3": {
+      // Tam giác đều cạnh 4 đơn vị, chia thành 16 tam giác con (hàng 1,3,5,7).
+      // Vẽ toàn bộ 10 tam giác con HƯỚNG LÊN → phủ hết mọi cạnh của lưới.
+      const unit = 60;
+      const rowH = 52; // ≈ unit·√3/2
+      const cx = 150;
+      const topY = 20;
+      const pt = (i: number, j: number) => ({
+        x: cx + (j - i / 2) * unit,
+        y: topY + i * rowH,
+      });
+      const upTriangles: React.ReactElement[] = [];
+      for (let i = 0; i < 4; i++) {
+        for (let k = 0; k <= i; k++) {
+          const top = pt(i, k);
+          const bl = pt(i + 1, k);
+          const br = pt(i + 1, k + 1);
+          upTriangles.push(
+            <polygon
+              key={`${i}-${k}`}
+              points={`${top.x},${top.y} ${bl.x},${bl.y} ${br.x},${br.y}`}
+              fill="none"
+              stroke="var(--ink)"
+              strokeWidth="1.4"
+            />
+          );
+        }
+      }
+      // Nhãn "1 cm" dưới cạnh đơn vị dưới-trái: từ (30,228) đến (90,228).
+      const aL = pt(4, 0); // (30,228)
+      const aR = pt(4, 1); // (90,228)
+      const ay = aL.y + 22;
+      return (
+        <div className="q-figure-wrapper" style={{ margin: "12px 0", maxWidth: "300px" }}>
+          <svg viewBox="0 0 300 280" width="100%" style={{ display: "block", height: "auto" }}>
+            {upTriangles}
+            <line x1={aL.x} y1={ay} x2={aR.x} y2={ay} stroke="var(--ink)" strokeWidth="1" />
+            <line x1={aL.x} y1={ay - 4} x2={aL.x} y2={ay + 4} stroke="var(--ink)" strokeWidth="1" />
+            <line x1={aR.x} y1={ay - 4} x2={aR.x} y2={ay + 4} stroke="var(--ink)" strokeWidth="1" />
+            <text x={(aL.x + aR.x) / 2} y={ay + 18} fill="var(--ink)" fontSize="14" textAnchor="middle" style={{ fontFamily: "Times, serif" }}>1 cm</text>
+          </svg>
+        </div>
+      );
+    }
+
     case "nshn-2020-c7": {
       // Hình vuông cam cạnh 21cm + 2 nửa đường tròn đường kính bằng cạnh (21cm).
       // B là tâm nửa đường tròn trên (bụng lên), C là tâm nửa đường tròn dưới
@@ -3201,6 +3295,429 @@ export function ExamFigure({ figure }: Props) {
             <text x={C.x + 8} y={C.y + 16} fill="var(--ink)" fontSize={16} textAnchor="start" style={labelStyle}>C</text>
             <text x={D.x - 8} y={D.y + 16} fill="var(--ink)" fontSize={16} textAnchor="end" style={labelStyle}>D</text>
             <text x={M.x + 8} y={M.y - 4} fill="var(--ink)" fontSize={16} textAnchor="start" style={labelStyle}>M</text>
+          </svg>
+        </div>
+      );
+    }
+
+    // --- AMS 2023-24 Câu 5: lưới gấp hộp lập phương (R Q M / N P) ---
+    case "ams-2023-c5": {
+      const cell = 54;
+      const cells = [
+        { x: 5, y: 5, t: "R" },
+        { x: 5 + cell, y: 5, t: "Q" },
+        { x: 5 + 2 * cell, y: 5, t: "M" },
+        { x: 5 + 2 * cell, y: 5 + cell, t: "N" },
+        { x: 5 + 3 * cell, y: 5 + cell, t: "P" },
+      ];
+      return (
+        <div className="q-figure-wrapper" style={{ margin: "16px 0", maxWidth: "300px" }}>
+          <svg viewBox={`0 0 ${5 * 2 + 4 * cell} ${5 * 2 + 2 * cell}`} width="100%" style={{ display: "block", height: "auto" }}>
+            {cells.map((c, i) => (
+              <g key={i}>
+                <rect x={c.x} y={c.y} width={cell} height={cell} fill="none" stroke="var(--ink)" strokeWidth={1.5} strokeDasharray="4 3" />
+                <text x={c.x + cell / 2} y={c.y + cell / 2 + 8} fill="orange" fontSize={26} fontWeight="bold" textAnchor="middle">{c.t}</text>
+              </g>
+            ))}
+          </svg>
+        </div>
+      );
+    }
+
+    // --- AMS 2023-24 Câu 6: tờ giấy 20x15, cắt 4 góc vuông cạnh 5 ---
+    case "ams-2023-c6": {
+      const ox = 35, oy = 35, W = 200, H = 150, s = 50;
+      return (
+        <div className="q-figure-wrapper" style={{ margin: "16px 0", maxWidth: "320px" }}>
+          <svg viewBox="0 0 300 210" width="100%" style={{ display: "block", height: "auto" }}>
+            <rect x={ox} y={oy} width={W} height={H} fill="none" stroke="var(--ink)" strokeWidth={1.6} />
+            {/* 4 góc bị cắt (nét đứt) */}
+            {[
+              { x: ox, y: oy },
+              { x: ox + W - s, y: oy },
+              { x: ox, y: oy + H - s },
+              { x: ox + W - s, y: oy + H - s },
+            ].map((c, i) => (
+              <rect key={i} x={c.x} y={c.y} width={s} height={s} fill="none" stroke="var(--ink)" strokeWidth={1.2} strokeDasharray="4 3" />
+            ))}
+            <text x={ox + W / 2} y={oy - 12} fill="var(--ink)" fontSize={14} textAnchor="middle">20 cm</text>
+            <text x={ox + W + 12} y={oy + s / 2 + 4} fill="var(--ink)" fontSize={14} textAnchor="start">5 cm</text>
+            <text x={ox + W + 12} y={oy + H / 2 + 4} fill="var(--ink)" fontSize={14} textAnchor="start">15 cm</text>
+          </svg>
+        </div>
+      );
+    }
+
+    // --- AMS 2023-24 Bài 1: hai hình vuông (6 và 4), phần tô đậm là tam giác GEH ---
+    case "ams-2023-b1": {
+      const s = 28, ox = 22, oy = 22;
+      const P = (x: number, y: number) => ({ x: ox + x * s, y: oy + y * s });
+      const A = P(0, 0), D = P(6, 0), C = P(6, 6), B = P(0, 6);
+      const E = P(6, 2), F = P(10, 2), G = P(10, 6), H = P(6, 3.6);
+      const labelStyle = { fontStyle: "italic", fontFamily: "Times, serif" } as const;
+      return (
+        <div className="q-figure-wrapper" style={{ margin: "16px 0", maxWidth: "360px" }}>
+          <svg viewBox="0 0 340 210" width="100%" style={{ display: "block", height: "auto" }}>
+            {/* hình vuông lớn */}
+            <polygon points={`${A.x},${A.y} ${D.x},${D.y} ${C.x},${C.y} ${B.x},${B.y}`} fill="none" stroke="var(--ink)" strokeWidth={1.4} />
+            {/* hình vuông nhỏ */}
+            <polygon points={`${E.x},${E.y} ${F.x},${F.y} ${G.x},${G.y} ${C.x},${C.y}`} fill="none" stroke="var(--ink)" strokeWidth={1.4} />
+            {/* tam giác tô đậm GEH */}
+            <polygon points={`${G.x},${G.y} ${E.x},${E.y} ${H.x},${H.y}`} fill="orange" stroke="orange" strokeWidth={1} />
+            {/* các đường nối */}
+            <line x1={A.x} y1={A.y} x2={G.x} y2={G.y} stroke="var(--ink)" strokeWidth={1.2} />
+            <line x1={A.x} y1={A.y} x2={E.x} y2={E.y} stroke="var(--ink)" strokeWidth={1.2} />
+            <line x1={E.x} y1={E.y} x2={G.x} y2={G.y} stroke="var(--ink)" strokeWidth={1.2} />
+            {[
+              { p: A, t: "A", dx: -8, dy: -4, a: "end" },
+              { p: D, t: "D", dx: 0, dy: -8, a: "middle" },
+              { p: B, t: "B", dx: -8, dy: 16, a: "end" },
+              { p: C, t: "C", dx: -4, dy: 18, a: "end" },
+              { p: E, t: "E", dx: 8, dy: -4, a: "start" },
+              { p: F, t: "F", dx: 8, dy: -4, a: "start" },
+              { p: G, t: "G", dx: 8, dy: 14, a: "start" },
+              { p: H, t: "H", dx: -8, dy: 4, a: "end" },
+            ].map((l, i) => (
+              <text key={i} x={l.p.x + l.dx} y={l.p.y + l.dy} fill="var(--ink)" fontSize={15} textAnchor={l.a as "start" | "middle" | "end"} style={labelStyle}>{l.t}</text>
+            ))}
+          </svg>
+        </div>
+      );
+    }
+
+    // --- AMS 2022-23 Câu 10: 4 mảnh ghép từ ô vuông cạnh 1cm ---
+    case "ams-2022-c10": {
+      const c = 22;
+      const pieces = [
+        { base: [15, 18], cells: [[0, 0], [1, 0], [2, 0], [0, 1], [1, 1], [2, 1]], label: "(1)", lx: 15 + 1.5 * c },
+        { base: [120, 18], cells: [[0, 0], [1, 0], [2, 0], [1, 1]], label: "(2)", lx: 120 + 1.5 * c },
+        { base: [232, 40], cells: [[0, 0], [1, 0], [2, 0]], label: "(3)", lx: 232 + 1.5 * c },
+        { base: [318, 7], cells: [[0, 0], [1, 0], [0, 1], [1, 1], [0, 2]], label: "(4)", lx: 318 + c },
+      ];
+      return (
+        <div className="q-figure-wrapper" style={{ margin: "16px 0", maxWidth: "400px" }}>
+          <svg viewBox="0 0 390 140" width="100%" style={{ display: "block", height: "auto" }}>
+            {pieces.map((pc, pi) => (
+              <g key={pi}>
+                {pc.cells.map(([col, row], ci) => (
+                  <rect key={ci} x={pc.base[0] + col * c} y={pc.base[1] + row * c} width={c} height={c} fill="none" stroke="var(--ink)" strokeWidth={1.3} />
+                ))}
+                <text x={pc.lx} y={125} fill="var(--ink)" fontSize={13} textAnchor="middle">{pc.label}</text>
+              </g>
+            ))}
+          </svg>
+        </div>
+      );
+    }
+
+    // --- AMS 2022-23 Câu 11: hình chữ nhật ABCD, tam giác PMQ ---
+    case "ams-2022-c11": {
+      const A = { x: 18, y: 18 }, B = { x: 210, y: 18 }, C = { x: 210, y: 162 }, D = { x: 18, y: 162 };
+      const M = { x: 210, y: 90 }, P = { x: 88, y: 18 }, Q = { x: 140, y: 162 };
+      const labelStyle = { fontStyle: "italic", fontFamily: "Times, serif" } as const;
+      return (
+        <div className="q-figure-wrapper" style={{ margin: "16px 0", maxWidth: "300px" }}>
+          <svg viewBox="0 0 235 185" width="100%" style={{ display: "block", height: "auto" }}>
+            <polygon points={`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y} ${D.x},${D.y}`} fill="none" stroke="var(--ink)" strokeWidth={1.4} />
+            <polygon points={`${P.x},${P.y} ${M.x},${M.y} ${Q.x},${Q.y}`} fill="orange" fillOpacity={0.18} stroke="var(--ink)" strokeWidth={1.3} />
+            {[
+              { p: A, t: "A", dx: -8, dy: -4, a: "end" },
+              { p: B, t: "B", dx: 8, dy: -4, a: "start" },
+              { p: C, t: "C", dx: 8, dy: 14, a: "start" },
+              { p: D, t: "D", dx: -8, dy: 14, a: "end" },
+              { p: M, t: "M", dx: 9, dy: 4, a: "start" },
+              { p: P, t: "P", dx: 0, dy: -8, a: "middle" },
+              { p: Q, t: "Q", dx: 0, dy: 16, a: "middle" },
+            ].map((l, i) => (
+              <text key={i} x={l.p.x + l.dx} y={l.p.y + l.dy} fill="var(--ink)" fontSize={15} textAnchor={l.a as "start" | "middle" | "end"} style={labelStyle}>{l.t}</text>
+            ))}
+          </svg>
+        </div>
+      );
+    }
+
+    // --- AMS 2022-23 Bài 3: hình thang ABCD, M trên AC, N trên DC (MN // BD) ---
+    case "ams-2022-b3": {
+      const A = { x: 50, y: 22 }, B = { x: 190, y: 22 }, C = { x: 235, y: 142 }, D = { x: 15, y: 142 };
+      const M = { x: 166.7, y: 100 }, N = { x: 110, y: 142 };
+      const labelStyle = { fontStyle: "italic", fontFamily: "Times, serif" } as const;
+      const lines: [typeof A, typeof A][] = [
+        [A, C], [B, D], [M, N], [B, N], [B, M], [D, M],
+      ];
+      return (
+        <div className="q-figure-wrapper" style={{ margin: "16px 0", maxWidth: "320px" }}>
+          <svg viewBox="0 0 255 168" width="100%" style={{ display: "block", height: "auto" }}>
+            <polygon points={`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y} ${D.x},${D.y}`} fill="none" stroke="var(--ink)" strokeWidth={1.5} />
+            {lines.map(([p, q], i) => (
+              <line key={i} x1={p.x} y1={p.y} x2={q.x} y2={q.y} stroke="var(--ink)" strokeWidth={1.1} />
+            ))}
+            {[M, N].map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r={3.2} fill="orange" stroke="orange" />
+            ))}
+            {[
+              { p: A, t: "A", dx: -6, dy: -5, a: "end" },
+              { p: B, t: "B", dx: 6, dy: -5, a: "start" },
+              { p: C, t: "C", dx: 8, dy: 6, a: "start" },
+              { p: D, t: "D", dx: -8, dy: 6, a: "end" },
+              { p: M, t: "M", dx: 9, dy: 0, a: "start" },
+              { p: N, t: "N", dx: 0, dy: 16, a: "middle" },
+            ].map((l, i) => (
+              <text key={i} x={l.p.x + l.dx} y={l.p.y + l.dy} fill="var(--ink)" fontSize={15} textAnchor={l.a as "start" | "middle" | "end"} style={labelStyle}>{l.t}</text>
+            ))}
+          </svg>
+        </div>
+      );
+    }
+
+    // --- AMS 2020-21 Bài 2: hình chữ nhật ABCD, M trên DC, AM cắt BD tại I ---
+    case "ams-2020-b2": {
+      const A = { x: 20, y: 20 }, B = { x: 240, y: 20 }, C = { x: 240, y: 150 }, D = { x: 20, y: 150 };
+      const M = { x: 150, y: 150 }, I = { x: 101.7, y: 101.7 };
+      const labelStyle = { fontStyle: "italic", fontFamily: "Times, serif" } as const;
+      return (
+        <div className="q-figure-wrapper" style={{ margin: "16px 0", maxWidth: "320px" }}>
+          <svg viewBox="0 0 270 175" width="100%" style={{ display: "block", height: "auto" }}>
+            <polygon points={`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y} ${D.x},${D.y}`} fill="none" stroke="var(--ink)" strokeWidth={1.5} />
+            <line x1={A.x} y1={A.y} x2={M.x} y2={M.y} stroke="var(--ink)" strokeWidth={1.2} />
+            <line x1={B.x} y1={B.y} x2={D.x} y2={D.y} stroke="var(--ink)" strokeWidth={1.2} />
+            {[M, I].map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r={3.2} fill="orange" stroke="orange" />
+            ))}
+            {[
+              { p: A, t: "A", dx: -8, dy: -4, a: "end" },
+              { p: B, t: "B", dx: 8, dy: -4, a: "start" },
+              { p: C, t: "C", dx: 8, dy: 14, a: "start" },
+              { p: D, t: "D", dx: -8, dy: 14, a: "end" },
+              { p: M, t: "M", dx: 0, dy: 16, a: "middle" },
+              { p: I, t: "I", dx: 8, dy: -2, a: "start" },
+            ].map((l, i) => (
+              <text key={i} x={l.p.x + l.dx} y={l.p.y + l.dy} fill="var(--ink)" fontSize={15} textAnchor={l.a as "start" | "middle" | "end"} style={labelStyle}>{l.t}</text>
+            ))}
+          </svg>
+        </div>
+      );
+    }
+
+    case "arc-2022-c39": {
+      // Two rectangles sharing the bottom line. Tall rectangle 3×6 (left),
+      // short rectangle 6×3 (right). Green triangle A-E-D where
+      // A = top-left of tall rect, E = top-left corner of short rect, D = bottom-right.
+      // Math coords (cm), B=(0,0): A(0,6) B(0,0) C(3,0) D(9,0) E(3,3); scale 30px/cm.
+      const s = 30;
+      const ox = 45;
+      const oy = 25; // svg y of math y=6 (top)
+      const mx = (x: number) => ox + x * s;
+      const my = (y: number) => oy + (6 - y) * s;
+      const A = { x: mx(0), y: my(6) };
+      const B = { x: mx(0), y: my(0) };
+      const C = { x: mx(3), y: my(0) };
+      const D = { x: mx(9), y: my(0) };
+      const E = { x: mx(3), y: my(3) };
+      const labelStyle = { fontStyle: "italic", fontFamily: "Times, serif" } as const;
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 360 }}>
+          <svg viewBox="0 0 360 240" width="100%" style={{ display: "block", height: "auto" }}>
+            {/* Green triangle A-E-D (the shaded region) */}
+            <polygon
+              points={`${A.x},${A.y} ${E.x},${E.y} ${D.x},${D.y}`}
+              fill="oklch(0.78 0.19 130)"
+              stroke="var(--ink)"
+              strokeWidth={1.2}
+            />
+            {/* Tall rectangle (3 × 6): A top-left, B bottom-left, C bottom-right */}
+            <rect x={A.x} y={A.y} width={3 * s} height={6 * s} fill="none" stroke="var(--ink)" strokeWidth={1.6} />
+            {/* Short rectangle (6 × 3): E top-left, C bottom-left, D bottom-right */}
+            <rect x={E.x} y={E.y} width={6 * s} height={3 * s} fill="none" stroke="var(--ink)" strokeWidth={1.6} />
+            {/* Dimension labels */}
+            <text x={A.x - 10} y={(A.y + B.y) / 2 + 5} fill="var(--ink)" fontSize={14} textAnchor="end" style={labelStyle}>6cm</text>
+            <text x={(B.x + C.x) / 2} y={B.y + 18} fill="var(--ink)" fontSize={14} textAnchor="middle" style={labelStyle}>3cm</text>
+            <text x={(C.x + D.x) / 2} y={D.y + 18} fill="var(--ink)" fontSize={14} textAnchor="middle" style={labelStyle}>6cm</text>
+            <text x={D.x + 8} y={(D.y + my(3)) / 2 + 5} fill="var(--ink)" fontSize={14} textAnchor="start" style={labelStyle}>3cm</text>
+          </svg>
+        </div>
+      );
+    }
+
+    case "arc-2022-c40": {
+      // Quadrilateral ABCD on base AD with feet H, K of the heights from B, C.
+      // Math coords (cm): A(0,0) H(3,0) K(7,0) D(12,0), B(3,5) C(7,4); scale 20px/cm.
+      const s = 20;
+      const ox = 30;
+      const oy = 20; // svg y of math y=5 (top)
+      const mx = (x: number) => ox + x * s;
+      const my = (y: number) => oy + (5 - y) * s;
+      const A = { x: mx(0), y: my(0) };
+      const H = { x: mx(3), y: my(0) };
+      const K = { x: mx(7), y: my(0) };
+      const D = { x: mx(12), y: my(0) };
+      const B = { x: mx(3), y: my(5) };
+      const C = { x: mx(7), y: my(4) };
+      const labelStyle = { fontStyle: "italic", fontFamily: "Times, serif" } as const;
+      const rightAngle = (foot: { x: number; y: number }) =>
+        `M ${foot.x} ${foot.y - 7} L ${foot.x + 7} ${foot.y - 7} L ${foot.x + 7} ${foot.y}`;
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 320 }}>
+          <svg viewBox="0 0 310 150" width="100%" style={{ display: "block", height: "auto" }}>
+            {/* Quadrilateral ABCD */}
+            <polygon
+              points={`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y} ${D.x},${D.y}`}
+              fill="none"
+              stroke="var(--ink)"
+              strokeWidth={1.6}
+            />
+            {/* Heights BH, CK (dashed) */}
+            <line x1={B.x} y1={B.y} x2={H.x} y2={H.y} stroke="var(--ink)" strokeWidth={1.2} strokeDasharray="4 3" />
+            <line x1={C.x} y1={C.y} x2={K.x} y2={K.y} stroke="var(--ink)" strokeWidth={1.2} strokeDasharray="4 3" />
+            {/* Right-angle marks at H and K */}
+            <path d={rightAngle(H)} fill="none" stroke="var(--ink)" strokeWidth={1} />
+            <path d={rightAngle(K)} fill="none" stroke="var(--ink)" strokeWidth={1} />
+            {/* Vertex dots */}
+            {[A, B, C, D].map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r={3.2} fill="orange" stroke="orange" />
+            ))}
+            {/* Vertex + foot labels */}
+            <text x={A.x - 6} y={A.y + 16} fill="var(--ink)" fontSize={15} textAnchor="end" style={labelStyle}>A</text>
+            <text x={B.x} y={B.y - 7} fill="var(--ink)" fontSize={15} textAnchor="middle" style={labelStyle}>B</text>
+            <text x={C.x + 4} y={C.y - 7} fill="var(--ink)" fontSize={15} textAnchor="start" style={labelStyle}>C</text>
+            <text x={D.x + 6} y={D.y + 16} fill="var(--ink)" fontSize={15} textAnchor="start" style={labelStyle}>D</text>
+            <text x={H.x} y={H.y + 16} fill="var(--ink)" fontSize={13} textAnchor="middle" style={labelStyle}>H</text>
+            <text x={K.x} y={K.y + 16} fill="var(--ink)" fontSize={13} textAnchor="middle" style={labelStyle}>K</text>
+            {/* Dimension labels */}
+            <text x={B.x + 5} y={(B.y + H.y) / 2} fill="var(--ink)" fontSize={13} textAnchor="start" style={labelStyle}>5cm</text>
+            <text x={C.x + 5} y={(C.y + K.y) / 2} fill="var(--ink)" fontSize={13} textAnchor="start" style={labelStyle}>4cm</text>
+            <text x={(A.x + H.x) / 2} y={A.y + 30} fill="var(--ink)" fontSize={13} textAnchor="middle" style={labelStyle}>3cm</text>
+            <text x={(H.x + K.x) / 2} y={A.y + 30} fill="var(--ink)" fontSize={13} textAnchor="middle" style={labelStyle}>4cm</text>
+            <text x={(K.x + D.x) / 2} y={A.y + 30} fill="var(--ink)" fontSize={13} textAnchor="middle" style={labelStyle}>5cm</text>
+          </svg>
+        </div>
+      );
+    }
+
+    case "arc-2021-c8": {
+      // Row of 15 squares; cell 1 = "20", cell 15 = "11", shaded cell at
+      // position 11 (value 8). Pattern repeats 20, 8, 11.
+      const n = 15;
+      const cell = 30;
+      const ox = 6;
+      const oy = 8;
+      const shaded = 11; // 1-based position of the tô-đậm cell
+      const labelStyle = { fontStyle: "italic", fontFamily: "Times, serif" } as const;
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 480 }}>
+          <svg viewBox={`0 0 ${ox * 2 + n * cell} ${oy * 2 + cell}`} width="100%" style={{ display: "block", height: "auto" }}>
+            {Array.from({ length: n }, (_, i) => {
+              const x = ox + i * cell;
+              const isShaded = i + 1 === shaded;
+              return (
+                <rect
+                  key={i}
+                  x={x}
+                  y={oy}
+                  width={cell}
+                  height={cell}
+                  fill={isShaded ? "oklch(0.78 0.19 130)" : "none"}
+                  stroke="var(--ink)"
+                  strokeWidth={1.3}
+                />
+              );
+            })}
+            <text x={ox + cell / 2} y={oy + cell / 2 + 5} fill="var(--ink)" fontSize={15} textAnchor="middle" style={labelStyle}>20</text>
+            <text x={ox + (n - 0.5) * cell} y={oy + cell / 2 + 5} fill="var(--ink)" fontSize={15} textAnchor="middle" style={labelStyle}>11</text>
+          </svg>
+        </div>
+      );
+    }
+
+    case "arc-2021-c9": {
+      // Triangle ABC; D midpoint of AC; E on BD with BE:ED = 3:2.
+      // Shaded triangle ADE. Math coords (y-up): B(0,0) C(10,0) A(3,8),
+      // D = midpoint AC = (6.5,4); E = B + 3/5(D-B) = (3.9,2.4).
+      const s = 22;
+      const ox = 18;
+      const oy = 18; // svg y of math y=8 (top)
+      const mx = (x: number) => ox + x * s;
+      const my = (y: number) => oy + (8 - y) * s;
+      const A = { x: mx(3), y: my(8) };
+      const B = { x: mx(0), y: my(0) };
+      const C = { x: mx(10), y: my(0) };
+      const D = { x: mx(6.5), y: my(4) };
+      const E = { x: mx(3.9), y: my(2.4) };
+      const labelStyle = { fontStyle: "italic", fontFamily: "Times, serif" } as const;
+      // tick marks for AD = DC: midpoints of AD and DC with a short cross stroke
+      const tick = (p: { x: number; y: number }, q: { x: number; y: number }) => {
+        const midx = (p.x + q.x) / 2;
+        const midy = (p.y + q.y) / 2;
+        const dx = q.x - p.x;
+        const dy = q.y - p.y;
+        const len = Math.hypot(dx, dy);
+        const nx = (-dy / len) * 5;
+        const ny = (dx / len) * 5;
+        return `M ${midx - nx} ${midy - ny} L ${midx + nx} ${midy + ny}`;
+      };
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 280 }}>
+          <svg viewBox="0 0 260 220" width="100%" style={{ display: "block", height: "auto" }}>
+            {/* Shaded triangle ADE */}
+            <polygon points={`${A.x},${A.y} ${D.x},${D.y} ${E.x},${E.y}`} fill="oklch(0.78 0.19 130)" stroke="none" />
+            {/* Triangle ABC */}
+            <polygon points={`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y}`} fill="none" stroke="var(--ink)" strokeWidth={1.6} />
+            {/* Cevian B-D and side A-E */}
+            <line x1={B.x} y1={B.y} x2={D.x} y2={D.y} stroke="var(--ink)" strokeWidth={1.3} />
+            <line x1={A.x} y1={A.y} x2={E.x} y2={E.y} stroke="var(--ink)" strokeWidth={1.3} />
+            {/* Equal-segment ticks AD = DC */}
+            <path d={tick(A, D)} stroke="var(--ink)" strokeWidth={1.2} />
+            <path d={tick(D, C)} stroke="var(--ink)" strokeWidth={1.2} />
+            {/* Vertex dots */}
+            {[A, B, C, D, E].map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r={3.2} fill="orange" stroke="orange" />
+            ))}
+            {/* Labels */}
+            <text x={A.x} y={A.y - 8} fill="var(--ink)" fontSize={15} textAnchor="middle" style={labelStyle}>A</text>
+            <text x={B.x - 8} y={B.y + 6} fill="var(--ink)" fontSize={15} textAnchor="end" style={labelStyle}>B</text>
+            <text x={C.x + 8} y={C.y + 6} fill="var(--ink)" fontSize={15} textAnchor="start" style={labelStyle}>C</text>
+            <text x={D.x + 9} y={D.y + 4} fill="var(--ink)" fontSize={15} textAnchor="start" style={labelStyle}>D</text>
+            <text x={E.x - 9} y={E.y + 2} fill="var(--ink)" fontSize={15} textAnchor="end" style={labelStyle}>E</text>
+          </svg>
+        </div>
+      );
+    }
+
+    case "arc-2021-c12": {
+      // Upright rectangle ABCD + tilted rectangle CEFG sharing vertex C.
+      // E on AB with AE:EB = 3:2; B lies on FG. Math coords (y-up):
+      // A(0,6) B(8,6) C(8,0) D(0,0) E(4.8,6) F(7.29,7.33) G(10.49,1.33).
+      const s = 22;
+      const ox = 22;
+      const oy = 14; // headroom above F
+      const mx = (x: number) => ox + x * s;
+      const my = (y: number) => oy + (7.33 - y) * s;
+      const A = { x: mx(0), y: my(6) };
+      const B = { x: mx(8), y: my(6) };
+      const C = { x: mx(8), y: my(0) };
+      const D = { x: mx(0), y: my(0) };
+      const E = { x: mx(4.8), y: my(6) };
+      const F = { x: mx(7.29), y: my(7.33) };
+      const G = { x: mx(10.49), y: my(1.33) };
+      const labelStyle = { fontStyle: "italic", fontFamily: "Times, serif" } as const;
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 300 }}>
+          <svg viewBox="0 0 290 215" width="100%" style={{ display: "block", height: "auto" }}>
+            {/* Tilted rectangle CEFG (shaded) */}
+            <polygon points={`${C.x},${C.y} ${E.x},${E.y} ${F.x},${F.y} ${G.x},${G.y}`} fill="oklch(0.82 0.09 250)" stroke="var(--ink)" strokeWidth={1.5} />
+            {/* Upright rectangle ABCD */}
+            <polygon points={`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y} ${D.x},${D.y}`} fill="none" stroke="var(--ink)" strokeWidth={1.6} />
+            {/* Vertex dots */}
+            {[A, B, C, D, E, F, G].map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r={3} fill="orange" stroke="orange" />
+            ))}
+            {/* Labels */}
+            <text x={A.x - 7} y={A.y - 5} fill="var(--ink)" fontSize={14} textAnchor="end" style={labelStyle}>A</text>
+            <text x={B.x + 2} y={B.y - 6} fill="var(--ink)" fontSize={14} textAnchor="start" style={labelStyle}>B</text>
+            <text x={C.x + 4} y={C.y + 14} fill="var(--ink)" fontSize={14} textAnchor="start" style={labelStyle}>C</text>
+            <text x={D.x - 7} y={D.y + 14} fill="var(--ink)" fontSize={14} textAnchor="end" style={labelStyle}>D</text>
+            <text x={E.x - 4} y={E.y - 6} fill="var(--ink)" fontSize={14} textAnchor="end" style={labelStyle}>E</text>
+            <text x={F.x} y={F.y - 6} fill="var(--ink)" fontSize={14} textAnchor="middle" style={labelStyle}>F</text>
+            <text x={G.x + 6} y={G.y + 4} fill="var(--ink)" fontSize={14} textAnchor="start" style={labelStyle}>G</text>
           </svg>
         </div>
       );

@@ -1923,6 +1923,514 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
       "**Đáp số**: $S_{ABC} = 70$ cm².",
     ].join("\n"),
   },
+
+  // ─── AMS — Hà Nội – Amsterdam (nguồn: Loigiaihay.com, có đáp án) ───────────
+  // 2023-2024 ───────────────────────────────────────────────────────────────
+  "AMS-2023-24-C1": {
+    stem: "Thực hiện phép tính: $(96 \\times 0{,}25 - 2{,}1 : 0{,}1) + (250 \\times 0{,}1 - 80 : 4)$.",
+    modelAnswer: [
+      "$(96 \\times 0{,}25 - 2{,}1 : 0{,}1) + (250 \\times 0{,}1 - 80 : 4)$",
+      "$= (24 - 21) + (25 - 20) = 3 + 5 = 8.$",
+      "",
+      "**Đáp số**: $8$.",
+    ].join("\n"),
+  },
+  "AMS-2023-24-C2": {
+    stem: "Biết số $\\overline{224ab}$ chia hết cho $2$; $3$ và $5$. Tìm $a \\times b$.",
+    modelAnswer: [
+      "Vì $\\overline{224ab}$ chia hết cho cả $2$ và $5$ nên $b = 0$.",
+      "Do đó $a \\times b = a \\times 0 = 0$.",
+      "",
+      "**Đáp số**: $0$.",
+    ].join("\n"),
+  },
+  "AMS-2023-24-C3": {
+    stem: "Trung bình cộng của $25$ số chẵn liên tiếp bằng $32$. Hỏi tỉ số giữa số nhỏ nhất và số lớn nhất là bao nhiêu?",
+    modelAnswer: [
+      "Vì $25$ số đã cho là $25$ số chẵn liên tiếp nên trung bình cộng của chúng bằng trung bình cộng của số nhỏ nhất và số lớn nhất.",
+      "Tổng số nhỏ nhất và số lớn nhất là: $32 \\times 2 = 64$.",
+      "Số lớn nhất hơn số nhỏ nhất là: $(25 - 1) \\times 2 = 48$.",
+      "Số nhỏ nhất là: $(64 - 48) : 2 = 8$; số lớn nhất là: $64 - 8 = 56$.",
+      "Tỉ số giữa số nhỏ nhất và số lớn nhất là: $8 : 56 = \\dfrac{1}{7}$.",
+      "",
+      "**Đáp số**: $\\dfrac{1}{7}$.",
+    ].join("\n"),
+  },
+  "AMS-2023-24-C4": {
+    stem: "Một khối lượng gạo dự tính đủ cho $15$ người ăn trong $14$ ngày. Vì số người thực tế nhiều hơn dự kiến nên số gạo đó chỉ đủ ăn trong $6$ ngày. Tính số người tăng thêm, biết khẩu phần gạo của mỗi người trong $1$ ngày như nhau.",
+    modelAnswer: [
+      "Số gạo đủ cho một người ăn trong: $14 \\times 15 = 210$ (ngày).",
+      "Số người để ăn hết số gạo đó trong $6$ ngày là: $210 : 6 = 35$ (người).",
+      "Số người tăng thêm là: $35 - 15 = 20$ (người).",
+      "",
+      "**Đáp số**: $20$ người.",
+    ].join("\n"),
+  },
+  "AMS-2023-24-C5": {
+    stem: "Một tờ giấy có dạng như hình vẽ. Bạn Chúc gấp tờ giấy theo các nét đứt để làm thành một chiếc hộp hình lập phương không có nắp. Hỏi chữ cái ghi ở đáy của chiếc hộp là chữ cái nào?",
+    modelAnswer: [
+      "Ba chữ cái $R$, $Q$, $M$ ở ba ô thẳng hàng nên sẽ nằm ở ba mặt bên của hình lập phương.",
+      "Do đó chữ cái nằm ở đáy của chiếc hộp là chữ cái $N$.",
+      "",
+      "**Đáp số**: chữ $N$.",
+    ].join("\n"),
+  },
+  "AMS-2023-24-C6": {
+    stem: "Một tờ giấy hình chữ nhật có kích thước $15$ cm $\\times$ $20$ cm. Người ta cắt mỗi góc của tờ giấy đó một hình vuông cạnh $5$ cm. Sau đó gấp phần còn lại thành một hộp giấy hình hộp chữ nhật (không có nắp). Tính tổng diện tích $5$ mặt trong của hộp giấy đó.",
+    modelAnswer: [
+      "Chiều rộng của hình hộp chữ nhật là: $15 - 5 \\times 2 = 5$ (cm).",
+      "Chiều dài của hình hộp chữ nhật là: $20 - 5 \\times 2 = 10$ (cm); chiều cao là $5$ cm.",
+      "Diện tích xung quanh là: $(10 + 5) \\times 2 \\times 5 = 150$ (cm²).",
+      "Diện tích đáy là: $10 \\times 5 = 50$ (cm²).",
+      "Tổng diện tích $5$ mặt trong là: $150 + 50 = 200$ (cm²).",
+      "",
+      "**Đáp số**: $200$ cm².",
+    ].join("\n"),
+  },
+  "AMS-2023-24-C7": {
+    stem: "Mẹ chia $7$ phong bao lì xì chứa số tiền bên trong lần lượt là $1; 3; 9; 27; 81; 243; 729$ (đơn vị tính: nghìn đồng) cho hai anh em. Sau khi mở ra, Bình nhận thấy số tiền của mình ít hơn của em là $367$ nghìn đồng. Hỏi Bình có bao nhiêu bao lì xì?",
+    modelAnswer: [
+      "Tổng số tiền mẹ chia cho hai anh em là: $1 + 3 + 9 + 27 + 81 + 243 + 729 = 1093$ (nghìn đồng).",
+      "Số tiền Bình nhận được là: $(1093 - 367) : 2 = 363$ (nghìn đồng); em nhận $1093 - 363 = 730$ (nghìn đồng).",
+      "Vì $730 = 729 + 1$ nên em nhận $2$ bao ($729$ và $1$).",
+      "Bình nhận $363 = 3 + 9 + 27 + 81 + 243$, tức $5$ bao còn lại.",
+      "",
+      "**Đáp số**: $5$ bao lì xì.",
+    ].join("\n"),
+  },
+  "AMS-2023-24-C8": {
+    stem: "Cho một số tự nhiên có hai chữ số $\\overline{ab}$ sao cho số đó gấp $8$ lần tổng hai chữ số của nó. Tính $a \\times 8 + b \\times 5$.",
+    modelAnswer: [
+      "Theo đề bài: $\\overline{ab} = 8 \\times (a + b)$, tức $10a + b = 8a + 8b$, suy ra $2a = 7b$.",
+      "Vì $a$, $b$ là các chữ số nên $a = 7$ và $b = 2$.",
+      "Vậy $a \\times 8 + b \\times 5 = 7 \\times 8 + 2 \\times 5 = 66$.",
+      "",
+      "**Đáp số**: $66$.",
+    ].join("\n"),
+  },
+  "AMS-2023-24-C9": {
+    stem: "Cô giáo An cho một số và yêu cầu thực hiện phép tính đem số đó cộng với $5$ rồi chia cho $6$. Nhưng do nghe nhầm nên An cộng với $6$ rồi chia cho $5$ nên kết quả sai là $2429$. Tìm kết quả đúng.",
+    modelAnswer: [
+      "Số trước khi An đem chia cho $5$ là: $2429 \\times 5 = 12145$.",
+      "Số cô giáo cho An là: $12145 - 6 = 12139$.",
+      "Kết quả đúng là: $(12139 + 5) : 6 = 2024$.",
+      "",
+      "**Đáp số**: $2024$.",
+    ].join("\n"),
+  },
+  "AMS-2023-24-C10": {
+    stem: "Có một cửa hàng bán xăng dầu vào quý I. Vào quý II, cửa hàng tăng giá $12\\%$ so với quý I. Vào quý III, cửa hàng tăng $10\\%$ nữa so với quý II. Quý IV, cửa hàng bán xăng giảm $10\\%$ so với quý III. Hỏi so với quý I thì giá xăng quý IV của cửa hàng tăng hay giảm bao nhiêu phần trăm?",
+    modelAnswer: [
+      "Giá xăng quý II so với quý I là: $100\\% + 12\\% = 112\\%$.",
+      "Giá xăng quý III so với quý I là: $112\\% \\times 110\\% = 123{,}2\\%$.",
+      "Giá xăng quý IV so với quý I là: $123{,}2\\% \\times 90\\% = 110{,}88\\%$.",
+      "So với quý I, giá xăng quý IV tăng: $110{,}88\\% - 100\\% = 10{,}88\\%$.",
+      "",
+      "**Đáp số**: tăng $10{,}88\\%$.",
+    ].join("\n"),
+  },
+  "AMS-2023-24-C11": {
+    stem: "Tìm chữ số tận cùng của số: $A = 8 \\times 8 \\times 8 \\times \\dots \\times 8 + 1$ (gồm $2024$ thừa số $8$).",
+    modelAnswer: [
+      "Tích của $4$ số $8$ ($8 \\times 8 \\times 8 \\times 8 = 4096$) có chữ số tận cùng là $6$.",
+      "Vì $2024$ chia hết cho $4$ nên tích $2024$ thừa số $8$ có chữ số tận cùng là $6$.",
+      "Do đó $A$ có chữ số tận cùng là $6 + 1 = 7$.",
+      "",
+      "**Đáp số**: $7$.",
+    ].join("\n"),
+  },
+  "AMS-2023-24-C12": {
+    stem: "Cho $A = \\dfrac{1}{1\\times 300} + \\dfrac{1}{2\\times 301} + \\dfrac{1}{3\\times 302} + \\dots + \\dfrac{1}{101\\times 400}$ và $B = \\dfrac{1}{1\\times 102} + \\dfrac{1}{2\\times 103} + \\dfrac{1}{3\\times 104} + \\dots + \\dfrac{1}{299\\times 400}$. Tính tỉ số $\\dfrac{A}{B}$.",
+    modelAnswer: [
+      "Nhân $A$ với $299$ (hiệu hai thừa số ở mẫu của $A$):",
+      "$$299 \\times A = \\left(1 + \\dfrac{1}{2} + \\dots + \\dfrac{1}{101}\\right) - \\left(\\dfrac{1}{300} + \\dfrac{1}{301} + \\dots + \\dfrac{1}{400}\\right).$$",
+      "Nhân $B$ với $101$ (hiệu hai thừa số ở mẫu của $B$):",
+      "$$101 \\times B = \\left(1 + \\dfrac{1}{2} + \\dots + \\dfrac{1}{101}\\right) - \\left(\\dfrac{1}{300} + \\dfrac{1}{301} + \\dots + \\dfrac{1}{400}\\right).$$",
+      "Hai vế phải bằng nhau nên $299 \\times A = 101 \\times B$, suy ra $\\dfrac{A}{B} = \\dfrac{101}{299}$.",
+      "",
+      "**Đáp số**: $\\dfrac{A}{B} = \\dfrac{101}{299}$.",
+    ].join("\n"),
+  },
+  "AMS-2023-24-B1": {
+    stem: "Cho hình vẽ. Biết hình vuông nhỏ có cạnh $4$ cm, hình vuông lớn có cạnh $6$ cm. Tính diện tích phần tô đậm.",
+    modelAnswer: [
+      "Gọi tên các điểm như hình vẽ (hình vuông lớn cạnh $6$ cm là $ABGD$ và hình vuông nhỏ cạnh $4$ cm là $DEFG$... ).",
+      "Tổng diện tích hai hình vuông là: $6 \\times 6 + 4 \\times 4 = 52$ (cm²).",
+      "Diện tích tam giác $ADE$ là: $6 \\times (6 - 4) : 2 = 6$ (cm²).",
+      "Diện tích tam giác $EFG$ là: $4 \\times 4 : 2 = 8$ (cm²).",
+      "Diện tích tam giác $ABG$ là: $6 \\times (6 + 4) : 2 = 30$ (cm²).",
+      "Diện tích tam giác $AEG$ là: $52 - 6 - 8 - 30 = 8$ (cm²).",
+      "Xét tam giác $AEH$ và tam giác $GEH$ có chung đáy $EH$ nên $\\dfrac{S_{AEH}}{S_{GEH}} = \\dfrac{AD}{GC} = \\dfrac{6}{4} = \\dfrac{3}{2}$.",
+      "Suy ra diện tích phần tô đậm (tam giác $GEH$) là: $8 : (3 + 2) \\times 2 = 3{,}2$ (cm²).",
+      "",
+      "**Đáp số**: $3{,}2$ cm².",
+    ].join("\n"),
+  },
+  "AMS-2023-24-B2": {
+    stem: "Lớp 5A có $36$ học sinh, cứ $2$ bạn ngồi $1$ bàn. Cô giáo nhận thấy $50\\%$ số bạn nam ngồi cạnh bạn nữ và $40\\%$ số bạn nữ ngồi cạnh bạn nam. Hỏi có bao nhiêu bàn có $2$ bạn nữ?",
+    modelAnswer: [
+      "Số bạn nam ngồi cạnh nữ bằng số bạn nữ ngồi cạnh nam, nên $50\\%$ số nam $= 40\\%$ số nữ.",
+      "Suy ra tỉ số nam : nữ $= 40\\% : 50\\% = \\dfrac{4}{5}$.",
+      "Số học sinh nữ là: $36 : (4 + 5) \\times 5 = 20$ (học sinh).",
+      "Số học sinh nữ ngồi cạnh các bạn nam là: $20 \\times 40\\% = 8$ (học sinh).",
+      "Số bàn có $2$ bạn nữ là: $(20 - 8) : 2 = 6$ (bàn).",
+      "",
+      "**Đáp số**: $6$ bàn.",
+    ].join("\n"),
+  },
+  "AMS-2023-24-B3": {
+    stem: "Đăng và Khoa chạy trên một đường tròn khép kín, hai bạn xuất phát cùng một vị trí nhưng ngược chiều nhau. Đăng và Khoa lần lượt chạy hết đường tròn trong $5$ phút và $6$ phút. Hỏi sau bao nhiêu lần gặp nhau thì hai bạn gặp nhau lần đầu ở điểm xuất phát (không tính lần gặp nhau khi xuất phát)?",
+    modelAnswer: [
+      "Để cùng có mặt ở điểm xuất phát, thời gian chạy phải chia hết cho cả $5$ và $6$, tức là bội chung của $5$ và $6$.",
+      "Bội chung nhỏ nhất của $5$ và $6$ là $30$, nên sau $30$ phút hai bạn gặp nhau lần đầu ở điểm xuất phát.",
+      "Khi đó Đăng chạy được $30 : 5 = 6$ vòng, Khoa chạy được $30 : 6 = 5$ vòng; tổng cộng $6 + 5 = 11$ vòng.",
+      "Vì chạy ngược chiều, cứ hai bạn cùng đi hết $1$ vòng thì gặp nhau $1$ lần, nên có tất cả $11$ lần gặp — lần thứ $11$ chính là ở điểm xuất phát.",
+      "Vậy số lần hai bạn gặp nhau trước khi gặp ở điểm xuất phát là: $11 - 1 = 10$ (lần).",
+      "",
+      "**Đáp số**: $10$ lần.",
+    ].join("\n"),
+  },
+
+  // 2022-2023 ───────────────────────────────────────────────────────────────
+  "AMS-2022-23-C1": {
+    stem: "Tính: $0{,}14 \\times 253 \\times 3 - 4{,}2 \\times 5{,}3$.",
+    modelAnswer: [
+      "$0{,}14 \\times 253 \\times 3 - 4{,}2 \\times 5{,}3 = 4{,}2 \\times 25{,}3 - 4{,}2 \\times 5{,}3$",
+      "$= 4{,}2 \\times (25{,}3 - 5{,}3) = 4{,}2 \\times 20 = 84.$",
+      "",
+      "**Đáp số**: $84$.",
+    ].join("\n"),
+  },
+  "AMS-2022-23-C2": {
+    stem: "Biết số $\\overline{2022ab}$ chia hết cho cả $5$ và $9$ (với $b > 0$). Tìm $a \\times b$.",
+    modelAnswer: [
+      "Vì $\\overline{2022ab}$ chia hết cho $5$ và $b > 0$ nên $b = 5$.",
+      "Số $\\overline{2022a5}$ chia hết cho $9$ nên $(2 + 0 + 2 + 2 + a + 5) = (11 + a)$ chia hết cho $9$, suy ra $a = 7$.",
+      "Vậy $a \\times b = 7 \\times 5 = 35$.",
+      "",
+      "**Đáp số**: $35$.",
+    ].join("\n"),
+  },
+  "AMS-2022-23-C3": {
+    stem: "Tính: $\\left(1 - \\dfrac{1}{2}\\right) \\times \\left(1 - \\dfrac{1}{3}\\right) \\times \\left(1 - \\dfrac{1}{4}\\right) \\times \\dots \\times \\left(1 - \\dfrac{1}{2022}\\right)$.",
+    modelAnswer: [
+      "$$\\left(1 - \\dfrac{1}{2}\\right)\\left(1 - \\dfrac{1}{3}\\right)\\dots\\left(1 - \\dfrac{1}{2022}\\right) = \\dfrac{1}{2} \\times \\dfrac{2}{3} \\times \\dfrac{3}{4} \\times \\dots \\times \\dfrac{2021}{2022} = \\dfrac{1}{2022}.$$",
+      "",
+      "**Đáp số**: $\\dfrac{1}{2022}$.",
+    ].join("\n"),
+  },
+  "AMS-2022-23-C4": {
+    stem: "Cho ba số có tổng bằng $2022$. Biết số thứ nhất bằng $\\dfrac{1}{3}$ số thứ hai, số thứ ba gấp đôi số thứ nhất. Tìm số lớn nhất.",
+    modelAnswer: [
+      "Coi số thứ nhất là $1$ phần thì số thứ hai là $3$ phần, số thứ ba là $2$ phần.",
+      "Do đó số lớn nhất là số thứ hai.",
+      "Tổng số phần bằng nhau là: $1 + 3 + 2 = 6$ (phần).",
+      "Số lớn nhất là: $2022 : 6 \\times 3 = 1011$.",
+      "",
+      "**Đáp số**: $1011$.",
+    ].join("\n"),
+  },
+  "AMS-2022-23-C5": {
+    stem: "Một ô tô đi từ địa điểm $A$ đến địa điểm $B$. Cùng lúc đó, một ô tô khác đi từ $B$ về $A$, gặp ô tô thứ nhất tại điểm cách điểm $A$ là $140$ km. Biết ô tô thứ nhất đi từ $A$ đến $B$ hết $8$ giờ và ô tô thứ hai đi từ $B$ về $A$ hết $7$ giờ. Tính quãng đường $AB$.",
+    modelAnswer: [
+      "Tỉ số thời gian đi hết quãng đường $AB$ của ô tô thứ nhất so với ô tô thứ hai là $8 : 7 = \\dfrac{8}{7}$.",
+      "Trên cùng quãng đường, vận tốc tỉ lệ nghịch với thời gian nên tỉ số vận tốc của ô tô thứ nhất so với ô tô thứ hai là $\\dfrac{7}{8}$.",
+      "Hai xe xuất phát cùng lúc nên đến khi gặp nhau thời gian đi bằng nhau; do đó tỉ số quãng đường đi được cũng là $\\dfrac{7}{8}$.",
+      "Ô tô thứ nhất đi được $140$ km nên ô tô thứ hai đi được: $140 : \\dfrac{7}{8} = 160$ (km).",
+      "Quãng đường $AB$ là: $140 + 160 = 300$ (km).",
+      "",
+      "**Đáp số**: $300$ km.",
+    ].join("\n"),
+  },
+  "AMS-2022-23-C6": {
+    stem: "Một bể nước hình hộp chữ nhật có chiều dài $3$ m, chiều rộng $2$ m và chiều cao $1{,}6$ m. Người ta mở vòi cho nước chảy vào bể thì sau $1$ giờ $15$ phút bể đầy. Biết trong $1$ giờ vòi chảy được $6756$ lít nước. Hỏi ban đầu trong bể có bao nhiêu lít nước?",
+    modelAnswer: [
+      "Thể tích của bể là: $3 \\times 2 \\times 1{,}6 = 9{,}6$ (m³) $= 9600$ (lít).",
+      "Đổi $1$ giờ $15$ phút $= \\dfrac{5}{4}$ giờ.",
+      "Trong $1$ giờ $15$ phút, vòi chảy được: $6756 \\times \\dfrac{5}{4} = 8445$ (lít).",
+      "Ban đầu trong bể có: $9600 - 8445 = 1155$ (lít).",
+      "",
+      "**Đáp số**: $1155$ lít.",
+    ].join("\n"),
+  },
+  "AMS-2022-23-C7": {
+    stem: "Cho hai số có tổng là $4055$. Biết số bé có hai chữ số tận cùng là $23$ và khi đổi chỗ hai chữ số đó cho nhau ta được số lớn. Tìm tích hai số đó.",
+    modelAnswer: [
+      "Gọi số bé là $\\overline{X23}$ thì số lớn là $\\overline{X32}$ (phần đầu $X$ giữ nguyên).",
+      "Vì tổng hai số là $4055$ nên $\\overline{X23} + \\overline{X32} = 4055$, tức $X \\times 200 + 55 = 4055$, suy ra $X \\times 200 = 4000$ và $X = 20$.",
+      "Vậy số bé là $2023$, số lớn là $2032$.",
+      "Tích hai số là: $2023 \\times 2032 = 4110736$.",
+      "",
+      "**Đáp số**: $4110736$.",
+    ].join("\n"),
+  },
+  "AMS-2022-23-C8": {
+    stem: "Có $18$ lít nước được đựng trong các chai loại $400$ ml, $600$ ml và $1$ lít, mỗi loại có ít nhất $1$ chai. Hỏi có nhiều nhất bao nhiêu chai loại $600$ ml?",
+    modelAnswer: [
+      "Đổi $18$ lít $= 18000$ ml. Để số chai loại $600$ ml nhiều nhất thì tổng lượng nước trong các chai $400$ ml và $1$ lít phải ít nhất.",
+      "Mỗi loại có ít nhất $1$ chai nên tổng lượng nước trong chai $400$ ml và $1$ lít ít nhất là $400 + 1000 = 1400$ (ml).",
+      "Phần nước còn lại phải chia hết cho $600$. Tổng nhỏ nhất không dưới $1400$ ml để phần còn lại chia hết cho $600$ là $1800$ ml (gồm $2$ chai $400$ ml và $1$ chai $1$ lít: $400 \\times 2 + 1000 = 1800$).",
+      "Vậy số chai loại $600$ ml nhiều nhất là: $(18000 - 1800) : 600 = 27$ (chai).",
+      "",
+      "**Đáp số**: $27$ chai.",
+    ].join("\n"),
+  },
+  "AMS-2022-23-C9": {
+    stem: "Có $2$ hộp bi $A$, $B$, mỗi hộp có $9$ viên bi trắng, $9$ viên bi xanh và $9$ viên bi đỏ. Chuyển từ hộp $A$ sang hộp $B$ $10$ viên bi. Hỏi cần chuyển từ hộp $B$ sang hộp $A$ bao nhiêu viên bi để chắc chắn hộp $A$ có ít nhất $8$ viên bi mỗi loại?",
+    modelAnswer: [
+      "Mỗi hộp có số viên bi là $9 + 9 + 9 = 27$ (viên); mỗi màu có tất cả $9 + 9 = 18$ viên trong cả hai hộp.",
+      "Sau khi chuyển $10$ viên từ $A$ sang $B$, hộp $A$ còn: $27 - 10 = 17$ (viên).",
+      "Trường hợp xấu nhất khiến hộp $A$ chưa đủ $8$ viên mỗi màu là: hai màu có đủ $18$ viên, màu thứ ba chỉ có $7$ viên, tức hộp $A$ có $18 + 18 + 7 = 43$ viên.",
+      "Do đó để chắc chắn hộp $A$ có ít nhất $8$ viên mỗi màu thì hộp $A$ phải có $43 + 1 = 44$ viên.",
+      "Vậy cần chuyển từ hộp $B$ sang hộp $A$: $44 - 17 = 27$ (viên).",
+      "",
+      "**Đáp số**: $27$ viên.",
+    ].join("\n"),
+  },
+  "AMS-2022-23-C10": {
+    stem: "Cho $4$ mảnh được tạo thành từ các ô vuông cạnh $1$ cm như hình vẽ. Ghép $4$ mảnh đó thành $1$ hình chữ nhật, tính chu vi hình chữ nhật ghép được.",
+    modelAnswer: [
+      "Tổng diện tích của $4$ mảnh là: $18 \\times 1 \\times 1 = 18$ (cm²).",
+      "Vì $18 = 1 \\times 18 = 2 \\times 9 = 3 \\times 6$ nên hình chữ nhật ghép được có một trong các kích thước: $1 \\times 18$; $2 \\times 9$; $3 \\times 6$.",
+      "Mảnh $(1)$ có kích thước $2 \\times 3$ nên loại các kích thước $1 \\times 18$ và $2 \\times 9$; chỉ còn kích thước $3 \\times 6$.",
+      "Chu vi hình chữ nhật ghép được là: $(3 + 6) \\times 2 = 18$ (cm).",
+      "",
+      "**Đáp số**: $18$ cm.",
+    ].join("\n"),
+  },
+  "AMS-2022-23-C11": {
+    stem: "Cho hình chữ nhật $ABCD$ ($AB = 16$ cm; $BC = 12$ cm), $M$ là trung điểm của $BC$. Lấy điểm $P$ trên cạnh $AB$ và điểm $Q$ trên cạnh $CD$ sao cho $AP = CQ$. Tính diện tích tam giác $PMQ$.",
+    modelAnswer: [
+      "Vì $AP = CQ$ và $AB = CD$ nên $BP = DQ$. Do đó hai hình thang $APQD$ và $BCQP$ có diện tích bằng nhau, mỗi phần bằng $\\dfrac{1}{2} S_{ABCD}$.",
+      "Ta có $S_{BPM} = \\dfrac{1}{2} \\times BM \\times PB$ và $S_{CMQ} = \\dfrac{1}{2} \\times CM \\times QC$.",
+      "Vì $M$ là trung điểm $BC$ nên $BM = CM = \\dfrac{1}{2} BC$, suy ra:",
+      "$$S_{BPM} + S_{CMQ} = \\dfrac{1}{4} \\times BC \\times (PB + QC) = \\dfrac{1}{4} \\times BC \\times AB = \\dfrac{1}{4} S_{ABCD}.$$",
+      "Vậy $S_{PMQ} = S_{BCQP} - (S_{BPM} + S_{CMQ}) = \\dfrac{1}{2} S_{ABCD} - \\dfrac{1}{4} S_{ABCD} = \\dfrac{1}{4} S_{ABCD} = \\dfrac{1}{4} \\times 12 \\times 16 = 48$ (cm²).",
+      "",
+      "**Đáp số**: $48$ cm².",
+    ].join("\n"),
+  },
+  "AMS-2022-23-C12": {
+    stem: "Cho $5$ số $a, b, c, d, e$ thỏa mãn $\\dfrac{487}{340} = a + \\dfrac{1}{b + \\dfrac{1}{c + \\dfrac{1}{d + \\dfrac{1}{e}}}}$. Tính $a + b + c + d + e$.",
+    modelAnswer: [
+      "Phân tích $\\dfrac{487}{340}$ thành liên phân số:",
+      "$$\\dfrac{487}{340} = 1 + \\dfrac{147}{340} = 1 + \\dfrac{1}{2 + \\dfrac{1}{3 + \\dfrac{1}{5 + \\dfrac{1}{9}}}}.$$",
+      "Suy ra $a = 1$, $b = 2$, $c = 3$, $d = 5$, $e = 9$.",
+      "Vậy $a + b + c + d + e = 1 + 2 + 3 + 5 + 9 = 20$.",
+      "",
+      "**Đáp số**: $20$.",
+    ].join("\n"),
+  },
+  "AMS-2022-23-B1": {
+    stem: "Lớp 5A có số học sinh nam gấp đôi số học sinh nữ. Sau khi chuyển đi $2$ học sinh nữ thì số học sinh nam bằng $\\dfrac{5}{2}$ số học sinh nữ. Hỏi ban đầu lớp đó có bao nhiêu học sinh?",
+    modelAnswer: [
+      "Ban đầu số nam gấp đôi số nữ nên số nữ bằng $\\dfrac{1}{2}$ số nam.",
+      "Lúc sau số nam bằng $\\dfrac{5}{2}$ số nữ nên số nữ (lúc sau) bằng $\\dfrac{2}{5}$ số nam.",
+      "$2$ học sinh nữ chuyển đi ứng với: $\\dfrac{1}{2} - \\dfrac{2}{5} = \\dfrac{1}{10}$ (số học sinh nam).",
+      "Số học sinh nam là: $2 : \\dfrac{1}{10} = 20$ (bạn).",
+      "Số học sinh nữ ban đầu là: $20 : 2 = 10$ (bạn).",
+      "Ban đầu lớp có: $20 + 10 = 30$ (học sinh).",
+      "",
+      "**Đáp số**: $30$ học sinh.",
+    ].join("\n"),
+  },
+  "AMS-2022-23-B2": {
+    stem: "Minh đi từ $A$ đến $B$, cùng lúc đó Ngọc đi từ $B$ về $A$. Hai bạn gặp nhau lần thứ nhất ở điểm cách $A$ là $7$ km. Sau đó, Minh lại đi tiếp tới $B$, Ngọc lại đi tiếp tới $A$ rồi hai bạn quay trở về. Họ gặp nhau lần thứ hai ở điểm cách $B$ là $5$ km. Hỏi quãng đường $AB$ dài bao nhiêu km?",
+    modelAnswer: [
+      "Khi hai bạn gặp nhau lần đầu, tổng quãng đường hai bạn đi được bằng quãng đường $AB$; Minh đi được $7$ km.",
+      "Khi hai bạn gặp nhau lần thứ hai, tổng quãng đường hai bạn đi được gấp $3$ lần quãng đường $AB$.",
+      "Vì vận tốc không đổi nên quãng đường Minh đi đến lần gặp thứ hai gấp $3$ lần lần gặp thứ nhất: $7 \\times 3 = 21$ (km).",
+      "Đến lần gặp thứ hai, Minh đã đi hết $AB$ rồi quay lại $5$ km, nên $AB = 21 - 5 = 16$ (km).",
+      "",
+      "**Đáp số**: $16$ km.",
+    ].join("\n"),
+  },
+  "AMS-2022-23-B3": {
+    stem: [
+      "Cho hình thang $ABCD$, lấy điểm $M$ trên đường chéo $AC$ sao cho $AM = 2 \\times MC$. Lấy điểm $N$ trên cạnh $CD$ sao cho $BDNM$ là hình thang.",
+      "",
+      "**a)** So sánh diện tích hai tam giác $BDN$ và $BDM$.",
+      "",
+      "**b)** Tính tỉ số $\\dfrac{S_{ABND}}{S_{BNC}}$.",
+    ].join("\n"),
+    modelAnswer: [
+      "**a)** Vì $BDNM$ là hình thang ($MN \\parallel BD$) nên hai tam giác $BDN$ và $BDM$ có chung đáy $BD$, đường cao hạ từ $N$ và từ $M$ xuống $BD$ bằng nhau (cùng bằng chiều cao hình thang). Do đó $S_{BDN} = S_{BDM}$.",
+      "",
+      "**b)** Vì $AM = 2 \\times MC$ nên $S_{ABM} = 2 \\, S_{BMC}$ và $S_{ANM} = 2 \\, S_{MNC}$ (mỗi cặp tam giác chung chiều cao hạ từ $B$, từ $N$ xuống $AC$).",
+      "Tứ giác $ABMN$ tách được thành: $S_{ABMN} = S_{ABM} + S_{ANM} = 2(S_{BMC} + S_{MNC}) = 2 \\, S_{BNC}$.",
+      "Kết hợp $S_{NAB} = S_{DAB}$ (chung đáy $AB$, chiều cao bằng nhau vì $AB \\parallel DC$) và kết quả câu a), biến đổi đưa về $S_{ABND} = S_{ABMN} = 2 \\, S_{BNC}$.",
+      "Vậy $\\dfrac{S_{ABND}}{S_{BNC}} = 2$.",
+      "",
+      "**Đáp số**: $S_{BDN} = S_{BDM}$ và $\\dfrac{S_{ABND}}{S_{BNC}} = 2$.",
+    ].join("\n"),
+  },
+
+  // 2020-2021 ───────────────────────────────────────────────────────────────
+  "AMS-2020-21-C1": {
+    stem: "Tính $A = 0{,}12 \\times 135 \\times 4 + 6{,}5 \\times 4{,}8$.",
+    modelAnswer: [
+      "$A = 0{,}12 \\times 135 \\times 4 + 6{,}5 \\times 4{,}8 = 135 \\times 0{,}48 + 6{,}5 \\times 4{,}8$",
+      "$= 13{,}5 \\times 4{,}8 + 6{,}5 \\times 4{,}8 = 4{,}8 \\times (13{,}5 + 6{,}5) = 4{,}8 \\times 20 = 96.$",
+      "",
+      "**Đáp số**: $96$.",
+    ].join("\n"),
+  },
+  "AMS-2020-21-C2": {
+    stem: "Cho một hình chữ nhật có chu vi $160$ cm. Sau khi cùng giảm chiều dài và chiều rộng đi cùng một độ dài thì hình mới có chu vi $120$ cm. Vậy diện tích của phần giảm đi là bao nhiêu?",
+    modelAnswer: [
+      "Chu vi giảm đi: $160 - 120 = 40$ (cm). Độ dài mỗi cạnh giảm đi: $40 : 4 = 10$ (cm).",
+      "Nửa chu vi hình chữ nhật mới là: $120 : 2 = 60$ (cm).",
+      "Phần giảm đi gồm hai dải (dọc và ngang) cùng một hình vuông ở góc:",
+      "$$10 \\times (\\text{chiều dài mới} + \\text{chiều rộng mới}) + 10 \\times 10 = 10 \\times 60 + 100 = 700 \\text{ (cm}^2).$$",
+      "",
+      "**Đáp số**: $700$ cm².",
+    ].join("\n"),
+  },
+  "AMS-2020-21-C3": {
+    stem: "Một đội công nhân dự định làm xong một đoạn đường trong $10$ ngày. Sau khi đội đó làm được $5$ ngày, người ta điều thêm một đội khác đến cùng làm nên sau $4$ ngày nữa thì cả hai đội đã làm xong đoạn đường. Hỏi nếu đội thứ hai làm một mình thì phải mất bao nhiêu ngày mới làm xong cả đoạn đường đó?",
+    modelAnswer: [
+      "Mỗi ngày đội thứ nhất làm được: $1 : 10 = \\dfrac{1}{10}$ (đoạn đường).",
+      "Sau $5$ ngày, đội thứ nhất làm được: $5 \\times \\dfrac{1}{10} = \\dfrac{1}{2}$ (đoạn đường); còn lại $\\dfrac{1}{2}$ đoạn đường.",
+      "Trong $4$ ngày cả hai đội làm $\\dfrac{1}{2}$ đoạn đường nên mỗi ngày hai đội làm: $\\dfrac{1}{2} : 4 = \\dfrac{1}{8}$ (đoạn đường).",
+      "Mỗi ngày đội thứ hai làm: $\\dfrac{1}{8} - \\dfrac{1}{10} = \\dfrac{1}{40}$ (đoạn đường).",
+      "Đội thứ hai làm một mình xong cả đoạn đường trong: $1 : \\dfrac{1}{40} = 40$ (ngày).",
+      "",
+      "**Đáp số**: $40$ ngày.",
+    ].join("\n"),
+  },
+  "AMS-2020-21-C4": {
+    stem: "Một số tự nhiên được viết bởi $2020$ chữ số $1$. Hỏi phải cộng thêm vào số đó ít nhất bao nhiêu đơn vị để được một số chia hết cho $9$?",
+    modelAnswer: [
+      "Tổng các chữ số của số đó là $2020 \\times 1 = 2020$.",
+      "Vì $2020$ chia $9$ dư $4$ (do $2 + 0 + 2 + 0 = 4$) nên để chia hết cho $9$ cần cộng thêm $5$; $14$; $23$; $\\dots$ đơn vị.",
+      "Số cần cộng thêm nhỏ nhất là $5$.",
+      "",
+      "**Đáp số**: $5$ đơn vị.",
+    ].join("\n"),
+  },
+  "AMS-2020-21-C5": {
+    stem: "Một hình lập phương có diện tích toàn phần là $150$ cm². Tính thể tích của hình lập phương đó.",
+    modelAnswer: [
+      "Diện tích một mặt là: $150 : 6 = 25$ (cm²), nên cạnh hình lập phương là $5$ cm (vì $5 \\times 5 = 25$).",
+      "Thể tích hình lập phương là: $5 \\times 5 \\times 5 = 125$ (cm³).",
+      "",
+      "**Đáp số**: $125$ cm³.",
+    ].join("\n"),
+  },
+  "AMS-2020-21-C6": {
+    stem: "Cho một hình hộp chữ nhật. Người ta tăng chiều dài của hình hộp chữ nhật $10\\%$ và giảm chiều rộng của nó đi $20\\%$. Hỏi để thể tích hình hộp chữ nhật tăng $32\\%$ thì chiều cao của hình hộp cần tăng thêm bao nhiêu phần trăm?",
+    modelAnswer: [
+      "Coi thể tích ban đầu là $100\\%$. Sau khi thay đổi: $132\\% = 110\\% \\times 80\\% \\times (\\text{chiều cao mới})$.",
+      "Chiều cao mới $= 132\\% : (110\\% \\times 80\\%) = 132\\% : 88\\% = 150\\%$ chiều cao ban đầu.",
+      "Vậy chiều cao cần tăng thêm: $150\\% - 100\\% = 50\\%$.",
+      "",
+      "**Đáp số**: $50\\%$.",
+    ].join("\n"),
+  },
+  "AMS-2020-21-C7": {
+    stem: "Một bữa tiệc có sự tham gia của $10$ cặp vợ chồng. Biết mỗi người chồng bắt tay với tất cả mọi người trừ vợ của mình và những người vợ không bắt tay nhau. Hỏi có tất cả bao nhiêu cái bắt tay?",
+    modelAnswer: [
+      "Số cái bắt tay giữa các người chồng với nhau là: $10 \\times 9 : 2 = 45$ (cái).",
+      "Mỗi người chồng bắt tay với $9$ người vợ (trừ vợ mình) nên số cái bắt tay chồng–vợ là: $10 \\times 9 = 90$ (cái).",
+      "Các người vợ không bắt tay nhau nên không có thêm cái nào.",
+      "Tổng số cái bắt tay là: $45 + 90 = 135$ (cái).",
+      "",
+      "**Đáp số**: $135$ cái bắt tay.",
+    ].join("\n"),
+  },
+  "AMS-2020-21-C8": {
+    stem: "Năm sinh của một cầu thủ bóng đá là $\\overline{19ab}$. Tính đến năm $2021$, tuổi của cầu thủ này đúng bằng tổng các chữ số của năm sinh. Hỏi năm nay (năm $2020$) cầu thủ đó bao nhiêu tuổi?",
+    modelAnswer: [
+      "Theo đề bài: $2021 - \\overline{19ab} = 1 + 9 + a + b$.",
+      "$2021 - (1900 + 10 \\times a + b) = 10 + a + b \\Rightarrow 111 = 11 \\times a + 2 \\times b.$",
+      "Vì $a$, $b$ là chữ số nên $a = 9$, $b = 6$; năm sinh là $1996$.",
+      "Năm $2020$, tuổi của cầu thủ là: $2020 - 1996 = 24$ (tuổi).",
+      "",
+      "**Đáp số**: $24$ tuổi.",
+    ].join("\n"),
+  },
+  "AMS-2020-21-C9": {
+    stem: "Người ta tạo ra một dãy số bằng cách viết liên tiếp các số tự nhiên khác $0$ được tạo thành từ các chữ số $0$ và $2$ ($2$ lặp lại tùy ý) theo thứ tự tăng dần. Hỏi số $2\\,000\\,020$ là số thứ bao nhiêu trong dãy số trên?",
+    modelAnswer: [
+      "Các số trong dãy là: $2; 20; 22; 200; 202; 220; 222; \\dots$ (chữ số đầu luôn là $2$, các chữ số sau là $0$ hoặc $2$).",
+      "Số có $1$ chữ số: $1$ số; $2$ chữ số: $2$ số; $3$ chữ số: $4$ số; $4$ chữ số: $8$ số; $5$ chữ số: $16$ số; $6$ chữ số: $32$ số.",
+      "Số $2\\,000\\,020$ có $7$ chữ số và là số thứ $3$ trong nhóm $7$ chữ số ($2\\,000\\,000; 2\\,000\\,002; 2\\,000\\,020$).",
+      "Vậy nó là số thứ: $1 + 2 + 4 + 8 + 16 + 32 + 3 = 66$.",
+      "",
+      "**Đáp số**: số thứ $66$.",
+    ].join("\n"),
+  },
+  "AMS-2020-21-C10": {
+    stem: "Bài thi có hai phần trắc nghiệm và tự luận, mỗi câu trắc nghiệm đúng được $0{,}5$ điểm, mỗi câu tự luận đúng được $1{,}0$ điểm, câu sai hoặc không làm thì không được điểm. Bạn A đi thi làm được tổng cộng $30$ câu và được $18{,}5$ điểm. Hỏi bạn A làm đúng bao nhiêu câu trắc nghiệm?",
+    modelAnswer: [
+      "Giả sử cả $30$ câu A làm đều là câu tự luận đúng thì được: $30 \\times 1 = 30$ (điểm).",
+      "Số điểm dôi ra là: $30 - 18{,}5 = 11{,}5$ (điểm).",
+      "Mỗi câu trắc nghiệm thay cho một câu tự luận làm giảm $1 - 0{,}5 = 0{,}5$ (điểm).",
+      "Số câu trắc nghiệm A làm đúng là: $11{,}5 : 0{,}5 = 23$ (câu).",
+      "",
+      "**Đáp số**: $23$ câu trắc nghiệm.",
+    ].join("\n"),
+  },
+  "AMS-2020-21-C11": {
+    stem: "Một cửa hàng nhập về một số hộp bánh. Cô bán bánh bày $\\dfrac{1}{10}$ số hộp ở quầy để bán, còn lại cất vào kho. Sau khi bán đi $6$ hộp ở quầy, cô ấy nhận thấy số hộp cất trong kho gấp $15$ lần số hộp còn lại ở quầy. Hỏi lúc đầu cửa hàng nhập về bao nhiêu hộp bánh?",
+    modelAnswer: [
+      "Số hộp trong kho không thay đổi. Lúc đầu số hộp ở quầy bằng $\\dfrac{1}{9}$ số hộp trong kho (quầy là $\\dfrac{1}{10}$ tổng, kho là $\\dfrac{9}{10}$ tổng).",
+      "Sau khi bán $6$ hộp, số hộp ở quầy bằng $\\dfrac{1}{15}$ số hộp trong kho.",
+      "$6$ hộp ứng với: $\\dfrac{1}{9} - \\dfrac{1}{15} = \\dfrac{2}{45}$ (số hộp trong kho).",
+      "Số hộp trong kho là: $6 : \\dfrac{2}{45} = 135$ (hộp).",
+      "Số hộp ở quầy lúc đầu là: $135 : 9 = 15$ (hộp).",
+      "Lúc đầu cửa hàng nhập về: $135 + 15 = 150$ (hộp).",
+      "",
+      "**Đáp số**: $150$ hộp.",
+    ].join("\n"),
+  },
+  "AMS-2020-21-C12": {
+    stem: "Một cửa hàng hoa quả có $420$ kg táo và lê. Sau khi bán, người bán hàng nhận thấy: số táo đã bán bằng $\\dfrac{1}{6}$ số lê đã bán và số táo còn lại nhiều hơn số lê còn lại $40$ kg. Hỏi cửa hàng đó đã bán được bao nhiêu ki-lô-gam lê, biết rằng lúc đầu số táo bằng $\\dfrac{3}{4}$ số lê?",
+    modelAnswer: [
+      "Lúc đầu số táo bằng $\\dfrac{3}{4}$ số lê nên số táo là: $420 : (3 + 4) \\times 3 = 180$ (kg); số lê là: $420 - 180 = 240$ (kg).",
+      "Lúc đầu số lê nhiều hơn số táo là: $240 - 180 = 60$ (kg).",
+      "Vì số táo còn lại nhiều hơn số lê còn lại $40$ kg nên số lê đã bán nhiều hơn số táo đã bán là: $60 + 40 = 100$ (kg).",
+      "Số táo đã bán bằng $\\dfrac{1}{6}$ số lê đã bán nên hiệu $5$ phần ứng với $100$ kg; số táo đã bán là: $100 : (6 - 1) = 20$ (kg).",
+      "Số lê đã bán là: $100 + 20 = 120$ (kg).",
+      "",
+      "**Đáp số**: $120$ kg lê.",
+    ].join("\n"),
+  },
+  "AMS-2020-21-B1": {
+    stem: "Một cửa hàng bán một tấm vải. Biết rằng nếu bán $\\dfrac{5}{8}$ tấm vải đó với giá $40$ nghìn đồng một mét thì lãi được $200$ nghìn đồng; số vải còn lại bán với giá $38$ nghìn đồng một mét thì lãi được $90$ nghìn đồng. Hỏi cả tấm vải dài bao nhiêu mét?",
+    modelAnswer: [
+      "Nếu bán cả tấm vải với giá $40$ nghìn đồng/mét thì tiền lãi là: $200 : \\dfrac{5}{8} = 320$ (nghìn đồng).",
+      "Nếu bán cả tấm vải với giá $38$ nghìn đồng/mét thì tiền lãi là: $90 : \\left(1 - \\dfrac{5}{8}\\right) = 240$ (nghìn đồng).",
+      "Chênh lệch lãi của cả tấm khi bán với hai giá là $320 - 240 = 80$ (nghìn đồng), ứng với mỗi mét chênh $40 - 38 = 2$ (nghìn đồng).",
+      "Tấm vải dài: $(320 - 240) : (40 - 38) = 40$ (mét).",
+      "",
+      "**Đáp số**: $40$ m.",
+    ].join("\n"),
+  },
+  "AMS-2020-21-B2": {
+    stem: "Cho hình chữ nhật $ABCD$ (như hình vẽ). $M$ là một điểm trên cạnh $CD$. Nối $AM$ và $BD$ cắt nhau tại $I$. Biết diện tích $S_{BMC} = 36$ cm² và bằng $\\dfrac{9}{16} S_{IMD}$. Tính diện tích tam giác $ABI$.",
+    modelAnswer: [
+      "Ta có $S_{IMD} = 36 : \\dfrac{9}{16} = 64$ (cm²).",
+      "Vì $AB \\parallel CD$ nên $S_{ADM} = S_{BDM}$ (chung đáy $DM$, chiều cao bằng nhau).",
+      "Mà $S_{ADM} = S_{ADI} + S_{IMD}$ và $S_{BDM} = S_{BMI} + S_{IMD}$ nên $S_{ADI} = S_{BMI}$. $\\quad(1)$",
+      "Ta có $S_{ABD} = S_{BDC} = \\dfrac{1}{2} S_{ABCD}$, tức $S_{ADI} + S_{ABI} = S_{BMC} + S_{BMI} + S_{IMD}$. $\\quad(2)$",
+      "Từ $(1)$ và $(2)$ suy ra $S_{ABI} = S_{BMC} + S_{IMD} = 36 + 64 = 100$ (cm²).",
+      "",
+      "**Đáp số**: $100$ cm².",
+    ].join("\n"),
+  },
+  "AMS-2020-21-B3": {
+    stem: "Lúc $6$ giờ $30$ phút sáng, một người đi bộ trên quãng đường từ $A$ đến $B$ dài $10$ km gồm $3$ đoạn: đoạn lên dốc đi với vận tốc $3$ km/giờ, đoạn xuống dốc đi với vận tốc $6$ km/giờ, và một đoạn đường bằng dài $6$ km. Khi đến $B$, người đó quay lại $A$ ngay theo đường cũ và về tới $A$ lúc $11$ giờ $30$ phút sáng cùng ngày. Tính thời gian người đó đi trên đoạn đường bằng cả đi lẫn về.",
+    modelAnswer: [
+      "Độ dài quãng đường dốc là: $10 - 6 = 4$ (km).",
+      "Cả đi lẫn về, mỗi đoạn dốc đều được đi $1$ lần lên và $1$ lần xuống, nên tổng thời gian lên dốc và xuống dốc là:",
+      "$$\\dfrac{4}{3} + \\dfrac{4}{6} = \\dfrac{4}{3} + \\dfrac{2}{3} = 2 \\text{ (giờ)}.$$",
+      "Tổng thời gian cả đi lẫn về là: $11$ giờ $30$ phút $- \\, 6$ giờ $30$ phút $= 5$ (giờ).",
+      "Thời gian đi trên đoạn đường bằng cả đi lẫn về là: $5 - 2 = 3$ (giờ).",
+      "",
+      "**Đáp số**: $3$ giờ.",
+    ].join("\n"),
+  },
 };
 
 // CG enrichment is kept separate because it covers every single question;
@@ -2343,6 +2851,163 @@ export const CG_ENRICHMENT_MAP: Record<string, ExamOverride> = {
       "Vậy ta có thể chọn ra được nhiều nhất $15$ số thoả mãn yêu cầu bài toán.",
       "",
       "**Đáp số**: $15$ số.",
+    ].join("\n"),
+  },
+
+  // ─── NSHN 2025-26 — Học bổng Ngôi Sao Hà Nội (Khối 5) ───────────────────
+  // Source: PDF Loigiaihay (public/ref_exam/de-thi-vao-lop-6-mon-toan-truong-ngoi-sao-2025-co-dap-an-*.pdf)
+  // PDF có đáp án + lời giải chi tiết → correct/modelAnswer lấy từ PDF.
+  "NSHN-2025-26-C1": {
+    stem: "Viết số gồm $3$ trăm, $6$ đơn vị và $2$ phần trăm.",
+    modelAnswer: [
+      "Số gồm $3$ trăm, $6$ đơn vị và $2$ phần trăm là $306{,}02$.",
+      "",
+      "**Đáp số**: $306{,}02$.",
+    ].join("\n"),
+  },
+  "NSHN-2025-26-C2": {
+    stem: "Tính diện tích phần tô đậm, biết hình tròn lớn có đường kính là $10$ cm, hình tròn bé có đường kính là $7$ cm.",
+    modelAnswer: [
+      "Bán kính hình tròn lớn là: $10 : 2 = 5$ (cm).",
+      "",
+      "Diện tích hình tròn lớn là: $5 \\times 5 \\times 3{,}14 = 78{,}5$ (cm$^2$).",
+      "",
+      "Bán kính hình tròn bé là: $7 : 2 = 3{,}5$ (cm).",
+      "",
+      "Diện tích hình tròn bé là: $3{,}5 \\times 3{,}5 \\times 3{,}14 = 38{,}465$ (cm$^2$).",
+      "",
+      "Diện tích phần tô đậm là: $78{,}5 - 38{,}465 = 40{,}035$ (cm$^2$).",
+      "",
+      "**Đáp số**: $40{,}035$ cm$^2$.",
+    ].join("\n"),
+  },
+  "NSHN-2025-26-C3": {
+    stem: "Hiện nay tuổi em gấp bốn lần tuổi em khi tuổi anh bằng tuổi em hiện nay. Khi tuổi em bằng tuổi anh hiện nay thì tổng số tuổi hai anh em là $51$ tuổi. Tính tuổi mỗi người hiện nay.",
+    modelAnswer: [
+      "Coi tuổi em khi tuổi anh bằng tuổi em hiện nay là $1$ phần. Khi đó tuổi em hiện nay gấp $4$ lần nên bằng $4$ phần; tuổi anh lúc đó bằng tuổi em hiện nay nên cũng bằng $4$ phần.",
+      "",
+      "Hiệu số tuổi hai anh em không đổi và bằng: $4 - 1 = 3$ (phần).",
+      "",
+      "Hiện nay: tuổi em $= 4$ phần; tuổi anh $= 4 + 3 = 7$ (phần).",
+      "",
+      "Khi tuổi em bằng tuổi anh hiện nay ($7$ phần) thì tuổi anh lúc đó $= 7 + 3 = 10$ (phần).",
+      "",
+      "Tổng số tuổi hai anh em khi đó là $7 + 10 = 17$ (phần) ứng với $51$ tuổi.",
+      "",
+      "Giá trị một phần là: $51 : 17 = 3$ (tuổi).",
+      "",
+      "Tuổi em hiện nay là: $3 \\times 4 = 12$ (tuổi).",
+      "",
+      "Tuổi anh hiện nay là: $3 \\times 7 = 21$ (tuổi).",
+      "",
+      "**Đáp số**: Tuổi anh: $21$ tuổi; tuổi em: $12$ tuổi.",
+    ].join("\n"),
+  },
+  "NSHN-2025-26-C4": {
+    stem: "Hai người dự định cùng làm một công việc trong $5$ giờ sẽ xong. Làm được $2$ giờ thì người thứ nhất có việc bận phải đi nên chỉ còn người thứ hai làm. Người thứ hai làm nốt công việc đó trong $9$ giờ. Hỏi nếu làm riêng thì mỗi người làm công việc đó trong bao lâu?",
+    modelAnswer: [
+      "Trong $1$ giờ hai người làm được số phần công việc là: $1 : 5 = \\dfrac{1}{5}$ (công việc).",
+      "",
+      "Trong $2$ giờ hai người làm được: $\\dfrac{1}{5} \\times 2 = \\dfrac{2}{5}$ (công việc).",
+      "",
+      "Số phần công việc còn lại là: $1 - \\dfrac{2}{5} = \\dfrac{3}{5}$ (công việc).",
+      "",
+      "Trong $1$ giờ người thứ hai làm được: $\\dfrac{3}{5} : 9 = \\dfrac{1}{15}$ (công việc).",
+      "",
+      "Người thứ hai làm riêng xong công việc sau: $1 : \\dfrac{1}{15} = 15$ (giờ).",
+      "",
+      "Trong $1$ giờ người thứ nhất làm được: $\\dfrac{1}{5} - \\dfrac{1}{15} = \\dfrac{2}{15}$ (công việc).",
+      "",
+      "Người thứ nhất làm riêng xong công việc sau: $1 : \\dfrac{2}{15} = 7{,}5$ (giờ).",
+      "",
+      "**Đáp số**: Người thứ nhất: $7{,}5$ giờ; người thứ hai: $15$ giờ.",
+    ].join("\n"),
+  },
+  "NSHN-2025-26-C5": {
+    stem: [
+      "Cho $A = \\dfrac{1}{2} + \\dfrac{1}{4} + \\dfrac{1}{8} + \\cdots + \\dfrac{1}{512}$",
+      "",
+      "và $B = \\dfrac{1}{1+2} + \\dfrac{1}{1+2+3} + \\dfrac{1}{1+2+3+4} + \\cdots + \\dfrac{1}{1+2+3+\\cdots+511}$.",
+      "",
+      "Tính $\\dfrac{A}{B}$.",
+    ].join("\n"),
+    modelAnswer: [
+      "**Tính $A$:**",
+      "$$A \\times 2 = 1 + \\dfrac{1}{2} + \\dfrac{1}{4} + \\cdots + \\dfrac{1}{256}.$$",
+      "$$A \\times 2 - A = 1 - \\dfrac{1}{512} \\Rightarrow A = \\dfrac{511}{512}.$$",
+      "",
+      "**Tính $B$:**",
+      "Mỗi mẫu số có dạng $1 + 2 + \\cdots + n = \\dfrac{n \\times (n+1)}{2}$, nên mỗi số hạng là $\\dfrac{2}{n \\times (n+1)}$ với $n = 2, 3, \\ldots, 511$.",
+      "",
+      "$$B = 2 \\left( \\dfrac{1}{2 \\times 3} + \\dfrac{1}{3 \\times 4} + \\cdots + \\dfrac{1}{511 \\times 512} \\right).$$",
+      "$$B = 2 \\left( \\dfrac{1}{2} - \\dfrac{1}{3} + \\dfrac{1}{3} - \\dfrac{1}{4} + \\cdots + \\dfrac{1}{511} - \\dfrac{1}{512} \\right) = 2 \\left( \\dfrac{1}{2} - \\dfrac{1}{512} \\right) = \\dfrac{510}{512}.$$",
+      "",
+      "Vậy $\\dfrac{A}{B} = \\dfrac{511}{512} : \\dfrac{510}{512} = \\dfrac{511}{510}$.",
+      "",
+      "**Đáp số**: $\\dfrac{A}{B} = \\dfrac{511}{510}$.",
+    ].join("\n"),
+  },
+  "NSHN-2025-26-C6": {
+    stem: "Cho tam giác $ABC$. Lấy $M$ và $N$ lần lượt là trung điểm của cạnh $AB$ và $AC$, nối $M$ với $C$ và $N$ với $B$ cắt nhau tại $O$. Tính $S_{ABC}$, biết $S_{MOB} = 20$ cm$^2$.",
+    modelAnswer: [
+      "**Nối $A$ với $O$.**",
+      "",
+      "Vì $M$ là trung điểm của $AB$ nên $S_{BMO} = S_{AMO}$ (chung chiều cao hạ từ $O$, đáy $MB = MA$). Do đó:",
+      "$$S_{ABO} = 2 \\times S_{MOB} = 2 \\times 20 = 40 \\text{ (cm}^2).$$",
+      "",
+      "Vì $N$ là trung điểm của $AC$ nên $S_{ABN} = S_{CBN}$ (chung chiều cao hạ từ $B$) và $S_{AON} = S_{CON}$ (chung chiều cao hạ từ $O$). Trừ vế theo vế:",
+      "$$S_{ABN} - S_{AON} = S_{CBN} - S_{CON} \\Rightarrow S_{ABO} = S_{BCO} = 40 \\text{ (cm}^2).$$",
+      "",
+      "Tương tự, vì $M$ là trung điểm của $AB$: $S_{ACM} = S_{BCM}$ (chung chiều cao hạ từ $C$) và $S_{AOM} = S_{BOM}$, trừ vế theo vế ta được $S_{ACO} = S_{BCO} = 40$ (cm$^2$).",
+      "",
+      "Diện tích tam giác $ABC$ là:",
+      "$$S_{ABC} = S_{ABO} + S_{BCO} + S_{ACO} = 40 + 40 + 40 = 120 \\text{ (cm}^2).$$",
+      "",
+      "**Đáp số**: $120$ cm$^2$.",
+    ].join("\n"),
+  },
+  "NSHN-2025-26-B1": {
+    stem: "Tìm $x$ biết: $x + 3{,}8 = 3{,}5 \\times 1{,}5$.",
+    modelAnswer: [
+      "$$x + 3{,}8 = 3{,}5 \\times 1{,}5$$",
+      "$$x + 3{,}8 = 5{,}25$$",
+      "$$x = 5{,}25 - 3{,}8$$",
+      "$$x = 1{,}45.$$",
+      "",
+      "**Đáp số**: $x = 1{,}45$.",
+    ].join("\n"),
+  },
+  "NSHN-2025-26-B2": {
+    stem: "Tổng số gạo bán cả $3$ ngày là $125{,}6$ tạ gạo. Số gạo bán ngày thứ ba hơn số gạo bán ngày thứ nhất và ngày thứ hai là $19$ tạ gạo. Số gạo bán ngày thứ hai bằng $30\\%$ số gạo bán ngày thứ nhất. Hỏi mỗi ngày bán được bao nhiêu tạ gạo?",
+    modelAnswer: [
+      "Số gạo bán được trong ngày thứ ba là: $(125{,}6 + 19) : 2 = 72{,}3$ (tạ).",
+      "",
+      "Số gạo bán được trong ngày thứ nhất và ngày thứ hai là: $125{,}6 - 72{,}3 = 53{,}3$ (tạ).",
+      "",
+      "Tỉ số của số gạo bán ngày thứ hai và ngày thứ nhất là $30\\% = \\dfrac{3}{10}$.",
+      "",
+      "Số gạo bán ngày thứ nhất là: $53{,}3 : (3 + 10) \\times 10 = 41$ (tạ).",
+      "",
+      "Số gạo bán ngày thứ hai là: $53{,}3 - 41 = 12{,}3$ (tạ).",
+      "",
+      "**Đáp số**: Ngày thứ nhất: $41$ tạ; ngày thứ hai: $12{,}3$ tạ; ngày thứ ba: $72{,}3$ tạ.",
+    ].join("\n"),
+  },
+  "NSHN-2025-26-B3": {
+    stem: [
+      "Cho hình vẽ bên (tam giác đều được chia thành các tam giác nhỏ cạnh $1$ cm).",
+      "",
+      "**a)** Có bao nhiêu hình tam giác được cấu tạo bởi các hình tam giác có cạnh là $1$ cm?",
+      "",
+      "**b)** Xóa $2$ đoạn $1$ cm để được ít hình tam giác nhất.",
+    ].join("\n"),
+    modelAnswer: [
+      "**a)** Số hình tam giác cạnh $1$ cm xếp theo từng hàng từ trên xuống là:",
+      "$$1 + 3 + 5 + 7 = 16 \\text{ (hình tam giác)}.$$",
+      "",
+      "**b)** Xóa hai đoạn thuộc đường chéo hoặc phần trung tâm của hình sẽ làm mất nhiều tam giác nhất.",
+      "",
+      "**Đáp số**: **a)** $16$ hình tam giác.",
     ].join("\n"),
   },
 
@@ -3431,4 +4096,464 @@ export const CG_ENRICHMENT_MAP: Record<string, ExamOverride> = {
       "**Đáp số**: $124$ trận.",
     ].join("\n"),
   },
+  // === THCS Archimedes (arc) — stem/options/modelAnswer; correct/unit/figure live in metadata ===
+  // --- arc-2020cb ---
+  "ARC-2020-21-CB-C1": {
+    stem: "Từ $1$ đến $100$ có bao nhiêu chữ số $1$?",
+    modelAnswer: "Chữ số $1$ ở hàng trăm: số $100$ $\\Rightarrow$ $1$ chữ số.\nChữ số $1$ ở hàng chục: $10, 11, 12, \\ldots, 19$ $\\Rightarrow$ $10$ chữ số.\nChữ số $1$ ở hàng đơn vị: $1, 11, 21, \\ldots, 91$ $\\Rightarrow$ $10$ chữ số.\n\n**Đáp số**: $1 + 10 + 10 = 21$ chữ số.",
+  },
+  "ARC-2020-21-CB-C2": {
+    stem: "Tính: $3{,}6 \\times 7{,}4$.",
+    modelAnswer: "$3{,}6 \\times 7{,}4 = 26{,}64$.\n\n**Đáp số**: $26{,}64$.",
+  },
+  "ARC-2020-21-CB-C3": {
+    stem: "$60\\%$ của $7{,}5$ là bao nhiêu?",
+    modelAnswer: "$60\\%$ của $7{,}5$ là: $7{,}5 \\times 60 : 100 = 4{,}5$.\n\n**Đáp số**: $4{,}5$.",
+  },
+  "ARC-2020-21-CB-C4": {
+    stem: "Có $3$ loại mảnh ghép hình tam giác, hình vuông và hình chữ nhật, tất cả có $240$ hình. Số mảnh hình tam giác bằng $\\dfrac{1}{3}$ số mảnh hình vuông và hình chữ nhật. Số mảnh hình chữ nhật hơn số mảnh hình vuông là $40$. Tìm số mảnh hình chữ nhật.",
+    modelAnswer: "Số mảnh hình tam giác bằng $\\dfrac{1}{3}$ số mảnh (vuông + chữ nhật) nên bằng $\\dfrac{1}{4}$ tổng số mảnh.\nSố mảnh hình tam giác là: $240 \\times \\dfrac{1}{4} = 60$ (mảnh).\nSố mảnh hình vuông và hình chữ nhật là: $240 - 60 = 180$ (mảnh).\nSố mảnh hình chữ nhật là: $(180 + 40) : 2 = 110$ (mảnh).\n\n**Đáp số**: $110$ mảnh ghép.",
+  },
+  "ARC-2020-21-CB-C5": {
+    stem: "Tìm một số có hai chữ số. Biết rằng nếu viết thêm chữ số $1$ vào giữa hai chữ số đó thì ta được số mới hơn $8$ lần số ban đầu là $14$ đơn vị. Tìm số ban đầu.",
+    modelAnswer: "Gọi số cần tìm là $\\overline{ab}$. Theo đề bài: $\\overline{a1b} = \\overline{ab} \\times 8 + 14$.\n$a \\times 100 + 10 + b = a \\times 80 + b \\times 8 + 14$.\n$a \\times 20 = b \\times 7 + 4$. Suy ra $a = 3,\\ b = 8$.\n\n**Đáp số**: $38$.",
+  },
+  "ARC-2020-21-CB-C6": {
+    stem: "Một lớp có $32$ học sinh, tổng điểm kiểm tra môn Toán của tất cả các bạn là $292$ điểm. Số học sinh điểm $9$ gấp đôi số bạn học sinh được điểm $10$. Tính số học sinh được điểm $8$. Biết các bạn chỉ có thể đạt điểm $8$; $9$ hoặc $10$.",
+    modelAnswer: "Giả sử cả $32$ học sinh đều đạt điểm $8$ thì tổng điểm là: $32 \\times 8 = 256$ (điểm).\nSố điểm hụt đi so với thực tế là: $292 - 256 = 36$ (điểm).\nMỗi bạn điểm $10$ hơn $2$ điểm, mỗi bạn điểm $9$ hơn $1$ điểm; số bạn điểm $9$ gấp đôi số bạn điểm $10$ nên mỗi bạn điểm $10$ ứng với $2 + 1 \\times 2 = 4$ điểm hụt.\nSố bạn đạt điểm $10$ là: $36 : 4 = 9$ (bạn). Số bạn điểm $9$ là $18$ bạn.\nSố bạn đạt điểm $8$ là: $32 - 9 - 18 = 5$ (bạn).\n\n**Đáp số**: $5$ bạn.",
+  },
+  "ARC-2020-21-CB-C7": {
+    stem: "Cho $B = 135791113\\ldots2021$ (viết liền các số lẻ từ $1$ đến $2021$). Hỏi chữ số thứ $2020$ là số mấy?",
+    modelAnswer: "Các số lẻ có $1$ chữ số ($1$ đến $9$): $5$ số $\\Rightarrow 5$ chữ số.\nCác số lẻ có $2$ chữ số ($11$ đến $99$): $45$ số $\\Rightarrow 90$ chữ số.\nCác số lẻ có $3$ chữ số ($101$ đến $999$): $450$ số $\\Rightarrow 1350$ chữ số.\nĐến hết số lẻ $3$ chữ số đã dùng: $5 + 90 + 1350 = 1445$ chữ số.\nCòn lại: $2020 - 1445 = 575$ chữ số, ứng với các số lẻ $4$ chữ số.\n$575 : 4 = 143$ (dư $3$) nên chữ số thứ $2020$ là chữ số thứ $3$ của số lẻ $4$ chữ số thứ $144$.\nSố lẻ $4$ chữ số thứ $144$ là: $1001 + (144 - 1) \\times 2 = 1287$.\n\n**Đáp số**: chữ số thứ $2020$ là $8$.",
+  },
+  "ARC-2020-21-CB-C8": {
+    stem: "Lúc $6$ giờ sáng, một xe máy đi từ $A$ đến $B$ với vận tốc $40$ km/giờ. Lúc $7$ giờ, một ô tô đi từ $B$ về $A$ với vận tốc $60$ km/giờ. Biết hai xe gặp nhau ở chính giữa $AB$. Hỏi ô tô đi từ $B$ về $A$ lúc mấy giờ thì tới $A$?",
+    modelAnswer: "Xe máy đi trước ô tô: $40 \\times (7 - 6) = 40$ (km).\nCùng thời gian thì quãng đường tỉ lệ với vận tốc; tỉ số vận tốc xe máy và ô tô là $\\dfrac{40}{60} = \\dfrac{2}{3}$.\nHiệu quãng đường hai xe đi từ $7$ giờ đến khi gặp nhau là $40$ km, ứng với hiệu $3 - 2 = 1$ phần.\nQuãng đường ô tô đi được (nửa $AB$) là: $40 : (3 - 2) \\times 3 = 120$ (km).\nThời gian ô tô đi nửa quãng đường là: $120 : 60 = 2$ (giờ). Ô tô đến $A$ lúc: $7 + 2 \\times 2 = 11$ (giờ).\n\n**Đáp số**: $11$ giờ.",
+  },
+  "ARC-2020-21-CB-C9": {
+    stem: "Hiện nay tuổi bố gấp $5$ lần tuổi con. Sau $10$ năm nữa tuổi bố gấp $2{,}5$ lần tuổi con. Tính tuổi con hiện nay.",
+    modelAnswer: "Hiện nay tuổi con bằng $\\dfrac{1}{4}$ hiệu số tuổi của hai bố con.\nSau $10$ năm, tuổi con bằng $\\dfrac{2}{3}$ hiệu số tuổi của hai bố con (hiệu không đổi).\n$10$ năm ứng với: $\\dfrac{2}{3} - \\dfrac{1}{4} = \\dfrac{5}{12}$ hiệu số tuổi.\nHiệu số tuổi của hai bố con là: $10 : \\dfrac{5}{12} = 24$ (tuổi).\nTuổi con hiện nay là: $24 : (5 - 1) \\times 1 = 6$ (tuổi).\n\n**Đáp số**: $6$ tuổi.",
+  },
+  "ARC-2020-21-CB-C10": {
+    stem: "Một hình hộp chữ nhật có chiều dài $8$ dm, chiều rộng $4$ dm, chiều cao $5$ dm được xếp bởi các hình lập phương cạnh $1$ dm. Người ta sơn các mặt của hình hộp chữ nhật (không sơn mặt tiếp đất). Hỏi có bao nhiêu hình lập phương được sơn đúng $1$ mặt?",
+    modelAnswer: "Số hình lập phương được sơn $1$ mặt ở mặt trên: $(8 - 2) \\times (4 - 2) = 12$ (hình).\nSố hình lập phương được sơn $1$ mặt ở các mặt bên: $(8 - 2) \\times (5 - 1) \\times 2 + (4 - 2) \\times (5 - 1) \\times 2 = 64$ (hình).\nTổng số hình lập phương được sơn $1$ mặt: $12 + 64 = 76$ (hình).\n\n**Đáp số**: $76$ hình.",
+  },
+  "ARC-2020-21-CB-C11": {
+    stem: "Một quả bóng rổ sau khi được giảm giá $30\\%$ có giá là $455\\,000$ đồng. Hỏi giá của quả bóng rổ trước đó là bao nhiêu?",
+    modelAnswer: "Giá quả bóng sau khi giảm bằng $100\\% - 30\\% = 70\\%$ giá trước đó.\nGiá quả bóng rổ trước đó là: $455\\,000 : 70 \\times 100 = 650\\,000$ (đồng).\n\n**Đáp số**: $650\\,000$ đồng.",
+  },
+  "ARC-2020-21-CB-C12": {
+    stem: "$7$ công nhân làm trong $6$ giờ được $21$ sản phẩm. Hỏi $5$ công nhân làm trong $16$ giờ được bao nhiêu sản phẩm? (Biết năng suất mỗi người làm đều như nhau.)",
+    modelAnswer: "$7$ công nhân làm trong $16$ giờ được: $16 \\times 21 : 6 = 56$ (sản phẩm).\n$5$ công nhân làm trong $16$ giờ được: $5 \\times 56 : 7 = 40$ (sản phẩm).\n\n**Đáp số**: $40$ sản phẩm.",
+  },
+  "ARC-2020-21-CB-C13": {
+    stem: "Có một hình chữ nhật, chiều dài hơn chiều rộng $10$ m. Nếu tăng chiều rộng thêm $25\\%$ và giảm chiều dài đi $8$ m thì diện tích không thay đổi. Tính diện tích hình chữ nhật.",
+    modelAnswer: "Diện tích không đổi: (chiều dài $- 8$) $\\times$ ($125\\%$ chiều rộng) $=$ chiều dài $\\times$ chiều rộng.\n$\\dfrac{5}{4} \\times$ chiều dài $\\times$ chiều rộng $- 10 \\times$ chiều rộng $=$ chiều dài $\\times$ chiều rộng.\n$\\dfrac{1}{4} \\times$ chiều dài $= 10 \\Rightarrow$ chiều dài $= 40$ m, chiều rộng $= 30$ m.\nDiện tích là: $40 \\times 30 = 1200$ (m$^2$).\n\n**Đáp số**: $1200$ m$^2$.",
+  },
+  "ARC-2020-21-CB-C14": {
+    stem: "Tính tổng dãy số cách đều sau: $3 + 5 + 7 + 9 + \\ldots + 35$.",
+    modelAnswer: "Số số hạng của dãy: $(35 - 3) : 2 + 1 = 17$ (số hạng).\nTổng dãy là: $(3 + 35) \\times 17 : 2 = 323$.\n\n**Đáp số**: $323$.",
+  },
+  "ARC-2020-21-CB-C15": {
+    stem: "Tìm hai số tròn chục liên tiếp có tổng bằng $570$.",
+    modelAnswer: "Hai số tròn chục liên tiếp có hiệu là $10$.\nSố bé là: $(570 - 10) : 2 = 280$. Số lớn là: $570 - 280 = 290$.\n\n**Đáp số**: $280$ và $290$.",
+  },
+  "ARC-2020-21-CB-C16": {
+    stem: "Trung bình cộng của bốn số là $17$, thêm số thứ năm vào thì trung bình cộng của năm số là $19$. Tính số thứ năm.",
+    modelAnswer: "Tổng của bốn số là: $17 \\times 4 = 68$.\nTổng của năm số là: $19 \\times 5 = 95$.\nSố thứ năm là: $95 - 68 = 27$.\n\n**Đáp số**: $27$.",
+  },
+  "ARC-2020-21-CB-C17": {
+    stem: "Khi viết thêm chữ số $9$ vào bên phải một số tự nhiên thì được số mới tăng thêm bao nhiêu lần và bao nhiêu đơn vị?",
+    modelAnswer: "Khi viết thêm chữ số $9$ vào bên phải một số thì số đó được nhân với $10$ rồi cộng thêm $9$.\n\n**Đáp số**: số mới tăng thêm $10$ lần và $9$ đơn vị.",
+  },
+  // --- arc-2020nc ---
+  "ARC-2020-21-NC-C1": {
+    stem: "Tính $A = 7{,}5 \\times 7{,}67 + 75 \\times 0{,}212 + 0{,}75 \\times 2{,}1$.",
+    modelAnswer: "$A = 7{,}5 \\times 7{,}67 + 7{,}5 \\times 2{,}12 + 7{,}5 \\times 0{,}21$.\n$A = 7{,}5 \\times (7{,}67 + 2{,}12 + 0{,}21) = 7{,}5 \\times 10 = 75$.\n\n**Đáp số**: $A = 75$.",
+  },
+  "ARC-2020-21-NC-C2": {
+    stem: "Tìm $x$, biết: $x \\times 3 + x \\times 4 + x : 3 + x : 4 = 546$.",
+    modelAnswer: "$x \\times \\left(3 + 4 + \\dfrac{1}{3} + \\dfrac{1}{4}\\right) = 546$.\n$x \\times \\dfrac{91}{12} = 546 \\Rightarrow x = 546 : \\dfrac{91}{12} = 72$.\n\n**Đáp số**: $x = 72$.",
+  },
+  "ARC-2020-21-NC-C3": {
+    stem: "Tính $B = \\dfrac{3}{1 \\times 5} + \\dfrac{3}{5 \\times 9} + \\dfrac{3}{9 \\times 13} + \\ldots + \\dfrac{3}{2017 \\times 2021}$.",
+    modelAnswer: "$B \\times \\dfrac{4}{3} = \\dfrac{4}{1 \\times 5} + \\dfrac{4}{5 \\times 9} + \\ldots + \\dfrac{4}{2017 \\times 2021} = 1 - \\dfrac{1}{2021} = \\dfrac{2020}{2021}$.\n$B = \\dfrac{2020}{2021} : \\dfrac{4}{3} = \\dfrac{1515}{2021}$.\n\n**Đáp số**: $B = \\dfrac{1515}{2021}$.",
+  },
+  "ARC-2020-21-NC-C4": {
+    stem: "Cho phân số $\\dfrac{49}{73}$. Phải cùng bớt ở tử số và mẫu số bao nhiêu đơn vị để được phân số có giá trị là $\\dfrac{7}{11}$?",
+    modelAnswer: "Cùng bớt ở tử số và mẫu số một số đơn vị như nhau thì hiệu giữa mẫu số và tử số không đổi và bằng $73 - 49 = 24$.\nPhân số mới $\\dfrac{7}{11}$ có hiệu giữa mẫu số và tử số là $11 - 7 = 4$ (phần) ứng với $24$.\nTử số mới là: $24 : (11 - 7) \\times 7 = 42$.\nPhải cùng bớt ở tử số và mẫu số số đơn vị là: $49 - 42 = 7$ (đơn vị).\n\n**Đáp số**: $7$ đơn vị.",
+  },
+  "ARC-2020-21-NC-C5": {
+    stem: "Một hình hộp chữ nhật có diện tích xung quanh là $640$ cm$^2$ và chiều cao là $16$ cm. Hiệu giữa chiều dài và chiều rộng là $4$ cm. Tính thể tích hình đó.",
+    modelAnswer: "Chu vi đáy của hình hộp chữ nhật: $640 : 16 = 40$ (cm). Nửa chu vi: $40 : 2 = 20$ (cm).\nChiều dài: $(20 + 4) : 2 = 12$ (cm). Chiều rộng: $20 - 12 = 8$ (cm).\nThể tích: $12 \\times 8 \\times 16 = 1536$ (cm$^3$).\n\n**Đáp số**: $1536$ cm$^3$.",
+  },
+  "ARC-2020-21-NC-C6": {
+    stem: "Giá một cân thịt bò vào tháng $6$ tăng $10\\%$ so với tháng $5$, giá một cân thịt bò tháng $7$ tăng $15\\%$ so với tháng $6$. Biết giá một cân thịt bò tháng $7$ cao hơn tháng $5$ là $53\\,000$ đồng. Tính giá một cân thịt bò tháng $7$.",
+    modelAnswer: "Coi giá thịt bò tháng $5$ là $100\\%$.\nGiá tháng $6$ là $110\\%$ giá tháng $5$. Giá tháng $7$ là $110\\% \\times 115\\% = 126{,}5\\%$ giá tháng $5$.\nTháng $7$ cao hơn tháng $5$: $126{,}5\\% - 100\\% = 26{,}5\\%$, ứng với $53\\,000$ đồng.\nGiá tháng $7$: $53\\,000 : 26{,}5 \\times 126{,}5 = 253\\,000$ (đồng).\n\n**Đáp số**: $253\\,000$ đồng.",
+  },
+  "ARC-2020-21-NC-C7": {
+    stem: "Số hạng thứ $2020$ của dãy số $1; 3; 2; 4; 3; 5; \\ldots$ là số nào?",
+    modelAnswer: "Tách thành hai dãy xen kẽ: dãy $1$ gồm $1; 2; 3; \\ldots$ (vị trí lẻ); dãy $2$ gồm $3; 4; 5; \\ldots$ (vị trí chẵn).\nSố hạng thứ $2020$ ở vị trí chẵn, là số hạng thứ $2020 : 2 = 1010$ của dãy $2$.\nSố hạng thứ $1010$ của dãy $2$ là: $(1010 - 1) \\times 1 + 3 = 1012$.\n\n**Đáp số**: $1012$.",
+  },
+  "ARC-2020-21-NC-C8": {
+    stem: "Tổ A có $8$ công nhân, $1$ ngày làm $8$ giờ, xong công việc trong $15$ ngày. Tổ B có $12$ công nhân, $1$ ngày làm $5$ giờ sẽ xong công việc đó trong bao nhiêu ngày?",
+    modelAnswer: "$8$ công nhân làm xong công việc trong số giờ: $15 \\times 8 = 120$ (giờ).\nMột công nhân làm xong công việc trong: $120 \\times 8 = 960$ (giờ).\n$12$ công nhân, mỗi ngày làm $5$ giờ thì xong trong: $960 : 5 : 12 = 16$ (ngày).\n\n**Đáp số**: $16$ ngày.",
+  },
+  "ARC-2020-21-NC-C9": {
+    stem: "Hiệu hai số thập phân là $66{,}8$. Nếu dịch dấu phẩy của số bé sang trái $1$ hàng thì hiệu mới là $117{,}83$. Tìm số lớn.",
+    modelAnswer: "Dịch dấu phẩy số bé sang trái $1$ hàng thì số bé giảm đi $10$ lần.\n$9$ lần số bé là: $117{,}83 - 66{,}8 = 51{,}03$. Số bé là: $51{,}03 : 9 = 5{,}67$ $\\Rightarrow$ số bé ban đầu là $56{,}7$.\nSố lớn là: $56{,}7 + 66{,}8 = 123{,}5$.\n\n**Đáp số**: $123{,}5$.",
+  },
+  "ARC-2020-21-NC-C10": {
+    stem: "$A$ là tích các số chẵn từ $1$ đến $23$, $B$ là tích các số lẻ từ $2$ đến $22$. Tìm chữ số tận cùng của hiệu giữa $A$ và $B$.",
+    modelAnswer: "$A$ có tận cùng là $0$ vì trong các số chẵn từ $1$ đến $23$ có thừa số $10$.\n$B$ có tận cùng là $5$ vì trong các số lẻ có thừa số $5$, mà $5$ nhân số lẻ luôn tận cùng $5$.\nVậy $A - B$ có tận cùng là $0 - 5$ (mượn) $= 5$.\n\n**Đáp số**: chữ số tận cùng là $5$.",
+  },
+  "ARC-2020-21-NC-C11": {
+    stem: "Cô giáo viết lên bảng một số tự nhiên chia hết cho $9$. An thấy số đó chia $5$ hay $8$ đều cùng số dư. Tìm số đó, biết số đó có $2$ chữ số.",
+    modelAnswer: "Các số có hai chữ số chia hết cho $9$: $18, 27, 36, 45, 54, 63, 72, 81, 90, 99$.\nThử lần lượt, số $81$ chia $5$ dư $1$ và chia $8$ dư $1$ (cùng số dư).\n\n**Đáp số**: $81$.",
+  },
+  "ARC-2020-21-NC-C12": {
+    stem: "Tìm số có $4$ chữ số khác nhau, nếu xóa chữ số hàng chục và hàng đơn vị thì số đó giảm $108$ lần.",
+    modelAnswer: "Gọi số cần tìm là $\\overline{abcd}$. Theo đề bài: $\\overline{abcd} = \\overline{ab} \\times 108$.\n$\\overline{ab} \\times 100 + \\overline{cd} = \\overline{ab} \\times 108 \\Rightarrow \\overline{cd} = \\overline{ab} \\times 8$.\nSuy ra $\\overline{ab} = 12,\\ \\overline{cd} = 96$.\n\n**Đáp số**: $1296$.",
+  },
+  "ARC-2020-21-NC-C13": {
+    stem: "Số thứ nhất bằng $\\dfrac{1}{4}$ trung bình cộng của $3$ số. Số thứ hai hơn số thứ nhất $48$ đơn vị. Số thứ ba bằng $\\dfrac{3}{2}$ trung bình cộng của $3$ số. Tìm số thứ ba.",
+    modelAnswer: "Số thứ nhất bằng $\\dfrac{1}{4 \\times 3} = \\dfrac{1}{12}$ tổng ba số.\nSố thứ ba bằng $\\dfrac{3}{2 \\times 3} = \\dfrac{1}{2}$ tổng ba số.\nPhân số chỉ số thứ hai: $1 - \\dfrac{1}{12} - \\dfrac{1}{2} = \\dfrac{5}{12}$ tổng ba số.\n$48$ đơn vị ứng với: $\\dfrac{5}{12} - \\dfrac{1}{12} = \\dfrac{1}{3}$ tổng ba số. Tổng ba số là: $48 : \\dfrac{1}{3} = 144$.\nSố thứ ba là: $144 \\times \\dfrac{1}{2} = 72$.\n\n**Đáp số**: $72$.",
+  },
+  "ARC-2020-21-NC-C14": {
+    stem: "Tuổi mẹ $5$ năm trước bằng $3$ lần tuổi con hiện nay. Hai lần tuổi con $8$ năm nữa bằng tuổi mẹ hiện nay. Tính tuổi mẹ hiện nay.",
+    modelAnswer: "Tuổi mẹ $5$ năm trước bằng $3$ lần tuổi con hiện nay $\\Rightarrow$ $3$ lần tuổi con hiện nay kém tuổi mẹ hiện nay $5$ tuổi.\nHai lần tuổi con $8$ năm nữa bằng tuổi mẹ hiện nay $\\Rightarrow$ $2$ lần tuổi con hiện nay kém tuổi mẹ hiện nay $16$ tuổi.\nTuổi con hiện nay là: $16 - 5 = 11$ (tuổi).\nTuổi mẹ hiện nay là: $11 \\times 2 + 16 = 38$ (tuổi).\n\n**Đáp số**: $38$ tuổi.",
+  },
+  "ARC-2020-21-NC-C15": {
+    stem: "Lớp 5A làm bài kiểm tra. Tất cả các bạn được $9$ hoặc $10$ điểm. Tổng điểm là $365$ và số bạn được $10$ điểm hơn số bạn được $9$ điểm là $8$ bạn. Tìm số học sinh của lớp 5A.",
+    modelAnswer: "Giả sử bớt đi $8$ bạn được $10$ điểm thì số bạn được $10$ bằng số bạn được $9$, tổng điểm còn: $365 - 10 \\times 8 = 285$ (điểm).\nSố bạn được điểm $9$ hoặc $10$ lúc này là: $285 : (10 + 9) = 15$ (bạn).\nSố bạn được điểm $10$ thực tế là: $15 + 8 = 23$ (bạn).\nTổng số học sinh là: $23 + 15 = 38$ (bạn).\n\n**Đáp số**: $38$ bạn.",
+  },
+  "ARC-2020-21-NC-C16": {
+    stem: "Minh đọc quyển sách trong $4$ ngày. Ngày thứ nhất đọc $15\\%$ số trang và thêm $6$ trang nữa. Ngày thứ hai đọc $60\\%$ số trang còn lại và $30$ trang nữa. Ngày thứ ba đọc $50\\%$ số trang còn lại và $15$ trang nữa. Ngày thứ tư đọc nốt $30$ trang. Hỏi cuốn sách đó có bao nhiêu trang?",
+    modelAnswer: "Số trang còn lại sau ngày thứ hai: $(30 + 15) : (100\\% - 50\\%) = 90$ (trang).\nSố trang còn lại sau ngày thứ nhất: $(90 + 30) : (100\\% - 60\\%) = 300$ (trang).\nTổng số trang sách ban đầu: $(300 + 6) : (100\\% - 15\\%) = 360$ (trang).\n\n**Đáp số**: $360$ trang.",
+  },
+  "ARC-2020-21-NC-C17": {
+    stem: "Có bao nhiêu số có $4$ chữ số chia hết cho $5$? Biết số cần tìm có $4$ chữ số khác nhau và các chữ số tăng dần từ trái sang phải.",
+    modelAnswer: "Số có các chữ số tăng dần từ trái sang phải nên chữ số tận cùng không thể là $0$; để chia hết cho $5$ thì tận cùng là $5$.\nCác số $4$ chữ số khác nhau, tăng dần, tận cùng là $5$: $1235, 1245, 1345, 2345$.\n\n**Đáp số**: $4$ số.",
+  },
+  "ARC-2020-21-NC-C18": {
+    stem: "Xếp các hình lập phương nhỏ cạnh $1$ cm thành một hình lập phương lớn. Số hình không được sơn mặt nào gấp rưỡi số hình được sơn $1$ mặt. Tính thể tích hình lập phương đó.",
+    modelAnswer: "Giả sử mỗi cạnh hình lập phương lớn có $n$ hình lập phương nhỏ.\nSố hình được sơn $1$ mặt: $6 \\times (n - 2) \\times (n - 2)$. Số hình không sơn mặt nào: $(n - 2)^3$.\nTheo đề bài: $\\dfrac{(n-2)^3}{6 \\times (n-2)^2} = \\dfrac{3}{2} \\Rightarrow \\dfrac{n-2}{6} = \\dfrac{3}{2} \\Rightarrow n = 11$.\nThể tích hình lập phương lớn: $11 \\times 11 \\times 11 = 1331$ (cm$^3$).\n\n**Đáp số**: $1331$ cm$^3$.",
+  },
+  "ARC-2020-21-NC-C19": {
+    stem: "Biết $\\overline{abcd} + \\overline{affe} = \\overline{cbbd}$ và $\\overline{abcd}$ chia hết cho $15$. Tìm $\\overline{abcdef}$ ($a, b, c, d, e, f$ khác nhau).",
+    modelAnswer: "Vì $\\overline{abcd}$ chia hết cho $15$ nên chia hết cho cả $3$ và $5$, suy ra $d = 0$ hoặc $d = 5$.\nXét hàng đơn vị $d + e = d$ (có thể nhớ): nếu $d = 0$ thì $e = 0$ (loại vì $e \\ne d$). Vậy $d = 5$, khi đó $e = 0$.\nTa có $\\overline{abc5} + \\overline{aff0} = \\overline{cbb5}$. Hàng trăm $c + f$ phải nhớ $1$, hàng nghìn $a + a + 1 = c$.\nThử $a = 3 \\Rightarrow c = 7$, tìm được $b = 6,\\ f = 9$. Số cần tìm là $\\overline{abcd} = 3675$, $\\overline{abcdef} = 367509$.\n\n**Đáp số**: $367509$.",
+  },
+  "ARC-2020-21-NC-C20": {
+    stem: "An và Bình cùng xuất phát đi từ $A$ đến $B$ với vận tốc là $35$ km/h và $45$ km/h. Cùng lúc đó Chi đi từ $B$ đến $A$ với vận tốc $50$ km/h. Biết quãng đường $AB$ dài $132$ km. Hỏi sau bao nhiêu phút thì Chi ở chính giữa An và Bình?",
+    modelAnswer: "Gọi bạn Long có vận tốc bằng trung bình cộng vận tốc của An và Bình, xuất phát cùng lúc thì Long luôn ở chính giữa An và Bình.\nVận tốc của Long là: $(35 + 45) : 2 = 40$ (km/giờ).\nBài toán quy về việc Chi gặp Long. Chi gặp Long sau số phút là: $132 : (40 + 50) = \\dfrac{22}{15}$ (giờ) $= 88$ (phút).\n\n**Đáp số**: $88$ phút.",
+  },
+  // --- arc-2022 ---
+  "ARC-2022-23-C1": {
+    stem: "Diện tích hình tròn có bán kính $3$ cm là:",
+    options: [{"id": "A", "text": "$18{,}84$ cm$^2$"}, {"id": "B", "text": "$28{,}26$ cm$^2$"}, {"id": "C", "text": "$7{,}065$ cm$^2$"}, {"id": "D", "text": "$9{,}42$ cm$^2$"}],
+    modelAnswer: "Diện tích hình tròn: $3 \\times 3 \\times 3{,}14 = 28{,}26$ (cm$^2$).",
+  },
+  "ARC-2022-23-C2": {
+    stem: "Tính: $3$ giờ $18$ phút $+ 2$ giờ $10$ phút $\\times 3$.",
+    options: [{"id": "A", "text": "$9$ giờ $48$ phút"}, {"id": "B", "text": "$5$ giờ $48$ phút"}, {"id": "C", "text": "$9$ giờ $28$ phút"}, {"id": "D", "text": "$5$ giờ $28$ phút"}],
+    modelAnswer: "$3$ giờ $18$ phút $+ 6$ giờ $30$ phút $= 9$ giờ $48$ phút.",
+  },
+  "ARC-2022-23-C3": {
+    stem: "Điền vào chỗ trống: $3{,}14$ m$^3 = \\ldots$ dm$^3$.",
+    options: [{"id": "A", "text": "$31400$"}, {"id": "B", "text": "$314$"}, {"id": "C", "text": "$0{,}0314$"}, {"id": "D", "text": "$3140$"}],
+    modelAnswer: "$3{,}14$ m$^3 = 3140$ dm$^3$.",
+  },
+  "ARC-2022-23-C4": {
+    stem: "Kết quả của phép tính $A = 2 : 0{,}5 + 10 \\times 0{,}2$ là:",
+    options: [{"id": "A", "text": "$21$"}, {"id": "B", "text": "$6$"}, {"id": "C", "text": "$24$"}, {"id": "D", "text": "$12$"}],
+    modelAnswer: "$A = 2 : 0{,}5 + 10 \\times 0{,}2 = 4 + 2 = 6$.",
+  },
+  "ARC-2022-23-C5": {
+    stem: "Tìm phân số lớn nhất trong các phân số $\\dfrac{1}{10}; \\dfrac{2}{15}; \\dfrac{3}{20}; \\dfrac{7}{60}$.",
+    options: [{"id": "A", "text": "$\\dfrac{2}{15}$"}, {"id": "B", "text": "$\\dfrac{1}{10}$"}, {"id": "C", "text": "$\\dfrac{3}{20}$"}, {"id": "D", "text": "$\\dfrac{7}{60}$"}],
+    modelAnswer: "Quy đồng mẫu $60$: $\\dfrac{6}{60}; \\dfrac{8}{60}; \\dfrac{9}{60}; \\dfrac{7}{60}$. Lớn nhất là $\\dfrac{3}{20}$.",
+  },
+  "ARC-2022-23-C6": {
+    stem: "Trung bình cộng hai số là $3{,}2$ còn hiệu hai số là $2{,}3$. Số lớn là:",
+    options: [{"id": "A", "text": "$2{,}05$"}, {"id": "B", "text": "$2{,}75$"}, {"id": "C", "text": "$4{,}35$"}, {"id": "D", "text": "$0{,}45$"}],
+    modelAnswer: "Tổng hai số: $3{,}2 \\times 2 = 6{,}4$. Số lớn: $(6{,}4 + 2{,}3) : 2 = 4{,}35$.",
+  },
+  "ARC-2022-23-C7": {
+    stem: "Thể tích của hình hộp chữ nhật có chiều dài $3$ cm, chiều rộng $2$ cm và chiều cao $1{,}5$ cm là:",
+    options: [{"id": "A", "text": "$9$ cm$^3$"}, {"id": "B", "text": "$6$ cm$^3$"}, {"id": "C", "text": "$10$ cm$^3$"}, {"id": "D", "text": "$6{,}5$ cm$^3$"}],
+    modelAnswer: "Thể tích: $3 \\times 2 \\times 1{,}5 = 9$ (cm$^3$).",
+  },
+  "ARC-2022-23-C8": {
+    stem: "Có bao nhiêu số tự nhiên $a$ thỏa mãn $3\\dfrac{1}{4} < a < 5\\dfrac{3}{4}$?",
+    options: [{"id": "A", "text": "$1$ số"}, {"id": "B", "text": "$3$ số"}, {"id": "C", "text": "$2$ số"}, {"id": "D", "text": "$4$ số"}],
+    modelAnswer: "Số tự nhiên thỏa mãn là $4$ và $5$ $\\Rightarrow$ có $2$ số.",
+  },
+  "ARC-2022-23-C9": {
+    stem: "Diện tích trên bản đồ tỉ lệ $1 : 2000$ của một khu đất là $3$ cm$^2$. Diện tích thực của khu đất đó là:",
+    options: [{"id": "A", "text": "$60$ m$^2$"}, {"id": "B", "text": "$120$ m$^2$"}, {"id": "C", "text": "$600$ m$^2$"}, {"id": "D", "text": "$1200$ m$^2$"}],
+    modelAnswer: "Diện tích thực: $3 \\times 2000 \\times 2000 = 12\\,000\\,000$ cm$^2 = 1200$ m$^2$.",
+  },
+  "ARC-2022-23-C10": {
+    stem: "Từ các chữ số $1; 2; 4; 7; 8$ lập được bao nhiêu số có $3$ chữ số có các chữ số khác nhau?",
+    options: [{"id": "A", "text": "$125$ số"}, {"id": "B", "text": "$50$ số"}, {"id": "C", "text": "$60$ số"}, {"id": "D", "text": "$20$ số"}],
+    modelAnswer: "Hàng trăm $5$ cách, hàng chục $4$ cách, hàng đơn vị $3$ cách: $5 \\times 4 \\times 3 = 60$ (số).",
+  },
+  "ARC-2022-23-C11": {
+    stem: "Biết $\\dfrac{2}{5}$ của một số là $20$. Tìm số đó.",
+    options: [{"id": "A", "text": "$30$"}, {"id": "B", "text": "$60$"}, {"id": "C", "text": "$50$"}, {"id": "D", "text": "$20$"}],
+    modelAnswer: "Số đó là: $20 : \\dfrac{2}{5} = 50$.",
+  },
+  "ARC-2022-23-C12": {
+    stem: "Số mặt của một hình lập phương là:",
+    options: [{"id": "A", "text": "$12$ mặt"}, {"id": "B", "text": "$6$ mặt"}, {"id": "C", "text": "$10$ mặt"}, {"id": "D", "text": "$8$ mặt"}],
+    modelAnswer: "Hình lập phương có $6$ mặt.",
+  },
+  "ARC-2022-23-C13": {
+    stem: "Tổng hai số là $20$, hiệu hai số là $3$. Số bé là:",
+    options: [{"id": "A", "text": "$11{,}5$"}, {"id": "B", "text": "$8{,}5$"}, {"id": "C", "text": "$10{,}5$"}, {"id": "D", "text": "$9{,}5$"}],
+    modelAnswer: "Số bé là: $(20 - 3) : 2 = 8{,}5$.",
+  },
+  "ARC-2022-23-C14": {
+    stem: "Tổng số tuổi của ba người trong gia đình Nam là $76$ tuổi, biết bố hơn mẹ $3$ tuổi còn mẹ hơn Nam $23$ tuổi. Tuổi bố là:",
+    options: [{"id": "A", "text": "$35$ tuổi"}, {"id": "B", "text": "$32$ tuổi"}, {"id": "C", "text": "$37$ tuổi"}, {"id": "D", "text": "$34$ tuổi"}],
+    modelAnswer: "Tuổi Nam: $(76 - 23 - 23 - 3) : 3 = 9$ (tuổi). Tuổi bố: $9 + 23 + 3 = 35$ (tuổi).",
+  },
+  "ARC-2022-23-C15": {
+    stem: "Phân số $\\dfrac{3}{20}$ đổi ra tỉ số phần trăm bằng:",
+    options: [{"id": "A", "text": "$6\\%$"}, {"id": "B", "text": "$15\\%$"}, {"id": "C", "text": "$18\\%$"}, {"id": "D", "text": "$3\\%$"}],
+    modelAnswer: "$\\dfrac{3}{20} = 0{,}15 = 15\\%$.",
+  },
+  "ARC-2022-23-C16": {
+    stem: "Tổng hai số gấp $3$ lần hiệu của chúng. Số lớn gấp số bé bao nhiêu lần?",
+    options: [{"id": "A", "text": "$3$ lần"}, {"id": "B", "text": "$5$ lần"}, {"id": "C", "text": "$2$ lần"}, {"id": "D", "text": "$4$ lần"}],
+    modelAnswer: "Tổng $= 3 \\times$ hiệu $\\Rightarrow$ số lớn $+$ số bé $= 3 \\times$ (số lớn $-$ số bé) $\\Rightarrow 2 \\times$ số bé $=$ số lớn.",
+  },
+  "ARC-2022-23-C17": {
+    stem: "Một cửa hàng nhập cam về bán. Cửa hàng bán được $\\dfrac{3}{5}$ số cam thì còn $42$ kg. Số cam cửa hàng đã bán là:",
+    options: [{"id": "A", "text": "$63$ kg"}, {"id": "B", "text": "$65$ kg"}, {"id": "C", "text": "$28$ kg"}, {"id": "D", "text": "$105$ kg"}],
+    modelAnswer: "$\\dfrac{2}{5}$ số cam ứng với $42$ kg $\\Rightarrow$ tổng $42 : \\dfrac{2}{5} = 105$ kg. Đã bán: $105 \\times \\dfrac{3}{5} = 63$ kg.",
+  },
+  "ARC-2022-23-C18": {
+    stem: "Tổng của hai số lẻ liên tiếp là $248$. Số lớn là:",
+    options: [{"id": "A", "text": "$121$"}, {"id": "B", "text": "$127$"}, {"id": "C", "text": "$125$"}, {"id": "D", "text": "$123$"}],
+    modelAnswer: "Hai số lẻ liên tiếp hơn kém nhau $2$. Số lớn: $(248 + 2) : 2 = 125$.",
+  },
+  "ARC-2022-23-C19": {
+    stem: "Cho một phân số có giá trị bằng $\\dfrac{8}{5}$ và hiệu của tử số và mẫu số là $36$. Tử số là:",
+    options: [{"id": "A", "text": "$96$"}, {"id": "B", "text": "$288$"}, {"id": "C", "text": "$180$"}, {"id": "D", "text": "$60$"}],
+    modelAnswer: "Tử số là: $36 : (8 - 5) \\times 8 = 96$.",
+  },
+  "ARC-2022-23-C20": {
+    stem: "Đổi $1{,}15$ giờ sang phút.",
+    options: [{"id": "A", "text": "$69$ phút"}, {"id": "B", "text": "$78$ phút"}, {"id": "C", "text": "$75$ phút"}, {"id": "D", "text": "$63$ phút"}],
+    modelAnswer: "$1{,}15$ giờ $= 1{,}15 \\times 60 = 69$ (phút).",
+  },
+  "ARC-2022-23-C21": {
+    stem: "Lớp 5A có $40$ học sinh, trong đó số học sinh nữ bằng $45\\%$ số học sinh cả lớp. Số học sinh nam là:",
+    options: [{"id": "A", "text": "$18$ bạn"}, {"id": "B", "text": "$20$ bạn"}, {"id": "C", "text": "$25$ bạn"}, {"id": "D", "text": "$22$ bạn"}],
+    modelAnswer: "Học sinh nam chiếm $100\\% - 45\\% = 55\\%$. Số nam: $40 \\times 55 : 100 = 22$ (bạn).",
+  },
+  "ARC-2022-23-C22": {
+    stem: "Giá trị của chữ số $2$ trong số $3{,}02$ bằng với phân số:",
+    options: [{"id": "A", "text": "$\\dfrac{1}{100}$"}, {"id": "B", "text": "$\\dfrac{1}{5}$"}, {"id": "C", "text": "$\\dfrac{1}{20}$"}, {"id": "D", "text": "$\\dfrac{1}{50}$"}],
+    modelAnswer: "Chữ số $2$ ở hàng phần trăm: $\\dfrac{2}{100} = \\dfrac{1}{50}$.",
+  },
+  "ARC-2022-23-C23": {
+    stem: "Hai anh em có $22$ cái kẹo, nếu anh cho em $2$ cái thì số kẹo của anh vẫn nhiều hơn của em $2$ cái. Số kẹo của em là:",
+    options: [{"id": "A", "text": "$12$"}, {"id": "B", "text": "$14$"}, {"id": "C", "text": "$8$"}, {"id": "D", "text": "$10$"}],
+    modelAnswer: "Số kẹo của em sau khi được cho: $(22 - 2) : 2 = 10$ (cái). Số kẹo của em ban đầu: $10 - 2 = 8$ (cái).",
+  },
+  "ARC-2022-23-C24": {
+    stem: "Cho dãy số có quy luật $3, 4, 6, 9, 13, 18, 24, \\ldots$ Số tiếp theo là:",
+    options: [{"id": "A", "text": "$30$"}, {"id": "B", "text": "$32$"}, {"id": "C", "text": "$31$"}, {"id": "D", "text": "$33$"}],
+    modelAnswer: "Khoảng cách tăng dần $1, 2, 3, 4, 5, 6, 7$: số tiếp theo $24 + 7 = 31$.",
+  },
+  "ARC-2022-23-C25": {
+    stem: "Cần cộng thêm số nào dưới đây với số $2032022$ để được một số chia hết cho $3$?",
+    options: [{"id": "A", "text": "$15$"}, {"id": "B", "text": "$35$"}, {"id": "C", "text": "$25$"}],
+    modelAnswer: "$2032022$ chia $3$ dư $2$ nên số cộng thêm phải chia $3$ dư $1$. Chỉ có $25$ thỏa mãn.",
+  },
+  "ARC-2022-23-C26": {
+    stem: "Trong các số dưới đây, số chia hết cho $12$ là:",
+    options: [{"id": "A", "text": "$2220$"}, {"id": "B", "text": "$2032$"}, {"id": "C", "text": "$2022$"}, {"id": "D", "text": "$2312$"}],
+    modelAnswer: "$2220$ chia hết cho cả $3$ và $4$ nên chia hết cho $12$.",
+  },
+  "ARC-2022-23-C27": {
+    stem: "Khi nhân một số với $23$, bạn Khanh đã để các tích riêng thẳng cột nên tích mới giảm $1584$ đơn vị so với tích đúng. Tích đúng là:",
+    options: [{"id": "A", "text": "$1978$"}, {"id": "B", "text": "$1965$"}, {"id": "C", "text": "$2001$"}, {"id": "D", "text": "$2024$"}],
+    modelAnswer: "Để tích riêng thẳng cột thì như nhân với $2 + 3 = 5$. Hiệu: $23 \\times a - 5 \\times a = 18 \\times a = 1584 \\Rightarrow a = 88$.\nTích đúng: $88 \\times 23 = 2024$.",
+  },
+  "ARC-2022-23-C28": {
+    stem: "Một khu vườn trồng $203$ cây gồm $3$ loại cam, quýt, bưởi. Biết số cây cam gấp $2$ lần số cây quýt, còn số cây quýt gấp $2$ lần số cây bưởi. Số cây quýt trong vườn là:",
+    options: [{"id": "A", "text": "$58$ cây"}, {"id": "B", "text": "$116$ cây"}, {"id": "C", "text": "$68$ cây"}, {"id": "D", "text": "$29$ cây"}],
+    modelAnswer: "Coi bưởi $1$ phần thì quýt $2$ phần, cam $4$ phần. Tổng $7$ phần. Số quýt: $203 : 7 \\times 2 = 58$ (cây).",
+  },
+  "ARC-2022-23-C29": {
+    stem: "Để pha được $800$ g dung dịch nước muối chứa chín phần nghìn muối cần số gam muối là:",
+    options: [{"id": "A", "text": "$72$ g"}, {"id": "B", "text": "$64$ g"}, {"id": "C", "text": "$7{,}2$ g"}, {"id": "D", "text": "$8{,}1$ g"}],
+    modelAnswer: "Số gam muối: $800 \\times \\dfrac{9}{1000} = 7{,}2$ (g).",
+  },
+  "ARC-2022-23-C30": {
+    stem: "Một tập tài liệu có $320$ trang. Số chữ số để đánh số trang liền nhau của tập tài liệu đó từ trang số $1$ là:",
+    options: [{"id": "A", "text": "$852$"}, {"id": "B", "text": "$663$"}, {"id": "C", "text": "$849$"}, {"id": "D", "text": "$960$"}],
+    modelAnswer: "Trang $1$–$9$: $9$ chữ số. Trang $10$–$99$: $180$ chữ số. Trang $100$–$320$: $221 \\times 3 = 663$ chữ số.\nTổng: $9 + 180 + 663 = 852$ (chữ số).",
+  },
+  "ARC-2022-23-C31": {
+    stem: "Một đơn vị vận chuyển $3$ tấn hàng, quãng đường $200$ km chi phí hết $18$ triệu đồng. Hỏi vẫn đơn vị đó vận chuyển $7$ tấn hàng, quãng đường $120$ km hết bao nhiêu tiền?",
+    options: [{"id": "A", "text": "$31{,}5$ triệu"}, {"id": "B", "text": "$70$ triệu"}, {"id": "C", "text": "$21$ triệu"}, {"id": "D", "text": "$25{,}2$ triệu"}],
+    modelAnswer: "$3$ tấn $120$ km hết: $120 \\times 18 : 200 = 10{,}8$ (triệu).\n$7$ tấn $120$ km hết: $7 \\times 10{,}8 : 3 = 25{,}2$ (triệu).",
+  },
+  "ARC-2022-23-C32": {
+    stem: "Tính $A = \\dfrac{1}{6} + \\dfrac{1}{12} + \\dfrac{1}{20} + \\ldots + \\dfrac{1}{240}$.",
+    options: [{"id": "A", "text": "$\\dfrac{4}{15}$"}, {"id": "B", "text": "$\\dfrac{15}{16}$"}, {"id": "C", "text": "$\\dfrac{7}{16}$"}, {"id": "D", "text": "$\\dfrac{13}{30}$"}],
+    modelAnswer: "$A = \\dfrac{1}{2 \\times 3} + \\dfrac{1}{3 \\times 4} + \\ldots + \\dfrac{1}{15 \\times 16} = \\dfrac{1}{2} - \\dfrac{1}{16} = \\dfrac{7}{16}$.",
+  },
+  "ARC-2022-23-C33": {
+    stem: "Ba bạn Mai, Hoa và Trang có $48$ bông hoa. Nếu Mai cho Hoa $3$ bông; Hoa cho Trang $2$ bông; còn Trang lại cho Mai $6$ bông thì số hoa của ba bạn bằng nhau. Số hoa ban đầu của Trang là:",
+    options: [{"id": "A", "text": "$15$ bông"}, {"id": "B", "text": "$13$ bông"}, {"id": "C", "text": "$20$ bông"}, {"id": "D", "text": "$16$ bông"}],
+    modelAnswer: "Số hoa của mỗi bạn lúc sau: $48 : 3 = 16$ (bông). Trang lúc sau nhận $2$, cho $6$ nên ban đầu: $16 + 6 - 2 = 20$ (bông).",
+  },
+  "ARC-2022-23-C34": {
+    stem: "Người thứ nhất làm một mình xong một công việc trong $4$ giờ, người thứ hai làm một mình xong công việc đó trong $6$ giờ. Thời gian để cả hai người cùng làm xong công việc đó là:",
+    options: [{"id": "A", "text": "$2$ giờ $36$ phút"}, {"id": "B", "text": "$2$ giờ"}, {"id": "C", "text": "$2$ giờ $24$ phút"}, {"id": "D", "text": "$3$ giờ"}],
+    modelAnswer: "Mỗi giờ cả hai làm: $\\dfrac{1}{4} + \\dfrac{1}{6} = \\dfrac{5}{12}$ công việc. Thời gian: $1 : \\dfrac{5}{12} = 2{,}4$ giờ $= 2$ giờ $24$ phút.",
+  },
+  "ARC-2022-23-C35": {
+    stem: "Một thửa ruộng hình thang có đáy lớn gấp $2$ lần đáy bé và chiều cao ngắn hơn đáy lớn $4$ m nhưng dài hơn đáy bé $5$ m. Diện tích của thửa ruộng là:",
+    options: [{"id": "A", "text": "$378$ m$^2$"}, {"id": "B", "text": "$175{,}5$ m$^2$"}, {"id": "C", "text": "$351$ m$^2$"}, {"id": "D", "text": "$189$ m$^2$"}],
+    modelAnswer: "Đáy lớn $= 2 \\times$ đáy bé. Chiều cao kém đáy lớn $4$ m và hơn đáy bé $5$ m $\\Rightarrow$ đáy lớn $-$ đáy bé $= 9$ m $=$ đáy bé.\nĐáy bé $9$ m, đáy lớn $18$ m, chiều cao $14$ m. Diện tích: $(18 + 9) \\times 14 : 2 = 189$ (m$^2$).",
+  },
+  "ARC-2022-23-C36": {
+    stem: "Một bể nước có chiều dài $1{,}2$ m, chiều rộng $8$ dm và chiều cao là $6$ dm (các kích thước được đo bên trong lòng bể). Trong bể có $432$ lít nước. Mặt nước cách thành bể:",
+    options: [{"id": "A", "text": "$15$ cm"}, {"id": "B", "text": "$22{,}5$ cm"}, {"id": "C", "text": "$37{,}5$ cm"}, {"id": "D", "text": "$45$ cm"}],
+    modelAnswer: "Đổi $1{,}2$ m $= 12$ dm; $432$ lít $= 432$ dm$^3$. Diện tích đáy: $12 \\times 8 = 96$ (dm$^2$).\nChiều cao mực nước: $432 : 96 = 4{,}5$ (dm). Mặt nước cách thành: $6 - 4{,}5 = 1{,}5$ dm $= 15$ cm.",
+  },
+  "ARC-2022-23-C37": {
+    stem: "Một lớp học có $32$ học sinh. Trong đó, có $22$ bạn thích ăn táo, $23$ bạn thích ăn xoài và mỗi bạn đều thích ăn ít nhất $1$ trong $2$ loại trái cây trên. Số bạn thích ăn cả táo và xoài là:",
+    options: [{"id": "A", "text": "$9$ bạn"}, {"id": "B", "text": "$8$ bạn"}, {"id": "C", "text": "$10$ bạn"}, {"id": "D", "text": "$13$ bạn"}],
+    modelAnswer: "Số bạn thích cả táo và xoài: $22 + 23 - 32 = 13$ (bạn).",
+  },
+  "ARC-2022-23-C38": {
+    stem: "Trên bến đò có một đoàn khách tham quan. Biết nếu $6$ khách một đò thì thiếu $1$ đò còn $8$ khách một đò thì thừa $1$ đò. Hỏi có tất cả bao nhiêu người trên bến?",
+    options: [{"id": "A", "text": "$55$ người"}, {"id": "B", "text": "$64$ người"}, {"id": "C", "text": "$48$ người"}, {"id": "D", "text": "$36$ người"}],
+    modelAnswer: "Số đò: nếu $6$ khách/đò thiếu $1$ đò $\\Rightarrow$ thiếu $6$ chỗ; $8$ khách/đò thừa $1$ đò $\\Rightarrow$ thừa $8$ chỗ.\nSố đò: $(6 + 8) : (8 - 6) = 7$ (đò). Số người: $(7 - 1) \\times 8 = 48$ (người).",
+  },
+  "ARC-2022-23-C39": {
+    stem: "Cho hai hình chữ nhật có kích thước như hình vẽ bên. Diện tích tam giác màu xanh là:",
+    options: [{"id": "A", "text": "$6$ cm$^2$"}, {"id": "B", "text": "$3$ cm$^2$"}, {"id": "C", "text": "$4{,}5$ cm$^2$"}, {"id": "D", "text": "$7{,}5$ cm$^2$"}],
+    modelAnswer: "Đặt $A, B, C, D$ như hình giải: $BD = 3 + 6 = 9$ cm. Diện tích tam giác $ABD$: $6 \\times 9 : 2 = 27$ (cm$^2$).\nDiện tích hình thang $ABCE$: $(6 + 3) \\times 3 : 2 = 13{,}5$ (cm$^2$). Diện tích tam giác $ECD$: $3 \\times 6 : 2 = 9$ (cm$^2$).\nDiện tích tam giác màu xanh: $27 - (13{,}5 + 9) = 4{,}5$ (cm$^2$).",
+  },
+  "ARC-2022-23-C40": {
+    stem: "Cho tứ giác $ABCD$ với các kích thước như hình vẽ bên. Diện tích tứ giác $ABCD$ là:",
+    options: [{"id": "A", "text": "$34{,}5$ cm$^2$"}, {"id": "B", "text": "$54$ cm$^2$"}, {"id": "C", "text": "$71$ cm$^2$"}, {"id": "D", "text": "$35{,}5$ cm$^2$"}],
+    modelAnswer: "Diện tích tam giác $ABH$: $3 \\times 5 : 2 = 7{,}5$ (cm$^2$). Diện tích tam giác $CKD$: $4 \\times 5 : 2 = 10$ (cm$^2$).\nDiện tích hình thang $BCKH$: $(5 + 4) \\times 4 : 2 = 18$ (cm$^2$).\nDiện tích tứ giác $ABCD$: $7{,}5 + 10 + 18 = 35{,}5$ (cm$^2$).",
+  },
+  "ARC-2022-23-C41": {
+    stem: "Thêm vào số bị trừ $3$ đơn vị và thêm vào số trừ $20$ đơn vị thì được hiệu mới là $17$. Hiệu ban đầu của phép trừ là:",
+    options: [{"id": "A", "text": "$40$"}, {"id": "B", "text": "$34$"}, {"id": "C", "text": "$0$"}, {"id": "D", "text": "$17$"}],
+    modelAnswer: "Số bị trừ $+ 3 - ($số trừ $+ 20) = 17 \\Rightarrow$ số bị trừ $-$ số trừ $= 17 + 20 - 3 = 34$.",
+  },
+  "ARC-2022-23-C42": {
+    stem: "Bán kính của chiếc bánh xe đạp là $4$ dm. Nếu bánh xe quay $200$ vòng thì xe đạp chạy được số mét là:",
+    options: [{"id": "A", "text": "$251{,}2$ m"}, {"id": "B", "text": "$50{,}24$ m"}, {"id": "C", "text": "$25{,}12$ m"}, {"id": "D", "text": "$502{,}4$ m"}],
+    modelAnswer: "Chu vi bánh xe: $4 \\times 2 \\times 3{,}14 = 25{,}12$ (dm). Quay $200$ vòng: $25{,}12 \\times 200 = 5024$ dm $= 502{,}4$ m.",
+  },
+  "ARC-2022-23-C43": {
+    stem: "Tổng các số chia hết cho $6$ và nhỏ hơn $203$ là:",
+    options: [{"id": "A", "text": "$3366$"}, {"id": "B", "text": "$3636$"}, {"id": "C", "text": "$3267$"}, {"id": "D", "text": "$3264$"}],
+    modelAnswer: "Dãy $6; 12; 18; \\ldots; 198$ có $(198 - 6) : 6 + 1 = 33$ số hạng. Tổng: $(6 + 198) \\times 33 : 2 = 3366$.",
+  },
+  "ARC-2022-23-C44": {
+    stem: "Nam viết $3$ số $90; 72$ và $18$ lên bảng. Sau đó, Nam xóa $2$ trong $3$ số đó và thay vào là trung bình cộng của hai số vừa xóa cho đến khi trên bảng chỉ còn $1$ số. Số nào dưới đây không phải là kết quả sau cùng thu được ở trên bảng?",
+    options: [{"id": "A", "text": "$67{,}5$"}, {"id": "B", "text": "$54$"}, {"id": "C", "text": "$49{,}5$"}, {"id": "D", "text": "$63$"}],
+    modelAnswer: "Thử các cặp trung bình cộng liên tiếp, kết quả có thể là $67{,}5; 49{,}5; 63$ nhưng không thể là $54$.",
+  },
+  "ARC-2022-23-C45": {
+    stem: "Em có số bi gấp $2$ lần số bi của anh. Nếu em cho anh $3$ viên thì số bi của em gấp $1{,}5$ lần số bi của anh. Tổng số bi của hai anh em là:",
+    options: [{"id": "A", "text": "$75$ viên"}, {"id": "B", "text": "$45$ viên"}, {"id": "C", "text": "$90$ viên"}, {"id": "D", "text": "$60$ viên"}],
+    modelAnswer: "Ban đầu bi của em bằng $\\dfrac{2}{3}$ tổng. Sau khi cho $3$ viên, bi của em bằng $\\dfrac{3}{5}$ tổng.\n$3$ viên ứng với $\\dfrac{2}{3} - \\dfrac{3}{5} = \\dfrac{1}{15}$ tổng. Tổng: $3 : \\dfrac{1}{15} = 45$ (viên).",
+  },
+  "ARC-2022-23-C46": {
+    stem: "Ba lớp 5A, 5B, 5C tổ chức liên hoan kem. Lớp 5A mang đi $12$ kg kem, lớp 5B mang đi $8$ kg kem, còn lớp 5C không mua được kem nên đưa số tiền $800\\,000$ đồng dự định mua kem cho hai lớp kia và ba lớp sẽ ăn kem chung. Nếu lượng kem mỗi lớp ăn là như nhau thì số tiền lớp 5A nhận được là:",
+    options: [{"id": "A", "text": "$560\\,000$ đồng"}, {"id": "B", "text": "$640\\,000$ đồng"}, {"id": "C", "text": "$480\\,000$ đồng"}, {"id": "D", "text": "$400\\,000$ đồng"}],
+    modelAnswer: "Tổng kem $3$ lớp: $12 + 8 = 20$ (kg). Giá mỗi kg: $800\\,000 : 20 = 40\\,000$ (đồng).\nMỗi lớp ăn $20 : 3$ kg; lớp 5A đưa thừa $12 - \\dfrac{20}{3}$ kg. Số tiền 5A nhận: $40\\,000 \\times 12 = 480\\,000$ (đồng).",
+  },
+  "ARC-2022-23-C47": {
+    stem: "Một cửa hàng nhập hoa về bán trong $3$ ngày. Ngày thứ nhất, bán giá gấp đôi so với giá nhập và bán được $34\\%$ số hoa. Ngày thứ hai, bán giá bằng $120\\%$ giá nhập nên bán được một nửa số hoa còn lại. Ngày thứ ba, chấp nhận bán bằng nửa giá nhập nên bán được hết số hoa. Tính phần trăm lãi của cửa hàng đó so với số tiền bỏ ra nhập hoa.",
+    options: [{"id": "A", "text": "$36\\%$"}, {"id": "B", "text": "$21{,}4\\%$"}, {"id": "C", "text": "$24{,}1\\%$"}, {"id": "D", "text": "$19\\%$"}],
+    modelAnswer: "Coi tiền nhập là $100\\%$. Ngày 1 thu $200\\% \\times 34\\% = 68\\%$. Ngày 2 bán $33\\%$ số hoa, thu $120\\% \\times 33\\% = 39{,}6\\%$.\nNgày 3 bán $33\\%$ số hoa, thu $50\\% \\times 33\\% = 16{,}5\\%$. Lãi: $(68 + 39{,}6 + 16{,}5) - 100 = 24{,}1\\%$.",
+  },
+  "ARC-2022-23-C48": {
+    stem: "Có $203$ bóng đèn được xếp thành một vòng tròn và đều đang bật. Người ta tắt bóng ở vị trí thứ nhất sau đó bỏ cách một bóng đang bật và tắt bóng tiếp theo. Cứ thực hiện như vậy cho đến khi trên vòng tròn chỉ còn một bóng đang bật. Bóng đèn đó ở vị trí số:",
+    options: [{"id": "A", "text": "$150$"}, {"id": "B", "text": "$22$"}, {"id": "C", "text": "$126$"}, {"id": "D", "text": "$86$"}],
+    modelAnswer: "Bài toán Josephus với bước nhảy $2$. Với $203 = 128 + 75$ bóng, vị trí còn lại: $2 \\times 75 = 150$.",
+  },
+  "ARC-2022-23-C49": {
+    stem: "Tỉ giá giao dịch ở một chợ động vật là: $5$ con bò đổi được $3$ con ngựa. Một con bò và $1$ con ngựa đổi được $44$ con thỏ. Muốn đổi được $4$ con ngựa thì cần số con thỏ là:",
+    options: [{"id": "A", "text": "$100$ con thỏ"}, {"id": "B", "text": "$132$ con thỏ"}, {"id": "C", "text": "$110$ con thỏ"}, {"id": "D", "text": "$121$ con thỏ"}],
+    modelAnswer: "$1$ bò $+ 1$ ngựa $= 44$ thỏ $\\Rightarrow 5$ bò $+ 5$ ngựa $= 220$ thỏ. Mà $5$ bò $= 3$ ngựa nên $8$ ngựa $= 220$ thỏ.\n$4$ ngựa $= 220 : 2 = 110$ con thỏ.",
+  },
+  "ARC-2022-23-C50": {
+    stem: "Người ta dùng $64$ hình lập phương nhỏ bằng nhau để xếp thành một hình lập phương lớn sau đó sơn tất cả các mặt của hình lập phương lớn đó. Số mặt không được sơn của các hình lập phương nhỏ là:",
+    options: [{"id": "A", "text": "$288$"}, {"id": "B", "text": "$8$"}, {"id": "C", "text": "$256$"}, {"id": "D", "text": "$144$"}],
+    modelAnswer: "$64 = 4 \\times 4 \\times 4$ nên cạnh lớn gồm $4$ hình nhỏ. Tổng số mặt: $64 \\times 6 = 384$.\nSơn $3$ mặt: $8$ hình ($24$ mặt). Sơn $2$ mặt: $24$ hình ($48$ mặt). Sơn $1$ mặt: $24$ hình ($24$ mặt).\nSố mặt không sơn: $384 - 24 - 48 - 24 = 288$ (mặt).",
+  },
+  // === THCS Archimedes — Vòng nâng cao 2021-2022 (arc-2021) ===
+  "ARC-2021-22-C1": {
+    stem: "Tính giá trị của biểu thức: $A = 77 \\times 5{,}55 + 60{,}12 \\times 7{,}45 + 16{,}88 \\times 7{,}45$.",
+    modelAnswer: "$A = 77 \\times 5{,}55 + 7{,}45 \\times (60{,}12 + 16{,}88)$.\n$A = 77 \\times 5{,}55 + 7{,}45 \\times 77 = 77 \\times (5{,}55 + 7{,}45)$.\n$A = 77 \\times 13 = 1001$.\n\n**Đáp số**: $A = 1001$.",
+  },
+  "ARC-2021-22-C2": {
+    stem: "Tìm số tự nhiên $n$ biết rằng:\n$$\\left(1+\\dfrac{1}{1}\\right) \\times \\left(1+\\dfrac{1}{2}\\right) \\times \\left(1+\\dfrac{1}{3}\\right) \\times \\cdots \\times \\left(1+\\dfrac{1}{n}\\right) = 2070.$$",
+    modelAnswer: "Ta có $1+\\dfrac{1}{k} = \\dfrac{k+1}{k}$, nên vế trái bằng:\n$$\\dfrac{2}{1} \\times \\dfrac{3}{2} \\times \\dfrac{4}{3} \\times \\cdots \\times \\dfrac{n+1}{n} = \\dfrac{n+1}{1} = n+1.$$\nSuy ra $n + 1 = 2070$, vậy $n = 2069$.\n\n**Đáp số**: $n = 2069$.",
+  },
+  "ARC-2021-22-C3": {
+    stem: "Một số tự nhiên được gọi là *số tiến* nếu các chữ số của nó đôi một khác nhau và chữ số liền sau lớn hơn chữ số liền trước. Ví dụ: $13579$ và $24689$ là các số tiến; nhưng $11345$ không phải là số tiến. Hỏi trong các số tự nhiên từ $2021$ đến $2401$ có bao nhiêu số là số tiến?",
+    modelAnswer: "Số tiến trong khoảng từ $2021$ đến $2401$ phải bắt đầu bằng $23$ (chữ số thứ hai phải lớn hơn $2$; nếu là $4$ thì số $\\ge 2456 > 2401$).\nCác số tiến đó là:\n$2345, 2346, 2347, 2348, 2349$ ($5$ số); $2356, 2357, 2358, 2359$ ($4$ số); $2367, 2368, 2369$ ($3$ số); $2378, 2379$ ($2$ số); $2389$ ($1$ số).\nTổng cộng: $5 + 4 + 3 + 2 + 1 = 15$ số.\n\n**Đáp số**: $15$ số.",
+  },
+  "ARC-2021-22-C4": {
+    stem: "Một hình chữ nhật có chu vi $200$ cm. Người ta giảm chiều dài và chiều rộng đi cùng một độ dài thì được một hình chữ nhật mới có chu vi là $160$ cm. Hỏi diện tích của phần giảm đi là bao nhiêu?",
+    modelAnswer: "Nửa chu vi ban đầu: $200 : 2 = 100$ (cm).\nNửa chu vi lúc sau: $160 : 2 = 80$ (cm).\nVì chiều dài và chiều rộng cùng giảm một độ dài nên mỗi chiều giảm: $(100 - 80) : 2 = 10$ (cm).\nPhần diện tích giảm đi là: $(100 - 10) \\times 10 = 900$ (cm²).\n\n**Đáp số**: $900$ cm².",
+  },
+  "ARC-2021-22-C5": {
+    stem: "Cách đây $6$ năm, tổng số tuổi của Nam và anh trai Nam là $18$ tuổi. Hiện tại, số tuổi của Nam bằng $\\dfrac{2}{3}$ số tuổi của anh trai Nam. Hỏi hiện tại Nam bao nhiêu tuổi?",
+    modelAnswer: "Tổng số tuổi của hai anh em hiện nay là: $18 + 6 + 6 = 30$ (tuổi).\nCoi tuổi Nam là $2$ phần, tuổi anh trai là $3$ phần. Số tuổi hiện nay của Nam là: $30 : (2 + 3) \\times 2 = 12$ (tuổi).\n\n**Đáp số**: $12$ tuổi.",
+  },
+  "ARC-2021-22-C6": {
+    stem: "Vào ngày $18/04/2021$, một cửa hàng thịt treo biển khuyến mãi: *“Duy nhất ngày hôm nay, thăn bò Úc giảm $40\\%$, chỉ $117\\,000$ đồng nửa ký!”*. Hỏi giá thịt thăn bò Úc tại cửa hàng đó trước khi khuyến mãi là bao nhiêu một ki-lô-gam (tính theo đồng)?",
+    modelAnswer: "Giá $1$ ki-lô-gam thịt sau khi giảm $40\\%$ là: $117\\,000 \\times 2 = 234\\,000$ (đồng).\nGiá này ứng với $100\\% - 40\\% = 60\\%$ giá ban đầu.\nGiá $1$ ki-lô-gam trước khi khuyến mãi là: $234\\,000 : 60 \\times 100 = 390\\,000$ (đồng).\n\n**Đáp số**: $390\\,000$ đồng.",
+  },
+  "ARC-2021-22-C7": {
+    stem: "Xét biểu thức $A = 45 + 45 \\times 45 + 45 \\times 45 \\times 45 + \\cdots + \\underbrace{45 \\times 45 \\times \\cdots \\times 45}_{2021 \\text{ thừa số}}$. Hỏi khi tính giá trị biểu thức $A$, giá trị thu được có chữ số hàng đơn vị là bao nhiêu?",
+    modelAnswer: "$A$ có $2021$ số hạng, mỗi số hạng là tích của các thừa số $45$ nên đều có chữ số hàng đơn vị là $5$.\nDo đó chữ số hàng đơn vị của $A$ chính là chữ số hàng đơn vị của $5 \\times 2021 = 10105$, tức là $5$.\n\n**Đáp số**: chữ số hàng đơn vị là $5$.",
+  },
+  "ARC-2021-22-C8": {
+    stem: "Trong dãy $15$ ô vuông dưới đây, người ta điền vào mỗi ô một số tự nhiên sao cho tổng các số ở ba ô liên tiếp bất kỳ luôn bằng $39$. Tìm số được điền vào ô vuông tô đậm.",
+    modelAnswer: "Ô đầu tiên là $20$, ô cuối (ô thứ $15$) là $11$. Vì $15$ chia hết cho $3$ nên ô thứ $3$ cũng bằng $11$.\nSuy ra ô thứ hai là: $39 - 20 - 11 = 8$.\nVì tổng ba ô liên tiếp luôn bằng $39$ nên các số lặp lại theo chu kỳ $20,\\ 8,\\ 11$. Ô tô đậm rơi vào vị trí ứng với số $8$.\n\n**Đáp số**: $8$.",
+  },
+  "ARC-2021-22-C9": {
+    stem: "Trong hình vẽ dưới, $D$ là điểm trên cạnh $AC$ của tam giác $ABC$ và $AD = DC$; $E$ là điểm trên đoạn $BD$ thỏa mãn $BE : BD = 3 : 5$. Biết rằng diện tích tam giác $ADE$ là $96$ cm². Tính diện tích tam giác $ABC$.",
+    modelAnswer: "Vì $BE : BD = 3 : 5$ nên $ED : BD = 2 : 5$, suy ra $BD = \\dfrac{5}{2} \\times ED$.\nHai tam giác $ABD$ và $ADE$ có chung chiều cao hạ từ $A$ nên:\n$$\\dfrac{S_{ABD}}{S_{ADE}} = \\dfrac{BD}{ED} = \\dfrac{5}{2} \\Rightarrow S_{ABD} = \\dfrac{5}{2} \\times 96 = 240 \\text{ (cm²)}.$$\nHai tam giác $ABC$ và $ABD$ có chung chiều cao hạ từ $B$, đáy $AC = 2 \\times AD$ nên $S_{ABC} = 2 \\times S_{ABD} = 480$ (cm²).\n\n**Đáp số**: $480$ cm².",
+  },
+  "ARC-2021-22-C10": {
+    stem: "Nam có bốn quyển sách gồm Toán, Tiếng Việt, Tiếng Anh và Lịch Sử. Nam muốn xếp bốn quyển sách này lên một kệ sách trống sao cho quyển sách Toán và quyển sách Lịch Sử không nằm cạnh nhau. Hỏi có bao nhiêu cách xếp?",
+    modelAnswer: "Số cách xếp $4$ quyển sách tùy ý là: $4 \\times 3 \\times 2 \\times 1 = 24$ (cách).\nCoi Toán và Lịch Sử là một cặp đứng cạnh nhau: có $3 \\times 2 \\times 1 = 6$ cách xếp cặp đó cùng hai quyển còn lại, và trong cặp có $2$ cách đổi chỗ, nên có $6 \\times 2 = 12$ cách xếp mà Toán và Lịch Sử cạnh nhau.\nSố cách xếp thỏa mãn là: $24 - 12 = 12$ (cách).\n\n**Đáp số**: $12$ cách.",
+  },
+  "ARC-2021-22-C11": {
+    stem: "Trong một cuộc thi có năm thí sinh tham dự là $A, B, C, D$ và $E$. Trước khi cuộc thi diễn ra, có bốn dự đoán về kết quả xếp hạng như sau:\n\n- Dự đoán thứ nhất: “$B$ sẽ đứng thứ tư và $E$ sẽ đứng thứ hai.”\n- Dự đoán thứ hai: “$D$ sẽ đứng thứ nhất và $C$ sẽ đứng thứ ba.”\n- Dự đoán thứ ba: “$E$ sẽ đứng thứ ba và $A$ sẽ đứng thứ tư.”\n- Dự đoán thứ tư: “$A$ sẽ đứng thứ ba và $B$ sẽ đứng thứ nhất.”\n\nKết thúc cuộc thi, người ta nhận thấy mỗi dự đoán đều đúng cho một thí sinh và sai cho thí sinh còn lại. Biết rằng không có hai thí sinh nào cùng thứ hạng, hỏi ai đứng thứ ba?",
+    modelAnswer: "Xét dự đoán thứ nhất. Giả sử “$B$ đứng thứ tư” đúng và “$E$ đứng thứ hai” sai. Khi đó ở dự đoán thứ ba, “$A$ đứng thứ tư” sai (vì $B$ đã thứ tư) nên “$E$ đứng thứ ba” đúng; ở dự đoán thứ tư, “$A$ đứng thứ ba” sai (vì $E$ thứ ba) nên “$B$ đứng thứ nhất” đúng — vô lý vì $B$ không thể vừa thứ tư vừa thứ nhất.\nVậy ở dự đoán thứ nhất, “$B$ đứng thứ tư” sai và “$E$ đứng thứ hai” đúng.\nKhi đó ở dự đoán thứ ba, “$E$ đứng thứ ba” sai nên “$A$ đứng thứ tư” đúng; ở dự đoán thứ tư, “$A$ đứng thứ ba” sai nên “$B$ đứng thứ nhất” đúng; ở dự đoán thứ hai, “$D$ đứng thứ nhất” sai nên “$C$ đứng thứ ba” đúng.\nVậy $B$ nhất, $E$ nhì, $C$ ba, $A$ tư và $D$ thứ năm.\n\n**Đáp số**: $C$ đứng thứ ba.",
+  },
+  "ARC-2021-22-C12": {
+    stem: "Trong hình vẽ dưới, $ABCD$ và $CEFG$ là hai hình chữ nhật, trong đó điểm $B$ nằm trên cạnh $FG$ của hình chữ nhật $CEFG$ và điểm $E$ nằm trên cạnh $AB$ của hình chữ nhật $ABCD$ thỏa mãn $AE : EB = 3 : 2$. Biết rằng diện tích hình chữ nhật $ABCD$ là $35$ cm², tính diện tích hình chữ nhật $CEFG$.",
+    modelAnswer: "Đường chéo $AC$ chia hình chữ nhật $ABCD$ thành hai tam giác bằng nhau nên:\n$$S_{ABC} = \\dfrac{1}{2} \\times S_{ABCD} = \\dfrac{1}{2} \\times 35 = \\dfrac{35}{2} \\text{ (cm²)}.$$\nVì $AE : EB = 3 : 2$ nên $EB = \\dfrac{2}{5} \\times AB$. Hai tam giác $EBC$ và $ABC$ có chung chiều cao hạ từ $C$ nên:\n$$\\dfrac{S_{EBC}}{S_{ABC}} = \\dfrac{EB}{AB} = \\dfrac{2}{5} \\Rightarrow S_{EBC} = \\dfrac{2}{5} \\times \\dfrac{35}{2} = 7 \\text{ (cm²)}.$$\nHình chữ nhật $CEFG$ nhận $CE$ làm một cạnh và $FG$ là cạnh đối diện. Vì $B$ nằm trên $FG$ nên tam giác $EBC$ có đáy $CE$ và chiều cao bằng khoảng cách giữa $CE$ và $FG$. Do đó $S_{EBC} = \\dfrac{1}{2} \\times S_{CEFG}$, suy ra $S_{CEFG} = 2 \\times S_{EBC} = 2 \\times 7 = 14$ (cm²).\n\n**Đáp số**: $14$ cm².",
+  },
+  "ARC-2021-22-C13": {
+    stem: "Cho $16$ số tự nhiên phân biệt khác $0$ thỏa mãn tích của năm số bất kì trong $16$ số này là số chẵn. Gọi $S$ là tổng của $16$ số này. Biết rằng $S$ là số lẻ, hỏi $S$ có thể nhận giá trị nhỏ nhất là bao nhiêu?",
+    modelAnswer: "Vì tích của $5$ số bất kỳ luôn chẵn nên trong $16$ số có nhiều nhất $4$ số lẻ (nếu có từ $5$ số lẻ trở lên thì chọn được $5$ số lẻ có tích lẻ).\nVì $S$ lẻ nên số lượng số lẻ phải lẻ, do đó có $1$ hoặc $3$ số lẻ.\n- Nếu có $1$ số lẻ: tổng nhỏ nhất là $1 + (2 + 4 + 6 + \\cdots + 30) = 1 + 240 = 241$.\n- Nếu có $3$ số lẻ: tổng nhỏ nhất là $(1 + 3 + 5) + (2 + 4 + 6 + \\cdots + 26) = 9 + 182 = 191$.\n\nVậy giá trị nhỏ nhất của $S$ là $191$.\n\n**Đáp số**: $191$.",
+  },
+  "ARC-2021-22-C14": {
+    stem: "Cho số $A = \\underbrace{20692069\\ldots2069}_{250 \\text{ số } 2069}$ ($A$ gồm $250$ số $2069$ viết liền nhau). Người ta muốn xóa một số chữ số của $A$ sao cho số thu được có tổng tất cả các chữ số bằng $2021$. Hỏi có thể xóa được nhiều nhất bao nhiêu chữ số? Khi đó, số lớn nhất có thể thu được là bao nhiêu?",
+    modelAnswer: "Tổng các chữ số của $A$ là: $(2 + 0 + 6 + 9) \\times 250 = 17 \\times 250 = 4250$.\nTổng các chữ số cần xóa đi là: $4250 - 2021 = 2229$.\nĐể xóa được nhiều chữ số nhất, ta ưu tiên xóa các chữ số nhỏ. Xóa hết $250$ chữ số $0$ (không làm giảm tổng).\nVì $2229$ chia hết cho $3$, mà $6$ và $9$ đều chia hết cho $3$, nên tổng các chữ số $2$ bị xóa cũng phải chia hết cho $3$. Có $250$ chữ số $2$, ta xóa nhiều nhất $249$ chữ số $2$ (tổng $498$ chia hết cho $3$).\nCòn lại cần xóa tổng $2229 - 498 = 1731$ từ các chữ số $6$ và $9$. Thử xóa $248$ chữ số $6$ (tổng $1488$) thì phần còn lại $1731 - 1488 = 243$ chia hết cho $9$, ứng với $243 : 9 = 27$ chữ số $9$.\nVậy số chữ số xóa được nhiều nhất là: $250 + 249 + 248 + 27 = 774$ (chữ số).\nKhi đó còn lại $226$ chữ số gồm $1$ chữ số $2$, $2$ chữ số $6$ và $223$ chữ số $9$. Số lớn nhất thu được là $\\underbrace{99\\ldots9}_{223 \\text{ số } 9}662$.\n\n**Đáp số**: xóa nhiều nhất $774$ chữ số; số lớn nhất thu được là $\\underbrace{99\\ldots9}_{223}662$.",
+  },
+  // === END THCS Archimedes (arc) ===
 };

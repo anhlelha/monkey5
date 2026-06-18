@@ -48,6 +48,246 @@
     "correct": "A"
   },
   {
+    "examId": "ams-2020",
+    "school": "ams",
+    "year": "2020-2021",
+    "num": 2,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho một hình chữ nhật có chu vi $160$ cm. Sau khi cùng giảm chiều dài và chiều rộng đi cùng một độ dài thì hình mới có c…",
+    "figure": null,
+    "correct": "700"
+  },
+  {
+    "examId": "ams-2020",
+    "school": "ams",
+    "year": "2020-2021",
+    "num": 5,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình lập phương có diện tích toàn phần là $150$ cm². Tính thể tích của hình lập phương đó.",
+    "figure": null,
+    "correct": "125"
+  },
+  {
+    "examId": "ams-2020",
+    "school": "ams",
+    "year": "2020-2021",
+    "num": 6,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho một hình hộp chữ nhật. Người ta tăng chiều dài của hình hộp chữ nhật $10\\%$ và giảm chiều rộng của nó đi $20\\%$. Hỏi…",
+    "figure": null,
+    "correct": "50"
+  },
+  {
+    "examId": "ams-2022",
+    "school": "ams",
+    "year": "2022-2023",
+    "num": 6,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một bể nước hình hộp chữ nhật có chiều dài $3$ m, chiều rộng $2$ m và chiều cao $1{,}6$ m. Người ta mở vòi cho nước chảy…",
+    "figure": null,
+    "correct": "1155"
+  },
+  {
+    "examId": "arc-2020cb",
+    "school": "arc",
+    "year": "2020-2021",
+    "num": 4,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Có $3$ loại mảnh ghép hình tam giác, hình vuông và hình chữ nhật, tất cả có $240$ hình. Số mảnh hình tam giác bằng $\\dfr…",
+    "figure": null,
+    "correct": "110"
+  },
+  {
+    "examId": "arc-2020cb",
+    "school": "arc",
+    "year": "2020-2021",
+    "num": 10,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình hộp chữ nhật có chiều dài $8$ dm, chiều rộng $4$ dm, chiều cao $5$ dm được xếp bởi các hình lập phương cạnh $1$…",
+    "figure": null,
+    "correct": "76"
+  },
+  {
+    "examId": "arc-2020cb",
+    "school": "arc",
+    "year": "2020-2021",
+    "num": 13,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Có một hình chữ nhật, chiều dài hơn chiều rộng $10$ m. Nếu tăng chiều rộng thêm $25\\%$ và giảm chiều dài đi $8$ m thì di…",
+    "figure": null,
+    "correct": "1200"
+  },
+  {
+    "examId": "arc-2020nc",
+    "school": "arc",
+    "year": "2020-2021",
+    "num": 5,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một hình hộp chữ nhật có diện tích xung quanh là $640$ cm$^2$ và chiều cao là $16$ cm. Hiệu giữa chiều dài và chiều rộng…",
+    "figure": null,
+    "correct": "1536"
+  },
+  {
+    "examId": "arc-2020nc",
+    "school": "arc",
+    "year": "2020-2021",
+    "num": 18,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Xếp các hình lập phương nhỏ cạnh $1$ cm thành một hình lập phương lớn. Số hình không được sơn mặt nào gấp rưỡi số hình đ…",
+    "figure": null,
+    "correct": "1331"
+  },
+  {
+    "examId": "arc-2022",
+    "school": "arc",
+    "year": "2022-2023",
+    "num": 1,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Diện tích hình tròn có bán kính $3$ cm là:",
+    "figure": null,
+    "correct": "B"
+  },
+  {
+    "examId": "arc-2022",
+    "school": "arc",
+    "year": "2022-2023",
+    "num": 7,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Thể tích của hình hộp chữ nhật có chiều dài $3$ cm, chiều rộng $2$ cm và chiều cao $1{,}5$ cm là:",
+    "figure": null,
+    "correct": "A"
+  },
+  {
+    "examId": "arc-2022",
+    "school": "arc",
+    "year": "2022-2023",
+    "num": 9,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"bản đồ\" but figure field is empty"
+      }
+    ],
+    "stem": "Diện tích trên bản đồ tỉ lệ $1 : 2000$ của một khu đất là $3$ cm$^2$. Diện tích thực của khu đất đó là:",
+    "figure": null,
+    "correct": "D"
+  },
+  {
+    "examId": "arc-2022",
+    "school": "arc",
+    "year": "2022-2023",
+    "num": 12,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Số mặt của một hình lập phương là:",
+    "figure": null,
+    "correct": "B"
+  },
+  {
+    "examId": "arc-2022",
+    "school": "arc",
+    "year": "2022-2023",
+    "num": 35,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Một thửa ruộng hình thang có đáy lớn gấp $2$ lần đáy bé và chiều cao ngắn hơn đáy lớn $4$ m nhưng dài hơn đáy bé $5$ m. …",
+    "figure": null,
+    "correct": "D"
+  },
+  {
+    "examId": "arc-2022",
+    "school": "arc",
+    "year": "2022-2023",
+    "num": 50,
+    "type": "mcq",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Người ta dùng $64$ hình lập phương nhỏ bằng nhau để xếp thành một hình lập phương lớn sau đó sơn tất cả các mặt của hình…",
+    "figure": null,
+    "correct": "A"
+  },
+  {
     "examId": "cg-2019",
     "school": "cg",
     "year": "2019-2020",
@@ -974,6 +1214,54 @@
     "stem": "Xếp $128$ hình lập phương nhỏ thành một hình hộp chữ nhật có chiều dài bằng $2$ lần chiều rộng và cũng bằng $2$ lần chiề…",
     "figure": null,
     "correct": "40"
+  },
+  {
+    "examId": "nshm-2024",
+    "school": "nshm",
+    "year": "2024-2025",
+    "num": 5,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Cho hình lập phương có diện tích toàn phần là $294$ cm$^2$. Tính độ dài cạnh của hình lập phương đó.",
+    "figure": null,
+    "correct": "7"
+  },
+  {
+    "examId": "nshm-2026",
+    "school": "nshm",
+    "year": "2026-2027",
+    "num": 2,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"hình\" but figure field is empty"
+      }
+    ],
+    "stem": "Chu vi hình chữ nhật là $48$ cm, chiều dài bằng $\\dfrac{5}{3}$ chiều rộng. Tính diện tích hình chữ nhật đó.",
+    "figure": null,
+    "correct": "135"
+  },
+  {
+    "examId": "nshm-2026",
+    "school": "nshm",
+    "year": "2026-2027",
+    "num": 5,
+    "type": "fill",
+    "issues": [
+      {
+        "type": "FIGURE_LIKELY",
+        "detail": "Stem contains keyword \"bản đồ\" but figure field is empty"
+      }
+    ],
+    "stem": "Một bản đồ có tỉ lệ xích $1 : 5000$. Một cây cầu trên bản đồ dài $2$ cm $5$ mm. Tính độ dài thật của cây cầu.",
+    "figure": null,
+    "correct": "125"
   },
   {
     "examId": "nshn-2021",

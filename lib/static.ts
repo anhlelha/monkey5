@@ -111,6 +111,28 @@ export const SCHOOLS: readonly School[] = [
     minutes: 60,
     style: "Số học, đo lường, tỉ lệ phần trăm và hình học.",
   },
+  {
+    id: "ams",
+    short: "AMS",
+    name: "Amsterdam",
+    full: "THCS chuyên Hà Nội – Amsterdam",
+    color: "var(--ams)",
+    tone: "ams",
+    desc: "12 câu điền đáp số + 3 bài tự luận. 45 phút. Nhiều câu nâng cao.",
+    minutes: 45,
+    style: "Số học – suy luận nâng cao, hình học diện tích và chuyển động.",
+  },
+  {
+    id: "arc",
+    short: "ARC",
+    name: "Archimedes",
+    full: "THCS Archimedes",
+    color: "var(--arc)",
+    tone: "arc",
+    desc: "Vòng cơ bản (điền đáp số) + bài trắc nghiệm. 60–90 phút. Nhiều câu suy luận nâng cao.",
+    minutes: 60,
+    style: "Số học – suy luận, phân số/%, hình học diện tích và chuyển động.",
+  },
 ] as const;
 
 export const DEFAULT_TOPICS: readonly Topic[] = [
