@@ -216,6 +216,17 @@ else
   banner "Step 3/5 — SKIPPED backfill (không có thay đổi grading/content)"
 fi
 
+# ── Step 3b: re-sync spawned clones from source bank questions ──────────────
+# Re-seed chỉ cập nhật câu hỏi trong metadata; bản clone trong set luyện tập
+# (set-*/ref-*) giữ correct/modelAnswer/answerSchema CŨ → chấm sai âm thầm
+# (CLAUDE.md pitfall #5). Chạy sau SEED để clone bám theo đáp án đã sửa.
+if [[ "$NEEDS_SEED" -eq 1 ]]; then
+  banner "Step 3b/5 — Sync clone answers (set-*/ref-*) từ câu gốc"
+  ssh_vm "cd $REMOTE_PROJECT_PATH && npx tsx scripts/sync-clone-answers.ts"
+else
+  banner "Step 3b/5 — SKIPPED sync clone (không re-seed nội dung)"
+fi
+
 # ── Step 4: regrade attempts (only if needed; dry-run gate) ─────────────────
 if [[ "$NEEDS_REGRADE" -eq 1 ]]; then
   # Backfill chạy backup pre-regrade rồi; nếu backfill bị skip, tạo backup ở đây.
