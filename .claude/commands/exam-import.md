@@ -263,7 +263,7 @@ Hoặc viết Prisma script lấy từ DB (xem A.5).
 | Lời giải khớp đề khác | override `modelAnswer` HOẶC `.explanation` trong parsed JSON | |
 | Lời giải vỡ LaTeX (`×x=6$`, `S PAN`) | override `modelAnswer` LaTeX sạch | bug từ formatter cũ |
 | Header bleed cuối lời giải | đã có pattern strip; chỉ cần re-seed | nếu vẫn còn → thêm pattern vào `WATERMARK_PATTERNS_SEED` |
-| Stale rows CUID id (`set-*` topic sets) | migration 1 lần dùng `prisma.question.update` | re-seed không động đến vì examId không có trong metadata |
+| Stale rows CUID id (`set-*`/`ref-*` topic sets) | `scripts/sync-clone-answers.ts` (rồi `regrade-attempts.ts`) | re-seed không động tới clone; sync bám `sourceQuestionId` về câu gốc. Xem §6 bước 5. |
 
 ### B.4 Apply + verify
 Theo §A.4 + A.5.
@@ -281,6 +281,16 @@ sẵn nhưng chưa pull về.
 2. Tra bảng §1 "sửa GÌ → sửa ở ĐÂU".
 3. Edit file tương ứng (tối thiểu để vá đúng).
 4. `build-exams-metadata.ts` + `seed-all-exams.ts` + verify.
+5. **BẮT BUỘC nếu đổi `correct` / `modelAnswer` / `answerSchema`** — re-seed chỉ
+   sửa câu gốc, KHÔNG động tới bản clone trong set luyện tập (`set-*`/`ref-*`),
+   nên các bài đã làm trước đó vẫn chấm theo đáp án CŨ (pitfall #5). Chạy:
+   ```bash
+   npx tsx scripts/sync-clone-answers.ts --dry-run   # xem clone nào lệch
+   npx tsx scripts/sync-clone-answers.ts             # đồng bộ clone từ câu gốc
+   npx tsx scripts/regrade-attempts.ts               # cập nhật điểm bài đã làm
+   ```
+   Khi deploy lên prod, `deploy-full.sh` Step 3b tự chạy sync này sau SEED — chỉ
+   cần `bash scripts/deploy-full.sh` (hoặc `--full` nếu chỉ đổi file script).
 
 ---
 

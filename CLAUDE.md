@@ -84,6 +84,8 @@ prisma/dev.db   (runtime source of truth)
 cp prisma/dev.db prisma/dev.db.bak-$(date +%Y%m%d-%H%M%S)
 npx tsx scripts/build-exams-metadata.ts   # regen official_exams_metadata.json
 npx tsx scripts/seed-all-exams.ts         # re-seed DB (destructive)
+npx tsx scripts/sync-clone-answers.ts     # propagate answer fixes to set-*/ref-* clones (pitfall #5)
+npx tsx scripts/regrade-attempts.ts       # refresh frozen Attempt scores if correct/schema changed
 npx tsx scripts/audit-questions.ts        # flag remaining issues
 ```
 
