@@ -1822,6 +1822,23 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
   "NTT-2023-24-C6": {
     stem: "Nhân dịp ngày Quốc tế thiếu nhi mùng 01/06, một cửa hàng bán quần áo trẻ em giảm $15\\%$ tất cả các mặt hàng so với giá niêm yết. Mẹ của Mai mua cho bạn ấy một chiếc váy với giá 212500 đồng. Hỏi giá niêm yết của chiếc váy đó là bao nhiêu?",
   },
+  // NTT 2023-24 C7: parsed `correct` ("640 245") is garbage from PDF shred, and the
+  // explanation concludes 610245 — wrong, the đề asks for the SMALLEST số. Both 210240
+  // (b=0) and 610245 (b=5) divide 45; the bé nhất is 210240. Fix answer + rewrite lời giải.
+  "NTT-2023-24-C7": {
+    correct: "210240",
+    modelAnswer: [
+      "Số $\\overline{a1024b}$ chia hết cho $45$ khi và chỉ khi nó chia hết cho cả $5$ và $9$.",
+      "",
+      "**Chia hết cho 5:** chữ số tận cùng $b = 0$ hoặc $b = 5$.",
+      "",
+      "**Trường hợp $b = 0$:** số là $\\overline{a10240}$. Tổng các chữ số $a + 1 + 0 + 2 + 4 + 0 = a + 7$ phải chia hết cho $9$, nên $a = 2$. Ta được số $210240$.",
+      "",
+      "**Trường hợp $b = 5$:** số là $\\overline{a10245}$. Tổng các chữ số $a + 1 + 0 + 2 + 4 + 5 = a + 12$ phải chia hết cho $9$, nên $a = 6$. Ta được số $610245$.",
+      "",
+      "Cả hai số $210240$ và $610245$ đều thỏa mãn. Vì đề yêu cầu số **bé nhất** nên số cần tìm là $210240$.",
+    ].join("\n"),
+  },
   "NTT-2023-24-C9": {
     stem: "Hai bạn An và Bình cùng đạp xe từ trường đến sân vận động để tham gia thi đấu thể thao. Thời gian An đạp xe từ trường đến sân vận động bằng $\\frac{5}{4}$ thời gian Bình đạp từ trường đến sân vận động. Bạn An đi 6 phút được 1,2km. a) Tính vận tốc của An. b) Tính quãng đường từ trường đến sân vận động, biết rằng nếu trên cùng quãng đường đó và cùng một lúc, An xuất phát từ trường còn Bình xuất phát từ sân vận động thì sau 12 phút hai bạn sẽ gặp nhau.",
   },
