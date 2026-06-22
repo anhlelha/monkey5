@@ -67,8 +67,12 @@ prisma/dev.db   (runtime source of truth)
    If a new pattern leaks in, add it there and re-seed.
 5. **`spawn-exam.ts` clones questions** into runtime exams with CUID examIds
    (`set-*`, `ref-*`). These rows are NOT touched by `seed-all-exams.ts`
-   (which `deleteMany`s only by examIds in metadata) — clean stale data with
-   a one-off Prisma migration if needed.
+   (which `deleteMany`s only by examIds in metadata), so when you correct a
+   bank question's `correct` / `modelAnswer` / `answerSchema`, every clone
+   spawned *before* the fix keeps the stale values and silently mis-grades.
+   Clones carry `sourceQuestionId` → run **`scripts/sync-clone-answers.ts`**
+   (then `regrade-attempts.ts`) to re-propagate answers from the source. This
+   runs automatically as Step 3b of `deploy-full.sh` whenever SEED fires.
 6. **Seed is destructive**: for every exam in metadata, it
    `deleteMany({ examId })` then re-inserts. Always
    `cp prisma/dev.db prisma/dev.db.bak-$(date +%Y%m%d-%H%M%S)` before
