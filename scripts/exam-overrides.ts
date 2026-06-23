@@ -411,6 +411,13 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
     correct: "900000",
     unit: "đồng",
   },
+  "LTV-2020-21-C13": {
+    correct: "14 850",
+    modelAnswer:
+      "Dãy các số tự nhiên nhỏ hơn 300 và chia hết cho 3 là $0; 3; 6; 9; \\ldots; 297$.\n" +
+      "Số số hạng của dãy số trên là $(297 - 0) : 3 + 1 = 100$ (số).\n" +
+      "Tổng của dãy số trên là $(0 + 297) \\times 100 : 2 = 14\\,850$.",
+  },
   "LTV-2020-21-C14": {
     stem: "Tìm các chữ số $x$, $y$ để $\\overline{27xy}$ chia hết cho 3; 4 và 5.",
     correct: "x = 0, y = 0 hoặc x = 6, y = 0",
