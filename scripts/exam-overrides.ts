@@ -412,7 +412,7 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
     unit: "đồng",
   },
   "LTV-2020-21-C13": {
-    correct: "14 850",
+    correct: "14850",
     modelAnswer:
       "Dãy các số tự nhiên nhỏ hơn 300 và chia hết cho 3 là $0; 3; 6; 9; \\ldots; 297$.\n" +
       "Số số hạng của dãy số trên là $(297 - 0) : 3 + 1 = 100$ (số).\n" +
