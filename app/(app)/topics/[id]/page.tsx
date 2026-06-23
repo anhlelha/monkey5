@@ -79,6 +79,32 @@ export default async function TopicDetail({ params, searchParams }: Props) {
 
   // Build levels from DB config; fall back to defaults if DB is empty.
   const levelCfgs = await getLevelConfigs();
+
+  // Per-level question availability for THIS topic, matching spawnTopicSetExam's
+  // source rules exactly. A level with 0 questions for the active source is
+  // locked in the UI instead of silently falling back to harder grades.
+  const topicQs = await prisma.question.findMany({
+    where: { active: true, topic: id },
+    select: {
+      grade: true,
+      examId: true,
+      exam: { select: { kind: true, generated: true } },
+    },
+  });
+  const countAvail = (grades: string[]) => {
+    let official = 0;
+    let supplement = 0;
+    for (const q of topicQs) {
+      if (!grades.includes(q.grade ?? "")) continue;
+      const isSup = q.examId == null;
+      const isOff =
+        q.examId != null && q.exam?.kind === "official" && q.exam?.generated === false;
+      if (isSup) supplement += 1;
+      if (isOff) official += 1;
+    }
+    return { all: official + supplement, official, supplement };
+  };
+
   const levels = levelCfgs.map((c) => ({
     id: c.level,
     label: c.label,
@@ -87,6 +113,7 @@ export default async function TopicDetail({ params, searchParams }: Props) {
     mins: c.minutes,
     tone: c.tone,
     stubId: `set-${id}-${c.level.toLowerCase()}-${randStub()}`,
+    avail: countAvail(c.grades),
   }));
 
   const remaining = await remainingTopicSets(user.id, effectivePlan({ role: dbUser.role, plan: dbUser.plan }));

@@ -12,6 +12,7 @@ interface Level {
   mins: number;
   tone: string;
   stubId: string;
+  avail: { all: number; official: number; supplement: number };
 }
 
 interface Props {
@@ -29,7 +30,9 @@ export function TopicPracticeLevels({ topicId, levels, remaining, limitReached }
 
   const exhausted = Number.isFinite(remaining) && remaining <= 0;
 
-  const cardInner = (L: Level, disabled: boolean) => (
+  type LockReason = null | "exhausted" | "empty";
+
+  const cardInner = (L: Level, lock: LockReason, count: number) => (
     <>
       <div className="row between">
         <div className="row" style={{ gap: 10 }}>
@@ -54,21 +57,28 @@ export function TopicPracticeLevels({ topicId, levels, remaining, limitReached }
             <div className="muted" style={{ fontSize: 11.5 }}>{L.sub}</div>
           </div>
         </div>
-        {!disabled && <Icon name="arrow" />}
+        {lock === null && <Icon name="arrow" />}
+        {lock === "empty" && <Icon name="lock" size={14} />}
       </div>
       <div className="row between" style={{ marginTop: 4, fontSize: 11.5, color: "var(--ink-muted)" }}>
-        <span>~{L.q} câu</span>
-        <span>{L.mins} phút</span>
-        <span className="row" style={{ gap: 4 }}>
-          {disabled ? (
-            <span style={{ color: "var(--warn)" }}>Hết lượt</span>
-          ) : (
-            <>
-              <Icon name="sparkle" size={11} />
-              Câu mới mỗi lần
-            </>
-          )}
-        </span>
+        {lock === "empty" ? (
+          <span style={{ color: "var(--ink-muted)" }}>Chưa có câu mức này</span>
+        ) : (
+          <>
+            <span>~{Math.min(L.q, count)} câu</span>
+            <span>{L.mins} phút</span>
+            <span className="row" style={{ gap: 4 }}>
+              {lock === "exhausted" ? (
+                <span style={{ color: "var(--warn)" }}>Hết lượt</span>
+              ) : (
+                <>
+                  <Icon name="sparkle" size={11} />
+                  Câu mới mỗi lần
+                </>
+              )}
+            </span>
+          </>
+        )}
       </div>
     </>
   );
@@ -186,13 +196,17 @@ export function TopicPracticeLevels({ topicId, levels, remaining, limitReached }
       <div className="grid cols-2" style={{ gap: 10 }}>
         {levels.map((L) => {
           const stubId = `set-${topicId}-${L.id.toLowerCase()}-${filterStub}-${rand}`;
-          return exhausted ? (
+          const count = L.avail[sourceFilter];
+          // Lock priority: no questions at this level for the active source
+          // takes precedence over a quota-exhausted state.
+          const lock: LockReason = count <= 0 ? "empty" : exhausted ? "exhausted" : null;
+          return lock !== null ? (
             <div
               key={L.id}
               className="topic-card"
               style={{ padding: 16, opacity: 0.55, cursor: "default" }}
             >
-              {cardInner(L, true)}
+              {cardInner(L, lock, count)}
             </div>
           ) : (
             <Link
@@ -201,7 +215,7 @@ export function TopicPracticeLevels({ topicId, levels, remaining, limitReached }
               className="topic-card"
               style={{ padding: 16 }}
             >
-              {cardInner(L, false)}
+              {cardInner(L, null, count)}
             </Link>
           );
         })}

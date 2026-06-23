@@ -2,7 +2,7 @@ import { notFound, redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { SCHOOLS, MIX_SCHOOL, DEFAULT_TOPICS } from "@/lib/static";
-import { spawnReferenceExam, spawnTopicSetExam, TopicSetLimitError } from "@/lib/spawn-exam";
+import { spawnReferenceExam, spawnTopicSetExam, TopicSetLimitError, TopicSetEmptyError } from "@/lib/spawn-exam";
 import { ExamRunner } from "./ExamRunner";
 import type { ExamQuestion } from "@/lib/exam";
 
@@ -64,6 +64,9 @@ export default async function ExamPage({ params }: Props) {
         } catch (e) {
           if (e instanceof TopicSetLimitError) {
             redirect(`/topics/${topicId}?limit=reached`);
+          }
+          if (e instanceof TopicSetEmptyError) {
+            redirect(`/topics/${topicId}?empty=${level.toLowerCase()}`);
           }
           throw e;
         }

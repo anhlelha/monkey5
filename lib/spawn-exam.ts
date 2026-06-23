@@ -37,6 +37,13 @@ export class TopicSetLimitError extends Error {
   }
 }
 
+export class TopicSetEmptyError extends Error {
+  constructor() {
+    super("Chuyên đề này chưa có câu hỏi ở mức đã chọn");
+    this.name = "TopicSetEmptyError";
+  }
+}
+
 const POOL_OVERFETCH = 5;
 
 const randSuffix = () => Math.random().toString(36).slice(2, 10);
@@ -177,19 +184,18 @@ export async function spawnTopicSetExam(
     ];
   }
 
-  let pool = await prisma.question.findMany({
+  // Strict per-level pool. We intentionally do NOT relax the grade filter when
+  // the pool is thin: padding an "L4 · Cơ bản" set with L5/NC questions defeats
+  // the level's purpose and mislabels harder questions as basic ones. A thin
+  // pool simply yields fewer questions (capped below); an empty pool means the
+  // topic has no content at this level and the level card is locked upstream.
+  const pool = await prisma.question.findMany({
     where: baseWhere,
     include: { exam: true },
   });
 
-  // Fall back to any grade within the topic if the per-level pool is thin.
-  if (pool.length < cfg.qcount) {
-    const fallbackWhere = { ...baseWhere };
-    delete fallbackWhere.grade;
-    pool = await prisma.question.findMany({
-      where: fallbackWhere,
-      include: { exam: true },
-    });
+  if (pool.length === 0) {
+    throw new TopicSetEmptyError();
   }
 
   // ── Query previously seen questions by user to enable deduplication ───────
