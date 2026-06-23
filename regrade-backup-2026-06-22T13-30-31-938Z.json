@@ -1,0 +1,33 @@
+{
+  "ranAt": "2026-06-22T13:30:31.939Z",
+  "dryRun": false,
+  "stats": {
+    "unchanged": 8,
+    "improved": 0,
+    "worsened": 1,
+    "missingExam": 0
+  },
+  "changes": [
+    {
+      "id": "cmq65nr3c000q6okafq5x6056",
+      "before": {
+        "earned": 1,
+        "total": 10,
+        "score": 10
+      },
+      "after": {
+        "earned": 0,
+        "total": 10,
+        "score": 0
+      }
+    }
+  ],
+  "backups": [
+    {
+      "id": "cmq65nr3c000q6okafq5x6056",
+      "earned": 1,
+      "total": 10,
+      "score": 10
+    }
+  ]
+}
