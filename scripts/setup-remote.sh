@@ -46,6 +46,9 @@ if [ "${RUN_SEED:-1}" = "1" ]; then
     # Each such script is idempotent (deletes its own source tag before insert).
     echo "Seeding standalone topic-practice bank..."
     npx tsx scripts/seed-tuoi-reference.ts
+    # Bank from scripts/supplemental-questions.json (IDs prefixed "supp-"; deletes
+    # only its own "supp-*" rows, so it never clobbers the cuid-keyed tuoi bank).
+    npx tsx scripts/seed-supplemental.ts
 else
     echo "Skipping exam re-seed (RUN_SEED=0) — no exam-content changes detected."
 fi

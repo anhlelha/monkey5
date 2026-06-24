@@ -43,6 +43,9 @@ yarn-error.log*
 /design-reference/
 /Grade5Exam-handoff.zip
 
+# Scratch dir for one-off content-import pipelines (intermediate JSON)
+/scripts/.4b0-import/
+
 # vercel
 .vercel
 
