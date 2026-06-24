@@ -87,6 +87,17 @@ export default async function AdminPage({ searchParams }: Props) {
       }),
     ]);
 
+  // Resolve owners for private remedial sets ("Bài thầy giao") so the exams
+  // panel can label which student each set belongs to.
+  const ownerIds = [...new Set(exams.map((e) => e.ownerUserId).filter((v): v is string => !!v))];
+  const owners = ownerIds.length
+    ? await prisma.user.findMany({
+        where: { id: { in: ownerIds } },
+        select: { id: true, name: true, email: true },
+      })
+    : [];
+  const ownerMap = new Map(owners.map((u) => [u.id, u.name ?? u.email ?? "—"]));
+
   const masteryStats = tab === "overview" ? await getMasteryStats() : null;
   const userActivityMap =
     tab === "users" ? await getUserActivityStats(users.map((u) => u.id)) : null;
@@ -222,10 +233,12 @@ export default async function AdminPage({ searchParams }: Props) {
               kind: e.kind,
               generated: e.generated,
               year: e.year,
+              title: e.title,
               school: e.school,
               qcount: e.qcount,
               minutes: e.minutes,
               note: e.note,
+              owner: e.ownerUserId ? ownerMap.get(e.ownerUserId) ?? "—" : null,
             }))}
           />
         )}

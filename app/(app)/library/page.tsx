@@ -31,7 +31,12 @@ export default async function LibraryPage({ searchParams }: Props) {
   const plan = effectivePlan(dbUser);
   const planLimit = (await getPlanConfig(plan)).referenceExamLimit;
 
-  const exams = await prisma.exam.findMany({ orderBy: [{ kind: "asc" }, { year: "desc" }] });
+  // Public catalog only — private remedial sets (ownerUserId set) live at
+  // /luyen-rieng, never in the school library grid.
+  const exams = await prisma.exam.findMany({
+    where: { ownerUserId: null },
+    orderBy: [{ kind: "asc" }, { year: "desc" }],
+  });
 
   // Attempt counts per exam for this user (drives "X lần làm · cao nhất Y%" on each row).
   const attempts = await prisma.attempt.groupBy({

@@ -25,6 +25,9 @@ interface SidebarProps {
     theme: string;
   };
   examLibraryBadge?: number;
+  /** Count of active private remedial sets owned by the user; hides the
+   * "Bài thầy giao" nav item when zero. */
+  assignedCount?: number;
 }
 
 interface NavItem {
@@ -83,7 +86,7 @@ const ADMIN_GROUPS: NavGroup[] = [
   },
 ];
 
-export function Sidebar({ user, examLibraryBadge }: SidebarProps) {
+export function Sidebar({ user, examLibraryBadge, assignedCount }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
 
   // Restore persisted state on mount.
@@ -128,6 +131,17 @@ export function Sidebar({ user, examLibraryBadge }: SidebarProps) {
       badge: examLibraryBadge,
     },
     { href: "/topics", icon: "grid", label: "Luyện chuyên đề", match: ["/topics"] },
+    ...(assignedCount && assignedCount > 0
+      ? [
+          {
+            href: "/luyen-rieng",
+            icon: "target" as IconName,
+            label: "Bài thầy giao",
+            badge: assignedCount,
+            match: ["/luyen-rieng"],
+          },
+        ]
+      : []),
     { href: "/results", icon: "trend", label: "Kết quả gần đây" },
     { href: "/guide", icon: "book", label: "Hướng dẫn sử dụng" },
   ];

@@ -23,8 +23,9 @@ export default async function AppShell({ children }: { children: React.ReactNode
   // Anyone without selected target schools goes through onboarding.
   if (user.targets.length === 0) redirect("/onboarding");
 
-  const [examCount, quietHours] = await Promise.all([
-    prisma.exam.count(),
+  const [examCount, assignedCount, quietHours] = await Promise.all([
+    prisma.exam.count({ where: { ownerUserId: null } }),
+    prisma.exam.count({ where: { ownerUserId: user.id, active: true } }),
     getQuietHours(),
   ]);
 
@@ -54,6 +55,7 @@ export default async function AppShell({ children }: { children: React.ReactNode
           theme: user.theme,
         }}
         examLibraryBadge={examCount}
+        assignedCount={assignedCount}
       />
       {showLock ? (
         <QuietHoursLock start={quietHours.start} end={quietHours.end} />

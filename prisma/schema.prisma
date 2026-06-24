@@ -103,11 +103,22 @@ model Exam {
   mixRatio  String?
   sections  String   @default("[]") // JSON string of [{ num: number, header: string }]
 
+  // ─── Personalized remedial sets (per-student "Bài thầy giao") ──────────────
+  // ownerUserId null → public exam (official/reference/mixed, unchanged behavior).
+  // ownerUserId set  → private practice set, visible ONLY to that user at
+  //   /luyen-rieng. See docs/REMEDIAL-SETS-DESIGN.md.
+  ownerUserId String?
+  position    Int      @default(0)  // display order within a user's set list
+  active      Boolean  @default(true) // false = archived (NEVER delete — Attempt cascade would wipe history)
+  archivedAt  DateTime?
+
   questions Question[]
   attempts  Attempt[]
   referenceExams UserReferenceExam[]
 
   createdAt DateTime @default(now())
+
+  @@index([ownerUserId, active, position])
 }
 
 model Question {

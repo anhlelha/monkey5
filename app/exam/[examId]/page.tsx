@@ -26,7 +26,7 @@ export default async function ExamPage({ params }: Props) {
 
   const sessionUser = await prisma.user.findUnique({
     where: { id: session.user.id },
-    select: { disabled: true },
+    select: { disabled: true, role: true },
   });
   if (sessionUser?.disabled) redirect("/signin?disabled=1");
 
@@ -73,6 +73,16 @@ export default async function ExamPage({ params }: Props) {
         redirect(`/exam/${newId}`);
       }
     }
+    notFound();
+  }
+
+  // Private remedial sets ("Bài thầy giao") are visible only to their owner —
+  // plus admins, who can preview exactly what the student sees.
+  if (
+    exam.ownerUserId &&
+    exam.ownerUserId !== session.user.id &&
+    sessionUser?.role !== "admin"
+  ) {
     notFound();
   }
 

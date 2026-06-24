@@ -12,10 +12,13 @@ interface ExamRow {
   kind: string;
   generated: boolean;
   year: string;
+  title?: string | null;
   school: string;
   qcount: number;
   minutes: number;
   note: string | null;
+  /** Name/email of the student this private remedial set belongs to; null for public exams. */
+  owner?: string | null;
 }
 
 interface ExamsPanelProps {
@@ -219,28 +222,42 @@ function ExamsPanelInner({ exams }: ExamsPanelProps) {
           )}
           {filtered.map((e) => {
             const s = SCHOOLS.find((x) => x.id === e.school);
-            const isAdminRef = e.kind === "reference" && !e.generated;
+            const isOwned = !!e.owner;
+            const isAdminRef = e.kind === "reference" && !e.generated && !isOwned;
             const isAutoRef = e.kind === "reference" && e.generated;
-            const kindLabel = e.kind === "official"
-              ? "Đề chính thức"
-              : isAdminRef
-                ? "Tham khảo ✓"
-                : isAutoRef
-                  ? "Phỏng tự động"
-                  : "Trộn";
-            const kindTone = e.kind === "official"
+            const kindLabel = isOwned
+              ? "Bài luyện riêng"
+              : e.kind === "official"
+                ? "Đề chính thức"
+                : isAdminRef
+                  ? "Tham khảo ✓"
+                  : isAutoRef
+                    ? "Phỏng tự động"
+                    : "Trộn";
+            const kindTone = isOwned
               ? "solid"
-              : isAdminRef
-                ? "amber"
-                : isAutoRef
-                  ? ""
-                  : "green";
+              : e.kind === "official"
+                ? "solid"
+                : isAdminRef
+                  ? "amber"
+                  : isAutoRef
+                    ? ""
+                    : "green";
             return (
               <tr key={e.id}>
                 <td>
                   <b style={{ fontWeight: 500 }}>
-                    {e.kind === "official" ? `Đề thi ${s?.short ?? "MIX"} · ${e.year}` : e.year}
+                    {e.kind === "official"
+                      ? `Đề thi ${s?.short ?? "MIX"} · ${e.year}`
+                      : isOwned
+                        ? e.title ?? e.year
+                        : e.year}
                   </b>
+                  {isOwned && (
+                    <div style={{ fontSize: 11.5, marginTop: 2, color: "var(--accent-ink, var(--accent))" }}>
+                      🎯 Riêng · {e.owner}
+                    </div>
+                  )}
                   {e.note && (
                     <div className="muted" style={{ fontSize: 11.5, marginTop: 2 }}>{e.note}</div>
                   )}

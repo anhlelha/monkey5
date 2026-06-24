@@ -45,6 +45,7 @@ export async function POST() {
     where: {
       kind: "reference",
       generated: false,
+      ownerUserId: null, // never hand out a private remedial set from the shared pool
       id: { notIn: claimedIds.length > 0 ? claimedIds : ["__none__"] },
     },
     orderBy: { createdAt: "asc" },
