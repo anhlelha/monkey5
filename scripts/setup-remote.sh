@@ -41,6 +41,11 @@ if [ "${RUN_SEED:-1}" = "1" ]; then
     echo "Re-seeding exam content (destructive)..."
     npx tsx scripts/build-exams-metadata.ts
     npx tsx scripts/seed-all-exams.ts
+    # Standalone topic-practice bank (examId=null). NOT touched by seed-all-exams
+    # (which only deletes by examId in metadata), so it must be seeded separately.
+    # Each such script is idempotent (deletes its own source tag before insert).
+    echo "Seeding standalone topic-practice bank..."
+    npx tsx scripts/seed-tuoi-reference.ts
 else
     echo "Skipping exam re-seed (RUN_SEED=0) — no exam-content changes detected."
 fi
