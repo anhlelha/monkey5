@@ -1,0 +1,703 @@
+[
+  {
+    "id": "supp-4b0-w01-q02",
+    "type": "mcq",
+    "topic": "soh",
+    "grade": "L4",
+    "stem": "Số nào dưới đây có chữ số 6 ở hàng trăm?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$72\\ 643$"
+      },
+      {
+        "id": "B",
+        "text": "$26\\ 734$"
+      },
+      {
+        "id": "C",
+        "text": "$63\\ 247$"
+      },
+      {
+        "id": "D",
+        "text": "$73\\ 462$"
+      }
+    ],
+    "stored_correct": "A",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w01-q06",
+    "type": "mcq",
+    "topic": "soh",
+    "grade": "L4",
+    "stem": "$25\\ 300;\\ 25\\ 400;\\ 25\\ 500$ là ba số tự nhiên liên tiếp. Đúng hay Sai?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Sai"
+      },
+      {
+        "id": "B",
+        "text": "Đúng"
+      }
+    ],
+    "stored_correct": "A",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w07-q06",
+    "type": "mcq",
+    "topic": "soh",
+    "grade": "L4+5",
+    "stem": "Mật khẩu mở khóa tủ sắt thông minh của nhà An là số có $9$ chữ số khác nhau. Biết rằng mật khẩu đó thỏa mãn đồng thời các điều kiện sau:\n\n- Mật khẩu có các chữ số thuộc lớp triệu đều lớn hơn $5$.\n- Chữ số thuộc hàng trăm nghìn khác $7$.\n\nMật khẩu khóa tủ sắt thông minh nhà An là:",
+    "options": [
+      {
+        "id": "A",
+        "text": "$359\\ 467\\ 890$"
+      },
+      {
+        "id": "B",
+        "text": "$689\\ 743\\ 520$"
+      },
+      {
+        "id": "C",
+        "text": "$986\\ 321\\ 574$"
+      },
+      {
+        "id": "D",
+        "text": "$756\\ 091\\ 834$"
+      }
+    ],
+    "stored_correct": "C",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w26-q05",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Đúng ghi Đ, sai ghi S: $\\frac{8}{5} = \\frac{72}{40}$.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Đúng"
+      },
+      {
+        "id": "B",
+        "text": "Sai"
+      }
+    ],
+    "stored_correct": "B",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w27-q01",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Phân số nào lớn hơn phân số $\\frac{5}{8}$?",
+    "options": [
+      {
+        "id": "A",
+        "text": "1/8"
+      },
+      {
+        "id": "B",
+        "text": "5/6"
+      },
+      {
+        "id": "C",
+        "text": "2/8"
+      },
+      {
+        "id": "D",
+        "text": "4/8"
+      }
+    ],
+    "stored_correct": "B",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w27-q02",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Phân số nào nhỏ hơn phân số $\\frac{2}{3}$?",
+    "options": [
+      {
+        "id": "A",
+        "text": "4/8"
+      },
+      {
+        "id": "B",
+        "text": "4/5"
+      },
+      {
+        "id": "C",
+        "text": "5/6"
+      },
+      {
+        "id": "D",
+        "text": "6/6"
+      }
+    ],
+    "stored_correct": "A",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w27-q03",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Trong các phân số dưới đây, phân số nào lớn nhất? $\\frac{3}{7}$; $\\frac{3}{5}$; $\\frac{3}{4}$; $\\frac{3}{8}$.",
+    "options": [
+      {
+        "id": "A",
+        "text": "3/7"
+      },
+      {
+        "id": "B",
+        "text": "3/5"
+      },
+      {
+        "id": "C",
+        "text": "3/4"
+      },
+      {
+        "id": "D",
+        "text": "3/8"
+      }
+    ],
+    "stored_correct": "C",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w27-q04",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Trong các phân số dưới đây, phân số nào nhỏ nhất? $\\frac{1}{6}$; $\\frac{1}{2}$; $\\frac{1}{4}$; $\\frac{1}{5}$.",
+    "options": [
+      {
+        "id": "A",
+        "text": "1/6"
+      },
+      {
+        "id": "B",
+        "text": "1/2"
+      },
+      {
+        "id": "C",
+        "text": "1/4"
+      },
+      {
+        "id": "D",
+        "text": "1/5"
+      }
+    ],
+    "stored_correct": "A",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w27-q05",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Dấu thích hợp điền vào chỗ chấm: $\\frac{2}{5}$ … $1$.",
+    "options": [
+      {
+        "id": "A",
+        "text": "<"
+      },
+      {
+        "id": "B",
+        "text": ">"
+      },
+      {
+        "id": "C",
+        "text": "="
+      },
+      {
+        "id": "D",
+        "text": "+"
+      }
+    ],
+    "stored_correct": "A",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w27-q06",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Dãy phân số nào dưới đây được sắp xếp theo thứ tự từ bé đến lớn?",
+    "options": [
+      {
+        "id": "A",
+        "text": "3/4; 3/5; 1/2; 3/8"
+      },
+      {
+        "id": "B",
+        "text": "1/2; 3/5; 3/4; 3/8"
+      },
+      {
+        "id": "C",
+        "text": "3/5; 3/4; 3/8; 1/2"
+      },
+      {
+        "id": "D",
+        "text": "3/8; 1/2; 3/5; 3/4"
+      }
+    ],
+    "stored_correct": "D",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w27-q07",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Jamill làm một cái bánh. Anh ấy cắt thành $8$ miếng bằng nhau và không ăn miếng nào. Phương án nào biểu thị số bánh còn lại của anh ấy?",
+    "options": [
+      {
+        "id": "A",
+        "text": "8/8"
+      },
+      {
+        "id": "B",
+        "text": "1/8"
+      },
+      {
+        "id": "C",
+        "text": "0/8"
+      },
+      {
+        "id": "D",
+        "text": "0"
+      }
+    ],
+    "stored_correct": "A",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w27-q08",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Khẳng định nào dưới đây đúng?",
+    "options": [
+      {
+        "id": "A",
+        "text": "1/3 + 1/3 < 1/2"
+      },
+      {
+        "id": "B",
+        "text": "1/4 + 1/4 + 1/4 < 3/4"
+      },
+      {
+        "id": "C",
+        "text": "1/5 + 1/5 > 3/5"
+      },
+      {
+        "id": "D",
+        "text": "1/6 + 1/6 + 1/6 < 2/3"
+      }
+    ],
+    "stored_correct": "D",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w27-q09",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Tuần này trời đã mưa $\\frac{1}{4}$ inch vào thứ Ba, $\\frac{1}{3}$ inch vào thứ Tư, $\\frac{1}{6}$ inch vào thứ Năm và $\\frac{1}{8}$ inch vào thứ Sáu. Hỏi ngày nào trời mưa ít nhất?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Thứ Sáu"
+      },
+      {
+        "id": "B",
+        "text": "Thứ Ba"
+      },
+      {
+        "id": "C",
+        "text": "Thứ Tư"
+      },
+      {
+        "id": "D",
+        "text": "Thứ Năm"
+      }
+    ],
+    "stored_correct": "A",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w27-q10",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4+5",
+    "stem": "Iris đang tiết kiệm để mua cái máy tính mới. Mỗi tháng cô ấy tiết kiệm được $\\frac{2}{9}$ giá của chiếc máy tính. Cứ thế, sau $9$ tháng thì nhận định nào có thể đúng?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Iris tiết kiệm đủ tiền mua 2 chiếc máy tính."
+      },
+      {
+        "id": "B",
+        "text": "Iris tiết kiệm đủ tiền mua 1 chiếc máy tính."
+      },
+      {
+        "id": "C",
+        "text": "Iris tiết kiệm đủ tiền mua 3 chiếc máy tính."
+      },
+      {
+        "id": "D",
+        "text": "Iris vẫn không có đủ tiền mua máy tính."
+      }
+    ],
+    "stored_correct": "A",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w28-q01",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Lựa chọn dấu thích hợp để điền vào chỗ chấm: $\\frac{70}{84}$ … $\\frac{5}{6}$.",
+    "options": [
+      {
+        "id": "A",
+        "text": "="
+      },
+      {
+        "id": "B",
+        "text": ">"
+      },
+      {
+        "id": "C",
+        "text": "<"
+      }
+    ],
+    "stored_correct": "A",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w28-q04",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Phân số $\\frac{60}{120}$ rút gọn thành phân số tối giản nào?",
+    "options": [
+      {
+        "id": "A",
+        "text": "1/2"
+      },
+      {
+        "id": "B",
+        "text": "20/40"
+      },
+      {
+        "id": "C",
+        "text": "15/30"
+      },
+      {
+        "id": "D",
+        "text": "6/12"
+      }
+    ],
+    "stored_correct": "A",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w28-q08",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4+5",
+    "stem": "Một kiến trúc sư thiết kế khu đô thị sử dụng $\\frac{19}{50}$ diện tích xây các tòa nhà, $\\frac{31}{100}$ diện tích làm vườn cây, $\\frac{3}{20}$ diện tích làm đường đi, và $\\frac{4}{25}$ diện tích để trống. Phần diện tích nào là lớn nhất?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Xây các tòa nhà"
+      },
+      {
+        "id": "B",
+        "text": "Làm vườn cây"
+      },
+      {
+        "id": "C",
+        "text": "Làm đường đi"
+      },
+      {
+        "id": "D",
+        "text": "Để trống"
+      }
+    ],
+    "stored_correct": "A",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w28-q10",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Cho các phân số: $\\frac{3}{5}$, $\\frac{3}{17}$, $\\frac{3}{20}$, $\\frac{3}{124}$. Nhận định sau đây là Đúng hay Sai: Các phân số ở dãy trên được sắp xếp theo thứ tự từ bé đến lớn.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Sai"
+      },
+      {
+        "id": "B",
+        "text": "Đúng"
+      }
+    ],
+    "stored_correct": "A",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w29-q10",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "An, Bình, Cường, Dũng cùng chạy thi. An chạy hết $\\frac{3}{10}$ giờ, Bình chạy hết $\\frac{1}{4}$ giờ, Cường chạy hết $\\frac{1}{3}$ giờ và Dũng chạy hết $\\frac{5}{12}$ giờ. Bạn nào về đích đầu tiên?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Bình"
+      },
+      {
+        "id": "B",
+        "text": "An"
+      },
+      {
+        "id": "C",
+        "text": "Cường"
+      },
+      {
+        "id": "D",
+        "text": "Dũng"
+      }
+    ],
+    "stored_correct": "A",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w31-q04",
+    "type": "mcq",
+    "topic": "soh",
+    "grade": "L4",
+    "stem": "Chữ số $6$ trong số nào có giá trị bằng $\\frac{1}{10}$ chữ số $6$ trong số $16\\,480$?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$17\\,936$"
+      },
+      {
+        "id": "B",
+        "text": "$29\\,564$"
+      },
+      {
+        "id": "C",
+        "text": "$365\\,412$"
+      },
+      {
+        "id": "D",
+        "text": "$71\\,640$"
+      }
+    ],
+    "stored_correct": "D",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w31-q05",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Noah nhân số $3$ với một số khác và được tích lớn hơn $3$. Hỏi số nào dưới đây có thể là số mà Noah dùng để nhân với $3$?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$\\frac{9}{10}$"
+      },
+      {
+        "id": "B",
+        "text": "$\\frac{5}{5}$"
+      },
+      {
+        "id": "C",
+        "text": "$\\frac{7}{3}$"
+      },
+      {
+        "id": "D",
+        "text": "$\\frac{1}{8}$"
+      }
+    ],
+    "stored_correct": "C",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w32-q01",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Năm bạn học sinh chia nhau $\\frac{10}{11}$ cốc nước ép. Như vậy, mỗi bạn được ... cốc nước ép.",
+    "options": [
+      {
+        "id": "A",
+        "text": "$2$"
+      },
+      {
+        "id": "B",
+        "text": "$\\frac{2}{55}$"
+      },
+      {
+        "id": "C",
+        "text": "$\\frac{2}{11}$"
+      },
+      {
+        "id": "D",
+        "text": "$\\frac{50}{55}$"
+      }
+    ],
+    "stored_correct": "C",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w32-q02",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Mỗi chiếc kẹo socola giá $\\frac{1}{5}$ đô. Lottie có $5$ đô. Vậy Lottie có thể mua nhiều nhất ... chiếc kẹo.",
+    "options": [
+      {
+        "id": "A",
+        "text": "$\\frac{1}{25}$"
+      },
+      {
+        "id": "B",
+        "text": "$\\frac{24}{25}$"
+      },
+      {
+        "id": "C",
+        "text": "$1$"
+      },
+      {
+        "id": "D",
+        "text": "$25$"
+      }
+    ],
+    "stored_correct": "D",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w32-q03",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Dee, Ella và Franco đang chia đều cho nhau $7$ chiếc bánh mì bơ đậu phộng và $9$ chiếc bánh mì kem gà tây. Vậy mỗi bạn nhận được ... chiếc bánh.",
+    "options": [
+      {
+        "id": "A",
+        "text": "$8$"
+      },
+      {
+        "id": "B",
+        "text": "$4$"
+      },
+      {
+        "id": "C",
+        "text": "$\\frac{16}{3}$"
+      },
+      {
+        "id": "D",
+        "text": "$16$"
+      }
+    ],
+    "stored_correct": "C",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w33-q01",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Nhận định nào đúng về kết quả phép tính $\\frac{3}{5} \\times \\frac{1}{8}$?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tích lớn hơn mỗi thừa số"
+      },
+      {
+        "id": "B",
+        "text": "Tích nhỏ hơn mỗi thừa số"
+      },
+      {
+        "id": "C",
+        "text": "Tích lớn hơn $\\frac{1}{8}$ nhưng nhỏ hơn $\\frac{3}{5}$"
+      },
+      {
+        "id": "D",
+        "text": "Tích bằng với mỗi số trong các thừa số"
+      }
+    ],
+    "stored_correct": "B",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w33-q02",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Nhận định nào đúng về tích $\\frac{1}{4} \\times \\frac{8}{3}$?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tích lớn hơn mỗi thừa số"
+      },
+      {
+        "id": "B",
+        "text": "Tích nhỏ hơn mỗi thừa số"
+      },
+      {
+        "id": "C",
+        "text": "Tích lớn hơn $\\frac{1}{4}$ nhưng nhỏ hơn $\\frac{8}{3}$"
+      },
+      {
+        "id": "D",
+        "text": "Tích lớn hơn $\\frac{3}{8}$ nhưng nhỏ hơn $\\frac{1}{4}$"
+      }
+    ],
+    "stored_correct": "C",
+    "unit": null
+  },
+  {
+    "id": "supp-4b0-w33-q03",
+    "type": "mcq",
+    "topic": "phan",
+    "grade": "L4",
+    "stem": "Eva nhân số $8$ với một số khác được tích nhỏ hơn $8$. Hỏi số nào dưới đây có thể là số mà Eva dùng để nhân với $8$?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$\\frac{8}{11}$"
+      },
+      {
+        "id": "B",
+        "text": "$\\frac{11}{5}$"
+      },
+      {
+        "id": "C",
+        "text": "$\\frac{7}{7}$"
+      },
+      {
+        "id": "D",
+        "text": "$\\frac{5}{3}$"
+      }
+    ],
+    "stored_correct": "A",
+    "unit": null
+  }
+]
