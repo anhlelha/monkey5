@@ -30,6 +30,7 @@
 #   bash scripts/deploy-full.sh --no-backfill# ép tắt BACKFILL
 #   bash scripts/deploy-full.sh --no-regrade # ép tắt REGRADE
 #   bash scripts/deploy-full.sh --recompute-mastery  # ép recompute mastery+readiness
+#   bash scripts/deploy-full.sh --bank-seed  # ép seed lại bank bổ trợ (supplemental), KHÔNG regrade
 #   bash scripts/deploy-full.sh -m "msg"     # đặt commit message cho auto-commit
 #   bash scripts/deploy-full.sh --no-git     # bỏ qua git (code đã commit+push rồi)
 # (các cờ có thể kết hợp, ví dụ: --full --yes -m "fix X")
@@ -57,6 +58,7 @@ FORCE_NO_SEED=0
 FORCE_NO_BACKFILL=0
 FORCE_NO_REGRADE=0
 FORCE_RECOMPUTE_MASTERY=0
+FORCE_BANK_SEED=0
 NO_GIT=0
 COMMIT_MSG=""
 while [[ $# -gt 0 ]]; do
@@ -68,6 +70,7 @@ while [[ $# -gt 0 ]]; do
     --no-backfill)   FORCE_NO_BACKFILL=1 ;;
     --no-regrade)    FORCE_NO_REGRADE=1 ;;
     --recompute-mastery) FORCE_RECOMPUTE_MASTERY=1 ;;
+    --bank-seed)     FORCE_BANK_SEED=1 ;;
     --no-git)        NO_GIT=1 ;;
     -m|--message)    COMMIT_MSG="${2:-}"; shift ;;
     -h|--help)
@@ -130,6 +133,12 @@ NEEDS_SEED=0
 NEEDS_BACKFILL=0
 NEEDS_REGRADE=0
 NEEDS_MASTERY=0
+# Standalone topic-practice bank (examId=null, scripts/supplemental-questions.json
+# via seed-supplemental.ts). NOT a destructive exam re-seed — adding/editing bank
+# questions can't change existing answers, so it runs WITHOUT the backfill/regrade/
+# mastery cascade. seed-supplemental.ts itself is covered by the seed-*.ts → SEED
+# rule, but a bare supplemental-questions.json edit only needs this lighter step.
+NEEDS_BANK_SEED=0
 DETECT_MODE="auto"
 
 if [[ -z "$PREV_SHA" ]] || ! git cat-file -e "${PREV_SHA}^{commit}" 2>/dev/null; then
@@ -160,6 +169,9 @@ else
       case "$f" in
         lib/mastery.ts|lib/readiness.ts|lib/school-profiles.ts|scripts/recompute-mastery-readiness.ts) NEEDS_MASTERY=1 ;;
       esac
+      case "$f" in
+        scripts/supplemental-questions.json) NEEDS_BANK_SEED=1 ;;
+      esac
     done <<< "$CHANGED"
     # Re-seed có thể đổi đáp án/câu hỏi → kéo theo backfill schema + regrade +
     # recompute mastery (profile trường đổi → readiness đổi).
@@ -177,9 +189,14 @@ if [[ "$APP_ONLY" -eq 1 ]]; then
   NEEDS_SEED=0; NEEDS_BACKFILL=0; NEEDS_REGRADE=0; NEEDS_MASTERY=0
 fi
 [[ "$FORCE_RECOMPUTE_MASTERY" -eq 1 ]] && NEEDS_MASTERY=1
+[[ "$FORCE_BANK_SEED" -eq 1 ]]   && NEEDS_BANK_SEED=1
 [[ "$FORCE_NO_SEED" -eq 1 ]]     && NEEDS_SEED=0
 [[ "$FORCE_NO_BACKFILL" -eq 1 ]] && NEEDS_BACKFILL=0
 [[ "$FORCE_NO_REGRADE" -eq 1 ]]  && NEEDS_REGRADE=0
+# A full exam re-seed (setup-remote RUN_SEED=1) already runs seed-supplemental.ts,
+# so skip the standalone step to avoid seeding the bank twice.
+[[ "$NEEDS_SEED" -eq 1 ]]         && NEEDS_BANK_SEED=0
+[[ "$APP_ONLY" -eq 1 ]]          && NEEDS_BANK_SEED=0
 
 yn() { [[ "$1" -eq 1 ]] && echo "YES" || echo "no"; }
 echo
@@ -187,6 +204,7 @@ echo "Kế hoạch deploy (mode: $DETECT_MODE):"
 echo "  • build + PM2 restart  : YES (luôn)"
 echo "  • prisma db push       : YES (luôn, idempotent)"
 echo "  • re-seed exam content : $(yn $NEEDS_SEED)"
+echo "  • seed standalone bank : $(yn $NEEDS_BANK_SEED)"
 echo "  • backfill schema      : $(yn $NEEDS_BACKFILL)"
 echo "  • regrade attempts     : $(yn $NEEDS_REGRADE)"
 echo "  • recompute mastery    : $(yn $NEEDS_MASTERY)"
@@ -204,6 +222,17 @@ if [[ "$NEEDS_SEED" -eq 1 ]]; then
 else
   banner "Step 2/5 — deploy.sh (pull + build + PM2 restart, KHÔNG re-seed)"
   bash scripts/deploy.sh --no-seed
+fi
+
+# ── Step 2c: seed standalone topic-practice bank (lightweight, no regrade) ──
+# Runs only seed-supplemental.ts (idempotent: deletes its own "supp-*" rows then
+# re-inserts from scripts/supplemental-questions.json). examId=null bank questions
+# don't affect existing attempts, so NO backfill/regrade/mastery is needed.
+if [[ "$NEEDS_BANK_SEED" -eq 1 ]]; then
+  banner "Step 2c/5 — Seed standalone bank (seed-supplemental.ts)"
+  ssh_vm "cd $REMOTE_PROJECT_PATH && npx tsx scripts/seed-supplemental.ts 2>&1 | tail -6"
+else
+  banner "Step 2c/5 — SKIPPED standalone bank seed (supplemental-questions.json không đổi)"
 fi
 
 # ── Step 3: backfill answer schemas (only if needed) ────────────────────────
