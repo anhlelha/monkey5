@@ -332,6 +332,7 @@ export default async function AdminPage({ searchParams }: Props) {
 
         {tab === "exams" && (
           <ExamsPanel
+            key={`exams-${subject}`}
             exams={exams.map((e) => ({
               id: e.id,
               kind: e.kind,
@@ -356,6 +357,7 @@ export default async function AdminPage({ searchParams }: Props) {
 
         {tab === "topics" && (
           <TopicsEditor
+            key={`topics-${subject}`}
             subject={subject}
             initial={TOPICS.map((t) => ({
               id: t.id,
@@ -519,6 +521,7 @@ export default async function AdminPage({ searchParams }: Props) {
 
         {tab === "bank" && bankStats && bankPage && (
           <BankPanel
+            key={`bank-${subject}`}
             stats={bankStats}
             initialPage={bankPage}
             topics={TOPICS.map((t) => ({ id: t.id, name: t.name, short: t.short }))}
@@ -534,6 +537,7 @@ export default async function AdminPage({ searchParams }: Props) {
 
         {tab === "readiness" && (
           <ReadinessPanel
+            key={`readiness-${subject}`}
             histograms={readinessData}
             schools={readinessSchools.map((s) => ({ id: s.id, full: s.full, tone: s.tone }))}
             subject={subject}

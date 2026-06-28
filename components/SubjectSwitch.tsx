@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { Icon, type IconName } from "./Icon";
 
 interface SubjectDef {
@@ -22,23 +22,34 @@ const SUBJECTS: SubjectDef[] = [
 // fullscreen exam runner/results where a subject switch doesn't belong.
 export function SubjectSwitch() {
   const pathname = usePathname() ?? "";
+  const searchParams = useSearchParams();
   if (
     pathname.startsWith("/admin") ||
     pathname.startsWith("/exam/") ||
     pathname.startsWith("/onboarding") ||
-    pathname.startsWith("/create")
+    pathname.startsWith("/create") ||
+    // System-wide pages (not tied to a subject) — no subject switcher.
+    pathname.startsWith("/guide") ||
+    pathname.startsWith("/settings")
   ) {
     return null;
   }
 
+  // On the shared /results page the active subject comes from ?subject=…
+  const resultsSubject = pathname.startsWith("/results")
+    ? searchParams.get("subject") ?? "math"
+    : null;
+
   const active =
-    pathname === "/overview" || pathname.startsWith("/overview/")
-      ? "overview"
-      : pathname.startsWith("/english")
-        ? "english"
-        : pathname.startsWith("/vietnamese")
-          ? "vietnamese"
-          : "math";
+    resultsSubject !== null
+      ? resultsSubject
+      : pathname === "/overview" || pathname.startsWith("/overview/")
+        ? "overview"
+        : pathname.startsWith("/english")
+          ? "english"
+          : pathname.startsWith("/vietnamese")
+            ? "vietnamese"
+            : "math";
 
   return (
     <div className="subject-switch header" role="tablist" aria-label="Chế độ xem">

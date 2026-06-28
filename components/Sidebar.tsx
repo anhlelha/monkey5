@@ -216,7 +216,7 @@ const ENGLISH_ITEMS: NavItem[] = [
   { href: "/english", icon: "home", label: "Trang chính", match: ["/english"] },
   { href: "/english/library", icon: "library", label: "Đề thi mẫu", match: ["/english/library"] },
   { href: "/english/topics", icon: "grid", label: "Luyện chuyên đề", match: ["/english/topics"] },
-  { href: "/results", icon: "trend", label: "Kết quả gần đây" },
+  { href: "/results?subject=english", icon: "trend", label: "Kết quả gần đây", match: ["/results"] },
 ];
 
 // Vietnamese-subject nav — mirrors the english nav with /vietnamese prefix.
@@ -224,7 +224,7 @@ const VIETNAMESE_ITEMS: NavItem[] = [
   { href: "/vietnamese", icon: "home", label: "Trang chính", match: ["/vietnamese"] },
   { href: "/vietnamese/library", icon: "library", label: "Đề thi mẫu", match: ["/vietnamese/library"] },
   { href: "/vietnamese/topics", icon: "grid", label: "Luyện chuyên đề", match: ["/vietnamese/topics"] },
-  { href: "/results", icon: "trend", label: "Kết quả gần đây" },
+  { href: "/results?subject=vietnamese", icon: "trend", label: "Kết quả gần đây", match: ["/results"] },
 ];
 
 // "Hệ thống" nav — shared across subjects (Toán / Tiếng Anh). Guide lives here;

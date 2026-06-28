@@ -1,6 +1,7 @@
 // Helpers for parsing/serializing the JSON-string fields on User.
 
 import { prisma } from "./prisma";
+import type { Subject } from "./subjects";
 
 export interface UserShape {
   id: string;
@@ -219,17 +220,24 @@ export type ActivityFeedItem =
 export async function getRecentActivityFeed(
   userId: string,
   limit = 25,
+  subject: Subject = "math",
 ): Promise<ActivityFeedItem[]> {
   const [attempts, sessions] = await Promise.all([
     prisma.attempt.findMany({
-      where: { userId, submitted: true },
+      // Scope to the requested subject so each subject's "Kết quả gần đây" only
+      // shows its own attempts (math/english/vietnamese exams + practice sets).
+      where: { userId, submitted: true, exam: { subject } },
       include: { exam: true },
       orderBy: { createdAt: "desc" },
     }),
-    prisma.topicSession.findMany({
-      where: { userId },
-      orderBy: { createdAt: "desc" },
-    }),
+    // TopicSession rows are math-only (math topic-practice CTAs) — skip for other
+    // subjects, whose practice runs are plain exam attempts on vnset-/enset- exams.
+    subject === "math"
+      ? prisma.topicSession.findMany({
+          where: { userId },
+          orderBy: { createdAt: "desc" },
+        })
+      : Promise.resolve([] as Awaited<ReturnType<typeof prisma.topicSession.findMany>>),
   ]);
 
   // Index sessions by their setId so we can pair them with attempts.

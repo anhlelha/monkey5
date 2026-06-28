@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode } from "react";
+import { Fragment, Suspense, type ReactNode } from "react";
 import Link from "next/link";
 import { SubjectSwitch } from "./SubjectSwitch";
 
@@ -12,7 +12,9 @@ interface TopBarProps {
 export function TopBar({ crumbs = [], actions }: TopBarProps) {
   return (
     <div className="topbar">
-      <SubjectSwitch />
+      <Suspense fallback={null}>
+        <SubjectSwitch />
+      </Suspense>
       <div className="crumbs">
         {crumbs.map((c, i) => {
           const last = i === crumbs.length - 1;

@@ -15,19 +15,28 @@ const levelColor = (level: string): string => {
   return "var(--accent)";
 };
 
-export default async function RecentResults() {
+interface Props {
+  searchParams: Promise<{ subject?: string }>;
+}
+
+export default async function RecentResults({ searchParams }: Props) {
   const session = await auth();
   if (!session?.user?.id) redirect("/signin");
 
+  const { subject: subjectParam } = await searchParams;
+  const subject: "math" | "english" | "vietnamese" =
+    subjectParam === "vietnamese" ? "vietnamese" : subjectParam === "english" ? "english" : "math";
+  const homeHref = subject === "vietnamese" ? "/vietnamese" : subject === "english" ? "/english" : "/home";
+
   const [items, topicRows] = await Promise.all([
-    getRecentActivityFeed(session.user.id, 25),
+    getRecentActivityFeed(session.user.id, 25, subject),
     prisma.topic.findMany({ orderBy: { position: "asc" } }),
   ]);
   const TOPICS = topicRows.length > 0 ? topicRows : DEFAULT_TOPICS;
 
   return (
     <div className="main">
-      <TopBar crumbs={[{ label: "Trang chính", href: "/home" }, "Kết quả gần đây"]} />
+      <TopBar crumbs={[{ label: "Trang chính", href: homeHref }, "Kết quả gần đây"]} />
       <div className="content">
         <div className="page-head">
           <div>
@@ -41,7 +50,7 @@ export default async function RecentResults() {
             <div className="empty">
               Con chưa làm đề nào.
               <div style={{ marginTop: 12 }}>
-                <Link href="/library" className="btn primary">
+                <Link href={`${homeHref === "/home" ? "" : homeHref}/library`} className="btn primary">
                   <Icon name="library" /> Chọn đề mẫu
                 </Link>
               </div>
