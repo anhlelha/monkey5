@@ -22,6 +22,7 @@ interface Props {
   flagged?: boolean;
   onFlag?: () => void;
   readOnly?: boolean;
+  hidePassage?: boolean;
 }
 
 const essayValue = (v: AnswerValue): { text: string; drawings: string[] } => {
@@ -29,7 +30,7 @@ const essayValue = (v: AnswerValue): { text: string; drawings: string[] } => {
   return { text: (v as string) ?? "", drawings: [] };
 };
 
-export function Question({ q, topics, value, onChange, flagged, onFlag, readOnly }: Props) {
+export function Question({ q, topics, value, onChange, flagged, onFlag, readOnly, hidePassage }: Props) {
   const topic = topics.find((t) => t.id === q.topic) ?? { id: q.topic, short: q.topic, color: "var(--ink-muted)" };
   const v = typeof value === "string" ? value : "";
 
@@ -49,7 +50,7 @@ export function Question({ q, topics, value, onChange, flagged, onFlag, readOnly
     <div className="question" id={`q-${q.id}`}>
       <div className="q-num">Câu {q.num}.</div>
       <div className="q-body">
-        {q.passage && (
+        {q.passage && !hidePassage && (
           <div className="q-passage">
             {q.passage.title && <div className="q-passage-title">{q.passage.title}</div>}
             <div className="q-passage-body">

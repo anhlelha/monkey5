@@ -27,6 +27,7 @@ export interface ExamQuestion {
   options: MCQOption[];
   modelAnswer: string | null;
   figure: string | null;
+  passageId?: string | null;
   // english reading: the shared passage shown with this question (null otherwise).
   passage?: ExamPassage | null;
   source?: string | null;

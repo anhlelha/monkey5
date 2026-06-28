@@ -59,6 +59,45 @@ const shuffle = <T,>(arr: T[]): T[] =>
     .sort((a, b) => a.k - b.k)
     .map(({ v }) => v);
 
+const TOPIC_SET_MAX = 12;
+
+// Topic-practice selection that keeps reading-comprehension groups intact.
+// Reading questions share a `passageId`; the đọc hiểu block must travel with
+// ALL its sub-questions, never a random subset. Standalone questions (no
+// passageId) are singleton units. We shuffle UNITS (not questions), then pack
+// units into the set while keeping each group whole and staying near `max`.
+// Input rows are assumed ordered by `num` asc so sub-questions stay in order.
+function pickKeepingPassageGroups<T extends { passageId: string | null }>(
+  pool: T[],
+  max = TOPIC_SET_MAX,
+): T[] {
+  const groups = new Map<string, T[]>();
+  const units: T[][] = [];
+  for (const q of pool) {
+    if (!q.passageId) {
+      units.push([q]);
+      continue;
+    }
+    const existing = groups.get(q.passageId);
+    if (existing) {
+      existing.push(q);
+    } else {
+      const unit = [q];
+      groups.set(q.passageId, unit);
+      units.push(unit);
+    }
+  }
+
+  const picked: T[] = [];
+  for (const unit of shuffle(units)) {
+    if (picked.length === 0 || picked.length + unit.length <= max) {
+      picked.push(...unit);
+    }
+    if (picked.length >= max) break;
+  }
+  return picked;
+}
+
 // Returns the id of a newly-created `reference` Exam with cloned Question rows.
 export async function spawnReferenceExam(schoolId: string): Promise<string> {
   const school = SCHOOLS.find((s) => s.id === schoolId) ?? MIX_SCHOOL;
@@ -312,11 +351,12 @@ export async function spawnEnglishTopicSet(topicId: string, _userId: string): Pr
       exam: { kind: "official", subject: "english" },
     },
     include: { exam: true },
+    orderBy: { num: "asc" },
   });
 
   if (pool.length === 0) throw new TopicSetEmptyError();
 
-  const picked = shuffle(pool).slice(0, Math.min(12, pool.length));
+  const picked = pickKeepingPassageGroups(pool);
   const newId = `enset-${Date.now().toString(36)}-${randSuffix()}`;
 
   await prisma.exam.create({
@@ -378,11 +418,12 @@ export async function spawnVietnameseTopicSet(topicId: string, _userId: string):
       exam: { kind: "official", subject: "vietnamese" },
     },
     include: { exam: true },
+    orderBy: { num: "asc" },
   });
 
   if (pool.length === 0) throw new TopicSetEmptyError();
 
-  const picked = shuffle(pool).slice(0, Math.min(12, pool.length));
+  const picked = pickKeepingPassageGroups(pool);
   const newId = `vnset-${Date.now().toString(36)}-${randSuffix()}`;
 
   await prisma.exam.create({

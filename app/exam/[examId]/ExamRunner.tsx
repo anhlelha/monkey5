@@ -134,8 +134,10 @@ export function ExamRunner({ exam, school, questions, topics }: Props) {
           </div>
         </div>
 
-        {questions.map((q) => {
+        {questions.map((q, idx) => {
           const sectionHeader = getExamSectionHeader(exam.sections, q.num);
+          const hidePassage =
+            !!q.passageId && questions[idx - 1]?.passageId === q.passageId;
           return (
             <Fragment key={q.id}>
               {sectionHeader && (
@@ -162,6 +164,7 @@ export function ExamRunner({ exam, school, questions, topics }: Props) {
                 onChange={(v) => setAnswers((a) => ({ ...a, [q.id]: v }))}
                 flagged={!!flags[q.id]}
                 onFlag={() => setFlags((f) => ({ ...f, [q.id]: !f[q.id] }))}
+                hidePassage={hidePassage}
               />
             </Fragment>
           );

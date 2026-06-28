@@ -111,6 +111,7 @@ export default async function ExamPage({ params }: Props) {
       options: parseOptions(q.options),
       modelAnswer: q.modelAnswer,
       figure: q.figure,
+      passageId: q.passageId,
       passage: p ? { title: p.title, body: p.body, kind: p.kind } : null,
       source: q.source,
       answerSchema: q.answerSchema,
