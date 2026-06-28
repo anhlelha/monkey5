@@ -93,6 +93,34 @@ npx tsx scripts/audit-questions.ts        # flag remaining issues
 `SHORT_STEM`, `WATERMARK`, `MATH_RAW`. JSON output via `--json` →
 `scripts/audit-results.json`, consumed by the `/admin?tab=qa` panel.
 
+## Multi-subject (Toán + Tiếng Anh)
+
+The app is multi-subject. `Exam`/`Question`/`Topic`/`SchoolProfile` carry a
+`subject` column (`"math"` default | `"english"`). English taxonomy, CEFR levels
+(A1/A2/B1), mastery bands, the 6-factor difficulty model, and the Writing rubric
+all live in **`lib/subjects.ts`**. Full design + rationale:
+**`docs/ENGLISH-SUBJECT-DESIGN.md`**.
+
+**Subject-scoping trap (CRITICAL):** `computeMastery`, `buildSchoolProfile`,
+`getAllSchoolProfiles`, `getEffectiveReadiness` all take a `subject` param
+(default `"math"`). Anything that enumerates topics/questions/profiles for a
+student-facing view MUST filter by subject or Math and English data blend.
+`User.readiness` is a flat `{schoolId: pct}` map shared across subjects (cg/ntt
+ids collide), so english readiness is computed per-load and NOT persisted.
+
+- English grading: `lib/grading/matchers/english/text.ts` (`text_set` schema —
+  case/punct-insensitive, multi-accept, optional word-order-agnostic).
+- English Writing (essay) → AI 5-criteria rubric (Task/Lexical/Grammar/Cohesion/
+  Length): `lib/llm/grade-writing.ts`; `essay-attempt.ts` branches on
+  `exam.subject`. Stored in `EssayGrade.kind="writing"` + `criteria` JSON.
+- Reading: `Passage` model + `Question.passageId`; runner renders the passage
+  block (`components/Question.tsx`).
+- Seed: `scripts/seed-english.ts` (10 topics + 2 clearly-labelled SAMPLE exams +
+  builds english `SchoolProfile`). Wired into `setup-remote.sh` RUN_SEED block.
+  **The sample exams are original demo content, NOT real exam transcriptions.**
+- Student page: `/english` (`app/(app)/english/page.tsx`) — topic grid + skill
+  radar + per-school 6-factor difficulty radar + readiness %.
+
 ## Grading semantics
 
 Three layers — all in `lib/grading/`:

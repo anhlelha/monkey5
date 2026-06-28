@@ -35,6 +35,44 @@ export interface ResolvedLLMSettings {
   answerWeight: number;
   guessCredit: number;
   maxTokens: number;
+  /** English Writing rubric + 5-criteria weights (percent, sum 100). */
+  writingPrompt: string;
+  writingWeights: Record<string, number>;
+  /** Vietnamese văn rubric + 5-criteria weights (percent, sum 100). */
+  vnWritingPrompt: string;
+  vnWritingWeights: Record<string, number>;
+}
+
+/** Raw structured verdict the model returns for an english Writing task. */
+export interface WritingVerdict {
+  task: number;
+  lexical: number;
+  grammar: number;
+  cohesion: number;
+  length: number;
+  feedback: string;
+}
+
+/** Result of grading one Writing answer — shaped for the EssayGrade table. */
+export interface WritingGradeResult {
+  fraction: number;
+  earned: number;
+  points: number;
+  criteria: Record<string, number>; // each 0..1
+  feedback: string;
+  provider: string;
+  model: string;
+  status: "graded" | "error";
+  error: string | null;
+  inputTokens: number;
+  outputTokens: number;
+}
+
+/** The fields the Writing grader needs (no answer key — it's free production). */
+export interface WritingQuestionInput {
+  num: number;
+  stem: string;
+  points: number;
 }
 
 /** Scoring policy slice (percent of a question's points). */
@@ -68,6 +106,8 @@ export interface EssayGradeResult {
   model: string;
   status: "graded" | "error";
   error: string | null;
+  inputTokens: number;
+  outputTokens: number;
 }
 
 /** The question fields the grader needs. */

@@ -2,9 +2,7 @@ import type { SchoolProfileData } from "./school-profiles";
 import { prisma } from "./prisma";
 import { computeMastery } from "./mastery";
 import { getAllSchoolProfiles } from "./school-profiles";
-
-const LEVELS = ["L4", "L5", "L4+5", "NC"] as const;
-type Level = (typeof LEVELS)[number];
+import { SUBJECT_LEVELS, type Subject } from "./subjects";
 
 export const READINESS_BASELINE = 50;
 export const READINESS_MIN = 0;
@@ -30,7 +28,7 @@ export interface GapItem {
 
 export function computeReadiness(
   topicMastery: Record<string, number>,
-  levelMastery: Record<Level, number>,
+  levelMastery: Record<string, number>,
   profile: SchoolProfileData,
   referenceDifficulty: number = 50,
 ): number {
@@ -41,9 +39,9 @@ export function computeReadiness(
   }
 
   let levelTerm = 0;
-  for (const l of LEVELS) {
+  for (const l of SUBJECT_LEVELS[profile.subject].levels) {
     const m = levelMastery[l] ?? 0.5;
-    levelTerm += profile.levelWeights[l] * (m - 0.5);
+    levelTerm += (profile.levelWeights[l] ?? 0) * (m - 0.5);
   }
 
   const diffPenalty = (profile.difficulty - referenceDifficulty) * DIFF_K;
@@ -53,7 +51,7 @@ export function computeReadiness(
 
 export function computeAllReadiness(
   topicMastery: Record<string, number>,
-  levelMastery: Record<Level, number>,
+  levelMastery: Record<string, number>,
   profiles: Record<string, SchoolProfileData>,
 ): Record<string, number> {
   const profileList = Object.values(profiles);
@@ -88,6 +86,7 @@ export async function getEffectiveReadiness(
   userId: string,
   persistedReadiness: Record<string, number>,
   requiredSchools: string[],
+  subject: Subject = "math",
 ): Promise<Record<string, number>> {
   const hasAll =
     requiredSchools.length > 0 &&
@@ -95,13 +94,19 @@ export async function getEffectiveReadiness(
   if (hasAll) return persistedReadiness;
 
   const [mastery, profiles] = await Promise.all([
-    computeMastery(userId),
-    getAllSchoolProfiles(),
+    computeMastery(userId, subject),
+    getAllSchoolProfiles(subject),
   ]);
   // If profiles are not yet built (fresh DB), keep whatever we had.
   if (Object.keys(profiles).length === 0) return persistedReadiness;
 
   const fresh = computeAllReadiness(mastery.topicMastery, mastery.levelMastery, profiles);
+
+  // User.readiness is a flat {schoolId: pct} map shared across subjects, but
+  // english reuses the same school ids (cg/ntt) → persisting would clobber the
+  // math values. Only the math map is persisted; english is computed per load.
+  if (subject !== "math") return fresh;
+
   // Merge: prefer freshly computed values for required schools; preserve any
   // existing entries for schools not in `profiles` (defensive).
   const merged: Record<string, number> = { ...persistedReadiness, ...fresh };

@@ -1,0 +1,159 @@
+{
+  "id": "vn-ntt-2023",
+  "subject": "vietnamese",
+  "school": "ntt",
+  "year": "2022-2023",
+  "minutes": 45,
+  "title": "Tiếng Việt vào 6 — THCS & THPT Nguyễn Tất Thành 2022-2023",
+  "intro": "Nguồn: CLB Văn bồi dưỡng - Solar Edu. Thời gian 45 phút.",
+  "passages": [
+    {
+      "ref": "p1",
+      "title": "Ba sản phẩm văn hóa dân tộc",
+      "body": "(1) Niềm tự hào chính đáng của chúng ta trong nền văn hóa Đông Sơn chính là bộ sưu tập trống đồng hết sức phong phú. [...] Nổi bật trên hoa văn trống đồng là hình ảnh con người hòa với thiên nhiên. Con người lao động, đánh cá, săn bắn. Con người đánh trống, thổi kèn. Con người cầm vũ khí bảo vệ quê hương và tưng bừng nhảy múa mừng chiến công hay cảm tạ thần linh, ... Đó là con người thuần hậu, hiền hòa, mang tính nhân bản sâu sắc.\n(2) Từ ngày còn ít tuổi, tôi đã thích những tranh lợn, gà, chuột, ếch, tranh cây dừa, tranh tố nữ của làng Hồ. Mỗi lần Tết đến, đứng trước những cái chiếu bày tranh làng Hồ giải trên các lề phố Hà Nội, lòng tôi thấm thía một nỗi biết ơn đối với những người nghệ sĩ tạo hình của nhân dân. Họ đã đem vào cuộc sống một cách nhìn thuần phác, càng ngắm càng thấy đậm đà, lành mạnh, hóm hỉnh và tươi vui.\n(3) Từ những năm 30 của thế kỉ XX, chiếc áo dài cổ truyền được cải tiến dần thành chiếc áo dài tân thời. Chiếc áo tân thời là sự kết hợp hài hòa giữa phong cách dân tộc tế nhị, kín đáo với phong cách phương Tây hiện đại, trẻ trung.",
+      "kind": "article"
+    },
+    {
+      "ref": "p2",
+      "title": "Cuộc thi vẽ tranh cảnh yên bình (sáu câu)",
+      "body": "(1) Bức tranh thứ nhất vẽ một hồ nước tĩnh lặng.\n(2) Bên cạnh thác nước, một con chim mẹ đang làm tổ trong bụi cây.\n(3) Nhà vua càng ngắm bức tranh thứ hai, ông càng thấm thía: bình yên thực sự là ở trong chính tâm hồn mỗi người.\n(4) Bức tranh thứ hai vẽ cảnh một ngọn núi cao và một thác nước dữ dội.\n(5) (Mặc dù) thác nước gào thét (nhưng) chim mẹ vẫn đậu yên bình trong tổ.\n(6) Ngày xưa, một nhà vua nọ tổ chức một cuộc thi vẽ tranh về cảnh yên bình nhất (và) ông đã chọn được hai bức tranh.",
+      "kind": "article"
+    },
+    {
+      "ref": "p3",
+      "title": "Cuộc chạy tiếp sức của sắc đỏ (Theo Phạm Lê Châu)",
+      "body": "Khi tu hú gọi mùa vải chín và ve râm ran dàn đồng ca mùa hạ, hoa phượng như đón lấy đủ sắc thắm của hoa gạo, hoa vông, bồng bềnh cháy rực suốt hè.\n(Cuộc chạy tiếp sức của sắc đỏ - Theo Phạm Lê Châu)",
+      "kind": "article"
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "type": "fill",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "stem": "Nối sự vật ở cột A với thông tin ở cột B cho phù hợp.\nA: (1) Trống đồng Đông Sơn; (2) Tranh làng Hồ; (3) Áo dài Việt Nam\nB: (a) Kết hợp hài hòa giữa phong cách dân tộc tế nhị, kín đáo với phong cách phương Tây hiện đại, trẻ trung; (b) Làm nổi bật hình ảnh con người thuần hậu, hiền hòa, mang tính nhân bản sâu sắc trên hoa văn; (c) Thể hiện cách nhìn thuần phác, đậm đà, lành mạnh, hóm hỉnh và tươi vui của người nghệ sĩ",
+      "correct": "(1)-(b); (2)-(c); (3)-(a)",
+      "accept": ["(1)-(b); (2)-(c); (3)-(a)", "1-b; 2-c; 3-a"],
+      "passageRef": "p1"
+    },
+    {
+      "num": 2,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "stem": "Ba sự vật được giới thiệu trong 3 đoạn văn trên có điểm gì chung? Khoanh vào chữ cái trước đáp án đúng.",
+      "options": [
+        { "id": "A", "text": "Đều là tác phẩm thuộc nghệ thuật tạo hình" },
+        { "id": "B", "text": "Đều là nhạc cụ cổ truyền của Việt Nam" },
+        { "id": "C", "text": "Đều là biểu tượng cho vẻ đẹp của người phụ nữ" },
+        { "id": "D", "text": "Đều là sản phẩm văn hóa truyền thống dân tộc" }
+      ],
+      "correct": "D",
+      "passageRef": "p1"
+    },
+    {
+      "num": 3,
+      "type": "essay",
+      "topic": "vn-makesent",
+      "grade": "VD",
+      "points": 1,
+      "tags": ["camthu", "vandung"],
+      "stem": "Viết một câu bộc lộ cảm xúc của em về một trong ba sự vật được giới thiệu ở trên.",
+      "correct": null,
+      "modelAnswer": "Dạng bài đặt câu cảm. HS dùng kiểu câu cảm thán với các từ cảm thán (chao ôi, ôi) hoặc các từ bộc lộ cảm xúc ((yêu) sao, (đẹp) thay, biết bao, biết nhường nào, biết mấy, mới… làm sao) để thể hiện cảm xúc ngưỡng mộ, tự hào, yêu quý.\nVí dụ: Đẹp vậy thay, tự hào thay chiếc áo dài Việt Nam!",
+      "passageRef": "p1"
+    },
+    {
+      "num": 4,
+      "type": "fill",
+      "topic": "vn-spelling",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Gạch dưới (chọn) từ ngữ đúng chính tả trong các cặp sau:\n(1) bánh chưng/bánh trưng; (2) tranh dành/tranh giành; (3) giày vò/dày vò; (4) đen sì/đen xì; (5) hoạnh họe/hạnh họe; (6) xuất sắc/xuất xắc; (7) nghuệch ngoạc/nguệch ngoạc; (8) ăn nên làm ra/ăn lên làm ra",
+      "correct": "bánh chưng; tranh giành; giày vò; đen sì; hoạnh họe; xuất sắc; nguệch ngoạc; ăn nên làm ra",
+      "accept": ["bánh chưng; tranh giành; giày vò; đen sì; hoạnh họe; xuất sắc; nguệch ngoạc; ăn nên làm ra"],
+      "ignoreOrder": true
+    },
+    {
+      "num": 5,
+      "type": "fill",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Khoanh vào một từ trong dãy từ sau theo yêu cầu:\na. Từ không cùng nhóm về cấu tạo: xanh um, mát rượi, tươi tốt, hoa phượng\nb. Từ không cùng nhóm về nghĩa: bình đẳng, bình tâm, bình thản, điềm nhiên",
+      "correct": "a. tươi tốt; b. bình đẳng",
+      "accept": ["a. tươi tốt; b. bình đẳng", "tươi tốt; bình đẳng"]
+    },
+    {
+      "num": 6,
+      "type": "essay",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Đọc các câu sau và điền thông tin phù hợp vào chỗ trống:\n(1) Dưới lũy tre xanh, bò nằm ngẫm nghĩ\n(2) Em bé đã biết bò\n(3) Chiếc xe ì ạch bò lên dốc\na. Từ “bò” trong câu số (1) thuộc loại từ:\nb. Quan hệ giữa từ “bò” trong các câu trên là đồng âm hay nhiều nghĩa?\n- Từ “bò” trong câu số (1) và số (2):\n- Từ “bò” trong câu số (2) và số (3):",
+      "correct": null,
+      "modelAnswer": "a. Từ “bò” trong câu số (1) thuộc loại từ: danh từ.\nb. - Từ “bò” trong câu số (1) và số (2): từ đồng âm.\n- Từ “bò” trong câu số (2) và số (3): từ nhiều nghĩa."
+    },
+    {
+      "num": 7,
+      "type": "fill",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 2,
+      "tags": ["vandung"],
+      "stem": "Đọc sáu câu trong đoạn “Cuộc thi vẽ tranh cảnh yên bình”:\na. Sắp xếp các câu trên theo trật tự hợp lý.\nb. Phân loại câu (2), (3), (6) vào hai nhóm: Câu đơn / Câu ghép.",
+      "correct": "a. (6)-(1)-(4)-(2)-(5)-(3); b. Câu đơn: (2); Câu ghép: (3),(6)",
+      "accept": ["a. (6)-(1)-(4)-(2)-(5)-(3); b. Câu đơn: (2); Câu ghép: (3),(6)"],
+      "ignoreOrder": true,
+      "passageRef": "p2"
+    },
+    {
+      "num": 8,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Đọc câu văn sau:\n“Khi tu hú gọi mùa vải chín và ve râm ran dàn đồng ca mùa hạ, hoa phượng như đón lấy đủ sắc thắm của hoa gạo, hoa vông, bồng bềnh cháy rực suốt hè.”\nKhoanh vào chữ cái trước đáp án nêu đúng bộ phận chủ ngữ của câu văn trên.",
+      "options": [
+        { "id": "A", "text": "tu hú" },
+        { "id": "B", "text": "ve" },
+        { "id": "C", "text": "hoa phượng" },
+        { "id": "D", "text": "hoa phượng như đón lấy đủ sắc thắm của hoa gạo, hoa vông" }
+      ],
+      "correct": "C",
+      "passageRef": "p3"
+    },
+    {
+      "num": 9,
+      "type": "essay",
+      "topic": "vn-rhetoric",
+      "grade": "VD",
+      "points": 1,
+      "tags": ["camthu"],
+      "stem": "Chỉ ra và nêu ngắn gọn tác dụng của phép nhân hóa được sử dụng trong câu văn ở câu 8.",
+      "correct": null,
+      "modelAnswer": "Trong câu văn có các hình ảnh nhân hóa: “tu hú gọi mùa vải chín”, “ve râm ran dàn đồng ca mùa hạ” và “hoa phượng như đón lấy đủ sắc thắm của hoa gạo, hoa vông”.\nVí dụ: Các sự vật tu hú, ve và hoa phượng được nhân hóa trở nên sinh động, gần gũi và mang những đặc điểm của con người, khiến khung cảnh có hồn hơn. Nó gợi ra một bức tranh mùa hè đầy sống động, rực rỡ sắc màu và rộn rã âm thanh, mọi vật tràn đầy sức sống.",
+      "passageRef": "p3"
+    },
+    {
+      "num": 10,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 3,
+      "tags": ["camthu", "vandung"],
+      "stem": "Mùa hè đến rồi! Sau chuỗi ngày ở nhà vì dịch COVID-19, em mơ ước được đi đâu? Lên núi ngắm cảnh mây trời, làng bản trong sương, xuống biển hòa mình cùng dòng nước trong xanh và chạy chân trần trên cát hay trở về làng quê với cánh đồng lúa chín vàng óng ả, …?\nViết đoạn văn (khoảng 10 câu) miêu tả một cảnh thiên nhiên mà em mơ ước được đến khám phá trong mùa hè này.",
+      "correct": null,
+      "modelAnswer": "Gợi ý chi tiết:\n* Hình thức (0.5đ): đúng đoạn văn (0.25đ), đủ số câu (0.25đ).\n* Nội dung (2.5đ): HS lựa chọn 1 cảnh thiên nhiên quen thuộc (không phải cảnh nhân tạo): cảnh biển, đồi núi, sông nước, một thắng cảnh du lịch…\n- Giới thiệu cảnh thiên nhiên sẽ tả (cảnh gì? ở đâu?).\n- Miêu tả theo trình tự không gian hoặc thời gian (từ bao quát đến cụ thể; từ bờ sông đến mặt sông…), dùng câu gợi hình, gợi cảm.\n- Kết đoạn: nêu cảm xúc.\nĐoạn văn tham khảo:\nTừ trên cao nhìn xuống, dòng sông như một dải lụa đào mềm mại vắt hờ hững qua thành phố, ngăn cách giữa nội đô và ngoại thành Gia Lâm, Long Biên. Viền theo hai bên bờ sông là những bãi mía, ruộng ngô xanh ngút tầm mắt. Sớm, các dãy thuyền chài sát bờ le lói ánh lửa nấu cơm để chuẩn bị ra khơi đánh cá. Khói lam lơ lửng những vạt mỏng bay về đám cỏ non còn ướt đẫm sương đêm, ngơ ngác trong giấc mộng ngọt ngào. Mùa này, sông ăm ắp nước, lòng sông rộng mênh mang, mặt sông thường hồng tươi khi có nắng vì nước mang nặng phù sa vun đắp đôi bờ. Cái màu ấy của mặt sông như màu thẹn thùng của đôi má thiếu nữ. Ánh bình minh chan hòa trên mặt sông ấm áp.\nChỉ cần đến dòng sông dịu dàng, tha thướt dưới nắng vàng, lòng em đã thấy bồi hồi, xao xuyến biết bao nhiêu!"
+    }
+  ]
+}

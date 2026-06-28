@@ -25,6 +25,7 @@ interface Props {
   stats: BankStats;
   initialPage: { rows: BankRow[]; total: number; page: number; pageSize: number };
   topics: TopicOption[];
+  subject?: "math" | "english" | "vietnamese";
 }
 
 const SOURCE_LABELS: Record<string, string> = {
@@ -47,7 +48,7 @@ const GRADE_OPTIONS = [
   { value: "L4+5", label: "L4+5" },
 ];
 
-export function BankPanel({ stats, initialPage, topics }: Props) {
+export function BankPanel({ stats, initialPage, topics, subject = "math" }: Props) {
   const [rows, setRows] = useState<BankRow[]>(initialPage.rows);
   const [total, setTotal] = useState(initialPage.total);
   const [page, setPage] = useState(initialPage.page);
@@ -73,7 +74,7 @@ export function BankPanel({ stats, initialPage, topics }: Props) {
 
   function fetchPage(filters: BankFilters) {
     startTransition(async () => {
-      const result = await getBankQuestions(filters);
+      const result = await getBankQuestions({ ...filters, subject });
       setRows(result.rows);
       setTotal(result.total);
       setPage(result.page);

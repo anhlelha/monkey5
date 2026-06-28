@@ -1,0 +1,124 @@
+{
+  "id": "vn-cg-2022",
+  "subject": "vietnamese",
+  "school": "cg",
+  "year": "2022",
+  "minutes": 60,
+  "title": "Tiếng Việt vào 6 — THCS Cầu Giấy 2022",
+  "intro": "Đề được xây dựng theo trí nhớ học sinh + bổ sung câu trắc nghiệm tương tự (nguồn: Trung tâm Văn Solaredu).",
+  "passages": [
+    {
+      "ref": "p1",
+      "title": "Tháng giêng của bé (Đỗ Quang Huỳnh)",
+      "body": "Đồng làng vương chút heo may\nMầm cây tỉnh giấc vườn đầy tiếng chim\nHạt mưa mải miết trốn tìm\nCây đào trước cửa lim dim mắt cười\nQuất gom từng hạt nắng rơi\nLàm thành quả – những mặt trời vàng mơ.\nTháng giêng đến tự bao giờ?\nĐất trời viết tiếp bài thơ ngọt ngào.",
+      "kind": "poem"
+    },
+    {
+      "ref": "p2",
+      "title": "Chim họa mi hót (Theo Ngọc Giao)",
+      "body": "Rồi hôm sau, khi phương đông vừa vẩn bụi hồng, con họa mi ấy lại hót vang lừng chào nắng sớm. Nó kéo dài cổ ra mà hót, tựa hồ nó muốn các bạn xa gần đâu đó lắng nghe. Hót xong, nó xù lông rũ hết những giọt sương rồi nhanh nhẹn chuyền từ bụi nọ sang bụi kia, tìm vài con sâu ăn lót dạ, đoạn vỗ cánh bay vút đi.",
+      "kind": "article"
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "“Những tàu lá chuối vàng ối xõa xuống như những đuôi áo, vạt áo.”\nTừ gạch chân thuộc nhóm từ nào?",
+      "options": [
+        { "id": "A", "text": "Động từ" },
+        { "id": "B", "text": "Tính từ" },
+        { "id": "C", "text": "Đại từ" },
+        { "id": "D", "text": "Quan hệ từ" }
+      ],
+      "correct": "D"
+    },
+    {
+      "num": 2,
+      "type": "mcq",
+      "topic": "vn-senttype",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Trong các câu văn sau câu nào là câu khiến?",
+      "options": [
+        { "id": "A", "text": "Những chiếc nấm to bằng cái ấm tích, màu sặc sỡ rực lên." },
+        { "id": "B", "text": "Cô giáo cho lũ làng xem cái chữ nào!" },
+        { "id": "C", "text": "Dạ, cậu kêu chi?" },
+        { "id": "D", "text": "Thương mẹ biết bao nhiêu, mẹ ơi!" }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 3,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Dòng nào dưới đây gồm các từ đồng âm?",
+      "options": [
+        { "id": "A", "text": "Tương đồng, đồng chí, cánh đồng" },
+        { "id": "B", "text": "Lưỡi dao, lưỡi cưa, lưỡi xẻng" },
+        { "id": "C", "text": "Lá gan, lá cờ, lá thư" },
+        { "id": "D", "text": "Đồng bằng, đồng chí, đồng thau" }
+      ],
+      "correct": "D"
+    },
+    {
+      "num": 4,
+      "type": "mcq",
+      "topic": "vn-wordform",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Xác định từ láy trong những phương án dưới đây:",
+      "options": [
+        { "id": "A", "text": "Học hành" },
+        { "id": "B", "text": "Cây cỏ" },
+        { "id": "C", "text": "Lí nhí" },
+        { "id": "D", "text": "Nấu nướng" }
+      ],
+      "correct": "C"
+    },
+    {
+      "num": 5,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "VD",
+      "points": 2,
+      "tags": ["camthu"],
+      "passageRef": "p1",
+      "stem": "a. Tác giả đã sử dụng những giác quan nào để miêu tả các sự vật?\nb. Trong câu thơ in đậm (“Cây đào trước cửa lim dim mắt cười”), tác giả đã sử dụng biện pháp nghệ thuật nào? Nêu tác dụng biện pháp nghệ thuật đó.\nc. Các sự vật trong văn bản gợi cho em tình cảm gì với mùa xuân?",
+      "correct": null,
+      "modelAnswer": "a. Tác giả đã sử dụng thị giác, thính giác để miêu tả các sự vật.\nb. Trong câu thơ in đậm, tác giả đã sử dụng biện pháp nghệ thuật nhân hóa: “cây đào trước cửa” được nhân hóa qua cụm từ “lim dim mắt cười”. Nhân hóa như vậy khiến sự vật trở nên gần gũi, có hồn hơn. Nó đã gợi ra hình ảnh cây đào đang nở hoa chúm chím (đang ra những nụ hoa hàm tiếu), tràn đầy nhựa sống. Từ đó, ta cũng thấy được tác giả có sự quan sát tinh tế và trí tưởng tượng phong phú.\nc. Các sự vật trong văn bản gợi cho em yêu quý, gắn bó với mùa xuân."
+    },
+    {
+      "num": 6,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "VD",
+      "points": 2,
+      "tags": ["camthu", "vandung"],
+      "passageRef": "p2",
+      "stem": "a. Nêu nội dung chính của đoạn văn trên.\nb. Câu 3 liên kết với câu trước nó bằng cách nào?\nc. Xác định thành phần của câu 1 và từ đó cho biết đó là câu đơn hay câu ghép?\nd. Chỉ ra nét đặc sắc của từ “vang lừng”.",
+      "correct": null,
+      "modelAnswer": "a. Đoạn văn nói về tiếng hót của con chim họa mi. Tiếng hót ấy vang vọng, mạnh mẽ và đầy sức sống.\nb. Câu 3 liên kết với câu 2 bằng cách lặp từ ngữ: từ “nó” và “hót” được lặp lại.\nc. Thành phần của câu 1: TN: “Rồi… bụi hồng”; CN: “con… ấy”; VN: phần còn lại → Đây là câu đơn.\nd. Nét đặc sắc của từ “vang lừng” (cảm thụ từ hay): “vang lừng” là một từ hay, độc đáo và giàu sức gợi. Nó miêu tả tiếng hót của chú chim họa mi vang vọng, mạnh mẽ và đầy sức sống. Cách sử dụng từ ngữ còn cho thấy tác giả có sự quan sát tinh tế và trí tưởng tượng phong phú."
+    },
+    {
+      "num": 7,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 3,
+      "tags": [],
+      "stem": "Hãy viết đoạn văn (từ 7 đến 10 câu) tả lại khu vườn mơ ước của em.",
+      "correct": null,
+      "modelAnswer": "Hình thức: Đoạn văn, 7–10 câu.\nNội dung:\n- Mở đoạn (1 câu): trực tiếp (đối tượng + từ ngữ nhận xét + từ ngữ nhấn mạnh cảm xúc) hoặc gián tiếp (dẫn như đề / dẫn từ thơ ca).\n- Thân đoạn (khoảng 8 câu): Tả bao quát (màu sắc, không khí); Tả chi tiết kết hợp hoạt động: bầu trời (mặt trời, ánh nắng, mây…), mặt đất (thiên nhiên, cây cối, sương…), hoạt động con người.\n- Kết đoạn: cảm nhận + suy nghĩ khái quát (khuyến khích kết bài sáng tạo)."
+    }
+  ]
+}

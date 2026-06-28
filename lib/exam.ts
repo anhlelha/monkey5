@@ -5,11 +5,19 @@ export interface MCQOption {
   text: string;
 }
 
+export interface ExamPassage {
+  title: string | null;
+  body: string;
+  kind: string; // notice | message | article | cloze
+}
+
 export interface ExamQuestion {
   id: string;
   num: number;
   type: "fill" | "mcq" | "essay";
+  subject?: string; // "math" | "english"
   topic: string;
+  skill?: string | null;
   grade: string;
   points: number;
   stem: string;
@@ -19,6 +27,8 @@ export interface ExamQuestion {
   options: MCQOption[];
   modelAnswer: string | null;
   figure: string | null;
+  // english reading: the shared passage shown with this question (null otherwise).
+  passage?: ExamPassage | null;
   source?: string | null;
   sourceQuestionId?: string | null;
   // Optional JSON-serialized AnswerSchema. null/undefined → fall back to exact match.

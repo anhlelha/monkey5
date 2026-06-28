@@ -1,5 +1,6 @@
 import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
+import { SubjectSwitch } from "./SubjectSwitch";
 
 export type Crumb = string | { label: string; href?: string };
 
@@ -11,6 +12,7 @@ interface TopBarProps {
 export function TopBar({ crumbs = [], actions }: TopBarProps) {
   return (
     <div className="topbar">
+      <SubjectSwitch />
       <div className="crumbs">
         {crumbs.map((c, i) => {
           const last = i === crumbs.length - 1;

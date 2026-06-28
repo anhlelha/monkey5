@@ -12,6 +12,7 @@ interface TopicRow {
   ico: string;
   color: string;
   position: number;
+  skill?: string | null;
 }
 
 const COLORS = [
@@ -29,7 +30,7 @@ const COLORS = [
 ];
 const PRESET_ICONS = ["123", "△", "½", "→", "?", "↔", "▥", "Δt", ":", "⌚", "Σ", "π", "√", "%", "□", "∠", "○"];
 
-export function TopicsEditor({ initial }: { initial: TopicRow[] }) {
+export function TopicsEditor({ initial, subject = "math" }: { initial: TopicRow[]; subject?: "math" | "english" | "vietnamese" }) {
   const [list, setList] = useState<TopicRow[]>(initial);
   const [dirty, setDirty] = useState(false);
   const [pickerFor, setPickerFor] = useState<{ id: string; type: "color" | "icon" } | null>(null);
@@ -78,7 +79,7 @@ export function TopicsEditor({ initial }: { initial: TopicRow[] }) {
     setError(null);
     startTransition(async () => {
       try {
-        await saveTopics({ topics: list.map(({ id, name, short, ico, color }) => ({ id, name, short, ico, color })) });
+        await saveTopics({ subject, topics: list.map(({ id, name, short, ico, color, skill }) => ({ id, name, short, ico, color, skill: skill ?? null })) });
         setDirty(false);
       } catch (e: unknown) {
         setError(e instanceof Error ? e.message : "Lưu thất bại");

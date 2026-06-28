@@ -1,0 +1,148 @@
+{
+  "id": "vn-ntt-2022",
+  "subject": "vietnamese",
+  "school": "ntt",
+  "year": "2021-2022",
+  "minutes": 45,
+  "title": "Tiếng Việt vào 6 — THCS & THPT Nguyễn Tất Thành 2021-2022",
+  "intro": "Nguồn: CLB Văn bồi dưỡng - Solar Edu. Thời gian 45 phút.",
+  "passages": [
+    {
+      "ref": "p1",
+      "title": "Mùa xuân về (Theo Ngô Văn Phú)",
+      "body": "Mùa xuân về lúc nào không rõ. Tôi nghe tiếng vườn gọi.\nTôi chầm chậm gỡ chiếc cổng rong bước vào. Cây muỗm khoe vòng hoa mới. Hoa muỗm tua tủa trổ thẳng lên trời. Hoa muỗm chính là chiếc đồng hồ mùa xuân. Hoa nở sớm để đơm hoa kết trái vào giáp Tết.\nHoa nhài đã trắng xóa ở bên vại nước. Hoa gọi người bằng hương, bằng sắc. Những bông hoa nhài xinh xinh, trắng một màu tinh khôi, hương ngào ngạt, sực nức.\nDọc bụi tre, những lá già cuốn theo gió đông nam thổi về, trút một lượt dưới gốc. Tiếng tre kẽo kẹt là một thứ tiếng vườn. Không bao giờ tôi quên được.\n(Theo Ngô Văn Phú)",
+      "kind": "article"
+    },
+    {
+      "ref": "p2",
+      "title": "Cha yêu quý! (Theo Pau-tốp-xki)",
+      "body": "(1) Cha yêu quý! (2) Thế là con đã nằm bệnh viện được một tháng. (3) Vết thương không nặng lắm. (4) Đại thể là nó đang lên da non. (5) Xin cha đừng lo lắng và chớ hút hết điếu thuốc này đến điếu thuốc khác! (6) Con van cha đấy! (7) Con luôn nhớ đến cha, đến ngôi nhà của cha con ta, đến tỉnh lị của chúng ta. (8) Nhưng tất cả những cái đó xa xăm quá, tưởng như ở đâu mãi chân trời.\n(Theo Pau-tốp-xki)",
+      "kind": "article"
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "type": "essay",
+      "topic": "vn-spelling",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["vandung"],
+      "stem": "Câu sau đây có một số từ và cụm từ chưa được viết hoa đúng cách. Hãy viết lại cho đúng:\nĐội thiếu niên tiền phong Hồ Chí Minh là tổ chức của thiếu nhi Việt Nam do chủ tịch Hồ Chí Minh và đảng cộng sản Việt Nam sáng lập, đoàn thanh niên cộng sản Hồ Chí Minh phụ trách hướng dẫn.",
+      "correct": null,
+      "modelAnswer": "(1) Đội Thiếu niên Tiền phong Hồ Chí Minh\n(2) Chủ tịch Hồ Chí Minh\n(3) Đảng Cộng sản Việt Nam\n(4) Đoàn Thanh niên Cộng sản Hồ Chí Minh"
+    },
+    {
+      "num": 2,
+      "type": "essay",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Đọc các câu sau và viết câu trả lời:\n(1) Chiếc áo mẹ mặc nhiều năm nay đã bay màu.\n(2) Từng đàn chim nối đuôi nhau bay về phương Nam tránh rét.\n(3) Sống chết mặc bay, đừng nói với ông nữa!\n(4) Bác thợ nề khéo léo dùng bay trát lại những vết nứt trên tường.\na. Từ “bay” trong câu số (…) là danh từ.\nb. Từ “bay” trong câu số (1) có nghĩa là …\nc. Từ “bay” trong câu số (3) có nghĩa là …\nd. Từ “bay” trong câu số (2) và từ “bay” trong câu số (3) là hai từ có quan hệ …",
+      "correct": null,
+      "modelAnswer": "a. Từ “bay” trong câu số (4) là danh từ.\nb. Từ “bay” trong câu số (1) có nghĩa là bạc màu / phai màu.\nc. Từ “bay” trong câu số (3) có nghĩa là chúng mày.\nd. Từ “bay” trong câu số (2) và câu số (3) là hai từ có quan hệ đồng âm."
+    },
+    {
+      "num": 3,
+      "type": "fill",
+      "topic": "vn-wordform",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Sắp xếp các từ in đậm trong đoạn văn “Mùa xuân về” (chầm chậm, tua tủa, trắng xóa, xinh xinh, tinh khôi, ngào ngạt, sực nức, kẽo kẹt) vào hai nhóm: Từ ghép / Từ láy.",
+      "correct": "Từ ghép: trắng xóa, tinh khôi; Từ láy: chầm chậm, tua tủa, xinh xinh, ngào ngạt, sực nức, kẽo kẹt",
+      "accept": ["Từ ghép: trắng xóa, tinh khôi; Từ láy: chầm chậm, tua tủa, xinh xinh, ngào ngạt, sực nức, kẽo kẹt"],
+      "ignoreOrder": true,
+      "passageRef": "p1"
+    },
+    {
+      "num": 4,
+      "type": "essay",
+      "topic": "vn-rhetoric",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "stem": "Trong đoạn văn “Mùa xuân về”, câu văn nào nói về hoa có sử dụng biện pháp so sánh, câu văn nào nói về hoa có sử dụng biện pháp nhân hóa?",
+      "correct": null,
+      "modelAnswer": "- Câu văn nói về hoa có sử dụng biện pháp so sánh: Hoa muỗm chính là chiếc đồng hồ mùa xuân.\n- Câu văn nói về hoa có sử dụng biện pháp nhân hóa: Hoa gọi người bằng hương, bằng sắc.",
+      "passageRef": "p1"
+    },
+    {
+      "num": 5,
+      "type": "essay",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "a. Từ “lá” trong cụm từ “những chiếc lá già cuốn theo gió đông nam thổi về” được dùng với nghĩa gốc hay nghĩa chuyển? Giải thích nghĩa của từ “lá” trong cụm từ này.\nb. Đặt câu có từ “lá” được dùng với nghĩa chuyển.",
+      "correct": null,
+      "modelAnswer": "a. Từ “lá” trong cụm từ này được dùng với nghĩa gốc. Nghĩa: bộ phận của cây, mọc ra ở cành hoặc thân và thường có hình dẹt, màu lục, giữ vai trò chủ yếu trong việc tạo ra chất hữu cơ nuôi cây.\nb. (nghĩa chuyển: lá cờ, lá thư, lá gan, lá phổi…) Ví dụ: Lá cờ Tổ quốc bay phần phật trên nền tuyết lạnh của sân vận động Thường Châu.",
+      "passageRef": "p1"
+    },
+    {
+      "num": 6,
+      "type": "essay",
+      "topic": "vn-spelling",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["vandung"],
+      "stem": "Điền một dấu phẩy vào chỗ trống thích hợp trong mỗi câu sau:\na. Đâu đây thoang thoảng khói hương trầm mùi hương nồng ấm của ngày Tết cổ truyền xua tan chút hơi lạnh còn sót lại của mùa đông.\nb. Những tia nắng xuân đầu tiên như những ngón tay hồng nhẹ nhàng gõ cửa đánh thức vạn vật muôn loài bừng giấc say.",
+      "correct": null,
+      "modelAnswer": "a. Đâu đây thoang thoảng khói hương trầm, mùi hương nồng ấm của ngày Tết cổ truyền xua tan chút hơi lạnh còn sót lại của mùa đông.\nb. Những tia nắng xuân đầu tiên như những ngón tay hồng nhẹ nhàng gõ cửa đánh thức vạn vật, muôn loài bừng giấc say."
+    },
+    {
+      "num": 7,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Xác định các đại từ xưng hô được dùng trong đoạn văn “Cha yêu quý!”. (Khoanh tròn vào chữ cái đứng đầu phương án đúng)",
+      "options": [
+        { "id": "A", "text": "cha, con" },
+        { "id": "B", "text": "cha, con, cha con ta, chúng ta" },
+        { "id": "C", "text": "cha, con, nó, cha con ta, chúng ta" },
+        { "id": "D", "text": "cha, con, nó, cha con ta, chúng ta, đó, đâu" }
+      ],
+      "correct": "B",
+      "passageRef": "p2"
+    },
+    {
+      "num": 8,
+      "type": "essay",
+      "topic": "vn-cohesion",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Chỉ ra các quan hệ từ có trong đoạn văn “Cha yêu quý!”. Trong các quan hệ từ đó, quan hệ từ nào dùng để liên kết câu?",
+      "correct": null,
+      "modelAnswer": "- Các quan hệ từ có trong đoạn văn: và, của, nhưng, như.\n- Quan hệ từ dùng để liên kết câu: nhưng.",
+      "passageRef": "p2"
+    },
+    {
+      "num": 9,
+      "type": "fill",
+      "topic": "vn-senttype",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["vandung"],
+      "stem": "Xếp các câu trong đoạn văn “Cha yêu quý!” vào bảng phân loại câu theo mục đích nói (ghi số thứ tự của câu): Câu kể / Câu cảm / Câu khiến.",
+      "correct": "Câu kể: 2,3,4,7,8; Câu cảm: 1,6; Câu khiến: 5",
+      "accept": ["Câu kể: 2,3,4,7,8; Câu cảm: 1,6; Câu khiến: 5"],
+      "ignoreOrder": true,
+      "passageRef": "p2"
+    },
+    {
+      "num": 10,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 3,
+      "tags": ["camthu", "vandung"],
+      "stem": "Trong những ngày gần đây, trên báo chí lan truyền bức ảnh em bé năm tuổi tại Thành phố Hồ Chí Minh một mình đi cách li, điều trị COVID-19. Bức ảnh ghi lại khoảnh khắc đầy xúc động trong hành trình em bé rời xa gia đình đến ở khu cách li.\nHãy tưởng tượng và kể về hành trình trên của em bé.",
+      "correct": null,
+      "modelAnswer": null
+    }
+  ]
+}

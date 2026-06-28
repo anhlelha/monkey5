@@ -49,6 +49,17 @@ export function Question({ q, topics, value, onChange, flagged, onFlag, readOnly
     <div className="question" id={`q-${q.id}`}>
       <div className="q-num">Câu {q.num}.</div>
       <div className="q-body">
+        {q.passage && (
+          <div className="q-passage">
+            {q.passage.title && <div className="q-passage-title">{q.passage.title}</div>}
+            <div className="q-passage-body">
+              {q.passage.body.split(/\n+/).map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="q-stem"><MathText text={q.stem} /></div>
 
         {q.figure && <ExamFigure figure={q.figure} />}
@@ -144,35 +155,44 @@ export function Question({ q, topics, value, onChange, flagged, onFlag, readOnly
           </div>
         )}
 
-        {q.type === "essay" && (
-          <div className="q-answer q-essay">
-            <label>Trình bày lời giải chi tiết</label>
-            <MathInput
-              value={essayValue(value)}
-              drawings={essayValue(value).drawings}
-              onChange={(next) => onChange(typeof next === "string" ? { text: next, drawings: essayValue(value).drawings } : next)}
-              onDrawingsChange={(d) => onChange({ text: essayValue(value).text, drawings: d })}
-              placeholder={q.placeholder ?? ""}
-              readOnly={readOnly}
-              rows={8}
-            />
-            {readOnly && (
-              <div
-                style={{
-                  marginTop: 8,
-                  padding: 12,
-                  background: "var(--surface-2)",
-                  borderRadius: 8,
-                  borderLeft: "3px solid " + (essayCorrect ? "var(--success)" : "var(--danger)"),
-                  fontSize: 13,
-                }}
-              >
-                <div className="eyebrow" style={{ marginBottom: 4 }}>Đáp số đúng</div>
-                <b className="mono">{q.modelAnswer}</b>
-              </div>
-            )}
-          </div>
-        )}
+        {q.type === "essay" && (() => {
+          const isWriting = q.subject === "english" || q.subject === "vietnamese";
+          const wordCount = essayText.trim() === "" ? 0 : essayText.trim().split(/\s+/).length;
+          return (
+            <div className="q-answer q-essay">
+              <label>{isWriting ? "Viết đoạn văn của con" : "Trình bày lời giải chi tiết"}</label>
+              <MathInput
+                value={essayValue(value)}
+                drawings={essayValue(value).drawings}
+                onChange={(next) => onChange(typeof next === "string" ? { text: next, drawings: essayValue(value).drawings } : next)}
+                onDrawingsChange={(d) => onChange({ text: essayValue(value).text, drawings: d })}
+                placeholder={q.placeholder ?? ""}
+                readOnly={readOnly}
+                rows={8}
+              />
+              {isWriting && (
+                <div style={{ fontSize: 12, color: "var(--ink-muted)", marginTop: 4 }}>
+                  Số từ: <b>{wordCount}</b>
+                </div>
+              )}
+              {readOnly && !isWriting && q.modelAnswer && (
+                <div
+                  style={{
+                    marginTop: 8,
+                    padding: 12,
+                    background: "var(--surface-2)",
+                    borderRadius: 8,
+                    borderLeft: "3px solid " + (essayCorrect ? "var(--success)" : "var(--danger)"),
+                    fontSize: 13,
+                  }}
+                >
+                  <div className="eyebrow" style={{ marginBottom: 4 }}>Đáp số đúng</div>
+                  <b className="mono">{q.modelAnswer}</b>
+                </div>
+              )}
+            </div>
+          );
+        })()}
       </div>
     </div>
   );

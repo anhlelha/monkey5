@@ -18,7 +18,7 @@ export default async function CreateExercisePage({ searchParams }: Props) {
   if (user.role !== "admin") redirect("/home");
 
   const { topic } = await searchParams;
-  const topics = (await prisma.topic.findMany({ orderBy: { position: "asc" } })) ?? [];
+  const topics = (await prisma.topic.findMany({ where: { subject: "math" }, orderBy: { position: "asc" } })) ?? [];
   const TOPICS = topics.length > 0 ? topics : [...DEFAULT_TOPICS].map((t, i) => ({ ...t, position: i }));
   const setCounts = await prisma.customSet.groupBy({ by: ["topic"], _count: { _all: true } });
   const countsMap = Object.fromEntries(setCounts.map((r) => [r.topic, r._count._all]));

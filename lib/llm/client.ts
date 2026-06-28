@@ -18,6 +18,16 @@ export interface LLMCallArgs {
 /** A provider/network error with a user-safe message. */
 export class LLMError extends Error {}
 
+export interface LLMUsage {
+  inputTokens: number;
+  outputTokens: number;
+}
+
+export interface LLMResult {
+  text: string;
+  usage: LLMUsage;
+}
+
 async function withTimeout(timeoutMs: number): Promise<{ signal: AbortSignal; done: () => void }> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -32,8 +42,8 @@ function getErrorMessage(error: unknown): string {
   return "Lỗi không xác định khi gọi AI.";
 }
 
-/** Call the selected provider and return the raw text response. */
-export async function callLLM(args: LLMCallArgs): Promise<string> {
+/** Call the selected provider and return the raw text response + token usage. */
+export async function callLLM(args: LLMCallArgs): Promise<LLMResult> {
   const { provider, apiKey } = args;
   if (!apiKey) throw new LLMError("Thiếu API key cho nhà cung cấp đã chọn.");
   switch (provider) {
@@ -51,7 +61,7 @@ export async function callLLM(args: LLMCallArgs): Promise<string> {
   }
 }
 
-async function callAnthropic(args: LLMCallArgs): Promise<string> {
+async function callAnthropic(args: LLMCallArgs): Promise<LLMResult> {
   const { signal, done } = await withTimeout(args.timeoutMs ?? DEFAULT_TIMEOUT_MS);
   try {
     const res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -71,6 +81,7 @@ async function callAnthropic(args: LLMCallArgs): Promise<string> {
     });
     const data = (await res.json()) as {
       content?: { type: string; text?: string }[];
+      usage?: { input_tokens?: number; output_tokens?: number };
       error?: { message?: string };
     };
     if (!res.ok) throw new LLMError(data.error?.message ?? `Anthropic API lỗi ${res.status}`);
@@ -80,7 +91,10 @@ async function callAnthropic(args: LLMCallArgs): Promise<string> {
       .join("\n")
       .trim();
     if (!text) throw new LLMError("Anthropic trả về nội dung rỗng.");
-    return text;
+    return {
+      text,
+      usage: { inputTokens: data.usage?.input_tokens ?? 0, outputTokens: data.usage?.output_tokens ?? 0 },
+    };
   } catch (error: unknown) {
     throw error instanceof LLMError ? error : new LLMError(getErrorMessage(error));
   } finally {
@@ -88,7 +102,7 @@ async function callAnthropic(args: LLMCallArgs): Promise<string> {
   }
 }
 
-async function callOpenAI(args: LLMCallArgs): Promise<string> {
+async function callOpenAI(args: LLMCallArgs): Promise<LLMResult> {
   const { signal, done } = await withTimeout(args.timeoutMs ?? DEFAULT_TIMEOUT_MS);
   try {
     const res = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -112,12 +126,16 @@ async function callOpenAI(args: LLMCallArgs): Promise<string> {
     });
     const data = (await res.json()) as {
       choices?: { message?: { content?: string } }[];
+      usage?: { prompt_tokens?: number; completion_tokens?: number };
       error?: { message?: string };
     };
     if (!res.ok) throw new LLMError(data.error?.message ?? `OpenAI API lỗi ${res.status}`);
     const text = data.choices?.[0]?.message?.content?.trim() ?? "";
     if (!text) throw new LLMError("OpenAI trả về nội dung rỗng.");
-    return text;
+    return {
+      text,
+      usage: { inputTokens: data.usage?.prompt_tokens ?? 0, outputTokens: data.usage?.completion_tokens ?? 0 },
+    };
   } catch (error: unknown) {
     throw error instanceof LLMError ? error : new LLMError(getErrorMessage(error));
   } finally {
@@ -125,7 +143,7 @@ async function callOpenAI(args: LLMCallArgs): Promise<string> {
   }
 }
 
-async function callGoogle(args: LLMCallArgs): Promise<string> {
+async function callGoogle(args: LLMCallArgs): Promise<LLMResult> {
   const { signal, done } = await withTimeout(args.timeoutMs ?? DEFAULT_TIMEOUT_MS);
   try {
     const url =
@@ -146,6 +164,7 @@ async function callGoogle(args: LLMCallArgs): Promise<string> {
     });
     const data = (await res.json()) as {
       candidates?: { content?: { parts?: { text?: string }[] } }[];
+      usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number };
       error?: { message?: string };
     };
     if (!res.ok) throw new LLMError(data.error?.message ?? `Gemini API lỗi ${res.status}`);
@@ -154,7 +173,13 @@ async function callGoogle(args: LLMCallArgs): Promise<string> {
       .join("")
       .trim();
     if (!text) throw new LLMError("Gemini trả về nội dung rỗng.");
-    return text;
+    return {
+      text,
+      usage: {
+        inputTokens: data.usageMetadata?.promptTokenCount ?? 0,
+        outputTokens: data.usageMetadata?.candidatesTokenCount ?? 0,
+      },
+    };
   } catch (error: unknown) {
     throw error instanceof LLMError ? error : new LLMError(getErrorMessage(error));
   } finally {

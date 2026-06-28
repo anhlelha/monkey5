@@ -60,7 +60,7 @@ export default async function TopicDetail({ params, searchParams }: Props) {
   if (!dbUser) redirect("/signin");
   const user = hydrateUser(dbUser);
 
-  const topics = (await prisma.topic.findMany({ orderBy: { position: "asc" } })) ?? [];
+  const topics = (await prisma.topic.findMany({ where: { subject: "math" }, orderBy: { position: "asc" } })) ?? [];
   const TOPICS = topics.length > 0 ? topics : DEFAULT_TOPICS;
   const topic = TOPICS.find((t) => t.id === id);
   if (!topic) notFound();

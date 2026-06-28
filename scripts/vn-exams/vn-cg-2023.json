@@ -1,0 +1,117 @@
+{
+  "id": "vn-cg-2023",
+  "subject": "vietnamese",
+  "school": "cg",
+  "year": "2023",
+  "minutes": 60,
+  "title": "Tiếng Việt vào 6 — THCS Cầu Giấy 2023",
+  "intro": "Đề được xây dựng theo trí nhớ học sinh + bổ sung câu trắc nghiệm tương tự (nguồn: Trung tâm Văn Solaredu).",
+  "passages": [
+    {
+      "ref": "p1",
+      "title": "Buổi sáng ở thành phố Hồ Chí Minh (Nguyễn Mạnh Tuấn)",
+      "body": "Mặt trời dâng chầm chậm, lơ lửng như một quả bóng bay mềm mại.\nĐường phố bắt đầu hoạt động và huyên náo. Những xe tải nhỏ, xe lam, xích lô máy nườm nượp chở hàng hóa và thực phẩm từ những vùng ngoại ô về các chợ Bến Thành, Cầu Muối, … đánh thức cả thành phố dậy bởi những tiếng máy nổ giòn.\nThành phố mình đẹp quá! Đẹp quá đi!",
+      "kind": "article"
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Dòng nào dưới đây không có cặp từ trái nghĩa?",
+      "options": [
+        { "id": "A", "text": "Sáng nắng chiều mưa" },
+        { "id": "B", "text": "Nước chảy đá mòn" },
+        { "id": "C", "text": "Thức khuya dậy sớm" },
+        { "id": "D", "text": "Khôn nhà dại chợ" }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 2,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Cho đoạn thơ:\nBạn ơi có thấy đâu\nCao Bằng xa xa ấy\nVì ta mà giữ lấy\nMột dải dài biên cương\nNhững đại từ nào được sử dụng trong đoạn trên?",
+      "options": [
+        { "id": "A", "text": "Bạn, ta" },
+        { "id": "B", "text": "Cao Bằng" },
+        { "id": "C", "text": "Biên Cương" },
+        { "id": "D", "text": "Cao Bằng, ta" }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 3,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Bộ phận chủ ngữ của câu là: “Trong tà áo dài, hình ảnh người phụ nữ Việt Nam như đẹp hơn, tự nhiên, mềm mại và thanh thoát hơn.”",
+      "options": [
+        { "id": "A", "text": "Hình ảnh" },
+        { "id": "B", "text": "Hình ảnh người phụ nữ Việt Nam như" },
+        { "id": "C", "text": "Hình ảnh người phụ nữ Việt Nam" },
+        { "id": "D", "text": "Hình ảnh người phụ nữ Việt Nam như đẹp hơn" }
+      ],
+      "correct": "C"
+    },
+    {
+      "num": 4,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Câu nào sau đây không phải câu ghép?",
+      "options": [
+        { "id": "A", "text": "Cánh hoa thập thò hoe hoe đỏ như một ngọn lửa non." },
+        { "id": "B", "text": "Ngày chưa tắt hẳn, trăng đã lên rồi." },
+        { "id": "C", "text": "Nhờ trời mưa nên lúa tốt." },
+        { "id": "D", "text": "Xuân đến, trăm hoa đua nở." }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 5,
+      "type": "essay",
+      "topic": "vn-rhetoric",
+      "grade": "VD",
+      "points": 3,
+      "tags": ["camthu", "bay"],
+      "stem": "Đọc câu văn sau:\nTrong im ắng, hương vườn thơm thoảng bắt đầu rón rén bước ra, tung tăng trong gió nhẹ, nhảy lên cỏ, trườn theo những thân cành.\na. Gọi tên biện pháp nghệ thuật được sử dụng trong câu.\nb. Cảm nhận của em về hương vườn và tâm hồn của tác giả trong câu thơ trên.\nc. Từ “ngọt” là một từ nhiều nghĩa, em hãy đặt câu theo yêu cầu sau:\n- Đặt câu có từ “ngọt” dùng theo nghĩa gốc\n- Đặt câu có từ “ngọt” dùng theo nghĩa chuyển",
+      "correct": null,
+      "modelAnswer": "a. Biện pháp nghệ thuật được sử dụng trong câu là nhân hóa.\nb. Câu văn gợi ra vẻ đẹp của hương vườn và tâm hồn của tác giả. Ấn tượng đầu tiên là hương vườn được nhân hóa vừa tả sự đậm đà bao trùm khắp không gian vừa gợi ra nó như một đứa trẻ hiếu động, say mê khám phá thế giới khu vườn, làm khu vườn đẹp hơn. Từ đó ta cũng thấy được tâm hồn rộng mở và tinh tế của tác giả.\nc. Đặt câu với từ “ngọt”:\n- Nghĩa gốc (một loại vị): Chiếc bánh này mới ngọt và thơm làm sao!\n- Nghĩa chuyển: Tác động êm, nhẹ nhưng sâu (trời rét ngọt, dao sắc ngọt); âm thanh dễ nghe (nói ngọt, dỗ ngọt); có vị ngon (gà ngọt thịt). Vd: Mặc dù xuân đã sang nhưng trời còn rét ngọt."
+    },
+    {
+      "num": 6,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "VD",
+      "points": 3,
+      "tags": ["camthu"],
+      "passageRef": "p1",
+      "stem": "a. Đoạn trích trên miêu tả thành phố vào thời gian nào trong ngày?\nb. Theo tác giả âm thanh nào đánh thức cả thành phố dậy?\nc. Xét theo mục đích nói, câu văn cuối thuộc kiểu câu nào?\nd. Qua câu cuối, em cảm nhận được gì về tình cảm của tác giả với thành phố?\ne. Từ câu văn in đậm (“Mặt trời dâng chầm chậm, lơ lửng như một quả bóng bay mềm mại.”) trong đoạn trên, em học được cách gì để diễn đạt đối tượng miêu tả lên cụ thể, sinh động.",
+      "correct": null,
+      "modelAnswer": "a. Đoạn trích miêu tả thành phố vào buổi sáng (bình minh).\nb. Theo tác giả, âm thanh đánh thức cả thành phố dậy là “tiếng máy nổ giòn” của xe tải nhỏ, xe lam, xích lô máy.\nc. Xét theo mục đích nói, câu văn cuối thuộc kiểu câu cảm.\nd. Qua câu cuối, em cảm nhận được tác giả yêu tha thiết và rất tự hào về vẻ đẹp của thành phố mình.\ne. Từ câu văn in đậm, em học được cách dùng phép so sánh kết hợp với các từ láy để diễn đạt đối tượng miêu tả hiện lên cụ thể, sinh động."
+    },
+    {
+      "num": 7,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 3,
+      "tags": [],
+      "stem": "Viết đoạn văn 10 câu tả cô/ chú nhân viên y tế trường em, người luôn chăm lo sức khỏe cho học sinh trong trường.",
+      "correct": null,
+      "modelAnswer": "Hình thức (0.5 điểm): Viết đoạn văn, từ 9 → 11 câu.\nNội dung (2.5 điểm): Dạng bài tả người – cô/chú nhân viên y tế trường em.\nĐoạn mẫu: (1) Bác Lan – bác nhân viên y tế trường em mới thân thiện và dịu dàng với học sinh chúng em làm sao! (2) Bác đã ở độ tuổi trung tuần, đuôi mắt đã có nhiều vết chân chim nhưng bác lại luôn khiến người đối diện cảm nhận được tinh thần trẻ trung và nhiệt huyết. (3) Lúc nào trên gương mặt bác cũng là nụ cười rạng rỡ và tươi tắn. (4) Điều này khiến các bạn học sinh mỗi lần đau bụng hay ốm sốt xuống phòng y tế gặp bác cũng cảm thấy yên tâm và nhẹ nhõm phần nào. (5) Lần đầu em gặp bác cũng là một lần em bị ốm, lúc ấy em đau đầu dữ dội và bác đã đưa tay lên sờ trán em để xem tình hình em có sốt hay không. (6) Đôi tay bác mềm mại và mát lạnh như đôi tay mẹ em vậy. (7) Bác cất giọng nhẹ nhàng, động viên, hỏi han em. (8) Sau khi biết em ốm mà vẫn cố gắng đến trường, bác đã khen em chăm chỉ và dũng cảm. (9) Bác cho em uống thuốc giảm đau và tặng em một viên kẹo ngọt nhiều màu. (10) Sau đó em ở lại phòng y tế nghỉ ngơi và quan sát bác làm việc. (11) Với bạn nào bác cũng nhẹ nhàng, tận tâm và chăm sóc chu đáo. (12) Kể từ lần ấy em vô cùng yêu mến và tự hào vì trường em có bác y tế như bác Lan."
+    }
+  ]
+}

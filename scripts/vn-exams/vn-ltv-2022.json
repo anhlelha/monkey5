@@ -1,0 +1,240 @@
+{
+  "id": "vn-ltv-2022",
+  "subject": "vietnamese",
+  "school": "ltv",
+  "year": "2022",
+  "minutes": 60,
+  "title": "Tiếng Việt vào 6 — THCS & THPT Lương Thế Vinh 2022",
+  "intro": "Nguồn: Hệ thống lớp Văn cô Thủy Anh. Cấu trúc 3 phần: Trắc nghiệm 2.5đ · Đọc hiểu 3.5đ · Viết 4.0đ.",
+  "passages": [
+    {
+      "ref": "congtroi",
+      "title": "Trước cổng trời (Nguyễn Đình Ảnh)",
+      "body": "Giữa hai bên vách đá\nMở ra một khoảng trời\nCó gió thoảng, mây trôi\nCổng trời trên mặt đất\n\nGiữa ngút ngàn cây trái\nDọc vùng rừng nguyên sơ\nKhông biết thực hay mơ\nRáng chiều như hơi khói...\n\nNhìn ra xa ngút ngát\nBao sắc màu cỏ hoa\nCon thác réo ngân nga\nĐàn dê soi đáy suối",
+      "kind": "poem"
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "type": "mcq",
+      "topic": "vn-wordform",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Từ nào không cùng nhóm với các từ còn lại?",
+      "options": [
+        { "id": "A", "text": "Chót vót" },
+        { "id": "B", "text": "Lênh khênh" },
+        { "id": "C", "text": "Chông chênh" },
+        { "id": "D", "text": "Hát hò" }
+      ],
+      "correct": "D"
+    },
+    {
+      "num": 2,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Phần gạch chân trong câu: “Mùa lũ, dòng sông ầm ầm chảy ngày đêm như thác.” làm rõ nghĩa cho từ nào dưới đây?",
+      "options": [
+        { "id": "A", "text": "Dòng sông" },
+        { "id": "B", "text": "Lũ" },
+        { "id": "C", "text": "Chảy" },
+        { "id": "D", "text": "Thác" }
+      ],
+      "correct": "C"
+    },
+    {
+      "num": 3,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Xét về mặt từ loại, nhóm từ “địa điểm, địa chỉ, địa phương” có điểm gì chung?",
+      "options": [
+        { "id": "A", "text": "Đều là tính từ" },
+        { "id": "B", "text": "Đều là danh từ" },
+        { "id": "C", "text": "Đều là động từ" },
+        { "id": "D", "text": "Đều là quan hệ từ" }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 4,
+      "type": "mcq",
+      "topic": "vn-wordform",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Đọc đoạn văn sau và cho biết trong đoạn văn có bao nhiêu từ láy?\n“Thời gian cứ thế trôi qua. Cây trong vườn bốn mùa lặng lẽ đơm hoa kết trái. Bọn trẻ chúng tôi cứ hồn nhiên hưởng hoa thơm, trái ngọt từ vườn cây nhà ông bà. Để rồi một hôm nào đó như hôm nay đây, tôi bùi ngùi tưởng nhớ người đã nhọc nhằn trồng cây cho chúng tôi hái quả.”",
+      "options": [
+        { "id": "A", "text": "3 từ láy" },
+        { "id": "B", "text": "4 từ láy" },
+        { "id": "C", "text": "5 từ láy" },
+        { "id": "D", "text": "6 từ láy" }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 5,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Xác định chủ ngữ trong câu: “Nắng bắt đầu len tới rừng cây, rực rỡ sắc vàng hòa với ánh sáng chói chang của trưa hè.”",
+      "options": [
+        { "id": "A", "text": "Nắng bắt đầu len tới rừng cây" },
+        { "id": "B", "text": "Nắng" },
+        { "id": "C", "text": "Nắng, ánh sáng" },
+        { "id": "D", "text": "nắng, sắc vàng" }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 6,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Câu nào dưới đây không có trạng ngữ chỉ thời gian?",
+      "options": [
+        { "id": "A", "text": "Tháng giêng, trăng trong veo trên nền trời thăm thẳm." },
+        { "id": "B", "text": "Cuối năm, các cửa hàng đều trang hoàng lộng lẫy." },
+        { "id": "C", "text": "Trong vườn, hoa trái ngào ngạt hương thơm, rực rỡ sắc màu." },
+        { "id": "D", "text": "Mùa hè, bầu trời rất nóng và cháy lên những tia sáng rực rỡ." }
+      ],
+      "correct": "C"
+    },
+    {
+      "num": 7,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Câu nào sau đây là câu ghép chỉ mục đích?",
+      "options": [
+        { "id": "A", "text": "Nhà tôi để xe ở dưới hầm chung cư." },
+        { "id": "B", "text": "Bạn Lan để quên cặp sách ở lớp học." },
+        { "id": "C", "text": "Tôi ra tỉnh học để lại sau lưng mọi kỷ niệm thuở ấu thơ." },
+        { "id": "D", "text": "Tôi cố gắng rèn luyện để bản thân ngày càng hoàn thiện." }
+      ],
+      "correct": "D"
+    },
+    {
+      "num": 8,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Câu nào sau đây không phải là câu ghép?",
+      "options": [
+        { "id": "A", "text": "Tôi đang làm bài tập cô giáo giao hôm qua." },
+        { "id": "B", "text": "Tôi chạy, nó cũng chạy." },
+        { "id": "C", "text": "Lòng tôi càng thắt lại, khóe mắt tôi cay cay." },
+        { "id": "D", "text": "Chiếc lá chòng chành, chú nhái bén ngơ ngác nhìn xung quanh." }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 9,
+      "type": "mcq",
+      "topic": "vn-rhetoric",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Biện pháp tu từ nào được sử dụng trong đoạn văn: “Khi mùa thu đến, cảnh vật có nhiều thay đổi. Bầu trời xanh như mặt nước mệt mỏi trong ao.”?",
+      "options": [
+        { "id": "A", "text": "Nhân hóa, nói quá" },
+        { "id": "B", "text": "Nhân hóa, so sánh" },
+        { "id": "C", "text": "So sánh, nói quá" },
+        { "id": "D", "text": "So sánh, chơi chữ" }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 10,
+      "type": "mcq",
+      "topic": "vn-rhetoric",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Phép nhân hóa trong câu thơ sau được tạo ra bằng cách nào?\n“Cả công trường say ngủ cạnh dòng sông\nNhững tháp khoan nhô lên trời ngẫm nghĩ”",
+      "options": [
+        { "id": "A", "text": "Dùng từ ngữ vốn gọi người để gọi vật" },
+        { "id": "B", "text": "Dùng từ ngữ vốn chỉ tính chất của người để chỉ tính chất của vật." },
+        { "id": "C", "text": "Trò chuyện, xưng hô với vật như với người." },
+        { "id": "D", "text": "Dùng những từ vốn chỉ hoạt động của người để chỉ hoạt động của vật." }
+      ],
+      "correct": "D"
+    },
+    {
+      "num": 11,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "passageRef": "congtroi",
+      "stem": "Câu 1 (Đọc hiểu). Đứng ở cổng trời, tác giả thấy cổng trời có những đặc điểm gì?",
+      "correct": null,
+      "modelAnswer": "Đứng ở cổng trời, tác giả thấy cổng trời là nơi rất cao, giữa hai bên vách đá và mở ra một khoảng trời. Ở đó có gió thoảng, mây trôi… (Có 2 ý, mỗi ý 0,25 điểm)"
+    },
+    {
+      "num": 12,
+      "type": "fill",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "passageRef": "congtroi",
+      "stem": "Câu 2 (Đọc hiểu). Từ vị trí cổng trời nhìn ra xa, tác giả đã thấy những sự vật nào?",
+      "correct": "cỏ hoa; con thác; đàn dê; cây trái; rừng nguyên sơ; ráng chiều",
+      "accept": ["cỏ hoa", "con thác", "đàn dê", "cây trái", "rừng nguyên sơ", "ráng chiều"],
+      "ignoreOrder": true,
+      "modelAnswer": "Từ vị trí cổng trời nhìn ra xa, tác giả đã thấy những sự vật: cỏ hoa, con thác, đàn dê, cây trái, rừng nguyên sơ, ráng chiều. (Thiếu 2 sự vật trừ 0,25 điểm)"
+    },
+    {
+      "num": 13,
+      "type": "essay",
+      "topic": "vn-rhetoric",
+      "grade": "VD",
+      "points": 1,
+      "tags": ["camthu", "vandung"],
+      "passageRef": "congtroi",
+      "stem": "Câu 3 (Đọc hiểu). Chỉ rõ và gọi tên một biện pháp tu từ được sử dụng trong đoạn thơ trên.",
+      "correct": null,
+      "modelAnswer": "Có thể chỉ ra một trong hai biện pháp tu từ sau:\n- Biện pháp tu từ so sánh: “ráng chiều” được ví với “hơi khói”.\n- Biện pháp tu từ nhân hóa: “con thác” và “đàn dê” được nhân hóa lần lượt qua các từ “réo”, “soi”.\n(Gọi tên biện pháp: 0,25 điểm; chỉ rõ từ ngữ: 0,25 điểm)"
+    },
+    {
+      "num": 14,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 2,
+      "tags": ["camthu"],
+      "passageRef": "congtroi",
+      "stem": "Câu 4 (Đọc hiểu). Viết một đoạn văn khoảng 5 đến 7 câu, nêu cảm nhận của em về cảnh sắc nơi cổng trời được miêu tả trong đoạn thơ trên.",
+      "correct": null,
+      "modelAnswer": "* Hình thức (0,5 điểm): Viết đúng đoạn văn, không mắc lỗi dùng từ, diễn đạt, lỗi câu, chính tả; độ dài 5 đến 7 câu.\n* Nội dung (1,5 điểm): Đoạn văn tham khảo:\n(1) Trong bài thơ “Trước cổng trời”, tác giả Nguyễn Đình Ảnh đã vẽ lên một bức tranh thiên nhiên vô cùng ấn tượng về vẻ đẹp đặc biệt của cổng trời. (2) Mở ra trước mắt ta là khoảng không gian rộng lớn với đèo cao giữa hai vách đá; từ đỉnh đèo có thể nhìn thấy cả một khoảng trời lộ ra, có mây bay, gió thoảng đẹp như ở cõi tiên trên trời. (3) Tác giả đã sử dụng từ láy “ngút ngát”, “ngút ngàn” để miêu tả “bao sắc màu cỏ hoa” và “cây trái” kết hợp với việc nhân hóa “con thác” và “đàn dê” qua những từ ngữ: “réo ngân nga”, “soi” làm hiện ra trước mắt người đọc một vùng rừng núi bao la, rộng lớn, rực rỡ, sống động và bình yên. (4) Câu hỏi “không biết thực hay mơ” và hình ảnh so sánh “ráng chiều như hơi khói” góp phần tô điểm nét thơ mộng, huyền ảo đẹp như một giấc mơ cho bức tranh núi rừng. (5) Ở đó, giữa cây trái ngút ngàn, giữa vùng rừng nguyên sơ, có ráng chiều mỏng manh hơi khói. (6) Đoạn thơ còn cho ta thấy được niềm vui sướng, hân hoan “không biết thực hay mơ” của tác giả mà còn khiến ta thêm yêu non sông, đất nước mình."
+    },
+    {
+      "num": 15,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 4,
+      "tags": ["camthu"],
+      "stem": "Phần III. Viết (4.0 điểm).\nNgày 6/4/2022, sau gần một năm ở nhà học trực tuyến vì dịch Covid 19, học sinh thành phố Hà Nội đã hân hoan đến trường học tập trực tiếp.\nEm hãy viết một bài văn kể lại ngày đầu tiên đầy niềm vui ấy.",
+      "correct": null,
+      "modelAnswer": "* Hình thức (0,5 điểm): Bài văn có bố cục 3 phần: mở bài, thân bài, kết bài. Diễn đạt trôi chảy, mạch lạc, không mắc lỗi chính tả, dùng từ, ngữ pháp,…\n\n* Nội dung (3,5 điểm):\n\n1. Mở bài: Giới thiệu ngày 6/4/2022, sau gần một năm ở nhà học trực tuyến vì dịch Covid 19, em và học sinh thành phố Hà Nội đã hân hoan đến trường học tập trực tiếp. Ngày đầu tiên ấy thật nhiều niềm vui.\n\n2. Thân bài:\na. Giới thiệu hoàn cảnh:\n- Hoàn cảnh: Trải qua tháng chống dịch, học online liên tục tại nhà, không được gặp bạn bè, thầy cô.\n- Tâm trạng: háo hức, mong đợi được đi học, được gặp bạn bè và thầy cô.\n  + Hồi hộp cả đêm khó ngủ, sợ ngày mai dậy muộn.\n  + Trong đầu, nghĩ sẵn những câu nói với bạn bè, thầy cô.\n  + Thức dậy thật sớm, chuẩn bị đồ dùng học tập, mặc quần áo gọn gàng.\nb. Kể lại diễn biến: Kể chi tiết các sự việc diễn ra trong ngày theo trình tự thời gian xen lẫn miêu tả và bày tỏ cảm xúc của bản thân.\n- Khi đến trường:\n  + Miêu tả đôi nét về ngôi trường (diện tích, kiến trúc…) vẫn như lúc trước mà giờ sao thấy là lạ, mới mẻ làm sao.\n  + Khung cảnh xung quanh: Sân trường đông đúc phụ huynh, học sinh…\n  + Hoạt động chào đón học sinh của nhà trường: đo thân nhiệt, thầy cô vẫy tay chào, …\n  Vd: Nếp sinh hoạt thay đổi khi đi học trở lại nhưng chúng tôi chẳng chút ngái ngủ, gương mặt tươi hồng háo hức. Chính con tim rộn ràng trong niềm vui sướng bất tận được gặp lại bao gương mặt mến thương đã khiến những đôi mắt trong veo biết cười, biết nói dù đôi môi giấu kín sau chiếc khẩu trang. Ai cũng đeo khẩu trang và được đo thân nhiệt một cách nghiêm túc nhưng ai cũng vui vẻ lạ thường.\n- Khi lên lớp học: cách bố trí lớp, các hoạt động học tập, cảm giác – cảm xúc của bản thân…\n  Vd: Lớp học cũng thật lạ, một lớp chia hai nửa, mỗi học sinh một bàn, cách xa nhau nên dĩ nhiên không tiếng nói chuyện khi thầy cô giảng bài. Dù chẳng thể trò chuyện nhiều cùng nhau nhưng niềm vui vẫn ánh lên trong đôi mắt tôi và bạn bè tôi. Những cánh tay vẫn giơ lên phát biểu đều dù lớp học chia “hai nửa yêu thương”.\n- Các hoạt động sinh hoạt tập thể: nghe cô hiệu trưởng phát biểu từ loa phát thanh, cô động viên, dặn dò giữ khoảng cách an toàn và tuyên dương tinh thần học tập của giáo viên, học sinh trong những ngày giãn cách.\n- Khi tan học:\n  + Cố gắng nán lại lớp lâu hơn.\n  + Tíu tít kể chuyện về lớp về trường cho bố mẹ nghe.\n\n3. Kết bài: Bộc lộ cảm xúc."
+    }
+  ]
+}

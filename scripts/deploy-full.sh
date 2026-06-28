@@ -157,7 +157,7 @@ else
     while IFS= read -r f; do
       [[ -z "$f" ]] && continue
       case "$f" in
-        scripts/exam-overrides.ts|scripts/seed-*.ts|scripts/build-exams-metadata.ts|official_exams_metadata.json|prisma/schema.prisma|ref_exam/*)
+        scripts/exam-overrides.ts|scripts/seed-*.ts|scripts/build-exams-metadata.ts|official_exams_metadata.json|prisma/schema.prisma|ref_exam/*|scripts/vn-exams/*.json|scripts/.en-import/*.json)
           NEEDS_SEED=1 ;;
       esac
       case "$f" in

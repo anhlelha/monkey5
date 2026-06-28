@@ -4,9 +4,22 @@ import { useState, useTransition } from "react";
 import { Card } from "@/components/ui";
 import { Icon } from "@/components/Icon";
 import { saveLLMSettingsAction, testLLMConnection } from "./actions";
-import { PROVIDER_META, DEFAULT_GRADING_PROMPT } from "@/lib/llm/providers";
+import {
+  PROVIDER_META,
+  DEFAULT_GRADING_PROMPT,
+  DEFAULT_WRITING_PROMPT,
+  DEFAULT_WRITING_WEIGHTS,
+  WRITING_CRITERIA,
+  WRITING_CRITERIA_LABELS,
+  VN_WRITING_PROMPT,
+  VN_WRITING_WEIGHTS,
+  VN_WRITING_CRITERIA,
+  VN_WRITING_CRITERIA_LABELS,
+} from "@/lib/llm/providers";
 import type { LLMProvider } from "@/lib/llm/types";
 import type { PublicLLMSettings } from "@/lib/llm-settings";
+
+type WritingWeights = Record<string, number>;
 
 interface Props {
   initial: PublicLLMSettings;
@@ -23,8 +36,36 @@ export function LLMPanel({ initial }: Props) {
   const [guessCredit, setGuessCredit] = useState<number>(initial.guessCredit);
   const [maxTokens, setMaxTokens] = useState<number>(initial.maxTokens);
 
+  // English Writing rubric (đoạn văn).
+  const [writingPrompt, setWritingPrompt] = useState<string>(initial.writingPrompt ?? DEFAULT_WRITING_PROMPT);
+  const [writingWeights, setWritingWeights] = useState<WritingWeights>(
+    initial.writingWeights && Object.keys(initial.writingWeights).length > 0
+      ? { ...DEFAULT_WRITING_WEIGHTS, ...initial.writingWeights }
+      : { ...DEFAULT_WRITING_WEIGHTS },
+  );
+  const writingTotal = WRITING_CRITERIA.reduce((sum, c) => sum + (writingWeights[c] ?? 0), 0);
+
+  // Vietnamese văn rubric (đặt câu / cảm thụ / viết đoạn-bài).
+  const [vnWritingPrompt, setVnWritingPrompt] = useState<string>(initial.vnWritingPrompt ?? VN_WRITING_PROMPT);
+  const [vnWritingWeights, setVnWritingWeights] = useState<WritingWeights>(
+    initial.vnWritingWeights && Object.keys(initial.vnWritingWeights).length > 0
+      ? { ...VN_WRITING_WEIGHTS, ...initial.vnWritingWeights }
+      : { ...VN_WRITING_WEIGHTS },
+  );
+  const vnWritingTotal = VN_WRITING_CRITERIA.reduce((sum, c) => sum + (vnWritingWeights[c] ?? 0), 0);
+
   const [apiKeyInput, setApiKeyInput] = useState<string>("");
   const [latestSettings, setLatestSettings] = useState<PublicLLMSettings>(initial);
+
+  // Sub-tab within the AI LLMs panel: general connection vs per-subject rubric.
+  type LLMSection = "chung" | "toan" | "vietnamese" | "english";
+  const [section, setSection] = useState<LLMSection>("chung");
+  const SECTIONS: { id: LLMSection; label: string }[] = [
+    { id: "chung", label: "Cài đặt chung" },
+    { id: "toan", label: "Toán" },
+    { id: "vietnamese", label: "Tiếng Việt" },
+    { id: "english", label: "Tiếng Anh" },
+  ];
 
   const [pending, startTransition] = useTransition();
   const [status, setStatus] = useState<{ tone: "ok" | "err"; msg: string } | null>(null);
@@ -83,6 +124,10 @@ export function LLMPanel({ initial }: Props) {
       answerWeight: number;
       guessCredit: number;
       maxTokens: number;
+      writingPrompt: string;
+      writingWeights: WritingWeights;
+      vnWritingPrompt: string;
+      vnWritingWeights: WritingWeights;
     } = {
       enabled,
       provider,
@@ -92,6 +137,22 @@ export function LLMPanel({ initial }: Props) {
       answerWeight,
       guessCredit,
       maxTokens,
+      writingPrompt,
+      writingWeights: {
+        task: writingWeights.task ?? 0,
+        lexical: writingWeights.lexical ?? 0,
+        grammar: writingWeights.grammar ?? 0,
+        cohesion: writingWeights.cohesion ?? 0,
+        length: writingWeights.length ?? 0,
+      },
+      vnWritingPrompt,
+      vnWritingWeights: {
+        noidung: vnWritingWeights.noidung ?? 0,
+        camthu: vnWritingWeights.camthu ?? 0,
+        dienden: vnWritingWeights.dienden ?? 0,
+        chinhta: vnWritingWeights.chinhta ?? 0,
+        sangtao: vnWritingWeights.sangtao ?? 0,
+      },
     };
     if (apiKeyInput.trim() !== "") {
       payload.apiKey = apiKeyInput.trim();
@@ -115,6 +176,22 @@ export function LLMPanel({ initial }: Props) {
 
   return (
     <div className="col" style={{ gap: 16 }}>
+      {/* Sub-tab bar — Cài đặt chung / Toán / Tiếng Việt / Tiếng Anh */}
+      <div className="chip-group" style={{ flexWrap: "wrap" }}>
+        {SECTIONS.map((s) => (
+          <button
+            key={s.id}
+            type="button"
+            className={"chip" + (section === s.id ? " active" : "")}
+            onClick={() => setSection(s.id)}
+          >
+            {s.label}
+          </button>
+        ))}
+      </div>
+
+      {section === "chung" && (
+        <>
       {/* Card 1 — Toggle */}
       <Card
         title="Chấm tự luận bằng AI"
@@ -269,6 +346,11 @@ export function LLMPanel({ initial }: Props) {
         </div>
       </Card>
 
+        </>
+      )}
+
+      {section === "toan" && (
+        <>
       {/* Card 3 — Scoring weights */}
       <Card
         title="Cách chấm điểm"
@@ -363,7 +445,162 @@ export function LLMPanel({ initial }: Props) {
         </div>
       </Card>
 
-      {/* Footer save row */}
+        </>
+      )}
+
+      {section === "english" && (
+        <>
+      {/* Card 5 — English Writing rubric */}
+      <Card
+        title="Chấm bài viết Tiếng Anh (Writing)"
+        sub="Dùng cho câu viết đoạn (essay) môn Tiếng Anh. AI chấm theo 5 tiêu chí; điểm được tính từ trọng số bên dưới."
+      >
+        <div className="col" style={{ gap: 16 }}>
+          <div className="row" style={{ gap: 16, flexWrap: "wrap", alignItems: "flex-end" }}>
+            {WRITING_CRITERIA.map((c) => (
+              <div key={c} className="field" style={{ minWidth: 130 }}>
+                <label>{WRITING_CRITERIA_LABELS[c]} (%)</label>
+                <input
+                  className="input mono"
+                  type="number"
+                  min={0}
+                  max={100}
+                  style={{ width: 110 }}
+                  value={writingWeights[c] ?? 0}
+                  onChange={(e) => setWritingWeights((w) => ({ ...w, [c]: Number(e.target.value) }))}
+                  disabled={pending}
+                />
+              </div>
+            ))}
+          </div>
+
+          <div
+            style={{
+              background: writingTotal === 100 ? "var(--accent-soft)" : "var(--warn-soft)",
+              borderRadius: 8,
+              padding: "10px 14px",
+              fontSize: 13,
+              color: writingTotal === 100 ? "var(--accent-ink)" : "oklch(0.4 0.1 70)",
+            }}
+          >
+            Tổng trọng số hiện tại: <b>{writingTotal}%</b>
+            {writingTotal === 100
+              ? " — hợp lệ."
+              : " — nên bằng 100% (điểm vẫn được chuẩn hoá theo tổng nếu khác 100)."}
+          </div>
+
+          <div className="field">
+            <label>Prompt chấm bài viết</label>
+            <textarea
+              className="input"
+              rows={10}
+              style={{ fontFamily: "monospace", fontSize: 12.5, lineHeight: 1.5 }}
+              value={writingPrompt}
+              onChange={(e) => setWritingPrompt(e.target.value)}
+              disabled={pending}
+            />
+          </div>
+          <div className="row" style={{ gap: 8 }}>
+            <button
+              className="btn ghost"
+              type="button"
+              onClick={() => setWritingPrompt(DEFAULT_WRITING_PROMPT)}
+              disabled={pending}
+            >
+              <Icon name="refresh" /> Khôi phục prompt mặc định
+            </button>
+            <button
+              className="btn ghost"
+              type="button"
+              onClick={() => setWritingWeights({ ...DEFAULT_WRITING_WEIGHTS })}
+              disabled={pending}
+            >
+              <Icon name="refresh" /> Khôi phục trọng số mặc định
+            </button>
+          </div>
+        </div>
+      </Card>
+
+        </>
+      )}
+
+      {section === "vietnamese" && (
+        <>
+      {/* Card 6 — Vietnamese văn rubric */}
+      <Card
+        title="Chấm bài viết Tiếng Việt (Văn)"
+        sub="Dùng cho câu tự luận (đặt câu / cảm thụ / viết đoạn-bài) môn Tiếng Việt. AI chấm theo 5 tiêu chí; điểm tính từ trọng số bên dưới. Đáp án mẫu (modelAnswer) được nối thêm tự động khi chấm."
+      >
+        <div className="col" style={{ gap: 16 }}>
+          <div className="row" style={{ gap: 16, flexWrap: "wrap", alignItems: "flex-end" }}>
+            {VN_WRITING_CRITERIA.map((c) => (
+              <div key={c} className="field" style={{ minWidth: 130 }}>
+                <label>{VN_WRITING_CRITERIA_LABELS[c]} (%)</label>
+                <input
+                  className="input mono"
+                  type="number"
+                  min={0}
+                  max={100}
+                  style={{ width: 110 }}
+                  value={vnWritingWeights[c] ?? 0}
+                  onChange={(e) => setVnWritingWeights((w) => ({ ...w, [c]: Number(e.target.value) }))}
+                  disabled={pending}
+                />
+              </div>
+            ))}
+          </div>
+
+          <div
+            style={{
+              background: vnWritingTotal === 100 ? "var(--accent-soft)" : "var(--warn-soft)",
+              borderRadius: 8,
+              padding: "10px 14px",
+              fontSize: 13,
+              color: vnWritingTotal === 100 ? "var(--accent-ink)" : "oklch(0.4 0.1 70)",
+            }}
+          >
+            Tổng trọng số hiện tại: <b>{vnWritingTotal}%</b>
+            {vnWritingTotal === 100
+              ? " — hợp lệ."
+              : " — nên bằng 100% (điểm vẫn được chuẩn hoá theo tổng nếu khác 100)."}
+          </div>
+
+          <div className="field">
+            <label>Prompt chấm bài viết (Tiếng Việt)</label>
+            <textarea
+              className="input"
+              rows={10}
+              style={{ fontFamily: "monospace", fontSize: 12.5, lineHeight: 1.5 }}
+              value={vnWritingPrompt}
+              onChange={(e) => setVnWritingPrompt(e.target.value)}
+              disabled={pending}
+            />
+          </div>
+          <div className="row" style={{ gap: 8 }}>
+            <button
+              className="btn ghost"
+              type="button"
+              onClick={() => setVnWritingPrompt(VN_WRITING_PROMPT)}
+              disabled={pending}
+            >
+              <Icon name="refresh" /> Khôi phục prompt mặc định
+            </button>
+            <button
+              className="btn ghost"
+              type="button"
+              onClick={() => setVnWritingWeights({ ...VN_WRITING_WEIGHTS })}
+              disabled={pending}
+            >
+              <Icon name="refresh" /> Khôi phục trọng số mặc định
+            </button>
+          </div>
+        </div>
+      </Card>
+
+        </>
+      )}
+
+      {/* Footer save row (shared — saves all sections at once) */}
       <div className="row" style={{ gap: 8, alignItems: "center" }}>
         <button
           className="btn primary"

@@ -1,0 +1,192 @@
+{
+  "id": "vn-ntt-2021",
+  "subject": "vietnamese",
+  "school": "ntt",
+  "year": "2020-2021",
+  "minutes": 45,
+  "title": "Tiếng Việt vào 6 — THCS & THPT Nguyễn Tất Thành 2020-2021",
+  "intro": "Nguồn: CLB Văn bồi dưỡng - Solar Edu. Thời gian 45 phút.",
+  "passages": [
+    {
+      "ref": "p1",
+      "title": "Chiều đi học về (Đồng Xuân Lan)",
+      "body": "(1) Chiều đi học về\n(2) Chúng em qua ngôi nhà xây dở\n(3) Giàn giáo tựa cái lồng che chở\n(4) Trụ bê tông nhú lên như một mầm cây\n(5) Bác thợ nề ra về còn huơ huơ cái bay\n(6) Tạm biệt!\n(7) Ngôi nhà tựa vào nền trời sẫm biếc\n(8) Thở ra mùi vôi vữa nồng hăng\n(Đồng Xuân Lan)",
+      "kind": "poem"
+    },
+    {
+      "ref": "p2",
+      "title": "Mẹ Tơm (Tố Hữu)",
+      "body": "Tôi lại về quê mẹ nuôi xưa\nMột buổi trưa nắng dài bãi cát\nGió lộng xôn xao, sóng biển đu đưa\nMát rượi lòng ta ngân nga tiếng hát\n(Mẹ Tơm, Tố Hữu)",
+      "kind": "poem"
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "type": "fill",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Từ “tựa” trong câu (3) “Giàn giáo tựa cái lồng che chở” có nghĩa là gì?",
+      "correct": "như",
+      "accept": ["như", "giống như"],
+      "passageRef": "p1"
+    },
+    {
+      "num": 2,
+      "type": "fill",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Từ “tựa” trong câu thơ số (7) “Ngôi nhà tựa vào nền trời sẫm biếc” có nghĩa là gì?",
+      "correct": "dựa vào",
+      "accept": ["dựa vào", "dựa"],
+      "passageRef": "p1"
+    },
+    {
+      "num": 3,
+      "type": "fill",
+      "topic": "vn-rhetoric",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "stem": "Tìm các hình ảnh so sánh trong đoạn thơ “Chiều đi học về”.",
+      "correct": "(3) Giàn giáo tựa cái lồng che chở; (4) Trụ bê tông nhú lên như một mầm cây",
+      "accept": ["Giàn giáo tựa cái lồng che chở; Trụ bê tông nhú lên như một mầm cây"],
+      "ignoreOrder": true,
+      "passageRef": "p1"
+    },
+    {
+      "num": 4,
+      "type": "essay",
+      "topic": "vn-spelling",
+      "grade": "VD",
+      "points": 1,
+      "tags": ["vandung"],
+      "stem": "Em hãy thêm dấu câu và sửa lại cho đúng chính tả đoạn văn sau:\n\nCó một lần trong giờ tập đọc tôi nhét tờ giấy thấm vào mồm thế là má sưng phồng lên tôi nhăn nhó mặt mũi rồi khẽ rên ôi, răng đau quá tôi cố tình làm thế để khỏi phải đọc bài cô giáo và các bạn ai cũng thương tôi và lo lắng cô giáo nói\nrăng em đau, phải không em về nhà đi",
+      "correct": null,
+      "modelAnswer": "Có một lần, trong giờ tập đọc, tôi nhét tờ giấy thấm vào mồm. Thế là má sưng phồng lên. Tôi nhăn nhó mặt mũi, rồi khẽ rên: “Ôi, răng đau quá!” Tôi cố tình làm thế để khỏi phải đọc bài. Cô giáo và các bạn, ai cũng thương tôi và lo lắng. Cô giáo nói:\n- Răng em đau, phải không? Em về nhà đi!"
+    },
+    {
+      "num": 5,
+      "type": "fill",
+      "topic": "vn-wordform",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Tìm từ láy trong đoạn thơ “Mẹ Tơm”.",
+      "correct": "xôn xao; ngân nga",
+      "accept": ["xôn xao; ngân nga"],
+      "ignoreOrder": true,
+      "passageRef": "p2"
+    },
+    {
+      "num": 6,
+      "type": "fill",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "stem": "Tiếng hát “ngân nga” làm cho tác giả nhớ đến ai?",
+      "correct": "mẹ nuôi xưa",
+      "accept": ["mẹ nuôi xưa", "mẹ nuôi"],
+      "passageRef": "p2"
+    },
+    {
+      "num": 7,
+      "type": "essay",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["vandung"],
+      "stem": "Phân tích cấu tạo câu: Gió lộng xôn xao, sóng biển đu đưa.",
+      "correct": null,
+      "modelAnswer": "Gió lộng // xôn xao, sóng biển // đu đưa.\n(Câu ghép gồm hai vế: CN1 “Gió lộng” – VN1 “xôn xao”; CN2 “sóng biển” – VN2 “đu đưa”.)",
+      "passageRef": "p2"
+    },
+    {
+      "num": 8,
+      "type": "essay",
+      "topic": "vn-vocab",
+      "grade": "VD",
+      "points": 1,
+      "tags": ["vandung"],
+      "stem": "Thay từ “ăn” trong những câu sau bằng các từ đồng nghĩa:\na. Cửa hàng rất ăn khách.\nb. Xe này ăn xăng lắm.",
+      "correct": null,
+      "modelAnswer": "a. Cửa hàng rất ăn khách → hút khách / đông khách.\nb. Xe này ăn xăng lắm → tốn xăng / hao xăng."
+    },
+    {
+      "num": 9,
+      "type": "essay",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Tìm từ khác loại trong dãy từ sau và giải thích lí do cho sự lựa chọn:\ncông viên, sinh viên, diễn viên, nhân viên",
+      "correct": null,
+      "modelAnswer": "- Từ khác loại trong dãy từ: công viên.\n- Lí do:\n+ công viên: chỉ địa điểm, nơi chốn.\n+ ba từ còn lại (sinh viên, diễn viên, nhân viên): chỉ nghề nghiệp, con người."
+    },
+    {
+      "num": 10,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "VD",
+      "points": 1,
+      "tags": ["vandung"],
+      "stem": "Sắp xếp các câu sau thành đoạn văn (truyện) hoàn chỉnh:\n(1) Ngày nọ, có một người nông phu xin được gặp và kể cho quốc vương câu chuyện như sau: “Thời trước, cha của bệ hạ nợ nhà tiểu nhân 1000 lượng vàng và hứa nếu đến đời bệ hạ không trả được thì sẽ phải gả công chúa cho tiểu nhân.”\n(2) Ngày ngày, có rất nhiều người đến kể chuyện cho quốc vương nhưng mỗi khi nghe xong ông đều nói đã nghe và tất nhiên, không ai dám phản bác lại.\n(3) Cuối cùng, để giữ thể diện cho hoàng tộc, quốc vương đành nhận là chưa nghe qua câu chuyện ấy và thực hiện lời hứa của mình.\n(4) Sau khi nghe xong câu chuyện, quốc vương rơi vào tình thế khó xử vì nếu nói đã từng nghe nghĩa là quốc vương thừa nhận nợ người nông dân 1000 lượng vàng và phải gả công chúa cho người nông phu.\n(5) Có vị quốc vương khoác lác rằng đã nghe tất cả các câu chuyện trên thế gian này và nếu ai kể được một chuyện mà ông chưa nghe qua sẽ được thưởng một ngàn lượng vàng và kết hôn với công chúa.\n(6) Còn nếu như nói chưa nghe qua thì quốc vương cũng phải trao thưởng như đã hứa.",
+      "options": [
+        { "id": "A", "text": "(4) – (2) – (6) – (5) – (1) – (3)" },
+        { "id": "B", "text": "(5) – (2) – (1) – (4) – (6) – (3)" },
+        { "id": "C", "text": "(2) – (1) – (5) – (4) – (6) – (3)" },
+        { "id": "D", "text": "(5) – (2) – (4) – (1) – (6) – (3)" }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 11,
+      "type": "essay",
+      "topic": "vn-makesent",
+      "grade": "VD",
+      "points": 1,
+      "tags": ["vandung", "bay"],
+      "stem": "Đặt câu với từ “hay”:\na. “hay” là tính từ.\nb. “hay” là quan hệ từ.\nc. “hay” là động từ.",
+      "correct": null,
+      "modelAnswer": "a. (tính từ) Tôi hay ra vườn lắng nghe cây lá xào xạc, trò chuyện.\nb. (quan hệ từ) Tôi hay bạn sẽ là người bắt đầu câu chuyện này?\nc. (động từ) Tôi hay tin mùa xuân đã về trong khu vườn nhỏ."
+    },
+    {
+      "num": 12,
+      "type": "fill",
+      "topic": "vn-wordform",
+      "grade": "VD",
+      "points": 1,
+      "tags": [],
+      "stem": "Điền từ láy vào chỗ thích hợp:\na. Hằng đêm tôi đều nghe tiếng sóng …… xô vào bờ.\nb. Những đám mây …… trên nền trời xanh thẳm.",
+      "correct": "a. rì rào; b. lững lờ",
+      "accept": ["a. rì rào; b. lững lờ", "rì rào; lững lờ", "ì oạp; bồng bềnh", "a. ì oạp; b. bồng bềnh"]
+    },
+    {
+      "num": 13,
+      "type": "fill",
+      "topic": "vn-cohesion",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Điền từ ngữ thích hợp để hai câu văn sau liên kết với nhau:\na. Dưới ánh trăng, dòng sông mới thân thiết, gần gũi làm sao! …… đã trở thành người bạn của tôi.\nb. Giọng nói của bà lúc trầm bổng, lúc thiết tha …… đã theo tôi suốt thời ấu thơ.",
+      "correct": "a. Nó; b. Giọng nói ấy",
+      "accept": ["a. Nó; b. Giọng nói ấy", "Nó; Giọng nói ấy", "a. Dòng sông; b. Giọng bà", "Dòng sông; Giọng bà"]
+    },
+    {
+      "num": 14,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 3,
+      "tags": ["camthu", "vandung"],
+      "stem": "Viết đoạn văn khoảng 10 câu nói lên mong ước của em về thầy, cô giáo chủ nhiệm lớp 6.",
+      "correct": null,
+      "modelAnswer": "Đoạn văn tham khảo:\n(1) Ai cũng có mơ ước về ngôi trường và thầy cô giáo mà mình theo học. (2) Tôi mơ ước lên lớp 6, cô chủ nhiệm của mình sẽ là một cô giáo dạy Văn. (3) Dù trẻ trung hay ở độ tuổi trung niên thì tôi vẫn mong rằng cô giáo mình sẽ luôn năng động, nhiệt tình và đặc biệt sẽ là “người bạn lớn” của chúng tôi. (4) Có những khi tôi tưởng tượng và hình dung rõ mồn một hình ảnh cô với đôi mắt trìu mến, sâu thẳm và khuôn mặt bừng sáng đứng trên bục giảng. (5) Cô không chỉ say sưa, nhiệt tình trong mỗi bài giảng mà còn là người uốn nắn và dạy bảo chúng tôi thái độ và kỹ năng trong cuộc sống muôn màu. (6) Mỗi bài học với cô là một trải nghiệm bổ ích bởi sự dí dỏm, vui tính từ cô. (7) Tôi vốn là một cô bé/cậu bé nhút nhát và chưa tìm thấy điểm mạnh của bản thân nên tôi cũng rất mong thầy cô chủ nhiệm sẽ là người nhìn ra điểm mạnh của mỗi học sinh và khích lệ để chúng tôi được tự tin, dám nghĩ, dám làm và dám chịu trách nhiệm. (8) Chắc hẳn những tháng ngày cấp 2 sẽ trôi qua thật đẹp bởi chúng tôi sẽ luôn yêu quý và gắn bó bên cô với bao tình cảm tốt đẹp. (9) Tôi cũng tự nhủ phải chăm chỉ học tập, nghe lời cô dạy bảo để cha mẹ và cô luôn vui lòng. (10) Càng nghĩ về điều ấy tôi càng háo hức và cố gắng để thi đỗ vào ngôi trường cấp 2 mà mình mơ ước bởi ở đó, tôi biết có nhiều thầy cô giáo như tôi hằng tưởng tượng đang chào đón chúng tôi."
+    }
+  ]
+}

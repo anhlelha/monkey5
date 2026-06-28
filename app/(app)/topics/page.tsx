@@ -16,7 +16,7 @@ export default async function TopicsPage() {
   if (!dbUser) redirect("/signin");
   const user = hydrateUser(dbUser);
 
-  const topics = (await prisma.topic.findMany({ orderBy: { position: "asc" } })) ?? [];
+  const topics = (await prisma.topic.findMany({ where: { subject: "math" }, orderBy: { position: "asc" } })) ?? [];
   const TOPICS = topics.length > 0 ? topics : DEFAULT_TOPICS;
 
   const setCounts = await prisma.customSet.groupBy({

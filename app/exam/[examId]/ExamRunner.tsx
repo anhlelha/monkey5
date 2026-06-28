@@ -254,7 +254,10 @@ export function ExamRunner({ exam, school, questions, topics }: Props) {
         actions={
           <Fragment>
             <button className="btn" onClick={() => setShowExit(false)}>Ở lại làm tiếp</button>
-            <button className="btn danger" onClick={() => router.push("/home")}>
+            <button
+              className="btn danger"
+              onClick={() => router.push(exam.id.startsWith("vn") ? "/vietnamese" : exam.id.startsWith("en") ? "/english" : "/home")}
+            >
               Thoát (không lưu)
             </button>
           </Fragment>

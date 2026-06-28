@@ -77,7 +77,7 @@ export async function gradeEssayWithLLM(
   q: EssayQuestionInput,
   studentAnswer: string,
 ): Promise<EssayGradeResult> {
-  const raw = await callLLM({
+  const { text: raw, usage } = await callLLM({
     provider: settings.provider,
     model: settings.model,
     apiKey: settings.apiKey,
@@ -107,6 +107,8 @@ export async function gradeEssayWithLLM(
     model: settings.model,
     status: "graded",
     error: null,
+    inputTokens: usage.inputTokens,
+    outputTokens: usage.outputTokens,
   };
 }
 
@@ -132,6 +134,8 @@ export async function gradeEssaySafe(
       model: settings.model,
       status: "error",
       error: message,
+      inputTokens: 0,
+      outputTokens: 0,
     };
   }
 }

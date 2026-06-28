@@ -91,6 +91,9 @@ export async function submitExam({ examId, answers, durationSec }: SubmitArgs) {
 
   revalidatePath("/home");
   revalidatePath("/library");
+  revalidatePath("/english");
+  revalidatePath("/english/library");
+  revalidatePath("/english/topics");
 
   return { attemptId: attempt.id };
 }

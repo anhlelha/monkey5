@@ -33,10 +33,11 @@ import {
   getPlanConfigs,
   getLevelConfigRows,
   getReadinessDistribution,
+  getAdminOverviewExtra,
 } from "./actions";
 
 interface Props {
-  searchParams: Promise<{ tab?: string; q?: string }>;
+  searchParams: Promise<{ tab?: string; q?: string; subject?: string }>;
 }
 
 export default async function AdminPage({ searchParams }: Props) {
@@ -47,8 +48,12 @@ export default async function AdminPage({ searchParams }: Props) {
   const user = hydrateUser(dbUser);
   if (user.role !== "admin") redirect("/home");
 
-  const { tab = "overview", q } = await searchParams;
+  const { tab = "overview", q, subject: subjectParam } = await searchParams;
   const searchQuery = (q ?? "").trim();
+  // Subject scope for content tabs (exams / topics / bank). Default math so the
+  // existing experience is unchanged.
+  const subject: "math" | "english" | "vietnamese" =
+    subjectParam === "vietnamese" ? "vietnamese" : subjectParam === "english" ? "english" : "math";
   const userWhere =
     tab === "users" && searchQuery
       ? {
@@ -76,10 +81,10 @@ export default async function AdminPage({ searchParams }: Props) {
       prisma.attempt.count({ where: { submitted: true } }),
       prisma.user.count(),
       prisma.exam.findMany({
-        where: { generated: false },
+        where: { generated: false, subject },
         orderBy: [{ kind: "asc" }, { year: "desc" }],
       }),
-      prisma.topic.findMany({ orderBy: { position: "asc" } }),
+      prisma.topic.findMany({ where: { subject }, orderBy: { position: "asc" } }),
       prisma.user.findMany({
         where: userWhere,
         orderBy: { createdAt: "desc" },
@@ -99,6 +104,7 @@ export default async function AdminPage({ searchParams }: Props) {
   const ownerMap = new Map(owners.map((u) => [u.id, u.name ?? u.email ?? "—"]));
 
   const masteryStats = tab === "overview" ? await getMasteryStats() : null;
+  const overviewExtra = tab === "overview" ? await getAdminOverviewExtra() : null;
   const userActivityMap =
     tab === "users" ? await getUserActivityStats(users.map((u) => u.id)) : null;
 
@@ -110,21 +116,26 @@ export default async function AdminPage({ searchParams }: Props) {
     ? await prisma.userWhitelist.findMany({ orderBy: { createdAt: "desc" } })
     : [];
 
-  const bankStats = tab === "bank" ? await getBankStats() : null;
-  const bankPage  = tab === "bank" ? await getBankQuestions({ source: "all", page: 1 }) : null;
+  const bankStats = tab === "bank" ? await getBankStats(subject) : null;
+  const bankPage  = tab === "bank" ? await getBankQuestions({ source: "all", page: 1, subject }) : null;
 
   const planConfigs  = tab === "plans" ? await getPlanConfigs()      : [];
   const levelConfigs = tab === "plans" ? await getLevelConfigRows()  : [];
 
   const schoolsList    = tab === "schools"   ? await getAllSchools()             : [];
-  const readinessData  = tab === "readiness" ? await getReadinessDistribution() : [];
+  const readinessData  = tab === "readiness" ? await getReadinessDistribution(subject) : [];
   const readinessSchools = tab === "readiness" ? await getActiveSchools()       : [];
   const activeSchools  = tab === "overview"  ? await getActiveSchools()         : [];
   const quietHours     = tab === "settings"  ? await getQuietHours()             : null;
   const landingTheme   = tab === "settings"  ? await getLandingTheme()            : null;
   const llmSettings    = tab === "llm"        ? await getPublicLLMSettings()       : null;
 
-  const TOPICS = topics.length > 0 ? topics : [...DEFAULT_TOPICS].map((t, i) => ({ ...t, position: i }));
+  const TOPICS =
+    topics.length > 0
+      ? topics
+      : subject === "english" || subject === "vietnamese"
+        ? []
+        : [...DEFAULT_TOPICS].map((t, i) => ({ ...t, position: i }));
 
   const TAB_META: Record<string, { crumb: string; title: string; sub: string }> = {
     overview: { crumb: "Dashboard", title: "Dashboard", sub: "Thống kê tổng quan người dùng, đề thi và lượt làm bài." },
@@ -158,18 +169,42 @@ export default async function AdminPage({ searchParams }: Props) {
             <h2>{meta.title}</h2>
             <p>{meta.sub}</p>
           </div>
-          {tab === "exams" && (
-            <Pill tone="amber">
-              <span className="dot" />Đề & bài tập được upload từ code
-            </Pill>
+          {["exams", "topics", "bank", "readiness"].includes(tab) ? (
+            <div className="subject-switch">
+              <Link
+                href={`/admin?tab=${tab}&subject=math`}
+                className={"subject-pill " + (subject === "math" ? "active" : "")}
+              >
+                <Icon name="grid" /> Toán
+              </Link>
+              <Link
+                href={`/admin?tab=${tab}&subject=english`}
+                className={"subject-pill " + (subject === "english" ? "active" : "")}
+              >
+                <Icon name="book" /> Tiếng Anh
+              </Link>
+              <Link
+                href={`/admin?tab=${tab}&subject=vietnamese`}
+                className={"subject-pill " + (subject === "vietnamese" ? "active" : "")}
+              >
+                <Icon name="pencil" /> Tiếng Việt
+              </Link>
+            </div>
+          ) : (
+            tab === "exams" && (
+              <Pill tone="amber">
+                <span className="dot" />Đề & bài tập được upload từ code
+              </Pill>
+            )
           )}
         </div>
 
         {tab === "overview" && (
           <>
-            <div className="grid cols-4" style={{ marginBottom: 22 }}>
+            <div className="grid cols-5" style={{ marginBottom: 22 }}>
               {[
                 { k: "Người dùng đang học", v: usersCount.toLocaleString("vi-VN"), d: "tổng tài khoản", tone: "var(--accent-ink)" },
+                { k: "Số trường", v: String(overviewExtra?.schoolCount ?? 0), d: "trường tuyển sinh", tone: "var(--ntt)" },
                 { k: "Đề đã có", v: String(examsCount), d: "trong thư viện", tone: "var(--cg)" },
                 { k: "Câu hỏi", v: questionsCount.toLocaleString("vi-VN"), d: "trong ngân hàng", tone: "var(--ltv)" },
                 { k: "Đã hoàn thành", v: attemptsCount.toLocaleString("vi-VN"), d: "lượt làm bài", tone: "var(--success)" },
@@ -181,6 +216,75 @@ export default async function AdminPage({ searchParams }: Props) {
                 </Card>
               ))}
             </div>
+
+            {overviewExtra && (
+              <div className="grid cols-2" style={{ gap: 16, marginBottom: 22 }}>
+                <Card title="Thống kê theo môn" sub="Số đề, câu hỏi trong ngân hàng và lượt làm bài theo từng môn">
+                  <table className="tbl">
+                    <thead>
+                      <tr>
+                        <th>Môn</th>
+                        <th style={{ textAlign: "right" }}>Đề</th>
+                        <th style={{ textAlign: "right" }}>Câu hỏi</th>
+                        <th style={{ textAlign: "right" }}>Lượt làm</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {overviewExtra.subjects.map((s) => (
+                        <tr key={s.subject}>
+                          <td><b style={{ fontWeight: 500 }}>{s.label}</b></td>
+                          <td className="mono" style={{ textAlign: "right" }}>{s.exams}</td>
+                          <td className="mono" style={{ textAlign: "right" }}>{s.questions.toLocaleString("vi-VN")}</td>
+                          <td className="mono" style={{ textAlign: "right" }}>{s.attempts}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </Card>
+
+                <Card title="Sử dụng AI · chấm tự luận" sub="Token tính từ khi bật theo dõi — chỉ cộng các lần chấm có gọi AI">
+                  <div className="grid cols-3" style={{ gap: 12, marginBottom: 14 }}>
+                    <div>
+                      <div className="eyebrow">Lượt chấm AI</div>
+                      <div className="kpi" style={{ fontSize: 22, marginTop: 4 }}>{overviewExtra.ai.gradings}</div>
+                      <div className="muted" style={{ fontSize: 11.5 }}>
+                        {overviewExtra.ai.graded} ok
+                        {overviewExtra.ai.errored > 0 && <span style={{ color: "var(--danger)" }}> · {overviewExtra.ai.errored} lỗi</span>}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="eyebrow">Token vào</div>
+                      <div className="kpi" style={{ fontSize: 22, marginTop: 4, color: "var(--ltv)" }}>{overviewExtra.ai.promptTokens.toLocaleString("vi-VN")}</div>
+                      <div className="muted" style={{ fontSize: 11.5 }}>prompt tokens</div>
+                    </div>
+                    <div>
+                      <div className="eyebrow">Token ra</div>
+                      <div className="kpi" style={{ fontSize: 22, marginTop: 4, color: "var(--accent-ink)" }}>{overviewExtra.ai.completionTokens.toLocaleString("vi-VN")}</div>
+                      <div className="muted" style={{ fontSize: 11.5 }}>completion tokens</div>
+                    </div>
+                  </div>
+                  <div className="hr" />
+                  <div className="row between" style={{ marginTop: 8, fontSize: 12.5 }}>
+                    <span className="muted">Tổng token</span>
+                    <b className="mono">{(overviewExtra.ai.promptTokens + overviewExtra.ai.completionTokens).toLocaleString("vi-VN")}</b>
+                  </div>
+                  {overviewExtra.ai.byModel.length > 0 ? (
+                    <div className="col" style={{ gap: 6, marginTop: 10 }}>
+                      {overviewExtra.ai.byModel.map((m) => (
+                        <div key={m.model} className="row between" style={{ fontSize: 12.5 }}>
+                          <span className="mono" style={{ color: "var(--ink-muted)" }}>{m.model}</span>
+                          <span><b className="mono">{m.count}</b> lượt · <b className="mono">{m.tokens.toLocaleString("vi-VN")}</b> tok</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="muted" style={{ fontSize: 12.5, marginTop: 10 }}>
+                      Chưa có lượt chấm AI nào. Số liệu token sẽ xuất hiện sau khi học sinh nộp bài tự luận và AI chấm.
+                    </div>
+                  )}
+                </Card>
+              </div>
+            )}
 
             <Card title="Phân bố trường mục tiêu" sub="Học sinh nhắm tới trường nào nhiều nhất">
               <div className="col" style={{ gap: 10 }}>
@@ -240,6 +344,7 @@ export default async function AdminPage({ searchParams }: Props) {
               note: e.note,
               owner: e.ownerUserId ? ownerMap.get(e.ownerUserId) ?? "—" : null,
             }))}
+            subject={subject}
           />
         )}
 
@@ -251,6 +356,7 @@ export default async function AdminPage({ searchParams }: Props) {
 
         {tab === "topics" && (
           <TopicsEditor
+            subject={subject}
             initial={TOPICS.map((t) => ({
               id: t.id,
               name: t.name,
@@ -258,6 +364,7 @@ export default async function AdminPage({ searchParams }: Props) {
               ico: t.ico,
               color: t.color,
               position: t.position ?? 0,
+              skill: (t as { skill?: string | null }).skill ?? null,
             }))}
           />
         )}
@@ -415,6 +522,7 @@ export default async function AdminPage({ searchParams }: Props) {
             stats={bankStats}
             initialPage={bankPage}
             topics={TOPICS.map((t) => ({ id: t.id, name: t.name, short: t.short }))}
+            subject={subject}
           />
         )}
 
@@ -428,6 +536,7 @@ export default async function AdminPage({ searchParams }: Props) {
           <ReadinessPanel
             histograms={readinessData}
             schools={readinessSchools.map((s) => ({ id: s.id, full: s.full, tone: s.tone }))}
+            subject={subject}
           />
         )}
 

@@ -23,6 +23,7 @@ interface ExamRow {
 
 interface ExamsPanelProps {
   exams: ExamRow[];
+  subject?: "math" | "english" | "vietnamese";
 }
 
 type KindFilter = "all" | "official" | "reference";
@@ -40,15 +41,15 @@ function parseKind(v: string | null): KindFilter {
   return v === "official" || v === "reference" ? v : "all";
 }
 
-export function ExamsPanel({ exams }: ExamsPanelProps) {
+export function ExamsPanel({ exams, subject = "math" }: ExamsPanelProps) {
   return (
     <Suspense fallback={<Card>Đang tải…</Card>}>
-      <ExamsPanelInner exams={exams} />
+      <ExamsPanelInner exams={exams} subject={subject} />
     </Suspense>
   );
 }
 
-function ExamsPanelInner({ exams }: ExamsPanelProps) {
+function ExamsPanelInner({ exams, subject = "math" }: ExamsPanelProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -247,11 +248,15 @@ function ExamsPanelInner({ exams }: ExamsPanelProps) {
               <tr key={e.id}>
                 <td>
                   <b style={{ fontWeight: 500 }}>
-                    {e.kind === "official"
-                      ? `Đề thi ${s?.short ?? "MIX"} · ${e.year}`
-                      : isOwned
-                        ? e.title ?? e.year
-                        : e.year}
+                    {subject === "english"
+                      ? e.title ?? `Tiếng Anh ${s?.short ?? ""} · ${e.year}`
+                      : subject === "vietnamese"
+                        ? e.title ?? `Tiếng Việt ${s?.short ?? ""} · ${e.year}`
+                      : e.kind === "official"
+                        ? `Đề thi ${s?.short ?? "MIX"} · ${e.year}`
+                        : isOwned
+                          ? e.title ?? e.year
+                          : e.year}
                   </b>
                   {isOwned && (
                     <div style={{ fontSize: 11.5, marginTop: 2, color: "var(--accent-ink, var(--accent))" }}>

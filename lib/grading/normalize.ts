@@ -21,3 +21,17 @@ export function normalizeForExact(input: string): string {
     .replace(/[.,;!?]+$/g, "")
     .trim();
 }
+
+// English answer normalization: lowercase, drop ALL punctuation, collapse
+// whitespace, normalise typographic apostrophes/quotes. Used by the english-text
+// matcher so "Don't" / "dont" / "don't." all compare equal and word-reorder
+// answers ignore punctuation.
+export function normalizeEnglish(input: string): string {
+  return input
+    .toLowerCase()
+    .replace(/[‘’ʼ]/g, "'")
+    .replace(/[“”]/g, '"')
+    .replace(/[.,;:!?"'()\[\]{}\-–—_/\\]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}

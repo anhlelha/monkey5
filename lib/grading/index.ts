@@ -11,6 +11,7 @@ import { matchNumeric } from "./matchers/numeric";
 import { matchNumericSet } from "./matchers/numeric-set";
 import { matchLabeled } from "./matchers/labeled";
 import { matchRegex } from "./matchers/regex";
+import { matchEnglishText } from "./matchers/english/text";
 
 function extractText(raw: RawAnswer): string {
   if (raw === null || raw === undefined) return "";
@@ -56,6 +57,8 @@ function gradeWithSchema(text: string, schema: AnswerSchema): GradeResult {
       });
     case "regex":
       return matchRegex(text, { pattern: schema.pattern, flags: schema.flags });
+    case "text_set":
+      return matchEnglishText(text, { accept: schema.accept, ignoreOrder: schema.ignoreOrder });
     default: {
       const _exhaustive: never = schema;
       void _exhaustive;

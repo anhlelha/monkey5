@@ -25,7 +25,7 @@ export default async function Dashboard() {
   if (!dbUser) redirect("/signin");
   const user = hydrateUser(dbUser);
 
-  const topics = (await prisma.topic.findMany({ orderBy: { position: "asc" } })) ?? [];
+  const topics = (await prisma.topic.findMany({ where: { subject: "math" }, orderBy: { position: "asc" } })) ?? [];
   const TOPICS = topics.length > 0 ? topics : DEFAULT_TOPICS;
   const [history, activity, topicProgress, SCHOOLS] = await Promise.all([
     getExamHistory(user.id),
@@ -94,17 +94,8 @@ export default async function Dashboard() {
 
   return (
     <div className="main">
-      <TopBar
-        crumbs={["Trang chính"]}
-        actions={
-          <>
-            <button className="btn">
-              <Icon name="search" /> Tìm đề / chuyên đề
-              <span className="mono muted" style={{ fontSize: 11, marginLeft: 8 }}>⌘K</span>
-            </button>
-          </>
-        }
-      />
+      <TopBar />
+
 
       <div className="content">
         <div className="page-head">

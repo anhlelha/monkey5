@@ -97,14 +97,7 @@ export function LibraryView({
 
   return (
     <div className="main">
-      <TopBar
-        crumbs={[{ label: "Trang chính", href: "/home" }, "Đề thi"]}
-        actions={
-          <button className="btn">
-            <Icon name="search" /> Tìm đề
-          </button>
-        }
-      />
+      <TopBar crumbs={[{ label: "Trang chính", href: "/home" }, "Đề thi"]} />
 
       <div className="content">
         <div className="page-head">

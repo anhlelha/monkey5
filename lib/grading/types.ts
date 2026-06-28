@@ -6,6 +6,7 @@ export type GradeMethod =
   | "numeric_set"
   | "labeled"
   | "regex"
+  | "text_set"
   | "mcq"
   | "empty"
   | "no_match";
@@ -28,7 +29,8 @@ export type AnswerSchema =
       aliases?: Record<string, string[]>;
       tolerance?: number;
     }
-  | { kind: "regex"; pattern: string; flags?: string };
+  | { kind: "regex"; pattern: string; flags?: string }
+  | { kind: "text_set"; accept: string[]; ignoreOrder?: boolean };
 
 export interface GradeQuestion {
   type: "fill" | "mcq" | "essay";

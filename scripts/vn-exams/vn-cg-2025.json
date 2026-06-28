@@ -1,0 +1,124 @@
+{
+  "id": "vn-cg-2025",
+  "subject": "vietnamese",
+  "school": "cg",
+  "year": "2025",
+  "minutes": 60,
+  "title": "Tiếng Việt vào 6 — THCS Cầu Giấy 2025",
+  "intro": "Đề được xây dựng theo trí nhớ học sinh + bổ sung câu trắc nghiệm tương tự (nguồn: Trung tâm Văn Solaredu).",
+  "passages": [
+    {
+      "ref": "p1",
+      "title": "Khi ta giở sách ra (Thanh Quế)",
+      "body": "Khi ta giở sách ra\nTa gặp hồi ba tuổi\nMặc bộ quần áo hoa\nTheo mẹ về bên ngoại.\n\nKhi ta giở sách ra\nTa gặp ngày hôm qua\nCùng bạn bè trong lớp\nHọc bài và hát ca.\n\nKhi ta giở sách ra\nBỗng gặp cô, gặp chú\nHi sinh ở chiến trường\nĐã trở về đông đủ.\n\nBạn ơi, kì lạ nhỉ\nNgày tháng cứ trôi qua\nMà như còn đây cả\nKhi ta giở sách ra.",
+      "kind": "poem"
+    },
+    {
+      "ref": "p2",
+      "title": "Khung trời tuổi thơ (Trần Đăng Nghĩa)",
+      "body": "“Cái lưng còng của U như một dấu chấm hỏi. Và dấu hỏi ấy chẳng còn đủ sức chống chọi với thời gian. Lưng U đã từng cong gập lên để nhìn mặt con lúc chào đời; đã từng cúi gập xuống để quấn tã, đắp chăn, cắt lúa, cuốc khoai; đã từng khom lưng quét lá khi tôi đang ngủ; đã từng gò lưng múc từng gầu nước giếng giội dọc tấm thân còi cọc, tồng tềnh của tôi... Cuối đời, U lại chống gậy, cúi gập người xuống, dò dẫm đếm từng bước đi còn lại, để chúng tôi được thẳng bước, mau mắn trên đường đời. Dấu hỏi ấy, tôi có câu trả lời nhưng rồi chưa thể thực hiện được”",
+      "kind": "article"
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Từ “hay” nào trong những câu dưới đây là kết từ?",
+      "options": [
+        { "id": "A", "text": "Bài thơ rất hay." },
+        { "id": "B", "text": "Nam hay đi học sớm." },
+        { "id": "C", "text": "Bạn thích đọc sách văn học hay toán học?" },
+        { "id": "D", "text": "Cô ấy là người hay chuyện." }
+      ],
+      "correct": "C"
+    },
+    {
+      "num": 2,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Thành phần chủ ngữ trong câu: “Ở thành phố, tác phẩm mới toanh của nhạc sỹ Dế Lửa lại một phen gây sửng sốt” là gì?",
+      "options": [
+        { "id": "A", "text": "Ở thành phố" },
+        { "id": "B", "text": "Tác phẩm mới toanh của nhạc sỹ Dế Lửa" },
+        { "id": "C", "text": "Tác phẩm mới toanh" },
+        { "id": "D", "text": "Tác phẩm mới toanh của nhạc sỹ Dế Lửa lại một phen" }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 3,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Câu nào dưới đây là câu ghép?",
+      "options": [
+        { "id": "A", "text": "Mùa xuân, cây gạo cổ thụ bên bờ hồ nở hoa đỏ rực." },
+        { "id": "B", "text": "Cây mít sum sê bụ bẫm đầy cành và lá, ở ngay cạnh vại nước." },
+        { "id": "C", "text": "Một đám mây lớn trôi trên bầu trời." },
+        { "id": "D", "text": "Trong không gian đầy tiếng chim ngân nga, dường như gió thổi cũng dịu đi và những chiếc lá rơi cũng nhẹ hơn, lơ lửng lâu hơn." }
+      ],
+      "correct": "D"
+    },
+    {
+      "num": 4,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Dòng nào dưới đây có các từ “cây” được dùng với nghĩa gốc?",
+      "options": [
+        { "id": "A", "text": "Cây cối, cây đàn, cây cảnh" },
+        { "id": "B", "text": "Cây ăn quả, cây xanh, cây bút" },
+        { "id": "C", "text": "Cây cỏ, cây cổ thụ, cây hoa màu" },
+        { "id": "D", "text": "Cây xăng, cây mít, cây na" }
+      ],
+      "correct": "C"
+    },
+    {
+      "num": 5,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "VD",
+      "points": 2,
+      "tags": ["camthu"],
+      "passageRef": "p1",
+      "stem": "a) Dựa vào ba khổ thơ đầu, em hãy cho biết “ta” đã gặp gỡ ai khi “giở sách ra”?\nb) Dòng thơ “Khi ta giở sách ra” được lặp lại nhiều lần, em hãy nêu tác dụng của việc lặp lại đó?\nc) Theo em, vì sao nhà thơ lại viết: “Ngày tháng cứ trôi qua/ Mà như còn đây cả/ Khi ta giở sách ra.”?",
+      "correct": null,
+      "modelAnswer": "a) Trong ba khổ thơ đầu, “ta” gặp lại mình “hồi ba tuổi”, “gặp ngày hôm qua/ cùng bạn bè trong lớp”, “gặp cô, gặp chú/ Hi sinh ở chiến trường”.\nb) (Cảm thụ biện pháp tu từ) Tác giả sử dụng biện pháp tu từ điệp ngữ: dòng thơ “Khi ta giở sách ra” được lặp lại nhiều lần. Điệp ngữ đã nhấn mạnh sự kì diệu khi “ta” được hòa mình vào thế giới của những con chữ, những vần thơ, những trang sách. Qua đó, tác giả gửi gắm thông điệp về ý nghĩa và tầm quan trọng của sách trong việc nuôi dưỡng tâm hồn mỗi người. Điệp ngữ cũng góp phần tạo nhịp điệu nhẹ nhàng, sâu lắng cho đoạn thơ.\nc) Nhà thơ viết như vậy vì cho dù thời gian cứ chảy trôi không bao giờ trở lại, nhưng những kí ức, những hình ảnh, những kỉ niệm trong quá khứ sẽ luôn ở đó, hiện lên rõ ràng “khi ta giở sách ra”. Với con người, sách không chỉ cung cấp tri thức mà còn nuôi dưỡng tâm hồn con người, là nơi cất giữ những kỉ niệm, cảm xúc, lưu lại bao dấu ấn của thời gian."
+    },
+    {
+      "num": 6,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "VD",
+      "points": 3,
+      "tags": ["camthu", "vandung"],
+      "passageRef": "p2",
+      "stem": "a) Hai câu in đậm trong đoạn trích được liên kết bằng cách nào?\nb) Việc tác giả liên tưởng cái lưng của U như một dấu chấm hỏi giúp em hiểu gì về dáng hình của người mẹ? Qua đây, tác giả bộc lộ tình cảm gì với mẹ?\nc) Trong đoạn trích này, em thấy người mẹ hiện lên với những phẩm chất nào?\nd) Với tác giả, ấn tượng về U “là cái lưng như một dấu chấm hỏi”. Còn em, đặc điểm nào về ngoại hình của cha (mẹ) để lại trong em ấn tượng sâu sắc nhất? Vì sao?",
+      "correct": null,
+      "modelAnswer": "a) Hai câu văn in đậm được liên kết bằng cách lặp từ ngữ: từ “U” được lặp lại.\nb) Việc liên tưởng cái lưng của U như một dấu chấm hỏi giúp em dễ dàng hình dung được dáng lưng còng của mẹ theo tuổi tác và thời gian; từ đó thể hiện sự vất vả, nhọc nhằn, khổ cực của cuộc đời mẹ đã hi sinh hết lòng vì gia đình và các con. Qua đây, tác giả thể hiện sự thấu hiểu với những vất vả, hi sinh lặng thầm của mẹ và bày tỏ tình yêu thương, lòng biết ơn, kính trọng vô bờ dành cho mẹ.\nc) Người mẹ hiện lên với những phẩm chất cao đẹp: chăm chỉ, cần cù, chịu thương chịu khó; giàu đức hi sinh, giàu tình yêu thương gia đình và con cái.\nd) (Gợi ý) Nêu đặc điểm ngoại hình của cha/mẹ để lại ấn tượng (VD: bàn tay thô ráp, chai sần; đôi mắt nâu sâu thẳm trìu mến…) và lí do: đặc điểm ấy thể hiện điều gì về cuộc sống, phẩm chất của cha mẹ và tình cảm cha mẹ dành cho con. Đoạn mẫu (tả đôi bàn tay mẹ): Trong tâm trí em, hình ảnh cảm động nhất về mẹ chính là đôi bàn tay thô ráp, hằn in vết thời gian. Bàn tay ấy chẳng còn mịn màng, mà thay vào đó là những vết chai sạn cứng cáp và những đường nứt nhỏ rỉ máu mỗi khi đông về. Đó là dấu tích của biết bao mùa nắng cháy trên đồng cạn, bao đêm thức trắng chăm lo cho gia đình. Đôi bàn tay ấy chính là cuốn nhật ký bằng da thịt, ghi lại trọn vẹn sự hy sinh thầm lặng và lòng vị tha vô bờ bến mà mẹ dành cho chúng em."
+    },
+    {
+      "num": 7,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 3,
+      "tags": [],
+      "stem": "Ngày hội đọc sách là một sự kiện được tổ chức hằng năm tại các nhà trường. Em hãy viết một đoạn văn khoảng 10 câu nêu ý kiến tán thành việc học sinh tích cực tham gia sự kiện này.",
+      "correct": null,
+      "modelAnswer": "Đoạn mẫu: Sách là người bạn thân thiết với mỗi chúng ta nên em thấy việc tổ chức “Ngày hội đọc sách trong nhà trường” là một hoạt động vô cùng ý nghĩa và cần thiết. Trước hết, ngày hội giúp khơi dậy niềm yêu thích đọc sách ở học sinh và hình thành thói quen tích cực. Bởi lẽ, sách đóng vai trò quan trọng trong việc định hình và phát triển con người. Bên cạnh đó, đây còn là một phương pháp hiệu quả để tích lũy kiến thức, phát triển tư duy, trau dồi vốn từ và nâng cao khả năng diễn đạt. Từ đó, sách giúp chúng ta nuôi dưỡng tâm hồn, phát triển toàn diện. Hơn nữa, ngày hội còn góp phần xây dựng văn hóa đọc trong trường học, tạo không khí học tập sôi nổi và gắn kết giữa thầy cô, bạn bè. Ý thức được ý nghĩa của sách, em thấy mình cần chủ động dành thời gian đọc sách mỗi ngày, lựa chọn những cuốn sách phù hợp với độ tuổi và nhu cầu học tập, đồng thời tích cực tham gia các hoạt động chia sẻ, giới thiệu sách."
+    }
+  ]
+}

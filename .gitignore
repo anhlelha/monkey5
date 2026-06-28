@@ -56,3 +56,7 @@ next-env.d.ts
 # Gemini CLI figure-drawing output (transient)
 /scripts/.gemini-figure-out/
 
+
+# English exam import — raw text + page images (regenerable from PDFs; only en-*.json is committed)
+scripts/.en-import/raw/
+scripts/.en-import/img/

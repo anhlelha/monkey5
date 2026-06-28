@@ -31,22 +31,32 @@ interface SchoolMeta {
   tone: string;
 }
 
+type Subject = "math" | "english" | "vietnamese";
+
+const SUBJECT_LABEL: Record<Subject, string> = {
+  math: "Toán",
+  english: "Tiếng Anh",
+  vietnamese: "Tiếng Việt",
+};
+
 interface Props {
   histograms: SchoolHistogram[];
   schools: SchoolMeta[];
+  subject?: Subject;
 }
 
-export function ReadinessPanel({ histograms, schools }: Props) {
+export function ReadinessPanel({ histograms, schools, subject = "math" }: Props) {
   const [isPending, startTransition] = useTransition();
   const [lastRefresh, setLastRefresh] = useState<string | null>(null);
   const [lastRecompute, setLastRecompute] = useState<RecomputeResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const subjectLabel = SUBJECT_LABEL[subject];
 
   const handleRefresh = () => {
     setError(null);
     startTransition(async () => {
       try {
-        const result = await refreshSchoolProfilesAction();
+        const result = await refreshSchoolProfilesAction(subject);
         setLastRefresh(
           `Hoàn tất. Created: ${result.created.length} · Rebuilt: ${result.rebuilt.length} · Unchanged: ${result.unchanged.length}`,
         );
@@ -93,16 +103,22 @@ export function ReadinessPanel({ histograms, schools }: Props) {
   return (
     <div className="col" style={{ gap: 16 }}>
       <Card
-        title="Thao tác quản trị"
-        sub="Refresh profile các trường + recompute readiness toàn user"
+        title={`Thao tác quản trị · ${subjectLabel}`}
+        sub={
+          subject === "math"
+            ? "Refresh profile các trường + recompute readiness toàn user (Toán)."
+            : `Refresh profile độ khó ${subjectLabel}. Readiness ${subjectLabel} được tính trực tiếp mỗi lần xem nên không cần recompute.`
+        }
       >
         <div className="row" style={{ gap: 10, flexWrap: "wrap" }}>
           <button className="btn" onClick={handleRefresh} disabled={isPending}>
-            <Icon name="refresh" /> Refresh profiles
+            <Icon name="refresh" /> Refresh profiles {subjectLabel}
           </button>
-          <button className="btn primary" onClick={handleRecompute} disabled={isPending}>
-            <Icon name="sparkle" /> Recompute all readiness
-          </button>
+          {subject === "math" && (
+            <button className="btn primary" onClick={handleRecompute} disabled={isPending}>
+              <Icon name="sparkle" /> Recompute all readiness
+            </button>
+          )}
           {isPending && <span className="muted">Đang xử lý…</span>}
         </div>
         {lastRefresh && (
@@ -127,9 +143,18 @@ export function ReadinessPanel({ histograms, schools }: Props) {
         )}
       </Card>
 
+      {summaryRows.length === 0 && (
+        <Card title={`Tóm tắt readiness theo trường · ${subjectLabel}`}>
+          <div className="empty">
+            Chưa có trường nào có dữ liệu độ khó cho môn {subjectLabel}. Hãy nạp đề {subjectLabel} rồi bấm
+            <b> Refresh profiles {subjectLabel}</b>.
+          </div>
+        </Card>
+      )}
+
       {summaryRows.length > 0 && (
         <Card
-          title="Tóm tắt readiness theo trường"
+          title={`Tóm tắt readiness theo trường · ${subjectLabel}`}
           sub={`Trung bình readiness của toàn user · TB chung: ${overallAvg}% · Khoảng cách dễ ↔ khó: ${spread} điểm`}
         >
           <div className="grid cols-4" style={{ gap: 12 }}>
@@ -170,6 +195,13 @@ export function ReadinessPanel({ histograms, schools }: Props) {
         </Card>
       )}
 
+      {histograms.length > 0 && (
+        <div className="row between" style={{ marginTop: 4 }}>
+          <h3 style={{ fontSize: 14, margin: 0, fontWeight: 600 }}>Phân bố chi tiết theo trường</h3>
+          <span className="muted" style={{ fontSize: 12.5 }}>Số user theo từng dải readiness</span>
+        </div>
+      )}
+      <div className="grid cols-2" style={{ gap: 16 }}>
       {histograms.map((h) => {
         const school = schoolMap.get(h.school);
         const name = school?.full ?? h.school;
@@ -209,6 +241,7 @@ export function ReadinessPanel({ histograms, schools }: Props) {
           </Card>
         );
       })}
+      </div>
     </div>
   );
 }

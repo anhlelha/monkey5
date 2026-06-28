@@ -90,6 +90,7 @@ model VerificationToken {
 
 model Exam {
   id        String   @id
+  subject   String   @default("math") // "math" | "english"
   school    String   // school id ("cg"|"ntt"|"ltv"|"tx"|"mix")
   kind      String   // "official" | "reference" | "mixed"
   year      String   // display label (e.g. "2024-2025")
@@ -124,10 +125,18 @@ model Exam {
 model Question {
   id          String  @id @default(cuid())
   examId      String?
+  subject     String  @default("math") // "math" | "english"
   num         Int
   type        String  // "fill" | "mcq" | "essay"
   topic       String  // topic id
-  grade       String  // "L4" | "L5" | "NC" | "L4+5"
+  skill       String? // english skill domain: "pron"|"useofenglish"|"comm"|"reading"|"writing"
+  grade       String  // math: "L4"|"L5"|"NC"|"L4+5"  ·  english: "A1"|"A2"|"B1"
+  // english-only sub-tags driving difficulty (e.g. "inference","collocation",
+  // "idiom","underline"). JSON array; empty for math.
+  tags        String  @default("[]")
+  // Reading questions sharing one passage carry the same groupId + passageId.
+  groupId     String?
+  passageId   String?
   points      Int     @default(1)
   stem        String
   unit        String?
@@ -212,11 +221,28 @@ model TopicSession {
 
 model Topic {
   id       String @id
+  subject  String  @default("math") // "math" | "english"
+  skill    String?                  // english skill domain (pron|useofenglish|comm|reading|writing)
   name     String
   short    String
   ico      String
   color    String
   position Int    @default(0)
+}
+
+// ─── Reading passage (english) ────────────────────────────────────────────────
+// One ngữ liệu (notice/message/article/cloze) shared by several reading
+// questions via Question.passageId. English-only.
+model Passage {
+  id        String   @id @default(cuid())
+  examId    String?
+  title     String?
+  body      String
+  kind      String   @default("article") // notice | message | article | cloze
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([examId])
 }
 
 // ─── Reference exam quota (per-user unlock) ───────────────────────────────────
@@ -345,6 +371,16 @@ model LLMSetting {
   apiKey        String?
   // Editable system rubric. Null → built-in DEFAULT_GRADING_PROMPT.
   gradingPrompt String?
+  // English Writing rubric (essay đoạn văn). Null → DEFAULT_WRITING_PROMPT.
+  writingPrompt String?
+  // English Writing 5-criteria weights (percent, tổng=100): JSON
+  // { task, lexical, grammar, cohesion, length }. Empty → DEFAULT_WRITING_WEIGHTS.
+  writingWeights String  @default("{}")
+  // Vietnamese văn rubric (đặt câu / cảm thụ / viết đoạn-bài). Null → VN_WRITING_PROMPT.
+  vnWritingPrompt String?
+  // Vietnamese văn 5-criteria weights (percent, tổng=100): JSON
+  // { noidung, camthu, dienden, chinhta, sangtao }. Empty → VN_WRITING_WEIGHTS.
+  vnWritingWeights String @default("{}")
   // Scoring policy (percent of the question's points):
   methodWeight  Int      @default(70)  // weight for a correct method / reasoning
   answerWeight  Int      @default(30)  // weight for a correct final answer
@@ -365,11 +401,18 @@ model EssayGrade {
   answerCorrect Boolean  @default(false)
   methodScore   Float    @default(0) // 0..1 — correctness/completeness of the working
   guessed       Boolean  @default(false) // right answer, wrong/absent method
+  // grading flavour: "math" (method/answer/guess) | "writing" (5-criteria rubric)
+  kind          String   @default("math")
+  // writing-only: JSON { task, lexical, grammar, cohesion, length } each 0..1
+  criteria      String   @default("{}")
   feedback      String   @default("")
   provider      String   @default("")
   model         String   @default("")
   status        String   @default("graded") // graded | error
   error         String?
+  // Token usage for this AI grading call (0 when grading failed / not AI).
+  promptTokens     Int   @default(0)
+  completionTokens Int   @default(0)
   createdAt     DateTime @default(now())
 
   attempt Attempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
@@ -379,15 +422,21 @@ model EssayGrade {
 }
 
 model SchoolProfile {
-  school          String   @id                // FK soft tới School.id
+  school          String                      // FK soft tới School.id
+  subject         String   @default("math")   // "math" | "english"
   topicWeights    String                      // JSON: { topicId: 0..1 }, tổng = 1.0
-  levelWeights    String                      // JSON: { "L4": 0..1, ... }
+  levelWeights    String                      // JSON: { "L4": 0..1, ... } | { "A1": ... }
   difficulty      Float                       // 0-100 (công thức 6 yếu tố)
   minutes         Float                       // thời lượng đề trung bình
   totalQuestions  Int                         // số câu compute từ
   freeTextPct     Float    @default(0)
   olympicGeoPct   Float    @default(0)
   diversity       Int      @default(0)
+  // english radar (6 yếu tố): JSON { readingLoad, productiveWriting, higherOrder,
+  // timePressure, vocabDepth, skillDiversity } — mỗi trục 0..100. Empty cho math.
+  factors         String   @default("{}")
   sourceHash      String                      // "{qcount}-{latestCreatedAt.ISO}"
   updatedAt       DateTime @updatedAt
+
+  @@id([school, subject])
 }

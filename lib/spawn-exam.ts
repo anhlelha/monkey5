@@ -296,6 +296,139 @@ export async function spawnTopicSetExam(
   return newId;
 }
 
+// ─── English topic-practice spawn ───────────────────────────────────────────
+// Clicking an english topic card spawns a practice set from that topic's
+// questions across the official english exams. Simpler than the math version:
+// no level tiers / quota — english uses CEFR within the pooled questions.
+// School "mix" + kind "reference" keep it out of the cg/ntt difficulty profile
+// (mix is a pseudo-school) while still feeding english mastery on submit.
+export async function spawnEnglishTopicSet(topicId: string, _userId: string): Promise<string> {
+  const pool = await prisma.question.findMany({
+    where: {
+      active: true,
+      topic: topicId,
+      subject: "english",
+      examId: { not: null },
+      exam: { kind: "official", subject: "english" },
+    },
+    include: { exam: true },
+  });
+
+  if (pool.length === 0) throw new TopicSetEmptyError();
+
+  const picked = shuffle(pool).slice(0, Math.min(12, pool.length));
+  const newId = `enset-${Date.now().toString(36)}-${randSuffix()}`;
+
+  await prisma.exam.create({
+    data: {
+      id: newId,
+      subject: "english",
+      school: "mix",
+      kind: "reference",
+      year: `Luyện · ${todayLabelVi()}`,
+      title: "Luyện chuyên đề Tiếng Anh",
+      intro: "Bài luyện theo chuyên đề Tiếng Anh — câu hỏi rút từ các đề chính thức.",
+      minutes: Math.max(10, picked.length * 2),
+      qcount: picked.length,
+      generated: true,
+      note: `en-topic:${topicId}`,
+    },
+  });
+
+  await prisma.question.createMany({
+    data: picked.map((q, i) => ({
+      examId: newId,
+      subject: "english",
+      num: i + 1,
+      type: q.type,
+      topic: q.topic,
+      skill: q.skill,
+      grade: q.grade,
+      tags: q.tags,
+      points: q.points,
+      stem: q.stem,
+      unit: q.unit,
+      placeholder: q.placeholder,
+      correct: q.correct,
+      answerSchema: q.answerSchema,
+      options: q.options,
+      modelAnswer: q.modelAnswer,
+      figure: q.figure,
+      passageId: q.passageId,
+      source: q.source,
+      sourceQuestionId: q.id,
+    })),
+  });
+
+  return newId;
+}
+
+// ─── Vietnamese topic-practice spawn ────────────────────────────────────────
+// Clicking a vietnamese topic card spawns a practice set from that topic's
+// questions across the official vietnamese exams. Mirrors spawnEnglishTopicSet:
+// no level tiers — 12 questions max, school "mix", kind "reference", prefix
+// "vnset-". Passages are carried so reading questions keep their passage block.
+export async function spawnVietnameseTopicSet(topicId: string, _userId: string): Promise<string> {
+  const pool = await prisma.question.findMany({
+    where: {
+      active: true,
+      topic: topicId,
+      subject: "vietnamese",
+      examId: { not: null },
+      exam: { kind: "official", subject: "vietnamese" },
+    },
+    include: { exam: true },
+  });
+
+  if (pool.length === 0) throw new TopicSetEmptyError();
+
+  const picked = shuffle(pool).slice(0, Math.min(12, pool.length));
+  const newId = `vnset-${Date.now().toString(36)}-${randSuffix()}`;
+
+  await prisma.exam.create({
+    data: {
+      id: newId,
+      subject: "vietnamese",
+      school: "mix",
+      kind: "reference",
+      year: `Luyện · ${todayLabelVi()}`,
+      title: "Luyện chuyên đề Tiếng Việt",
+      intro: "Bài luyện theo chuyên đề Tiếng Việt — câu hỏi rút từ các đề chính thức.",
+      minutes: Math.max(10, picked.length * 2),
+      qcount: picked.length,
+      generated: true,
+      note: `vn-topic:${topicId}`,
+    },
+  });
+
+  await prisma.question.createMany({
+    data: picked.map((q, i) => ({
+      examId: newId,
+      subject: "vietnamese",
+      num: i + 1,
+      type: q.type,
+      topic: q.topic,
+      skill: q.skill,
+      grade: q.grade,
+      tags: q.tags,
+      points: q.points,
+      stem: q.stem,
+      unit: q.unit,
+      placeholder: q.placeholder,
+      correct: q.correct,
+      answerSchema: q.answerSchema,
+      options: q.options,
+      modelAnswer: q.modelAnswer,
+      figure: q.figure,
+      passageId: q.passageId,
+      source: q.source,
+      sourceQuestionId: q.id,
+    })),
+  });
+
+  return newId;
+}
+
 // Parses "set-<topic>-<level>-..." into its components for the submit hook.
 export function parseTopicSetId(examId: string): { topic: string; level: string } | null {
   if (!examId.startsWith("set-")) return null;

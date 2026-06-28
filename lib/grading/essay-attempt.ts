@@ -4,11 +4,33 @@
 import { prisma } from "@/lib/prisma";
 import { gradeAnswer } from "@/lib/grading";
 import { gradeEssaySafe } from "@/lib/llm/grade-essay";
+import { gradeWritingSafe } from "@/lib/llm/grade-writing";
+import { gradeVietnameseSafe } from "@/lib/llm/grade-vietnamese";
 import { getResolvedLLMSettings } from "@/lib/llm-settings";
-import type { EssayGradeResult, EssayQuestionInput, ResolvedLLMSettings } from "@/lib/llm/types";
+import type { EssayQuestionInput, ResolvedLLMSettings, WritingQuestionInput } from "@/lib/llm/types";
 
 /** An essay is counted as a "correct" question (for stats) at/above this fraction. */
 const ESSAY_PASS_FRACTION = 0.5;
+
+// Normalised essay/writing grade — maps 1:1 onto EssayGrade columns regardless
+// of whether it came from the math essay grader or the english writing grader.
+interface GradeRow {
+  fraction: number;
+  earned: number;
+  points: number;
+  answerCorrect: boolean;
+  methodScore: number;
+  guessed: boolean;
+  kind: string; // "math" | "writing"
+  criteria: Record<string, number>;
+  feedback: string;
+  provider: string;
+  model: string;
+  status: "graded" | "error";
+  error: string | null;
+  inputTokens: number;
+  outputTokens: number;
+}
 
 const flatText = (a: unknown): string => {
   if (a === null || a === undefined) return "";
@@ -77,8 +99,11 @@ export async function recomputeAttemptScore(
   let essaysGraded = 0;
   let essaysErrored = 0;
 
+  const isEnglish = exam.subject === "english";
+  const isVietnamese = exam.subject === "vietnamese";
+
   // Grade essays first (in parallel) so the main loop can sum synchronously.
-  const newGrades = new Map<string, EssayGradeResult>();
+  const newGrades = new Map<string, GradeRow>();
   if (options.gradeEssays && settings) {
     const essayJobs = exam.questions
       .filter((q) => q.type === "essay")
@@ -86,7 +111,33 @@ export async function recomputeAttemptScore(
       .filter((j) => j.text.length > 0);
 
     const results = await Promise.all(
-      essayJobs.map(async (j) => {
+      essayJobs.map(async (j): Promise<{ qid: string; result: GradeRow }> => {
+        if (isEnglish || isVietnamese) {
+          const input: WritingQuestionInput = { num: j.q.num, stem: j.q.stem, points: j.q.points };
+          const w = isVietnamese
+            ? await gradeVietnameseSafe(settings, input, j.text, j.q.modelAnswer)
+            : await gradeWritingSafe(settings, input, j.text);
+          return {
+            qid: j.q.id,
+            result: {
+              fraction: w.fraction,
+              earned: w.earned,
+              points: w.points,
+              answerCorrect: w.fraction >= ESSAY_PASS_FRACTION,
+              methodScore: w.fraction,
+              guessed: false,
+              kind: isVietnamese ? "vietnamese" : "writing",
+              criteria: w.criteria,
+              feedback: w.feedback,
+              provider: w.provider,
+              model: w.model,
+              status: w.status,
+              error: w.error,
+              inputTokens: w.inputTokens,
+              outputTokens: w.outputTokens,
+            },
+          };
+        }
         const input: EssayQuestionInput = {
           num: j.q.num,
           stem: j.q.stem,
@@ -95,7 +146,27 @@ export async function recomputeAttemptScore(
           unit: j.q.unit,
           points: j.q.points,
         };
-        return { qid: j.q.id, result: await gradeEssaySafe(settings, input, j.text) };
+        const e = await gradeEssaySafe(settings, input, j.text);
+        return {
+          qid: j.q.id,
+          result: {
+            fraction: e.fraction,
+            earned: e.earned,
+            points: e.points,
+            answerCorrect: e.answerCorrect,
+            methodScore: e.methodScore,
+            guessed: e.guessed,
+            kind: "math",
+            criteria: {},
+            feedback: e.feedback,
+            provider: e.provider,
+            model: e.model,
+            status: e.status,
+            error: e.error,
+            inputTokens: e.inputTokens,
+            outputTokens: e.outputTokens,
+          },
+        };
       }),
     );
     for (const r of results) newGrades.set(r.qid, r.result);
@@ -149,11 +220,15 @@ export async function recomputeAttemptScore(
           answerCorrect: g.answerCorrect,
           methodScore: g.methodScore,
           guessed: g.guessed,
+          kind: g.kind,
+          criteria: JSON.stringify(g.criteria ?? {}),
           feedback: g.feedback,
           provider: g.provider,
           model: g.model,
           status: g.status,
           error: g.error,
+          promptTokens: g.inputTokens,
+          completionTokens: g.outputTokens,
         })),
       }),
     ]);

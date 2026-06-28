@@ -56,6 +56,24 @@ if [ "${RUN_SEED:-1}" = "1" ]; then
     # See docs/REMEDIAL-SETS-DESIGN.md.
     echo "Seeding personalized remedial sets..."
     npx tsx scripts/seed-remedial-mika.ts
+    # English subject: 10 topics + sample exams (subject="english"). Idempotent
+    # (deletes its own en-* exams/questions/passages then re-inserts) and builds
+    # the english SchoolProfile (6-factor difficulty). Independent of the math
+    # seed above. See docs/ENGLISH-SUBJECT-DESIGN.md.
+    echo "Seeding English subject..."
+    npx tsx scripts/seed-english.ts
+    # Real English exams from scripts/.en-import/en-*.json (subject="english").
+    # Idempotent per-exam; rebuilds english SchoolProfile and drops superseded
+    # sample exams. See .claude/commands/exam-import-en.md.
+    echo "Seeding English exams (real)..."
+    npx tsx scripts/seed-english-exams.ts
+    # Vietnamese subject: 10 chuyên đề + real transcribed exams from
+    # scripts/vn-exams/*.json (subject="vietnamese"; CG/NTT/LTV). Idempotent
+    # (deletes its own vn-* exams/questions/passages then re-inserts) and builds
+    # the vietnamese SchoolProfile (6-factor difficulty). Independent of the math
+    # and english seeds above. See .claude/commands/exam-import-vn.md.
+    echo "Seeding Vietnamese subject (real exams)..."
+    npx tsx scripts/seed-vietnamese.ts
 else
     echo "Skipping exam re-seed (RUN_SEED=0) — no exam-content changes detected."
 fi

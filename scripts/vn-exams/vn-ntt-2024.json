@@ -1,0 +1,199 @@
+{
+  "id": "vn-ntt-2024",
+  "subject": "vietnamese",
+  "school": "ntt",
+  "year": "2023-2024",
+  "minutes": 45,
+  "title": "Tiếng Việt vào 6 — THCS & THPT Nguyễn Tất Thành 2023-2024",
+  "intro": "Nguồn: CLB Văn bồi dưỡng - Solar Edu. Thời gian 45 phút.",
+  "passages": [
+    {
+      "ref": "p1",
+      "title": "Ba đoạn trích về hương thơm",
+      "body": "(1) Còn hàng chục mét mới tới nơi để sầu riêng, hương đã ngào ngạt xông vào cánh mũi. Sầu riêng thơm mùi thơm của mít chín quyện với hương bưởi, béo cái béo của trứng gà, ngọt cái vị của mật ong già hạn. Hương vị quyến rũ đến kì lạ.\n(Mai Văn Tạo, Sầu riêng)\n(2) Gió tây lướt thướt qua rừng, quyến hương thảo quả đi, rải theo triền núi, đưa hương thảo quả ngọt lựng, thơm nồng vào những thôn xóm Chin San. Gió thơm. Cây cỏ thơm. Đất trời thơm. Người đi từ rừng thảo quả về, hương thơm đậm ủ ấp trong từng nếp áo, nếp khăn.\n(Theo Ma Văn Kháng, Mùa thảo quả)\n(3) Nắng bốc hương hoa tràm thơm ngây ngất. Gió đưa mùi hương ngọt lan xa, phảng phất khắp rừng.\n(Đoàn Giỏi, Đất rừng phương Nam)",
+      "kind": "article"
+    },
+    {
+      "ref": "p2",
+      "title": "Bầu trời mùa thu (Theo Xu-khôm-lin-xki)",
+      "body": "(1) Sau vài phút, một em nói:\n(2) - Bầu trời xanh như mặt nước mệt mỏi trong ao.\n(3) - Vì sao mặt nước lại mệt mỏi? - (4) Tôi hỏi lại.\n(5) - Thưa thầy, mùa hè, nước dạo chơi cùng những làn sóng. (6) Mùa thu nó mệt và đứng lại với màu xanh nhạt.\n(Theo Xu-khôm-lin-xki, Bầu trời mùa thu)",
+      "kind": "article"
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "stem": "Loài hoa, quả nào khiến cho gió, cây cỏ, đất trời và con người đều thấm đẫm hương thơm?",
+      "options": [
+        { "id": "A", "text": "Sầu riêng" },
+        { "id": "B", "text": "Bưởi" },
+        { "id": "C", "text": "Thảo quả" },
+        { "id": "D", "text": "Tràm" }
+      ],
+      "correct": "C",
+      "passageRef": "p1"
+    },
+    {
+      "num": 2,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "stem": "Vì sao tác giả lại cho rằng hương vị của sầu riêng quyến rũ đến kì lạ?",
+      "options": [
+        { "id": "A", "text": "Vì hương sầu riêng thơm ngào ngạt, xông vào cánh mũi." },
+        { "id": "B", "text": "Vì vị sầu riêng vừa ngọt vừa béo." },
+        { "id": "C", "text": "Vì mùi thơm của sầu riêng bay rất xa và đọng lại rất lâu." },
+        { "id": "D", "text": "Vì hương vị của sầu riêng là sự tổng hòa của nhiều hương vị đặc sắc khác nhau." }
+      ],
+      "correct": "D",
+      "passageRef": "p1"
+    },
+    {
+      "num": 3,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "stem": "Khi miêu tả mùi hương, ba đoạn trích trên có điểm chung là gì?",
+      "options": [
+        { "id": "A", "text": "Đều tả hương thơm của các loài hoa đang nở rộ." },
+        { "id": "B", "text": "Đều tả hương thơm đậm, lan tỏa trong không gian." },
+        { "id": "C", "text": "Đều tả hương thơm của các loại quả có vị ngọt." },
+        { "id": "D", "text": "Đều tả hương thơm chỉ có trong rừng phương Nam." }
+      ],
+      "correct": "B",
+      "passageRef": "p1"
+    },
+    {
+      "num": 4,
+      "type": "fill",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Có thể thay từ “phảng phất” trong câu thứ hai của đoạn (3) bằng từ nào?",
+      "correct": "thoang thoảng",
+      "accept": ["thoang thoảng", "thoang thoảng"],
+      "passageRef": "p1"
+    },
+    {
+      "num": 5,
+      "type": "fill",
+      "topic": "vn-spelling",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Dấu hai chấm trong câu (1) “Sau vài phút, một em nói:” được dùng để làm gì?",
+      "correct": "báo hiệu lời nói của nhân vật",
+      "accept": ["báo hiệu lời nói của nhân vật", "báo hiệu/ đánh dấu bộ phận câu đứng sau nó là lời nói của một nhân vật", "đánh dấu lời nói của nhân vật"],
+      "passageRef": "p2"
+    },
+    {
+      "num": 6,
+      "type": "fill",
+      "topic": "vn-cohesion",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Trong câu (6) “Mùa thu nó mệt và đứng lại với màu xanh nhạt.”, đại từ “nó” được dùng để thay thế cho từ nào?",
+      "correct": "nước",
+      "accept": ["nước"],
+      "passageRef": "p2"
+    },
+    {
+      "num": 7,
+      "type": "fill",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Ghi lại 5 quan hệ từ có trong đoạn trích “Bầu trời mùa thu”.",
+      "correct": "như; trong; cùng; và; với",
+      "accept": ["như; trong; cùng; và; với"],
+      "ignoreOrder": true,
+      "passageRef": "p2"
+    },
+    {
+      "num": 8,
+      "type": "fill",
+      "topic": "vn-senttype",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["vandung"],
+      "stem": "Xếp các câu (2), (3), (5) và (6) trong đoạn “Bầu trời mùa thu” vào bảng phân loại: Câu kể / Câu hỏi.",
+      "correct": "Câu kể: (2),(5),(6); Câu hỏi: (3)",
+      "accept": ["Câu kể: (2),(5),(6); Câu hỏi: (3)"],
+      "ignoreOrder": true,
+      "passageRef": "p2"
+    },
+    {
+      "num": 9,
+      "type": "fill",
+      "topic": "vn-spelling",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Điền “chung” hoặc “trung” vào chỗ trống để tạo từ:\n… cư; … tâm; … gian; … kết; … thành; … bình; … thủy; … khảo",
+      "correct": "chung cư; trung tâm; trung gian; chung kết; trung thành; trung bình; chung thủy; chung khảo",
+      "accept": ["chung cư; trung tâm; trung gian; chung kết; trung thành; trung bình; chung thủy; chung khảo"]
+    },
+    {
+      "num": 10,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Đọc câu văn sau:\n“Một dải mây mỏng, mềm mại như một dải lụa trắng dài vô tận ôm ấp, quấn ngang các chỏm núi đầy quyến luyến, bịn rịn.”\nChủ ngữ của câu văn trên là gì?",
+      "options": [
+        { "id": "A", "text": "Một dải mây" },
+        { "id": "B", "text": "Một dải mây mỏng" },
+        { "id": "C", "text": "Một dải mây mỏng, mềm mại như một dải lụa trắng" },
+        { "id": "D", "text": "Một dải mây mỏng, mềm mại như một dải lụa trắng dài vô tận" }
+      ],
+      "correct": "D"
+    },
+    {
+      "num": 11,
+      "type": "essay",
+      "topic": "vn-rhetoric",
+      "grade": "VD",
+      "points": 1,
+      "tags": ["camthu"],
+      "stem": "Chỉ ra phép so sánh được sử dụng trong câu văn “Một dải mây mỏng, mềm mại như một dải lụa trắng dài vô tận ôm ấp, quấn ngang các chỏm núi đầy quyến luyến, bịn rịn.” và nêu tác dụng của nó.",
+      "correct": null,
+      "modelAnswer": "- Phép so sánh: Dải mây được so sánh với dải lụa trắng.\n- Tác dụng:\n+ Giúp người đọc hình dung rõ nét màu sắc, độ mỏng và sự mềm mại của dải mây.\n+ Làm cho câu văn thêm sinh động, giàu hình ảnh.\n+ Thể hiện sự quan sát tinh tế của người viết."
+    },
+    {
+      "num": 12,
+      "type": "fill",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Điền vào chỗ trống từ trái nghĩa với từ in đậm để hoàn thành đoạn văn:\nDù khi bạn cười hay khi bạn… , khi bạn vui hay… , khi bạn thành công hay… tôi vẫn luôn ở bên và nắm chặt tay bạn. Hãy nhớ rằng dù hạnh phúc hay…, chúng ta sẽ cùng nhau tiến về phía trước.",
+      "correct": "khóc; buồn; thất bại; khổ đau",
+      "accept": ["khóc; buồn; thất bại; khổ đau", "khóc; buồn; thất bại; đau khổ", "khóc; buồn; thất bại; bất hạnh"],
+      "ignoreOrder": false
+    },
+    {
+      "num": 13,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 3,
+      "tags": ["camthu", "vandung"],
+      "stem": "Sách là người bạn thân thiết của chúng ta. Sách mang đến sự hiểu biết và nuôi dưỡng những ước mơ, cảm xúc tốt đẹp cho mỗi người.\nTrong số những cuốn sách đã đọc, em thích nhất cuốn nào? Hãy viết một bức thư (khoảng 12 câu) cho một người bạn để giới thiệu về cuốn sách đó và nói rõ lí do vì sao em thích. (Thí sinh không kí tên dưới bức thư)",
+      "correct": null,
+      "modelAnswer": "Yêu cầu cần đạt:\n- Nội dung:\n+ Giới thiệu bao quát về cuốn sách (tên sách, tác giả, đề tài/chủ đề của sách,...).\n+ Trình bày những lí do yêu thích cuốn sách và sắp xếp theo trình tự hợp lí; nêu rõ những nét đặc sắc về nội dung và hình thức của cuốn sách (có một số câu giải thích hoặc dẫn chứng đi kèm).\n+ Nêu tình cảm, cảm xúc về cuốn sách hoặc đưa ra lời khuyên cho bạn: nên tìm đọc cuốn sách.\n- Hình thức, dung lượng, diễn đạt:\n+ Đảm bảo hình thức của một bức thư (có ngày, tháng, năm; lời chào mở đầu và chào kết).\n+ Dung lượng khoảng 12 câu.\n+ Không mắc lỗi về câu, từ, chính tả.\n- Sáng tạo: Có câu văn hay, thể hiện ý tưởng sáng tạo, cái nhìn riêng của người viết."
+    }
+  ]
+}

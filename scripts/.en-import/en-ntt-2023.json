@@ -1,0 +1,409 @@
+{
+  "id": "en-ntt-2023",
+  "subject": "english",
+  "school": "ntt",
+  "kind": "official",
+  "year": "2023",
+  "title": "Tiếng Anh NTT 2023 (đề chính thức)",
+  "intro": "Đề chính thức tuyển sinh lớp 6 — môn Tiếng Anh.",
+  "minutes": 30,
+  "source": "Trích đề NTT 2023",
+  "passages": [
+    {
+      "ref": "david-jane",
+      "title": "Message from David to Jane",
+      "kind": "message",
+      "body": "Hi Jane,\nThank you for telling us again that Lee is moving to a new school next week. Art class is his favourite class, and I thought we could make a painting for him as a present. I do not have any paint at home, so I am going to the art store tomorrow. After that, we can work on the painting together. Lee's last day at our school is Friday, so we have to finish it before then. Let me know what you think.\nDavid"
+    },
+    {
+      "ref": "cycling-london",
+      "title": "Cycling in London",
+      "kind": "article",
+      "body": "If you enjoy cycling for pleasure, doing it in London can be a shock. There are not many lanes especially for bikes, and making your way through the traffic can be very dangerous.\nBut if you have a great passion, cycling in London can be exciting, and it is an expensive way of keeping fit if you live there. Some cyclists don't mind spending a lot of money on expensive bikes. However, if you just want a basic bike, there are many cheap choices at bicycle markets. In most cases, cheap bikes still look good and are in good conditions. You should buy a cycling helmet if you want to cycle in London. Wearing a cycling helmet is not a must in Britain, but it is a good idea to wear one for protection."
+    },
+    {
+      "ref": "jenny",
+      "title": "Jenny and the elephant",
+      "kind": "article",
+      "body": "Jenny likes elephants very much. On Saturday and Sunday mornings, she often helps her uncle at the zoo. One Saturday, a small baby elephant called Tobi had a very bad cough. Jenny's uncle tried to give Tobi some medicine, but he couldn't. Jenny's uncle decided to take Tobi to the zoo hospital. That week, Jenny had a holiday from school, so she helped her uncle with Tobi every day.\nAfter six days, the baby elephant was much better, so Jenny's uncle took Tobi home to his mother. Jenny was sad when she had to say goodbye to Tobi. Jenny's uncle understood the problem. \"When Tobi was ill in the hospital, he liked you because you helped him. He doesn't need you now because he's with his mother. But he's happy, isn't he?\" \"You're right,\" said Jenny, \"so I'll be happy, too.\""
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Oxford is one of ________ oldest universities in Europe.",
+      "options": [
+        {"id": "A", "text": "a"},
+        {"id": "B", "text": "the"},
+        {"id": "C", "text": "an"},
+        {"id": "D", "text": "x"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 2,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Jane _______ up early on her trip to Hue last week.",
+      "options": [
+        {"id": "A", "text": "is waking"},
+        {"id": "B", "text": "wakes"},
+        {"id": "C", "text": "woke"},
+        {"id": "D", "text": "will wake"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 3,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Louise wrote the things she needed to buy for the meal on a _____ of paper.",
+      "options": [
+        {"id": "A", "text": "piece"},
+        {"id": "B", "text": "slice"},
+        {"id": "C", "text": "part"},
+        {"id": "D", "text": "loaf"}
+      ],
+      "correct": "A",
+      "tags": ["collocation"]
+    },
+    {
+      "num": 4,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "\"______ chocolate do you eat every day?\" - \"Two bars.\"",
+      "options": [
+        {"id": "A", "text": "How many"},
+        {"id": "B", "text": "How often"},
+        {"id": "C", "text": "How big"},
+        {"id": "D", "text": "How much"}
+      ],
+      "correct": "D",
+      "tags": []
+    },
+    {
+      "num": 5,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "She took an aspirin ______ she wanted her headache to go away.",
+      "options": [
+        {"id": "A", "text": "and"},
+        {"id": "B", "text": "but"},
+        {"id": "C", "text": "so"},
+        {"id": "D", "text": "because"}
+      ],
+      "correct": "D",
+      "tags": []
+    },
+    {
+      "num": 6,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Tom is very good at English. He always helps ______ do English exercises.",
+      "options": [
+        {"id": "A", "text": "we"},
+        {"id": "B", "text": "our"},
+        {"id": "C", "text": "us"},
+        {"id": "D", "text": "ours"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 7,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "The old sofa is ______ the new one.",
+      "options": [
+        {"id": "A", "text": "comfortable than"},
+        {"id": "B", "text": "more comfortable than"},
+        {"id": "C", "text": "more comfortable"},
+        {"id": "D", "text": "comfortable"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 8,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "You wear these over your ears. You connect them to a device, so you can listen to music. What are they?",
+      "options": [
+        {"id": "A", "text": "glasses"},
+        {"id": "B", "text": "headphones"},
+        {"id": "C", "text": "masks"},
+        {"id": "D", "text": "microphones"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 9,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "After my grandmother gets up in the morning, she often _______ her bed.",
+      "options": [
+        {"id": "A", "text": "makes"},
+        {"id": "B", "text": "does"},
+        {"id": "C", "text": "takes"},
+        {"id": "D", "text": "has"}
+      ],
+      "correct": "A",
+      "tags": ["collocation"]
+    },
+    {
+      "num": 10,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "The elevators are out of _______,so you have to walk downstairs.",
+      "options": [
+        {"id": "A", "text": "work"},
+        {"id": "B", "text": "date"},
+        {"id": "C", "text": "order"},
+        {"id": "D", "text": "practice"}
+      ],
+      "correct": "C",
+      "tags": ["idiom"]
+    },
+    {
+      "num": 11,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "This summer holiday, Lan would like _______ to the beach with her family.",
+      "options": [
+        {"id": "A", "text": "goes"},
+        {"id": "B", "text": "go"},
+        {"id": "C", "text": "to go"},
+        {"id": "D", "text": "going"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 12,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "We had a really exciting treasure ________ game in our last camping trip.",
+      "options": [
+        {"id": "A", "text": "hunt"},
+        {"id": "B", "text": "search"},
+        {"id": "C", "text": "find"},
+        {"id": "D", "text": "look"}
+      ],
+      "correct": "A",
+      "tags": ["collocation"]
+    },
+    {
+      "num": 13,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Amex should not touch the beehive because the bees will ______ him.",
+      "options": [
+        {"id": "A", "text": "bite"},
+        {"id": "B", "text": "sting"},
+        {"id": "C", "text": "kick"},
+        {"id": "D", "text": "hit"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 14,
+      "topic": "en-comm",
+      "skill": "comm",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Hanh: Can you give me my book?\nLan: ______________________.",
+      "options": [
+        {"id": "A", "text": "That's a great idea!"},
+        {"id": "B", "text": "No, thanks."},
+        {"id": "C", "text": "Sure. Here you are."},
+        {"id": "D", "text": "Yes, you can"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 15,
+      "topic": "en-comm",
+      "skill": "comm",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Peter: Whose eraser is this?\nAmy: ______________________.",
+      "options": [
+        {"id": "A", "text": "Yes, this is an eraser."},
+        {"id": "B", "text": "I think it's David's."},
+        {"id": "C", "text": "It's in my pencil case."},
+        {"id": "D", "text": "No, it isn't mine."}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 18,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Why does David write to Jane?",
+      "options": [
+        {"id": "A", "text": "To tell her that Lee is moving"},
+        {"id": "B", "text": "To thank her for a painting"},
+        {"id": "C", "text": "To ask her to help with a painting"},
+        {"id": "D", "text": "To ask her to go to the art store with him"}
+      ],
+      "correct": "C",
+      "passageRef": "david-jane",
+      "tags": []
+    },
+    {
+      "num": 19,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "What is the text about?",
+      "options": [
+        {"id": "A", "text": "bicycle markets"},
+        {"id": "B", "text": "cycling helmets"},
+        {"id": "C", "text": "cycling in London"},
+        {"id": "D", "text": "cheap bicycles"}
+      ],
+      "correct": "C",
+      "passageRef": "cycling-london",
+      "tags": []
+    },
+    {
+      "num": 20,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "B1",
+      "type": "mcq",
+      "stem": "Which statement is NOT true according to the text?",
+      "options": [
+        {"id": "A", "text": "There are not many lanes for bikes in London."},
+        {"id": "B", "text": "You can find cheap bikes in London."},
+        {"id": "C", "text": "For some cyclists, buying expensive bikes is not a problem."},
+        {"id": "D", "text": "People have to wear a helmet when cycling in Britain."}
+      ],
+      "correct": "D",
+      "passageRef": "cycling-london",
+      "tags": ["inference"]
+    },
+    {
+      "num": 21,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "B1",
+      "type": "mcq",
+      "stem": "What does the word \"it\" in line 3 refer to?",
+      "options": [
+        {"id": "A", "text": "passion"},
+        {"id": "B", "text": "excitement"},
+        {"id": "C", "text": "doing exercise"},
+        {"id": "D", "text": "cycling"}
+      ],
+      "correct": "D",
+      "passageRef": "cycling-london",
+      "tags": ["inference"]
+    },
+    {
+      "num": 22,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Fill blank (22) with ONE word from the text: The baby elephant Tobi needed some medicine because of a (22) _______.",
+      "accept": ["cough"],
+      "correct": "cough",
+      "passageRef": "jenny",
+      "tags": []
+    },
+    {
+      "num": 23,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Fill blank (23) with ONE word from the text: Tobi returned (23) ______ after about one week in hospital.",
+      "accept": ["home"],
+      "correct": "home",
+      "passageRef": "jenny",
+      "tags": []
+    },
+    {
+      "num": 24,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Fill blank (24) with ONE word from the text: Jenny felt (24) _____ when Tobi left, but she became happy again after talking to her uncle.",
+      "accept": ["sad"],
+      "correct": "sad",
+      "passageRef": "jenny",
+      "tags": []
+    },
+    {
+      "num": 25,
+      "topic": "en-error",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "The following sentence has ONE word that is not correct. The correct word has the same pronunciation as the wrong one. Write the correct word in the box.\nThey saw a big white hair jumping in the forest.",
+      "accept": ["hare"],
+      "correct": "hare",
+      "tags": []
+    },
+    {
+      "num": 26,
+      "topic": "en-fwrite",
+      "skill": "writing",
+      "grade": "B1",
+      "type": "essay",
+      "stem": "In about 30-50 words, write about something good you want to do and why you want to do it.",
+      "correct": null,
+      "points": 4,
+      "tags": []
+    }
+  ],
+  "skipped": [
+    {
+      "num": 16,
+      "reason": "Advertisement image not present in extracted text; answer key gives D by inference only"
+    },
+    {
+      "num": 17,
+      "reason": "Advertisement image not present in extracted text; answer key gives C by inference only"
+    }
+  ]
+}

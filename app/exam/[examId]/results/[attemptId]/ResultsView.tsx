@@ -13,6 +13,7 @@ import { getExamSectionHeader } from "@/lib/exam";
 import type { ExamQuestion } from "@/lib/exam";
 import { gradeAnswer } from "@/lib/grading";
 import { regradeEssays } from "../../actions";
+import { WRITING_CRITERIA_LABELS, VN_WRITING_CRITERIA_LABELS } from "@/lib/llm/providers";
 
 export interface EssayGradeView {
   earned: number;
@@ -25,6 +26,10 @@ export interface EssayGradeView {
   provider: string;
   model: string;
   status: "graded" | "error";
+  /** "math" | "writing" (english) | "vietnamese" */
+  kind?: string;
+  /** JSON string of per-criterion scores, e.g. { task: 0.8, ... } */
+  criteria?: string;
 }
 
 interface Props {
@@ -151,6 +156,18 @@ export function ResultsView({
                 },
                 "Bài làm",
               ]
+            : examMeta.id.startsWith("vn")
+            ? [
+                { label: "Tiếng Việt", href: "/vietnamese" },
+                { label: "Đề thi mẫu", href: "/vietnamese/library" },
+                "Kết quả",
+              ]
+            : examMeta.id.startsWith("en")
+            ? [
+                { label: "Tiếng Anh", href: "/english" },
+                { label: "Đề thi mẫu", href: "/english/library" },
+                "Kết quả",
+              ]
             : [
                 { label: "Trang chính", href: "/home" },
                 { label: "Đề thi mẫu", href: "/library" },
@@ -167,7 +184,7 @@ export function ResultsView({
               <button className="btn" onClick={() => router.push(`/exam/${examMeta.id}`)}>
                 <Icon name="refresh" /> Làm lại đề này
               </button>
-              <Link href="/library" className="btn">
+              <Link href={examMeta.id.startsWith("vn") ? "/vietnamese/library" : examMeta.id.startsWith("en") ? "/english/library" : "/library"} className="btn">
                 <Icon name="library" /> Chọn đề khác
               </Link>
             </Fragment>
@@ -437,20 +454,60 @@ export function ResultsView({
                           </div>
                         ) : (
                           <>
-                            <div className="row" style={{ gap: 6, flexWrap: "wrap", marginBottom: 6 }}>
-                              <Pill tone={g.essay.answerCorrect ? "green" : "red"}>
-                                {g.essay.answerCorrect ? "Đáp số đúng" : "Đáp số sai"}
-                              </Pill>
-                              <Pill tone={g.essay.methodScore >= 0.7 ? "green" : g.essay.methodScore >= 0.4 ? "amber" : "red"}>
-                                Cách làm {Math.round(g.essay.methodScore * 100)}%
-                              </Pill>
-                              {g.essay.guessed && <Pill tone="amber">Nghi đoán mò ra đáp số</Pill>}
-                            </div>
-                            {g.essay.feedback && (
-                              <div style={{ lineHeight: 1.6 }} className="solution-text">
-                                {g.essay.feedback}
-                              </div>
-                            )}
+                            {(() => {
+                              const isWritingKind = g.essay.kind === "writing" || g.essay.kind === "vietnamese";
+                              if (isWritingKind) {
+                                // Per-criterion scores for writing/vietnamese essays
+                                let criteriaObj: Record<string, number> = {};
+                                try { criteriaObj = JSON.parse(g.essay.criteria ?? "{}"); } catch {}
+                                const labels: Record<string, string> =
+                                  g.essay.kind === "vietnamese"
+                                    ? (VN_WRITING_CRITERIA_LABELS as Record<string, string>)
+                                    : (WRITING_CRITERIA_LABELS as Record<string, string>);
+                                const criteriaEntries = Object.entries(criteriaObj);
+                                return (
+                                  <>
+                                    {criteriaEntries.length > 0 && (
+                                      <div className="row" style={{ gap: 6, flexWrap: "wrap", marginBottom: 6 }}>
+                                        {criteriaEntries.map(([key, score]) => {
+                                          const pct = Math.round((score as number) * 100);
+                                          const tone = pct >= 70 ? "green" : pct >= 40 ? "amber" : "red";
+                                          return (
+                                            <Pill key={key} tone={tone}>
+                                              {labels[key] ?? key}: {pct}%
+                                            </Pill>
+                                          );
+                                        })}
+                                      </div>
+                                    )}
+                                    {g.essay.feedback && (
+                                      <div style={{ lineHeight: 1.6 }} className="solution-text">
+                                        {g.essay.feedback}
+                                      </div>
+                                    )}
+                                  </>
+                                );
+                              }
+                              // Default math essay rendering
+                              return (
+                                <>
+                                  <div className="row" style={{ gap: 6, flexWrap: "wrap", marginBottom: 6 }}>
+                                    <Pill tone={g.essay.answerCorrect ? "green" : "red"}>
+                                      {g.essay.answerCorrect ? "Đáp số đúng" : "Đáp số sai"}
+                                    </Pill>
+                                    <Pill tone={g.essay.methodScore >= 0.7 ? "green" : g.essay.methodScore >= 0.4 ? "amber" : "red"}>
+                                      Cách làm {Math.round(g.essay.methodScore * 100)}%
+                                    </Pill>
+                                    {g.essay.guessed && <Pill tone="amber">Nghi đoán mò ra đáp số</Pill>}
+                                  </div>
+                                  {g.essay.feedback && (
+                                    <div style={{ lineHeight: 1.6 }} className="solution-text">
+                                      {g.essay.feedback}
+                                    </div>
+                                  )}
+                                </>
+                              );
+                            })()}
                           </>
                         )}
                         {g.q.correct && (

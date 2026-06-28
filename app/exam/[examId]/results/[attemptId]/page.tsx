@@ -88,6 +88,8 @@ export default async function ResultsPage({ params }: Props) {
         provider: g.provider,
         model: g.model,
         status: g.status as "graded" | "error",
+        kind: g.kind,
+        criteria: g.criteria,
       },
     ]),
   );

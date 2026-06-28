@@ -143,7 +143,6 @@ export function Sidebar({ user, examLibraryBadge, assignedCount }: SidebarProps)
         ]
       : []),
     { href: "/results", icon: "trend", label: "Kết quả gần đây" },
-    { href: "/guide", icon: "book", label: "Hướng dẫn sử dụng" },
   ];
 
   return (
@@ -211,9 +210,44 @@ interface NavBodyProps {
   collapsed: boolean;
 }
 
+// English-subject nav — mirrors the math "Học tập" menu so the two subjects look
+// and behave the same.
+const ENGLISH_ITEMS: NavItem[] = [
+  { href: "/english", icon: "home", label: "Trang chính", match: ["/english"] },
+  { href: "/english/library", icon: "library", label: "Đề thi mẫu", match: ["/english/library"] },
+  { href: "/english/topics", icon: "grid", label: "Luyện chuyên đề", match: ["/english/topics"] },
+  { href: "/results", icon: "trend", label: "Kết quả gần đây" },
+];
+
+// Vietnamese-subject nav — mirrors the english nav with /vietnamese prefix.
+const VIETNAMESE_ITEMS: NavItem[] = [
+  { href: "/vietnamese", icon: "home", label: "Trang chính", match: ["/vietnamese"] },
+  { href: "/vietnamese/library", icon: "library", label: "Đề thi mẫu", match: ["/vietnamese/library"] },
+  { href: "/vietnamese/topics", icon: "grid", label: "Luyện chuyên đề", match: ["/vietnamese/topics"] },
+  { href: "/results", icon: "trend", label: "Kết quả gần đây" },
+];
+
+// "Hệ thống" nav — shared across subjects (Toán / Tiếng Anh). Guide lives here;
+// Cài đặt is rendered separately because it opens a modal, not a route.
+const SYSTEM_ITEMS: NavItem[] = [
+  { href: "/guide", icon: "book", label: "Hướng dẫn sử dụng" },
+];
+
 function NavBody({ learnItems, adminGroups, user, isAdmin, pathname, currentTab, collapsed }: NavBodyProps) {
   const isAdminContext =
     pathname.startsWith("/admin") || pathname.startsWith("/create");
+  // English subject = the english hub, or an english exam/practice set (examIds
+  // are prefixed "en-" or "enset-"; no math exam id starts with "en").
+  const isEnglishContext =
+    pathname === "/english" ||
+    pathname.startsWith("/english/") ||
+    pathname.startsWith("/exam/en");
+  // Vietnamese subject = the vietnamese hub, or a vietnamese exam/practice set
+  // (examIds are prefixed "vn-" or "vnset-").
+  const isVietnameseContext =
+    pathname === "/vietnamese" ||
+    pathname.startsWith("/vietnamese/") ||
+    pathname.startsWith("/exam/vn");
 
   const isActive = (it: NavItem) => {
     if (it.adminTab) {
@@ -224,7 +258,15 @@ function NavBody({ learnItems, adminGroups, user, isAdmin, pathname, currentTab,
     }
     if (isAdminContext) return false;
     const candidates = it.match ?? [it.href];
-    return candidates.some((p) => pathname === p || pathname.startsWith(p + "/"));
+    // "/english" and "/vietnamese" are hubs with subpaths — they must match
+    // exactly so they don't stay active on their children.
+    return candidates.some((p) =>
+      p === "/english"
+        ? pathname === "/english"
+        : p === "/vietnamese"
+          ? pathname === "/vietnamese"
+          : pathname === p || pathname.startsWith(p + "/"),
+    );
   };
 
   const settingsBlock = (
@@ -251,24 +293,40 @@ function NavBody({ learnItems, adminGroups, user, isAdmin, pathname, currentTab,
   return (
     <>
       {!isAdminContext && (
-        <div className="nav-section">
-          <h6>Học tập</h6>
-          {learnItems.map((it) => (
-            <Link
-              key={it.href}
-              href={it.href}
-              className={"nav-item " + (isActive(it) ? "active" : "")}
-              title={collapsed ? it.label : undefined}
-            >
-              <Icon name={it.icon} />
-              <span>{it.label}</span>
-              {it.badge !== undefined && it.badge !== null && (
-                <span className="badge">{it.badge}</span>
-              )}
-            </Link>
-          ))}
-          {settingsBlock}
-        </div>
+        <>
+          <div className="nav-section">
+            <h6>{isEnglishContext ? "Tiếng Anh" : isVietnameseContext ? "Tiếng Việt" : "Học tập"}</h6>
+            {(isEnglishContext ? ENGLISH_ITEMS : isVietnameseContext ? VIETNAMESE_ITEMS : learnItems).map((it) => (
+              <Link
+                key={it.href}
+                href={it.href}
+                className={"nav-item " + (isActive(it) ? "active" : "")}
+                title={collapsed ? it.label : undefined}
+              >
+                <Icon name={it.icon} />
+                <span>{it.label}</span>
+                {it.badge !== undefined && it.badge !== null && (
+                  <span className="badge">{it.badge}</span>
+                )}
+              </Link>
+            ))}
+          </div>
+          <div className="nav-section">
+            <h6>Hệ thống</h6>
+            {SYSTEM_ITEMS.map((it) => (
+              <Link
+                key={it.href}
+                href={it.href}
+                className={"nav-item " + (isActive(it) ? "active" : "")}
+                title={collapsed ? it.label : undefined}
+              >
+                <Icon name={it.icon} />
+                <span>{it.label}</span>
+              </Link>
+            ))}
+            {settingsBlock}
+          </div>
+        </>
       )}
 
       {isAdminContext &&

@@ -1,0 +1,390 @@
+{
+  "id": "en-ntt-2024-123",
+  "subject": "english",
+  "school": "ntt",
+  "kind": "official",
+  "year": "2024",
+  "title": "Tiếng Anh NTT 2024 — mã đề 123 (đề chính thức)",
+  "intro": "Đề chính thức tuyển sinh lớp 6 — môn Tiếng Anh (mã đề 123).",
+  "minutes": 30,
+  "source": "Trích đề NTT 2024 (mã 123)",
+  "passages": [
+    {
+      "ref": "p1",
+      "title": "Stonehenge",
+      "kind": "article",
+      "body": "Stonehenge is one of the world's most famous monuments. It is a circle of huge stones in the south of England. People started making it 5,000 years ago, but they took over 1,000 years to build it. If you visit Stonehenge today, you will see many stones still standing, but it is a mystery how people brought them there. The stones are very heavy: the smaller stones are about 3,600 kilograms each, and the bigger ones are about 22,000 kilograms! Archaeologists believe that people carried some stones 32 kilometres, but it is possible that the bigger ones came from 225 kilometres away in Wales. They think that people carried the stones to a river and put them on simple boats. They then took them to the stone circle."
+    },
+    {
+      "ref": "p2",
+      "title": "Ben and Lily's Rainy Day Adventure",
+      "kind": "article",
+      "body": "It was a rainy day, and Ben felt very bored. He was ten years old and loved playing outside, but today he had to stay inside. His little sister, Lily, who was seven, felt bored too.\n\nTheir mother gave them a large box of old clothes and hats. \"Why don't you play dress-up?\" she suggested. Ben and Lily thought it was a great idea. They put on funny hats, silly glasses, and old coats. Ben pretended to be a pirate, and Lily acted like a princess.\nThey created an adventure in the living room. The sofa became a pirate ship, and the coffee table turned into a treasure island. They laughed and played for hours, inventing stories and finding hidden treasures.\n\nWhen their mother returned, she smiled and said, \"It looks like you had a lot of fun!\" Ben and Lily agreed. The rainy day turned into a wonderful adventure indoors."
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "My new lunchbox is ________ than the old one.",
+      "options": [
+        {"id": "A", "text": "convenient"},
+        {"id": "B", "text": "most convenient"},
+        {"id": "C", "text": "more convenient"},
+        {"id": "D", "text": "as convenient"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 2,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Mark lives ________ the third floor of an apartment building near his school.",
+      "options": [
+        {"id": "A", "text": "in"},
+        {"id": "B", "text": "on"},
+        {"id": "C", "text": "at"},
+        {"id": "D", "text": "above"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 3,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "The film was so ________ that I fell asleep in the middle.",
+      "options": [
+        {"id": "A", "text": "bored"},
+        {"id": "B", "text": "boring"},
+        {"id": "C", "text": "bore"},
+        {"id": "D", "text": "boredom"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 4,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Patrick got home late yesterday, and ________ his favorite TV programme.",
+      "options": [
+        {"id": "A", "text": "will miss"},
+        {"id": "B", "text": "misses"},
+        {"id": "C", "text": "is missing"},
+        {"id": "D", "text": "missed"}
+      ],
+      "correct": "D",
+      "tags": []
+    },
+    {
+      "num": 5,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "My aunt works as ________ nurse, looking after patients in the hospital.",
+      "options": [
+        {"id": "A", "text": "a"},
+        {"id": "B", "text": "an"},
+        {"id": "C", "text": "the"},
+        {"id": "D", "text": "No article"}
+      ],
+      "correct": "A",
+      "tags": []
+    },
+    {
+      "num": 6,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "My parents don't allow me ________ out late at night.",
+      "options": [
+        {"id": "A", "text": "to stay"},
+        {"id": "B", "text": "stay"},
+        {"id": "C", "text": "staying"},
+        {"id": "D", "text": "stayed"}
+      ],
+      "correct": "A",
+      "tags": []
+    },
+    {
+      "num": 7,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "From the top of the mountain, you have a great ________ of the city below.",
+      "options": [
+        {"id": "A", "text": "look"},
+        {"id": "B", "text": "scenery"},
+        {"id": "C", "text": "view"},
+        {"id": "D", "text": "sight"}
+      ],
+      "correct": "C",
+      "tags": ["collocation"]
+    },
+    {
+      "num": 8,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "We are very busy these days. We have ________ free time.",
+      "options": [
+        {"id": "A", "text": "any"},
+        {"id": "B", "text": "little"},
+        {"id": "C", "text": "few"},
+        {"id": "D", "text": "much"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 9,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "We need to ________ the shopping for groceries this Saturday.",
+      "options": [
+        {"id": "A", "text": "have"},
+        {"id": "B", "text": "make"},
+        {"id": "C", "text": "go"},
+        {"id": "D", "text": "do"}
+      ],
+      "correct": "D",
+      "tags": ["collocation"]
+    },
+    {
+      "num": 10,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "This person helps people who have problems with their cars or motorbikes. He often gets very dirty in his job. Who is he?",
+      "options": [
+        {"id": "A", "text": "A journalist"},
+        {"id": "B", "text": "A mechanic"},
+        {"id": "C", "text": "An architect"},
+        {"id": "D", "text": "A driver"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 11,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "David has a great of ________ humour. He always makes us laugh.",
+      "options": [
+        {"id": "A", "text": "taste"},
+        {"id": "B", "text": "mind"},
+        {"id": "C", "text": "sense"},
+        {"id": "D", "text": "thought"}
+      ],
+      "correct": "C",
+      "tags": ["collocation"]
+    },
+    {
+      "num": 12,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Many people like living in the city ______ it is crowded and noisy.",
+      "options": [
+        {"id": "A", "text": "although"},
+        {"id": "B", "text": "but"},
+        {"id": "C", "text": "and"},
+        {"id": "D", "text": "because"}
+      ],
+      "correct": "A",
+      "tags": []
+    },
+    {
+      "num": 13,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Children have to _______ respect to their parents and teachers.",
+      "options": [
+        {"id": "A", "text": "get"},
+        {"id": "B", "text": "take"},
+        {"id": "C", "text": "feel"},
+        {"id": "D", "text": "show"}
+      ],
+      "correct": "D",
+      "tags": ["collocation"]
+    },
+    {
+      "num": 14,
+      "topic": "en-comm",
+      "skill": "comm",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Peter: Let's go to the library this afternoon.\nAmy: __________________",
+      "options": [
+        {"id": "A", "text": "You're right."},
+        {"id": "B", "text": "Thank you very much."},
+        {"id": "C", "text": "You're welcome."},
+        {"id": "D", "text": "That's a good idea."}
+      ],
+      "correct": "D",
+      "tags": []
+    },
+    {
+      "num": 15,
+      "topic": "en-comm",
+      "skill": "comm",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Hung: __________________\nLucy: Never mind.",
+      "options": [
+        {"id": "A", "text": "Do you want to open the window?"},
+        {"id": "B", "text": "Congratulations on passing your exam!"},
+        {"id": "C", "text": "I'm sorry I broke your pen."},
+        {"id": "D", "text": "Can you give me a hand?"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 19,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Which statement is TRUE according to the text?",
+      "options": [
+        {"id": "A", "text": "Stonehenge is in the north of England."},
+        {"id": "B", "text": "People finished building Stonehenge 5,000 years ago."},
+        {"id": "C", "text": "Bigger stones weigh about 3,600 kilograms each."},
+        {"id": "D", "text": "Archeologists think people carried the stones by boat."}
+      ],
+      "correct": "D",
+      "passageRef": "p1",
+      "tags": []
+    },
+    {
+      "num": 20,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "B1",
+      "type": "mcq",
+      "stem": "What does the word \"them\" in line 4 refer to?",
+      "options": [
+        {"id": "A", "text": "monuments"},
+        {"id": "B", "text": "stones"},
+        {"id": "C", "text": "people"},
+        {"id": "D", "text": "archaeologists"}
+      ],
+      "correct": "B",
+      "passageRef": "p1",
+      "tags": ["inference"]
+    },
+    {
+      "num": 21,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "B1",
+      "type": "mcq",
+      "stem": "What is the text mainly about?",
+      "options": [
+        {"id": "A", "text": "Famous monuments in the world"},
+        {"id": "B", "text": "A famous monument in England"},
+        {"id": "C", "text": "The history of England"},
+        {"id": "D", "text": "Archaeologists and their work"}
+      ],
+      "correct": "B",
+      "passageRef": "p1",
+      "tags": ["inference"]
+    },
+    {
+      "num": 22,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Fill blank (22) with ONE word from the text:\nOn a rainy day, Ben and his sister felt bored because they couldn't play (22) _________.",
+      "accept": ["outside"],
+      "correct": "outside",
+      "passageRef": "p2",
+      "tags": []
+    },
+    {
+      "num": 23,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Fill blank (23) with ONE word from the text:\nThe children loved their mothers (23) _________ of playing dress-up.",
+      "accept": ["idea", "suggestion"],
+      "correct": "idea",
+      "passageRef": "p2",
+      "tags": []
+    },
+    {
+      "num": 24,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Fill blank (24) with ONE word from the text:\nIn their indoor adventure, they pretended the (24) _________ was a pirate ship.",
+      "accept": ["sofa"],
+      "correct": "sofa",
+      "passageRef": "p2",
+      "tags": []
+    },
+    {
+      "num": 25,
+      "topic": "en-error",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "The following sentence has ONE word that is not correct. The correct word has the same pronunciation as the wrong one. Circle the wrong word and write the correct word in the box.\n\nThe old woman blue out the candle and went to bed.",
+      "accept": ["blew"],
+      "correct": "blew",
+      "tags": []
+    },
+    {
+      "num": 26,
+      "topic": "en-fwrite",
+      "skill": "writing",
+      "grade": "B1",
+      "type": "essay",
+      "stem": "Write a paragraph of 50-70 words to answer the following questions:\nWhat should we do to stay healthy?",
+      "correct": null,
+      "points": 4,
+      "tags": []
+    }
+  ],
+  "skipped": [
+    {
+      "num": 16,
+      "reason": "Notice (football lessons) is an image not present in the extracted text; answer key marks answer C as inferred (suy luận)"
+    },
+    {
+      "num": 17,
+      "reason": "Notice (pizza promotion) is an image not present in the extracted text; answer key marks answer B as inferred (suy luận)"
+    },
+    {
+      "num": 18,
+      "reason": "Note/message about a concert is an image not present in the extracted text; answer key marks answer A as inferred (suy luận)"
+    }
+  ]
+}

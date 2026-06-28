@@ -1,0 +1,120 @@
+{
+  "id": "vn-cg-2021",
+  "subject": "vietnamese",
+  "school": "cg",
+  "year": "2021",
+  "minutes": 60,
+  "title": "Tiếng Việt vào 6 — THCS Cầu Giấy 2021",
+  "intro": "Đề được xây dựng theo trí nhớ học sinh + bổ sung câu trắc nghiệm tương tự (nguồn: Trung tâm Văn Solaredu).",
+  "passages": [],
+  "questions": [
+    {
+      "num": 1,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Dòng nào dưới đây chỉ gồm các từ nhiều nghĩa?",
+      "options": [
+        { "id": "A", "text": "đồng ý, trống đồng, cánh đồng, nhi đồng" },
+        { "id": "B", "text": "đường dây, đường giao thông, dẫn đường, đường truyền" },
+        { "id": "C", "text": "nhỏ nhắn, nho nhỏ, bé nhỏ, nhỏ xinh" },
+        { "id": "D", "text": "mạnh mẽ, yếu ớt, may mắn, xui xẻo" }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 2,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Có bao nhiêu tính từ trong hai câu sau?\n“Việt Nam đất nước ta ơi!\nMênh mông biển lúa đâu trời đẹp hơn.”",
+      "options": [
+        { "id": "A", "text": "1 tính từ" },
+        { "id": "B", "text": "2 tính từ" },
+        { "id": "C", "text": "3 tính từ" },
+        { "id": "D", "text": "4 tính từ" }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 3,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Câu văn nào dưới đây không có quan hệ từ?",
+      "options": [
+        { "id": "A", "text": "Thảo quả trên rừng Đản Khao đã vào mùa." },
+        { "id": "B", "text": "Nắng trưa đã rọi xuống đỉnh đầu mà rừng sâu vẫn ẩm lạnh, ánh nắng lọt qua lá trong xanh." },
+        { "id": "C", "text": "Rừng sáng như có lửa hắt lên từ dưới đáy rừng." },
+        { "id": "D", "text": "Những con vượn bạc má ôm con gọn ghẽ chuyền như tia chớp." }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 4,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["vandung"],
+      "stem": "Chỉ ra bộ phận chủ ngữ trong câu: “Cả dòng sông, cả cánh rừng, cả những tàu dừa ngả xuống nước, cả những bông sen đang e ấp cũng đang nhuốm bạc, cũng vùng vẫy trong suối vàng vô tận, lấp lánh.”",
+      "options": [
+        { "id": "A", "text": "Cả dòng sông, cả cánh rừng, cả những tàu dừa ngả xuống nước, cả những bông sen đang e ấp" },
+        { "id": "B", "text": "Cả dòng sông, cả cánh rừng, cả những tàu dừa ngả xuống nước, cả những bông sen" },
+        { "id": "C", "text": "Cả dòng sông, cả cánh rừng, cả những tàu dừa ngả xuống nước, cả những bông sen đang e ấp cũng đang nhuốm bạc, cũng vùng vẫy trong suối vàng" },
+        { "id": "D", "text": "Cả dòng sông, cả cánh rừng, cả những tàu dừa ngả xuống nước, cả những bông sen đang e ấp cũng đang nhuốm bạc, cũng vùng vẫy" }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 5,
+      "type": "essay",
+      "topic": "vn-makesent",
+      "grade": "VD",
+      "points": 2,
+      "tags": [],
+      "stem": "Đặt câu theo yêu cầu sau:\na. Đặt 1 câu có từ với là quan hệ từ.\nb. Đặt 1 câu có từ với là động từ.\nc. Nêu các biện pháp nghệ thuật được sử dụng trong câu văn dưới đây:\nCây hoa ti gôn thích leo trèo, cứ thò những cái râu ra, theo gió mà ngọ nguậy như những cái vòi voi bé xíu.",
+      "correct": null,
+      "modelAnswer": "a. Đặt câu có từ \"với\":\n- (với là quan hệ từ) Trong khu vườn mùa xuân, hoa hướng dương với hồng nhung mới nổi bật làm sao!\n- (với là động từ) Những ngôi nhà cao vút như muốn với tới bầu trời.\nc. Câu văn sử dụng biện pháp nghệ thuật:\n+ So sánh: “cái râu” của cây hoa ti gôn được ví với “cái vòi voi bé xíu”.\n+ Nhân hóa: “cây hoa ti gôn” được nhân hóa qua các từ ngữ: “thích leo trèo”, “cứ thò”, “ngọ nguậy”."
+    },
+    {
+      "num": 6,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "VD",
+      "points": 2,
+      "tags": ["camthu"],
+      "stem": "Đọc đoạn thơ sau và thực hiện yêu cầu bên dưới:\n“Tôi yêu truyện cổ nước tôi\nVừa nhân hậu lại tuyệt vời sâu xa\nThương người rồi mới thương ta\nYêu nhau dù mấy cách xa cũng tìm”\n(Trích Truyện cổ nước mình - SGK Tiếng Việt 4, tập 1)\na. Tìm đại từ trong đoạn thơ trên.\nb. Ghi lại một số việc em đã làm thể hiện lòng nhân hậu – một phẩm chất tốt đẹp của con người Việt Nam.\nc. Tìm một thành ngữ hoặc tục ngữ nói về lòng nhân hậu.",
+      "correct": null,
+      "modelAnswer": "a. Đại từ: tôi, ta.\nb. Một số việc thể hiện lòng nhân hậu: Giúp đỡ người già, em nhỏ, người có hoàn cảnh khó khăn; Quyên góp sách vở, đồ dùng học tập, tặng phẩm về vật chất cho đồng bào bão lụt, vùng sâu xa, biên giới hải đảo; Tham gia vào các đội nhóm phát cháo, các suất ăn miễn phí…\nc. Thành ngữ/tục ngữ nói về lòng nhân hậu: Lá lành đùm lá rách; Thương người như thể thương thân."
+    },
+    {
+      "num": 7,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "VD",
+      "points": 2,
+      "tags": ["camthu"],
+      "stem": "Cho đoạn văn sau:\n“Gió tây lướt thướt bay qua rừng, quyến hương thảo quả đi, rải theo triền núi, đưa hương thảo quả ngọt lựng, thơm nồng vào những thôn xóm Chin San. Gió thơm. Cây cỏ thơm. Đất trời thơm. Người đi rừng thảo quả về, hương thơm đậm ủ ấp trong từng nếp áo, nếp khăn.”\n(Trích Mùa thảo quả - SGK Tiếng Việt 5, tập 1)\na. Từ “ngọt lựng” gợi tả mùi hương thảo quả thế nào?\nb. Viết đoạn văn cảm nhận vẻ đẹp của mùa thảo quả được thể hiện trong các câu văn trên.",
+      "correct": null,
+      "modelAnswer": "a. (Cảm thụ từ hay) “ngọt lựng” là một từ hay, độc đáo và giàu sức gợi. Nó gợi ra mùi hương thơm đậm đà, mang lại cảm giác dễ chịu của thảo quả đã chín. Từ cách sử dụng từ ngữ ta còn thấy được cả sự ngạc nhiên, thích thú của con người trước vẻ đẹp của mùa thảo quả.\nb. Đoạn mẫu: Đoạn văn trích từ bài “Mùa thảo quả”, tác giả đã miêu tả thật ấn tượng về vẻ đẹp của mùa thảo quả. Ấn tượng đầu tiên là mùi thơm của thảo quả bao trùm khắp không gian. Tác giả đã sử dụng phép điệp ngữ để nhấn mạnh thứ hương đậm đà, dễ chịu ấy đã theo gió thấm đẫm, ướp vào mọi vật. Hơn cả, từ “ngọt lựng” đã làm rõ đặc điểm của mùi thảo quả đặc biệt vào mùa chín. Từ đoạn văn, độc giả còn thấy được cả sự ngạc nhiên, thích thú của con người trước sự quyến rũ của thiên nhiên."
+    },
+    {
+      "num": 8,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 3,
+      "tags": [],
+      "stem": "Viết đoạn văn (khoảng 10 câu) miêu tả vẻ đẹp của mùa thu Hà Nội.",
+      "correct": null,
+      "modelAnswer": "Hình thức: Đoạn văn, dung lượng 10–12 câu.\nNội dung:\n- Mở đoạn: gọi tên đối tượng + nhận xét + cảm xúc (Cách trực tiếp), hoặc dẫn thơ ca (Cách gián tiếp).\n- Thân đoạn: 3 câu tả bao quát (không khí, màu sắc đặc trưng của mùa thu Hà Nội); khoảng 6 câu tả chi tiết kết hợp hoạt động, đi từ bầu trời xuống mặt đất (thiên nhiên: cây cối, con vật; con người).\n- Kết đoạn: dùng hành động hoặc tưởng tượng để thể hiện tình cảm với mùa thu và thành phố."
+    }
+  ]
+}

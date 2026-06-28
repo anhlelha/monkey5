@@ -26,22 +26,31 @@ const topicSchema = z.object({
   short: z.string().min(1),
   ico: z.string().min(1),
   color: z.string().min(1),
+  skill: z.string().nullable().optional(),
 });
 
 const saveSchema = z.object({
   topics: z.array(topicSchema),
+  // Which subject's topic list this payload represents. Defaults to math so the
+  // existing math editor keeps working unchanged.
+  subject: z.enum(["math", "english", "vietnamese"]).optional(),
 });
 
 export async function saveTopics(payload: unknown) {
   await requireAdmin();
   const parsed = saveSchema.parse(payload);
   const { topics } = parsed;
+  const subject = parsed.subject ?? "math";
 
+  // Scope the destructive replace to THIS subject only — otherwise saving the
+  // math list would wipe english topics (and vice-versa).
   await prisma.$transaction([
-    prisma.topic.deleteMany({}),
+    prisma.topic.deleteMany({ where: { subject } }),
     prisma.topic.createMany({
       data: topics.map((t, i) => ({
         id: t.id,
+        subject,
+        skill: t.skill ?? null,
         name: t.name,
         short: t.short,
         ico: t.ico,
@@ -54,6 +63,10 @@ export async function saveTopics(payload: unknown) {
   revalidatePath("/admin");
   revalidatePath("/home");
   revalidatePath("/topics");
+  revalidatePath("/english");
+  revalidatePath("/english/topics");
+  revalidatePath("/vietnamese");
+  revalidatePath("/vietnamese/topics");
   return { ok: true };
 }
 
@@ -241,25 +254,27 @@ export interface BankStats {
   byTopic: Record<string, number>;
 }
 
-export async function getBankStats(): Promise<BankStats> {
+export async function getBankStats(subject: "math" | "english" | "vietnamese" = "math"): Promise<BankStats> {
   await requireAdmin();
 
   const [official, mock, supplement, totalActive, totalInactive, byTopicRows] =
     await Promise.all([
       prisma.question.count({
-        where: { examId: { not: null }, exam: { kind: "official", generated: false } },
+        where: { subject, examId: { not: null }, exam: { kind: "official", generated: false } },
       }),
       prisma.question.count({
         where: {
+          subject,
           examId: { not: null },
           exam: { kind: { in: ["reference", "mixed"] }, generated: false },
         },
       }),
       prisma.question.count({
-        where: { examId: null },
+        where: { subject, examId: null },
       }),
       prisma.question.count({
         where: {
+          subject,
           OR: [
             { examId: null },
             { exam: { generated: false } },
@@ -269,6 +284,7 @@ export async function getBankStats(): Promise<BankStats> {
       }),
       prisma.question.count({
         where: {
+          subject,
           OR: [
             { examId: null },
             { exam: { generated: false } },
@@ -279,6 +295,7 @@ export async function getBankStats(): Promise<BankStats> {
       prisma.question.groupBy({
         by: ["topic"],
         where: {
+          subject,
           OR: [
             { examId: null },
             { exam: { generated: false } },
@@ -324,6 +341,7 @@ export interface BankFilters {
   grade?: string;
   q?: string;
   page?: number;
+  subject?: "math" | "english" | "vietnamese";
 }
 
 export async function getBankQuestions(filters: BankFilters): Promise<BankPage> {
@@ -358,16 +376,16 @@ export async function getBankQuestions(filters: BankFilters): Promise<BankPage> 
     };
   }
 
-  if (filters.topic || filters.grade || filters.q) {
-    where = {
-      AND: [
-        where,
-        filters.topic ? { topic: filters.topic } : {},
-        filters.grade ? { grade: filters.grade } : {},
-        filters.q ? { stem: { contains: filters.q } } : {},
-      ],
-    };
-  }
+  // Always scope by subject (default math) + optional topic/grade/q filters.
+  where = {
+    AND: [
+      where,
+      { subject: filters.subject ?? "math" },
+      filters.topic ? { topic: filters.topic } : {},
+      filters.grade ? { grade: filters.grade } : {},
+      filters.q ? { stem: { contains: filters.q } } : {},
+    ],
+  };
 
   const [total, questions] = await Promise.all([
     prisma.question.count({ where }),
@@ -646,9 +664,11 @@ export async function deactivateSchool(id: string) {
 
 // ─── Readiness admin ─────────────────────────────────────────────────────────
 
-export async function refreshSchoolProfilesAction() {
+export async function refreshSchoolProfilesAction(subjectRaw?: unknown) {
   await requireAdmin();
-  const result = await ensureSchoolProfilesFresh();
+  const subject: "math" | "english" | "vietnamese" =
+    subjectRaw === "english" || subjectRaw === "vietnamese" ? subjectRaw : "math";
+  const result = await ensureSchoolProfilesFresh(subject);
   revalidatePath("/admin");
   return result;
 }
@@ -705,10 +725,38 @@ export interface ReadinessHistogram {
   buckets: ReadinessHistogramBucket[];
 }
 
-export async function getReadinessDistribution(): Promise<ReadinessHistogram[]> {
+export async function getReadinessDistribution(
+  subjectRaw?: unknown,
+): Promise<ReadinessHistogram[]> {
   await requireAdmin();
-  const users = await prisma.user.findMany({ select: { readiness: true } });
-  const schools = await prisma.school.findMany({ where: { active: true }, orderBy: { position: "asc" } });
+  const subject: "math" | "english" | "vietnamese" =
+    subjectRaw === "english" || subjectRaw === "vietnamese" ? subjectRaw : "math";
+
+  // Only schools that actually have a difficulty profile for this subject.
+  const profiles = await getAllSchoolProfiles(subject);
+  const profileIds = new Set(Object.keys(profiles));
+  const schools = (
+    await prisma.school.findMany({ where: { active: true }, orderBy: { position: "asc" } })
+  ).filter((s) => profileIds.has(s.id));
+  if (schools.length === 0) return [];
+
+  const users = await prisma.user.findMany({ select: { id: true, readiness: true } });
+
+  // Per-user readiness map for this subject. Math uses the persisted map (fast);
+  // english/vietnamese are computed on the fly (not persisted, see lib/readiness).
+  const userMaps: Record<string, number>[] = [];
+  if (subject === "math") {
+    for (const u of users) {
+      let r: Record<string, number> = {};
+      try { r = JSON.parse(u.readiness) as Record<string, number>; } catch { /* ignore */ }
+      userMaps.push(r);
+    }
+  } else {
+    for (const u of users) {
+      const mastery = await computeMastery(u.id, subject);
+      userMaps.push(computeAllReadiness(mastery.topicMastery, mastery.levelMastery, profiles));
+    }
+  }
 
   const histograms: ReadinessHistogram[] = [];
   const bucketDefs = [
@@ -720,12 +768,7 @@ export async function getReadinessDistribution(): Promise<ReadinessHistogram[]> 
   ];
 
   for (const school of schools) {
-    const values: number[] = [];
-    for (const u of users) {
-      let r: Record<string, number> = {};
-      try { r = JSON.parse(u.readiness) as Record<string, number>; } catch { /* ignore */ }
-      values.push(r[school.id] ?? 50);
-    }
+    const values: number[] = userMaps.map((r) => r[school.id] ?? 50);
     const total = values.length;
     const avg = total > 0 ? values.reduce((s, v) => s + v, 0) / total : 0;
     const sorted = [...values].sort((a, b) => a - b);
@@ -740,6 +783,80 @@ export async function getReadinessDistribution(): Promise<ReadinessHistogram[]> 
     histograms.push({ school: school.id, total, avg: Math.round(avg), median, buckets });
   }
   return histograms;
+}
+
+// ─── Dashboard: school count + per-subject stats + AI token usage ─────────────
+
+export interface SubjectStat {
+  subject: string;
+  label: string;
+  exams: number;
+  questions: number;
+  attempts: number;
+}
+
+export interface AIUsageSummary {
+  gradings: number;
+  graded: number;
+  errored: number;
+  promptTokens: number;
+  completionTokens: number;
+  byModel: { model: string; count: number; tokens: number }[];
+}
+
+export interface AdminOverviewExtra {
+  schoolCount: number;
+  subjects: SubjectStat[];
+  ai: AIUsageSummary;
+}
+
+export async function getAdminOverviewExtra(): Promise<AdminOverviewExtra> {
+  await requireAdmin();
+  const SUBS: { key: string; label: string }[] = [
+    { key: "math", label: "Toán" },
+    { key: "english", label: "Tiếng Anh" },
+    { key: "vietnamese", label: "Tiếng Việt" },
+  ];
+
+  const [schoolCount, subjects, grades] = await Promise.all([
+    prisma.school.count({ where: { active: true } }),
+    Promise.all(
+      SUBS.map(async (s) => {
+        const [exams, questions, attempts] = await Promise.all([
+          prisma.exam.count({ where: { generated: false, subject: s.key } }),
+          prisma.question.count({
+            where: { subject: s.key, active: true, OR: [{ examId: null }, { exam: { generated: false } }] },
+          }),
+          prisma.attempt.count({ where: { submitted: true, exam: { subject: s.key } } }),
+        ]);
+        return { subject: s.key, label: s.label, exams, questions, attempts };
+      }),
+    ),
+    prisma.essayGrade.findMany({
+      select: { status: true, model: true, promptTokens: true, completionTokens: true },
+    }),
+  ]);
+
+  const graded = grades.filter((g) => g.status === "graded").length;
+  const promptTokens = grades.reduce((a, g) => a + g.promptTokens, 0);
+  const completionTokens = grades.reduce((a, g) => a + g.completionTokens, 0);
+  const byModelMap = new Map<string, { count: number; tokens: number }>();
+  for (const g of grades) {
+    const m = g.model || "—";
+    const e = byModelMap.get(m) ?? { count: 0, tokens: 0 };
+    e.count += 1;
+    e.tokens += g.promptTokens + g.completionTokens;
+    byModelMap.set(m, e);
+  }
+  const byModel = [...byModelMap.entries()]
+    .map(([model, v]) => ({ model, ...v }))
+    .sort((a, b) => b.count - a.count);
+
+  return {
+    schoolCount,
+    subjects,
+    ai: { gradings: grades.length, graded, errored: grades.length - graded, promptTokens, completionTokens, byModel },
+  };
 }
 
 // ─── QA: Get flagged questions (server-side audit) ───────────────────────────
@@ -965,6 +1082,28 @@ const llmSettingsSchema = z.object({
   answerWeight: z.number().int().min(0).max(100),
   guessCredit: z.number().int().min(0).max(100),
   maxTokens: z.number().int().min(256).max(8192),
+  // English Writing rubric (optional — only sent from the LLM panel).
+  writingPrompt: z.string().max(8000).optional(),
+  writingWeights: z
+    .object({
+      task: z.number().int().min(0).max(100),
+      lexical: z.number().int().min(0).max(100),
+      grammar: z.number().int().min(0).max(100),
+      cohesion: z.number().int().min(0).max(100),
+      length: z.number().int().min(0).max(100),
+    })
+    .optional(),
+  // Vietnamese văn rubric (optional — only sent from the LLM panel).
+  vnWritingPrompt: z.string().max(8000).optional(),
+  vnWritingWeights: z
+    .object({
+      noidung: z.number().int().min(0).max(100),
+      camthu: z.number().int().min(0).max(100),
+      dienden: z.number().int().min(0).max(100),
+      chinhta: z.number().int().min(0).max(100),
+      sangtao: z.number().int().min(0).max(100),
+    })
+    .optional(),
 });
 
 export async function saveLLMSettingsAction(payload: unknown) {
@@ -992,7 +1131,7 @@ export async function testLLMConnection(payload: unknown): Promise<{ ok: boolean
   }
   try {
     const { callLLM, extractJson } = await import("@/lib/llm/client");
-    const raw = await callLLM({
+    const { text: raw } = await callLLM({
       provider: settings.provider,
       model: settings.model,
       apiKey: settings.apiKey,

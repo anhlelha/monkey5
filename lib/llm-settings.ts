@@ -1,8 +1,44 @@
 // Persistence + resolution for the AI essay-grading config (LLMSetting singleton).
 
 import { prisma } from "@/lib/prisma";
-import { DEFAULT_GRADING_PROMPT, DEFAULT_MODEL, PROVIDER_META } from "@/lib/llm/providers";
+import {
+  DEFAULT_GRADING_PROMPT,
+  DEFAULT_MODEL,
+  DEFAULT_WRITING_PROMPT,
+  DEFAULT_WRITING_WEIGHTS,
+  VN_WRITING_PROMPT,
+  VN_WRITING_WEIGHTS,
+  PROVIDER_META,
+} from "@/lib/llm/providers";
 import { isLLMProvider, type LLMProvider, type ResolvedLLMSettings } from "@/lib/llm/types";
+
+function resolveWriting(row: { writingPrompt?: string | null; writingWeights?: string | null }): {
+  writingPrompt: string;
+  writingWeights: Record<string, number>;
+} {
+  let weights: Record<string, number> = { ...DEFAULT_WRITING_WEIGHTS };
+  try {
+    const parsed = row.writingWeights ? (JSON.parse(row.writingWeights) as Record<string, number>) : null;
+    if (parsed && Object.keys(parsed).length > 0) weights = parsed;
+  } catch {
+    /* keep defaults */
+  }
+  return { writingPrompt: row.writingPrompt ?? DEFAULT_WRITING_PROMPT, writingWeights: weights };
+}
+
+function resolveVnWriting(row: { vnWritingPrompt?: string | null; vnWritingWeights?: string | null }): {
+  vnWritingPrompt: string;
+  vnWritingWeights: Record<string, number>;
+} {
+  let weights: Record<string, number> = { ...VN_WRITING_WEIGHTS };
+  try {
+    const parsed = row.vnWritingWeights ? (JSON.parse(row.vnWritingWeights) as Record<string, number>) : null;
+    if (parsed && Object.keys(parsed).length > 0) weights = parsed;
+  } catch {
+    /* keep defaults */
+  }
+  return { vnWritingPrompt: row.vnWritingPrompt ?? VN_WRITING_PROMPT, vnWritingWeights: weights };
+}
 
 const SINGLETON_ID = "singleton";
 
@@ -12,6 +48,10 @@ export interface LLMSettingsRow {
   model: string;
   apiKey: string | null;
   gradingPrompt: string | null;
+  writingPrompt: string | null;
+  writingWeights: string | null;
+  vnWritingPrompt: string | null;
+  vnWritingWeights: string | null;
   methodWeight: number;
   answerWeight: number;
   guessCredit: number;
@@ -28,6 +68,12 @@ export interface PublicLLMSettings {
   answerWeight: number;
   guessCredit: number;
   maxTokens: number;
+  /** English Writing rubric + 5-criteria weights (percent). */
+  writingPrompt: string;
+  writingWeights: Record<string, number>;
+  /** Vietnamese văn rubric + 5-criteria weights (percent). */
+  vnWritingPrompt: string;
+  vnWritingWeights: Record<string, number>;
   /** True if a key is stored in the DB. */
   hasStoredKey: boolean;
   /** True if the provider's env var is set (fallback key). */
@@ -40,6 +86,10 @@ const DEFAULTS: LLMSettingsRow = {
   model: "claude-opus-4-8",
   apiKey: null,
   gradingPrompt: null,
+  writingPrompt: null,
+  writingWeights: null,
+  vnWritingPrompt: null,
+  vnWritingWeights: null,
   methodWeight: 70,
   answerWeight: 30,
   guessCredit: 20,
@@ -55,6 +105,10 @@ async function readRow(): Promise<LLMSettingsRow> {
     model: row.model,
     apiKey: row.apiKey,
     gradingPrompt: row.gradingPrompt,
+    writingPrompt: row.writingPrompt,
+    writingWeights: row.writingWeights,
+    vnWritingPrompt: row.vnWritingPrompt,
+    vnWritingWeights: row.vnWritingWeights,
     methodWeight: row.methodWeight,
     answerWeight: row.answerWeight,
     guessCredit: row.guessCredit,
@@ -78,6 +132,8 @@ export async function getPublicLLMSettings(): Promise<PublicLLMSettings> {
     answerWeight: row.answerWeight,
     guessCredit: row.guessCredit,
     maxTokens: row.maxTokens,
+    ...resolveWriting(row),
+    ...resolveVnWriting(row),
     hasStoredKey: Boolean(row.apiKey && row.apiKey.length > 0),
     hasEnvKey: envKeyFor(row.provider).length > 0,
   };
@@ -94,6 +150,12 @@ export interface SaveLLMInput {
   answerWeight: number;
   guessCredit: number;
   maxTokens: number;
+  /** English Writing rubric + 5-criteria weights. Optional (kept if omitted). */
+  writingPrompt?: string;
+  writingWeights?: Record<string, number>;
+  /** Vietnamese văn rubric + 5-criteria weights. Optional (kept if omitted). */
+  vnWritingPrompt?: string;
+  vnWritingWeights?: Record<string, number>;
 }
 
 export async function saveLLMSettings(input: SaveLLMInput): Promise<PublicLLMSettings> {
@@ -104,6 +166,32 @@ export async function saveLLMSettings(input: SaveLLMInput): Promise<PublicLLMSet
       ? null
       : input.gradingPrompt;
 
+  // Same null-on-default rule for the Writing rubric.
+  const writingPromptToStore =
+    input.writingPrompt === undefined
+      ? undefined
+      : input.writingPrompt.trim() === DEFAULT_WRITING_PROMPT.trim() || input.writingPrompt.trim() === ""
+        ? null
+        : input.writingPrompt;
+
+  const writingPatch = {
+    ...(writingPromptToStore !== undefined ? { writingPrompt: writingPromptToStore } : {}),
+    ...(input.writingWeights ? { writingWeights: JSON.stringify(input.writingWeights) } : {}),
+  };
+
+  // Same null-on-default rule for the Vietnamese văn rubric.
+  const vnWritingPromptToStore =
+    input.vnWritingPrompt === undefined
+      ? undefined
+      : input.vnWritingPrompt.trim() === VN_WRITING_PROMPT.trim() || input.vnWritingPrompt.trim() === ""
+        ? null
+        : input.vnWritingPrompt;
+
+  const vnWritingPatch = {
+    ...(vnWritingPromptToStore !== undefined ? { vnWritingPrompt: vnWritingPromptToStore } : {}),
+    ...(input.vnWritingWeights ? { vnWritingWeights: JSON.stringify(input.vnWritingWeights) } : {}),
+  };
+
   const base = {
     enabled: input.enabled,
     provider: input.provider,
@@ -113,6 +201,8 @@ export async function saveLLMSettings(input: SaveLLMInput): Promise<PublicLLMSet
     answerWeight: input.answerWeight,
     guessCredit: input.guessCredit,
     maxTokens: input.maxTokens,
+    ...writingPatch,
+    ...vnWritingPatch,
   };
 
   // Only touch apiKey when the caller explicitly provided one.
@@ -155,6 +245,8 @@ export async function getResolvedLLMSettings(): Promise<ResolvedLLMSettings | nu
     answerWeight: row.answerWeight,
     guessCredit: row.guessCredit,
     maxTokens: row.maxTokens,
+    ...resolveWriting(row),
+    ...resolveVnWriting(row),
   };
 }
 
@@ -184,5 +276,7 @@ export async function resolveForTest(override: {
     answerWeight: row.answerWeight,
     guessCredit: row.guessCredit,
     maxTokens: row.maxTokens,
+    ...resolveWriting(row),
+    ...resolveVnWriting(row),
   };
 }
