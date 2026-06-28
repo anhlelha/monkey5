@@ -15,9 +15,9 @@ interface Props {
 export function TryButton({ plan = "free", className, children, hasGoogle }: Props) {
   const onClick = () => {
     if (hasGoogle) {
-      void signIn("google", { callbackUrl: "/home" });
+      void signIn("google", { callbackUrl: "/overview" });
     } else {
-      window.location.href = "/signin?callbackUrl=/home";
+      window.location.href = "/signin?callbackUrl=/overview";
     }
   };
   return (

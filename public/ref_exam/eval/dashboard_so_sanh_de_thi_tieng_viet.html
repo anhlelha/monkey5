@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>So sánh Đề thi Tiếng Việt vào lớp 6 — Cầu Giấy · Nguyễn Tất Thành · Lương Thế Vinh</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --primary:#1e40af; --bg:#f8fafc; --card:#ffffff;
+  --text:#0f172a; --text-muted:#64748b; --border:#e2e8f0; --accent:#f59e0b;
+  --cg:#3b82f6; --ntt:#ef4444; --ltv:#f59e0b;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;}
+.container{padding:24px;max-width:1200px;margin:0 auto;}
+.header{background:linear-gradient(135deg,#1e3a8a 0%,#ef4444 55%,#f59e0b 100%);color:#fff;padding:32px;border-radius:16px;box-shadow:0 10px 30px rgba(30,58,138,.15);}
+.header h1{font-size:25px;margin-bottom:8px;font-weight:700;}
+.header p{opacity:.93;font-size:14px;}
+.note{background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);color:#92400e;padding:12px 18px;border-radius:8px;margin:16px 0;font-size:13px;border-left:4px solid var(--accent);}
+.note b{color:#78350f;}
+.tabs{display:flex;gap:0;background:var(--card);margin:16px 0 24px 0;border-radius:12px;border:1px solid var(--border);overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.06);flex-wrap:wrap;}
+.tab-btn{flex:1;padding:14px 10px;background:transparent;border:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--text-muted);transition:all .2s;border-bottom:3px solid transparent;font-family:inherit;min-width:115px;}
+.tab-btn:hover{background:#f1f5f9;color:var(--primary);}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary);background:linear-gradient(180deg,#f8fafc 0%,#fff 100%);}
+.tab-btn.cg.active{color:var(--cg);border-bottom-color:var(--cg);}
+.tab-btn.ntt.active{color:var(--ntt);border-bottom-color:var(--ntt);}
+.tab-btn.ltv.active{color:var(--ltv);border-bottom-color:var(--ltv);}
+.tab-content{display:none;}
+.tab-content.active{display:block;animation:fadeIn .4s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:24px;}
+.kpi-card{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.kpi-card.cg{border-left:4px solid var(--cg);} .kpi-card.ntt{border-left:4px solid var(--ntt);} .kpi-card.ltv{border-left:4px solid var(--ltv);}
+.kpi-label{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);margin-bottom:8px;font-weight:600;}
+.kpi-value{font-size:30px;font-weight:700;color:var(--primary);}
+.kpi-value.cg{color:var(--cg);} .kpi-value.ntt{color:var(--ntt);} .kpi-value.ltv{color:var(--ltv);}
+.kpi-sub{font-size:12px;color:var(--text-muted);margin-top:4px;}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
+@media(max-width:900px){.row{grid-template-columns:1fr;}}
+.card{background:var(--card);padding:20px;border-radius:12px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.card h2{font-size:16px;margin-bottom:16px;font-weight:600;display:flex;align-items:center;gap:8px;}
+.card h2::before{content:"";width:4px;height:18px;background:var(--primary);border-radius:2px;}
+.chart-wrap{position:relative;height:330px;}
+.chart-wrap.tall{height:410px;}
+.insights{background:linear-gradient(135deg,#ecfdf5 0%,#d1fae5 100%);border-left:4px solid #10b981;padding:18px 20px;border-radius:8px;margin-bottom:24px;}
+.insights.cg{background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);border-left-color:var(--cg);}
+.insights.ntt{background:linear-gradient(135deg,#fef2f2 0%,#fee2e2 100%);border-left-color:var(--ntt);}
+.insights.ltv{background:linear-gradient(135deg,#fffbeb 0%,#fef3c7 100%);border-left-color:var(--ltv);}
+.insights h3{font-size:14px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em;color:#065f46;}
+.insights.cg h3{color:#1e40af;} .insights.ntt h3{color:#991b1b;} .insights.ltv h3{color:#92400e;}
+.insights ul{list-style:none;padding:0;}
+.insights li{font-size:14px;padding:5px 0;padding-left:18px;position:relative;color:#064e3b;}
+.insights.cg li{color:#1e3a8a;} .insights.ntt li{color:#7f1d1d;} .insights.ltv li{color:#78350f;}
+.insights li::before{content:"▸";position:absolute;left:0;font-weight:bold;}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;}
+.tbl th,.tbl td{padding:9px 11px;border-bottom:1px solid var(--border);text-align:center;}
+.tbl th{background:#f1f5f9;font-weight:700;color:var(--primary);}
+.tbl td.label,.tbl th.label{text-align:left;font-weight:600;}
+.tbl .cg-col{background:rgba(59,130,246,.06);} .tbl .ntt-col{background:rgba(239,68,68,.06);} .tbl .ltv-col{background:rgba(245,158,11,.07);}
+.tbl tr:hover td{background:#f8fafc;}
+.miss{color:#b45309;font-style:italic;font-size:12px;}
+.pill{display:inline-block;padding:3px 11px;border-radius:14px;font-size:12px;font-weight:700;margin-right:6px;}
+.pill.cg{background:#dbeafe;color:#1e40af;} .pill.ntt{background:#fee2e2;color:#b91c1c;} .pill.ltv{background:#fef3c7;color:#92400e;}
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+@media(max-width:860px){.diff-grid{grid-template-columns:1fr;}}
+.diff-card{background:var(--card);padding:22px;border-radius:16px;border:1px solid var(--border);position:relative;overflow:hidden;}
+.diff-card::before{content:"";position:absolute;top:0;left:0;height:6px;width:100%;}
+.diff-card.cg::before{background:var(--cg);} .diff-card.ntt::before{background:var(--ntt);} .diff-card.ltv::before{background:var(--ltv);}
+.diff-score{font-size:46px;font-weight:800;line-height:1;margin:10px 0;}
+.diff-card.cg .diff-score{color:var(--cg);} .diff-card.ntt .diff-score{color:var(--ntt);} .diff-card.ltv .diff-score{color:var(--ltv);}
+.diff-bar{height:10px;background:#e2e8f0;border-radius:5px;margin:14px 0;overflow:hidden;}
+.diff-bar-fill{height:100%;border-radius:5px;}
+.factor-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:12.5px;border-bottom:1px dashed var(--border);}
+.factor-row:last-child{border-bottom:none;}
+.factor-row .fl{color:var(--text-muted);} .factor-row .fv{font-weight:600;}
+.footer{text-align:center;color:var(--text-muted);font-size:12px;padding:24px;}
+.tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#f1f5f9;color:#475569;font-weight:600;margin-left:6px;}
+.tag.inf{background:#ede9fe;color:#6d28d9;}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>📝 So sánh Đề thi Tiếng Việt vào lớp 6 — 3 trường top Hà Nội</h1>
+    <p>🟦 THCS Cầu Giấy (2021–2025) · 🟥 THCS&amp;THPT Nguyễn Tất Thành (2020–2024) · 🟧 THCS&amp;THPT Lương Thế Vinh (2022)<br>
+    Phân loại theo nhóm chuyên đề · Đánh giá &amp; so sánh độ khó · Cùng cách làm với dashboard môn Toán &amp; Tiếng Anh</p>
+  </div>
+
+  <div class="note">
+    <b>⚠️ Lưu ý về dữ liệu &amp; cách đếm:</b> Số liệu trích trực tiếp từ 3 file PDF bạn cung cấp.
+    Đề Cầu Giấy được trung tâm <b>“xây dựng theo trí nhớ học sinh + bổ sung câu trắc nghiệm tương tự”</b> (không phải 100% nguyên bản; không ghi thời gian làm bài).
+    Lương Thế Vinh chỉ có <b>1 năm (2022)</b>. Mỗi đơn vị đếm là <b>một ý/câu nhỏ được gắn nhãn</b> (a, b, c…) — đây là thước đo <b>cấu trúc tương đối</b>, không phải thang điểm chính thức.
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn cg active" data-tab="cg">🟦 Cầu Giấy</button>
+    <button class="tab-btn ntt" data-tab="ntt">🟥 Nguyễn Tất Thành</button>
+    <button class="tab-btn ltv" data-tab="ltv">🟧 Lương Thế Vinh</button>
+    <button class="tab-btn" data-tab="compare">⚖️ So sánh 3 trường</button>
+    <button class="tab-btn" data-tab="difficulty">🎯 Đánh giá độ khó</button>
+    <button class="tab-btn" data-tab="method">📋 Phương pháp &amp; Nguồn</button>
+  </div>
+
+  <!-- CG -->
+  <div class="tab-content active" id="tab-cg">
+    <div class="kpi-grid">
+      <div class="kpi-card cg"><div class="kpi-label">Số đề</div><div class="kpi-value cg">4</div><div class="kpi-sub">2021·2022·2023·2025</div></div>
+      <div class="kpi-card cg"><div class="kpi-label">Ý/câu ghi nhận</div><div class="kpi-value cg">50</div><div class="kpi-sub">~12–13 ý/đề</div></div>
+      <div class="kpi-card cg"><div class="kpi-label">Cơ cấu điểm</div><div class="kpi-value cg">2/8</div><div class="kpi-sub">TN 2.0đ · Tự luận 8.0đ</div></div>
+      <div class="kpi-card cg"><div class="kpi-label">Đọc hiểu &amp; cảm thụ</div><div class="kpi-value cg">16</div><div class="kpi-sub">nhóm lớn nhất (32%)</div></div>
+    </div>
+    <div class="insights cg">
+      <h3>🟦 Đặc điểm đề Cầu Giấy</h3>
+      <ul>
+        <li><b>Trọng tâm cảm thụ văn học:</b> nhóm Đọc hiểu &amp; cảm thụ chiếm tỉ trọng lớn nhất — cảm nhận thơ/đoạn văn, cảm thụ “cái hay” của từ ngữ, biện pháp tu từ.</li>
+        <li><b>Trắc nghiệm gọn (4 câu/2.0đ)</b> tập trung từ vựng (nhiều nghĩa, đồng âm, từ loại) &amp; ngữ pháp câu (chủ ngữ, câu ghép).</li>
+        <li><b>Viết = đoạn văn ~10 câu</b> (miêu tả/nêu ý kiến), <b>không yêu cầu bài văn hoàn chỉnh</b>.</li>
+        <li>Có dạng <b>đặt câu</b> phân biệt từ loại/nghĩa gốc–chuyển; xuất hiện <b>liên kết câu</b> (2023, 2025).</li>
+        <li><span class="miss">Hầu như không có Chính tả/viết hoa/dấu câu</span> như một dạng riêng.</li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="card"><h2>Phân bố nhóm theo năm (số ý/câu)</h2><div class="chart-wrap tall"><canvas id="cgByYear"></canvas></div></div>
+      <div class="card"><h2>Tỉ trọng nhóm (tổng 4 năm)</h2><div class="chart-wrap tall"><canvas id="cgPie"></canvas></div></div>
+    </div>
+    <div class="card"><h2>Bảng chi tiết theo năm</h2><table class="tbl" id="cgTable"></table></div>
+  </div>
+
+  <!-- NTT -->
+  <div class="tab-content" id="tab-ntt">
+    <div class="kpi-grid">
+      <div class="kpi-card ntt"><div class="kpi-label">Số đề</div><div class="kpi-value ntt">4</div><div class="kpi-sub">2020→2024</div></div>
+      <div class="kpi-card ntt"><div class="kpi-label">Ý/câu ghi nhận</div><div class="kpi-value ntt">60</div><div class="kpi-sub">~13–19 ý/đề (nhiều nhất)</div></div>
+      <div class="kpi-card ntt"><div class="kpi-label">Thời gian</div><div class="kpi-value ntt">45'</div><div class="kpi-sub">áp lực cao</div></div>
+      <div class="kpi-card ntt"><div class="kpi-label">Số nhóm phủ</div><div class="kpi-value ntt">10/10</div><div class="kpi-sub">rộng nhất</div></div>
+    </div>
+    <div class="insights ntt">
+      <h3>🟥 Đặc điểm đề Nguyễn Tất Thành</h3>
+      <ul>
+        <li><b>Phủ kiến thức tiếng Việt rộng nhất:</b> là trường duy nhất có nhiều câu <b>Chính tả – viết hoa – dấu câu</b> (phân biệt ch/tr, s/x, viết hoa danh từ riêng, điền dấu phẩy, dấu hai chấm).</li>
+        <li><b>Nhiều câu nhỏ, đa dạng dạng bài:</b> nối cột, sắp xếp câu thành đoạn, phân loại câu theo mục đích nói, điền từ láy/liên kết — đòi vận dụng nhanh.</li>
+        <li><b>Mạnh về từ vựng</b> (từ nhiều nghĩa/đồng âm, từ loại, đồng–trái nghĩa) — nhóm lớn nhất (19 ý).</li>
+        <li><b>Viết:</b> mỗi đề 1 bài — đa dạng kiểu (đoạn miêu tả, bài tưởng tượng kể chuyện, <b>viết thư</b> giới thiệu sách).</li>
+        <li>Đề số 1 (2020–2021) <span class="miss">không ghi điểm từng câu</span>; phần viết đề 2 chỉ có đáp án dạng ảnh.</li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="card"><h2>Phân bố nhóm theo năm</h2><div class="chart-wrap tall"><canvas id="nttByYear"></canvas></div></div>
+      <div class="card"><h2>Tỉ trọng nhóm (tổng 4 năm)</h2><div class="chart-wrap tall"><canvas id="nttPie"></canvas></div></div>
+    </div>
+    <div class="card"><h2>Bảng chi tiết theo năm</h2><table class="tbl" id="nttTable"></table></div>
+  </div>
+
+  <!-- LTV -->
+  <div class="tab-content" id="tab-ltv">
+    <div class="kpi-grid">
+      <div class="kpi-card ltv"><div class="kpi-label">Số đề</div><div class="kpi-value ltv">1</div><div class="kpi-sub">2022 (đủ đề + đáp án)</div></div>
+      <div class="kpi-card ltv"><div class="kpi-label">Ý/câu ghi nhận</div><div class="kpi-value ltv">15</div><div class="kpi-sub">3 phần rõ ràng</div></div>
+      <div class="kpi-card ltv"><div class="kpi-label">Thời gian</div><div class="kpi-value ltv">60'</div><div class="kpi-sub">dài nhất</div></div>
+      <div class="kpi-card ltv"><div class="kpi-label">Trọng số Viết</div><div class="kpi-value ltv">6.0đ</div><div class="kpi-sub">đoạn 2.0 + bài 4.0</div></div>
+    </div>
+    <div class="insights ltv">
+      <h3>🟧 Đặc điểm đề Lương Thế Vinh</h3>
+      <ul>
+        <li><b>Cấu trúc 3 phần rõ ràng:</b> Trắc nghiệm (2.5đ, 10 câu) → Đọc hiểu (3.5đ) → Viết (4.0đ).</li>
+        <li><b>Trọng tâm Viết lớn nhất:</b> là trường duy nhất yêu cầu <b>cả đoạn cảm thụ (2.0đ) lẫn bài văn hoàn chỉnh (4.0đ)</b> → tổng 6/10 điểm cho kỹ năng viết.</li>
+        <li><b>Trắc nghiệm nặng ngữ pháp câu:</b> chủ ngữ, trạng ngữ, câu ghép, câu ghép chỉ mục đích — nhiều “bẫy” phân biệt tinh tế.</li>
+        <li><b>Đọc hiểu thơ</b> kèm câu cảm nhận — đề cao cảm thụ văn học.</li>
+        <li><span class="miss">Chỉ có dữ liệu 1 năm</span> nên chưa thấy được xu hướng nhiều năm.</li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="card"><h2>Phân bố nhóm (2022)</h2><div class="chart-wrap tall"><canvas id="ltvBar"></canvas></div></div>
+      <div class="card"><h2>Cơ cấu điểm 3 phần</h2><div class="chart-wrap tall"><canvas id="ltvPie"></canvas></div></div>
+    </div>
+  </div>
+
+  <!-- COMPARE -->
+  <div class="tab-content" id="tab-compare">
+    <div class="insights">
+      <h3>⚖️ So sánh tổng quan — ba “khẩu vị” ra đề</h3>
+      <ul>
+        <li><b>Cầu Giấy = cảm thụ &amp; tinh tế:</b> ít câu nhưng đào sâu cảm thụ văn học, từ ngữ giàu hình ảnh.</li>
+        <li><b>Nguyễn Tất Thành = rộng &amp; nhanh:</b> nhiều câu nhỏ, phủ trọn kiến thức tiếng Việt (kể cả chính tả/dấu câu/viết hoa), 45 phút → áp lực thời gian cao nhất.</li>
+        <li><b>Lương Thế Vinh = viết là chính:</b> dồn 6/10 điểm cho viết đoạn + bài văn, thời gian 60 phút.</li>
+        <li><b>Điểm chung:</b> cả ba đều coi trọng <b>biện pháp tu từ</b> (so sánh, nhân hóa, điệp ngữ) và <b>đọc hiểu thơ/văn</b>.</li>
+        <li><b>Khác biệt rõ:</b> chỉ NTT kiểm tra chính tả/viết hoa/dấu câu thành dạng riêng; chỉ LTV bắt viết bài văn hoàn chỉnh.</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-bottom:24px"><h2>Phân bố nhóm chuyên đề — 3 trường (tổng các năm)</h2><div class="chart-wrap tall"><canvas id="cmpBar"></canvas></div></div>
+    <div class="card"><h2>Bảng so sánh cấu trúc</h2><table class="tbl" id="cmpTable"></table></div>
+  </div>
+
+  <!-- DIFFICULTY -->
+  <div class="tab-content" id="tab-difficulty">
+    <div class="note">
+      <b>[Inference]</b> Chỉ số độ khó (0–100) là <b>thang tổng hợp do mình xây dựng</b> để so sánh, <b>không phải chuẩn quốc gia</b>. Ba trường có điểm khá gần nhau nhưng <b>khác hồ sơ độ khó</b>. Điểm CG kèm bất định (không rõ thời gian); LTV chỉ dựa 1 năm.
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card cg"><div><span class="pill cg">Cầu Giấy</span><span class="tag inf">[Inference]</span></div><div class="diff-score">~64</div><div class="diff-bar"><div class="diff-bar-fill" style="width:64%;background:var(--cg)"></div></div><div id="cgFactors"></div></div>
+      <div class="diff-card ntt"><div><span class="pill ntt">Nguyễn Tất Thành</span><span class="tag inf">[Inference]</span></div><div class="diff-score">~71</div><div class="diff-bar"><div class="diff-bar-fill" style="width:71%;background:var(--ntt)"></div></div><div id="nttFactors"></div></div>
+      <div class="diff-card ltv"><div><span class="pill ltv">Lương Thế Vinh</span><span class="tag inf">[Inference]</span></div><div class="diff-score">~66</div><div class="diff-bar"><div class="diff-bar-fill" style="width:66%;background:var(--ltv)"></div></div><div id="ltvFactors"></div></div>
+    </div>
+    <div class="row">
+      <div class="card"><h2>So sánh 6 yếu tố độ khó (radar)</h2><div class="chart-wrap tall"><canvas id="radar"></canvas></div></div>
+      <div class="card"><h2>Diễn giải</h2>
+        <div class="insights" style="margin:0"><h3>🎯 Kết luận cân bằng</h3>
+        <ul>
+          <li><b>NTT khó nhất theo độ rộng &amp; tốc độ:</b> phủ nhiều dạng + 45 phút + nhiều “bẫy” phân biệt (đồng âm/nhiều nghĩa, từ ghép/láy, chính tả).</li>
+          <li><b>LTV khó nhất ở kỹ năng viết:</b> phải viết cả đoạn cảm thụ lẫn bài văn hoàn chỉnh.</li>
+          <li><b>CG khó nhất ở chiều sâu cảm thụ:</b> đòi cảm nhận tinh tế cái hay của từ ngữ, hình ảnh thơ.</li>
+          <li><b>Ôn thi:</b> CG → luyện cảm thụ văn/thơ &amp; viết đoạn hay. NTT → luyện chính tả/từ vựng/ngữ pháp diện rộng &amp; làm nhanh. LTV → luyện viết bài văn + đoạn cảm thụ + ngữ pháp câu.</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- METHOD -->
+  <div class="tab-content" id="tab-method">
+    <div class="card" style="margin-bottom:16px">
+      <h2>Cách tính chỉ số độ khó (phỏng theo dashboard Toán/Tiếng Anh)</h2>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:12px">Chỉ số = tổng hợp 6 yếu tố có trọng số (thích ứng cho môn Tiếng Việt):</p>
+      <table class="tbl" id="weightTable"></table>
+      <p class="tag inf" style="display:inline-block;margin-top:12px">[Inference] Trọng số &amp; điểm yếu tố do mình đặt; có thể điều chỉnh theo mục tiêu.</p>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <h2>10 nhóm chuyên đề dùng để phân loại</h2>
+      <table class="tbl" id="groupTable"></table>
+    </div>
+    <div class="card">
+      <h2>Nguồn dữ liệu (3 file PDF do người dùng cung cấp)</h2>
+      <table class="tbl" id="srcTable"></table>
+      <p class="miss" style="margin-top:10px">Đếm theo “ý/câu nhỏ gắn nhãn” → là thước đo cấu trúc tương đối, không thay cho thang điểm chính thức của đề.</p>
+    </div>
+  </div>
+
+  <div class="footer">Dashboard so sánh đề thi Tiếng Việt vào lớp 6 · Dữ liệu trích trực tiếp từ 3 file PDF người dùng cung cấp · Tạo bởi Claude</div>
+</div>
+
+<script>
+const GROUPS=[
+ {key:"vocab",name:"Từ vựng & nghĩa từ",color:"#f59e0b"},
+ {key:"wordform",name:"Cấu tạo từ (láy/ghép)",color:"#14b8a6"},
+ {key:"syntax",name:"Ngữ pháp câu",color:"#3b82f6"},
+ {key:"senttype",name:"Kiểu câu (mục đích nói)",color:"#06b6d4"},
+ {key:"rhetoric",name:"Biện pháp tu từ",color:"#a855f7"},
+ {key:"spelling",name:"Chính tả/Dấu câu/Viết hoa",color:"#ec4899"},
+ {key:"cohesion",name:"Liên kết câu",color:"#84cc16"},
+ {key:"reading",name:"Đọc hiểu & cảm thụ",color:"#ef4444"},
+ {key:"makesent",name:"Đặt câu / viết câu",color:"#f97316"},
+ {key:"writing",name:"Viết đoạn / viết bài",color:"#8b5cf6"}
+];
+const GN=GROUPS.map(g=>g.name), GC=GROUPS.map(g=>g.color);
+
+// ===== verified tallies from extracted PDFs (mỗi đơn vị = 1 ý/câu nhỏ gắn nhãn) =====
+const CG={
+ "2021":{vocab:5,wordform:0,syntax:1,senttype:0,rhetoric:1,spelling:0,cohesion:0,reading:2,makesent:2,writing:2},
+ "2022":{vocab:2,wordform:1,syntax:1,senttype:1,rhetoric:1,spelling:0,cohesion:1,reading:4,makesent:0,writing:1},
+ "2023":{vocab:2,wordform:0,syntax:2,senttype:1,rhetoric:1,spelling:0,cohesion:0,reading:5,makesent:1,writing:1},
+ "2025":{vocab:2,wordform:0,syntax:2,senttype:0,rhetoric:1,spelling:0,cohesion:1,reading:5,makesent:0,writing:1}
+};
+const NTT={
+ "2021":{vocab:5,wordform:3,syntax:1,senttype:0,rhetoric:1,spelling:1,cohesion:2,reading:2,makesent:3,writing:1},
+ "2022":{vocab:7,wordform:1,syntax:0,senttype:1,rhetoric:1,spelling:3,cohesion:0,reading:0,makesent:1,writing:1},
+ "2023":{vocab:3,wordform:1,syntax:2,senttype:0,rhetoric:1,spelling:1,cohesion:0,reading:3,makesent:1,writing:1},
+ "2024":{vocab:4,wordform:0,syntax:1,senttype:1,rhetoric:1,spelling:2,cohesion:0,reading:3,makesent:0,writing:1}
+};
+const LTV={
+ "2022":{vocab:1,wordform:2,syntax:5,senttype:0,rhetoric:3,spelling:0,cohesion:0,reading:2,makesent:0,writing:2}
+};
+const sum=(o,k)=>Object.values(o).reduce((a,y)=>a+(y[k]||0),0);
+const cgTot=GROUPS.map(g=>sum(CG,g.key)), nttTot=GROUPS.map(g=>sum(NTT,g.key)), ltvTot=GROUPS.map(g=>sum(LTV,g.key));
+
+document.querySelectorAll('.tab-btn').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+ document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));
+ b.classList.add('active'); document.getElementById('tab-'+b.dataset.tab).classList.add('active');
+});
+
+function stacked(canvas,data){
+ const years=Object.keys(data);
+ const ds=GROUPS.map(g=>({label:g.name,data:years.map(y=>data[y][g.key]||0),backgroundColor:g.color}));
+ new Chart(document.getElementById(canvas),{type:'bar',data:{labels:years,datasets:ds},
+  options:{responsive:true,maintainAspectRatio:false,scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'Số ý/câu'}}},
+   plugins:{legend:{position:'bottom',labels:{boxWidth:11,font:{size:9.5}}}}}});
+}
+function pie(canvas,totals){
+ const lab=[],val=[],col=[];
+ GROUPS.forEach((g,i)=>{if(totals[i]>0){lab.push(g.name);val.push(totals[i]);col.push(g.color);}});
+ new Chart(document.getElementById(canvas),{type:'doughnut',data:{labels:lab,datasets:[{data:val,backgroundColor:col}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{boxWidth:11,font:{size:10.5}}}}}});
+}
+function tableByYear(id,data){
+ const years=Object.keys(data);
+ let h='<tr><th class="label">Nhóm chuyên đề</th>'+years.map(y=>'<th>'+y+'</th>').join('')+'<th>Tổng</th></tr>';
+ GROUPS.forEach(g=>{const cells=years.map(y=>'<td>'+(data[y][g.key]||0)+'</td>');const tot=years.reduce((a,y)=>a+(data[y][g.key]||0),0);
+  h+='<tr><td class="label"><span style="color:'+g.color+'">●</span> '+g.name+'</td>'+cells.join('')+'<td><b>'+tot+'</b></td></tr>';});
+ const tt=years.map(y=>Object.values(data[y]).reduce((a,v)=>a+(v||0),0));
+ h+='<tr style="background:#f1f5f9"><td class="label"><b>Tổng ý/câu</b></td>'+tt.map(t=>'<td><b>'+t+'</b></td>').join('')+'<td><b>'+tt.reduce((a,b)=>a+b,0)+'</b></td></tr>';
+ document.getElementById(id).innerHTML=h;
+}
+stacked('cgByYear',CG); pie('cgPie',cgTot); tableByYear('cgTable',CG);
+stacked('nttByYear',NTT); pie('nttPie',nttTot); tableByYear('nttTable',NTT);
+
+// LTV single-year bar + points pie
+(function(){const lab=[],val=[],col=[];GROUPS.forEach((g,i)=>{if(ltvTot[i]>0){lab.push(g.name);val.push(ltvTot[i]);col.push(g.color);}});
+ new Chart(document.getElementById('ltvBar'),{type:'bar',data:{labels:lab,datasets:[{label:'Số ý/câu (2022)',data:val,backgroundColor:col}]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{title:{display:true,text:'Số ý/câu'}}}}});})();
+new Chart(document.getElementById('ltvPie'),{type:'doughnut',
+ data:{labels:['Trắc nghiệm (2.5đ)','Đọc hiểu (3.5đ)','Viết (4.0đ)'],datasets:[{data:[2.5,3.5,4.0],backgroundColor:['#3b82f6','#a855f7','#8b5cf6']}]},
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right'}}}});
+
+// compare bar (3 schools)
+new Chart(document.getElementById('cmpBar'),{type:'bar',
+ data:{labels:GN,datasets:[
+  {label:'Cầu Giấy',data:cgTot,backgroundColor:'#3b82f6'},
+  {label:'Nguyễn Tất Thành',data:nttTot,backgroundColor:'#ef4444'},
+  {label:'Lương Thế Vinh',data:ltvTot,backgroundColor:'#f59e0b'}]},
+ options:{responsive:true,maintainAspectRatio:false,scales:{y:{title:{display:true,text:'Tổng số ý/câu'}}},plugins:{legend:{position:'bottom'}}}});
+
+// compare table
+const cmpRows=[
+ ["Số đề phân tích","4 (2021–2025)","4 (2020–2024)","1 (2022)"],
+ ["Thời gian làm bài","Không ghi trong nguồn","45 phút","60 phút"],
+ ["Cơ cấu điểm","TN 2.0đ · Tự luận 8.0đ","Nhiều câu nhỏ (đề có ghi điểm từ 2021–22)","TN 2.5 · ĐH 3.5 · Viết 4.0"],
+ ["Số nhóm chuyên đề phủ","7/10","10/10 (rộng nhất)","6/10"],
+ ["Chính tả/viết hoa/dấu câu","✘ Hầu như không","✔ Có, nổi bật","✘ Không"],
+ ["Đọc hiểu & cảm thụ","✔ Rất mạnh (32%)","✔ Có","✔ Mạnh"],
+ ["Viết đoạn","✔ ~10 câu","✔ Có","✔ Cảm thụ 5–7 câu"],
+ ["Viết bài văn hoàn chỉnh","✘ Không","✔ Có (kể/tưởng tượng/thư)","✔ Có (bài 4.0đ)"],
+ ["“Khẩu vị” đề","Cảm thụ sâu, tinh tế","Rộng – nhanh – nhiều bẫy","Viết là trọng tâm"]
+];
+(function(){let h='<tr><th class="label">Tiêu chí</th><th class="cg-col">🟦 Cầu Giấy</th><th class="ntt-col">🟥 Nguyễn Tất Thành</th><th class="ltv-col">🟧 Lương Thế Vinh</th></tr>';
+ cmpRows.forEach(r=>{h+='<tr><td class="label">'+r[0]+'</td><td class="cg-col">'+r[1]+'</td><td class="ntt-col">'+r[2]+'</td><td class="ltv-col">'+r[3]+'</td></tr>';});
+ document.getElementById('cmpTable').innerHTML=h;})();
+
+// difficulty
+const FACTORS=[
+ {name:"Cảm thụ văn học (đọc hiểu thơ/văn)",w:25,cg:80,ntt:60,ltv:75},
+ {name:"Viết sản sinh (đoạn + bài văn)",w:25,cg:60,ntt:65,ltv:85},
+ {name:"Độ rộng & đa dạng kiến thức tiếng Việt",w:20,cg:55,ntt:85,ltv:50},
+ {name:"Câu vận dụng/suy luận (sắp xếp, phân loại…)",w:15,cg:65,ntt:75,ltv:55},
+ {name:"Áp lực thời gian",w:10,cg:55,ntt:75,ltv:50},
+ {name:"Mức độ bẫy / phân hóa chi tiết",w:5,cg:60,ntt:75,ltv:60}
+];
+function flist(id,key){let h='';FACTORS.forEach(f=>{h+='<div class="factor-row"><span class="fl">'+f.name+'</span><span class="fv">'+f[key]+'</span></div>';});document.getElementById(id).innerHTML=h;}
+flist('cgFactors','cg'); flist('nttFactors','ntt'); flist('ltvFactors','ltv');
+
+new Chart(document.getElementById('radar'),{type:'radar',
+ data:{labels:FACTORS.map(f=>f.name),datasets:[
+  {label:'Cầu Giấy',data:FACTORS.map(f=>f.cg),borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.15)',pointBackgroundColor:'#3b82f6'},
+  {label:'Nguyễn Tất Thành',data:FACTORS.map(f=>f.ntt),borderColor:'#ef4444',backgroundColor:'rgba(239,68,68,.15)',pointBackgroundColor:'#ef4444'},
+  {label:'Lương Thế Vinh',data:FACTORS.map(f=>f.ltv),borderColor:'#f59e0b',backgroundColor:'rgba(245,158,11,.15)',pointBackgroundColor:'#f59e0b'}]},
+ options:{responsive:true,maintainAspectRatio:false,scales:{r:{suggestedMin:0,suggestedMax:100,pointLabels:{font:{size:8.5}}}},plugins:{legend:{position:'bottom'}}}});
+
+// weight table
+(function(){let h='<tr><th class="label">Yếu tố</th><th>Trọng số</th><th class="cg-col">CG</th><th class="ntt-col">NTT</th><th class="ltv-col">LTV</th></tr>';
+ FACTORS.forEach(f=>{h+='<tr><td class="label">'+f.name+'</td><td>'+f.w+'%</td><td class="cg-col">'+f.cg+'</td><td class="ntt-col">'+f.ntt+'</td><td class="ltv-col">'+f.ltv+'</td></tr>';});
+ const w=(k)=>Math.round(FACTORS.reduce((a,f)=>a+f[k]*f.w/100,0));
+ h+='<tr style="background:#f1f5f9"><td class="label"><b>Chỉ số tổng hợp</b></td><td>100%</td><td class="cg-col"><b>'+w('cg')+'</b></td><td class="ntt-col"><b>'+w('ntt')+'</b></td><td class="ltv-col"><b>'+w('ltv')+'</b></td></tr>';
+ document.getElementById('weightTable').innerHTML=h;})();
+
+// group table
+(function(){let h='<tr><th class="label">Nhóm</th><th class="label">Bao gồm</th></tr>';
+ const desc={vocab:"Từ nhiều nghĩa, đồng âm, đồng/trái nghĩa, từ loại, thành ngữ–tục ngữ",
+  wordform:"Phân biệt từ láy / từ ghép, đếm/xếp loại",
+  syntax:"Chủ ngữ–vị ngữ, trạng ngữ, câu đơn/câu ghép, thành phần câu",
+  senttype:"Câu kể / hỏi / cảm / khiến (mục đích nói)",
+  rhetoric:"So sánh, nhân hóa, điệp ngữ + nêu tác dụng",
+  spelling:"Chính tả (ch/tr, s/x…), viết hoa danh từ riêng, điền dấu câu",
+  cohesion:"Phép lặp/thế/nối; điền từ liên kết câu",
+  reading:"Trả lời nội dung đoạn thơ/văn, cảm thụ cái hay của từ/đoạn",
+  makesent:"Đặt câu theo yêu cầu (từ loại, nghĩa gốc–chuyển…)",
+  writing:"Viết đoạn văn / bài văn / bức thư"};
+ GROUPS.forEach(g=>{h+='<tr><td class="label"><span style="color:'+g.color+'">●</span> '+g.name+'</td><td class="label" style="font-weight:400">'+desc[g.key]+'</td></tr>';});
+ document.getElementById('groupTable').innerHTML=h;})();
+
+// source table
+const SRC=[
+ ["Cầu Giấy","2021,2022,2023,2025","TỔNG HỢP ĐỀ CẦU GIẤY.pdf","TN 4 câu + tự luận; đủ đáp án","Gõ theo trí nhớ HS + bổ sung TN; không ghi thời gian"],
+ ["Nguyễn Tất Thành","2020→2024","Bộ đề TV vào 6 NTT.pdf","4 đề, đủ đề + đáp án","45 phút; đề 1 không ghi điểm từng câu"],
+ ["Lương Thế Vinh","2022","LƯƠNG THẾ VINH_...2022_2023.pdf","Đủ 3 phần + đáp án","60 phút; chỉ 1 năm"]
+];
+(function(){let h='<tr><th>Trường</th><th>Năm</th><th class="label">File</th><th class="label">Nội dung</th><th class="label">Ghi chú</th></tr>';
+ SRC.forEach(r=>{h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td class="label" style="font-size:11px">'+r[2]+'</td><td class="label">'+r[3]+'</td><td class="label miss">'+r[4]+'</td></tr>';});
+ document.getElementById('srcTable').innerHTML=h;})();
+</script>
+</body>
+</html>

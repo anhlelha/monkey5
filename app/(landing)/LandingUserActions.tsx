@@ -51,7 +51,7 @@ export function LandingNavActions({ user }: { user: LandingUser }) {
           Trang admin
         </Link>
       ) : null}
-      <Link href="/home" className="btn primary">
+      <Link href="/overview" className="btn primary">
         {isAdmin ? "Trang người dùng" : "Tiếp tục học"}
       </Link>
 
@@ -98,7 +98,7 @@ export function LandingNavActions({ user }: { user: LandingUser }) {
               </Link>
             ) : null}
             <Link
-              href="/home"
+              href="/overview"
               className="landing-user-item"
               onClick={() => setOpen(false)}
               role="menuitem"
@@ -143,12 +143,12 @@ export function LandingHeroActions({
           <Link href="/admin" className={"btn primary" + sizeClass}>
             Vào trang admin
           </Link>
-          <Link href="/home" className={"btn" + sizeClass}>
+          <Link href="/overview" className={"btn" + sizeClass}>
             Trang của người dùng
           </Link>
         </>
       ) : (
-        <Link href="/home" className={"btn primary" + sizeClass}>
+        <Link href="/overview" className={"btn primary" + sizeClass}>
           Tiếp tục học
         </Link>
       )}

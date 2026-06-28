@@ -20,7 +20,7 @@ export default async function SignInPage({ searchParams }: Props) {
       where: { id: session.user.id },
       select: { id: true, disabled: true },
     });
-    if (existing && !existing.disabled) redirect(callbackUrl ?? "/home");
+    if (existing && !existing.disabled) redirect(callbackUrl ?? "/overview");
   }
 
   const hasGoogle = Boolean(
@@ -29,7 +29,7 @@ export default async function SignInPage({ searchParams }: Props) {
 
   return (
     <SignInForm
-      callbackUrl={callbackUrl ?? "/home"}
+      callbackUrl={callbackUrl ?? "/overview"}
       hasGoogle={hasGoogle}
       error={error}
       disabledNotice={isDisabledNotice}

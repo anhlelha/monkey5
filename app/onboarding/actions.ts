@@ -24,5 +24,6 @@ export async function completeOnboarding(formData: FormData) {
   });
 
   revalidatePath("/home");
-  redirect("/home");
+  revalidatePath("/overview");
+  redirect("/overview");
 }

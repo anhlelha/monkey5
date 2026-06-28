@@ -15,7 +15,7 @@ export default async function OnboardingPage() {
   const user = hydrateUser(dbUser);
 
   // Already onboarded → straight to home.
-  if (user.targets.length > 0) redirect("/home");
+  if (user.targets.length > 0) redirect("/overview");
 
   return (
     <OnboardingForm

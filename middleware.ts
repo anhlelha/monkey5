@@ -34,7 +34,7 @@ export default auth((req) => {
   if (pathname.startsWith("/admin") || pathname.startsWith("/create")) {
     if (session.user?.role !== "admin") {
       const url = req.nextUrl.clone();
-      url.pathname = "/home";
+      url.pathname = "/overview";
       return NextResponse.redirect(url);
     }
   }

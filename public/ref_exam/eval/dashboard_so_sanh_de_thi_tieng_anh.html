@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>So sánh Đề thi Tiếng Anh vào lớp 6 — Cầu Giấy vs Nguyễn Tất Thành</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --primary:#1e40af; --bg:#f8fafc; --card:#ffffff;
+  --text:#0f172a; --text-muted:#64748b; --border:#e2e8f0; --accent:#f59e0b;
+  --cg:#3b82f6; --ntt:#ef4444;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;}
+.container{padding:24px;max-width:1200px;margin:0 auto;}
+.header{background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 50%,#ef4444 100%);color:#fff;padding:32px;border-radius:16px;box-shadow:0 10px 30px rgba(30,58,138,.15);}
+.header h1{font-size:26px;margin-bottom:8px;font-weight:700;}
+.header p{opacity:.93;font-size:14px;}
+.note{background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);color:#92400e;padding:12px 18px;border-radius:8px;margin:16px 0;font-size:13px;border-left:4px solid var(--accent);}
+.note b{color:#78350f;}
+.tabs{display:flex;gap:0;background:var(--card);margin:16px 0 24px 0;border-radius:12px;border:1px solid var(--border);overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.06);flex-wrap:wrap;}
+.tab-btn{flex:1;padding:14px 12px;background:transparent;border:none;cursor:pointer;font-size:14px;font-weight:600;color:var(--text-muted);transition:all .2s;border-bottom:3px solid transparent;font-family:inherit;min-width:130px;}
+.tab-btn:hover{background:#f1f5f9;color:var(--primary);}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary);background:linear-gradient(180deg,#f8fafc 0%,#fff 100%);}
+.tab-btn.cg.active{color:var(--cg);border-bottom-color:var(--cg);}
+.tab-btn.ntt.active{color:var(--ntt);border-bottom-color:var(--ntt);}
+.tab-content{display:none;}
+.tab-content.active{display:block;animation:fadeIn .4s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:24px;}
+.kpi-card{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.kpi-card.cg{border-left:4px solid var(--cg);}
+.kpi-card.ntt{border-left:4px solid var(--ntt);}
+.kpi-label{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);margin-bottom:8px;font-weight:600;}
+.kpi-value{font-size:30px;font-weight:700;color:var(--primary);}
+.kpi-value.cg{color:var(--cg);} .kpi-value.ntt{color:var(--ntt);}
+.kpi-sub{font-size:12px;color:var(--text-muted);margin-top:4px;}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
+@media(max-width:900px){.row{grid-template-columns:1fr;}}
+.card{background:var(--card);padding:20px;border-radius:12px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.card h2{font-size:16px;margin-bottom:16px;font-weight:600;display:flex;align-items:center;gap:8px;}
+.card h2::before{content:"";width:4px;height:18px;background:var(--primary);border-radius:2px;}
+.chart-wrap{position:relative;height:320px;}
+.chart-wrap.tall{height:400px;}
+.insights{background:linear-gradient(135deg,#ecfdf5 0%,#d1fae5 100%);border-left:4px solid #10b981;padding:18px 20px;border-radius:8px;margin-bottom:24px;}
+.insights.cg{background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);border-left-color:var(--cg);}
+.insights.ntt{background:linear-gradient(135deg,#fef2f2 0%,#fee2e2 100%);border-left-color:var(--ntt);}
+.insights h3{font-size:14px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em;color:#065f46;}
+.insights.cg h3{color:#1e40af;} .insights.ntt h3{color:#991b1b;}
+.insights ul{list-style:none;padding:0;}
+.insights li{font-size:14px;padding:5px 0;padding-left:18px;position:relative;color:#064e3b;}
+.insights.cg li{color:#1e3a8a;} .insights.ntt li{color:#7f1d1d;}
+.insights li::before{content:"▸";position:absolute;left:0;font-weight:bold;}
+.section-title{margin:28px 0 14px 0;padding-bottom:8px;border-bottom:2px solid var(--border);font-size:17px;color:var(--primary);font-weight:700;}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;}
+.tbl th,.tbl td{padding:9px 11px;border-bottom:1px solid var(--border);text-align:center;}
+.tbl th{background:#f1f5f9;font-weight:700;color:var(--primary);}
+.tbl td.label,.tbl th.label{text-align:left;font-weight:600;}
+.tbl .cg-col{background:rgba(59,130,246,.06);}
+.tbl .ntt-col{background:rgba(239,68,68,.06);}
+.tbl tr:hover td{background:#f8fafc;}
+.miss{color:#b45309;font-style:italic;font-size:12px;}
+.pill{display:inline-block;padding:3px 11px;border-radius:14px;font-size:12px;font-weight:700;margin-right:6px;}
+.pill.cg{background:#dbeafe;color:#1e40af;} .pill.ntt{background:#fee2e2;color:#b91c1c;}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+@media(max-width:760px){.diff-grid{grid-template-columns:1fr;}}
+.diff-card{background:var(--card);padding:24px;border-radius:16px;border:1px solid var(--border);position:relative;overflow:hidden;}
+.diff-card::before{content:"";position:absolute;top:0;left:0;height:6px;width:100%;}
+.diff-card.cg::before{background:var(--cg);} .diff-card.ntt::before{background:var(--ntt);}
+.diff-score{font-size:52px;font-weight:800;line-height:1;margin:10px 0;}
+.diff-card.cg .diff-score{color:var(--cg);} .diff-card.ntt .diff-score{color:var(--ntt);}
+.diff-bar{height:10px;background:#e2e8f0;border-radius:5px;margin:14px 0;overflow:hidden;}
+.diff-bar-fill{height:100%;border-radius:5px;}
+.factor-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:13px;border-bottom:1px dashed var(--border);}
+.factor-row:last-child{border-bottom:none;}
+.factor-row .fl{color:var(--text-muted);} .factor-row .fv{font-weight:600;}
+.footer{text-align:center;color:var(--text-muted);font-size:12px;padding:24px;}
+.tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#f1f5f9;color:#475569;font-weight:600;margin-left:6px;}
+.tag.inf{background:#ede9fe;color:#6d28d9;}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>📊 So sánh Đề thi Tiếng Anh vào lớp 6 — Cầu Giấy vs Nguyễn Tất Thành</h1>
+    <p>🟦 THCS Cầu Giấy (2021–2023) · 🟥 THCS &amp; THPT Nguyễn Tất Thành (2022–2024)<br>
+    Phân loại theo nhóm chuyên đề · Đánh giá &amp; so sánh độ khó · Tham chiếu cách làm dashboard môn Toán</p>
+  </div>
+
+  <div class="note">
+    <b>⚠️ Lưu ý về dữ liệu nguồn:</b> Đề Cầu Giấy được các trung tâm <b>“gõ lại theo trí nhớ của học sinh”</b> (HC English / Loigiaihay) nên <b>phần Reading bị thiếu nội dung</b> (mục “IV. READING” chỉ ghi “……”; đề 2021 thiếu câu 21–26). Mọi thống kê CG bên dưới là <b>“số câu ghi nhận được”</b>, KHÔNG suy đoán phần thiếu. Đề NTT có đáp án + lời giải đầy đủ. Các con số đều trích trực tiếp từ 7 file PDF bạn cung cấp.
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn cg active" data-tab="cg">🟦 Cầu Giấy</button>
+    <button class="tab-btn ntt" data-tab="ntt">🟥 Nguyễn Tất Thành</button>
+    <button class="tab-btn" data-tab="compare">⚖️ So sánh 2 trường</button>
+    <button class="tab-btn" data-tab="difficulty">🎯 Đánh giá độ khó</button>
+    <button class="tab-btn" data-tab="method">📋 Phương pháp &amp; Nguồn</button>
+  </div>
+
+  <!-- ============ CG ============ -->
+  <div class="tab-content active" id="tab-cg">
+    <div class="kpi-grid">
+      <div class="kpi-card cg"><div class="kpi-label">Số đề phân tích</div><div class="kpi-value cg">3</div><div class="kpi-sub">2021 · 2022 · 2023</div></div>
+      <div class="kpi-card cg"><div class="kpi-label">Câu ghi nhận được</div><div class="kpi-value cg">76</div><div class="kpi-sub">chưa gồm Reading (thiếu)</div></div>
+      <div class="kpi-card cg"><div class="kpi-label">Nhóm chuyên đề</div><div class="kpi-value cg">9</div><div class="kpi-sub">gồm Ngữ âm &amp; Trọng âm</div></div>
+      <div class="kpi-card cg"><div class="kpi-label">Viết đoạn tự do</div><div class="kpi-value cg">0</div><div class="kpi-sub">chỉ viết câu có kiểm soát</div></div>
+    </div>
+    <div class="insights cg">
+      <h3>🟦 Đặc điểm đề Cầu Giấy</h3>
+      <ul>
+        <li><b>Kiểm tra kiến thức rời rạc, diện rộng:</b> có đủ Ngữ âm, Trọng âm, Ngữ pháp, Từ vựng, Đồng/Trái nghĩa, Sửa lỗi, Giao tiếp — những dạng NTT <b>không có</b>.</li>
+        <li><b>Ngữ âm + Trọng âm</b> là “chữ ký” riêng của CG (4 câu/đề), đòi hỏi học phát âm &amp; trọng âm — kỹ năng NTT bỏ qua hoàn toàn.</li>
+        <li><b>Writing dạng kiểm soát:</b> sắp xếp từ thành câu + viết lại câu theo gợi ý (Q37–40). Không có viết đoạn tự do.</li>
+        <li><b>Phần Reading:</b> theo cấu trúc đề có mục “IV. READING” (điền từ + đọc hiểu) nhưng <span class="miss">nguồn không lưu nội dung</span> → không thống kê được.</li>
+        <li>Đề 2023 bổ sung dạng <b>Sửa lỗi sai</b> (Q15–16) mà 2021–2022 chưa có.</li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="card"><h2>Phân bố nhóm câu theo năm (số câu ghi nhận)</h2><div class="chart-wrap tall"><canvas id="cgByYear"></canvas></div></div>
+      <div class="card"><h2>Tỉ trọng nhóm câu (tổng 3 năm)</h2><div class="chart-wrap tall"><canvas id="cgPie"></canvas></div></div>
+    </div>
+    <div class="card">
+      <h2>Bảng chi tiết theo năm</h2>
+      <table class="tbl" id="cgTable"></table>
+      <p class="miss" style="margin-top:10px">* Reading của cả 3 năm: nguồn không có nội dung. ** Đề 2021 thiếu câu 21–26; đề 2022–2023 thiếu phần Reading &amp; sắp xếp câu (khoảng câu 23–36).</p>
+    </div>
+  </div>
+
+  <!-- ============ NTT ============ -->
+  <div class="tab-content" id="tab-ntt">
+    <div class="kpi-grid">
+      <div class="kpi-card ntt"><div class="kpi-label">Số đề phân tích</div><div class="kpi-value ntt">3</div><div class="kpi-sub">2022 · 2023 · 2024 (mã 123/456)</div></div>
+      <div class="kpi-card ntt"><div class="kpi-label">Câu / đề</div><div class="kpi-value ntt">26</div><div class="kpi-sub">cố định, đủ đáp án + lời giải</div></div>
+      <div class="kpi-card ntt"><div class="kpi-label">Thời gian</div><div class="kpi-value ntt">30'</div><div class="kpi-sub">≈ 0,87 câu/phút</div></div>
+      <div class="kpi-card ntt"><div class="kpi-label">Câu Đọc hiểu / đề</div><div class="kpi-value ntt">9</div><div class="kpi-sub">≈ 35% đề thi</div></div>
+    </div>
+    <div class="insights ntt">
+      <h3>🟥 Đặc điểm đề Nguyễn Tất Thành</h3>
+      <ul>
+        <li><b>Cấu trúc rất ổn định</b> qua các năm: 13 câu hoàn thành câu → 2 câu giao tiếp → notice/message → đoạn đọc hiểu → điền từ → 1 câu sửa lỗi đồng âm → 1 bài viết đoạn.</li>
+        <li><b>Nặng kỹ năng đọc hiểu:</b> ~9/26 câu (≈35%) dùng văn bản thật — thông báo, tin nhắn, đoạn văn (Stonehenge, đạp xe ở London, bảo vệ môi trường…), gồm cả câu suy luận (main idea, “it/them” chỉ gì).</li>
+        <li><b>Có viết đoạn tự do 50–70 từ</b> (NTT 2023 yêu cầu 30–50 từ), chấm theo rubric (Task/Lexical/Grammar/Cohesion/Length) — kỹ năng sản sinh ngôn ngữ bậc cao.</li>
+        <li><b>Không có Ngữ âm/Trọng âm, không có Đồng/Trái nghĩa</b> dạng tách rời — thay bằng từ vựng theo ngữ cảnh (collocation, idiom như “out of order”).</li>
+        <li>Câu 25 luôn là dạng <b>sửa từ đồng âm</b> (sale→sail, hair→hare, blue→blew).</li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="card"><h2>Phân bố nhóm câu theo năm</h2><div class="chart-wrap tall"><canvas id="nttByYear"></canvas></div></div>
+      <div class="card"><h2>Tỉ trọng nhóm câu (tổng 3 năm)</h2><div class="chart-wrap tall"><canvas id="nttPie"></canvas></div></div>
+    </div>
+    <div class="card">
+      <h2>Bảng chi tiết theo năm</h2>
+      <table class="tbl" id="nttTable"></table>
+      <p class="kpi-sub" style="margin-top:10px">Năm 2022 có 2 câu viết lại câu (Q23–24); 2023–2024 thay bằng 3 câu điền từ trong phần đọc hiểu.</p>
+    </div>
+  </div>
+
+  <!-- ============ COMPARE ============ -->
+  <div class="tab-content" id="tab-compare">
+    <div class="insights">
+      <h3>⚖️ So sánh tổng quan — hai triết lý ra đề khác nhau</h3>
+      <ul>
+        <li><b>Cầu Giấy = “rộng &amp; rời rạc”:</b> nhiều dạng kiến thức điểm (phát âm, trọng âm, ngữ pháp, từ đồng/trái nghĩa, sửa lỗi). Mỗi câu kiểm tra một điểm kiến thức cụ thể.</li>
+        <li><b>NTT = “sâu &amp; tích hợp”:</b> ít dạng hơn nhưng nặng đọc hiểu văn bản thật + viết đoạn tự do → yêu cầu kỹ năng bậc cao (vận dụng, suy luận, sản sinh).</li>
+        <li><b>Chỉ NTT có viết đoạn tự do</b>; chỉ CG có Ngữ âm/Trọng âm &amp; Đồng/Trái nghĩa tách riêng.</li>
+        <li><b>Áp lực thời gian:</b> NTT công bố rõ 26 câu/30 phút; CG <span class="miss">không rõ thời gian</span> nên không so sánh trực tiếp được.</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-bottom:24px"><h2>Phân bố nhóm câu — CG vs NTT (tổng các năm)</h2><div class="chart-wrap tall"><canvas id="cmpBar"></canvas></div></div>
+    <div class="card">
+      <h2>Bảng so sánh cấu trúc</h2>
+      <table class="tbl" id="cmpTable"></table>
+    </div>
+  </div>
+
+  <!-- ============ DIFFICULTY ============ -->
+  <div class="tab-content" id="tab-difficulty">
+    <div class="note">
+      <b>[Inference]</b> Chỉ số độ khó (0–100) dưới đây là <b>thang tổng hợp do mình xây dựng</b> để so sánh, <b>không phải chuẩn quốc gia</b>. Nó thiên về kỹ năng đọc–viết bậc cao, nên phản ánh “độ khó theo kỹ năng” chứ không nói đề nào “tốt hơn”. Điểm CG kèm <b>độ bất định cao</b> vì thiếu dữ liệu Reading và thời gian làm bài.
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card cg">
+        <div><span class="pill cg">Cầu Giấy</span><span class="tag inf">[Inference]</span></div>
+        <div class="diff-score">~48</div>
+        <div class="diff-bar"><div class="diff-bar-fill" style="width:48%;background:var(--cg)"></div></div>
+        <div id="cgFactors"></div>
+      </div>
+      <div class="diff-card ntt">
+        <div><span class="pill ntt">Nguyễn Tất Thành</span><span class="tag inf">[Inference]</span></div>
+        <div class="diff-score">~77</div>
+        <div class="diff-bar"><div class="diff-bar-fill" style="width:77%;background:var(--ntt)"></div></div>
+        <div id="nttFactors"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card"><h2>So sánh 6 yếu tố độ khó (radar)</h2><div class="chart-wrap tall"><canvas id="radar"></canvas></div></div>
+      <div class="card">
+        <h2>Diễn giải</h2>
+        <div class="insights" style="margin:0">
+          <h3>🎯 Kết luận cân bằng</h3>
+          <ul>
+            <li><b>Theo thang kỹ năng đọc–viết:</b> NTT khó hơn rõ rệt (đọc hiểu văn bản thật + viết đoạn tự do + câu suy luận).</li>
+            <li><b>Nhưng CG đòi hỏi nền kiến thức rộng hơn:</b> phát âm, trọng âm, từ đồng/trái nghĩa — học sinh “học tủ” đọc–viết vẫn có thể mất điểm ở CG.</li>
+            <li><b>Gợi ý ôn tập:</b> thi CG → luyện phát âm/trọng âm, ngữ pháp điểm, từ vựng đồng–trái nghĩa, viết lại câu. Thi NTT → luyện đọc hiểu tốc độ, collocation/idiom, viết đoạn theo rubric.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ METHOD ============ -->
+  <div class="tab-content" id="tab-method">
+    <div class="card" style="margin-bottom:16px">
+      <h2>Cách tính chỉ số độ khó (phỏng theo dashboard môn Toán)</h2>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:12px">Chỉ số = tổng hợp 6 yếu tố có trọng số (thích ứng cho môn Tiếng Anh):</p>
+      <table class="tbl" id="weightTable"></table>
+      <p class="tag inf" style="display:inline-block;margin-top:12px">[Inference] Trọng số do mình đặt, có thể điều chỉnh theo mục tiêu đánh giá.</p>
+    </div>
+    <div class="card">
+      <h2>Nguồn dữ liệu (7 file PDF do người dùng cung cấp)</h2>
+      <table class="tbl" id="srcTable"></table>
+      <p class="miss" style="margin-top:10px">Đề CG do trung tâm gõ lại theo trí nhớ học sinh → thiếu phần Reading. Số liệu thống kê chỉ dựa trên phần nội dung thực có trong file.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    Dashboard so sánh đề thi Tiếng Anh vào lớp 6 · Dữ liệu trích trực tiếp từ 7 file PDF người dùng cung cấp · Tạo bởi Claude
+  </div>
+</div>
+
+<script>
+const GROUPS=[
+ {key:"phon",name:"Ngữ âm",color:"#06b6d4"},
+ {key:"stress",name:"Trọng âm",color:"#14b8a6"},
+ {key:"gram",name:"Ngữ pháp",color:"#3b82f6"},
+ {key:"vocab",name:"Từ vựng",color:"#f59e0b"},
+ {key:"synant",name:"Đồng/Trái nghĩa",color:"#a855f7"},
+ {key:"error",name:"Sửa lỗi",color:"#ec4899"},
+ {key:"comm",name:"Giao tiếp",color:"#84cc16"},
+ {key:"read",name:"Đọc hiểu",color:"#ef4444"},
+ {key:"cwrite",name:"Viết câu (kiểm soát)",color:"#f97316"},
+ {key:"fwrite",name:"Viết đoạn (tự do)",color:"#8b5cf6"}
+];
+const GN=GROUPS.map(g=>g.name), GC=GROUPS.map(g=>g.color);
+
+// ===== verified counts from extracted PDFs =====
+const CG={
+ "2021":{phon:2,stress:2,gram:10,vocab:4,synant:0,error:0,comm:2,read:null,cwrite:4,fwrite:0},
+ "2022":{phon:2,stress:2,gram:10,vocab:2,synant:4,error:0,comm:2,read:null,cwrite:4,fwrite:0},
+ "2023":{phon:2,stress:2,gram:6,vocab:4,synant:4,error:2,comm:2,read:null,cwrite:4,fwrite:0}
+};
+const NTT={
+ "2022":{phon:0,stress:0,gram:4,vocab:7,synant:0,error:1,comm:2,read:9,cwrite:2,fwrite:1},
+ "2023":{phon:0,stress:0,gram:7,vocab:6,synant:0,error:1,comm:2,read:9,cwrite:0,fwrite:1},
+ "2024":{phon:0,stress:0,gram:8,vocab:5,synant:0,error:1,comm:2,read:9,cwrite:0,fwrite:1}
+};
+const sum=(obj,k)=>Object.values(obj).reduce((a,y)=>a+(y[k]||0),0);
+const cgTot=GROUPS.map(g=>sum(CG,g.key));
+const nttTot=GROUPS.map(g=>sum(NTT,g.key));
+
+// ===== tabs =====
+document.querySelectorAll('.tab-btn').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+ document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));
+ b.classList.add('active');
+ document.getElementById('tab-'+b.dataset.tab).classList.add('active');
+});
+
+// ===== helpers =====
+function stackedByYear(canvas,data){
+ const years=Object.keys(data);
+ const ds=GROUPS.map(g=>({label:g.name,data:years.map(y=>data[y][g.key]||0),backgroundColor:g.color}));
+ new Chart(document.getElementById(canvas),{type:'bar',data:{labels:years,datasets:ds},
+  options:{responsive:true,maintainAspectRatio:false,scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'Số câu'}}},
+   plugins:{legend:{position:'bottom',labels:{boxWidth:12,font:{size:10}}}}}});
+}
+function pie(canvas,totals){
+ const lab=[],val=[],col=[];
+ GROUPS.forEach((g,i)=>{if(totals[i]>0){lab.push(g.name);val.push(totals[i]);col.push(g.color);}});
+ new Chart(document.getElementById(canvas),{type:'doughnut',data:{labels:lab,datasets:[{data:val,backgroundColor:col}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{boxWidth:12,font:{size:11}}}}}});
+}
+function tableByYear(id,data,isCG){
+ const years=Object.keys(data);
+ let h='<tr><th class="label">Nhóm chuyên đề</th>'+years.map(y=>'<th>'+y+'</th>').join('')+'<th>Tổng</th></tr>';
+ GROUPS.forEach(g=>{
+  const cells=years.map(y=>{const v=data[y][g.key];return v===null?'<td class="miss">thiếu*</td>':'<td>'+v+'</td>';});
+  const tot=years.reduce((a,y)=>a+(data[y][g.key]||0),0);
+  const anyNull=years.some(y=>data[y][g.key]===null);
+  h+='<tr><td class="label"><span style="color:'+g.color+'">●</span> '+g.name+'</td>'+cells.join('')+'<td><b>'+(anyNull?tot+'+':tot)+'</b></td></tr>';
+ });
+ const tt=years.map(y=>Object.values(data[y]).reduce((a,v)=>a+(v||0),0));
+ h+='<tr style="background:#f1f5f9"><td class="label"><b>Tổng ghi nhận</b></td>'+tt.map(t=>'<td><b>'+t+'</b></td>').join('')+'<td><b>'+tt.reduce((a,b)=>a+b,0)+'</b></td></tr>';
+ document.getElementById(id).innerHTML=h;
+}
+
+stackedByYear('cgByYear',CG); pie('cgPie',cgTot); tableByYear('cgTable',CG,true);
+stackedByYear('nttByYear',NTT); pie('nttPie',nttTot); tableByYear('nttTable',NTT,false);
+
+// ===== compare bar =====
+new Chart(document.getElementById('cmpBar'),{type:'bar',
+ data:{labels:GN,datasets:[
+  {label:'Cầu Giấy',data:cgTot,backgroundColor:'#3b82f6'},
+  {label:'Nguyễn Tất Thành',data:nttTot,backgroundColor:'#ef4444'}]},
+ options:{responsive:true,maintainAspectRatio:false,scales:{y:{title:{display:true,text:'Tổng số câu (các năm)'}}},
+  plugins:{legend:{position:'bottom'}}}});
+
+// ===== compare table =====
+const cmpRows=[
+ ["Số đề / năm phân tích","3 (2021–2023)","3 (2022–2024)"],
+ ["Số câu mỗi đề","~40 (gồm Reading) — phần trắc nghiệm ~22 + viết câu","26 (cố định)"],
+ ["Thời gian làm bài","Không rõ trong nguồn","30 phút"],
+ ["Ngữ âm / Trọng âm","✔ Có (4 câu/đề)","✘ Không"],
+ ["Đồng nghĩa / Trái nghĩa","✔ Có (từ 2022)","✘ Không (dùng từ vựng ngữ cảnh)"],
+ ["Sửa lỗi","✔ Có (2023: gạch chân) ","✔ Có (đồng âm, câu 25)"],
+ ["Đọc hiểu văn bản thật","Có trong cấu trúc — nguồn thiếu nội dung","✔ Mạnh (~9 câu, ≈35%)"],
+ ["Viết câu (sắp xếp/viết lại)","✔ Có (Q37–40)","Có ở 2022; bỏ ở 2023–24"],
+ ["Viết đoạn tự do","✘ Không","✔ Có (50–70 từ, chấm rubric)"],
+ ["Triết lý đề","Rộng – kiến thức rời rạc","Sâu – kỹ năng tích hợp"]
+];
+(function(){let h='<tr><th class="label">Tiêu chí</th><th class="cg-col">🟦 Cầu Giấy</th><th class="ntt-col">🟥 Nguyễn Tất Thành</th></tr>';
+ cmpRows.forEach(r=>{h+='<tr><td class="label">'+r[0]+'</td><td class="cg-col">'+r[1].replace("�’","")+'</td><td class="ntt-col">'+r[2]+'</td></tr>';});
+ document.getElementById('cmpTable').innerHTML=h;})();
+
+// ===== difficulty factors =====
+const FACTORS=[
+ {name:"Tải đọc hiểu (văn bản thật + suy luận)",w:25,cg:50,ntt:80},
+ {name:"Viết sản sinh tự do",w:20,cg:25,ntt:85},
+ {name:"Câu vận dụng/suy luận bậc cao",w:20,cg:45,ntt:75},
+ {name:"Áp lực thời gian (câu/phút)",w:15,cg:55,ntt:70},
+ {name:"Độ sâu & phạm vi từ vựng",w:10,cg:60,ntt:70},
+ {name:"Đa dạng kỹ năng/dạng bài",w:10,cg:70,ntt:75}
+];
+function factorList(id,key){
+ let h='';FACTORS.forEach(f=>{h+='<div class="factor-row"><span class="fl">'+f.name+'</span><span class="fv">'+f[key]+'/100</span></div>';});
+ document.getElementById(id).innerHTML=h;
+}
+factorList('cgFactors','cg'); factorList('nttFactors','ntt');
+
+new Chart(document.getElementById('radar'),{type:'radar',
+ data:{labels:FACTORS.map(f=>f.name),datasets:[
+  {label:'Cầu Giấy',data:FACTORS.map(f=>f.cg),borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.18)',pointBackgroundColor:'#3b82f6'},
+  {label:'Nguyễn Tất Thành',data:FACTORS.map(f=>f.ntt),borderColor:'#ef4444',backgroundColor:'rgba(239,68,68,.18)',pointBackgroundColor:'#ef4444'}]},
+ options:{responsive:true,maintainAspectRatio:false,scales:{r:{suggestedMin:0,suggestedMax:100,pointLabels:{font:{size:9}}}},plugins:{legend:{position:'bottom'}}}});
+
+// ===== weight table =====
+(function(){let h='<tr><th class="label">Yếu tố</th><th>Trọng số</th><th class="cg-col">CG</th><th class="ntt-col">NTT</th></tr>';
+ FACTORS.forEach(f=>{h+='<tr><td class="label">'+f.name+'</td><td>'+f.w+'%</td><td class="cg-col">'+f.cg+'</td><td class="ntt-col">'+f.ntt+'</td></tr>';});
+ const cg=Math.round(FACTORS.reduce((a,f)=>a+f.cg*f.w/100,0));
+ const ntt=Math.round(FACTORS.reduce((a,f)=>a+f.ntt*f.w/100,0));
+ h+='<tr style="background:#f1f5f9"><td class="label"><b>Chỉ số tổng hợp</b></td><td>100%</td><td class="cg-col"><b>'+cg+'</b></td><td class="ntt-col"><b>'+ntt+'</b></td></tr>';
+ document.getElementById('weightTable').innerHTML=h;})();
+
+// ===== source table =====
+const SRC=[
+ ["Cầu Giấy","2021","de-thi-...-cau-giay-2021-co-dap-an.pdf","Trắc nghiệm 1–20 + viết câu 27–30","Thiếu câu 21–26"],
+ ["Cầu Giấy","2022","...cau-giay-2022 - HC English.pdf","Trắc nghiệm 1–22 + viết lại 37–40","Thiếu Reading & sắp xếp câu"],
+ ["Cầu Giấy","2023","...cau-giay-2023 - HC English.pdf","Trắc nghiệm 1–22 + viết lại 37–40","Thiếu Reading & sắp xếp câu"],
+ ["NTT","2022","2022_Đề thi Tiếng Anh NTT.pdf","26 câu (tái dựng từ lời giải)","Đủ đáp án + lời giải"],
+ ["NTT","2023","2023_...NTT - HanaEnglish.pdf","26 câu, đủ đề + đáp án","Đủ"],
+ ["NTT","2024","2024_...NTT - Đề 123 + Đề 456.pdf","26 câu, 2 mã đề","Đủ"]
+];
+(function(){let h='<tr><th>Trường</th><th>Năm</th><th class="label">File</th><th class="label">Nội dung trích được</th><th class="label">Ghi chú</th></tr>';
+ SRC.forEach(r=>{h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td class="label" style="font-size:11px">'+r[2]+'</td><td class="label">'+r[3]+'</td><td class="label miss">'+r[4]+'</td></tr>';});
+ document.getElementById('srcTable').innerHTML=h;})();
+</script>
+</body>
+</html>
