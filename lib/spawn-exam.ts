@@ -336,17 +336,19 @@ export async function spawnTopicSetExam(
 }
 
 // ─── English topic-practice spawn ───────────────────────────────────────────
-// Clicking an english topic card spawns a practice set from that topic's
-// questions across the official english exams. Simpler than the math version:
-// no level tiers / quota — english uses CEFR within the pooled questions.
+// Clicking an english topic card with a chosen level lands here; we spawn a
+// practice set filtered by CEFR grade (A1/A2/B1) from the official bank.
 // School "mix" + kind "reference" keep it out of the cg/ntt difficulty profile
 // (mix is a pseudo-school) while still feeding english mastery on submit.
-export async function spawnEnglishTopicSet(topicId: string, _userId: string): Promise<string> {
+export async function spawnEnglishTopicSet(topicId: string, level: string, _userId: string): Promise<string> {
+  const cfg = await getLevelConfig(level, "english");
+
   const pool = await prisma.question.findMany({
     where: {
       active: true,
       topic: topicId,
       subject: "english",
+      grade: { in: cfg.grades },
       examId: { not: null },
       exam: { kind: "official", subject: "english" },
     },
@@ -356,7 +358,7 @@ export async function spawnEnglishTopicSet(topicId: string, _userId: string): Pr
 
   if (pool.length === 0) throw new TopicSetEmptyError();
 
-  const picked = pickKeepingPassageGroups(pool);
+  const picked = pickKeepingPassageGroups(pool, cfg.qcount);
   const newId = `enset-${Date.now().toString(36)}-${randSuffix()}`;
 
   await prisma.exam.create({
@@ -366,9 +368,9 @@ export async function spawnEnglishTopicSet(topicId: string, _userId: string): Pr
       school: "mix",
       kind: "reference",
       year: `Luyện · ${todayLabelVi()}`,
-      title: "Luyện chuyên đề Tiếng Anh",
+      title: `Luyện chuyên đề Tiếng Anh · ${cfg.label}`,
       intro: "Bài luyện theo chuyên đề Tiếng Anh — câu hỏi rút từ các đề chính thức.",
-      minutes: Math.max(10, picked.length * 2),
+      minutes: cfg.minutes,
       qcount: picked.length,
       generated: true,
       note: `en-topic:${topicId}`,
@@ -404,16 +406,19 @@ export async function spawnEnglishTopicSet(topicId: string, _userId: string): Pr
 }
 
 // ─── Vietnamese topic-practice spawn ────────────────────────────────────────
-// Clicking a vietnamese topic card spawns a practice set from that topic's
-// questions across the official vietnamese exams. Mirrors spawnEnglishTopicSet:
-// no level tiers — 12 questions max, school "mix", kind "reference", prefix
-// "vnset-". Passages are carried so reading questions keep their passage block.
-export async function spawnVietnameseTopicSet(topicId: string, _userId: string): Promise<string> {
+// Clicking a vietnamese topic card with a chosen level lands here; we spawn a
+// practice set filtered by cognitive grade (NB/TH/VD) from the official bank.
+// Mirrors spawnEnglishTopicSet: school "mix", kind "reference", prefix "vnset-".
+// Passages are carried so reading questions keep their passage block.
+export async function spawnVietnameseTopicSet(topicId: string, level: string, _userId: string): Promise<string> {
+  const cfg = await getLevelConfig(level, "vietnamese");
+
   const pool = await prisma.question.findMany({
     where: {
       active: true,
       topic: topicId,
       subject: "vietnamese",
+      grade: { in: cfg.grades },
       examId: { not: null },
       exam: { kind: "official", subject: "vietnamese" },
     },
@@ -423,7 +428,7 @@ export async function spawnVietnameseTopicSet(topicId: string, _userId: string):
 
   if (pool.length === 0) throw new TopicSetEmptyError();
 
-  const picked = pickKeepingPassageGroups(pool);
+  const picked = pickKeepingPassageGroups(pool, cfg.qcount);
   const newId = `vnset-${Date.now().toString(36)}-${randSuffix()}`;
 
   await prisma.exam.create({
@@ -433,9 +438,9 @@ export async function spawnVietnameseTopicSet(topicId: string, _userId: string):
       school: "mix",
       kind: "reference",
       year: `Luyện · ${todayLabelVi()}`,
-      title: "Luyện chuyên đề Tiếng Việt",
+      title: `Luyện chuyên đề Tiếng Việt · ${cfg.label}`,
       intro: "Bài luyện theo chuyên đề Tiếng Việt — câu hỏi rút từ các đề chính thức.",
-      minutes: Math.max(10, picked.length * 2),
+      minutes: cfg.minutes,
       qcount: picked.length,
       generated: true,
       note: `vn-topic:${topicId}`,

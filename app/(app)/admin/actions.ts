@@ -525,6 +525,7 @@ export interface PlanConfigRow {
 
 export interface LevelConfigRow {
   level: string;
+  subject: string;
   label: string;
   sub: string;
   qcount: number;
@@ -545,11 +546,12 @@ export async function getPlanConfigs(): Promise<PlanConfigRow[]> {
   }));
 }
 
-export async function getLevelConfigRows(): Promise<LevelConfigRow[]> {
+export async function getLevelConfigRows(subject: string = "math"): Promise<LevelConfigRow[]> {
   await requireAdmin();
-  const rows = await prisma.levelConfig.findMany({ orderBy: { position: "asc" } });
+  const rows = await prisma.levelConfig.findMany({ where: { subject }, orderBy: { position: "asc" } });
   return rows.map((r) => ({
     level: r.level,
+    subject: r.subject,
     label: r.label,
     sub: r.sub,
     qcount: r.qcount,
@@ -583,6 +585,7 @@ export async function updatePlanConfig(
 
 export async function updateLevelConfig(
   level: string,
+  subject: string,
   data: { qcount: number; minutes: number; active?: boolean },
 ): Promise<{ ok: boolean }> {
   await requireAdmin();
@@ -593,8 +596,8 @@ export async function updateLevelConfig(
   };
   if (data.active !== undefined) patch.active = data.active;
 
-  await prisma.levelConfig.updateMany({
-    where: { level },
+  await prisma.levelConfig.update({
+    where: { level_subject: { level, subject } },
     data: patch,
   });
 

@@ -486,6 +486,7 @@ export interface UserActivitySummary {
 
 export async function getUserActivityStats(
   userIds: string[],
+  subject?: Subject,
 ): Promise<Map<string, UserActivitySummary>> {
   const map = new Map<string, UserActivitySummary>();
   for (const id of userIds) {
@@ -498,15 +499,22 @@ export async function getUserActivityStats(
   }
   if (userIds.length === 0) return map;
 
+  // Subject scoping: attempts join exam.subject. TopicSession rows exist only for
+  // math (parseTopicSetId matches "set-" only), so for english/vietnamese we skip
+  // the session query — their practice runs are enset-/vnset- Attempts, counted as
+  // topic sessions via the practice-prefix check in the attempt loop below.
+  type SessionLite = { userId: string; setId: string | null; qcount: number; score: number; createdAt: Date };
   const [attempts, sessions] = await Promise.all([
     prisma.attempt.findMany({
-      where: { userId: { in: userIds }, submitted: true },
+      where: { userId: { in: userIds }, submitted: true, ...(subject ? { exam: { subject } } : {}) },
       select: { userId: true, examId: true, score: true, createdAt: true },
     }),
-    prisma.topicSession.findMany({
-      where: { userId: { in: userIds } },
-      select: { userId: true, setId: true, qcount: true, score: true, createdAt: true },
-    }),
+    subject && subject !== "math"
+      ? Promise.resolve([] as SessionLite[])
+      : prisma.topicSession.findMany({
+          where: { userId: { in: userIds } },
+          select: { userId: true, setId: true, qcount: true, score: true, createdAt: true },
+        }),
   ]);
 
   // A topic-practice run writes BOTH a TopicSession and an Attempt with
@@ -539,7 +547,12 @@ export async function getUserActivityStats(
     if (!slot.lastActiveAt || a.createdAt > slot.lastActiveAt) slot.lastActiveAt = a.createdAt;
     const isPairedTopic = topicSetIdsByUser.get(a.userId)?.has(a.examId) ?? false;
     if (isPairedTopic) continue; // counted via the TopicSession loop below
-    slot.attemptCount += 1;
+    // english/vietnamese practice (enset-/vnset-) has no TopicSession → count it as
+    // a topic session here instead of an exam attempt.
+    const isPractice =
+      a.examId.startsWith("set-") || a.examId.startsWith("enset-") || a.examId.startsWith("vnset-");
+    if (isPractice) slot.topicSessionCount += 1;
+    else slot.attemptCount += 1;
     const s = sums[a.userId] ?? { num: 0, den: 0 };
     s.num += a.score;
     s.den += 1;
@@ -610,24 +623,38 @@ export interface AdminActivityFeed {
   counts: { all: number; exam: number; topic: number };
 }
 
+// Extracts the topic id from a spawned english/vietnamese practice exam's note,
+// e.g. "en-topic:reading" → "reading", "vn-topic:doc-hieu" → "doc-hieu".
+const parseNoteTopic = (note: string | null): string | null => {
+  if (!note) return null;
+  const m = note.match(/^(?:en|vn)-topic:(.+)$/);
+  return m ? m[1] : null;
+};
+
 export async function getUserActivityForAdmin(
   userId: string,
   filter: AdminActivityFilter = "all",
   page = 1,
   pageSize = 20,
+  subject?: Subject,
 ): Promise<AdminActivityFeed> {
   const safePage = Math.max(1, page);
 
+  // Subject scoping mirrors getUserActivityStats: attempts join exam.subject;
+  // TopicSession rows are math-only, so skip them for english/vietnamese.
+  type AdminSession = Awaited<ReturnType<typeof prisma.topicSession.findMany>>[number];
   const [attempts, sessions] = await Promise.all([
     prisma.attempt.findMany({
-      where: { userId, submitted: true },
+      where: { userId, submitted: true, ...(subject ? { exam: { subject } } : {}) },
       include: { exam: true },
       orderBy: { createdAt: "desc" },
     }),
-    prisma.topicSession.findMany({
-      where: { userId },
-      orderBy: { createdAt: "desc" },
-    }),
+    subject && subject !== "math"
+      ? Promise.resolve([] as AdminSession[])
+      : prisma.topicSession.findMany({
+          where: { userId },
+          orderBy: { createdAt: "desc" },
+        }),
   ]);
 
   // Map TopicSession.setId → session so we can find the pair for an attempt.
@@ -659,6 +686,23 @@ export async function getUserActivityForAdmin(
         topic: matched.topic,
         level: matched.level,
         qcount: matched.qcount,
+        durationSec: a.durationSec,
+      });
+    } else if (a.examId.startsWith("enset-") || a.examId.startsWith("vnset-")) {
+      // english/vietnamese topic practice — no TopicSession, so derive the topic
+      // from the exam note ("en-topic:<id>" / "vn-topic:<id>") and render as topic.
+      merged.push({
+        kind: "topic",
+        id: a.id,
+        attemptId: a.id,
+        examId: a.examId,
+        createdAt: a.createdAt,
+        score: a.score,
+        correctCount: a.earned,
+        total: a.total,
+        topic: parseNoteTopic(a.exam.note) ?? a.examId,
+        level: "",
+        qcount: a.exam.qcount,
         durationSec: a.durationSec,
       });
     } else {
@@ -712,4 +756,33 @@ export async function getUserActivityForAdmin(
   const rows = filtered.slice((safePage - 1) * pageSize, safePage * pageSize);
 
   return { rows, page: safePage, pageSize, total, counts };
+}
+
+// Per-subject daily accuracy for the admin detail "Hoạt động N ngày qua" chart.
+// Computed from Attempts (every exam + practice run writes one), so it covers all
+// subjects without depending on TopicSession. Returns oldest→newest; null = no
+// activity that day.
+export async function getUserActivitySeries(
+  userId: string,
+  subject?: Subject,
+  days = 14,
+): Promise<(number | null)[]> {
+  const attempts = await prisma.attempt.findMany({
+    where: { userId, submitted: true, ...(subject ? { exam: { subject } } : {}) },
+    select: { score: true, createdAt: true },
+  });
+
+  const buckets = Array.from({ length: days }, () => ({ num: 0, den: 0 }));
+  const now = new Date();
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+  for (const a of attempts) {
+    const c = a.createdAt;
+    const day = new Date(c.getFullYear(), c.getMonth(), c.getDate()).getTime();
+    const diff = Math.round((startOfToday - day) / 86_400_000);
+    if (diff < 0 || diff >= days) continue;
+    const idx = days - 1 - diff; // oldest first
+    buckets[idx].num += a.score;
+    buckets[idx].den += 1;
+  }
+  return buckets.map((b) => (b.den > 0 ? Math.round(b.num / b.den) : null));
 }

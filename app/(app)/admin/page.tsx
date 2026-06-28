@@ -18,6 +18,7 @@ import { QAPanel } from "./QAPanel";
 import { WhitelistPanel } from "./WhitelistPanel";
 import { BankPanel } from "./BankPanel";
 import { PlansPanel } from "./PlansPanel";
+import { LevelConfigPanel } from "./LevelConfigPanel";
 import { ExamsPanel } from "./ExamsPanel";
 import { SchoolsPanel } from "./SchoolsPanel";
 import { ReadinessPanel } from "./ReadinessPanel";
@@ -120,7 +121,7 @@ export default async function AdminPage({ searchParams }: Props) {
   const bankPage  = tab === "bank" ? await getBankQuestions({ source: "all", page: 1, subject }) : null;
 
   const planConfigs  = tab === "plans" ? await getPlanConfigs()      : [];
-  const levelConfigs = tab === "plans" ? await getLevelConfigRows()  : [];
+  const levelConfigs = tab === "levels" ? await getLevelConfigRows(subject) : [];
 
   const schoolsList    = tab === "schools"   ? await getAllSchools()             : [];
   const readinessData  = tab === "readiness" ? await getReadinessDistribution(subject) : [];
@@ -148,6 +149,7 @@ export default async function AdminPage({ searchParams }: Props) {
     topics:   { crumb: "Chuyên đề", title: "Cấu hình chuyên đề", sub: "Danh sách và thứ tự các chuyên đề luyện tập." },
     qa:       { crumb: "QA câu hỏi", title: "QA câu hỏi", sub: "Soát lỗi và rà soát câu hỏi bị flag / có hình." },
     plans:    { crumb: "Gói thành viên", title: "Gói VIP · Pro · Free", sub: "Cấu hình giới hạn và quyền lợi từng gói." },
+    levels:   { crumb: "Số câu luyện", title: "Số câu theo mức luyện", sub: "Cấu hình số câu & thời gian cho từng môn và mức luyện." },
     schools:  { crumb: "Trường", title: "Cấu hình trường", sub: "Quản lý danh sách trường + metadata hiển thị." },
     readiness:{ crumb: "Mức phù hợp", title: "Phân tích readiness", sub: "Phân bố user theo mức sẵn sàng + tools rebuild profile / recompute." },
   };
@@ -169,7 +171,7 @@ export default async function AdminPage({ searchParams }: Props) {
             <h2>{meta.title}</h2>
             <p>{meta.sub}</p>
           </div>
-          {["exams", "topics", "bank", "readiness"].includes(tab) ? (
+          {["exams", "topics", "bank", "readiness", "levels"].includes(tab) ? (
             <div className="subject-switch">
               <Link
                 href={`/admin?tab=${tab}&subject=math`}
@@ -530,7 +532,11 @@ export default async function AdminPage({ searchParams }: Props) {
         )}
 
         {tab === "plans" && (
-          <PlansPanel planConfigs={planConfigs} levelConfigs={levelConfigs} />
+          <PlansPanel planConfigs={planConfigs} />
+        )}
+
+        {tab === "levels" && (
+          <LevelConfigPanel key={subject} levelConfigs={levelConfigs} subject={subject} />
         )}
 
         {tab === "schools" && <SchoolsPanel schools={schoolsList} />}

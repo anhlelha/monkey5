@@ -1,13 +1,20 @@
 import Link from "next/link";
 import { Bar, Card, Pill } from "@/components/ui";
-import { Icon } from "@/components/Icon";
+import { Icon, type IconName } from "@/components/Icon";
 import { UserAdminControls } from "./UserAdminControls";
+import { SUBJECTS, SUBJECT_META, type Subject } from "@/lib/subjects";
 import type {
   AdminActivityFeed,
   AdminActivityFilter,
   UserActivitySummary,
   UserShape,
 } from "@/lib/user-data";
+
+const SUBJECT_ICON: Record<Subject, IconName> = {
+  math: "grid",
+  english: "book",
+  vietnamese: "pencil",
+};
 
 interface TopicMeta {
   id: string;
@@ -32,6 +39,11 @@ interface Props {
   activity: AdminActivityFeed;
   filter: AdminActivityFilter;
   isSelf: boolean;
+  subject: Subject;
+  // Subject-scoped, computed per-load (NOT the math-only persisted user fields).
+  topicMastery: Record<string, number>;
+  readiness: Record<string, number>;
+  activitySeries: (number | null)[];
 }
 
 const toneFor = (pct: number): "" | "ltv" | "ntt" => {
@@ -57,9 +69,14 @@ export function UserDetailPanel({
   activity,
   filter,
   isSelf,
+  subject,
+  topicMastery,
+  readiness,
+  activitySeries,
 }: Props) {
   const topicById = new Map(topics.map((t) => [t.id, t]));
   const schoolById = new Map(schools.map((s) => [s.id, s]));
+  const subjectName = SUBJECT_META[subject].name;
 
   const initials =
     (user.name ?? user.email ?? "?")
@@ -73,7 +90,7 @@ export function UserDetailPanel({
   const planLabel = user.plan === "vip" ? "VIP" : user.plan === "pro" ? "Pro" : "Free";
   const planTone = user.plan === "vip" ? "solid" : user.plan === "pro" ? "green" : "";
 
-  const masteryEntries = Object.entries(user.topicMastery)
+  const masteryEntries = Object.entries(topicMastery)
     .filter(([, v]) => typeof v === "number" && v > 0)
     .sort((a, b) => b[1] - a[1]);
   const masteryAvg =
@@ -90,15 +107,32 @@ export function UserDetailPanel({
   const activityTotalPages = Math.max(1, Math.ceil(activity.total / activity.pageSize));
 
   const filterHref = (f: AdminActivityFilter, page = 1) =>
-    `/admin/users/${user.id}?filter=${f}&page=${page}`;
+    `/admin/users/${user.id}?subject=${subject}&filter=${f}&page=${page}`;
 
   const activityMax = Math.max(
     1,
-    ...user.activity.map((v) => (typeof v === "number" ? v : 0)),
+    ...activitySeries.map((v) => (typeof v === "number" ? v : 0)),
   );
 
   return (
     <div className="col" style={{ gap: 16 }}>
+      <div className="row between" style={{ alignItems: "center", flexWrap: "wrap", gap: 8 }}>
+        <div className="subject-switch">
+          {SUBJECTS.map((s) => (
+            <Link
+              key={s}
+              href={`/admin/users/${user.id}?subject=${s}`}
+              className={"subject-pill " + (s === subject ? "active" : "")}
+            >
+              <Icon name={SUBJECT_ICON[s]} /> {SUBJECT_META[s].name}
+            </Link>
+          ))}
+        </div>
+        <span className="muted" style={{ fontSize: 12 }}>
+          Số liệu bên dưới tính riêng cho môn <b style={{ color: "var(--ink)" }}>{subjectName}</b>.
+        </span>
+      </div>
+
       <Card>
         <div className="row" style={{ gap: 16, alignItems: "center", flexWrap: "wrap" }}>
           <div
@@ -242,7 +276,7 @@ export function UserDetailPanel({
           ) : (
             <div className="col" style={{ gap: 12 }}>
               {targetSchools.map((s) => {
-                const current = user.readiness[s.id] ?? 0;
+                const current = readiness[s.id] ?? 0;
                 return (
                   <div key={s.id}>
                     <div className="row between" style={{ marginBottom: 4 }}>
@@ -275,7 +309,7 @@ export function UserDetailPanel({
 
         <Card title="Mastery theo chuyên đề" sub="Mức thành thạo hiện tại của HS">
           {masteryEntries.length === 0 ? (
-            <div className="muted" style={{ fontSize: 13 }}>HS chưa luyện chuyên đề nào.</div>
+            <div className="muted" style={{ fontSize: 13 }}>HS chưa luyện chuyên đề {subjectName} nào.</div>
           ) : (
             <div className="col" style={{ gap: 8 }}>
               {masteryEntries.map(([tid, v]) => {
@@ -321,7 +355,7 @@ export function UserDetailPanel({
 
       <Card title="Hoạt động 14 ngày qua" sub="Tỉ lệ đúng (%) mỗi ngày — cột rỗng nghĩa là chưa luyện">
         <div className="row" style={{ gap: 6, alignItems: "flex-end", height: 80 }}>
-          {(user.activity.length > 0 ? user.activity : Array(14).fill(null)).map((v, i) => {
+          {(activitySeries.length > 0 ? activitySeries : Array(14).fill(null)).map((v, i) => {
             const val = typeof v === "number" ? v : 0;
             const h = v === null ? 4 : (val / activityMax) * 70 + 6;
             const color =

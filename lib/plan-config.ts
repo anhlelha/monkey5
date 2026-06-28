@@ -16,6 +16,7 @@ export interface PlanLimits {
 
 export interface LevelConfigRow {
   level: string;
+  subject: string;
   label: string;
   sub: string;
   qcount: number;
@@ -43,26 +44,40 @@ const DEFAULT_PLAN_LIMITS: Record<string, Omit<PlanLimits, "plan">> = {
 
 const DEFAULT_LEVEL_CONFIGS: LevelConfigRow[] = [
   {
-    level: "L4",  label: "Cơ bản",        sub: "Lớp 4 — công thức đơn lẻ",
+    level: "L4",  subject: "math", label: "Cơ bản",        sub: "Lớp 4 — công thức đơn lẻ",
     qcount: 8,  minutes: 15, grades: ["L4"],
     tone: "var(--success)", position: 0, active: true,
   },
   {
-    level: "L5",  label: "Vừa",            sub: "Lớp 5 — 2-3 bước kết hợp",
+    level: "L5",  subject: "math", label: "Vừa",            sub: "Lớp 5 — 2-3 bước kết hợp",
     qcount: 10, minutes: 20, grades: ["L5", "L4+5"],
     tone: "var(--cg)",      position: 1, active: true,
   },
   {
-    level: "NC",  label: "Nâng cao",       sub: "Olympic, biến đổi sáng tạo",
+    level: "NC",  subject: "math", label: "Nâng cao",       sub: "Olympic, biến đổi sáng tạo",
     qcount: 8,  minutes: 25, grades: ["NC"],
     tone: "var(--ntt)",     position: 2, active: true,
   },
   {
-    level: "MIX", label: "Phỏng đề thật", sub: "Trộn các mức như đề thi",
+    level: "MIX", subject: "math", label: "Phỏng đề thật", sub: "Trộn các mức như đề thi",
     qcount: 10, minutes: 30, grades: ["L4", "L5", "L4+5", "NC"],
     tone: "var(--accent)",  position: 3, active: true,
   },
 ];
+
+export const DEFAULT_LEVEL_CONFIGS_BY_SUBJECT: Record<string, LevelConfigRow[]> = {
+  math: DEFAULT_LEVEL_CONFIGS,
+  english: [
+    { level: "A1", subject: "english", label: "Cơ bản (A1)", sub: "Khởi động — từ vựng & câu ngắn", qcount: 8, minutes: 15, grades: ["A1"], tone: "var(--success)", position: 0, active: true },
+    { level: "A2", subject: "english", label: "Vừa (A2)", sub: "Trình độ phổ biến trong đề", qcount: 10, minutes: 20, grades: ["A2"], tone: "var(--cg)", position: 1, active: true },
+    { level: "B1", subject: "english", label: "Nâng cao (B1)", sub: "Đọc hiểu & vận dụng", qcount: 10, minutes: 25, grades: ["B1"], tone: "var(--ntt)", position: 2, active: true },
+  ],
+  vietnamese: [
+    { level: "NB", subject: "vietnamese", label: "Nhận biết", sub: "Nhận diện kiến thức cơ bản", qcount: 8, minutes: 15, grades: ["NB"], tone: "var(--success)", position: 0, active: true },
+    { level: "TH", subject: "vietnamese", label: "Thông hiểu", sub: "Hiểu & giải thích", qcount: 10, minutes: 20, grades: ["TH"], tone: "var(--cg)", position: 1, active: true },
+    { level: "VD", subject: "vietnamese", label: "Vận dụng", sub: "Vận dụng & cảm thụ", qcount: 10, minutes: 25, grades: ["VD"], tone: "var(--ntt)", position: 2, active: true },
+  ],
+};
 
 // ─── effectivePlan ────────────────────────────────────────────────────────────
 
@@ -105,22 +120,23 @@ export async function getPlanConfig(plan: string): Promise<PlanLimits> {
 // ─── getLevelConfigs ──────────────────────────────────────────────────────────
 
 /**
- * Returns all active LevelConfig rows ordered by position.
- * Falls back to DEFAULT_LEVEL_CONFIGS if the DB is empty (e.g. before seed).
+ * Returns all active LevelConfig rows for the given subject, ordered by position.
+ * Falls back to subject-appropriate defaults if the DB is empty (e.g. before seed).
  * The `grades` field is parsed from the JSON string stored in the DB.
  */
-export async function getLevelConfigs(): Promise<LevelConfigRow[]> {
+export async function getLevelConfigs(subject: string = "math"): Promise<LevelConfigRow[]> {
   const rows = await prisma.levelConfig.findMany({
-    where: { active: true },
+    where: { active: true, subject },
     orderBy: { position: "asc" },
   });
 
   if (rows.length === 0) {
-    return DEFAULT_LEVEL_CONFIGS;
+    return DEFAULT_LEVEL_CONFIGS_BY_SUBJECT[subject] ?? DEFAULT_LEVEL_CONFIGS;
   }
 
   return rows.map((row) => ({
     level: row.level,
+    subject: row.subject,
     label: row.label,
     sub: row.sub,
     qcount: row.qcount,
@@ -135,18 +151,19 @@ export async function getLevelConfigs(): Promise<LevelConfigRow[]> {
 // ─── getLevelConfig ───────────────────────────────────────────────────────────
 
 /**
- * Returns a single LevelConfig by level key.
- * Falls back to the L5 config if the requested level is not found —
+ * Returns a single LevelConfig by level key and subject.
+ * Falls back to the L5/first config if the requested level is not found —
  * mirrors the `TOPIC_LEVEL_CONFIG[lvl] ?? TOPIC_LEVEL_CONFIG.L5` pattern
  * in lib/spawn-exam.ts.
  */
-export async function getLevelConfig(level: string): Promise<LevelConfigRow> {
-  const configs = await getLevelConfigs();
+export async function getLevelConfig(level: string, subject: string = "math"): Promise<LevelConfigRow> {
+  const configs = await getLevelConfigs(subject);
   const found = configs.find((c) => c.level === level.toUpperCase());
   if (found) return found;
 
   // Fallback: L5 (or first available)
-  return configs.find((c) => c.level === "L5") ?? configs[0] ?? DEFAULT_LEVEL_CONFIGS[1];
+  const subjectDefaults = DEFAULT_LEVEL_CONFIGS_BY_SUBJECT[subject] ?? DEFAULT_LEVEL_CONFIGS;
+  return configs.find((c) => c.level === "L5") ?? configs[0] ?? subjectDefaults[0];
 }
 
 // ─── countTopicSets ───────────────────────────────────────────────────────────

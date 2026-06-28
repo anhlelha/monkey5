@@ -38,6 +38,12 @@ npx prisma db push --accept-data-loss
 # content sources actually changed. Caller sets RUN_SEED=0 to skip. Default on
 # so a bare `bash scripts/setup-remote.sh` / `deploy.sh` keeps old behavior.
 if [ "${RUN_SEED:-1}" = "1" ]; then
+    # LevelConfig (số câu/thời gian theo mức, per-subject). prisma/seed.ts is not
+    # run during deploy, and `prisma db push` recreates LevelConfig when its PK
+    # changes → repopulate here. Idempotent + preserves admin-edited
+    # qcount/minutes/active. Cheap, no deps — run first.
+    echo "Seeding LevelConfig (per-subject practice levels)..."
+    npx tsx scripts/seed-level-config.ts
     echo "Re-seeding exam content (destructive)..."
     npx tsx scripts/build-exams-metadata.ts
     npx tsx scripts/seed-all-exams.ts

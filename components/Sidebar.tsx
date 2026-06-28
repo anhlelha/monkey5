@@ -55,6 +55,7 @@ const ADMIN_GROUPS: NavGroup[] = [
     items: [
       { href: "/admin?tab=exams", icon: "library", label: "Đề bài", adminTab: "exams" },
       { href: "/admin?tab=bank", icon: "book", label: "Câu hỏi", adminTab: "bank" },
+      { href: "/admin?tab=levels", icon: "target", label: "Số câu luyện", adminTab: "levels" },
     ],
   },
   {

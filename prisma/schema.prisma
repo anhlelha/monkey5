@@ -292,15 +292,18 @@ model PlanConfig {
 // Admin edits qcount/minutes/active via PlansPanel; read via lib/plan-config.ts.
 
 model LevelConfig {
-  level    String  @id           // "L4" | "L5" | "NC" | "MIX"
-  label    String                // "Cơ bản" …
-  sub      String                // "Lớp 4 — công thức đơn lẻ" …
+  level    String
+  subject  String  @default("math") // "math" | "english" | "vietnamese"
+  label    String
+  sub      String
   qcount   Int
   minutes  Int
   grades   String  @default("[]") // JSON array e.g. ["L5","L4+5"]
   tone     String
   position Int     @default(0)
   active   Boolean @default(true)
+
+  @@id([level, subject])
 }
 
 // ─── Topic set ledger (per-user quota tracking) ───────────────────────────────
