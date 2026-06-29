@@ -253,32 +253,47 @@ async function main() {
       },
     });
 
-    // Replace questions (children only — no Attempt FK, so history is preserved).
-    await prisma.question.deleteMany({ where: { examId } });
+    // Update questions IN PLACE, matched by `num`, so Question.id stays stable
+    // across re-seeds. Attempt.answers is keyed by Question.id; the old
+    // deleteMany+create assigned fresh random CUIDs every run, which orphaned
+    // each prior attempt's answers → regrade scored them 0 even though the
+    // student answered correctly (see CLAUDE.md grading pitfalls). Matching by
+    // num keeps existing rows (and thus existing attempts) gradable; we only
+    // create rows for new positions and delete trailing extras.
+    const existing = await prisma.question.findMany({
+      where: { examId },
+      select: { id: true, num: true },
+    });
+    const byNum = new Map(existing.map((e) => [e.num, e.id]));
     let num = 0;
     for (const q of bai.questions) {
       num += 1;
-      await prisma.question.create({
-        data: {
-          examId,
-          num,
-          type: q.type,
-          topic: q.topic,
-          grade: q.grade,
-          points: 1,
-          stem: q.stem,
-          options: q.options ? JSON.stringify(q.options.map((text, i) => ({ id: L[i], text }))) : "[]",
-          correct: q.correct,
-          answerSchema: schemaFor(q),
-          unit: q.unit ?? null,
-          placeholder: q.type === "fill" ? "Đáp số..." : null,
-          modelAnswer: q.modelAnswer ?? null,
-          figure: null,
-          source: SOURCE_TAG,
-          active: true,
-        },
-      });
+      const data = {
+        num,
+        type: q.type,
+        topic: q.topic,
+        grade: q.grade,
+        points: 1,
+        stem: q.stem,
+        options: q.options ? JSON.stringify(q.options.map((text, i) => ({ id: L[i], text }))) : "[]",
+        correct: q.correct,
+        answerSchema: schemaFor(q),
+        unit: q.unit ?? null,
+        placeholder: q.type === "fill" ? "Đáp số..." : null,
+        modelAnswer: q.modelAnswer ?? null,
+        figure: null,
+        source: SOURCE_TAG,
+        active: true,
+      };
+      const existingId = byNum.get(num);
+      if (existingId) {
+        await prisma.question.update({ where: { id: existingId }, data });
+      } else {
+        await prisma.question.create({ data: { examId, ...data } });
+      }
     }
+    // Drop any trailing questions from a previous longer version of this bài.
+    await prisma.question.deleteMany({ where: { examId, num: { gt: bai.questions.length } } });
     console.log(`  ✓ [${pos}] ${bai.title} — ${bai.questions.length} câu (${examId})`);
   }
 
