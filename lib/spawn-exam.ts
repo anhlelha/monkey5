@@ -30,6 +30,22 @@ function resolveAnswerSchema(
   return JSON.stringify(cls.schema);
 }
 
+// Per-question provenance label shown as a pill in the runner (e.g.
+// "Trích đề CG 2021"). A practice set has school "mix", so without this each
+// question gives no hint which official exam it came from. Prefers an explicit
+// q.source, else builds the label from the source exam's school + year.
+function officialSourceLabel(q: {
+  source: string | null;
+  exam: { kind: string; school: string | null; year: string | null } | null;
+}): string | null {
+  if (q.source) return q.source;
+  if (q.exam?.kind === "official") {
+    const schoolObj = SCHOOLS.find((s) => s.id === q.exam?.school);
+    return `Trích đề ${schoolObj?.short ?? q.exam?.school?.toUpperCase() ?? ""} ${q.exam?.year || ""}`.trim();
+  }
+  return null;
+}
+
 export class TopicSetLimitError extends Error {
   constructor() {
     super("Đã hết lượt luyện chuyên đề");
@@ -397,7 +413,7 @@ export async function spawnEnglishTopicSet(topicId: string, level: string, _user
       modelAnswer: q.modelAnswer,
       figure: q.figure,
       passageId: q.passageId,
-      source: q.source,
+      source: officialSourceLabel(q),
       sourceQuestionId: q.id,
     })),
   });
@@ -467,7 +483,7 @@ export async function spawnVietnameseTopicSet(topicId: string, level: string, _u
       modelAnswer: q.modelAnswer,
       figure: q.figure,
       passageId: q.passageId,
-      source: q.source,
+      source: officialSourceLabel(q),
       sourceQuestionId: q.id,
     })),
   });
