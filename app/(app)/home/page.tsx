@@ -8,6 +8,8 @@ import {
   getExamHistory,
   getActivityStats,
   getTopicProgress,
+  getUserActivitySeries,
+  getUserStreak,
 } from "@/lib/user-data";
 import { DEFAULT_TOPICS } from "@/lib/static";
 import { getActiveSchools } from "@/lib/schools";
@@ -27,11 +29,13 @@ export default async function Dashboard() {
 
   const topics = (await prisma.topic.findMany({ where: { subject: "math" }, orderBy: { position: "asc" } })) ?? [];
   const TOPICS = topics.length > 0 ? topics : DEFAULT_TOPICS;
-  const [history, activity, topicProgress, SCHOOLS] = await Promise.all([
+  const [history, activity, topicProgress, SCHOOLS, activitySeries, streak] = await Promise.all([
     getExamHistory(user.id),
     getActivityStats(user.id),
     getTopicProgress(user.id),
     getActiveSchools(),
+    getUserActivitySeries(user.id, "math"),
+    getUserStreak(user.id, "math"),
   ]);
   const recent = history.slice(0, 5);
 
@@ -241,16 +245,16 @@ export default async function Dashboard() {
 
           <Card
             title="Tiến độ 14 ngày qua"
-            sub={`Streak hiện tại: ${user.streak} ngày liên tiếp`}
+            sub={`Streak hiện tại: ${streak} ngày liên tiếp`}
             action={
               <span className="row" style={{ gap: 6 }}>
                 <Icon name="fire" size={14} stroke={1.8} />
-                <b className="mono" style={{ fontSize: 14 }}>{user.streak}</b>
+                <b className="mono" style={{ fontSize: 14 }}>{streak}</b>
               </span>
             }
           >
             <div style={{ display: "flex", gap: 4, alignItems: "flex-end", height: 120, padding: "8px 0" }}>
-              {user.activity.map((v, i) => (
+              {activitySeries.map((v, i) => (
                 <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
                   <div
                     style={{

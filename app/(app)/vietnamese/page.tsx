@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { hydrateUser, firstName, getActivityStats } from "@/lib/user-data";
+import { hydrateUser, firstName, getActivityStats, getUserActivitySeries, getUserStreak } from "@/lib/user-data";
 import { SCHOOLS } from "@/lib/static";
 import { computeMastery, BASELINE_MASTERY } from "@/lib/mastery";
 import { getAllSchoolProfiles, getSchoolProfile } from "@/lib/school-profiles";
@@ -21,7 +21,7 @@ export default async function VietnameseHome() {
   if (!dbUser) redirect("/signin");
   const user = hydrateUser(dbUser);
 
-  const [mastery, profiles, activity, vnAttempts] = await Promise.all([
+  const [mastery, profiles, activity, vnAttempts, activitySeries, streak] = await Promise.all([
     computeMastery(user.id, "vietnamese"),
     getAllSchoolProfiles("vietnamese"),
     getActivityStats(user.id),
@@ -31,6 +31,8 @@ export default async function VietnameseHome() {
       orderBy: { createdAt: "desc" },
       take: 5,
     }),
+    getUserActivitySeries(user.id, "vietnamese"),
+    getUserStreak(user.id, "vietnamese"),
   ]);
   const readiness = computeAllReadiness(mastery.topicMastery, mastery.levelMastery, profiles);
   const recent = vnAttempts;
@@ -196,11 +198,11 @@ export default async function VietnameseHome() {
 
           <Card
             title="Tiến độ 14 ngày qua"
-            sub={`Streak hiện tại: ${user.streak} ngày liên tiếp`}
-            action={<span className="row" style={{ gap: 6 }}><Icon name="fire" size={14} stroke={1.8} /><b className="mono" style={{ fontSize: 14 }}>{user.streak}</b></span>}
+            sub={`Streak hiện tại: ${streak} ngày liên tiếp`}
+            action={<span className="row" style={{ gap: 6 }}><Icon name="fire" size={14} stroke={1.8} /><b className="mono" style={{ fontSize: 14 }}>{streak}</b></span>}
           >
             <div style={{ display: "flex", gap: 4, alignItems: "flex-end", height: 120, padding: "8px 0" }}>
-              {user.activity.map((v, i) => (
+              {activitySeries.map((v, i) => (
                 <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
                   <div style={{ width: "100%", height: v == null ? 2 : Math.max(3, (v / 100) * 100) + "px", background: v == null ? "var(--border)" : v >= 70 ? "var(--success)" : v >= 60 ? "var(--accent)" : "var(--warn)", borderRadius: 3, opacity: v == null ? 0.5 : 1 }} />
                   <span style={{ fontSize: 9, color: "var(--ink-faint)", fontFamily: "var(--font-mono)" }}>{14 - i}</span>

@@ -786,3 +786,29 @@ export async function getUserActivitySeries(
   }
   return buckets.map((b) => (b.den > 0 ? Math.round(b.num / b.den) : null));
 }
+
+// Consecutive-day learning streak, computed live from submitted Attempts (every
+// exam + practice run writes one). The persisted User.streak column is never
+// updated on submit, so dashboards must derive this — same source as the admin
+// activity series. Counts back from today (or yesterday if nothing yet today)
+// over distinct active calendar days. Not capped to any window.
+export async function getUserStreak(userId: string, subject?: Subject): Promise<number> {
+  const attempts = await prisma.attempt.findMany({
+    where: { userId, submitted: true, ...(subject ? { exam: { subject } } : {}) },
+    select: { createdAt: true },
+  });
+  if (attempts.length === 0) return 0;
+
+  const dayMs = 86_400_000;
+  const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+  const activeDays = new Set(attempts.map((a) => startOfDay(a.createdAt)));
+
+  let cursor = startOfDay(new Date());
+  if (!activeDays.has(cursor)) cursor -= dayMs; // grace: streak survives an as-yet-inactive today
+  let streak = 0;
+  while (activeDays.has(cursor)) {
+    streak += 1;
+    cursor -= dayMs;
+  }
+  return streak;
+}
