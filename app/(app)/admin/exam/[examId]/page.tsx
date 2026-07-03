@@ -53,23 +53,39 @@ export default async function AdminExamPreviewPage({ params, searchParams }: Pro
 
   const school = SCHOOLS.find((s) => s.id === exam.school) ?? MIX_SCHOOL;
 
-  const questions: ExamQuestion[] = exam.questions.map((q) => ({
-    id: q.id,
-    num: q.num,
-    type: q.type as ExamQuestion["type"],
-    topic: q.topic,
-    grade: q.grade,
-    points: q.points,
-    stem: q.stem,
-    unit: q.unit,
-    placeholder: q.placeholder,
-    correct: q.correct,
-    options: parseOptions(q.options),
-    modelAnswer: q.modelAnswer,
-    figure: q.figure,
-    source: q.source,
-    answerSchema: q.answerSchema,
-  }));
+  // English/Vietnamese reading questions reference a shared Passage by passageId.
+  const passageIds = [
+    ...new Set(exam.questions.map((q) => q.passageId).filter((x): x is string => Boolean(x))),
+  ];
+  const passages = passageIds.length
+    ? await prisma.passage.findMany({ where: { id: { in: passageIds } } })
+    : [];
+  const passageById = new Map(passages.map((p) => [p.id, p]));
+
+  const questions: ExamQuestion[] = exam.questions.map((q) => {
+    const p = q.passageId ? passageById.get(q.passageId) : null;
+    return {
+      id: q.id,
+      num: q.num,
+      type: q.type as ExamQuestion["type"],
+      subject: q.subject,
+      topic: q.topic,
+      skill: q.skill,
+      grade: q.grade,
+      points: q.points,
+      stem: q.stem,
+      unit: q.unit,
+      placeholder: q.placeholder,
+      correct: q.correct,
+      options: parseOptions(q.options),
+      modelAnswer: q.modelAnswer,
+      figure: q.figure,
+      passageId: q.passageId,
+      passage: p ? { title: p.title, body: p.body, kind: p.kind } : null,
+      source: q.source,
+      answerSchema: q.answerSchema,
+    };
+  });
 
   let parsedSections: SectionHeader[] = [];
   try {
@@ -225,6 +241,9 @@ export default async function AdminExamPreviewPage({ params, searchParams }: Pro
               short: q.topic,
               color: "var(--ink-muted)",
             };
+            // Reading passages are shared across a group — show once, on the first question of the group.
+            const showPassage =
+              q.passage && questions[idx - 1]?.passageId !== q.passageId;
 
             return (
               <div key={q.id}>
@@ -241,6 +260,17 @@ export default async function AdminExamPreviewPage({ params, searchParams }: Pro
                     }}
                   >
                     {sectionHeader}
+                  </div>
+                )}
+
+                {showPassage && q.passage && (
+                  <div className="q-passage" style={{ marginBottom: 8 }}>
+                    {q.passage.title && <div className="q-passage-title">{q.passage.title}</div>}
+                    <div className="q-passage-body">
+                      {q.passage.body.split(/\n+/).map((para, i) => (
+                        <p key={i}>{para}</p>
+                      ))}
+                    </div>
                   </div>
                 )}
 
