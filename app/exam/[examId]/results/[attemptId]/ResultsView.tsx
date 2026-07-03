@@ -356,10 +356,13 @@ export function ResultsView({
         </div>
 
         <div className="col" style={{ gap: 10 }}>
-          {graded.map((g) => {
+          {graded.map((g, idx) => {
             const t = topics.find((x) => x.id === g.q.topic) ?? { id: g.q.topic, name: g.q.topic, short: g.q.topic, color: "var(--ink-muted)" };
             const klass = g.empty ? "skip" : g.correct ? "ok" : "no";
             const sectionHeader = getExamSectionHeader(examMeta.sections, g.q.num);
+            // Reading passages are shared across a group — show once, on the first question of the group.
+            const showPassage =
+              g.q.passage && graded[idx - 1]?.q.passageId !== g.q.passageId;
             return (
               <Fragment key={g.q.id}>
                 {sectionHeader && (
@@ -382,6 +385,16 @@ export function ResultsView({
                 <div className={"review-q " + klass}>
                   <div className="num">Câu {g.q.num}.</div>
                   <div>
+                    {showPassage && g.q.passage && (
+                      <div className="q-passage" style={{ marginBottom: 10 }}>
+                        {g.q.passage.title && <div className="q-passage-title">{g.q.passage.title}</div>}
+                        <div className="q-passage-body">
+                          {g.q.passage.body.split(/\n+/).map((para, i) => (
+                            <p key={i}>{para}</p>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                     <div className="stem">
                       <div style={{ marginBottom: 6 }}><MathText text={g.q.stem} /></div>
                       {g.q.figure && <ExamFigure figure={g.q.figure} />}
@@ -425,6 +438,32 @@ export function ResultsView({
                         </span>
                       </div>
                     </div>
+                    {g.q.type === "mcq" && g.q.options.length > 0 && (
+                      <div className="mcq-list" style={{ marginTop: 10 }}>
+                        {g.q.options.map((o) => {
+                          const sel = g.answer === o.id;
+                          const isCorrect = o.id === g.q.correct;
+                          const isWrong = sel && o.id !== g.q.correct;
+                          return (
+                            <div
+                              key={o.id}
+                              className={"mcq-opt" + (isCorrect ? " correct" : "") + (isWrong ? " wrong" : "")}
+                              style={{ cursor: "default" }}
+                            >
+                              <div className="marker">{o.id}</div>
+                              <span style={{ flex: 1 }}><MathText text={o.text} /></span>
+                              {sel && (
+                                <span className="muted" style={{ fontSize: 11, whiteSpace: "nowrap" }}>
+                                  Con chọn
+                                </span>
+                              )}
+                              {isCorrect && <Icon name="check" size={14} stroke={2.5} />}
+                              {isWrong && <Icon name="x" size={14} stroke={2.5} />}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
                     {g.q.type === "essay" && (g.essay ? (
                       <div
                         style={{

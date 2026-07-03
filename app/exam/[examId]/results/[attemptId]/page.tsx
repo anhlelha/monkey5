@@ -51,24 +51,40 @@ export default async function ResultsPage({ params }: Props) {
   });
   if (!exam) notFound();
 
-  const questions: ExamQuestion[] = exam.questions.map((q) => ({
-    id: q.id,
-    num: q.num,
-    type: q.type as ExamQuestion["type"],
-    topic: q.topic,
-    grade: q.grade,
-    points: q.points,
-    stem: q.stem,
-    unit: q.unit,
-    placeholder: q.placeholder,
-    correct: q.correct,
-    options: parseOptions(q.options),
-    modelAnswer: q.modelAnswer,
-    figure: q.figure,
-    source: q.source,
-    sourceQuestionId: q.sourceQuestionId,
-    answerSchema: q.answerSchema,
-  }));
+  // English/Vietnamese reading questions reference a shared Passage by passageId.
+  const passageIds = [
+    ...new Set(exam.questions.map((q) => q.passageId).filter((x): x is string => Boolean(x))),
+  ];
+  const passages = passageIds.length
+    ? await prisma.passage.findMany({ where: { id: { in: passageIds } } })
+    : [];
+  const passageById = new Map(passages.map((p) => [p.id, p]));
+
+  const questions: ExamQuestion[] = exam.questions.map((q) => {
+    const p = q.passageId ? passageById.get(q.passageId) : null;
+    return {
+      id: q.id,
+      num: q.num,
+      type: q.type as ExamQuestion["type"],
+      subject: q.subject,
+      topic: q.topic,
+      skill: q.skill,
+      grade: q.grade,
+      points: q.points,
+      stem: q.stem,
+      unit: q.unit,
+      placeholder: q.placeholder,
+      correct: q.correct,
+      options: parseOptions(q.options),
+      modelAnswer: q.modelAnswer,
+      figure: q.figure,
+      passageId: q.passageId,
+      passage: p ? { title: p.title, body: p.body, kind: p.kind } : null,
+      source: q.source,
+      sourceQuestionId: q.sourceQuestionId,
+      answerSchema: q.answerSchema,
+    };
+  });
 
   const answers = parseAnswers(attempt.answers);
 
