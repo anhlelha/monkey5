@@ -1,0 +1,189 @@
+{
+  "id": "vn-ntt-2026",
+  "subject": "vietnamese",
+  "school": "ntt",
+  "year": "2026-2027",
+  "minutes": 45,
+  "title": "Tiếng Việt vào 6 — THCS & THPT Nguyễn Tất Thành 2026-2027",
+  "intro": "Nguồn: Trung tâm Next Nobels (đề được phục hồi theo trí nhớ của học sinh). Thời gian 45 phút.",
+  "_answerNote": "Đề phục hồi theo trí nhớ. Câu 7 (Bài 2) đáp án chính thức là CẢ A và B (đa đáp án); đã chuyển thành câu điền chữ cái. Một số phương án C/D ở câu 7 học sinh không nhớ nên để trống trong đề gốc.",
+  "passages": [
+    {
+      "ref": "p1",
+      "title": "Thương lắm mùa đông (Mai Quyên)",
+      "kind": "poem",
+      "body": "Con thương mùa đông lắm\nCây vàng úa héo hon\nÁo trời thì xám xịt\nChẳng còn màu xanh non\n\nMỗi sớm khuya tỉnh giấc\nĐường co quắp đẫm mưa\nGió quật roi vun vút\nTrên phố người lưa thưa\n\nCon muốn tìm khăn ấm\nQuàng cho gió mùa đông\nĐể chị thôi rét buốt\nGiữa đất trời mênh mông\n\nCon có cái mũ len\nLâu rồi mà chẳng đội\nHay con tặng bạn mưa\nKẻo lạnh mùa đông tới\n\nTrong vòng tay mẹ ấm\nCon thương cội thương cành\nThương mùa đông lạnh giá\nĐôi mắt tròn long lanh."
+    },
+    {
+      "ref": "p2",
+      "title": "Tại sao đàn chim di cư lại bay theo đội hình chữ V?",
+      "kind": "article",
+      "body": "Hằng năm cứ vào mùa đông, nhiều loài chim lại kéo nhau bay về phương nam để tránh rét và tìm kiếm thêm thức ăn. Thú vị ở chỗ, nhiều loài chim như nhạn, ngỗng trời,... có tập tính bay đội hình chữ V. Vậy nguyên nhân nào khiến những loài chim lại sử dụng đội hình bay như thế? Các nhà khoa học Anh đã tìm ra câu trả lời sau khi tiến hành thực nghiệm trên mười bốn con cò đen đầu hói bằng cách đeo thiết bị để xác định vị trí đường bay, tốc độ và nhịp cánh của mỗi chú cò.\n\nĐội hình chữ V được xem là đội hình tối ưu về mặt khí động lực học, con chim bay ở đầu mũi tên hay hình chữ V thường là chim đầu đàn và khoẻ hơn hẳn những con phía sau. Khi bay theo đội hình như vậy, các chú chim thường tận dụng luồng không khí đi qua đôi cánh của chúng bao gồm: luồng khí hướng lên (có lợi) từ phía dưới lên mép sau của đôi cánh giữ cho chúng ở trên không trung mà không phải quạt cánh vất vả và luồng không khí hướng xuống (không có lợi) từ phía trên đến mép sau đôi cánh. Khi bay, con chim dẫn đầu vỗ cánh làm cho không khí hai bên cánh chuyển động, luồng khí này truyền ra phía sau. Những con chim bay phía sau sẽ nhận luồng khí có lợi từ con đầu đàn và giảm thiểu luồng khí hướng xuống bất lợi nhằm hạn chế việc hao tốn sức lực trong suốt thời gian dài. Đó là mục đích chính của đội hình bay chữ V:\n\n“Những con chim bay sau chỉ đơn giản cảm nhận được đâu là vị trí của luồng không khí hướng lên và đâu là vị trí của luồng không khí hướng xuống. Từ đó, chúng sẽ xác định được vị trí thích hợp để không phải mất nhiều sức lực khi bay”. Nhờ sự liên kết khí động lực học này mà hiếm có con chim nào phải rời đàn vì kiệt sức, nếu con đầu đàn không còn sức thì lập tức sẽ có một con to khoẻ khác thay thế ngay.\n\nNgoài ra, việc bay theo đội hình chữ V còn giúp đàn chim giữ liên lạc tốt hơn vì những con chim bay sau dễ dàng nhìn thấy những con chim phía trước. Điều này giúp chúng không bị lạc đàn mỗi khi chim đầu đàn ra tín hiệu dừng lại để nghỉ, tìm thức ăn hoặc đổi hướng bay."
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "stem": "Người con trong bài thể hiện tình yêu thiên nhiên đối với những cảnh vật nào?",
+      "options": [
+        { "id": "A", "text": "Con đường, cây cối, ngọn gió, cơn mưa" },
+        { "id": "B", "text": "Con đường, con người, khăn ấm, cây cối" },
+        { "id": "C", "text": "Vòng tay, cơn mưa, cây cối, đất trời" },
+        { "id": "D", "text": "Cây cối, đất trời, ngọn gió, cơn mưa" }
+      ],
+      "correct": "D",
+      "passageRef": "p1"
+    },
+    {
+      "num": 2,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Tìm từ trái nghĩa có trong bài thơ?",
+      "options": [
+        { "id": "A", "text": "héo hon - xám xịt" },
+        { "id": "B", "text": "ấm - rét" },
+        { "id": "C", "text": "vun vút - lưa thưa" },
+        { "id": "D", "text": "quàng - đội" }
+      ],
+      "correct": "B",
+      "passageRef": "p1"
+    },
+    {
+      "num": 3,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "VD",
+      "points": 2,
+      "tags": ["camthu"],
+      "stem": "Nêu vẻ đẹp của người con được bộc lộ ở khổ thơ 3 và 4.",
+      "correct": null,
+      "modelAnswer": "Khổ thơ 3, 4 thể hiện được tâm hồn trẻ thơ trong sáng, giàu lòng nhân ái và tình yêu thương sâu sắc đối với thế giới xung quanh của người con. Người con là bạn nhỏ luôn sẵn sàng cho đi khi “muốn quàng khăn ấm” cho gió, “muốn tặng mũ len” cho mưa và cũng thật đáng yêu, hồn nhiên khi tin rằng những đồ dùng giữ ấm của con người cũng có thể che chở cho đất trời mênh mông. Cách gọi “chị gió”, “bạn mưa” ẩn chứa biết bao yêu thương ấm áp của người con dành cho thế giới thiên nhiên xung quanh. Người con còn là một bạn nhỏ thật giàu lòng trắc ẩn và biết đồng cảm khi nhận ra mặc dù gió làm người lạnh, mưa làm người ướt, nhưng vẫn xứng đáng được che chở, sưởi ấm; hiểu được chỉ có tình yêu thương mới là “chiếc khăn ấm” lớn nhất để sưởi ấm cho cả con người và vạn vật, chỉ có tình yêu thương mới làm thay đổi thế giới.",
+      "passageRef": "p1"
+    },
+    {
+      "num": 4,
+      "type": "essay",
+      "topic": "vn-rhetoric",
+      "grade": "VD",
+      "points": 2,
+      "tags": ["camthu"],
+      "stem": "Nêu và chỉ ra tác dụng của biện pháp điệp từ trong khổ 5.",
+      "correct": null,
+      "modelAnswer": "- Biện pháp nghệ thuật: điệp từ — lặp đi lặp lại nhiều lần từ “thương”.\n- Tác dụng:\n+ Làm nổi bật niềm thương tha thiết, sự chia sẻ, đồng cảm sâu sắc với thế giới cảnh vật mùa đông đang chìm trong lạnh giá, rét buốt.\n+ Giúp người đọc cảm nhận được sâu sắc tâm hồn nhân ái, giàu lòng trắc ẩn của người con.\n+ Nhờ điệp từ, đoạn thơ có điểm nhấn, giàu nhạc điệu và cảm xúc, dễ đi vào lòng người.",
+      "passageRef": "p1"
+    },
+    {
+      "num": 5,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 1,
+      "tags": ["camthu"],
+      "stem": "Viết 3 câu nêu cảm nhận của em về hình ảnh em ấn tượng nhất trong khổ 1 hoặc khổ 2. (Chỉ chọn MỘT hình ảnh để phân tích, không phân tích cả khổ thơ.)",
+      "correct": null,
+      "modelAnswer": "VD: Hình ảnh nhân hóa “Áo trời thì xám xịt”.\nHình ảnh “Áo trời thì xám xịt” thật hay và ấn tượng! Biện pháp nhân hóa qua cụm từ “áo trời” khiến bầu trời mùa đông hiện lên gần gũi như một con người đang lặng lẽ khoác lên mình tấm áo khoác thẫm màu của mùa đông. Từ láy “xám xịt” vừa gợi tả không gian âm u, thiếu vắng ánh nắng và hơi ấm, vừa gợi ra nỗi buồn man mác đặc trưng trong những ngày lạnh giá, mang đến cho người đọc bao cảm xúc.",
+      "passageRef": "p1"
+    },
+    {
+      "num": 6,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Nội dung chính của văn bản là gì?",
+      "options": [
+        { "id": "A", "text": "Nói về lý do tại sao những con chim đằng sau không bao giờ bị lạc khỏi bầy." },
+        { "id": "B", "text": "Nói về kiểu bay hình chữ V ngược." },
+        { "id": "C", "text": "Nói về mặt khí động lực học của kiểu bay hình chữ V ngược của loài chim di cư." },
+        { "id": "D", "text": "Tìm con chim khác khỏe mạnh hơn để thay thế con chim đầu đàn." }
+      ],
+      "correct": "C",
+      "passageRef": "p2"
+    },
+    {
+      "num": 7,
+      "type": "fill",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["vandung"],
+      "stem": "Câu nào dưới đây nêu ĐÚNG lí do việc đàn chim di cư bay theo hình chữ V? (Có thể có nhiều đáp án đúng — ghi các chữ cái cách nhau bởi dấu phẩy, ví dụ: A, B)\nA. Đội hình chữ V được xem là đội hình tối ưu về mặt khí động lực học, những con chim bay phía sau sẽ nhận luồng khí có lợi từ con đầu đàn và giảm thiểu luồng khí hướng xuống bất lợi nhằm hạn chế việc hao tốn sức lực trong suốt thời gian dài.\nB. Việc bay theo đội hình chữ V còn giúp đàn chim giữ liên lạc tốt hơn vì những con chim bay sau dễ dàng nhìn thấy những con chim phía trước, giúp chúng không bị lạc đàn mỗi khi chim đầu đàn ra tín hiệu dừng lại để nghỉ, tìm thức ăn hoặc đổi hướng bay.",
+      "correct": "A, B",
+      "accept": ["A, B", "B, A", "A B", "B A"],
+      "ignoreOrder": true,
+      "passageRef": "p2"
+    },
+    {
+      "num": 8,
+      "type": "mcq",
+      "topic": "vn-cohesion",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "(Mẫu đề khác) Cho 2 câu: “Lúc đầu, mọi người nghĩ rằng chim di cư là để tránh cái lạnh của mùa đông, tuy nhiên, nghiên cứu gần đây đã phát hiện ra rằng điều này không hoàn toàn đúng. Những nơi mà loài chim này di cư tới so với nơi chúng sinh ra đều có khí hậu ôn đới khá tương đồng tại cùng một thời điểm.”\nTừ ngữ nào lặp lại giúp hai câu trên liên kết với nhau?",
+      "options": [
+        { "id": "A", "text": "Nơi" },
+        { "id": "B", "text": "Di cư" },
+        { "id": "C", "text": "Chúng" },
+        { "id": "D", "text": "Đây" }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 9,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Hình ảnh (tranh minh họa) kèm theo văn bản có tác dụng gì?",
+      "correct": null,
+      "modelAnswer": "Hình ảnh kèm theo có tác dụng:\n- Giúp người đọc hình dung được cụ thể, sinh động hình ảnh đàn chim bay theo đội hình chữ V ngược như thế nào.\n- Giúp người đọc hiểu hơn được các tác dụng của việc đàn chim bay theo đội hình chữ V và làm tăng tính thuyết phục cho văn bản.\n- Giúp văn bản thêm sinh động, hấp dẫn hơn.",
+      "passageRef": "p2"
+    },
+    {
+      "num": 10,
+      "type": "essay",
+      "topic": "vn-spelling",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Dấu ngoặc kép trong văn bản có tác dụng gì? (Dạng đề khác: Dấu ngoặc đơn trong văn bản có tác dụng gì?)",
+      "correct": null,
+      "modelAnswer": "- Dấu ngoặc kép: đánh dấu lời dẫn, lời phân tích trực tiếp của các nhà khoa học.\n- Dấu ngoặc đơn: đánh dấu phần giải thích thêm cho các luồng khí (hướng lên có lợi / hướng xuống không có lợi).",
+      "passageRef": "p2"
+    },
+    {
+      "num": 11,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 2,
+      "tags": ["vandung"],
+      "stem": "Để hoàn thành chuyến di cư, các chú chim cũng cần một “trạm dừng chân” để nghỉ ngơi. Em sẽ làm gì để biến nơi em sinh sống thành một điểm dừng chân lí tưởng của chúng?",
+      "correct": null,
+      "modelAnswer": "Gợi ý (nêu được một số việc làm cụ thể và lí giải):\n- Trồng thêm cây xanh, cây ăn quả trong vườn nhà để tạo chỗ trú ẩn.\n- Đặt khay nước sạch và máng thức ăn nhỏ (ngũ cốc) để cung cấp dinh dưỡng cho chim.\n- Tuyệt đối không săn bắt, bẫy chim.\n- Tắt bớt các thiết bị chiếu sáng ngoài trời không cần thiết vào ban đêm (tránh làm chim mất phương hướng).\n- Kêu gọi, vận động người thân, bạn bè và cộng đồng cùng chung tay bảo vệ đàn chim, giữ gìn môi trường xanh, sạch, đẹp, thân thiện với thiên nhiên.",
+      "passageRef": "p2"
+    },
+    {
+      "num": 12,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 3,
+      "tags": ["vandung"],
+      "stem": "Viết đoạn văn khoảng 10 câu trình bày suy nghĩ của em:\n- Dạng đề 1: Em có đồng tình với việc học sinh tôn trọng sự khác biệt của những người bạn đồng trang lứa hay không?\n- Dạng đề 2: Em có đồng tình với việc học sinh không được phân biệt đối xử với những bạn cùng trang lứa không?",
+      "correct": null,
+      "modelAnswer": "HS thể hiện rõ sự tán thành/đồng tình, viết đoạn khoảng 10 câu, lập luận theo trình tự hợp lí.\n\nDạng đề 1 — Tôn trọng sự khác biệt giúp:\n- Bản thân học hỏi, hoàn thiện hơn (mở rộng tầm nhìn, phát triển kỹ năng từ thế mạnh, góc nhìn khác nhau của bạn bè).\n- Gắn kết bạn bè, tạo môi trường học đường tốt đẹp, tạo sự tin tưởng, hạn chế bạo lực học đường.\n- Thúc đẩy sáng tạo và làm việc nhóm hiệu quả (đa dạng ý tưởng, phân công theo điểm mạnh riêng).\n- Giúp mỗi người bao dung, nhân văn hơn, biết thấu hiểu và làm chủ cảm xúc.\n\nDạng đề 2 — Đồng tình với việc không phân biệt đối xử:\n- Nêu các hành vi phân biệt đối xử (chế giễu ngoại hình, mỉa mai hoàn cảnh, gắn mác học lực; cô lập, chia bè phái, nói xấu; định kiến vùng miền...).\n- Lí do đồng tình: là nền tảng xây dựng môi trường học đường nhân văn, an toàn, bình đẳng; bảo vệ tâm lí học sinh; tạo động lực phát triển; gắn kết tập thể.\n- Mặt trái: nếu phân biệt đối xử sẽ làm bạn tổn thương tinh thần, ảnh hưởng học tập, rạn nứt tình bạn."
+    }
+  ]
+}
