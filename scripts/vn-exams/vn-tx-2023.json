@@ -1,0 +1,329 @@
+{
+  "id": "vn-tx-2023",
+  "subject": "vietnamese",
+  "school": "tx",
+  "year": "2023",
+  "minutes": 45,
+  "title": "Tiếng Việt vào 6 — THCS Thanh Xuân 2023",
+  "intro": "Nguồn: Trung tâm Văn Solar Edu. Thời gian 45 phút.",
+  "passages": [
+    {
+      "ref": "p1",
+      "title": "Bèo (Theo Dương Văn Thoa)",
+      "kind": "article",
+      "body": "Mưa to, nước dâng ngập đồng, thế là ngày hội của các loài bèo bắt đầu. Bèo tấm, bèo dâu mảnh mai như cánh trấu; bèo ong, bèo cái, bèo tây phổng phao như cô gái đang tuổi dậy thì. Tất cả, tất cả đều bừng nở, những cánh bèo vươn dài theo sóng, bộ rễ thỏa thuê bơi trong dòng nước mênh mang.\n        Ngự trên tầm cao của nước dâng, các loài bèo bảo nhau:\n        – Chỉ vài hôm nữa, cả mặt đất bao la này sẽ là màu xanh sinh sôi của bèo.\n        Nhưng, nếu mưa tuôn là nắng lửa. Đồng ruộng, ao hồ, kênh rạch đều khô cạn, các loài bèo bị tụt xuống đáy và héo khô.\n                                                                       (Theo Dương Văn Thoa)"
+    },
+    {
+      "ref": "p2",
+      "title": "Cây sồi và cây sậy (Theo Truyện ngụ ngôn nước ngoài)",
+      "kind": "article",
+      "body": "Một hôm, trời bỗng nổi trận cuồng phong dữ dội. Cây sồi to bị bão thổi bật gốc, đổ xuống sông. Thấy những cây sậy vẫn tươi xanh hiên ngang đứng trên bờ, mặc cho gió mưa đảo điên. Quá đỗi ngạc nhiên, cây sồi bèn cất tiếng hỏi:\n        – Anh sậy ơi, sao anh nhỏ bé, yếu ớt thế kia mà không bị bão thổi đổ? Còn tôi to lớn thế này lại bị bật cả gốc, bị cuốn trôi theo dòng nước? Cây sậy trả lời:\n        – Tuy anh cao lớn nhưng đứng một mình. Tôi tuy nhỏ bé, yếu ớt nhưng luôn luôn có bạn bè đứng bên cạnh tôi. Chúng tôi dựa vào nhau để chống lại gió bão, nên gió bão dù mạnh tới đâu cũng chẳng thể thổi đổ được chúng tôi.\n        Nghe vậy, cây sồi ngậm ngùi, xấu hổ. Nó không còn dám coi thường cây sậy bé nhỏ yếu ớt nữa.\n                                                           (Theo Truyện ngụ ngôn nước ngoài)"
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "type": "fill",
+      "topic": "vn-spelling",
+      "grade": "TH",
+      "points": 1,
+      "tags": [
+        "bay"
+      ],
+      "stem": "Dòng nào dưới đây viết đúng chính tả? (Có thể có nhiều đáp án đúng — ghi các chữ cái cách nhau bởi dấu phẩy, ví dụ: A, B)\nA. Kỉ niệm chương Vì sự nghiệp bảo vệ và chăm sóc trẻ em Việt Nam\nB. Công xã Pari\nC. Ngày nhà giáo Việt Nam\nD. Bộ Giáo dục và Đào tạo",
+      "correct": "A, D",
+      "accept": [
+        "A, D",
+        "D, A",
+        "A D",
+        "D A"
+      ],
+      "ignoreOrder": true
+    },
+    {
+      "num": 2,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Câu thành ngữ, tục ngữ, ca dao nào dưới đây nói về truyền thống tốt đẹp của dân tộc ta?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Trẻ trồng na, già trồng chuối."
+        },
+        {
+          "id": "B",
+          "text": "Tre già măng mọc."
+        },
+        {
+          "id": "C",
+          "text": "Nói trước quên sau."
+        },
+        {
+          "id": "D",
+          "text": "Bầu ơi thương lấy bí cùng.\nTuy rằng khác giống nhưng chung một giàn."
+        }
+      ],
+      "correct": "D"
+    },
+    {
+      "num": 3,
+      "type": "fill",
+      "topic": "vn-vocab",
+      "grade": "VD",
+      "points": 1,
+      "tags": [
+        "bay"
+      ],
+      "stem": "Nhận định nào sau đây không đúng: (Có thể có nhiều đáp án đúng — ghi các chữ cái cách nhau bởi dấu phẩy, ví dụ: A, B)\nA. \"đồng\" trong các từ: \"đồng âm, đồng hành, đồng lòng, đồng ý\" là từ đồng âm\nB. \"tỏ\" trong các từ \"bày tỏ, tỏ thái độ, tỏ lòng, sáng tỏ\" là từ nhiều nghĩa\nC. \"sâu\" trong \"Ăn kĩ no lâu/ Cày sâu lúa tốt\" và từ \"sâu\" trong \"con sâu bỏ rầu nồi canh\" là từ nhiều nghĩa\nD. \"cam\" trong \"Đồng cam cộng khổ\" với \"cam\" trong \"quýt làm cam chịu\" là từ đồng âm",
+      "correct": "A, C",
+      "accept": [
+        "A, C",
+        "C, A",
+        "A C",
+        "C A"
+      ],
+      "ignoreOrder": true
+    },
+    {
+      "num": 4,
+      "type": "fill",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [
+        "bay"
+      ],
+      "stem": "Từ gạch chân nào mang nghĩa gốc? (Có thể có nhiều đáp án đúng — ghi các chữ cái cách nhau bởi dấu phẩy, ví dụ: A, B)\nA. Đỉnh cao tri thức\nB. Dây tóc bóng đèn\nC. Anh này cao tay lắm\nD. Dân trí thấp\nE. Bà bị mỏi lưng\nF. Thẳng đứng\nG. Bé đứng thẳng\nH. Biển hiệu",
+      "correct": "E, G",
+      "accept": [
+        "E, G",
+        "G, E",
+        "E G",
+        "G E"
+      ],
+      "ignoreOrder": true
+    },
+    {
+      "num": 5,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Trong trường hợp nào dưới đây, từ \"mẹ\" gạch chân không phải là đại từ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Bà ngoại nói với mẹ của An: \"Con giúp mẹ nấu cơm nhé!\""
+        },
+        {
+          "id": "B",
+          "text": "Ông ngoại nói với mẹ của An: \"Con giúp mẹ nấu cơm nhé!\""
+        },
+        {
+          "id": "C",
+          "text": "Con nói với mẹ: \"Con giúp mẹ nấu cơm nhé!\""
+        },
+        {
+          "id": "D",
+          "text": "Mẹ nói với con: \"Con giúp mẹ nấu cơm nhé!\""
+        }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 6,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Tìm từ trái nghĩa với từ \"tươi\" trong câu \"Bó rau này tươi thế!\"",
+      "options": [
+        {
+          "id": "A",
+          "text": "Non"
+        },
+        {
+          "id": "B",
+          "text": "Già"
+        },
+        {
+          "id": "C",
+          "text": "Héo"
+        },
+        {
+          "id": "D",
+          "text": "Khô"
+        }
+      ],
+      "correct": "C"
+    },
+    {
+      "num": 7,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Dòng nào dưới đây viết theo cấu trúc \"trạng ngữ – chủ ngữ – vị ngữ\"?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Những cánh hoa trúc thon dài, nhỏ xíu như những cái kim vàng trong câu chuyện cổ tích."
+        },
+        {
+          "id": "B",
+          "text": "Trên một diện tích hẹp, mọc lên hàng nghìn đảo nhấp nhô khuất khúc như rồng chầu phượng múa."
+        },
+        {
+          "id": "C",
+          "text": "Trên đất nước chúng ta, tiếng ru vẫn thánh thót trong phum sóc, bản làng, vẫn mùi mẫn trong xóm vườn sầm uất hay ở một làng chài ven sông."
+        },
+        {
+          "id": "D",
+          "text": "Tôi chìm dần vào giấc ngủ có cánh cò trắng lặn lội bờ sông."
+        }
+      ],
+      "correct": "C"
+    },
+    {
+      "num": 8,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Cặp quan hệ từ \"mặc dù…nhưng\" trong câu ghép: \"Mặc dù thời gian rảnh rỗi còn lại rất ít nhưng bố vẫn trồng và chăm sóc khu vườn trước nhà để cho nó bao giờ cũng xanh tươi.\" Thể hiện quan hệ gì?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Điều kiện – kết quả"
+        },
+        {
+          "id": "B",
+          "text": "Tăng tiến"
+        },
+        {
+          "id": "C",
+          "text": "Nguyên nhân – kết quả"
+        },
+        {
+          "id": "D",
+          "text": "Tương phản"
+        }
+      ],
+      "correct": "D"
+    },
+    {
+      "num": 9,
+      "type": "fill",
+      "topic": "vn-wordform",
+      "grade": "VD",
+      "points": 1,
+      "tags": [
+        "bay",
+        "vandung"
+      ],
+      "stem": "Dựa vào cấu tạo hoặc nghĩa của từ, hãy tìm một từ không cùng nhóm với các từ còn lại. Ghi từ khác nhóm ở mỗi dòng, cách nhau dấu phẩy.\nA. Khệnh khạng, lênh đênh, huỳnh huỵch, rũ rượi, hối hả\nB. Cồng kềnh, cỏ cây, tí tách, lồm cồm, lộp độp\nC. Điềm đạm, hiền hậu, dịu dàng, thon thả, ngoan ngoãn\nD. Mềm mỏng, mềm dẻo, mềm mại, mềm lòng, mềm mịn",
+      "correct": "huỳnh huỵch, cỏ cây, thon thả, mềm mại",
+      "accept": [
+        "huỳnh huỵch, cỏ cây, thon thả, mềm mại"
+      ],
+      "ignoreOrder": true
+    },
+    {
+      "num": 10,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "passageRef": "p1",
+      "stem": "Câu chuyện muốn nói với ta điều gì?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Có rất nhiều loài bèo, loài nào cũng đẹp và đầy sức sống."
+        },
+        {
+          "id": "B",
+          "text": "Trong ngày hội, loài bèo thỏa thuê bơi trong dòng nước mênh mang."
+        },
+        {
+          "id": "C",
+          "text": "Không nên kiêu ngạo, ảo tưởng về bản thân."
+        },
+        {
+          "id": "D",
+          "text": "Khi mưa xuống, loài bèo sinh sôi nảy nở rất nhanh. Khi hạn hán, loài bèo héo khô."
+        }
+      ],
+      "correct": "C"
+    },
+    {
+      "num": 11,
+      "type": "fill",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "passageRef": "p1",
+      "stem": "Trong đoạn văn: \"mưa to,... dòng nước mênh mang\". Nhận định nào sau đây đúng? (Có thể có nhiều đáp án đúng — ghi các chữ cái cách nhau bởi dấu phẩy, ví dụ: A, B)\nA. Tác giả sử dụng biện pháp so sánh, không nhân hóa.\nB. Tác giả sử dụng biện pháp so sánh và nhân hóa.\nC. Các câu trong đoạn văn được liên kết bằng cách lặp từ và thay thế từ ngữ.\nD. Các câu được liên kết bằng cách dùng từ nối.",
+      "correct": "B, C",
+      "accept": [
+        "B, C",
+        "C, B",
+        "B C",
+        "C B"
+      ],
+      "ignoreOrder": true
+    },
+    {
+      "num": 12,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "passageRef": "p1",
+      "stem": "Trong câu chuyện trên có mấy câu ghép gồm 3 vế?",
+      "options": [
+        {
+          "id": "A",
+          "text": "1 câu"
+        },
+        {
+          "id": "B",
+          "text": "2 câu"
+        },
+        {
+          "id": "C",
+          "text": "3 câu"
+        },
+        {
+          "id": "D",
+          "text": "4 câu"
+        }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 13,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 3,
+      "tags": [
+        "camthu"
+      ],
+      "passageRef": "p2",
+      "stem": "Từ nội dung câu chuyện trên, cùng với hiểu biết của em, em hãy viết đoạn văn (khoảng 7 câu) trình bày ý kiến về sức mạnh đoàn kết.",
+      "correct": null,
+      "modelAnswer": "* Hình thức:\n- Đoạn văn\n- Dung lượng: 7 câu (6 – 8 câu)\n* Nội dung:\n1. Mở đoạn: Giới thiệu — Khẳng định ý nghĩa của đoàn kết.\n2. Thân đoạn:\n- Giải thích: Đoàn kết là gì?\n- Nêu ý nghĩa của đoàn kết:\n+ Trước hết, đoàn kết giúp con người gắn bó với nhau, cùng chia sẻ và vượt qua khó khăn. Nhờ đoàn kết, chúng ta có thể tạo nên một tập thể mạnh mẽ và vững vàng trước mọi thử thách.\n+ Bên cạnh đó, tinh thần đoàn kết còn là sức mạnh góp phần làm nên những chiến thắng vẻ vang của dân tộc trong lịch sử.\n+ Không chỉ vậy, trong cuộc sống hiện đại, đoàn kết giúp chúng ta xây dựng được môi trường sống thân thiện, văn minh và yêu thương lẫn nhau.\n- Dẫn chứng:\n+ Trong các cuộc kháng chiến chống giặc ngoại xâm, nhờ tinh thần đoàn kết của toàn dân mà dân tộc ta đã đánh bại nhiều kẻ thù hùng mạnh, giành lại độc lập và tự do cho đất nước.\n+ Bác Hồ từng nói: \"Đoàn kết, đoàn kết, đại đoàn kết/ Thành công, thành công, đại thành công\".\n- Bàn luận mở rộng:\n+ Phản đề: Tuy nhiên, vẫn còn một số người sống ích kỉ, chỉ nghĩ đến lợi ích cá nhân nên làm ảnh hưởng đến sự gắn kết của tập thể.\n+ Bài học (Nhận thức + hành động): Ý thức được vai trò lớn lao của tinh thần đoàn kết, em thấy mình cần luôn yêu thương, giúp đỡ bạn bè, biết lắng nghe và sẻ chia.\n3. Kết đoạn: Khẳng định lại vấn đề (có thể dừng lại ở bài học)."
+    }
+  ]
+}

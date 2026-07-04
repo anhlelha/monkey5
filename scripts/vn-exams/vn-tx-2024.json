@@ -1,0 +1,353 @@
+{
+  "id": "vn-tx-2024",
+  "subject": "vietnamese",
+  "school": "tx",
+  "year": "2024",
+  "minutes": 45,
+  "title": "Tiếng Việt vào 6 — THCS Thanh Xuân 2024",
+  "intro": "Nguồn: Trung tâm Văn Solar Edu. Thời gian 45 phút. Đề gồm Phần I và Phần II.",
+  "passages": [
+    {
+      "ref": "p1",
+      "title": "Chú bọ ngựa (Vũ Tú Nam)",
+      "kind": "article",
+      "body": "Chú bọ ngựa con đầu tiên “nhảy dù” trúng một quả chanh non. Chú đứng hiên ngang trên quả chanh tròn xinh, (1) giương giương đôi tay kiếm nhỏ xíu, (2) mình lắc lư theo kiểu võ sĩ, (3) ngước nhìn từng loạt đàn em mình đang “đổ bộ” xuống hết sức chính xác và mau lẹ. Chú đứng trên quả chanh, (4) mang đầy đủ dòng máu hiệp sĩ của nòi bọ ngựa, (5) hùng dũng như con sư tử đứng vờn quả cầu.\n                                                                                 (Vũ Tú Nam)"
+    },
+    {
+      "ref": "p2",
+      "title": "Lời của hoa (Hoài Khánh)",
+      "kind": "article",
+      "body": "Ông nhíu mắt lắng nghe những loài hoa thỏ thẻ ban chiều. Chúng mời ông bay lên theo bảy sắc cầu vồng: đỏ – cam – vàng – lục – lam – chàm – tím. Hương thơm ngào ngạt nhờ chị gió chia đều cho khắp vườn. Những cánh hoa rung rinh cả trời chiều, đính giọt nắng lung linh từng nhánh lá. Chú dế nào vuốt râu cười khoái trá, góp vào vườn hoa tiếng hát màu nâu.\n       Em hỏi:\n       – Sao ông nghe được tiếng của loài hoa?\n       Ông xoa đầu em và mỉm cười hiền hậu:\n       – Những bông hoa kia rất giống cháu, khi rét đòi sưởi ấm, lúc nắng to muốn được che râm, buổi hanh khô gọi mang cho nước mát.\n       Em thèm được nghe lời của hoa nên cứ mở to đôi mắt, chỉ thấy tiếng rì rào của lá, của cây…\n       Rồi một chiều ông đã lên mây. Cả vườn hoa rầu rầu ủ rũ. Và bất chợt em nghe được lời hoa nhắn nhủ:\n       – Bạn ơi, tưới nước cho mình!\n       Em đi trong vườn làm những việc như ông. Hoa kể về công ông vun trồng và khen em đã biết miệt mài chăm sóc. Em cũng nhíu mắt lắng nghe và nhìn lên trời bật khóc: “Ông ơi, cháu đã nghe được những lời nói của hoa!”.\n                                                                                (Hoài Khánh)"
+    },
+    {
+      "ref": "p3",
+      "title": "Mèo và Cừu",
+      "kind": "article",
+      "body": "Ngày xửa ngày xưa một bác mu-gích có con mèo và con cừu. Khi bác đi làm về, mèo chạy ra đón, liếm tay, nhảy lên lưng, cọ người vào bác. Bác vuốt ve mèo, cho ăn bánh.\n        Thấy vậy cừu cũng muốn được người ta âu yếm vuốt ve và cho nó ăn bánh. Bác mu-gích từ ngoài ruộng trở về, cừu vội chạy ra đón bác, liếm tay, cọ vào chân bác. Bác mu-gích thấy nực cười, và bác xem xem sẽ còn chuyện gì tiếp theo nữa. Cừu đi quanh ra phía sau, rướn mình nhảy lên lưng bác mu-gích. Nó xô bác mu-gích ngã giúi ngã giụi. Con trai bác mu-gích thấy cừu xô ông bố ngã, liền chộp lấy roi quật cho cừu một trận nên thân.\n                        (Nguồn: https://ngungonblog.wordpress.com/2015/12/06/meo-va-cuu/)"
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Câu tục ngữ nào có lời khuyên gần giống với câu tục ngữ “Ở chọn nơi, chơi chọn bạn”",
+      "options": [
+        {
+          "id": "A",
+          "text": "Học thầy không tày học bạn."
+        },
+        {
+          "id": "B",
+          "text": "Gần mực thì đen, gần đèn thì rạng."
+        },
+        {
+          "id": "C",
+          "text": "Bán anh em xa, mua láng giềng gần."
+        },
+        {
+          "id": "D",
+          "text": "Thua thầy một vạn không bằng thua bạn một li."
+        }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 2,
+      "type": "mcq",
+      "topic": "vn-wordform",
+      "grade": "TH",
+      "points": 1,
+      "tags": [
+        "bay"
+      ],
+      "stem": "Xét về mặt từ loại và cấu tạo của từ, các từ “mềm mỏng, mềm dẻo, mềm oặt, mềm lòng” đều là:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Từ ghép và tính từ."
+        },
+        {
+          "id": "B",
+          "text": "Từ láy và động từ."
+        },
+        {
+          "id": "C",
+          "text": "Từ đồng nghĩa và tính từ."
+        },
+        {
+          "id": "D",
+          "text": "Từ phức và từ đồng nghĩa."
+        }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 3,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Có mấy quan hệ từ trong câu sau?\n\nMùi hương ngòn ngọt nhức đầu của những loài hoa rừng không tên tuổi đắm vào ánh nắng ban trưa khiến con người dễ sinh buồn ngủ và sẵn sàng ngả lưng dưới một bóng cây nào đó, để cho thứ cảm giác mệt mỏi chốn rừng trưa lơ mơ đưa mình vào giấc ngủ chẳng đợi chờ",
+      "options": [
+        {
+          "id": "A",
+          "text": "2 quan hệ từ"
+        },
+        {
+          "id": "B",
+          "text": "3 quan hệ từ"
+        },
+        {
+          "id": "C",
+          "text": "4 quan hệ từ"
+        },
+        {
+          "id": "D",
+          "text": "5 quan hệ từ"
+        }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 4,
+      "type": "mcq",
+      "topic": "vn-rhetoric",
+      "grade": "TH",
+      "points": 1,
+      "tags": [
+        "camthu"
+      ],
+      "stem": "Câu nào dưới đây sử dụng cả hai biện pháp nghệ thuật so sánh và nhân hóa?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Những quả nhãn no đầy sữa mẹ ngày lại ngày dầm mưa hè, phơi nắng hè đã chín ngọt lự."
+        },
+        {
+          "id": "B",
+          "text": "Nắng bắt đầu len tới rừng cây rực rỡ sắc vàng hòa với ánh sáng chói chang trưa hè."
+        },
+        {
+          "id": "C",
+          "text": "Như một bà mẹ thương con, cây nhãn chắt chiu dòng sữa ngọt sữa ngon của những chùm quả cuối mùa."
+        },
+        {
+          "id": "D",
+          "text": "Cây cối như được tắm gội sạch sẽ, nở nụ cười tươi mới, tràn đầy sức sống của bình minh."
+        }
+      ],
+      "correct": "C"
+    },
+    {
+      "num": 5,
+      "type": "essay",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Gạch dưới các động từ trong 2 câu dưới đây:\n\nÔng nhíu mắt lắng nghe những loài hoa thỏ thẻ ban chiều. Chúng mời ông bay lên theo bảy sắc cầu vồng: đỏ – cam – vàng – lục – lam – chàm – tím.",
+      "correct": null,
+      "modelAnswer": "Các động từ trong câu là: nhíu, lắng nghe, thỏ thẻ, mời, bay lên"
+    },
+    {
+      "num": 6,
+      "type": "fill",
+      "topic": "vn-wordform",
+      "grade": "VD",
+      "points": 1,
+      "tags": [
+        "bay"
+      ],
+      "stem": "Tìm từ ngữ không cùng nhóm với những từ ngữ còn lại trong mỗi dòng sau (ghi từ khác nhóm mỗi dòng, cách nhau dấu phẩy):\n\na. ầm ầm, rì rầm, cuồn cuộn, tí tách, rầm rầm, ầm ĩ\nb. quan sát, trực quan, tổng quan, tham quan, quan ngại",
+      "correct": "cuồn cuộn, quan ngại",
+      "accept": [
+        "cuồn cuộn, quan ngại",
+        "quan ngại, cuồn cuộn"
+      ],
+      "ignoreOrder": true
+    },
+    {
+      "num": 7,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "passageRef": "p1",
+      "stem": "Nhận định nào sau đây không đúng về đoạn văn trên? Hãy khoanh vào chữ cái trước phương án trả lời em chọn (các phương án A, B, C).",
+      "options": [
+        {
+          "id": "A",
+          "text": "Các dấu phẩy (1), (2), (4) và (5) đều dùng để ngăn cách các bộ phận có cùng chức vụ trong câu."
+        },
+        {
+          "id": "B",
+          "text": "Các câu trong đoạn văn trên liên kết với nhau bằng cách lặp và thay thế từ ngữ."
+        },
+        {
+          "id": "C",
+          "text": "Câu ghép trong đoạn văn trên có 2 vế câu."
+        }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 8,
+      "type": "fill",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "passageRef": "p1",
+      "stem": "Tìm trong đoạn văn trên 1 từ đồng nghĩa với từ in đậm trong câu: “Chú bọ ngựa con đầu tiên “nhảy dù” trúng một quả chanh non”.",
+      "correct": "chính xác",
+      "accept": [
+        "chính xác"
+      ]
+    },
+    {
+      "num": 9,
+      "type": "fill",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [
+        "bay"
+      ],
+      "stem": "Gạch dưới những từ có nghĩa chuyển trong đoạn thơ sau:\n\nĐứng giữa nhà mà cháy\nMà tỏa sáng xung quanh\nChỉ thương cây đèn ấy\nKhông sáng nổi chân mình…\n                            (Trần Đăng Khoa)",
+      "correct": "chân",
+      "accept": [
+        "chân"
+      ]
+    },
+    {
+      "num": 10,
+      "type": "essay",
+      "topic": "vn-syntax",
+      "grade": "VD",
+      "points": 1,
+      "tags": [],
+      "stem": "Gạch dưới vị ngữ trong câu văn sau:\n\nNhững đám mây khổng lồ, nặng trĩu hơi nước lừng lững bay đầy trời để lại những cái bóng nặng nề trên ngôi nhà cổ.",
+      "correct": null,
+      "modelAnswer": "Vị ngữ là: “lừng lững bay đầy trời để lại những cái bóng nặng nề trên ngôi nhà cổ”"
+    },
+    {
+      "num": 11,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "passageRef": "p2",
+      "stem": "Câu chuyện được kể theo lời của ai?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Bông hoa"
+        },
+        {
+          "id": "B",
+          "text": "Người ông."
+        },
+        {
+          "id": "C",
+          "text": "Người cháu"
+        },
+        {
+          "id": "D",
+          "text": "Tác giả"
+        }
+      ],
+      "correct": "C"
+    },
+    {
+      "num": 12,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "passageRef": "p2",
+      "stem": "Qua lời kể, ông của bạn nhỏ đã nghe được hoa nói điều gì?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hoa mời ông bay theo bảy sắc cầu vồng."
+        },
+        {
+          "id": "B",
+          "text": "Cầu vồng mời ông ngắm vẻ đẹp bảy màu."
+        },
+        {
+          "id": "C",
+          "text": "Hương hoa nhờ chị gió chia cho khắp vườn."
+        },
+        {
+          "id": "D",
+          "text": "Tiếng một chú dế hát trong vườn hoa."
+        }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 13,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": [
+        "camthu"
+      ],
+      "passageRef": "p2",
+      "stem": "Đọc đoạn truyện: “Em hỏi … buổi hanh khô gọi mang cho nước mát.” và cho biết người ông muốn cháu hiểu điều gì qua câu trả lời của mình.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ông tài giỏi nên nghe được tiếng của loài hoa."
+        },
+        {
+          "id": "B",
+          "text": "Nếu yêu quý, coi hoa như người thân sẽ biết hoa cần làm gì để chăm sóc."
+        },
+        {
+          "id": "C",
+          "text": "Nếu biết cách chăm sóc hoa thì hoa sẽ nở rất đẹp."
+        },
+        {
+          "id": "D",
+          "text": "Nếu yêu quý hoa như yêu quý người thân thì sẽ nghe được tiếng của loài hoa."
+        }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 14,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "VD",
+      "points": 2,
+      "tags": [],
+      "passageRef": "p3",
+      "stem": "Qua câu chuyện ngụ ngôn “Mèo và Cừu” trên, em rút ra bài học gì?",
+      "correct": null,
+      "modelAnswer": "Từ câu chuyện “Mèo và cừu”, em rút ra được nhiều bài học sâu sắc:\n- Trước hết, mỗi người cần ý thức được năng lực, khả năng của bản thân để có thể phát huy được năng lực của mình.\n- Đồng thời, ai cũng sẽ có thế mạnh riêng, bản sắc riêng nên không bắt chước hay học theo người khác một cách máy móc.\n- Hơn nữa, cần biết lựa chọn cách ứng xử phù hợp với bản thân và hoàn cảnh để tránh gây ra những hậu quả đáng tiếc.\n- Cuối cùng, muốn thực hiện một điều gì đó cần cố gắng kiên nhẫn thực hiện dần dần để đạt được mục tiêu.\n       Thiết nghĩ, là học sinh, nhận thức được tầm quan trọng của việc ý thức được khả năng, thế mạnh của bản thân nên sẽ cố gắng học tập và rèn luyện để phát huy được năng lực của bản thân."
+    },
+    {
+      "num": 15,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 3,
+      "tags": [],
+      "passageRef": "p3",
+      "stem": "Em hãy tưởng tượng em là một người bạn của Cừu đưa ra lời khuyên giúp Cừu (khoảng 5 câu).",
+      "correct": null,
+      "modelAnswer": "Cừu yêu dấu! Tớ hiểu là cậu mong muốn được bác Mu-gích yêu quý và quan tâm như bạn mèo nhưng mỗi loài vật đều có đặc điểm riêng và cậu cũng vậy. Bạn mèo nhỏ nhắn nên có thể nhảy lên lòng bác để được nâng niu, vuốt ve, còn cậu lại có thân hình to lớn hơn rất nhiều nên không thể bắt chước y hệt như thế được. Cậu có thể đến gần bác một cách nhẹ nhàng, ngoan ngoãn để thể hiện tình cảm của mình mà không làm bác khó chịu. Nếu cậu cố làm giống mèo rồi nhảy lên người bác Mu-gích thì sẽ khiến bác bị đau, bị ngã và nổi giận. Đôi khi, yêu thương không nhất thiết phải bắt chước người khác, mà quan trọng là biết thể hiện đúng cách, phù hợp với bản thân mình. Tớ tin rằng nếu cậu biết yêu quý bản thân, hiểu được điểm mạnh của mình và cư xử phù hợp thì bác Mu-gích vẫn sẽ yêu thương cậu theo cách riêng."
+    }
+  ]
+}

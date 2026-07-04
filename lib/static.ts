@@ -144,6 +144,17 @@ export const SCHOOLS: readonly School[] = [
     minutes: 60,
     style: "Số học, phần trăm, suy luận logic và hình học diện tích.",
   },
+  {
+    id: "mc",
+    short: "MC",
+    name: "Marie Curie",
+    full: "Trường Marie Curie Hà Nội",
+    color: "var(--mc)",
+    tone: "mc",
+    desc: "ĐGNL vào lớp 6 — Tiếng Anh: ngữ âm, trọng âm, ngữ pháp, sắp xếp câu và đọc hiểu. 60 câu trắc nghiệm.",
+    minutes: 60,
+    style: "Trắc nghiệm Tiếng Anh diện rộng: ngữ pháp, từ vựng và đọc hiểu.",
+  },
 ] as const;
 
 export const DEFAULT_TOPICS: readonly Topic[] = [

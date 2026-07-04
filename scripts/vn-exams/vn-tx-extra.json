@@ -1,0 +1,257 @@
+{
+  "id": "vn-tx-extra",
+  "subject": "vietnamese",
+  "school": "tx",
+  "year": "Luyện tập",
+  "minutes": 45,
+  "title": "Tiếng Việt vào 6 — THCS Thanh Xuân (Đề biên soạn thêm)",
+  "intro": "Nguồn: Trung tâm Văn Solar Edu — đề biên soạn thêm để luyện tập (không phải đề thi chính thức). Thời gian 45 phút.",
+  "passages": [
+    {
+      "ref": "p1",
+      "title": "Bến sông tuổi thơ (Theo Lê Văn Trường)",
+      "kind": "article",
+      "body": "Từ khi sinh ra và lớn lên, tôi đã thấy trước nhà có một dòng sông êm đềm lững lờ con nước, có hàng bần xanh soi bóng nghiêng nghiêng...\n       Mỗi chiều, bọn trẻ chúng tôi tụ năm tụ bảy ở bến sông, vui đùa đủ các trò của tuổi con nít. Chúng tôi thường lấy chén muối ớt hoặc chén mắm đồng rồi rủ nhau hái những trái bần để ăn. Hôm nào lỡ tay cho nhiều ớt quá thì cả bọn vừa ăn vừa hít hà vì cay. Những ngày nước ròng nước lớn, con sông mang phù sa bồi đắp cho cây bần ngày một lấn ra sông. Chiều chiều, gió từ phía sông thổi về man mác, những bông hoa bần tim tím nở xòe, từng cánh hoa thi nhau rơi xuống rồi cuốn trôi theo dòng nước. Thỉnh thoảng lại nghe những trái bần chín rớt tỏm xuống sông, âm thanh rất đỗi quen thuộc và gần gũi với bọn trẻ sống ở xứ cù lao này.\n       Trái bần chua cũng là một đặc sản của quê tôi. Vì trái bần mà đem nấu canh chua cá bống sao hay cá bông lau thì khó có món nào ngon hơn được. Cá bông lau là thứ cá ngon quý hiếm, chỉ có theo mùa, còn cá bống sao thì ngược lại, có quanh năm. Khi rảnh rỗi, chúng tôi chỉ cần xuống bãi sông lội một lát là kiếm được cá, lượm vài ba trái bần là nấu được nồi canh chua. Ai đến cù lao quê tôi mà chưa từng thưởng thức món canh này thì cũng xem như chưa đến.\n       Mỗi lần đi đâu xa nhà, tôi lại nhớ bến sông quê có hàng bần nở hoa tím chờ gió thổi qua. Khi đó, tôi tưởng đâu như có hương thơm của những trái bần chín và mùi vị của canh cá bống sao nấu với trái bần chua. Những cây bần con bên sông vẫn cứ tiếp tục mọc lên để duy trì màu xanh bờ bãi cù lao quê hương tôi."
+    },
+    {
+      "ref": "p2",
+      "title": "Những niềm vui nhỏ bé (Thuỵ Anh)",
+      "kind": "poem",
+      "body": "Những niềm vui bé nhỏ\nTừng ở lại với tôi\nChỉ là một nụ cười\nChỉ là tia nắng lạc\nGiữa bụi cây xơ xác\n\nVương lại chiếc lá xanh\nMột tình yêu mong manh\nMột nụ hôn còn ấm\n\nNhững niềm vui bé nhỏ\nXin ở lại cùng người\nBàn tay mến thương ơi\nHãy giữ cho thật chặt\nMột lời sôi nổi nhất\nĐã từng được viết ra\nDù hạnh phúc còn xa\nDù nỗi buồn gần quá!\n\nTôi nhìn thấy chiếc lá\nTôi nhìn thấy cành hoa\nCủa một mùa yêu xa\nTôi gom vào ký ức!\n\nXin lục trong ký ức\nNơi có nhiều niềm vui\nTừng sợi bé nhỏ thôi\nKết thành lời an ủi\nNếu mà tôi đủ sợi\nSẽ kết chiếc khăn tay\nCơn giông chẳng tan ngay\nNhưng lòng người sẽ nắng!\n\nNhững niềm vui bé nhỏ\nĐến bên người\n          thay tôi\n\nViết tặng Thắng"
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Dòng nào gồm các từ đồng nghĩa với từ \"dũng cảm\"?",
+      "options": [
+        { "id": "A", "text": "gan dạ, can đảm, quả cảm, anh dũng" },
+        { "id": "B", "text": "hiền lành, dịu dàng, chăm chỉ, thật thà" },
+        { "id": "C", "text": "thông minh, lanh lợi, vui vẻ, hoạt bát" },
+        { "id": "D", "text": "yếu đuối, nhút nhát, sợ hãi, rụt rè" }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 2,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Câu nào dưới đây là câu ghép?",
+      "options": [
+        { "id": "A", "text": "Trên những cành cây cao trước sân trường, đàn chim nhỏ đang ríu rít hót vang đón nắng sớm." },
+        { "id": "B", "text": "Những chùm hoa phượng đỏ rực đang nở khắp sân trường trong những ngày hè oi ả." },
+        { "id": "C", "text": "Trời đã khuya nhưng bố em vẫn ngồi bên bàn làm việc để hoàn thành bản báo cáo còn dang dở." },
+        { "id": "D", "text": "Ngoài cánh đồng làng, từng đàn cò trắng đang chậm rãi bay lượn giữa bầu trời trong xanh." }
+      ],
+      "correct": "C"
+    },
+    {
+      "num": 3,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Các câu tục ngữ nào dưới đây có chứa cặp từ trái nghĩa?",
+      "options": [
+        { "id": "A", "text": "Gần mực thì đen, gần đèn thì rạng." },
+        { "id": "B", "text": "Có công mài sắt, có ngày nên kim." },
+        { "id": "C", "text": "Thất bại là mẹ thành công." },
+        { "id": "D", "text": "Một cây làm chẳng nên non/ Ba cây chụm lại nên hòn núi cao." }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 4,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "passageRef": "p1",
+      "stem": "Khung cảnh trước nhà nhân vật \"tôi\" hiện lên như thế nào?",
+      "options": [
+        { "id": "A", "text": "Có cánh đồng rộng lớn và những rặng tre xanh." },
+        { "id": "B", "text": "Có dòng sông êm đềm và hàng bần xanh soi bóng." },
+        { "id": "C", "text": "Có khu chợ đông vui bên bờ sông." },
+        { "id": "D", "text": "Có bãi biển với những hàng dừa cao." }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 5,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "passageRef": "p1",
+      "stem": "Bọn trẻ thường làm gì ở bến sông?",
+      "options": [
+        { "id": "A", "text": "Ra sông đánh cá mỗi ngày." },
+        { "id": "B", "text": "Tắm sông, nô đùa và chèo thuyền." },
+        { "id": "C", "text": "Tụ tập vui chơi và hái trái bần để ăn." },
+        { "id": "D", "text": "Thả diều trên cánh đồng." }
+      ],
+      "correct": "C"
+    },
+    {
+      "num": 6,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "passageRef": "p1",
+      "stem": "Âm thanh nào được tác giả nhắc đến như một điều quen thuộc của tuổi thơ?",
+      "options": [
+        { "id": "A", "text": "Tiếng sóng biển rì rào vang lên suốt những buổi chiều nơi vùng biển quê hương." },
+        { "id": "B", "text": "Tiếng chim hót líu lo trên những vòm cây mỗi khi bình minh lên." },
+        { "id": "C", "text": "Tiếng những trái bần chín rơi \"tỏm\" xuống sông, gợi cảm giác thân thuộc với lũ trẻ." },
+        { "id": "D", "text": "Tiếng gió thổi xào xạc qua những rặng tre ven đường làng yên ả." }
+      ],
+      "correct": "C"
+    },
+    {
+      "num": 7,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "passageRef": "p1",
+      "stem": "Theo bài đọc, món ăn nào được xem là đặc sản của quê hương tác giả?",
+      "options": [
+        { "id": "A", "text": "Món cá nướng trui thơm lừng ăn cùng rau sống và nước mắm chua ngọt." },
+        { "id": "B", "text": "Món canh chua nấu với trái bần và cá bống sao hoặc cá bông lau đậm đà hương vị quê nhà." },
+        { "id": "C", "text": "Món bánh xèo miền Tây vàng giòn ăn kèm nhiều loại rau dân dã." },
+        { "id": "D", "text": "Món cháo cá linh nấu cùng bông điên điển thơm ngon của mùa nước nổi." }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 8,
+      "type": "mcq",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "passageRef": "p1",
+      "stem": "Vì sao mỗi lần đi xa, tác giả lại nhớ quê hương?",
+      "options": [
+        { "id": "A", "text": "Vì tác giả nhớ những trò chơi vui vẻ ở nơi phố xá đông đúc và nhộn nhịp." },
+        { "id": "B", "text": "Vì tác giả nhớ bến sông quê, hàng bần tím cùng hương vị thân thuộc của món canh chua trái bần." },
+        { "id": "C", "text": "Vì tác giả nhớ những người bạn học thân thiết đã cùng mình lớn lên." },
+        { "id": "D", "text": "Vì tác giả nhớ những cơn mưa mùa hạ và con đường làng đầy hoa cỏ." }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 9,
+      "type": "mcq",
+      "topic": "vn-syntax",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "passageRef": "p1",
+      "stem": "Chủ ngữ trong câu: \"Những cây bần con bên sông vẫn cứ tiếp tục mọc lên để duy trì màu xanh bờ bãi cù lao quê hương tôi.\" là:",
+      "options": [
+        { "id": "A", "text": "bên sông" },
+        { "id": "B", "text": "vẫn tiếp tục" },
+        { "id": "C", "text": "mọc lên" },
+        { "id": "D", "text": "Những cây bần con bên sông" }
+      ],
+      "correct": "D"
+    },
+    {
+      "num": 10,
+      "type": "mcq",
+      "topic": "vn-wordform",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "passageRef": "p1",
+      "stem": "Dòng nào dưới đây gồm các từ láy trong đoạn văn in đậm.",
+      "options": [
+        { "id": "A", "text": "hít hà, chiều chiều, man mác, tim tím, thỉnh thoảng, gần gũi" },
+        { "id": "B", "text": "phù sa, chiều chiều, trái bần, man mác, dòng nước, quê hương" },
+        { "id": "C", "text": "vui đùa, hít hà, bồi đắp, tim tím, con sông, thỉnh thoảng" },
+        { "id": "D", "text": "gần gũi, tuổi thơ, lững lờ, tim tím, nước lớn, bến sông" }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 11,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "passageRef": "p1",
+      "stem": "Từ \"man mác\" trong bài dùng để tả điều gì?",
+      "options": [
+        { "id": "A", "text": "Gió thổi nhẹ và gợi cảm giác buồn nhớ" },
+        { "id": "B", "text": "Dòng sông chảy xiết" },
+        { "id": "C", "text": "Tiếng sóng vỗ mạnh" },
+        { "id": "D", "text": "Cơn mưa mùa hạ" }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 12,
+      "type": "essay",
+      "topic": "vn-rhetoric",
+      "grade": "VD",
+      "points": 2,
+      "tags": ["camthu"],
+      "passageRef": "p2",
+      "stem": "Xác định và phân tích tác dụng biện pháp tu từ điệp ngữ trong khổ thơ dưới đây:\n\n              Tôi nhìn thấy chiếc lá\n              Tôi nhìn thấy cành hoa\n              Của một mùa yêu xa\n              Tôi gom vào ký ức!",
+      "correct": null,
+      "modelAnswer": "- Trong đoạn thơ đã cho, tác giả đã sử dụng BPTT điệp ngữ: lặp lại cụm từ \"Tôi nhìn thấy\"\n- Tác dụng:\n+ Tác giả nhấn mạnh vẻ đẹp của những hình ảnh bình dị được tác giả cảm nhận trong cuộc sống, chỉ cần \"nhìn thấy\" một \"chiếc lá\" hay \"cành hoa\" cũng đủ làm cho lòng người xao xuyến và \"gom vào ký ức\". Đồng thời thể hiện tình cảm nâng niu, trân trọng những niềm vui nhỏ bé, giản đơn trong cuộc sống hàng ngày.\n+ Qua đó, tác giả muốn nhắn nhủ tới mỗi người hãy luôn trân quý giá trị đẹp đẽ của cuộc đời.\n+ Điệp ngữ còn góp phần tạo ra giọng điệu tha thiết, giàu cảm xúc."
+    },
+    {
+      "num": 13,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "VD",
+      "points": 2,
+      "tags": ["camthu"],
+      "passageRef": "p2",
+      "stem": "Cảm nhận tình cảm của tác giả qua bài thơ trên (Viết 3 – 5 câu).",
+      "correct": null,
+      "modelAnswer": "* Hình thức:\n- Đoạn văn\n- Dung lượng: 3 – 5 câu (3 – 6 câu)\n* Nội dung:\n- Câu giới thiệu: Qua bài thơ, em cảm nhận được tác giả là người có tâm hồn tinh tế và giàu tình yêu cuộc sống.\n- Cảm nhận chi tiết\n+ Trước hết, tác giả là người có tâm hồn tinh tế, luôn yêu thương và trân trọng những điều nhỏ bé và tốt đẹp.\n+ Đồng thời, dù cuộc đời còn phải trải qua nhiều \"cơn giông\" nhưng tác giả cũng luôn giữ một tinh thần lạc quan, đủ \"nắng\" để yêu thương và hướng đến những điều tốt đẹp, tích cực.\n+ Đặc biệt, hình ảnh \"kết chiếc khăn tay\" để sưởi ấm lòng người cho thấy tác giả còn mong muốn đem niềm vui, sự an ủi đến với mọi người xung quanh.\n- Câu kết luận: Từ đó, em càng thêm trân trọng vẻ đẹp tâm hồn, trái tim đầy tình yêu thương của tác giả."
+    },
+    {
+      "num": 14,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "VD",
+      "points": 2,
+      "tags": [],
+      "passageRef": "p2",
+      "stem": "Qua bài thơ, em rút ra được bài học gì?",
+      "correct": null,
+      "modelAnswer": "- Giới thiệu: Qua bài thơ, em rút ra được nhiều bài học sâu sắc\n- Nêu bài học nhận thức:\n+ Trước hết, chúng ta cần luôn biết hài lòng với những gì mình đang có, trân trọng điều giản dị xung quanh mình.\n+ Đồng thời, mỗi người cần sống lạc quan, vui vẻ, yêu thương.\n+ Bên cạnh đó, mỗi người cần cố gắng lưu giữ những kỉ niệm đẹp trong cuộc sống để sau này khi nhìn lại không phải thấy hối tiếc.\n+ Hơn nữa, cần biết lan tỏa niềm vui, hạnh phúc, tình yêu tới mọi người quanh ta.\n- Bài học hành động: Là học sinh, bản thân em sẽ luôn cố gắng chăm chỉ học tập và rèn luyện; biết quan tâm đến người khác; yêu thương, trân trọng những phút giây hạnh phúc bên gia đình."
+    },
+    {
+      "num": 15,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 3,
+      "tags": [],
+      "passageRef": "p2",
+      "stem": "Có ý kiến cho rằng: \"Biết trân trọng những điều bình dị quanh mình sẽ khiến cuộc sống trở nên ý nghĩa hơn.\" Em có đồng ý với ý kiến đó không? Viết đoạn văn (khoảng 8 câu) trình bày suy nghĩ về ý kiến trên.",
+      "correct": null,
+      "modelAnswer": "* Hình thức:\n- Đoạn văn\n- Dung lượng: 10 câu (9 – 12 câu)\n* Nội dung:\n1. Mở đoạn: Nêu quan điểm\nEm đồng ý với ý kiến: \"Biết trân trọng những điều bình dị quanh mình sẽ khiến cuộc sống trở nên ý nghĩa hơn.\"\n2. Thân đoạn\n- Giải thích: \"Những điều bình dị\" là gì?\n- Bàn luận: Vì sao ý kiến đúng?\n+ Trước hết, cuộc sống ý nghĩa, hạnh phúc không cần phải bắt đầu từ những điều lớn lao mà chỉ cần xuất phát bởi điều nhỏ bé giản đơn trong cuộc sống như một cái nắm tay, ánh nhìn động viên, bữa cơm gia đình, hay khoảnh khắc được ở bên người thân...\n+ Đồng thời, chính những điều bình dị khiến con người cảm thấy thoải mái, hài lòng với điều mình có. Nếu chỉ chạy theo những điều phù phiếm, xa vời sẽ khiến cho chúng ta thêm mệt mỏi.\n+ Bên cạnh đó, khi trân trọng những điều bình dị, ta sẽ dành thời gian chăm chút cho nó và khiến cuộc sống thêm ý nghĩa.\n- Dẫn chứng: Trong thời gian dịch bệnh Covid-19, nhiều người nhận ra chỉ cần còn được ở cạnh người thân yêu, được khỏe mạnh trong vòng tay gia đình, được cùng trò chuyện với họ mỗi ngày đã là hạnh phúc lắm rồi.\n- Bàn luận mở rộng:\n+ Phản đề: Tuy nhiên, vẫn còn một số người mải mê đi tìm hạnh phúc xa vời mà quên đi những điều nhỏ bé quanh mình.\n+ Bài học (Nhận thức + hành động): Ý thức được ý nghĩa của những điều bình dị trong cuộc sống nên tự nhắc nhở mình sẽ cố gắng yêu thương, quan tâm đến mọi người xung quanh; tích cực tham gia các hoạt động chung cùng người thân; biết lắng nghe, thấu hiểu với mọi người.\n3. Kết đoạn: Khẳng định lại vấn đề (có thể dừng lại ở bài học)"
+    }
+  ]
+}

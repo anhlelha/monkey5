@@ -55,6 +55,8 @@
   --arc-soft: oklch(0.96 0.03 110);
   --nksp: oklch(0.58 0.14 255);
   --nksp-soft: oklch(0.96 0.03 255);
+  --mc: oklch(0.6 0.14 185);
+  --mc-soft: oklch(0.96 0.03 185);
 
   /* Radii / shadows */
   --r-xs: 6px;
@@ -535,6 +537,7 @@ a { color: inherit; text-decoration: none; }
 .pill.ams { background: var(--ams-soft); color: var(--ams); border-color: transparent; }
 .pill.arc { background: var(--arc-soft); color: var(--arc); border-color: transparent; }
 .pill.nksp { background: var(--nksp-soft); color: var(--nksp); border-color: transparent; }
+.pill.mc  { background: var(--mc-soft);  color: var(--mc);  border-color: transparent; }
 .pill.green { background: var(--success-soft); color: var(--success); border-color: transparent; }
 .pill.red { background: var(--danger-soft); color: var(--danger); border-color: transparent; }
 .pill.amber { background: var(--warn-soft); color: oklch(0.5 0.13 70); border-color: transparent; }
@@ -568,6 +571,7 @@ a { color: inherit; text-decoration: none; }
 .bar.ams .bar-fill { background: var(--ams); }
 .bar.arc .bar-fill { background: var(--arc); }
 .bar.nksp .bar-fill { background: var(--nksp); }
+.bar.mc .bar-fill { background: var(--mc); }
 .bar.tall { height: 10px; }
 .bar.thin { height: 4px; }
 
@@ -835,6 +839,7 @@ a { color: inherit; text-decoration: none; }
 .school-pick-item .badge.ams  { background: var(--ams); }
 .school-pick-item .badge.arc  { background: var(--arc); }
 .school-pick-item .badge.nksp { background: var(--nksp); }
+.school-pick-item .badge.mc { background: var(--mc); }
 /* Fallback so an unknown/empty tone still shows a visible (neutral) badge. */
 .school-pick-item .badge { background: var(--ink-soft); }
 .school-pick-item .check {
@@ -1436,6 +1441,7 @@ a { color: inherit; text-decoration: none; }
 .exam-row .badge.ams  { background: var(--ams); }
 .exam-row .badge.arc  { background: var(--arc); }
 .exam-row .badge.nksp { background: var(--nksp); }
+.exam-row .badge.mc { background: var(--mc); }
 .exam-row .title { font-weight: 600; font-size: 14px; }
 .exam-row .meta { font-size: 12px; color: var(--ink-muted); margin-top: 2px; }
 .exam-row .stat { text-align: right; font-size: 12px; }
