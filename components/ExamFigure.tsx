@@ -3723,6 +3723,85 @@ export function ExamFigure({ figure }: Props) {
       );
     }
 
+    case "nksp-2026-c5": {
+      // Four cube-net (dice) options A–D with pip patterns. Faithfully reproduced
+      // from the source scan via PNG — the four nets ARE the MCQ options.
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 420 }}>
+          <img
+            src="/figures/nksp-2026-c5.png"
+            alt="Bốn hình khai triển xúc xắc A, B, C, D — Câu 5 NKSP 2026"
+            style={{ maxWidth: "100%", width: "100%", height: "auto", display: "block" }}
+          />
+        </div>
+      );
+    }
+
+    case "nksp-2026-c9": {
+      // Sequence of 4 circles containing cats + elephants (visual pattern). PNG crop.
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 520 }}>
+          <img
+            src="/figures/nksp-2026-c9.png"
+            alt="Dãy 4 hình chứa mèo và voi theo quy luật — Câu 9 NKSP 2026"
+            style={{ maxWidth: "100%", width: "100%", height: "auto", display: "block" }}
+          />
+        </div>
+      );
+    }
+
+    case "nksp-2026-b4": {
+      // Three equal circles (centers A, B, C) with a shaded trefoil region.
+      // Reproduced from the source scan via PNG (shading geometry is intricate).
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 300 }}>
+          <img
+            src="/figures/nksp-2026-b4.png"
+            alt="Ba hình tròn bằng nhau tâm A, B, C với phần tô đậm — Bài 4 NKSP 2026"
+            style={{ maxWidth: "100%", width: "100%", height: "auto", display: "block" }}
+          />
+        </div>
+      );
+    }
+
+    case "nksp-2026-b6": {
+      // Triangle ABC (A apex, B bottom-left, C bottom-right). E on AB, F on AC,
+      // D on BC; segment EF (horizontal) and cevian AD meet at G. The 5 "hàng":
+      // A-E-B, A-F-C, A-G-D, E-G-F, B-D-C.
+      const A = { x: 150, y: 40 };
+      const B = { x: 60, y: 240 };
+      const C = { x: 400, y: 240 };
+      const D = { x: 200, y: 240 };
+      const E = { x: 101, y: 150 };
+      const F = { x: 288, y: 150 };
+      const G = { x: 178, y: 150 };
+      const labelStyle = { fontStyle: "italic", fontFamily: "Times, serif" } as const;
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 320 }}>
+          <svg viewBox="0 0 460 290" width="100%" style={{ display: "block", height: "auto" }}>
+            {/* Triangle ABC */}
+            <polygon points={`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y}`} fill="none" stroke="var(--ink)" strokeWidth={1.6} />
+            {/* Midline-style segment EF */}
+            <line x1={E.x} y1={E.y} x2={F.x} y2={F.y} stroke="var(--ink)" strokeWidth={1.5} />
+            {/* Cevian AD */}
+            <line x1={A.x} y1={A.y} x2={D.x} y2={D.y} stroke="var(--ink)" strokeWidth={1.5} />
+            {/* Vertex / point dots */}
+            {[A, B, C, D, E, F, G].map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r={4} fill="orange" stroke="orange" />
+            ))}
+            {/* Labels */}
+            <text x={A.x} y={A.y - 8} fill="var(--ink)" fontSize={16} textAnchor="middle" style={labelStyle}>A</text>
+            <text x={B.x - 8} y={B.y + 16} fill="var(--ink)" fontSize={16} textAnchor="end" style={labelStyle}>B</text>
+            <text x={C.x + 8} y={C.y + 16} fill="var(--ink)" fontSize={16} textAnchor="start" style={labelStyle}>C</text>
+            <text x={D.x} y={D.y + 18} fill="var(--ink)" fontSize={16} textAnchor="middle" style={labelStyle}>D</text>
+            <text x={E.x - 8} y={E.y + 4} fill="var(--ink)" fontSize={16} textAnchor="end" style={labelStyle}>E</text>
+            <text x={F.x + 8} y={F.y + 4} fill="var(--ink)" fontSize={16} textAnchor="start" style={labelStyle}>F</text>
+            <text x={G.x - 4} y={G.y + 18} fill="var(--ink)" fontSize={16} textAnchor="end" style={labelStyle}>G</text>
+          </svg>
+        </div>
+      );
+    }
+
     default:
       return null;
   }

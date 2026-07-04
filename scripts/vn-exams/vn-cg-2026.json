@@ -1,0 +1,187 @@
+{
+  "id": "vn-cg-2026",
+  "subject": "vietnamese",
+  "school": "cg",
+  "year": "2026",
+  "minutes": 60,
+  "title": "Tiếng Việt vào 6 — THCS Cầu Giấy 2026",
+  "intro": "Đề khôi phục theo trí nhớ của học sinh; gợi ý đáp án của Trung tâm Văn Solaredu. Phần Đọc hiểu 2.0 điểm (trắc nghiệm) + phần Tự luận 8.0 điểm.",
+  "passages": [
+    {
+      "ref": "p1",
+      "title": "Đất rừng phương Nam (Đoàn Giỏi)",
+      "kind": "article",
+      "body": "Chúng tôi đi thật xa, ra tận giữa đồng, hoặc chui vào những khu vườn rậm để người lớn không tìm thấy, ở đó chúng tôi mặc sức bày ra đủ các thứ trò chơi mà trước kia ở thành phố tôi chưa hề nghĩ ra. Chỉ cần một cái mo cau rụng và mươi cọng sậy là chúng tôi đã làm thành chiếc cộ hai ngựa kéo, đưa viên tướng cởi truồng đầu đội mũ tết lá xanh rì quan sát mặt trận theo sau có cả tiểu đội trẻ em bồng súng theo hầu. Với vài bẹ chuối cắt ngắn, cắm đầy que khô thả xuống con mương nhỏ, thế là chúng tôi đã có cả một đội hải thuyền rồi. Còn đạn trái phá thì tha hồ, cứ nhặt quả mù u rụng ném xuống lệnh uỳnh làm cho bẹ chuối dập dềnh, nước có bắn tung tóc ướt cả áo quần cũng mặc... Chúng tôi bày ra rồi lại phá đi, ngày này qua ngày khác, nhiều trò chơi cứ lặp lại mãi không đứa nào thấy chán."
+    },
+    {
+      "ref": "p2",
+      "title": "Xuân đến (Nguyễn Trọng Hoàn)",
+      "kind": "poem",
+      "body": "Đỏ như ngọn lửa\nLá bàng nhẹ rơi\nChợt bừng tỉnh giấc\nCành cây nhú chồi\n\nDải lụa hồng phơi\nPhù sa lên bãi\nNgọn gió mê mải\nĐưa hương đi chơi.\n\nThăm thẳm bầu trời\nBồng bềnh mây trắng\nCánh chim chở nắng\nBay vào mùa xuân."
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Câu nào dưới đây sử dụng cặp từ trái nghĩa?",
+      "options": [
+        { "id": "A", "text": "Chân cứng đá mềm" },
+        { "id": "B", "text": "Chân lấm tay bùn" },
+        { "id": "C", "text": "Chân yếu tay mềm" },
+        { "id": "D", "text": "Chân đồng vai sắt" }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 2,
+      "type": "mcq",
+      "topic": "vn-cohesion",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Hai câu sau được liên kết với nhau bằng những cách nào?\n“Trước đề nghị của tôi, mắt Tí Hoa sáng lên. Nhưng bỗng thoáng một cái, nó cụp mắt xuống tỏ vẻ buồn rầu.”",
+      "options": [
+        { "id": "A", "text": "Lặp từ ngữ, dùng từ ngữ nối" },
+        { "id": "B", "text": "Lặp từ ngữ, dùng từ ngữ nối, thay thế từ ngữ" },
+        { "id": "C", "text": "Dùng từ ngữ nối, thay thế từ ngữ" },
+        { "id": "D", "text": "Thay thế từ ngữ, lặp từ ngữ" }
+      ],
+      "correct": "B"
+    },
+    {
+      "num": 3,
+      "type": "mcq",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "stem": "Câu nào dưới đây không sử dụng đại từ xưng hô?",
+      "options": [
+        { "id": "A", "text": "Bố nói đó là căn nhà lớn nhất thế giới." },
+        { "id": "B", "text": "Tôi nhắm mắt và chạm tay rồi gọi tên từng món quà." },
+        { "id": "C", "text": "Chúng ta bước vào một mùa hè rực rỡ." },
+        { "id": "D", "text": "Chúng tôi nghe thấy tiếng suối chảy róc rách." }
+      ],
+      "correct": "A"
+    },
+    {
+      "num": 4,
+      "type": "mcq",
+      "topic": "vn-spelling",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "stem": "Dấu gạch ngang trong câu “Chiều hôm ấy, mấy đứa chúng tôi - trong đó có Châu và Hiền - rủ nhau đến phòng triển lãm” có tác dụng gì?",
+      "options": [
+        { "id": "A", "text": "Đánh dấu lời nói trực tiếp của nhân vật" },
+        { "id": "B", "text": "Đánh dấu các ý liệt kê" },
+        { "id": "C", "text": "Nối các từ ngữ trong một liên danh" },
+        { "id": "D", "text": "Đánh dấu bộ phận chú thích, giải nghĩa trong câu." }
+      ],
+      "correct": "D"
+    },
+    {
+      "num": 5,
+      "type": "fill",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": [],
+      "passageRef": "p1",
+      "stem": "Chỉ rõ tính từ trong câu: “Với vài bẹ chuối cắt ngắn, cắm đầy que khô thả xuống con mương nhỏ, thế là chúng tôi đã có cả một đội hải thuyền rồi.”",
+      "correct": "ngắn, đầy, khô, nhỏ",
+      "accept": ["ngắn, đầy, khô, nhỏ", "ngắn đầy khô nhỏ"],
+      "ignoreOrder": true
+    },
+    {
+      "num": 6,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "VD",
+      "points": 1,
+      "tags": ["camthu"],
+      "passageRef": "p1",
+      "stem": "Em có nhận xét gì về những bạn nhỏ trong văn bản trên?",
+      "correct": null,
+      "modelAnswer": "HS trả lời ngắn gọn (câu hỏi 0.5 điểm). Những bạn nhỏ trong văn bản để lại nhiều ấn tượng đáng quý: Trước hết, đó là những em bé hồn nhiên, ngây thơ, giàu trí tưởng tượng, sáng tạo và yêu thích khám phá — từ những vật dụng rất đơn giản như “một cái mo cau”, “mươi cọng sậy”, “vài bẹ chuối”… các em đã nghĩ ra những trò chơi thú vị. Đồng thời, ta cảm nhận được một tuổi thơ rất thú vị, tràn đầy sức sống, tràn trề niềm vui, niềm hạnh phúc, hân hoan gắn bó với thiên nhiên."
+    },
+    {
+      "num": 7,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 1,
+      "tags": [],
+      "passageRef": "p1",
+      "stem": "Trong bài đọc, trò chơi của những đứa trẻ đơn giản nhưng chúng chơi vẫn không chán. Còn em, em thích đồ chơi nào? Vì sao?",
+      "correct": null,
+      "modelAnswer": "Gợi ý: HS chọn một món đồ chơi yêu thích: giới thiệu → đưa ra lí do → bài học. Đoạn mẫu: Em thích nhất là bộ xếp hình LEGO. Đây là món đồ chơi giúp em tạo ra nhiều mô hình khác nhau như ngôi nhà, ô tô hay lâu đài theo trí tưởng tượng của mình. Em yêu thích món đồ chơi này vì nó vừa mang lại niềm vui, vừa giúp em rèn luyện sự khéo léo, tính kiên nhẫn và khả năng sáng tạo. Qua đó, em hiểu rằng một món đồ chơi không cần quá đắt tiền, quan trọng là nó đem lại niềm vui và giúp chúng ta học được những điều bổ ích; mỗi món đồ chơi còn góp phần dệt lên kí ức muôn màu, bồi đắp đời sống tâm hồn cho thế giới tuổi thơ."
+    },
+    {
+      "num": 8,
+      "type": "fill",
+      "topic": "vn-vocab",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["bay"],
+      "passageRef": "p2",
+      "stem": "Từ “ngọn” trong “ngọn lửa”, “ngọn gió” được dùng với nghĩa gốc hay nghĩa chuyển?",
+      "correct": "nghĩa chuyển",
+      "accept": ["nghĩa chuyển", "chuyển"],
+      "ignoreOrder": false
+    },
+    {
+      "num": 9,
+      "type": "fill",
+      "topic": "vn-reading",
+      "grade": "TH",
+      "points": 1,
+      "tags": ["camthu"],
+      "passageRef": "p2",
+      "stem": "Ở khổ 2, tác giả đã cảm nhận thiên nhiên qua những giác quan nào?",
+      "correct": "thị giác, khứu giác, xúc giác",
+      "accept": ["thị giác, khứu giác, xúc giác"],
+      "ignoreOrder": true
+    },
+    {
+      "num": 10,
+      "type": "essay",
+      "topic": "vn-rhetoric",
+      "grade": "VD",
+      "points": 1,
+      "tags": ["camthu"],
+      "passageRef": "p2",
+      "stem": "Chỉ ra và nêu tác dụng biện pháp nhân hoá trong 2 câu thơ: “Cánh chim chở nắng/ Bay vào mùa xuân”.",
+      "correct": null,
+      "modelAnswer": "- Trong hai câu thơ, tác giả đã sử dụng biện pháp tu từ nhân hoá: “cánh chim” được nhân hoá qua từ “chở”.\n- Tác dụng:\n+ Nhân hoá làm cho “cánh chim” trở nên có hồn, gần gũi và mang đặc điểm của con người.\n+ Gợi ra ý nghĩa đẹp đẽ: cánh chim là “sứ giả” của mùa xuân, bay từ phương Nam ấm áp mang theo ánh nắng rực rỡ, xua tan cái lạnh của mùa đông giá rét, mở ra một không gian nghệ thuật bừng sáng, ấm áp và tràn đầy sức sống.\n+ Từ đó, ta thấy được tâm hồn tinh tế, nhạy cảm và tình yêu thiên nhiên tha thiết của nhà thơ."
+    },
+    {
+      "num": 11,
+      "type": "essay",
+      "topic": "vn-reading",
+      "grade": "VD",
+      "points": 1,
+      "tags": ["camthu", "vandung"],
+      "passageRef": "p2",
+      "stem": "Tìm điểm chung giữa cảnh vật của hai đoạn thơ sau:\n“Đỏ như ngọn lửa\nLá bàng nhẹ rơi\nChợt bừng tỉnh giấc\nCành cây nhú chồi”\n(Xuân đến, Nguyễn Trọng Hoàn)\n“Chợt một tiếng chim kêu:\n- Chiếp, chiu, chiu! Xuân tới!\nTức thì trăm ngọn suối\nNổi róc rách reo mừng\nTức thì ngàn chim muông\nNổi hát ca vang dậy\n\nMầm non vừa nghe thấy\nVội bật chiếc vỏ rơi\nNó đứng dậy giữa trời\nKhoác áo màu xanh biếc…”\n(Mầm non, Võ Quảng)",
+      "correct": null,
+      "modelAnswer": "Hai bài thơ “Mầm non” và “Xuân đến” đều vẽ lên bức tranh cảnh vật mùa xuân tràn đầy sức sống. Hình ảnh trung tâm là chồi non được nhân hoá, thức tỉnh, đứng dậy, vươn mình giữa đất trời rộng lớn — vẻ đẹp của sự sống, của sức xuân đang ngập tràn sau bao ngày đông lạnh giá. Mùa xuân đến đánh thức muôn loài, mang đến sự đổi thay kì diệu của đất trời, của vạn vật. Điểm chung về bức tranh cảnh vật của hai đoạn thơ là điểm gặp nhau trong cách cảm nhận thiên nhiên đầy tinh tế và tâm hồn rộng mở, tha thiết với cuộc đời của tâm hồn thi sĩ."
+    },
+    {
+      "num": 12,
+      "type": "essay",
+      "topic": "vn-writing",
+      "grade": "VD",
+      "points": 3,
+      "tags": ["vandung"],
+      "stem": "Em có tán thành với việc, vào mỗi dịp cuối tuần, bố mẹ thường đưa con đi tham gia các hoạt động dã ngoại và tham quan ở những nơi có cảnh quan thiên nhiên đẹp không? (Trả lời bằng một đoạn văn khoảng 10 câu)",
+      "correct": null,
+      "modelAnswer": "Dạng bài: Nêu ý kiến tán thành hoặc không tán thành. Vấn đề nghị luận: việc cuối tuần bố mẹ đưa con đi dã ngoại, tham quan nơi có cảnh quan thiên nhiên đẹp.\nDàn ý (hướng tán thành):\n1. Mở đoạn: Giới thiệu vấn đề — Em hoàn toàn tán thành việc bố mẹ đưa con đi dã ngoại và tham quan ở những nơi có cảnh quan thiên nhiên đẹp.\n2. Thân đoạn — lí lẽ và dẫn chứng:\n- Giúp trẻ mở rộng hiểu biết và tích lũy trải nghiệm thực tế.\n- Không gian thiên nhiên trong lành giúp cả gia đình thư giãn, xua tan áp lực, tái tạo năng lượng sau một tuần vất vả.\n- Là cơ hội để trẻ trực tiếp quan sát, khám phá thế giới, bồi đắp tình yêu thiên nhiên và ý thức bảo vệ môi trường.\n- Những hoạt động chung (dựng lều, chuẩn bị đồ ăn, vui chơi…) tăng cường tương tác, gắn kết tình cảm gia đình, tạo kỉ niệm đẹp.\n- Hạn chế trẻ tiếp xúc quá nhiều với tivi, điện thoại; rèn tính tự lập và kĩ năng sinh tồn cơ bản.\n- Dẫn chứng: nhiều gia đình vẫn dành thời gian cắm trại, leo núi ở Ba Vì, Tam Đảo, các khu du lịch sinh thái…\n- Phản đề: không phải gia đình nào cũng có thời gian hoặc quan tâm đúng mức tới vai trò của những chuyến dã ngoại.\n- Bài học: nhận thức được giá trị của thiên nhiên với sức khỏe và tâm hồn; hành động chăm ngoan, học tốt, rèn tính tự lập, chú ý an toàn và bảo vệ môi trường.\n3. Kết đoạn: Khẳng định lại ý nghĩa — tổ chức những chuyến dã ngoại về với thiên nhiên là hoạt động thiết thực, giúp học sinh phát triển toàn diện cả thể chất, trí tuệ lẫn tâm hồn."
+    }
+  ]
+}

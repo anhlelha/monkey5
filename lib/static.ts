@@ -133,6 +133,17 @@ export const SCHOOLS: readonly School[] = [
     minutes: 60,
     style: "Số học – suy luận, phân số/%, hình học diện tích và chuyển động.",
   },
+  {
+    id: "nksp",
+    short: "NKSP",
+    name: "Năng Khiếu Sư Phạm",
+    full: "Trường Năng khiếu Sư phạm",
+    color: "var(--nksp)",
+    tone: "nksp",
+    desc: "ĐGNL vào lớp 6 — 10 câu trắc nghiệm + 4 bài điền đáp số + 2 bài tự luận.",
+    minutes: 60,
+    style: "Số học, phần trăm, suy luận logic và hình học diện tích.",
+  },
 ] as const;
 
 export const DEFAULT_TOPICS: readonly Topic[] = [
