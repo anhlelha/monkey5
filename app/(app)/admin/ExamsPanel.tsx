@@ -131,6 +131,10 @@ function ExamsPanelInner({ exams, subject = "math" }: ExamsPanelProps) {
     if (state.kind !== "all") params.set("kind", state.kind);
     if (yearSelectorEnabled && state.year !== "all") params.set("year", state.year);
     params.set("tab", "exams");
+    // Preserve subject so the "Đề bài" breadcrumb / back fallback returns to the
+    // same subject's exam list (otherwise /admin defaults to math — see the
+    // English/Vietnamese "back goes to Toán" bug).
+    if (subject !== "math") params.set("subject", subject);
     const qs = params.toString();
     return qs ? `/admin/exam/${id}?from=${encodeURIComponent(qs)}` : `/admin/exam/${id}`;
   };
