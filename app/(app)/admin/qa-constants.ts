@@ -29,6 +29,7 @@ export const IMPLEMENTED_FIGURES_LIST = [
   "arc-2022-c39", "arc-2022-c40",
   "arc-2021-c8", "arc-2021-c9", "arc-2021-c12",
   "nksp-2026-c5", "nksp-2026-c9", "nksp-2026-b4", "nksp-2026-b6",
+  "nksp-2025-c4",
 ] as const;
 
 export const IMPLEMENTED_FIGURES = new Set<string>(IMPLEMENTED_FIGURES_LIST);

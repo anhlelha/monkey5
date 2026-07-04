@@ -10362,6 +10362,94 @@
           "figure": "nksp-2026-b6"
         }
       ]
+    },
+    {
+      "id": "nksp-2025",
+      "school": "nksp",
+      "kind": "official",
+      "year": "2025-2026",
+      "title": "Đề thi ĐGNL vào lớp 6 — Trường Năng khiếu Sư phạm",
+      "intro": "Trích hướng dẫn giải (MathX): 4 câu điền đáp số và 2 bài tự luận.",
+      "minutes": 60,
+      "note": "Đề ĐGNL vào lớp 6 Trường Năng khiếu Sư phạm, năm 2025–2026 — trích bộ ảnh HƯỚNG DẪN GIẢI (nguồn: MathX). Chỉ gồm 6 bài có lời giải; có thể chưa đủ toàn bộ đề.",
+      "sections": [
+        {
+          "num": 1,
+          "header": "PHẦN I. TRẮC NGHIỆM ĐIỀN ĐÁP SỐ"
+        },
+        {
+          "num": 5,
+          "header": "PHẦN II. TỰ LUẬN"
+        }
+      ],
+      "questions": [
+        {
+          "id": "NKSP-2025-26-C1",
+          "num": 1,
+          "type": "fill",
+          "topic": "phan",
+          "grade": "NC",
+          "points": 1,
+          "correct": "19/15",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NKSP-2025-26-C2",
+          "num": 2,
+          "type": "fill",
+          "topic": "soh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "18",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NKSP-2025-26-C3",
+          "num": 3,
+          "type": "fill",
+          "topic": "cd",
+          "grade": "L5",
+          "points": 1,
+          "correct": "840",
+          "unit": "m",
+          "figure": null
+        },
+        {
+          "id": "NKSP-2025-26-C4",
+          "num": 4,
+          "type": "fill",
+          "topic": "hinh",
+          "grade": "NC",
+          "points": 1,
+          "correct": "20",
+          "unit": "cm²",
+          "figure": "nksp-2025-c4"
+        },
+        {
+          "id": "NKSP-2025-26-B1",
+          "num": 5,
+          "type": "essay",
+          "topic": "ti",
+          "grade": "NC",
+          "points": 2,
+          "correct": "Lan: 56 chai; Hồng: 98 chai",
+          "unit": null,
+          "figure": null
+        },
+        {
+          "id": "NKSP-2025-26-B2",
+          "num": 6,
+          "type": "essay",
+          "topic": "log",
+          "grade": "NC",
+          "points": 2,
+          "correct": null,
+          "unit": null,
+          "figure": null
+        }
+      ]
     }
   ]
 }

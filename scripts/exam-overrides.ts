@@ -4811,4 +4811,119 @@ export const CG_ENRICHMENT_MAP: Record<string, ExamOverride> = {
     ].join("\n"),
   },
   // === END NKSP 2026 ===
+
+  // ─── NKSP 2025 — ĐGNL vào lớp 6 Trường Năng khiếu Sư phạm (Khối 5) ───────
+  // Nguồn: public/ref_exam/Toan/NKSP/25-26/*.jpg — "HƯỚNG DẪN GIẢI" 2025–2026
+  // (MathX). Bộ ảnh chỉ có 6 bài (4 điền đáp số + 2 tự luận). correct/unit/figure
+  // sống trong official_exams_metadata.json; ở đây chỉ có stem / modelAnswer.
+  "NKSP-2025-26-C1": {
+    stem: "Cho các số $3;\\ 4;\\ 5;\\ 6$. Hỏi kết quả nhỏ nhất có được từ phép tính $\\dfrac{a}{b}+\\dfrac{c}{d}$ là bao nhiêu? (mỗi số dùng đúng một lần cho $a, b, c, d$)",
+    modelAnswer: [
+      "Để tổng hai phân số nhỏ nhất thì hai tử số phải là hai số nhỏ nhất ($3$ và $4$), còn hai mẫu số phải là hai số lớn nhất ($5$ và $6$).",
+      "",
+      "Có hai cách ghép:",
+      "$$\\dfrac{3}{5}+\\dfrac{4}{6}=\\dfrac{18}{30}+\\dfrac{20}{30}=\\dfrac{38}{30}=\\dfrac{19}{15};$$",
+      "$$\\dfrac{3}{6}+\\dfrac{4}{5}=\\dfrac{15}{30}+\\dfrac{24}{30}=\\dfrac{39}{30}=\\dfrac{13}{10}.$$",
+      "",
+      "Vì $\\dfrac{38}{30}<\\dfrac{39}{30}$ nên kết quả nhỏ nhất là $\\dfrac{19}{15}$.",
+      "",
+      "**Đáp số**: $\\dfrac{19}{15}$.",
+    ].join("\n"),
+  },
+  "NKSP-2025-26-C2": {
+    stem: "Biết các chữ cái khác nhau có giá trị (chữ số) khác nhau và $\\overline{HEMS}\\times 4=\\overline{SMEH}$. Tính $H+E+M+S$.",
+    modelAnswer: [
+      "$\\overline{SMEH}$ là số có $4$ chữ số khác nhau nên $\\overline{SMEH}\\ge 4321$, suy ra $S\\ge 4$. Vì $\\overline{HEMS}\\times 4$ vẫn là số có $4$ chữ số nên $H=1$ hoặc $H=2$.",
+      "",
+      "Chữ số tận cùng của $\\overline{SMEH}$ là $H$, mà $\\overline{SMEH}=\\overline{HEMS}\\times 4$ là số chẵn nên $H$ chẵn, do đó $H=2$.",
+      "",
+      "Khi đó $S\\times 4$ có tận cùng là $2$; kết hợp $S\\ge 4$ nên $S=8$.",
+      "",
+      "Ta có $\\overline{2EM8}\\times 4=\\overline{8ME2}$. Phân tích theo giá trị các chữ số rồi rút gọn được: $E\\times 13+1=M\\times 2$.",
+      "",
+      "Thử $E=1$ thì $M\\times 2=1\\times 13+1=14\\Rightarrow M=7$ (thỏa mãn); $E=2$ cho $M\\times 2=27$ (vô lí).",
+      "",
+      "Vậy $H=2,\\ E=1,\\ M=7,\\ S=8$ và $H+E+M+S=2+1+7+8=18$.",
+      "",
+      "**Đáp số**: $18$.",
+    ].join("\n"),
+  },
+  "NKSP-2025-26-C3": {
+    stem: "Hai bạn Hòa và Bình cùng đi sang nhà của nhau. Hai bạn gặp nhau tại điểm cách nhà của Bình là $360$ m. Biết rằng bạn Hòa đi từ nhà mình đến nhà Bình mất $18$ phút, bạn Bình đi từ nhà mình đến nhà bạn Hòa mất $24$ phút. Hãy tìm quãng đường từ nhà bạn Bình đến nhà Hòa.",
+    modelAnswer: [
+      "Trên cùng một quãng đường, vận tốc và thời gian là hai đại lượng tỉ lệ nghịch.",
+      "",
+      "Tỉ số thời gian của Bình và Hòa là $24:18=\\dfrac{4}{3}$, nên tỉ số vận tốc của Bình và Hòa là $\\dfrac{3}{4}$.",
+      "",
+      "Trong cùng khoảng thời gian (tính đến lúc gặp nhau), quãng đường tỉ lệ thuận với vận tốc, nên tỉ số quãng đường Bình đi và Hòa đi cũng là $\\dfrac{3}{4}$.",
+      "",
+      "Lúc gặp nhau, Bình đi được $360$ m nên Hòa đi được: $360:3\\times 4=480$ (m).",
+      "",
+      "Quãng đường từ nhà Bình đến nhà Hòa là: $360+480=840$ (m).",
+      "",
+      "**Đáp số**: $840$ m.",
+    ].join("\n"),
+  },
+  "NKSP-2025-26-C4": {
+    stem: "Cho hai hình vuông như hình vẽ và cho $AB=6$ cm, $KF=2\\times FB$, $KE=2\\times EC$. Tính diện tích phần tô xám.",
+    modelAnswer: [
+      "Diện tích hình vuông $ABCD$ là: $6\\times 6=36$ (cm²).",
+      "",
+      "$K$ là tâm hình vuông nên tam giác $KBC$ có diện tích bằng $\\dfrac{1}{4}$ hình vuông: $36:4=9$ (cm²).",
+      "",
+      "Vì $KF=2\\times FB$ nên $\\dfrac{KF}{KB}=\\dfrac{2}{3}$; tương tự $\\dfrac{KE}{KC}=\\dfrac{2}{3}$. Do đó:",
+      "$$\\dfrac{S_{KEF}}{S_{KBC}}=\\dfrac{KF}{KB}\\times\\dfrac{KE}{KC}=\\dfrac{2}{3}\\times\\dfrac{2}{3}=\\dfrac{4}{9}.$$",
+      "",
+      "Suy ra $\\dfrac{S_{EFBC}}{S_{KBC}}=1-\\dfrac{4}{9}=\\dfrac{5}{9}$, nên $S_{EFBC}=\\dfrac{5}{9}\\times 9=5$ (cm²).",
+      "",
+      "Phần tô xám gồm $4$ phần bằng nhau như vậy, nên diện tích phần tô xám là: $5\\times 4=20$ (cm²).",
+      "",
+      "**Đáp số**: $20$ cm².",
+    ].join("\n"),
+  },
+  "NKSP-2025-26-B1": {
+    stem: "Nhà trường tổ chức phong trào bảo vệ môi trường, Lan và Hồng cùng nhau thu gom chai nhựa. Biết lúc đầu số vỏ chai của Lan bằng $\\dfrac{4}{7}$ của Hồng. Lúc sau mỗi người nhặt thêm $7$ chai nữa thì số chai của Lan bằng $\\dfrac{3}{5}$ của Hồng. Tính số chai nhựa lúc đầu của mỗi người.",
+    modelAnswer: [
+      "Mỗi người đều nhặt thêm $7$ chai nên hiệu số chai của Hồng và Lan không đổi.",
+      "",
+      "Lúc đầu Lan bằng $\\dfrac{4}{7}$ của Hồng nên số chai của Lan bằng $\\dfrac{4}{7-4}=\\dfrac{4}{3}$ hiệu số chai (Hồng hơn Lan).",
+      "",
+      "Lúc sau Lan bằng $\\dfrac{3}{5}$ của Hồng nên số chai của Lan bằng $\\dfrac{3}{5-3}=\\dfrac{3}{2}$ hiệu số chai đó.",
+      "",
+      "Số chai của Lan lúc sau hơn lúc đầu đúng $7$ chai, ứng với: $\\dfrac{3}{2}-\\dfrac{4}{3}=\\dfrac{1}{6}$ hiệu số chai. Vậy hiệu số chai là: $7\\times 6=42$ (chai).",
+      "",
+      "Số chai lúc đầu của Lan là: $42\\times\\dfrac{4}{3}=56$ (chai).",
+      "",
+      "Số chai lúc đầu của Hồng là: $56:\\dfrac{4}{7}=98$ (chai).",
+      "",
+      "**Đáp số**: Lan $56$ chai; Hồng $98$ chai.",
+    ].join("\n"),
+  },
+  "NKSP-2025-26-B2": {
+    // Bài chứng minh chiến lược cân — không có đáp số dạng số, chấm theo lời giải
+    // (correct = null trong metadata). Nguồn: guide dùng lẫn "Trắng"/"Vàng" cho
+    // màu thứ ba → thống nhất là "Vàng".
+    stem: "Hùng có $6$ viên bi gồm $2$ viên xanh, $2$ viên đỏ và $2$ viên vàng. Biết có một viên đỏ, một viên vàng và một viên xanh nặng $99$ g, mỗi viên còn lại nặng $101$ g. Trên bàn có một cân thăng bằng $2$ đĩa. Hỏi chỉ với $2$ lần cân, làm thế nào để xác định được mỗi viên bi nặng bao nhiêu gam?",
+    modelAnswer: [
+      "Nhận xét: mỗi màu có đúng một viên $99$ g và một viên $101$ g.",
+      "",
+      "Chia $6$ viên thành $3$ nhóm, mỗi nhóm gồm $2$ viên khác màu:",
+      "- Nhóm 1: Xanh (1) và Đỏ (1);",
+      "- Nhóm 2: Đỏ (2) và Vàng (1);",
+      "- Nhóm 3: Vàng (2) và Xanh (2).",
+      "",
+      "**Lần cân 1:** cân Nhóm 1 với Nhóm 2.",
+      "",
+      "*Trường hợp 1 — cân lệch.* Bên nhẹ hơn chứa nhiều viên $99$ g hơn. Không mất tổng quát, giả sử Nhóm 1 nhẹ hơn và gồm hai viên $99$ g, tức Xanh (1) $=99$ g và Đỏ (1) $=99$ g. Khi đó Đỏ (2) $=101$ g và Xanh (2) $=101$ g.",
+      "",
+      "**Lần cân 2:** cân Đỏ (2) với Vàng (1). Vì đã biết Đỏ (2) $=101$ g nên: nếu thăng bằng thì Vàng (1) $=101$ g, Vàng (2) $=99$ g; nếu lệch thì Vàng (1) $=99$ g, Vàng (2) $=101$ g. Đã xác định đủ $6$ viên.",
+      "",
+      "*Trường hợp 2 — cân thăng bằng.* Mỗi nhóm có đúng một viên $99$ g và một viên $101$ g.",
+      "",
+      "**Lần cân 2:** cân Đỏ (1) với Đỏ (2). Viên nhẹ hơn nặng $99$ g, viên kia nặng $101$ g. Giả sử Đỏ (1) $=99$ g, Đỏ (2) $=101$ g. Trong Nhóm 1 còn lại Xanh (1) $=101$ g; trong Nhóm 2 còn lại Vàng (1) $=99$ g. Suy ra Xanh (2) $=99$ g và Vàng (2) $=101$ g.",
+      "",
+      "Vậy chỉ với $2$ lần cân, ta xác định được khối lượng của cả $6$ viên bi.",
+    ].join("\n"),
+  },
+  // === END NKSP 2025 ===
 };

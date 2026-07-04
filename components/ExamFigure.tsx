@@ -3802,6 +3802,49 @@ export function ExamFigure({ figure }: Props) {
       );
     }
 
+    case "nksp-2025-c4": {
+      // Two concentric squares: outer ABCD (side 6 cm) and an axis-aligned inner
+      // square whose corners sit 2/3 of the way from centre K to each outer
+      // corner along the diagonals. F = inner top-right, E = inner bottom-right.
+      // Shaded (gray) frame = outer − inner = 20 cm².
+      const labelStyle = { fontStyle: "italic", fontFamily: "Times, serif" } as const;
+      const K = { x: 130, y: 130 };
+      const F = { x: 196.7, y: 63.3 };
+      const E = { x: 196.7, y: 196.7 };
+      return (
+        <div className="q-figure-wrapper" style={{ maxWidth: 240 }}>
+          <svg viewBox="0 0 260 260" width="100%" style={{ display: "block", height: "auto" }}>
+            {/* Shaded frame between the two squares (even-odd → inner is a hole) */}
+            <path
+              d="M30 30 H230 V230 H30 Z M63.3 63.3 H196.7 V196.7 H63.3 Z"
+              fillRule="evenodd"
+              fill="oklch(0.72 0.03 250)"
+              stroke="none"
+            />
+            {/* Diagonals of the outer square */}
+            <line x1={30} y1={30} x2={230} y2={230} stroke="var(--ink)" strokeWidth={1.3} />
+            <line x1={230} y1={30} x2={30} y2={230} stroke="var(--ink)" strokeWidth={1.3} />
+            {/* Outer square ABCD */}
+            <rect x={30} y={30} width={200} height={200} fill="none" stroke="var(--ink)" strokeWidth={1.6} />
+            {/* Inner square */}
+            <rect x={63.3} y={63.3} width={133.4} height={133.4} fill="none" stroke="var(--ink)" strokeWidth={1.6} />
+            {/* Special points K, F, E */}
+            {[K, F, E].map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r={3.6} fill="orange" stroke="orange" />
+            ))}
+            {/* Labels */}
+            <text x={24} y={26} fill="var(--ink)" fontSize={15} textAnchor="end" style={labelStyle}>A</text>
+            <text x={236} y={26} fill="var(--ink)" fontSize={15} textAnchor="start" style={labelStyle}>B</text>
+            <text x={236} y={244} fill="var(--ink)" fontSize={15} textAnchor="start" style={labelStyle}>C</text>
+            <text x={24} y={244} fill="var(--ink)" fontSize={15} textAnchor="end" style={labelStyle}>D</text>
+            <text x={122} y={126} fill="var(--ink)" fontSize={15} textAnchor="end" style={labelStyle}>K</text>
+            <text x={190} y={58} fill="var(--ink)" fontSize={15} textAnchor="end" style={labelStyle}>F</text>
+            <text x={204} y={202} fill="var(--ink)" fontSize={15} textAnchor="start" style={labelStyle}>E</text>
+          </svg>
+        </div>
+      );
+    }
+
     default:
       return null;
   }
