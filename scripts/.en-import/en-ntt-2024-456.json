@@ -8,6 +8,7 @@
   "intro": "Đề chính thức tuyển sinh lớp 6 — môn Tiếng Anh (mã đề 456).",
   "minutes": 30,
   "source": "Trích đề NTT 2024 (mã 456)",
+  "_answerNote": "Đáp án câu 16, 17, 18 (đọc hiểu notice/note): 16=A, 17=D, 18=C. Đã ĐỐI CHIẾU bảng đáp án chính thức mã đề 123 (16=You will have two lessons every week; 17=The third time you visit, you get a free pizza; 18=To inform... a change in the date and time) — trùng nội dung, xác nhận đúng.",
   "passages": [
     {
       "ref": "p1",
@@ -20,6 +21,23 @@
       "title": "Ben and Lily's Rainy Day",
       "kind": "article",
       "body": "It was a rainy day, and Ben felt very bored. He was ten years old and loved playing outside, but today he had to stay inside. His little sister, Lily, who was seven, felt bored too.\n\nTheir mother gave them a large box of old clothes and hats. \"Why don't you play dress-up?\" she suggested. Ben and Lily thought it was a great idea. They put on funny hats, silly glasses, and old coats. Ben pretended to be a pirate, and Lily acted like a princess.\nThey created an adventure in the living room. The sofa became a pirate ship, and the coffee table turned into a treasure island. They laughed and played for hours, inventing stories and finding hidden treasures.\n\nWhen their mother returned, she smiled and said, \"It looks like you had a lot of fun!\" Ben and Lily agreed. The rainy day turned into a wonderful adventure indoors."
+    },
+    {
+      "ref": "notice16",
+      "title": "FOOTBALL LESSONS",
+      "kind": "notice",
+      "body": "Tuesdays and Fridays\n6 – 8 p.m.\n£3 per lesson\nMust wear football boots\nNORTH ROAD SPORTS CENTRE"
+    },
+    {
+      "ref": "notice17",
+      "title": "Pedro's Pizza Bar",
+      "kind": "notice",
+      "body": "Buy two pizzas at the same time, and we'll give you a third one for free!\nThis offer is Mon-Fri only."
+    },
+    {
+      "ref": "note18",
+      "kind": "message",
+      "body": "Unfortunately, due to bad weather, the concert scheduled on Friday, March 24th has been postponed. We apologize for any inconvenience this may cause. The new date for the concert is Sunday, March 26th at 5 p.m. Thank you for your understanding."
     }
   ],
   "questions": [
@@ -264,6 +282,57 @@
       "tags": []
     },
     {
+      "num": 16,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "What does the notice say?",
+      "options": [
+        { "id": "A", "text": "You will have two lessons every week." },
+        { "id": "B", "text": "The football lessons are in the morning." },
+        { "id": "C", "text": "The football lessons are free." },
+        { "id": "D", "text": "Each lesson lasts for three hours." }
+      ],
+      "correct": "A",
+      "passageRef": "notice16",
+      "tags": []
+    },
+    {
+      "num": 17,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "B1",
+      "type": "mcq",
+      "stem": "Which statement is NOT true according to the notice?",
+      "options": [
+        { "id": "A", "text": "Three pizzas cost the same as two on weekdays." },
+        { "id": "B", "text": "Pizzas are cheaper from Monday to Friday." },
+        { "id": "C", "text": "Pizzas are more expensive at weekends." },
+        { "id": "D", "text": "The third time you visit, you get a free pizza." }
+      ],
+      "correct": "D",
+      "passageRef": "notice17",
+      "tags": ["inference"]
+    },
+    {
+      "num": 18,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "B1",
+      "type": "mcq",
+      "stem": "What is the purpose of this note?",
+      "options": [
+        { "id": "A", "text": "To ask the audience to change the date and time of the concert on Friday" },
+        { "id": "B", "text": "To describe to the audience a new artist of the concert on March 26th" },
+        { "id": "C", "text": "To inform the audience of a change in the date and time of the concert" },
+        { "id": "D", "text": "To provide a review of the concert on Sunday, March 24th" }
+      ],
+      "correct": "C",
+      "passageRef": "note18",
+      "tags": ["inference"]
+    },
+    {
       "num": 19,
       "topic": "en-read",
       "skill": "reading",
@@ -372,18 +441,5 @@
       "points": 4
     }
   ],
-  "skipped": [
-    {
-      "num": 16,
-      "reason": "Notice about football lessons is an image not present in the extracted text"
-    },
-    {
-      "num": 17,
-      "reason": "Notice about Pedro's Pizza offer is an image not present in the extracted text"
-    },
-    {
-      "num": 18,
-      "reason": "Concert postponement note is an image not present in the extracted text"
-    }
-  ]
+  "skipped": []
 }
