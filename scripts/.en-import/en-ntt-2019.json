@@ -1,0 +1,400 @@
+{
+  "id": "en-ntt-2019",
+  "subject": "english",
+  "school": "ntt",
+  "kind": "official",
+  "year": "2019",
+  "title": "Tiếng Anh NTT 2019-2020 (đề chính thức, mã đề 123)",
+  "intro": "Đề chính thức tuyển sinh lớp 6 — môn Tiếng Anh (mã đề 123). Thời gian 60 phút.",
+  "minutes": 60,
+  "source": "Trích đề NTT 2019-2020 (mã đề 123), có bảng đáp án chính thức trong PDF",
+  "passages": [
+    {
+      "ref": "tom-birthday",
+      "title": "Tom's birthday",
+      "kind": "article",
+      "body": "My name's Tom and yesterday it was my birthday. I was nine and I got a lot of presents. Mum took pictures when I opened my presents. I got a red football and a blue sweater, my favorite colour! But my favorite present was a new bike. It's great. My old bike was small so I didn't like it. After school I went to the swimming pool with three friends. When we were there, we didn't want to swim at first because the water was very cold, but when we did we had great fun. Then Mum shouted \"Time to go home!\" so we had a shower and got dressed quickly."
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "___________ is good for your body and can keep you healthy.",
+      "options": [
+        {"id": "A", "text": "Regular exercise"},
+        {"id": "B", "text": "Oversleeping"},
+        {"id": "C", "text": "Eating junk food"}
+      ],
+      "correct": "A",
+      "tags": []
+    },
+    {
+      "num": 2,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "_________ can be used to heat food very quickly by using waves of energy.",
+      "options": [
+        {"id": "A", "text": "A blender"},
+        {"id": "B", "text": "A coffee maker"},
+        {"id": "C", "text": "A microwave"},
+        {"id": "D", "text": "A dishwasher"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 3,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "These types of food made from milk are ______________________.",
+      "options": [
+        {"id": "A", "text": "cleaning products"},
+        {"id": "B", "text": "frozen products"},
+        {"id": "C", "text": "farming products"},
+        {"id": "D", "text": "dairy products"}
+      ],
+      "correct": "D",
+      "tags": []
+    },
+    {
+      "num": 4,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Which of the following energy sources is unclean and limited?",
+      "options": [
+        {"id": "A", "text": "sunlight"},
+        {"id": "B", "text": "wind"},
+        {"id": "C", "text": "coal"},
+        {"id": "D", "text": "water power"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 5,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "The sister of your father or mother or the wife of your uncle is called ___________ in English.",
+      "options": [
+        {"id": "A", "text": "mother"},
+        {"id": "B", "text": "grandmother"},
+        {"id": "C", "text": "aunt"},
+        {"id": "D", "text": "sister"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 6,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Nguyen Tat Thanh School was founded __________ July 4th 1998.",
+      "options": [
+        {"id": "A", "text": "at"},
+        {"id": "B", "text": "in"},
+        {"id": "C", "text": "on"},
+        {"id": "D", "text": "with"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 7,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Many foreign tourists say that Ho Chi Minh city is _________ than Hanoi.",
+      "options": [
+        {"id": "A", "text": "exciting"},
+        {"id": "B", "text": "more exciting"},
+        {"id": "C", "text": "excited"},
+        {"id": "D", "text": "more excited"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 8,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Hanoi is the __________ of the Vietnam.",
+      "options": [
+        {"id": "A", "text": "biggest city"},
+        {"id": "B", "text": "capital"},
+        {"id": "C", "text": "district"},
+        {"id": "D", "text": "smallest province"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 9,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "In her dream she __________ over the sea and waved to the people on boats below.",
+      "options": [
+        {"id": "A", "text": "flied"},
+        {"id": "B", "text": "flown"},
+        {"id": "C", "text": "flies"},
+        {"id": "D", "text": "flew"}
+      ],
+      "correct": "D",
+      "tags": []
+    },
+    {
+      "num": 10,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Our grandparents live in __________ in the countryside.",
+      "options": [
+        {"id": "A", "text": "a big old beautiful house"},
+        {"id": "B", "text": "a big beautiful old house"},
+        {"id": "C", "text": "an old big beautiful house"},
+        {"id": "D", "text": "a beautiful big old house"}
+      ],
+      "correct": "D",
+      "tags": []
+    },
+    {
+      "num": 11,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Whales are __________ They are warm-blooded and breathe air through a pair of lungs.",
+      "options": [
+        {"id": "A", "text": "fish"},
+        {"id": "B", "text": "amphibians"},
+        {"id": "C", "text": "mammals"},
+        {"id": "D", "text": "reptiles"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 12,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Which of the following activities can help save electricity at home?",
+      "options": [
+        {"id": "A", "text": "Turn off the lights and the fans when you don't need them."},
+        {"id": "B", "text": "Plug electric appliances like fridges, lights when they are not in use."},
+        {"id": "C", "text": "Only do laundry or dishes when you have a full load."},
+        {"id": "D", "text": "A and C are correct."}
+      ],
+      "correct": "D",
+      "tags": []
+    },
+    {
+      "num": 13,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "__________ is the flesh of a cow or bull used as food and has a source of high quality protein and nutrients.",
+      "options": [
+        {"id": "A", "text": "Beef"},
+        {"id": "B", "text": "Chicken"},
+        {"id": "C", "text": "Lamb"},
+        {"id": "D", "text": "Pork"}
+      ],
+      "correct": "A",
+      "tags": []
+    },
+    {
+      "num": 14,
+      "topic": "en-comm",
+      "skill": "comm",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Debbie: \"Would you like to go to the cinema tonight?\"\nBecky: \"__________\"",
+      "options": [
+        {"id": "A", "text": "I'd love to."},
+        {"id": "B", "text": "I'm fine. And you?"},
+        {"id": "C", "text": "I'd want to."},
+        {"id": "D", "text": "Let's go. I'm afraid."}
+      ],
+      "correct": "A",
+      "tags": []
+    },
+    {
+      "num": 15,
+      "topic": "en-comm",
+      "skill": "comm",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Daisy: \"What do you do for a living?\"\nTom: \"__________\"",
+      "options": [
+        {"id": "A", "text": "I work as a teaching."},
+        {"id": "B", "text": "I work as a chef."},
+        {"id": "C", "text": "I'm a direct."},
+        {"id": "D", "text": "I'm a cooker."}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 16,
+      "topic": "en-comm",
+      "skill": "comm",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Student A: \"May I borrow your pen?\"\nStudent B: \"__________\"",
+      "options": [
+        {"id": "A", "text": "Yes, you may."},
+        {"id": "B", "text": "No, you can."},
+        {"id": "C", "text": "Yes, of course."},
+        {"id": "D", "text": "No, here you are."}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 17,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "What was Tom's favorite present?",
+      "options": [
+        {"id": "A", "text": "a red football"},
+        {"id": "B", "text": "a blue sweater"},
+        {"id": "C", "text": "a new bike"},
+        {"id": "D", "text": "pictures"}
+      ],
+      "correct": "C",
+      "passageRef": "tom-birthday",
+      "tags": []
+    },
+    {
+      "num": 18,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Which of the following words has the same meaning as \"presents\" in the passage?",
+      "options": [
+        {"id": "A", "text": "now"},
+        {"id": "B", "text": "gifts"},
+        {"id": "C", "text": "moment"},
+        {"id": "D", "text": "wishes"}
+      ],
+      "correct": "B",
+      "passageRef": "tom-birthday",
+      "tags": []
+    },
+    {
+      "num": 19,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "B1",
+      "type": "mcq",
+      "stem": "What is NOT TRUE, according to the passage?",
+      "options": [
+        {"id": "A", "text": "Tom's old bike was not large so he disliked it."},
+        {"id": "B", "text": "Tom and his friends swam and they had a good time."},
+        {"id": "C", "text": "Mum took pictures when Tom opened his presents."},
+        {"id": "D", "text": "One of Tom's presents was a red sweater."}
+      ],
+      "correct": "D",
+      "passageRef": "tom-birthday",
+      "tags": ["inference"]
+    },
+    {
+      "num": 20,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "How old was Tom?",
+      "options": [
+        {"id": "A", "text": "9 years old"},
+        {"id": "B", "text": "8 years old"},
+        {"id": "C", "text": "19 years old"},
+        {"id": "D", "text": "10 years old"}
+      ],
+      "correct": "A",
+      "passageRef": "tom-birthday",
+      "tags": []
+    },
+    {
+      "num": 21,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Read the description and write the correct word (9 letters): People who are related to you by blood or marriage.",
+      "accept": ["relatives"],
+      "correct": "relatives",
+      "tags": []
+    },
+    {
+      "num": 22,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Read the description and write the correct word (7 letters): If you want a book, but you don't want to buy one, you can get one from this place.",
+      "accept": ["library"],
+      "correct": "library",
+      "tags": []
+    },
+    {
+      "num": 23,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Read the description and write the correct word (8 letters): Someone who plays a musical instrument especially as a job.",
+      "accept": ["musician"],
+      "correct": "musician",
+      "tags": []
+    },
+    {
+      "num": 24,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Fill in the missing word to complete the English proverb (4 letters): \"Where there's a __________, there's a way.\"",
+      "accept": ["will"],
+      "correct": "will",
+      "tags": []
+    },
+    {
+      "num": 25,
+      "topic": "en-fwrite",
+      "skill": "writing",
+      "grade": "B1",
+      "type": "essay",
+      "stem": "Write your answer (at least 25 words) to the question: What do you want to be when you grow up? Why?",
+      "correct": null,
+      "points": 4,
+      "tags": []
+    }
+  ],
+  "skipped": []
+}

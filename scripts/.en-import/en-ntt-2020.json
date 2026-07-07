@@ -1,0 +1,381 @@
+{
+  "id": "en-ntt-2020",
+  "subject": "english",
+  "school": "ntt",
+  "kind": "official",
+  "year": "2020",
+  "title": "Tiếng Anh NTT 2020-2021 (đề chính thức)",
+  "intro": "Bài kiểm tra đánh giá năng lực tuyển sinh lớp 6 THPT Nguyễn Tất Thành năm 2020-2021 — môn Tiếng Anh.",
+  "minutes": 60,
+  "source": "Trích đề NTT 2020-2021, đáp án tô màu trong file key chính thức",
+  "passages": [
+    {
+      "ref": "weather-forecast",
+      "title": "Weather forecast",
+      "kind": "notice",
+      "body": "Weather forecast\nEarlier morning: 24°C, Hazy\nRight now: 21°C, Hazy\nTonight: 12°C, Partly Cloudy, Chance of rain 10%"
+    },
+    {
+      "ref": "cinema-message",
+      "title": "Message from Stefan",
+      "kind": "message",
+      "body": "Message 1\nPeter,\nWe're outside the cinema. Text if you're going to be late and we'll wait and watch the next film. If you're not coming, we'll go in now.\nStefan"
+    },
+    {
+      "ref": "library-guide",
+      "title": "Guide to the Library",
+      "kind": "notice",
+      "body": "Guide to the Library\nBook check out – ground floor\nNew library cards for checking out books – 1st floor\nNewspapers and magazines – 1st floor\nTravel books – 2nd floor\nScience books – 3rd floor\nHistory books – 4th floor\nStory books – 5th floor"
+    },
+    {
+      "ref": "george-pet",
+      "title": "George at the pet store",
+      "kind": "article",
+      "body": "George is at the pet store, looking at what kind of pet he might want to get for his birthday. George asks if he can have a horse, but his parents say no because horses are too big. First, he sees dogs and cats. Baby dogs are called puppies. Baby cats are called kittens. George likes them because they are easy to take care of and can play a lot, but they will get bigger. George wants a small pet.\nThen George sees animals that have to live in a cage. He sees rabbits, guinea pigs, and mice. Mice are what you call more than a mouse. He likes these animals because they are small.\nBirds live in cages too. George sees a parrot and a canary. He likes them all, but he doesn't want to clean the cage."
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "My parents often _____ me to the theme park on Sundays.",
+      "options": [
+        {"id": "A", "text": "take"},
+        {"id": "B", "text": "takes"},
+        {"id": "C", "text": "is taking"},
+        {"id": "D", "text": "are taking"}
+      ],
+      "correct": "A",
+      "tags": []
+    },
+    {
+      "num": 2,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Peter would like to be a(n) _____ because he wants to design houses in his hometown.",
+      "options": [
+        {"id": "A", "text": "writer"},
+        {"id": "B", "text": "architect"},
+        {"id": "C", "text": "fashion designer"},
+        {"id": "D", "text": "artist"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 3,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "I found the library book _____ the bed.",
+      "options": [
+        {"id": "A", "text": "to"},
+        {"id": "B", "text": "next"},
+        {"id": "C", "text": "under"},
+        {"id": "D", "text": "between"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 4,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "When we have a problem, we can talk to _____ teacher.",
+      "options": [
+        {"id": "A", "text": "me"},
+        {"id": "B", "text": "mine"},
+        {"id": "C", "text": "our"},
+        {"id": "D", "text": "us"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 5,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "How many countries _____ in the world?",
+      "options": [
+        {"id": "A", "text": "is there"},
+        {"id": "B", "text": "there is"},
+        {"id": "C", "text": "there are"},
+        {"id": "D", "text": "are there"}
+      ],
+      "correct": "D",
+      "tags": []
+    },
+    {
+      "num": 6,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "They told me to carry my _____ luggage onto the plane.",
+      "options": [
+        {"id": "A", "text": "handy"},
+        {"id": "B", "text": "handing"},
+        {"id": "C", "text": "handed"},
+        {"id": "D", "text": "hand"}
+      ],
+      "correct": "D",
+      "tags": ["collocation"]
+    },
+    {
+      "num": 7,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "You have five candies. You want to share with your friends. If you want to be _____, you should give one to each friend, so everyone has the same number of candies.",
+      "options": [
+        {"id": "A", "text": "stubborn"},
+        {"id": "B", "text": "fair"},
+        {"id": "C", "text": "brave"},
+        {"id": "D", "text": "strong"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 8,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "_____ ! Don't touch the paint, it's wet!",
+      "options": [
+        {"id": "A", "text": "Hold on"},
+        {"id": "B", "text": "Try out"},
+        {"id": "C", "text": "Watch out"},
+        {"id": "D", "text": "Look at"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 9,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "We _____ fish and vegetables by placing them above boiling water in a container.",
+      "options": [
+        {"id": "A", "text": "grill"},
+        {"id": "B", "text": "fry"},
+        {"id": "C", "text": "steam"},
+        {"id": "D", "text": "roast"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 10,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Turn the _____ in the lock to open the door.",
+      "options": [
+        {"id": "A", "text": "bell"},
+        {"id": "B", "text": "volume"},
+        {"id": "C", "text": "key"},
+        {"id": "D", "text": "stick"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 11,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "B1",
+      "type": "mcq",
+      "stem": "Look at the weather forecast and choose the correct answer.",
+      "options": [
+        {"id": "A", "text": "It was cooler earlier today than now."},
+        {"id": "B", "text": "It will get hotter in the evening."},
+        {"id": "C", "text": "It will get cooler tomorrow."},
+        {"id": "D", "text": "It was hotter earlier today than now."}
+      ],
+      "correct": "D",
+      "passageRef": "weather-forecast",
+      "tags": ["inference"]
+    },
+    {
+      "num": 12,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Read the message. Who wrote the message?",
+      "options": [
+        {"id": "A", "text": "Peter and Stefan"},
+        {"id": "B", "text": "Peter and his friend"},
+        {"id": "C", "text": "Peter"},
+        {"id": "D", "text": "Stefan"}
+      ],
+      "correct": "D",
+      "passageRef": "cinema-message",
+      "tags": []
+    },
+    {
+      "num": 13,
+      "topic": "en-comm",
+      "skill": "comm",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Susan: \"How can I get to the Opera House?\"\nMai: \"__________\"",
+      "options": [
+        {"id": "A", "text": "It's on the corner of Trang Tien street."},
+        {"id": "B", "text": "It is opposite Trang Tien Plaza."},
+        {"id": "C", "text": "You can take bus number 12."},
+        {"id": "D", "text": "Don't go to the post office."}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 18,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Evan likes to learn about famous people from the past. He goes to the _____.",
+      "options": [
+        {"id": "A", "text": "1st floor"},
+        {"id": "B", "text": "4th floor"},
+        {"id": "C", "text": "5th floor"},
+        {"id": "D", "text": "3rd floor"}
+      ],
+      "correct": "B",
+      "passageRef": "library-guide",
+      "tags": ["inference"]
+    },
+    {
+      "num": 19,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Carol has a library card and wants to check out a book. She goes to the _____.",
+      "options": [
+        {"id": "A", "text": "Ground floor"},
+        {"id": "B", "text": "1st floor"},
+        {"id": "C", "text": "2nd floor"},
+        {"id": "D", "text": "5th floor"}
+      ],
+      "correct": "A",
+      "passageRef": "library-guide",
+      "tags": ["inference"]
+    },
+    {
+      "num": 20,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Ana plans to visit a country far away. She needs a book from the _____.",
+      "options": [
+        {"id": "A", "text": "2nd floor"},
+        {"id": "B", "text": "3rd floor"},
+        {"id": "C", "text": "5th floor"},
+        {"id": "D", "text": "1st floor"}
+      ],
+      "correct": "A",
+      "passageRef": "library-guide",
+      "tags": ["inference"]
+    },
+    {
+      "num": 21,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Gary wants to read about the Earth. He goes to the _____.",
+      "options": [
+        {"id": "A", "text": "1st floor"},
+        {"id": "B", "text": "2nd floor"},
+        {"id": "C", "text": "3rd floor"},
+        {"id": "D", "text": "ground floor"}
+      ],
+      "correct": "C",
+      "passageRef": "library-guide",
+      "tags": ["inference"]
+    },
+    {
+      "num": 22,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Complete the sentence about the text with ONE word: George wants a (22) _____ for his birthday but his parents don't agree because the pet is too big.",
+      "accept": ["horse", "a horse"],
+      "correct": "horse",
+      "passageRef": "george-pet",
+      "tags": []
+    },
+    {
+      "num": 23,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Complete the sentence about the text with ONE word: George likes puppies and kittens because they are easy to take care of and can play a lot, but they will get (23) _____.",
+      "accept": ["bigger"],
+      "correct": "bigger",
+      "passageRef": "george-pet",
+      "tags": []
+    },
+    {
+      "num": 24,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Complete the sentence about the text with ONE word: Parrots, canaries and rabbits live in (24) _____.",
+      "accept": ["cages"],
+      "correct": "cages",
+      "passageRef": "george-pet",
+      "tags": []
+    },
+    {
+      "num": 25,
+      "topic": "en-error",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "The following sentence has ONE word that is not correct. Write the correct word in the box.\nOne day he ran away and get stuck in the mud.",
+      "accept": ["got"],
+      "correct": "got",
+      "tags": []
+    },
+    {
+      "num": 26,
+      "topic": "en-fwrite",
+      "skill": "writing",
+      "grade": "B1",
+      "type": "essay",
+      "stem": "Write down your answer of about 30 words to the question: You have saved some lucky money. How do you want to spend that money?",
+      "correct": null,
+      "points": 4,
+      "tags": []
+    }
+  ],
+  "skipped": [
+    {"num": 14, "reason": "Nối biện pháp phòng COVID với ảnh (đeo khẩu trang) — câu dạng ghép ảnh, không biểu diễn được bằng text. Key: 14→D"},
+    {"num": 15, "reason": "Nối biện pháp phòng COVID với ảnh — câu ghép ảnh. Key: 15→C"},
+    {"num": 16, "reason": "Nối biện pháp phòng COVID với ảnh — câu ghép ảnh. Key: 16→B"},
+    {"num": 17, "reason": "Nối biện pháp phòng COVID với ảnh (rửa tay) — câu ghép ảnh. Key: 17→A"}
+  ]
+}

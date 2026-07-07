@@ -1,0 +1,426 @@
+{
+  "id": "en-ntt-2021",
+  "subject": "english",
+  "school": "ntt",
+  "kind": "official",
+  "year": "2021",
+  "title": "Tiếng Anh NTT 2021-2022 (đề chính thức)",
+  "intro": "Bài kiểm tra đánh giá năng lực tuyển sinh lớp 6 THPT Nguyễn Tất Thành năm 2021-2022 — môn Tiếng Anh.",
+  "minutes": 60,
+  "source": "Trích đề NTT 2021-2022, đáp án tô màu/khoanh trong file key chính thức",
+  "passages": [
+    {
+      "ref": "garden-party",
+      "title": "Class 5A's Garden Party",
+      "kind": "notice",
+      "body": "Class 5A's Garden Party\n1 August    4.30\nBecause of bad weather, our party will now be in the School Hall."
+    },
+    {
+      "ref": "tim-ben",
+      "title": "Message from Tim",
+      "kind": "message",
+      "body": "Hi Ben,\nI've booked concert tickets for both of us online. Can you give me the money this afternoon when I see you?\nTim"
+    },
+    {
+      "ref": "ants",
+      "title": "Ants",
+      "kind": "article",
+      "body": "Ants are incredible creatures. Each colony has its own smell. Each of the ants in the colony knows the smell. Enemies will not be able to enter their camp without being discovered. Several types of ants have a sting to protect their nest when strangers get in.\nThe queen ant is the only one who can lay eggs for the colony. None of the other ants can lay eggs at all. The worker ants cannot lay eggs. They take care of new-born baby ants. They also search for food. These worker ants protect their nest from enemies. They also keep the nest spick and span. They take out the \"trash\" from the nest and place it in one area.\nSlave-maker ants rob the nest of other ants. They steal the pupae, the cases that hold the ant eggs. Then they bring the pupae back to their camp. When the stolen cases hatch, these stolen become slaves."
+    },
+    {
+      "ref": "aquarium-trip",
+      "title": "A trip to the aquarium",
+      "kind": "cloze",
+      "body": "I have really great time at the (21) _____ this weekend with my mum and dad. We saw a lot of big (22) _____ and even got to feed some. I also saw some (23) _____. They were not too scary. I can show some funny pictures of them. Do you know what I liked most about the trip? I got to see (24) _____ jumping and (25) _____ in the water."
+    }
+  ],
+  "questions": [
+    {
+      "num": 1,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A1",
+      "type": "mcq",
+      "stem": "I like going to the beach in _____ because it's hot and sunny.",
+      "options": [
+        {"id": "A", "text": "spring"},
+        {"id": "B", "text": "summer"},
+        {"id": "C", "text": "winter"},
+        {"id": "D", "text": "autumn"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 2,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A1",
+      "type": "mcq",
+      "stem": "A triangle has _____ sides.",
+      "options": [
+        {"id": "A", "text": "one"},
+        {"id": "B", "text": "two"},
+        {"id": "C", "text": "three"},
+        {"id": "D", "text": "four"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 3,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A1",
+      "type": "mcq",
+      "stem": "When the traffic light changes into _____, we must stop.",
+      "options": [
+        {"id": "A", "text": "yellow"},
+        {"id": "B", "text": "red"},
+        {"id": "C", "text": "green"},
+        {"id": "D", "text": "pink"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 4,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "_____ work outside in fields in the countryside, with animals and plants.",
+      "options": [
+        {"id": "A", "text": "Mechanics"},
+        {"id": "B", "text": "Dentists"},
+        {"id": "C", "text": "Farmers"},
+        {"id": "D", "text": "Teachers"}
+      ],
+      "correct": "C",
+      "tags": []
+    },
+    {
+      "num": 5,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "I can't sing _____ I can play the piano.",
+      "options": [
+        {"id": "A", "text": "but"},
+        {"id": "B", "text": "or"},
+        {"id": "C", "text": "because"},
+        {"id": "D", "text": "and"}
+      ],
+      "correct": "A",
+      "tags": []
+    },
+    {
+      "num": 6,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "She is a very _____ old woman. She has given most of her wealth to a charity organization.",
+      "options": [
+        {"id": "A", "text": "mean"},
+        {"id": "B", "text": "generous"},
+        {"id": "C", "text": "humourous"},
+        {"id": "D", "text": "cold"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 7,
+      "topic": "en-vocab",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "The brother of your mother or father or the husband of your aunt is called _____.",
+      "options": [
+        {"id": "A", "text": "grandfather"},
+        {"id": "B", "text": "uncle"},
+        {"id": "C", "text": "brother"},
+        {"id": "D", "text": "father"}
+      ],
+      "correct": "B",
+      "tags": []
+    },
+    {
+      "num": 8,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "The red hat is $25 and the white hat is $35. The red hat is _____ than the white hat.",
+      "options": [
+        {"id": "A", "text": "cheaper"},
+        {"id": "B", "text": "more cheaper"},
+        {"id": "C", "text": "more expensive"},
+        {"id": "D", "text": "cheapest"}
+      ],
+      "correct": "A",
+      "tags": []
+    },
+    {
+      "num": 9,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "My younger brother often _____ comic books in his free time.",
+      "options": [
+        {"id": "A", "text": "reads"},
+        {"id": "B", "text": "read"},
+        {"id": "C", "text": "is reading"},
+        {"id": "D", "text": "was reading"}
+      ],
+      "correct": "A",
+      "tags": []
+    },
+    {
+      "num": 10,
+      "topic": "en-gram",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Last weekend, Kevin's parents _____ him to the zoo.",
+      "options": [
+        {"id": "A", "text": "took"},
+        {"id": "B", "text": "take"},
+        {"id": "C", "text": "takes"},
+        {"id": "D", "text": "taken"}
+      ],
+      "correct": "A",
+      "tags": []
+    },
+    {
+      "num": 11,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "B1",
+      "type": "mcq",
+      "stem": "Look at four step-by-step processes for effective hand washing. Choose the correct one.",
+      "options": [
+        {"id": "A", "text": "1) Wet hands with running water. 2) Apply enough soap to cover wet hands. 3) Scrub all surfaces of the hands (back of hands, between fingers and under nails) for at least 20 seconds. 4) Rinse thoroughly with running water. 5) Dry hands with a clean cloth or single-use towel."},
+        {"id": "B", "text": "1) Wet hands with running water. 2) Scrub all surfaces of the hands for at least 20 seconds. 3) Rinse thoroughly with running water. 4) Dry hands with a clean cloth or single-use towel. 5) Apply enough soap to cover wet hands."},
+        {"id": "C", "text": "1) Scrub all surfaces of the hands for at least 20 seconds. 2) Rinse thoroughly with running water. 3) Wet hands with running water. 4) Apply enough soap to cover wet hands. 5) Dry hands with a clean cloth or single-use towel."},
+        {"id": "D", "text": "1) Wet hands with running water. 2) Apply enough soap to cover wet hands. 3) Rinse thoroughly with running water. 4) Scrub all surfaces of the hands for at least 20 seconds. 5) Dry hands with a clean cloth or single-use towel."}
+      ],
+      "correct": "A",
+      "tags": ["inference"]
+    },
+    {
+      "num": 12,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Look at the notice. What has changed about Class 5A's party?",
+      "options": [
+        {"id": "A", "text": "The time"},
+        {"id": "B", "text": "The place"},
+        {"id": "C", "text": "The day"},
+        {"id": "D", "text": "The weather"}
+      ],
+      "correct": "B",
+      "passageRef": "garden-party",
+      "tags": ["inference"]
+    },
+    {
+      "num": 13,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "B1",
+      "type": "mcq",
+      "stem": "Look at the message. Choose the correct sentence.",
+      "options": [
+        {"id": "A", "text": "Tim thinks Ben should look on the concert website."},
+        {"id": "B", "text": "Tim hopes that Ben will be able to come with him."},
+        {"id": "C", "text": "Tim wonders why Ben doesn't give him the money."},
+        {"id": "D", "text": "Tim wants to know if Ben can pay him back today."}
+      ],
+      "correct": "D",
+      "passageRef": "tim-ben",
+      "tags": ["inference"]
+    },
+    {
+      "num": 14,
+      "topic": "en-comm",
+      "skill": "comm",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Jane: \"Mum, I've won the girl's long jump.\"\nMary: \"__________\"",
+      "options": [
+        {"id": "A", "text": "It's nothing."},
+        {"id": "B", "text": "All right."},
+        {"id": "C", "text": "Don't be proud!"},
+        {"id": "D", "text": "Congratulations!"}
+      ],
+      "correct": "D",
+      "tags": []
+    },
+    {
+      "num": 15,
+      "topic": "en-comm",
+      "skill": "comm",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Daisy: \"How often do you go to the cinema?\"\nPaul: \"__________\"",
+      "options": [
+        {"id": "A", "text": "By bus"},
+        {"id": "B", "text": "I go with my brother"},
+        {"id": "C", "text": "Watching films"},
+        {"id": "D", "text": "Twice a month"}
+      ],
+      "correct": "D",
+      "tags": []
+    },
+    {
+      "num": 16,
+      "topic": "en-comm",
+      "skill": "comm",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "John: \"What does your sister do?\"\nSarah: \"__________\"",
+      "options": [
+        {"id": "A", "text": "She is a shopkeeper."},
+        {"id": "B", "text": "I'm so excited about it."},
+        {"id": "C", "text": "Playing table tennis and doing judo"},
+        {"id": "D", "text": "I'm fine, thanks."}
+      ],
+      "correct": "A",
+      "tags": []
+    },
+    {
+      "num": 17,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "Which ants can keep the nest clean and tidy?",
+      "options": [
+        {"id": "A", "text": "worker ants"},
+        {"id": "B", "text": "queen ants"},
+        {"id": "C", "text": "slave-maker ants"},
+        {"id": "D", "text": "new-born baby ants"}
+      ],
+      "correct": "A",
+      "passageRef": "ants",
+      "tags": []
+    },
+    {
+      "num": 18,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "mcq",
+      "stem": "What do several types of ants have to protect their nest when strangers get in?",
+      "options": [
+        {"id": "A", "text": "sting"},
+        {"id": "B", "text": "eggs"},
+        {"id": "C", "text": "nest"},
+        {"id": "D", "text": "food"}
+      ],
+      "correct": "A",
+      "passageRef": "ants",
+      "tags": []
+    },
+    {
+      "num": 19,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Do the queen ants lay eggs? Write down the answer.",
+      "accept": ["Yes, they do", "Yes they do", "Yes, they do."],
+      "correct": "Yes, they do.",
+      "passageRef": "ants",
+      "tags": []
+    },
+    {
+      "num": 20,
+      "topic": "en-error",
+      "skill": "useofenglish",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "The following sentence has ONE word that is not correct. Write the correction in the box.\nMy parents want to sunbath in the morning when the sun is not hot.",
+      "accept": ["sunbathe"],
+      "correct": "sunbathe",
+      "tags": []
+    },
+    {
+      "num": 21,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Complete the passage by writing ONE word for gap (21): I have really great time at the (21) _____ this weekend with my mum and dad.",
+      "accept": ["aquarium", "an aquarium"],
+      "correct": "aquarium",
+      "passageRef": "aquarium-trip",
+      "tags": []
+    },
+    {
+      "num": 22,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Complete the passage by writing ONE word for gap (22): We saw a lot of big (22) _____ and even got to feed some.",
+      "accept": ["fish", "fishes"],
+      "correct": "fish",
+      "passageRef": "aquarium-trip",
+      "tags": []
+    },
+    {
+      "num": 23,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Complete the passage by writing ONE word for gap (23): I also saw some (23) _____. They were not too scary.",
+      "accept": ["sharks"],
+      "correct": "sharks",
+      "passageRef": "aquarium-trip",
+      "tags": []
+    },
+    {
+      "num": 24,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Complete the passage by writing ONE word for gap (24): I got to see (24) _____ jumping in the water.",
+      "accept": ["penguins"],
+      "correct": "penguins",
+      "passageRef": "aquarium-trip",
+      "tags": []
+    },
+    {
+      "num": 25,
+      "topic": "en-read",
+      "skill": "reading",
+      "grade": "A2",
+      "type": "fill",
+      "stem": "Complete the passage by writing ONE word for gap (25): I got to see penguins jumping and (25) _____ in the water.",
+      "accept": ["swimming"],
+      "correct": "swimming",
+      "passageRef": "aquarium-trip",
+      "tags": []
+    },
+    {
+      "num": 26,
+      "topic": "en-fwrite",
+      "skill": "writing",
+      "grade": "B1",
+      "type": "essay",
+      "stem": "Vietnam has tried to save the British pilot, a coronavirus patient. He is getting better. Play the role of the pilot and write a note/letter of about 30-50 words to Vietnamese doctors and Vietnam to share your feelings.",
+      "correct": null,
+      "points": 4,
+      "tags": []
+    }
+  ],
+  "skipped": []
+}
