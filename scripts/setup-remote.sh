@@ -62,6 +62,10 @@ if [ "${RUN_SEED:-1}" = "1" ]; then
     # See docs/REMEDIAL-SETS-DESIGN.md.
     echo "Seeding personalized remedial sets..."
     npx tsx scripts/seed-remedial-mika.ts
+    # English "Bài thầy giao" for mika (subject="english", ownerUserId set).
+    # Same idempotent pattern; source is Test_1_Answer_Key.pdf. Question.topic is
+    # a plain string (no FK), so it's fine to run before the english topics below.
+    npx tsx scripts/seed-remedial-mika-en.ts
     # English subject: 10 topics + sample exams (subject="english"). Idempotent
     # (deletes its own en-* exams/questions/passages then re-inserts) and builds
     # the english SchoolProfile (6-factor difficulty). Independent of the math
