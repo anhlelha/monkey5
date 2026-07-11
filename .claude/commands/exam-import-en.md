@@ -63,10 +63,17 @@ examId = `en-{school}-{year}[-{mã đề}]`. questionId = `{examId}-q{num}` (see
   "year": "2023", "title": "Tiếng Anh NTT 2023 (đề chính thức)",
   "intro": "Đề chính thức tuyển sinh lớp 6 — môn Tiếng Anh.", "minutes": 30,
   "source": "Trích đề NTT 2023",
+  "_inputNote": "(tùy chọn) ghi phần đề THIẾU / không đọc được / suy luận — xem §3.4",
+  "sections": [
+    { "num": 1, "header": "I. PHONETICS — 1.1. Choose the word whose underlined part is differently pronounced from the others." },
+    { "num": 7, "header": "II. READING — 2.1. Read the passage and choose the best answer." }
+  ],
   "passages": [
     { "ref": "jenny", "title": "...", "kind": "article|message|notice|cloze", "body": "text\\nwith breaks" }
   ],
   "questions": [
+    { "num": 1, "topic": "en-phon", "skill": "pron", "grade": "A2", "type": "mcq",
+      "stem": "", "options": [{"id":"A","text":"sk$\\underline{\\text{a}}$ting"}, ...], "correct": "D", "tags": [] },
     { "num": 1, "topic": "en-gram", "skill": "useofenglish", "grade": "A2", "type": "mcq",
       "stem": "...______...", "options": [{"id":"A","text":"..."}, ...], "correct": "B", "tags": [] },
     { "num": 22, "topic": "en-read", "skill": "reading", "grade": "A2", "type": "fill",
@@ -108,6 +115,65 @@ examId = `en-{school}-{year}[-{mã đề}]`. questionId = `{examId}-q{num}` (see
 
 ---
 
+## §3.4. Định dạng tiếng Anh: gạch chân / in đậm / in nghiêng (BẮT BUỘC giữ)
+
+Stem + option render qua `<MathText>` (`components/MathText.tsx`) — component này CHỈ
+hiểu `$…$` (KaTeX) và text thường; **KHÔNG markdown, KHÔNG HTML** (`**x**`, `<u>`,
+`<b>` sẽ hiện literal). Muốn tái hiện định dạng của đề gốc phải bọc trong `$…$`:
+
+| Định dạng trong đề | Viết trong JSON (nhớ escape `\` → `\\`) | Dùng cho |
+|---|---|---|
+| gạch chân | `$\\underline{\\text{...}}$` | phần gạch chân ở **Ngữ âm 1.1**, từ/cụm gạch chân ở **Đồng-Trái nghĩa 3.3**, từ gạch chân ở **Tìm lỗi** (`en-error`) |
+| in đậm | `$\\textbf{...}$` | từ/cụm in đậm (vd `"that"`), từ khóa cho sẵn `(SPENT)` / `(TRADITION)` |
+| in nghiêng | `$\\textit{...}$` | nhấn nghiêng trong stem (không dùng cho câu dẫn đề — xem §3.5) |
+
+Quy tắc:
+- **Chỉ bọc ĐÚNG phần cần đánh dấu**, không bọc cả câu (KaTeX dùng font riêng, khác
+  font UI). Gạch chân một phần trong 1 từ: tách ra — `sk$\\underline{\\text{a}}$ting`,
+  `work$\\underline{\\text{ed}}$`, `definition$\\underline{\\text{s}}$`.
+- Ngữ âm 1.1 (gạch chân nằm trong ĐÁP ÁN): stem có thể để `""`, đánh dấu ở `options`.
+- **Verify trước khi seed**: render mọi đoạn `$…$` bằng
+  `katex.renderToString(seg, {throwOnError:true})` — 0 lỗi mới seed. (Xem §A.5.)
+- **⚠️ Đối chiếu rubric ↔ nội dung (BẮT BUỘC)**: nếu câu dẫn đề nhắc tới một dấu
+  định dạng ("*underlined* part", "the *underlined* word(s)", "word(s) in **bold**",
+  "*italicized*"…) mà options/stem đưa vào lại **thiếu** dấu đó (vd rubric nói
+  "underlined part" nhưng đáp án chỉ là `skating / status / stadium / statue` trần)
+  → nguồn bị MẤT thông tin định dạng, **KHÔNG tự đoán** phần nào được gạch chân/đậm
+  → xử lý theo §3.6 (báo/hỏi/note). Đây là lỗi thiếu dữ liệu, không phải bỏ qua được.
+
+## §3.5. Câu dẫn đề (rubrics) → `sections` — tái hiện I/II/III + 3.1/3.2
+
+`sections: [{num, header}]` → header in phía TRÊN câu có `num` đó (giống đề Toán
+`cg-2019`). `seed-english-exams.ts` đã đọc field này (đừng để `"[]"` nếu đề có phần).
+- **Chép NGUYÊN VĂN** câu dẫn đề (Choose the word…, Read the passage…, Mark the
+  letter…) — đây là chỗ học sinh biết *cách làm*.
+- 1 `num` chỉ gắn **1** header. Phần lớn (I/II/III/IV) gộp cùng dòng với tiểu mục
+  đầu tiên, ngăn bằng "—"; mỗi tiểu mục sau (1.2, 3.2, 3.3(a), (b), 4.1…) 1 header
+  ở câu bắt đầu của tiểu mục.
+- Header là **text thường** (không KaTeX) — render ngoài MathText.
+
+## §3.6. ⚠️ Đề đầu vào bị THIẾU / không đọc được → BÁO / HỎI / NOTE (không im lặng)
+
+Khi thiếu: bài đọc, đoạn cloze, options, stem, đáp án, mã đề lệch, file chỉ có
+đáp án mà không có đề, ảnh không đọc được, **hoặc rubric nhắc tới định dạng
+(gạch chân/đậm/nghiêng) mà nội dung đưa vào không có dấu đó** (§3.4)… **TUYỆT ĐỐI
+KHÔNG bịa** để lấp. Xử lý:
+
+1. **Thiếu đáp án khách quan** (gram/vocab/reading) → §A.3: tự suy nếu chắc,
+   ghi `_answerNote`, báo user; câu mơ hồ để `correct:null`.
+2. **Thiếu passage / cloze / options / stem** không thể suy an toàn → **HỎI LẠI**
+   user xin bản đề đầy đủ. Nếu vẫn buộc import phần có: đưa câu thiếu vào `skipped`
+   + ghi `_inputNote`.
+3. **Ảnh không đọc được** → `skipped` (đừng đoán nội dung ảnh).
+
+Bắt buộc để lại dấu vết theo **cả ba kênh** khi liên quan:
+- `_inputNote` (đầu JSON): tóm tắt phần thiếu + cách xử lý + cần user cung cấp gì.
+- `skipped: [{num, reason}]`: từng câu bị bỏ/không chắc.
+- **Report cuối**: nêu rõ (a) thiếu gì, (b) đã xử lý sao, (c) cần user cấp gì.
+Nghĩa là: **báo lại HOẶC hỏi lại HOẶC note lại** — chọn ít nhất một, không bỏ qua.
+
+---
+
 ## §4. Workflow A — Import đề mới
 
 ### A.1 Trích nội dung PDF (2 trường hợp)
@@ -131,6 +197,10 @@ pdftoppm -png -r 250 -f 1 -l 4 "<pdf>" scripts/.en-import/img/<name>
   Mỗi subagent → 1 file `scripts/.en-import/<id>.json`.
 - **Scan/ảnh**: tự đọc ảnh (Read trên .png) — KHÔNG giao text agent (nó sẽ phải
   tái dựng → bịa). Đọc ở 250–350 dpi để lấy stem/options chính xác.
+- **Giữ định dạng + câu dẫn đề**: khi transcribe, đánh dấu chỗ gạch chân/đậm/nghiêng
+  theo §3.4, đưa rubric mỗi phần vào `sections` (§3.5). Chỗ nào PDF thiếu/không đọc
+  được → theo §3.6 (báo/hỏi/note, không bịa). Ghi rõ các rule này trong prompt giao
+  subagent.
 
 ### A.3 Đáp án — KỶ LUẬT (giống §A.2b của skill Toán)
 - Ưu tiên **BẢNG ĐÁP ÁN chính thức** trong PDF.
@@ -173,6 +243,10 @@ main();
 So 1-1 với PDF: số câu, đáp án, passage gắn đúng câu. Kiểm tra
 `/exam/<id>` render OK trong `npm run dev`.
 
+**Kiểm KaTeX** (nếu có gạch chân/đậm/nghiêng): duyệt mọi `$…$` trong `stem`+`options`,
+`katex.renderToString(seg,{throwOnError:true})` — phải 0 lỗi. Backslash trong JSON
+phải `\\` (đọc lại từ DB thì thành `\` đơn — đúng).
+
 ---
 
 ## §5. Workflow B — Audit / đối chiếu
@@ -202,6 +276,13 @@ So 1-1 với PDF: số câu, đáp án, passage gắn đúng câu. Kiểm tra
 9. Script Prisma đặt trong `scripts/` (Prisma client cần resolve), xoá sau khi xong.
 10. File ảnh/text trích (`scripts/.en-import/raw`, `img`) KHÔNG commit (đã gitignore);
     chỉ commit `en-*.json`.
+11. **Định dạng qua KaTeX, KHÔNG markdown/HTML** (§3.4): gạch chân/đậm/nghiêng
+    dùng `$\underline{\text{}}$` / `$\textbf{}$` / `$\textit{}$`; escape `\\` trong JSON.
+12. **Câu dẫn đề (rubric) → `sections`** (§3.5), chép nguyên văn; đừng để `"[]"`
+    nếu đề chia phần I/II/III + 3.1/3.2.
+13. **Đề thiếu/không đọc được → báo/hỏi/note, KHÔNG bịa** (§3.6): `_inputNote` +
+    `skipped` + nêu trong report. Gồm cả trường hợp **rubric nhắc gạch chân/đậm/
+    nghiêng mà đáp án/stem thiếu dấu đó** (§3.4) — coi là thiếu dữ liệu, phải hỏi lại.
 
 ## §8. Definition of Done
 - [ ] Số câu DB khớp PDF (trừ câu `skipped` ghi rõ lý do).
@@ -212,6 +293,10 @@ So 1-1 với PDF: số câu, đáp án, passage gắn đúng câu. Kiểm tra
 - [ ] `/exam/<id>` render OK; chấm thử 1 mcq + 1 fill đúng.
 - [ ] Backup `dev.db.bak-…` đã tạo. Script verify tạm đã xoá.
 - [ ] Nếu có đáp án Claude-derived → đã ghi `_answerNote` + báo user.
+- [ ] Gạch chân/đậm/nghiêng của đề gốc đã giữ qua KaTeX; mọi `$…$` render 0 lỗi.
+- [ ] Câu dẫn đề (rubric) đã vào `sections` (nếu đề chia phần); header nguyên văn.
+- [ ] Phần đề thiếu/không đọc được đã `_inputNote` + `skipped` + nêu trong report
+      (đã báo/hỏi/note cho user — không im lặng).
 
 ---
 

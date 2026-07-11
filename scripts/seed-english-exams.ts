@@ -49,6 +49,10 @@ interface SeedExam {
   intro?: string;
   minutes?: number;
   source?: string;
+  // Optional section headers (câu dẫn đề / rubrics) printed above the question
+  // whose `num` matches — reproduces I/II/III + 3.1/3.2 structure. Rendered by
+  // getExamSectionHeader (lib/exam.ts) in ExamRunner + ResultsView.
+  sections?: Array<{ num: number; header: string }>;
   passages?: SeedPassage[];
   questions: SeedQuestion[];
   skipped?: Array<{ num: number; reason: string }>;
@@ -74,7 +78,7 @@ async function seedExam(ex: SeedExam): Promise<void> {
     intro: ex.intro ?? "Đề chính thức tuyển sinh lớp 6 — môn Tiếng Anh.",
     minutes: ex.minutes ?? 30,
     qcount: ex.questions.length,
-    sections: "[]",
+    sections: JSON.stringify(ex.sections ?? []),
   };
   await prisma.exam.upsert({ where: { id: ex.id }, create: { id: ex.id, ...data }, update: data });
 
