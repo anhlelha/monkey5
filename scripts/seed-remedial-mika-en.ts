@@ -4,24 +4,28 @@
  *
  * Source: public/ref_exam/English/Bài thêm/Test_1_Answer_Key.pdf ("TEST 1").
  *
- * The MCQs/fills + official answers + Vietnamese explanations come from the
- * answer-key PDF; the full reading passage (2.1) and cloze text (2.2) were
- * supplied separately from the original test paper and are stored verbatim in
- * PASSAGES below (the runner renders the passage block above its questions).
+ * Faithful to the paper:
+ *   - Section rubrics (câu dẫn đề) are stored in Exam.sections ({num,header})
+ *     so the runner + results view print a header block above the first question
+ *     of each part (I/II/III/IV and sub-parts 1.1, 1.2, 2.1, ...). See
+ *     lib/exam.ts getExamSectionHeader + ExamRunner/ResultsView rendering.
+ *   - Underlined parts (phonetics options, synonym/antonym targets) and bold
+ *     words (reading "that", word-form/writing keywords) are rendered via KaTeX
+ *     inside MathText: u()=\underline{\text{…}}, b()=\textbf{…}. MathText only
+ *     understands $…$ (KaTeX) + plain text — no markdown/HTML — so this is the
+ *     only way to show underline/bold.
+ *   - The reading passage (2.1) + cloze text (2.2) are the verbatim originals.
  *
  * Model (see docs/REMEDIAL-SETS-DESIGN.md + CLAUDE.md multi-subject section):
  *   - The whole test = ONE private Exam (subject "english", ownerUserId = mika),
  *     shown at /luyen-rieng ("Bài thầy giao"), gated owner-only in the runner.
  *   - Deterministic exam id `rmd-<userId>-en-test1` → upsert (NOT delete) keeps
- *     the Exam row + Attempt history across re-seeds.
- *   - Questions are updated IN PLACE (matched by deterministic id) so
- *     Attempt.answers (keyed by Question.id) survive re-seeds — see the grading
- *     pitfalls in CLAUDE.md. Trailing extras are dropped.
- *   - Each question keeps a real english `topic` (1 of the 10) + `skill` +
- *     `grade` (A1/A2/B1) so it still feeds mastery/readiness like a real exam.
+ *     the Exam row + Attempt history across re-seeds. Questions are updated IN
+ *     PLACE (deterministic id) so Attempt.answers (keyed by Question.id) survive.
+ *   - Each question keeps a real english topic + skill + grade (A1/A2/B1) so it
+ *     still feeds mastery/readiness like a real exam.
  *
- * Idempotent. Resolves owner by email (creates a minimal User if mika has not
- * signed in yet). Owner overridable via CLI for local preview:
+ * Idempotent. Owner overridable via CLI:
  *   npx tsx scripts/seed-remedial-mika-en.ts user-demo@local
  */
 
@@ -35,32 +39,56 @@ const SOURCE_TAG = "en-remedial-mika";
 
 const L = ["A", "B", "C", "D"] as const;
 
+// KaTeX helpers (MathText renders $…$ via KaTeX; plain text otherwise).
+const u = (s: string) => `$\\underline{\\text{${s}}}$`; // underlined part
+const b = (s: string) => `$\\textbf{${s}}$`; // bold word(s)
+
 type QType = "mcq" | "fill" | "essay";
 type Grade = "A1" | "A2" | "B1";
 type Skill = "pron" | "useofenglish" | "comm" | "reading" | "writing";
 
 interface RQ {
   type: QType;
-  topic: string; // english topic id (en-phon | en-stress | ...)
+  topic: string;
   skill: Skill;
   grade: Grade;
   stem: string;
-  options?: string[]; // mcq → in display order A..D
-  correct: string | null; // mcq → letter; fill → canonical value; essay → null
-  accept?: string[]; // fill → text_set accepted answers
+  options?: string[];
+  correct: string | null;
+  accept?: string[];
   ignoreOrder?: boolean;
-  passageRef?: string; // key into PASSAGES
-  modelAnswer?: string; // Vietnamese explanation / đáp án chi tiết
+  passageRef?: string;
+  modelAnswer?: string;
 }
 
 interface Passage {
   ref: string;
   title: string;
-  kind: string; // notice | message | article | cloze
+  kind: string;
   body: string;
 }
 
-// ─── Passages ────────────────────────────────────────────────────────────────
+interface SectionHeader {
+  num: number; // header shown ABOVE the question with this num
+  header: string;
+}
+
+// ─── Section headers (verbatim rubrics from the paper) ─────────────────────────
+const SECTIONS: SectionHeader[] = [
+  { num: 1, header: "I. PHONETICS — 1.1. Choose the word whose underlined part is differently pronounced from the others." },
+  { num: 4, header: "1.2. Choose the word whose main stress is different from the others." },
+  { num: 7, header: "II. READING COMPREHENSION — 2.1. Read the following passage and mark the letter A, B, C, or D to indicate the correct answer to each of the questions." },
+  { num: 12, header: "2.2. Read the text below and decide which answer A, B, C or D fits each space." },
+  { num: 22, header: "III. GRAMMAR AND VOCABULARY — 3.1. Choose the best option to complete the sentences." },
+  { num: 32, header: "3.2. Conversation — Mark A, B, C, or D to indicate the most suitable response to complete each of the following exchanges." },
+  { num: 34, header: "3.3. Synonyms & Antonyms — (a) Indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following questions." },
+  { num: 36, header: "(b) Indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following questions." },
+  { num: 38, header: "3.4. Give the correct form of the words in brackets." },
+  { num: 42, header: "IV. WRITING — 4.1. Rewrite each of the following sentences so that it means the same as the sentence printed before it. Use the bold word(s) given in brackets. Do not alter the given words in any way." },
+  { num: 47, header: "4.2. Write meaningful sentences using the given words." },
+];
+
+// ─── Passages (verbatim from the paper) ────────────────────────────────────────
 const PASSAGES: Passage[] = [
   {
     ref: "men",
@@ -96,7 +124,6 @@ const PASSAGES: Passage[] = [
     title: "Earth's natural resources",
     kind: "cloze",
     body:
-      "Read the passage and choose the best option (A/B/C/D) for each numbered blank.\n\n" +
       "Earth is the only (1) ___ we know of in the universe that can support human life. (2) ___ human " +
       "activities are making the planet less fit to live on. As the western world (3) ___ on consuming " +
       "two-thirds of the world's resources while half of the world's population do so (4) ___ to stay " +
@@ -115,37 +142,31 @@ const PASSAGES: Passage[] = [
 
 // ─── Questions (in exam order) ─────────────────────────────────────────────────
 const QUESTIONS: RQ[] = [
-  // I.1 PHONETICS — pronunciation (en-phon)
-  { type: "mcq", topic: "en-phon", skill: "pron", grade: "A2",
-    stem: "I.1. Chọn từ có phần gạch chân phát âm KHÁC:",
-    options: ["skating", "status", "stadium", "statue"], correct: "D",
+  // 1.1 PHONETICS — pronunciation (en-phon); underlined letters via u()
+  { type: "mcq", topic: "en-phon", skill: "pron", grade: "A2", stem: "",
+    options: ["sk" + u("a") + "ting", "st" + u("a") + "tus", "st" + u("a") + "dium", "st" + u("a") + "tue"], correct: "D",
     modelAnswer: "D — statue có \"a\" phát âm /æ/; skating, status, stadium đều /eɪ/." },
-  { type: "mcq", topic: "en-phon", skill: "pron", grade: "A2",
-    stem: "I.1. Chọn từ có phần gạch chân (đuôi -s) phát âm KHÁC:",
-    options: ["definitions", "documents", "combs", "doors"], correct: "B",
+  { type: "mcq", topic: "en-phon", skill: "pron", grade: "A2", stem: "",
+    options: ["definition" + u("s"), "document" + u("s"), "comb" + u("s"), "door" + u("s")], correct: "B",
     modelAnswer: "B — documents có \"-s\" phát âm /s/ (sau âm /t/ vô thanh); definitions, combs, doors đều /z/." },
-  { type: "mcq", topic: "en-phon", skill: "pron", grade: "A2",
-    stem: "I.1. Chọn từ có phần gạch chân (đuôi -ed) phát âm KHÁC:",
-    options: ["worked", "moved", "stopped", "brushed"], correct: "B",
+  { type: "mcq", topic: "en-phon", skill: "pron", grade: "A2", stem: "",
+    options: ["work" + u("ed"), "mov" + u("ed"), "stopp" + u("ed"), "brush" + u("ed")], correct: "B",
     modelAnswer: "B — moved có \"-ed\" phát âm /d/; worked, stopped, brushed đều /t/ (sau âm vô thanh)." },
 
-  // I.2 PHONETICS — stress (en-stress)
-  { type: "mcq", topic: "en-stress", skill: "pron", grade: "A2",
-    stem: "I.2. Chọn từ có trọng âm KHÁC:",
+  // 1.2 PHONETICS — stress (en-stress)
+  { type: "mcq", topic: "en-stress", skill: "pron", grade: "A2", stem: "",
     options: ["relax", "wonder", "problem", "special"], correct: "A",
     modelAnswer: "A — relax trọng âm âm tiết 2 (re·LAX); ba từ còn lại trọng âm âm tiết 1." },
-  { type: "mcq", topic: "en-stress", skill: "pron", grade: "B1",
-    stem: "I.2. Chọn từ có trọng âm KHÁC:",
+  { type: "mcq", topic: "en-stress", skill: "pron", grade: "B1", stem: "",
     options: ["popularity", "conscientious", "apprenticeship", "personality"], correct: "C",
     modelAnswer: "C — apprenticeship trọng âm âm tiết 2 (ap·PREN·tice·ship); ba từ còn lại trọng âm âm tiết 3." },
-  { type: "mcq", topic: "en-stress", skill: "pron", grade: "B1",
-    stem: "I.2. Chọn từ có trọng âm KHÁC:",
+  { type: "mcq", topic: "en-stress", skill: "pron", grade: "B1", stem: "",
     options: ["celebrate", "fascinating", "survive", "elephant"], correct: "C",
     modelAnswer: "C — survive trọng âm âm tiết 2 (sur·VIVE); ba từ còn lại trọng âm âm tiết 1." },
 
-  // II.1 READING — passage "Why do men die younger than women?" (en-read)
+  // 2.1 READING — passage "men" (en-read)
   { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "men",
-    stem: "What does the word \"that\" in the passage refer to?",
+    stem: "What does the word \"" + b("that") + "\" in the passage refer to?",
     options: [
       "The fact that men get old and helpless.",
       "The fact that they fear to be left alone.",
@@ -172,7 +193,7 @@ const QUESTIONS: RQ[] = [
     ], correct: "C",
     modelAnswer: "C — \"Both men and women are emotional creatures...\" (cả hai đều là sinh vật giàu cảm xúc)." },
   { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "men",
-    stem: "The phrase \"to do the leaving\" is closest in meaning to:",
+    stem: "The phrase \"" + b("to do the leaving") + "\" is closest in meaning to:",
     options: ["set off", "go down", "pass away", "depart"], correct: "C",
     modelAnswer: "C — ở đây \"leaving\" mang nghĩa rời bỏ cuộc sống = chết → pass away (qua đời)." },
   { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "men",
@@ -185,49 +206,49 @@ const QUESTIONS: RQ[] = [
     ], correct: "A",
     modelAnswer: "A — tác giả cho rằng khóc thể hiện khả năng chịu đựng và sống thật; khóc là điều tốt." },
 
-  // II.2 READING — cloze "Earth's natural resources" (en-read)
+  // 2.2 READING — cloze "earth" (en-read)
   { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "earth",
-    stem: "Chọn từ điền vào chỗ trống (1):",
+    stem: "Điền vào chỗ trống (1):",
     options: ["situation", "place", "position", "site"], correct: "B",
     modelAnswer: "B — \"the only place we know of in the universe\" (nơi duy nhất)." },
   { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "earth",
-    stem: "Chọn từ điền vào chỗ trống (2):",
+    stem: "Điền vào chỗ trống (2):",
     options: ["Although", "Still", "Yet", "Despite"], correct: "C",
     modelAnswer: "C — \"Yet human activities...\" (Tuy nhiên); đứng đầu mệnh đề, không cần danh từ như Despite." },
   { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "earth",
-    stem: "Chọn từ điền vào chỗ trống (3):",
+    stem: "Điền vào chỗ trống (3):",
     options: ["continues", "repeats", "carries", "follows"], correct: "C",
     modelAnswer: "C — carry on = tiếp tục (carries on consuming)." },
   { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "earth",
-    stem: "Chọn từ điền vào chỗ trống (4):",
+    stem: "Điền vào chỗ trống (4):",
     options: ["already", "just", "for", "entirely"], correct: "B",
     modelAnswer: "B — \"do so just to stay alive\" (chỉ để tồn tại)." },
   { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "earth",
-    stem: "Chọn từ điền vào chỗ trống (5):",
+    stem: "Điền vào chỗ trống (5):",
     options: ["sooner", "neither", "either", "rather"], correct: "C",
     modelAnswer: "C — cấu trúc either... or (either built on or washed into the sea)." },
   { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "earth",
-    stem: "Chọn từ điền vào chỗ trống (6):",
+    stem: "Điền vào chỗ trống (6):",
     options: ["development", "result", "reaction", "product"], correct: "B",
     modelAnswer: "B — \"As a result\" (kết quả là)." },
   { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "earth",
-    stem: "Chọn từ điền vào chỗ trống (7):",
+    stem: "Điền vào chỗ trống (7):",
     options: ["doing", "having", "taking", "making"], correct: "D",
     modelAnswer: "D — make demands on (đặt ra yêu cầu)." },
   { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "earth",
-    stem: "Chọn từ điền vào chỗ trống (8):",
+    stem: "Điền vào chỗ trống (8):",
     options: ["hold", "maintain", "stay", "keep"], correct: "D",
     modelAnswer: "D — keep us fed/comfortable (giữ cho...)." },
   { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "earth",
-    stem: "Chọn từ điền vào chỗ trống (9):",
+    stem: "Điền vào chỗ trống (9):",
     options: ["last", "stand", "go", "remain"], correct: "A",
     modelAnswer: "A — last indefinitely (tồn tại lâu dài)." },
   { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "earth",
-    stem: "Chọn từ điền vào chỗ trống (10):",
+    stem: "Điền vào chỗ trống (10):",
     options: ["out", "off", "over", "down"], correct: "A",
     modelAnswer: "A — run out (cạn kiệt)." },
 
-  // III.1 GRAMMAR — choose the best option (en-gram)
+  // 3.1 GRAMMAR — choose the best option (en-gram)
   { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "A2",
     stem: "A new study group has been set ___ by the government.",
     options: ["out", "up", "away", "down"], correct: "B",
@@ -269,7 +290,7 @@ const QUESTIONS: RQ[] = [
     options: ["How fast", "What time", "How often", "How long"], correct: "D",
     modelAnswer: "D (How long) — hỏi khoảng thời gian với take." },
 
-  // III.2 CONVERSATION — most suitable response (en-comm)
+  // 3.2 CONVERSATION (en-comm)
   { type: "mcq", topic: "en-comm", skill: "comm", grade: "A2",
     stem: "Linda: \"It's been a tough couple of months, but I think the worst is behind us now.\" Jill: \"___\"",
     options: ["Good morning", "Good luck!", "Good!", "Goodness me!"], correct: "C",
@@ -279,78 +300,94 @@ const QUESTIONS: RQ[] = [
     options: ["No, I think it's suitable for me", "It's from Italy", "Thank you", "Yes, please"], correct: "C",
     modelAnswer: "C (Thank you) — đáp lại lời khen lịch sự." },
 
-  // III.3 SYNONYMS & ANTONYMS (en-synant)
+  // 3.3 (a) SYNONYMS — closest in meaning (en-synant); underlined targets via u()
   { type: "mcq", topic: "en-synant", skill: "useofenglish", grade: "B1",
-    stem: "CLOSEST in meaning — In remote communities, it's important to REPLENISH stocks before the winter sets in.",
+    stem: "In remote communities, it's important to " + u("replenish") + " stocks before the winter sets in.",
     options: ["empty", "remake", "repeat", "refill"], correct: "D",
     modelAnswer: "D (refill) — replenish = bổ sung/làm đầy lại = refill." },
   { type: "mcq", topic: "en-synant", skill: "useofenglish", grade: "B1",
-    stem: "CLOSEST in meaning — NEARLY ALL weather occurs in the troposphere, the lowest layer of the earth's atmosphere.",
+    stem: u("Nearly all") + " weather occurs in the troposphere, the lowest layer of the earth's atmosphere.",
     options: ["Closely to", "Barely", "Almost", "After"], correct: "C",
     modelAnswer: "C (Almost) — nearly all = almost all (gần như tất cả)." },
+
+  // 3.3 (b) ANTONYMS — opposite in meaning (en-synant)
   { type: "mcq", topic: "en-synant", skill: "useofenglish", grade: "B1",
-    stem: "OPPOSITE in meaning — They have not made any effort to INTEGRATE with the local community.",
+    stem: "They have not made any effort to " + u("integrate") + " with the local community.",
     options: ["cooperate", "put together", "separate", "connect"], correct: "C",
     modelAnswer: "C (separate) — integrate (hòa nhập) trái nghĩa với separate (tách biệt)." },
   { type: "mcq", topic: "en-synant", skill: "useofenglish", grade: "B1",
-    stem: "OPPOSITE in meaning — There has been INSUFFICIENT rainfall over the past two years, and farmers are having trouble.",
+    stem: "There has been " + u("insufficient") + " rainfall over the past two years, and farmers are having trouble.",
     options: ["adequate", "unsatisfactory", "abundant", "dominant"], correct: "A",
     modelAnswer: "A (adequate) — insufficient (không đủ) trái nghĩa với adequate (đủ)." },
 
-  // III.4 WORD FORMS — give the correct form (en-vocab, fill)
+  // 3.4 WORD FORMS — give the correct form (en-vocab, fill); keyword bold via b()
   { type: "fill", topic: "en-vocab", skill: "useofenglish", grade: "A2",
-    stem: "Housework has ___ been regarded as women's work. (TRADITION)",
+    stem: "Housework has ___ been regarded as women's work. " + b("(TRADITION)"),
     correct: "traditionally", accept: ["traditionally"],
     modelAnswer: "traditionally — trạng từ bổ nghĩa động từ." },
   { type: "fill", topic: "en-vocab", skill: "useofenglish", grade: "A2",
-    stem: "We will live a happier and ___ life if we keep our environment clean. (HEALTH)",
+    stem: "We will live happier and ___ life if we keep our environment clean. " + b("(HEALTH)"),
     correct: "healthier", accept: ["healthier"],
     modelAnswer: "healthier — tính từ so sánh hơn (healthy → healthier)." },
   { type: "fill", topic: "en-vocab", skill: "useofenglish", grade: "A2",
-    stem: "It is ___ of you to cheat in the exam. (HONEST)",
+    stem: "It is ___ of you to cheat in the exam. " + b("(HONEST)"),
     correct: "dishonest", accept: ["dishonest"],
     modelAnswer: "dishonest — nghĩa phủ định — gian lận là không trung thực." },
   { type: "fill", topic: "en-vocab", skill: "useofenglish", grade: "B1",
-    stem: "___ is now a serious problem in many countries. (FOREST)",
+    stem: "___ is now a serious problem in many countries. " + b("(FOREST)"),
     correct: "Deforestation", accept: ["Deforestation"],
     modelAnswer: "Deforestation — danh từ — nạn phá rừng." },
 
-  // IV.1 WRITING — rewrite the sentences (en-cwrite, fill/text_set)
+  // 4.1 WRITING — rewrite (en-cwrite, fill/text_set). Stem shows original + the
+  // paper's lead-in start + bold keyword. accept: full sentence AND the lead-in-
+  // stripped continuation (student may type either) + obvious contraction forms.
   { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
-    stem: "Rewrite (use SPENT): It took us three hours to find a room for the night.",
+    stem: "It took us three hours to find a room for the night.\n→ We ______ " + b("(SPENT)"),
     correct: "We spent three hours finding a room for the night.",
     accept: [
       "We spent three hours finding a room for the night",
+      "spent three hours finding a room for the night",
       "We spent 3 hours finding a room for the night",
     ],
     modelAnswer: "We spent three hours finding a room for the night." },
   { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
-    stem: "Rewrite (use PREFER): Would you rather I stayed with you during the holidays?",
+    stem: "Would you rather I stayed with you during the holidays?\n→ Would you ______ " + b("(PREFER)"),
     correct: "Would you prefer me to stay with you during the holidays?",
-    accept: ["Would you prefer me to stay with you during the holidays"],
+    accept: [
+      "Would you prefer me to stay with you during the holidays",
+      "prefer me to stay with you during the holidays",
+    ],
     modelAnswer: "Would you prefer me to stay with you during the holidays?" },
   { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
-    stem: "Rewrite (use SO): The English test was not easy enough for me to do well.",
+    stem: "The English test was not easy enough for me to do well.\n→ The English test ______ " + b("(SO)"),
     correct: "The English test was so difficult that I could not do well.",
     accept: [
       "The English test was so difficult that I could not do well",
       "The English test was so difficult that I couldn't do well",
+      "was so difficult that I could not do well",
+      "was so difficult that I couldn't do well",
     ],
     modelAnswer: "The English test was so difficult that I could not do well." },
   { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
-    stem: "Rewrite (use ACCUSED): The police said Jim had stolen the money.",
+    stem: "The police said Jim had stolen the money.\n→ The police ______ " + b("(ACCUSED)"),
     correct: "The police accused Jim of stealing the money.",
-    accept: ["The police accused Jim of stealing the money"],
+    accept: [
+      "The police accused Jim of stealing the money",
+      "accused Jim of stealing the money",
+    ],
     modelAnswer: "The police accused Jim of stealing the money." },
   { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
-    stem: "Rewrite (use IMPOSSIBLE): Because of his illness, he could not work effectively.",
+    stem: "Because of his illness, he could not work effectively.\n→ His illness ______ " + b("(IMPOSSIBLE)"),
     correct: "His illness made it impossible for him to work effectively.",
-    accept: ["His illness made it impossible for him to work effectively"],
+    accept: [
+      "His illness made it impossible for him to work effectively",
+      "made it impossible for him to work effectively",
+    ],
     modelAnswer: "His illness made it impossible for him to work effectively." },
 
-  // IV.2 WRITING — build meaningful sentences (en-cwrite, fill/text_set)
+  // 4.2 WRITING — build meaningful sentences (en-cwrite, fill/text_set)
   { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
-    stem: "Build a sentence: when / hot / he / go / swim / river / front / his house.",
+    stem: "when / hot / he / go / swim / river / front / his house.",
     correct: "When it is hot, he goes swimming in the river in front of his house.",
     accept: [
       "When it is hot, he goes swimming in the river in front of his house",
@@ -358,12 +395,12 @@ const QUESTIONS: RQ[] = [
     ],
     modelAnswer: "When it is hot, he goes swimming in the river in front of his house." },
   { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
-    stem: "Build a sentence: she / usually / listen / music / night.",
+    stem: "she / usually / listen / music / night.",
     correct: "She usually listens to music at night.",
     accept: ["She usually listens to music at night"],
     modelAnswer: "She usually listens to music at night." },
   { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
-    stem: "Build a sentence: this coffee / hot / that / I / not / drink it.",
+    stem: "this coffee / hot / that / I / not / drink it.",
     correct: "This coffee is so hot that I cannot drink it.",
     accept: [
       "This coffee is so hot that I cannot drink it",
@@ -371,7 +408,7 @@ const QUESTIONS: RQ[] = [
     ],
     modelAnswer: "This coffee is so hot that I cannot drink it." },
   { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
-    stem: "Build a sentence: you / know / who / best / English / your grade?",
+    stem: "you / know / who / best / English / your grade?",
     correct: "Do you know who is the best at English in your grade?",
     accept: [
       "Do you know who is the best at English in your grade",
@@ -379,7 +416,7 @@ const QUESTIONS: RQ[] = [
     ],
     modelAnswer: "Do you know who is the best at English in your grade?" },
   { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
-    stem: "Build a sentence: air pollution / serious problem / many / big city.",
+    stem: "air pollution / serious problem / many / big city.",
     correct: "Air pollution is a serious problem in many big cities.",
     accept: ["Air pollution is a serious problem in many big cities"],
     modelAnswer: "Air pollution is a serious problem in many big cities." },
@@ -402,6 +439,7 @@ async function main(): Promise<void> {
   }
 
   const examId = `rmd-${owner.id}-${EXAM_KEY}`;
+  const sectionsJson = JSON.stringify(SECTIONS);
 
   // 2. Upsert the private English Exam (NOT delete → keep Attempt history).
   await prisma.exam.upsert({
@@ -411,6 +449,7 @@ async function main(): Promise<void> {
       title: EXAM_TITLE,
       minutes: EXAM_MINUTES,
       qcount: QUESTIONS.length,
+      sections: sectionsJson,
       active: true,
       archivedAt: null,
     },
@@ -427,7 +466,7 @@ async function main(): Promise<void> {
       minutes: EXAM_MINUTES,
       qcount: QUESTIONS.length,
       generated: false,
-      sections: "[]",
+      sections: sectionsJson,
       ownerUserId: owner.id,
       position: 1,
       active: true,
@@ -481,7 +520,7 @@ async function main(): Promise<void> {
   // Drop trailing questions from a previous longer version.
   await prisma.question.deleteMany({ where: { examId, num: { gt: QUESTIONS.length } } });
 
-  console.log(`\n✓ Done. "${EXAM_TITLE}" — ${QUESTIONS.length} câu / ${PASSAGES.length} ngữ liệu cho ${OWNER_EMAIL} (${examId}).`);
+  console.log(`\n✓ Done. "${EXAM_TITLE}" — ${QUESTIONS.length} câu / ${PASSAGES.length} ngữ liệu / ${SECTIONS.length} mục cho ${OWNER_EMAIL} (${examId}).`);
 }
 
 main()
