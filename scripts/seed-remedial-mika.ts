@@ -198,6 +198,20 @@ const BAI: Bai[] = [
       { type: "fill", topic: "soh", grade: "NC", stem: "A = 32 × 44 × 75 × 69 − 21 × 49 × 65 × 55. Tìm chữ số hàng đơn vị của A.", correct: "0", num: 0, modelAnswer: "Mỗi tích đều có thừa số 5 và số chẵn → tận cùng 0. $0-0=0$." },
     ],
   },
+
+  // ─── 10. Bài toán năng suất — rút về đơn vị (tỉ lệ kép) (ti) ────────────────
+  {
+    key: "nangsuat",
+    title: "Bài toán năng suất — rút về đơn vị",
+    minutes: 20,
+    questions: [
+      { type: "fill", topic: "ti", grade: "NC", stem: "Trong 3 ngày, 6 công nhân dệt được 90 tấm vải. Hỏi trong 5 ngày, 8 công nhân dệt được bao nhiêu tấm vải? (năng suất mỗi người như nhau)", correct: "200", num: 200, unit: "tấm", modelAnswer: "Năng suất 1 người trong 1 ngày: $90:3:6=5$ (tấm). Trong 5 ngày, 8 công nhân dệt được: $5\\times8\\times5=200$ (tấm)." },
+      { type: "fill", topic: "ti", grade: "NC", stem: "Trong 4 ngày, 5 bạn học sinh gấp được 200 chiếc thuyền giấy. Hỏi trong 6 ngày, 7 bạn gấp được bao nhiêu chiếc thuyền? (năng suất mỗi bạn như nhau)", correct: "420", num: 420, unit: "chiếc", modelAnswer: "Năng suất 1 bạn trong 1 ngày: $200:4:5=10$ (chiếc). Trong 6 ngày, 7 bạn gấp được: $10\\times7\\times6=420$ (chiếc)." },
+      { type: "fill", topic: "ti", grade: "NC", stem: "Trong 2 ngày, 4 chú thợ xây được 48 m tường. Hỏi trong 7 ngày, 6 chú thợ xây được bao nhiêu mét tường? (năng suất mỗi người như nhau)", correct: "252", num: 252, unit: "m", modelAnswer: "Năng suất 1 người trong 1 ngày: $48:2:4=6$ (m). Trong 7 ngày, 6 chú thợ xây được: $6\\times6\\times7=252$ (m)." },
+      { type: "fill", topic: "ti", grade: "NC", stem: "Trong 3 ngày, 4 máy cày cày được 96 ha ruộng. Hỏi trong 6 ngày, 5 máy cày cày được bao nhiêu ha? (năng suất mỗi máy như nhau)", correct: "240", num: 240, unit: "ha", modelAnswer: "Năng suất 1 máy trong 1 ngày: $96:3:4=8$ (ha). Trong 6 ngày, 5 máy cày được: $8\\times5\\times6=240$ (ha)." },
+      { type: "fill", topic: "ti", grade: "NC", stem: "Trong 5 ngày, 3 công nhân lắp được 75 chiếc quạt. Hỏi trong 8 ngày, 6 công nhân lắp được bao nhiêu chiếc quạt? (năng suất mỗi người như nhau)", correct: "240", num: 240, unit: "chiếc", modelAnswer: "Năng suất 1 người trong 1 ngày: $75:5:3=5$ (chiếc). Trong 8 ngày, 6 công nhân lắp được: $5\\times6\\times8=240$ (chiếc)." },
+    ],
+  },
 ];
 
 function schemaFor(q: RQ): string | null {
