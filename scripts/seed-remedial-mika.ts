@@ -212,6 +212,20 @@ const BAI: Bai[] = [
       { type: "fill", topic: "ti", grade: "NC", stem: "Trong 5 ngày, 3 công nhân lắp được 75 chiếc quạt. Hỏi trong 8 ngày, 6 công nhân lắp được bao nhiêu chiếc quạt? (năng suất mỗi người như nhau)", correct: "240", num: 240, unit: "chiếc", modelAnswer: "Năng suất 1 người trong 1 ngày: $75:5:3=5$ (chiếc). Trong 8 ngày, 6 công nhân lắp được: $5\\times6\\times8=240$ (chiếc)." },
     ],
   },
+
+  // ─── 11. Tỉ lệ nghịch & bài toán vòi nước (ti) ─────────────────────────────
+  {
+    key: "tilenghich",
+    title: "Tỉ lệ nghịch & bài toán vòi nước",
+    minutes: 20,
+    questions: [
+      { type: "fill", topic: "ti", grade: "NC", stem: "12 công nhân sửa xong một đoạn đường trong 10 ngày. Hỏi nếu có 15 công nhân (năng suất như nhau) thì sửa xong đoạn đường đó trong bao nhiêu ngày?", correct: "8", num: 8, unit: "ngày", modelAnswer: "Tổng công việc: $12\\times10=120$ (ngày công). Với 15 công nhân: $120:15=8$ (ngày)." },
+      { type: "fill", topic: "ti", grade: "NC", stem: "Một đội 8 công nhân dự định sửa xong con đường trong 15 ngày. Muốn sửa xong sớm hơn, chỉ trong 10 ngày, thì cần tất cả bao nhiêu công nhân? (năng suất như nhau)", correct: "12", num: 12, unit: "công nhân", modelAnswer: "Tổng công việc: $8\\times15=120$ (ngày công). Để làm xong trong 10 ngày cần: $120:10=12$ (công nhân)." },
+      { type: "fill", topic: "ti", grade: "NC", stem: "Một bể cạn có hai vòi nước. Nếu chảy một mình, vòi thứ nhất chảy đầy bể sau 6 giờ, vòi thứ hai chảy đầy bể sau 3 giờ. Hỏi nếu mở cả hai vòi cùng lúc thì sau bao lâu bể đầy?", correct: "2", num: 2, unit: "giờ", modelAnswer: "Mỗi giờ hai vòi chảy được: $\\dfrac16+\\dfrac13=\\dfrac12$ (bể). Bể đầy sau: $1:\\dfrac12=2$ (giờ)." },
+      { type: "fill", topic: "ti", grade: "NC", stem: "Một bể cạn có ba vòi nước. Chảy một mình, vòi 1 đầy bể sau 4 giờ, vòi 2 sau 6 giờ, vòi 3 sau 12 giờ. Hỏi mở cả ba vòi cùng lúc thì sau bao lâu bể đầy?", correct: "2", num: 2, unit: "giờ", modelAnswer: "Mỗi giờ ba vòi chảy được: $\\dfrac14+\\dfrac16+\\dfrac1{12}=\\dfrac12$ (bể). Bể đầy sau: $1:\\dfrac12=2$ (giờ)." },
+      { type: "fill", topic: "ti", grade: "NC", stem: "Một trại chăn nuôi chuẩn bị đủ thức ăn cho 20 con bò ăn trong 30 ngày. Nếu trại nuôi 25 con bò (mỗi con ăn như nhau) thì số thức ăn đó đủ cho chúng ăn trong bao nhiêu ngày?", correct: "24", num: 24, unit: "ngày", modelAnswer: "Tổng số phần thức ăn: $20\\times30=600$ (phần). Với 25 con bò ăn được: $600:25=24$ (ngày)." },
+    ],
+  },
 ];
 
 function schemaFor(q: RQ): string | null {
