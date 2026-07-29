@@ -52,6 +52,9 @@ if [ "${RUN_SEED:-1}" = "1" ]; then
     # Each such script is idempotent (deletes its own source tag before insert).
     echo "Seeding standalone topic-practice bank..."
     npx tsx scripts/seed-tuoi-reference.ts
+    # Dãy phân số — tách thành hiệu (khử liên tiếp), chuyên đề Phân số/Tỉ số
+    # (topic "phan"). Idempotent via its own source tag "Hệ thống · Dãy phân số".
+    npx tsx scripts/seed-phanso-day-reference.ts
     # Bank from scripts/supplemental-questions.json (IDs prefixed "supp-"; deletes
     # only its own "supp-*" rows, so it never clobbers the cuid-keyed tuoi bank).
     npx tsx scripts/seed-supplemental.ts

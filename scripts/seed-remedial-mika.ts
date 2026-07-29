@@ -18,6 +18,7 @@
  */
 
 import { PrismaClient } from "@prisma/client";
+import { PHANSO_DAY_PROBLEMS } from "./phanso-day-problems";
 
 const prisma = new PrismaClient();
 
@@ -225,6 +226,24 @@ const BAI: Bai[] = [
       { type: "fill", topic: "ti", grade: "NC", stem: "Một bể cạn có ba vòi nước. Chảy một mình, vòi 1 đầy bể sau 4 giờ, vòi 2 sau 6 giờ, vòi 3 sau 12 giờ. Hỏi mở cả ba vòi cùng lúc thì sau bao lâu bể đầy?", correct: "2", num: 2, unit: "giờ", modelAnswer: "Mỗi giờ ba vòi chảy được: $\\dfrac14+\\dfrac16+\\dfrac1{12}=\\dfrac12$ (bể). Bể đầy sau: $1:\\dfrac12=2$ (giờ)." },
       { type: "fill", topic: "ti", grade: "NC", stem: "Một trại chăn nuôi chuẩn bị đủ thức ăn cho 20 con bò ăn trong 30 ngày. Nếu trại nuôi 25 con bò (mỗi con ăn như nhau) thì số thức ăn đó đủ cho chúng ăn trong bao nhiêu ngày?", correct: "24", num: 24, unit: "ngày", modelAnswer: "Tổng số phần thức ăn: $20\\times30=600$ (phần). Với 25 con bò ăn được: $600:25=24$ (ngày)." },
     ],
+  },
+
+  // ─── 12. Dãy phân số — tách thành hiệu (khử liên tiếp) (phan) ───────────────
+  // Câu dùng chung với ngân hàng chuyên đề Phân số/Tỉ số
+  // (scripts/phanso-day-problems.ts → seed-phanso-day-reference.ts). Đáp số là
+  // phân số a/b nên KHÔNG gắn num/set (matchExact) — HS gõ "a/b" không cách.
+  {
+    key: "phan-tachthanhhieu",
+    title: "Dãy phân số — tách thành hiệu (khử liên tiếp)",
+    minutes: 35,
+    questions: PHANSO_DAY_PROBLEMS.map((p): RQ => ({
+      type: "fill",
+      topic: "phan",
+      grade: "NC",
+      stem: p.stem,
+      correct: p.answer,
+      modelAnswer: p.modelAnswer,
+    })),
   },
 ];
 
