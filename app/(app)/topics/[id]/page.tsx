@@ -88,21 +88,34 @@ export default async function TopicDetail({ params, searchParams }: Props) {
     select: {
       grade: true,
       examId: true,
-      exam: { select: { kind: true, generated: true } },
+      exam: { select: { kind: true, generated: true, ownerUserId: true } },
     },
   });
   const countAvail = (grades: string[]) => {
     let official = 0;
-    let supplement = 0;
+    let standalone = 0;
+    let sharedPrivate = 0;
     for (const q of topicQs) {
       if (!grades.includes(q.grade ?? "")) continue;
-      const isSup = q.examId == null;
-      const isOff =
-        q.examId != null && q.exam?.kind === "official" && q.exam?.generated === false;
-      if (isSup) supplement += 1;
-      if (isOff) official += 1;
+      if (q.examId == null) {
+        standalone += 1;
+      } else if (q.exam?.kind === "official" && q.exam?.generated === false) {
+        official += 1;
+      } else if (
+        q.exam?.ownerUserId != null &&
+        q.exam?.generated === false &&
+        q.exam?.kind === "reference"
+      ) {
+        // Private "Bài luyện riêng" questions are shared into everyone's bổ trợ
+        // pool (any owner), matching spawnTopicSetExam's supplement OR-clause.
+        sharedPrivate += 1;
+      }
     }
-    return { all: official + supplement, official, supplement };
+    return {
+      all: official + standalone, // matches spawn "all"
+      official, // matches spawn "official"
+      supplement: standalone + sharedPrivate, // matches spawn "supplement"
+    };
   };
 
   const levels = levelCfgs.map((c) => ({

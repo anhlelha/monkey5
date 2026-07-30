@@ -36,8 +36,12 @@ function resolveAnswerSchema(
 // q.source, else builds the label from the source exam's school + year.
 function officialSourceLabel(q: {
   source: string | null;
-  exam: { kind: string; school: string | null; year: string | null } | null;
+  exam: { kind: string; school: string | null; year: string | null; ownerUserId?: string | null } | null;
 }): string | null {
+  // Questions shared from a private "Bài luyện riêng" get a neutral label so the
+  // clone never reveals whose set it came from (and hides internal source tags
+  // like "en-remedial-mika").
+  if (q.exam?.ownerUserId) return "Bài tập hệ thống";
   if (q.source) return q.source;
   if (q.exam?.kind === "official") {
     const schoolObj = SCHOOLS.find((s) => s.id === q.exam?.school);
@@ -227,7 +231,20 @@ export async function spawnTopicSetExam(
     baseWhere.examId = { not: null };
     baseWhere.exam = { kind: "official", generated: false };
   } else if (sourceFilter === "supplement") {
-    baseWhere.examId = null;
+    // Supplement pool = standalone bank (examId null) PLUS the question CONTENT
+    // of ALL private "Bài luyện riêng" (any owner). The private exams themselves
+    // stay invisible — the /luyen-rieng list is owner-scoped and direct-open is
+    // 404-guarded — but their questions are shared into every student's bổ trợ
+    // practice via cloning (each pick becomes a fresh row with sourceQuestionId),
+    // so a teacher-assigned set enriches everyone's pool without revealing whose
+    // set it came from.
+    baseWhere.OR = [
+      { examId: null },
+      {
+        examId: { not: null },
+        exam: { ownerUserId: { not: null }, generated: false, kind: "reference" },
+      },
+    ];
   } else {
     // all: either standalone/supplementary (examId is null) or from an official non-generated exam
     baseWhere.OR = [
@@ -317,10 +334,16 @@ export async function spawnTopicSetExam(
       data: picked.map((q, i) => {
         const schoolObj = SCHOOLS.find((s) => s.id === q.exam?.school);
         const sourceLabel =
-          q.source ||
-          (q.exam?.kind === "official"
-            ? `Trích đề ${schoolObj?.short ?? q.exam?.school?.toUpperCase() ?? ""} ${q.exam?.year || ""}`.trim()
-            : "Bài tập hệ thống");
+          // Questions sourced from a private "Bài luyện riêng" are shared into
+          // everyone's bổ trợ pool; use a neutral label so the clone never
+          // reveals whose set it came from (and hides internal tags like
+          // "4b0-remedial-mika").
+          q.exam?.ownerUserId
+            ? "Bài tập hệ thống"
+            : q.source ||
+              (q.exam?.kind === "official"
+                ? `Trích đề ${schoolObj?.short ?? q.exam?.school?.toUpperCase() ?? ""} ${q.exam?.year || ""}`.trim()
+                : "Bài tập hệ thống");
         return {
           examId: newId,
           num: i + 1,
@@ -366,7 +389,16 @@ export async function spawnEnglishTopicSet(topicId: string, level: string, _user
       subject: "english",
       grade: { in: cfg.grades },
       examId: { not: null },
-      exam: { kind: "official", subject: "english" },
+      // Official English bank PLUS shared "Bài luyện riêng" question content
+      // (any owner). Private exams stay invisible; only the questions are cloned
+      // into topic practice — mirrors the math supplement pool.
+      exam: {
+        subject: "english",
+        OR: [
+          { kind: "official" },
+          { kind: "reference", generated: false, ownerUserId: { not: null } },
+        ],
+      },
     },
     include: { exam: true },
     orderBy: { num: "asc" },
@@ -436,7 +468,16 @@ export async function spawnVietnameseTopicSet(topicId: string, level: string, _u
       subject: "vietnamese",
       grade: { in: cfg.grades },
       examId: { not: null },
-      exam: { kind: "official", subject: "vietnamese" },
+      // Official Vietnamese bank PLUS shared "Bài luyện riêng" question content
+      // (any owner). Private exams stay invisible; only the questions are cloned
+      // into topic practice — mirrors the math supplement pool.
+      exam: {
+        subject: "vietnamese",
+        OR: [
+          { kind: "official" },
+          { kind: "reference", generated: false, ownerUserId: { not: null } },
+        ],
+      },
     },
     include: { exam: true },
     orderBy: { num: "asc" },

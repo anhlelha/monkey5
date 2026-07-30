@@ -37,14 +37,21 @@ export default async function VietnamesePracticePage({ searchParams }: Props) {
   // ── No level → render chooser ───────────────────────────────────────────────
   const levelCfgs = await getLevelConfigs("vietnamese");
 
-  // Count available questions per grade for this topic in the official bank.
+  // Count available questions per grade for this topic: official bank PLUS
+  // shared "Bài luyện riêng" content (any owner), matching spawnVietnameseTopicSet.
   const qs = await prisma.question.findMany({
     where: {
       active: true,
       topic,
       subject: "vietnamese",
       examId: { not: null },
-      exam: { kind: "official", subject: "vietnamese" },
+      exam: {
+        subject: "vietnamese",
+        OR: [
+          { kind: "official" },
+          { kind: "reference", generated: false, ownerUserId: { not: null } },
+        ],
+      },
     },
     select: { grade: true },
   });

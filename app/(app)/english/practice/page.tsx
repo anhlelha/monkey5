@@ -37,14 +37,21 @@ export default async function EnglishPracticePage({ searchParams }: Props) {
   // ── No level → render chooser ───────────────────────────────────────────────
   const levelCfgs = await getLevelConfigs("english");
 
-  // Count available questions per grade for this topic in the official bank.
+  // Count available questions per grade for this topic: official bank PLUS
+  // shared "Bài luyện riêng" content (any owner), matching spawnEnglishTopicSet.
   const qs = await prisma.question.findMany({
     where: {
       active: true,
       topic,
       subject: "english",
       examId: { not: null },
-      exam: { kind: "official", subject: "english" },
+      exam: {
+        subject: "english",
+        OR: [
+          { kind: "official" },
+          { kind: "reference", generated: false, ownerUserId: { not: null } },
+        ],
+      },
     },
     select: { grade: true },
   });
