@@ -249,6 +249,7 @@ export interface BankStats {
   official: number;
   mock: number;
   supplement: number;
+  private: number;
   totalActive: number;
   totalInactive: number;
   byTopic: Record<string, number>;
@@ -257,20 +258,30 @@ export interface BankStats {
 export async function getBankStats(subject: "math" | "english" | "vietnamese" = "math"): Promise<BankStats> {
   await requireAdmin();
 
-  const [official, mock, supplement, totalActive, totalInactive, byTopicRows] =
+  const [official, mock, supplement, privateCount, totalActive, totalInactive, byTopicRows] =
     await Promise.all([
       prisma.question.count({
         where: { subject, examId: { not: null }, exam: { kind: "official", generated: false } },
       }),
+      // "Thi thử" (mock) = public đề tham khảo/thi thử only. Private "Bài luyện
+      // riêng" (ownerUserId set) are counted separately below, not as mock.
       prisma.question.count({
         where: {
           subject,
           examId: { not: null },
-          exam: { kind: { in: ["reference", "mixed"] }, generated: false },
+          exam: { kind: { in: ["reference", "mixed"] }, generated: false, ownerUserId: null },
         },
       }),
       prisma.question.count({
         where: { subject, examId: null },
+      }),
+      // "Riêng" = bài luyện riêng giao cho từng học sinh (private reference exams).
+      prisma.question.count({
+        where: {
+          subject,
+          examId: { not: null },
+          exam: { kind: "reference", generated: false, ownerUserId: { not: null } },
+        },
       }),
       prisma.question.count({
         where: {
@@ -310,7 +321,7 @@ export async function getBankStats(subject: "math" | "english" | "vietnamese" = 
     byTopic[row.topic] = row._count.id;
   }
 
-  return { official, mock, supplement, totalActive, totalInactive, byTopic };
+  return { official, mock, supplement, private: privateCount, totalActive, totalInactive, byTopic };
 }
 
 // ─── Bank: List questions ─────────────────────────────────────────────────────
@@ -323,7 +334,7 @@ export interface BankRow {
   grade: string;
   stem: string;
   active: boolean;
-  source: "official" | "mock" | "supplement";
+  source: "official" | "mock" | "supplement" | "private";
   examYear: string | null;
   examSchool: string | null;
 }
@@ -336,7 +347,7 @@ export interface BankPage {
 }
 
 export interface BankFilters {
-  source?: "official" | "mock" | "supplement" | "all";
+  source?: "official" | "mock" | "supplement" | "private" | "all";
   topic?: string;
   grade?: string;
   q?: string;
@@ -361,7 +372,12 @@ export async function getBankQuestions(filters: BankFilters): Promise<BankPage> 
   } else if (filters.source === "mock") {
     where = {
       examId: { not: null },
-      exam: { kind: { in: ["reference", "mixed"] }, generated: false },
+      exam: { kind: { in: ["reference", "mixed"] }, generated: false, ownerUserId: null },
+    };
+  } else if (filters.source === "private") {
+    where = {
+      examId: { not: null },
+      exam: { kind: "reference", generated: false, ownerUserId: { not: null } },
     };
   } else if (filters.source === "supplement") {
     where = {
@@ -391,7 +407,7 @@ export async function getBankQuestions(filters: BankFilters): Promise<BankPage> 
     prisma.question.count({ where }),
     prisma.question.findMany({
       where,
-      include: { exam: { select: { kind: true, generated: true, year: true, school: true } } },
+      include: { exam: { select: { kind: true, generated: true, year: true, school: true, ownerUserId: true } } },
       orderBy: [{ examId: "asc" }, { num: "asc" }],
       skip,
       take: pageSize,
@@ -399,9 +415,11 @@ export async function getBankQuestions(filters: BankFilters): Promise<BankPage> 
   ]);
 
   const rows: BankRow[] = questions.map((q) => {
-    const source: "official" | "mock" | "supplement" =
+    const source: "official" | "mock" | "supplement" | "private" =
       q.examId === null
         ? "supplement"
+        : q.exam?.ownerUserId
+        ? "private"
         : q.exam?.kind === "reference" || q.exam?.kind === "mixed"
         ? "mock"
         : "official";
@@ -439,7 +457,7 @@ export interface QuestionDetail {
   correct: string | null;
   modelAnswer: string | null;
   figure: string | null;
-  source: "official" | "mock" | "supplement";
+  source: "official" | "mock" | "supplement" | "private";
   examSchool: string | null;
   examYear: string | null;
   examKind: string | null;
@@ -451,7 +469,7 @@ export async function getQuestionDetail(id: string): Promise<QuestionDetail> {
   const q = await prisma.question.findUnique({
     where: { id },
     include: {
-      exam: { select: { school: true, year: true, kind: true, generated: true } },
+      exam: { select: { school: true, year: true, kind: true, generated: true, ownerUserId: true } },
     },
   });
 
@@ -467,9 +485,11 @@ export async function getQuestionDetail(id: string): Promise<QuestionDetail> {
     parsedOptions = [];
   }
 
-  const source: "official" | "mock" | "supplement" =
+  const source: "official" | "mock" | "supplement" | "private" =
     q.examId === null
       ? "supplement"
+      : q.exam?.ownerUserId
+      ? "private"
       : q.exam?.kind === "reference" || q.exam?.kind === "mixed"
       ? "mock"
       : "official";

@@ -8,11 +8,15 @@ import type { QuestionDetail } from "./actions";
 const SOURCE_LABELS: Record<string, string> = {
   official: "Chính thức",
   mock: "Thi thử",
+  supplement: "Bổ trợ",
+  private: "Riêng",
 };
 
 const SOURCE_TONES: Record<string, string> = {
   official: "solid",
   mock: "amber",
+  supplement: "green",
+  private: "accent",
 };
 
 const TYPE_LABELS: Record<string, string> = {

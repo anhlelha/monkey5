@@ -32,12 +32,14 @@ const SOURCE_LABELS: Record<string, string> = {
   official: "Chính thức",
   mock: "Thi thử",
   supplement: "Bổ trợ",
+  private: "Riêng",
 };
 
 const SOURCE_TONES: Record<string, string> = {
   official: "solid",
   mock: "amber",
   supplement: "green",
+  private: "accent",
 };
 
 const GRADE_OPTIONS = [
@@ -133,11 +135,12 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
   return (
     <div className="col" style={{ gap: 20 }}>
       {/* ── Stat cards ── */}
-      <div className="grid cols-4">
+      <div className="grid cols-5">
         {[
           { k: "Chính thức", v: stats.official, tone: "solid" },
           { k: "Thi thử", v: stats.mock, tone: "amber" },
           { k: "Bổ trợ", v: stats.supplement, tone: "green" },
+          { k: "Riêng", v: stats.private, tone: "accent" },
           { k: "Đang bật / tắt", v: `${stats.totalActive} / ${stats.totalInactive}`, tone: "" },
         ].map((s) => (
           <Card key={s.k} tight>
@@ -181,6 +184,7 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
             <option value="official">Chính thức</option>
             <option value="mock">Thi thử</option>
             <option value="supplement">Bổ trợ</option>
+            <option value="private">Riêng</option>
           </select>
 
           <select
