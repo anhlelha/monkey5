@@ -2,7 +2,10 @@
  * Seed an English "Bài thầy giao" (private remedial set) for student mika —
  * the English counterpart of scripts/seed-remedial-mika.ts.
  *
- * Source: public/ref_exam/English/Bài thêm/Test_1_Answer_Key.pdf ("TEST 1").
+ * Sources (public/ref_exam/English/Bài thêm/):
+ *   - Test_1_Answer_Key.pdf         → "TEST 1"
+ *   - Test_4_K5_Answer_Key.docx     → "TEST 4 — K5"
+ * Multi-test: seeds every entry in the TESTS array (one private Exam each).
  *
  * Faithful to the paper:
  *   - Section rubrics (câu dẫn đề) are stored in Exam.sections ({num,header})
@@ -71,6 +74,18 @@ interface Passage {
 interface SectionHeader {
   num: number; // header shown ABOVE the question with this num
   header: string;
+}
+
+// One private English test = one Exam. mika now has more than one ("thầy giao"),
+// so this script seeds an array of them (deterministic id `rmd-<userId>-<key>`).
+interface TestDef {
+  key: string; // exam id suffix, e.g. "en-test1"
+  title: string;
+  minutes: number;
+  position: number; // order on /luyen-rieng
+  sections: SectionHeader[];
+  passages: Passage[];
+  questions: RQ[];
 }
 
 // ─── Section headers (verbatim rubrics from the paper) ─────────────────────────
@@ -422,34 +437,369 @@ const QUESTIONS: RQ[] = [
     modelAnswer: "Air pollution is a serious problem in many big cities." },
 ];
 
-const EXAM_KEY = "en-test1";
-const EXAM_TITLE = "TEST 1 — Tiếng Anh (thầy giao)";
-const EXAM_MINUTES = 60;
+// ─── TEST 4 (K5) ───────────────────────────────────────────────────────────
+// Source: public/ref_exam/English/Bài thêm/Test_4_K5_Answer_Key.docx
+const T4_SECTIONS: SectionHeader[] = [
+  { num: 1, header: "I. PHONETICS — 1.1. Choose the word whose main stress is different from the others." },
+  { num: 4, header: "1.2. Choose the word whose underlined part is differently pronounced from the others." },
+  { num: 6, header: "II. READING COMPREHENSION — 2.1. Choose the word or phrase which best completes each blank in the following passage." },
+  { num: 16, header: "2.2. Read the following passage and mark the letter A, B, C, or D to indicate the correct answer to each of the questions." },
+  { num: 21, header: "III. GRAMMAR AND VOCABULARY — 3.1. Choose the correct answer to each of the following questions." },
+  { num: 31, header: "3.2. Synonyms & Antonyms — (a) Choose the word(s) CLOSEST in meaning to the underlined word(s) in each of the following questions." },
+  { num: 33, header: "(b) Choose the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following questions." },
+  { num: 35, header: "3.3. Conversation — Choose the most suitable response to complete each of the following exchanges." },
+  { num: 37, header: "3.4. Give the correct form of the given words." },
+  { num: 41, header: "IV. WRITING — 4.1. Rewrite the sentences without changing their meaning, beginning as shown." },
+  { num: 46, header: "4.2. Build complete sentences with the given words." },
+];
 
-async function main(): Promise<void> {
-  // 1. Resolve owner (create minimal User if mika hasn't signed in yet).
-  let owner = await prisma.user.findUnique({ where: { email: OWNER_EMAIL } });
-  if (!owner) {
-    owner = await prisma.user.create({
-      data: { email: OWNER_EMAIL, name: OWNER_NAME, role: "student", grade: "Lớp 5" },
-    });
-    console.log(`  created User for ${OWNER_EMAIL} (id=${owner.id})`);
-  } else {
-    console.log(`  owner ${OWNER_EMAIL} (id=${owner.id})`);
-  }
+const T4_PASSAGES: Passage[] = [
+  {
+    ref: "myhome",
+    title: "My home is in the air",
+    kind: "cloze",
+    body:
+      "My home is in the air. I do an enormous amount of travelling. It is a fast life and (1) ___ of " +
+      "work, but I like it and that is the only way (2) ___ me. Everything is tiring — music, travelling — " +
+      "but what can I do? I am not (3) ___ to complaining. It is hard to imagine now (4) ___ I will ever be " +
+      "very long in one place. My home town is on the Caspian Sea. There is sea, wind, sun, and (5) ___ " +
+      "many tourists and hotels. I have my own flat with four or five rooms, but I am seldom there. If I am " +
+      "there for a day or two, I prefer to (6) ___ with my mother and grandmother. They live in a small " +
+      "house, (7) ___ it is very comfortable and my mother cooks for me. I like good, simple food. I have " +
+      "no wife, no brothers or sisters and my father (8) ___ when I was seven. He was an engineer and I " +
+      "don't (9) ___ him very well. He liked music very much and wanted me to (10) ___ a musician.",
+  },
+  {
+    ref: "thanksgiving",
+    title: "Thanksgiving",
+    kind: "article",
+    body:
+      "Thanksgiving is celebrated in the US on the fourth Thursday in November. For many Americans, it is " +
+      "the most important holiday apart from Christmas. Schools, offices and most businesses close for " +
+      "Thanksgiving, and many people make the whole weekend a vacation. Thanksgiving is associated with " +
+      "the time when Europeans first came to North America. In 1620, the ship the Mayflower arrived, " +
+      "bringing about 150 people who today are usually called Pilgrims. They arrived at the beginning of a " +
+      "very hard winter and could not find enough to eat, so many of them died. But in the following " +
+      "summer, Native Americans showed them what foods were safe to eat, so that they could save food for " +
+      "the next winter. They held a big celebration to thank God and the Native Americans for the fact " +
+      "that they had survived.\n\n" +
+      "Today people celebrate Thanksgiving to remember these early days. The most important part of the " +
+      "celebration is a traditional dinner with foods that come from North America. The meal includes " +
+      "turkey, sweet potatoes (also called yams) and cranberries, which are made into a kind of sauce or " +
+      "jelly. The turkey is filled with stuffing or dressing, and many families have their own special " +
+      "recipe. Dessert is pumpkin made into a pie. On Thanksgiving, there are special television programs " +
+      "and sports events. In New York there is the Macy's Thanksgiving Day Parade, when a long line of " +
+      "people wearing fancy costumes march through the streets with large balloons in the shape of " +
+      "imaginary characters. Thanksgiving is considered the beginning of the Christmas period, and the " +
+      "next day many people go out to shop for Christmas presents.",
+  },
+];
 
-  const examId = `rmd-${owner.id}-${EXAM_KEY}`;
-  const sectionsJson = JSON.stringify(SECTIONS);
+const T4_QUESTIONS: RQ[] = [
+  // 1.1 STRESS (en-stress)
+  { type: "mcq", topic: "en-stress", skill: "pron", grade: "A2", stem: "",
+    options: ["solar", "image", "danger", "oasis"], correct: "D",
+    modelAnswer: "D — oasis trọng âm âm tiết 2 (o·A·sis); solar, image, danger trọng âm âm tiết 1." },
+  { type: "mcq", topic: "en-stress", skill: "pron", grade: "A2", stem: "",
+    options: ["reference", "interview", "government", "understand"], correct: "D",
+    modelAnswer: "D — understand trọng âm âm tiết 3 (un·der·STAND); ba từ còn lại trọng âm âm tiết 1." },
+  { type: "mcq", topic: "en-stress", skill: "pron", grade: "B1", stem: "",
+    options: ["scholarship", "develop", "equipment", "discourage"], correct: "A",
+    modelAnswer: "A — scholarship trọng âm âm tiết 1; develop, equipment, discourage trọng âm âm tiết 2." },
 
-  // 2. Upsert the private English Exam (NOT delete → keep Attempt history).
+  // 1.2 PRONUNCIATION — underlined part via u()
+  { type: "mcq", topic: "en-phon", skill: "pron", grade: "A2", stem: "",
+    options: ["tou" + u("gh"), "rou" + u("gh"), "throu" + u("gh"), "enou" + u("gh")], correct: "C",
+    modelAnswer: "C — through có \"gh\" câm (không phát âm); tough, rough, enough có \"gh\" = /f/." },
+  { type: "mcq", topic: "en-phon", skill: "pron", grade: "B1", stem: "",
+    options: ["ex" + u("h") + "ibition", u("h") + "oliday", "child" + u("h") + "ood", u("h") + "ilarious"], correct: "A",
+    modelAnswer: "A — exhibition có \"h\" câm; holiday, childhood, hilarious có \"h\" = /h/." },
+
+  // 2.1 CLOZE — passage "myhome" (en-read)
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "myhome",
+    stem: "Điền vào chỗ trống (1):", options: ["most", "full", "complete", "more"], correct: "B",
+    modelAnswer: "B (full) — a fast life and full of work (đầy ắp công việc)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "myhome",
+    stem: "Điền vào chỗ trống (2):", options: ["for", "to", "in", "by"], correct: "A",
+    modelAnswer: "A (for) — the only way for me (cách duy nhất đối với tôi)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "myhome",
+    stem: "Điền vào chỗ trống (3):", options: ["wanted", "taken", "used", "known"], correct: "C",
+    modelAnswer: "C (used) — be used to + V-ing (quen với)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "myhome",
+    stem: "Điền vào chỗ trống (4):", options: ["and", "so", "while", "that"], correct: "D",
+    modelAnswer: "D (that) — imagine that... (hình dung rằng)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "myhome",
+    stem: "Điền vào chỗ trống (5):", options: ["far", "too", "much", "more"], correct: "B",
+    modelAnswer: "B (too) — too many tourists (quá nhiều)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "myhome",
+    stem: "Điền vào chỗ trống (6):", options: ["stay", "go", "do", "spend"], correct: "A",
+    modelAnswer: "A (stay) — stay with somebody (ở cùng ai)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "myhome",
+    stem: "Điền vào chỗ trống (7):", options: ["but", "since", "even", "which"], correct: "A",
+    modelAnswer: "A (but) — a small house, but it is very comfortable (tương phản)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "myhome",
+    stem: "Điền vào chỗ trống (8):", options: ["killed", "gone", "passed", "died"], correct: "D",
+    modelAnswer: "D (died) — my father died (nội động từ; 'passed' cần 'away')." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "myhome",
+    stem: "Điền vào chỗ trống (9):", options: ["know", "remember", "remind", "see"], correct: "B",
+    modelAnswer: "B (remember) — I don't remember him very well (nhớ)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "myhome",
+    stem: "Điền vào chỗ trống (10):", options: ["become", "turn", "develop", "grow"], correct: "A",
+    modelAnswer: "A (become) — wanted me to become a musician (trở thành)." },
+
+  // 2.2 READING COMPREHENSION — passage "thanksgiving" (en-read)
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "thanksgiving",
+    stem: "According to the passage, Pilgrims are",
+    options: [
+      "native Americans who live in North America",
+      "people who left their home and went to live in North America in the 1620s",
+      "people who traveled to America by ships",
+      "trips that religious people make to a holy place",
+    ], correct: "B",
+    modelAnswer: "B — Pilgrims là những người rời quê hương đến sống ở Bắc Mỹ vào những năm 1620." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "thanksgiving",
+    stem: "Which of the following is NOT true?",
+    options: [
+      "In the US, Thanksgiving is not a national holiday; it's a religious holiday",
+      "Christmas comes less than a month after Thanksgiving",
+      "The Macy's Thanksgiving Day Parade is colourful and exciting",
+      "Thanksgiving was originally celebrated by the first Europeans in North America to thank God for their survival",
+    ], correct: "A",
+    modelAnswer: "A — SAI: trường học, công sở đều đóng cửa nên nó là ngày nghỉ toàn quốc, không phải chỉ là lễ tôn giáo." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "thanksgiving",
+    stem: "In the United States, Thanksgiving is",
+    options: [
+      "celebrated as a public holiday",
+      "a religious celebration held by Christians only",
+      "apart from Christmas",
+      "more important than Christmas",
+    ], correct: "A",
+    modelAnswer: "A — được tổ chức như một ngày lễ công cộng (trường học/công sở đóng cửa)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "thanksgiving",
+    stem: "All of the following statements are mentioned EXCEPT",
+    options: [
+      "People usually have traditional dinners on Thanksgiving",
+      "There are lots of entertainments on Thanksgiving",
+      "People celebrate Thanksgiving to thank God",
+      "People go to churches for religious services on Thanksgiving",
+    ], correct: "D",
+    modelAnswer: "D — bài không nhắc đến việc đi nhà thờ làm lễ." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "thanksgiving",
+    stem: "Which of the following statements is NOT true about Thanksgiving?",
+    options: [
+      "People go out to shop for Christmas presents",
+      "People wear coloured costumes marching through the streets",
+      "Turkey, yams and pumpkin pies are served",
+      "People join in the Macy's Thanksgiving Day Parade",
+    ], correct: "A",
+    modelAnswer: "A — việc đi mua quà Giáng sinh diễn ra vào NGÀY HÔM SAU, không phải trong ngày Lễ Tạ ơn." },
+
+  // 3.1 GRAMMAR (en-gram)
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "A2",
+    stem: "They have just found the couple and their car ___ were swept away during the heavy storm last week.",
+    options: ["that", "which", "whose", "when"], correct: "A",
+    modelAnswer: "A (that) — 'that' thay được cho cả người và vật (the couple and their car)." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "B1",
+    stem: "I was brought ___ in the countryside by my aunt after my parents had passed ___.",
+    options: ["on / over", "for / on", "on / off", "up / away"], correct: "D",
+    modelAnswer: "D (up / away) — bring up (nuôi dạy); pass away (qua đời)." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "B1",
+    stem: "Since I ___ a child, I have liked to solve maths puzzles.",
+    options: ["am", "was", "have been", "had been"], correct: "B",
+    modelAnswer: "B (was) — since + mốc quá khứ (when I was a child)." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "A2",
+    stem: "The zookeeper wanted us ___ near the bars.",
+    options: ["that we didn't put our hands", "don't put our hands", "not putting our hands", "not to put our hands"], correct: "D",
+    modelAnswer: "D (not to put our hands) — want somebody (not) to do something." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "B1",
+    stem: "___ we had planned everything carefully, a lot of things went wrong.",
+    options: ["Because", "Because of", "Despite", "Although"], correct: "D",
+    modelAnswer: "D (Although) — Although + mệnh đề (mặc dù)." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "A2",
+    stem: "No one can predict the future exactly. Things may happen ___.",
+    options: ["expected", "unexpected", "expectedly", "unexpectedly"], correct: "D",
+    modelAnswer: "D (unexpectedly) — trạng từ bổ nghĩa cho happen." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "B1",
+    stem: "It's our responsibility to contribute to ___ our own lives.",
+    options: ["growing", "heightening", "bettering", "increasing"], correct: "C",
+    modelAnswer: "C (bettering) — better = cải thiện (làm cho tốt hơn)." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "A2",
+    stem: "Oliver used to go fishing and ___.",
+    options: ["so did I", "I did not", "so I did", "so did me"], correct: "A",
+    modelAnswer: "A (so did I) — đồng tình khẳng định: So + trợ động từ + S." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "A2",
+    stem: "It would be hard to name areas ___ computers are not being used.",
+    options: ["how", "which", "what", "where"], correct: "D",
+    modelAnswer: "D (where) — trạng từ quan hệ chỉ nơi chốn (areas)." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "B1",
+    stem: "___ he felt so unhappy and lonely.",
+    options: ["Rich as was he", "Rich as he was", "In spite of his being wealth", "Despite his wealthy"], correct: "B",
+    modelAnswer: "B (Rich as he was) — đảo ngữ nhượng bộ: Adj + as + S + be (dù giàu có)." },
+
+  // 3.2 (a) SYNONYMS — closest in meaning (en-synant); underlined target via u()
+  { type: "mcq", topic: "en-synant", skill: "useofenglish", grade: "B1",
+    stem: "Lucy will be " + u("like a dog with two tails") + " if she gets into the team.",
+    options: ["very exhausted", "extremely pleased", "very proud", "extremely dazed"], correct: "B",
+    modelAnswer: "B (extremely pleased) — 'like a dog with two tails' = cực kỳ vui sướng." },
+  { type: "mcq", topic: "en-synant", skill: "useofenglish", grade: "B1",
+    stem: "I'll take the new job whose salary is " + u("fantastic") + ".",
+    options: ["reasonable", "wonderful", "pretty high", "acceptable"], correct: "B",
+    modelAnswer: "B (wonderful) — fantastic = tuyệt vời." },
+
+  // 3.2 (b) ANTONYMS — opposite in meaning (en-synant)
+  { type: "mcq", topic: "en-synant", skill: "useofenglish", grade: "B1",
+    stem: "Our traditions are very " + u("ancient") + " and our people are very proud of them.",
+    options: ["modern", "real", "old", "young"], correct: "A",
+    modelAnswer: "A (modern) — ancient (cổ xưa) trái nghĩa với modern (hiện đại)." },
+  { type: "mcq", topic: "en-synant", skill: "useofenglish", grade: "B1",
+    stem: "It is quite " + u("incredible") + " that he is unaware of such basic facts.",
+    options: ["difficult", "unbelievable", "imaginable", "disappointed"], correct: "C",
+    modelAnswer: "C (imaginable) — incredible (không thể tin) trái nghĩa với imaginable (có thể tưởng tượng/tin được); 'unbelievable' là đồng nghĩa nên loại." },
+
+  // 3.3 CONVERSATION (en-comm)
+  { type: "mcq", topic: "en-comm", skill: "comm", grade: "A2",
+    stem: "Theo: \"Do you mind if I switch the light off?\" Nuttel: \"___\"",
+    options: [
+      "Yes, I mind it, sorry.",
+      "What if I don't mind it?",
+      "I'd rather you didn't, if you don't mind.",
+      "Yes, please do it.",
+    ], correct: "C",
+    modelAnswer: "C — cách từ chối lịch sự lời đề nghị (Tôi mong bạn đừng, nếu không phiền)." },
+  { type: "mcq", topic: "en-comm", skill: "comm", grade: "A2",
+    stem: "Hana: \"The book is really interesting and educational.\" Jenifer: \"___\"",
+    options: [
+      "I'd love it.",
+      "Don't mention it.",
+      "That's nice of you to say so.",
+      "I couldn't agree more.",
+    ], correct: "D",
+    modelAnswer: "D (I couldn't agree more) — hoàn toàn đồng ý với nhận xét." },
+
+  // 3.4 WORD FORMS — give the correct form (en-vocab, fill); keyword bold via b()
+  { type: "fill", topic: "en-vocab", skill: "useofenglish", grade: "A2",
+    stem: "David has been a bit ___ today. " + b("(TROUBLE)"),
+    correct: "troubled", accept: ["troubled"],
+    modelAnswer: "troubled — tính từ — hơi bất ổn/lo lắng." },
+  { type: "fill", topic: "en-vocab", skill: "useofenglish", grade: "A2",
+    stem: "My boss was so angry that he was absolutely ___. " + b("(SPEECH)"),
+    correct: "speechless", accept: ["speechless"],
+    modelAnswer: "speechless — tính từ — không nói nên lời." },
+  { type: "fill", topic: "en-vocab", skill: "useofenglish", grade: "B1",
+    stem: "These clothes are attractive but entirely ___. " + b("(PRACTICE)"),
+    correct: "impractical", accept: ["impractical"],
+    modelAnswer: "impractical — tính từ phủ định — không thực dụng." },
+  { type: "fill", topic: "en-vocab", skill: "useofenglish", grade: "A2",
+    stem: "Thank you for your ___. " + b("(GENEROUS)"),
+    correct: "generosity", accept: ["generosity"],
+    modelAnswer: "generosity — danh từ — sự hào phóng." },
+
+  // 4.1 WRITING — rewrite (en-cwrite, fill/text_set). Stem shows original + lead-in.
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "It took us three hours to open the door.\n→ We ______",
+    correct: "We spent three hours opening the door.",
+    accept: [
+      "We spent three hours opening the door",
+      "spent three hours opening the door",
+      "We spent 3 hours opening the door",
+    ],
+    modelAnswer: "We spent three hours opening the door." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "I don't really like her, even though I admire her achievement.\n→ In spite ______",
+    correct: "In spite of admiring her achievement, I don't really like her.",
+    accept: [
+      "In spite of admiring her achievement, I don't really like her",
+      "In spite of admiring her achievement, I do not really like her",
+      "of admiring her achievement, I don't really like her",
+      "of admiring her achievement, I do not really like her",
+    ],
+    modelAnswer: "In spite of admiring her achievement, I don't really like her." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "My English friend finds using chopsticks difficult.\n→ My English friend isn't ______",
+    correct: "My English friend isn't good at using chopsticks.",
+    accept: [
+      "My English friend isn't good at using chopsticks",
+      "My English friend is not good at using chopsticks",
+      "good at using chopsticks",
+    ],
+    modelAnswer: "My English friend isn't good at using chopsticks." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "\"I've seen the film three times, Mary\", said George.\n→ George told ______",
+    correct: "George told Mary that he had seen the film three times.",
+    accept: [
+      "George told Mary that he had seen the film three times",
+      "George told Mary he had seen the film three times",
+      "Mary that he had seen the film three times",
+      "Mary he had seen the film three times",
+    ],
+    modelAnswer: "George told Mary (that) he had seen the film three times." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "My brother studies now harder than he used to.\n→ My brother ______",
+    correct: "My brother didn't use to study as hard as he does now.",
+    accept: [
+      "My brother didn't use to study as hard as he does now",
+      "My brother did not use to study as hard as he does now",
+      "didn't use to study as hard as he does now",
+      "did not use to study as hard as he does now",
+    ],
+    modelAnswer: "My brother didn't use to study as hard as he does now." },
+
+  // 4.2 WRITING — build meaningful sentences (en-cwrite, fill/text_set)
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
+    stem: "You / not pass / coming exam / unless / work / hard.",
+    correct: "You will not pass the coming exam unless you work hard.",
+    accept: [
+      "You will not pass the coming exam unless you work hard",
+      "You won't pass the coming exam unless you work hard",
+    ],
+    modelAnswer: "You will not pass the coming exam unless you work hard." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
+    stem: "James Watt / Scottish scientist / invent / steam engine.",
+    correct: "James Watt was a Scottish scientist who invented the steam engine.",
+    accept: ["James Watt was a Scottish scientist who invented the steam engine"],
+    modelAnswer: "James Watt was a Scottish scientist who invented the steam engine." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
+    stem: "Sometimes / a country / refuse / take part / the Olympics.",
+    correct: "Sometimes a country refuses to take part in the Olympics.",
+    accept: ["Sometimes a country refuses to take part in the Olympics"],
+    modelAnswer: "Sometimes a country refuses to take part in the Olympics." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
+    stem: "I / apologise / him / not able / arrive / on time.",
+    correct: "I apologised to him for not being able to arrive on time.",
+    accept: [
+      "I apologised to him for not being able to arrive on time",
+      "I apologized to him for not being able to arrive on time",
+    ],
+    modelAnswer: "I apologised to him for not being able to arrive on time." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "Mars / be / 140 million miles / know / red planet.",
+    correct: "Mars, which is 140 million miles away, is known as the red planet.",
+    accept: ["Mars, which is 140 million miles away, is known as the red planet"],
+    modelAnswer: "Mars, which is 140 million miles away, is known as the red planet." },
+];
+
+// ─── All private English tests for mika ──────────────────────────────────────
+const TESTS: TestDef[] = [
+  { key: "en-test1", title: "TEST 1 — Tiếng Anh (thầy giao)", minutes: 60, position: 1,
+    sections: SECTIONS, passages: PASSAGES, questions: QUESTIONS },
+  { key: "en-test4", title: "TEST 4 — K5 · Tiếng Anh (thầy giao)", minutes: 60, position: 2,
+    sections: T4_SECTIONS, passages: T4_PASSAGES, questions: T4_QUESTIONS },
+];
+
+async function seedTest(ownerId: string, test: TestDef): Promise<void> {
+  const examId = `rmd-${ownerId}-${test.key}`;
+  const sectionsJson = JSON.stringify(test.sections);
+
+  // Upsert the private English Exam (NOT delete → keep Attempt history).
   await prisma.exam.upsert({
     where: { id: examId },
     update: {
       subject: "english",
-      title: EXAM_TITLE,
-      minutes: EXAM_MINUTES,
-      qcount: QUESTIONS.length,
+      title: test.title,
+      minutes: test.minutes,
+      qcount: test.questions.length,
       sections: sectionsJson,
+      position: test.position,
       active: true,
       archivedAt: null,
     },
@@ -459,34 +809,34 @@ async function main(): Promise<void> {
       school: "mix",
       kind: "reference",
       year: "Bài thầy giao",
-      title: EXAM_TITLE,
+      title: test.title,
       intro:
         "Bài kiểm tra Tiếng Anh thầy giao riêng. Con làm và điền đáp án vào ô trả lời; " +
         "phần giải thích hiển thị sau khi nộp bài.",
-      minutes: EXAM_MINUTES,
-      qcount: QUESTIONS.length,
+      minutes: test.minutes,
+      qcount: test.questions.length,
       generated: false,
       sections: sectionsJson,
-      ownerUserId: owner.id,
-      position: 1,
+      ownerUserId: ownerId,
+      position: test.position,
       active: true,
     },
   });
 
-  // 3. Passages: replace (not keyed by Attempt.answers), capture ids by ref.
+  // Passages: replace (not keyed by Attempt.answers), capture ids by ref.
   await prisma.passage.deleteMany({ where: { examId } });
   const passageId = new Map<string, string>();
-  for (let i = 0; i < PASSAGES.length; i++) {
-    const p = PASSAGES[i];
+  for (let i = 0; i < test.passages.length; i++) {
+    const p = test.passages[i];
     const row = await prisma.passage.create({
       data: { examId, title: p.title, body: p.body, kind: p.kind, order: i },
     });
     passageId.set(p.ref, row.id);
   }
 
-  // 4. Questions IN PLACE by deterministic id → Attempt.answers survive re-seed.
+  // Questions IN PLACE by deterministic id → Attempt.answers survive re-seed.
   let num = 0;
-  for (const q of QUESTIONS) {
+  for (const q of test.questions) {
     num += 1;
     const qid = `${examId}-q${num}`;
     const answerSchema =
@@ -518,9 +868,28 @@ async function main(): Promise<void> {
     await prisma.question.upsert({ where: { id: qid }, update: data, create: { id: qid, ...data } });
   }
   // Drop trailing questions from a previous longer version.
-  await prisma.question.deleteMany({ where: { examId, num: { gt: QUESTIONS.length } } });
+  await prisma.question.deleteMany({ where: { examId, num: { gt: test.questions.length } } });
 
-  console.log(`\n✓ Done. "${EXAM_TITLE}" — ${QUESTIONS.length} câu / ${PASSAGES.length} ngữ liệu / ${SECTIONS.length} mục cho ${OWNER_EMAIL} (${examId}).`);
+  console.log(`  ✓ "${test.title}" — ${test.questions.length} câu / ${test.passages.length} ngữ liệu / ${test.sections.length} mục (${examId}).`);
+}
+
+async function main(): Promise<void> {
+  // Resolve owner (create minimal User if mika hasn't signed in yet).
+  let owner = await prisma.user.findUnique({ where: { email: OWNER_EMAIL } });
+  if (!owner) {
+    owner = await prisma.user.create({
+      data: { email: OWNER_EMAIL, name: OWNER_NAME, role: "student", grade: "Lớp 5" },
+    });
+    console.log(`  created User for ${OWNER_EMAIL} (id=${owner.id})`);
+  } else {
+    console.log(`  owner ${OWNER_EMAIL} (id=${owner.id})`);
+  }
+
+  for (const test of TESTS) {
+    await seedTest(owner.id, test);
+  }
+
+  console.log(`\n✓ Done. ${TESTS.length} bài Tiếng Anh cho ${OWNER_EMAIL}.`);
 }
 
 main()
