@@ -101,7 +101,7 @@ const BAI: Bai[] = [
   {
     key: "loivan",
     title: "Toán lời văn & suy luận",
-    minutes: 30,
+    minutes: 35,
     questions: [
       { type: "fill", topic: "tuoi", grade: "NC", stem: "Hiện nay tuổi mẹ gấp 4 lần tuổi con. Sau 5 năm nữa tuổi mẹ gấp 3 lần tuổi con. Hỏi mẹ hơn con bao nhiêu tuổi?", correct: "30", num: 30, unit: "tuổi", modelAnswer: "Con $a$, mẹ $4a$. Sau 5 năm: $4a+5=3(a+5)$ → $a=10$. Hiệu $=3a=30$." },
       { type: "fill", topic: "tuoi", grade: "L4", stem: "Bố hơn con 28 tuổi. 3 năm nữa tổng số tuổi hai bố con là 50. Hỏi hiện nay con bao nhiêu tuổi?", correct: "8", num: 8, unit: "tuổi", modelAnswer: "Tổng hiện nay $=50-6=44$. Con $=(44-28):2=8$ (bố 36)." },
