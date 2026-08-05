@@ -5,6 +5,7 @@
  * Sources (public/ref_exam/English/Bài thêm/):
  *   - Test_1_Answer_Key.pdf         → "TEST 1"
  *   - Test_4_K5_Answer_Key.docx     → "TEST 4 — K5"
+ *   - Test_5_K5_Answer_Key.docx     → "TEST 5 — K5"
  * Multi-test: seeds every entry in the TESTS array (one private Exam each).
  *
  * Faithful to the paper:
@@ -778,12 +779,370 @@ const T4_QUESTIONS: RQ[] = [
     modelAnswer: "Mars, which is 140 million miles away, is known as the red planet." },
 ];
 
+// ─── TEST 5 (K5) ───────────────────────────────────────────────────────────
+// Source: public/ref_exam/English/Bài thêm/Test_5_K5_Answer_Key.docx
+const T5_SECTIONS: SectionHeader[] = [
+  { num: 1, header: "I. PHONETICS — 1.1. Choose the word whose main stress is different from the others." },
+  { num: 3, header: "1.2. Choose the word whose underlined part is differently pronounced from the others." },
+  { num: 6, header: "II. READING COMPREHENSION — 2.1. Read the following passage and mark the letter A, B, C, or D to indicate the correct answer to each of the questions." },
+  { num: 11, header: "2.2. Read the following passage and mark the letter A, B, C, or D to indicate the correct word(s) for each of the blanks." },
+  { num: 21, header: "III. GRAMMAR AND VOCABULARY — 3.1. Choose the correct answer to each of the following questions." },
+  { num: 31, header: "3.2. Give the correct form of the words in brackets." },
+  { num: 35, header: "3.3. Synonyms & Antonyms — (a) Choose the word(s) CLOSEST in meaning to the underlined word(s) in each of the following questions." },
+  { num: 37, header: "(b) Choose the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following questions." },
+  { num: 39, header: "3.4. Conversation — Choose the most suitable response to complete each of the following exchanges." },
+  { num: 41, header: "IV. WRITING — 4.1. Use each set of words and phrases, with all necessary changes and additions, to make a complete sentence (together they form a paragraph)." },
+  { num: 51, header: "4.2. Rewrite each sentence so that it is nearest in meaning to the sentence printed before it." },
+];
+
+const T5_PASSAGES: Passage[] = [
+  {
+    ref: "whales",
+    title: "Whales",
+    kind: "article",
+    body:
+      "Whales are the largest animals in the world, and the gentlest creatures we know. Although the " +
+      "whale is very huge, it is not hindered at all by its size when it is in the water. Whales have " +
+      "tails that end like flippers. With just a gentle flick, it can propel itself forward. The skin of a " +
+      "whale is so smooth that it does not create any friction that can slow the whale down. A whale's " +
+      "breathing hole is located on the top of its head, so it can breathe without having to completely " +
+      "push its head out of the water. Whales are protected from the cold seawater by body fat that is " +
+      "called blubber.\n\n" +
+      "Whales live in the ocean but, in terms of behaviours, they are more similar to humans than fish. " +
+      "They live in family groups and they even travel in groups when they have to migrate from cooler to " +
+      "warmer waters. The young stay with their parents for as long as fifteen years. Whales are known not " +
+      "to desert the ill or injured members; instead, they cradle them.\n\n" +
+      "When whales are in danger, there are people who go to great lengths to help them. One such case " +
+      "occurred in 1988, when three young whales were trapped in the sea. It was close to winter and the " +
+      "sea had begun to freeze over. Whales are mammals that require oxygen from the air, so the frozen " +
+      "ice was a great danger to them. All they had then was a tiny hole in the ice for them to breathe " +
+      "through. Volunteers from all over soon turned up to help these creatures. They cut holes in the ice " +
+      "to provide more breathing holes for the whales. These holes would also serve as guides for the " +
+      "whales so that they could swim to warmer waters.",
+  },
+  {
+    ref: "cycling",
+    title: "Cycling",
+    kind: "cloze",
+    body:
+      "Along (1) ___ jogging and swimming, cycling is one of the best all-round forms of exercise. It can " +
+      "help to increase your strength and energy, giving you more (2) ___ muscles and a stronger heart. " +
+      "But increasing your strength is not the only advantage of cycling. Because you are not (3) ___ the " +
+      "weight of your body on your feet, it is a good form of exercise for people with painful feet or " +
+      "backs. However, as with all forms of exercise, it is important to (4) ___ slowly and build up " +
+      "gently. Doing too much too quickly can damage muscles that are not (5) ___ to working. If you have " +
+      "any doubts about taking (6) ___ cycling for health reasons, talk to your doctor and ask his or her " +
+      "advice. Ideally you should be cycling at (7) ___ two or three times a week. For the exercise to be " +
+      "doing you (8) ___, you should get a little out of breath. Don't worry that if you begin to lose " +
+      "your breath, it could be dangerous and there must be something wrong with your heart. This is " +
+      "simply not true; shortness of breath (9) ___ that the exercise is having the right effect. However, " +
+      "if you find you are in pain, (10) ___ you should stop and take a rest.",
+  },
+];
+
+const T5_QUESTIONS: RQ[] = [
+  // 1.1 STRESS (en-stress)
+  { type: "mcq", topic: "en-stress", skill: "pron", grade: "A2", stem: "",
+    options: ["mosquito", "document", "literature", "business"], correct: "A",
+    modelAnswer: "A — mosquito trọng âm âm tiết 2 (mos·QUI·to); document, literature, business trọng âm âm tiết 1." },
+  { type: "mcq", topic: "en-stress", skill: "pron", grade: "B1", stem: "",
+    options: ["magazine", "preference", "cigarette", "engineer"], correct: "B",
+    modelAnswer: "B — preference trọng âm âm tiết 1 (PREF·er·ence); magazine, cigarette, engineer trọng âm ở âm tiết cuối." },
+
+  // 1.2 PRONUNCIATION — underlined part via u()
+  { type: "mcq", topic: "en-phon", skill: "pron", grade: "A2", stem: "",
+    options: [u("h") + "ealthy", "w" + u("h") + "om", u("h") + "onest", u("h") + "eal"], correct: "C",
+    modelAnswer: "C — honest có \"h\" câm (không phát âm); healthy, whom, heal có \"h\" = /h/." },
+  { type: "mcq", topic: "en-phon", skill: "pron", grade: "B1", stem: "",
+    options: ["amuse" + u("s"), "repeat" + u("s"), "attack" + u("s"), "cough" + u("s")], correct: "A",
+    modelAnswer: "A — amuses có \"-s\" = /ɪz/ (sau âm /z/); repeats, attacks, coughs có \"-s\" = /s/." },
+  { type: "mcq", topic: "en-phon", skill: "pron", grade: "B1", stem: "",
+    options: ["stoma" + u("ch"), u("ch") + "ange", "wat" + u("ch"), u("ch") + "urch"], correct: "A",
+    modelAnswer: "A — stomach có \"ch\" = /k/; change, watch, church có \"ch\" = /tʃ/." },
+
+  // 2.1 READING — passage "whales" (en-read)
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "whales",
+    stem: "Which of the following best describes the main idea of this passage?",
+    options: [
+      "Whales as the only animals to live in warm water.",
+      "Successful attempts to rescue whales all over the world.",
+      "Some remarkable similarities of whales to humans.",
+      "Whales as the largest, gentlest but vulnerable creatures.",
+    ], correct: "D",
+    modelAnswer: "D — cả bài mô tả cá voi là loài lớn nhất, hiền lành nhưng dễ bị tổn thương." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "whales",
+    stem: "Whales can move easily in water thanks to their",
+    options: ["tail and blubber", "skin and head", "size and head", "tail and skin"], correct: "D",
+    modelAnswer: "D (tail and skin) — đuôi đẩy tới, da trơn không tạo ma sát." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "whales",
+    stem: "According to the passage, why was the frozen ice on the sea surface a danger to whales?",
+    options: [
+      "Because they couldn't eat when the weather was too cold.",
+      "Because whales couldn't breathe without sufficient oxygen.",
+      "Because they couldn't swim in icy cold water.",
+      "Because the water was too cold for them as they were warm-blooded.",
+    ], correct: "B",
+    modelAnswer: "B — cá voi là động vật có vú cần oxy từ không khí; băng bịt lỗ thở." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "whales",
+    stem: "According to paragraph 2, the author mentions all of the following to show that whales \"are more similar to humans\" EXCEPT",
+    options: [
+      "the young stay with their parents for almost fifteen years",
+      "they do not migrate from cooler to warmer waters",
+      "they do not desert the ill or injured members",
+      "they live in family groups and travel in groups",
+    ], correct: "B",
+    modelAnswer: "B — thực tế cá voi CÓ di cư từ vùng nước lạnh sang ấm, nên đây không phải điểm giống người được nêu." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "A2", passageRef: "whales",
+    stem: "The word \"" + b("tiny") + "\" in paragraph 3 probably means",
+    options: ["very deep", "very ugly", "very small", "very fat"], correct: "C",
+    modelAnswer: "C (very small) — tiny = rất nhỏ." },
+
+  // 2.2 CLOZE — passage "cycling" (en-read)
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "cycling",
+    stem: "Điền vào chỗ trống (1):", options: ["on", "at", "by", "with"], correct: "D",
+    modelAnswer: "D (with) — along with = cùng với." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "cycling",
+    stem: "Điền vào chỗ trống (2):", options: ["confident", "efficient", "better", "reliable"], correct: "B",
+    modelAnswer: "B (efficient) — cơ bắp hoạt động hiệu quả hơn." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "cycling",
+    stem: "Điền vào chỗ trống (3):", options: ["bringing", "carrying", "lifting", "arising"], correct: "B",
+    modelAnswer: "B (carrying) — not carrying the weight of your body (không dồn trọng lượng)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "cycling",
+    stem: "Điền vào chỗ trống (4):", options: ["make", "take", "start", "do"], correct: "C",
+    modelAnswer: "C (start) — start slowly and build up gently (bắt đầu chậm)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "cycling",
+    stem: "Điền vào chỗ trống (5):", options: ["have", "ought", "used", "made"], correct: "C",
+    modelAnswer: "C (used) — be used to + V-ing (quen với)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "cycling",
+    stem: "Điền vào chỗ trống (6):", options: ["in", "up", "out", "on"], correct: "B",
+    modelAnswer: "B (up) — take up cycling (bắt đầu chơi/tập)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "cycling",
+    stem: "Điền vào chỗ trống (7):", options: ["best", "all", "least", "times"], correct: "C",
+    modelAnswer: "C (least) — at least (ít nhất)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "cycling",
+    stem: "Điền vào chỗ trống (8):", options: ["good", "well", "nice", "fine"], correct: "A",
+    modelAnswer: "A (good) — do somebody good (có ích cho ai)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "cycling",
+    stem: "Điền vào chỗ trống (9):", options: ["tells", "shows", "points", "appears"], correct: "B",
+    modelAnswer: "B (shows) — shortness of breath shows that... (cho thấy)." },
+  { type: "mcq", topic: "en-read", skill: "reading", grade: "B1", passageRef: "cycling",
+    stem: "Điền vào chỗ trống (10):", options: ["then", "though", "even", "yet"], correct: "A",
+    modelAnswer: "A (then) — if..., then you should stop (thì)." },
+
+  // 3.1 GRAMMAR (en-gram)
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "B1",
+    stem: "This room ___ since I was born.",
+    options: ["has been painted", "was painted", "painted", "has painted"], correct: "A",
+    modelAnswer: "A (has been painted) — hiện tại hoàn thành bị động với 'since'." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "A2",
+    stem: "\"Have you seen the Titanic yet?\" \"No, I haven't. I ___ it next Saturday.\"",
+    options: ["would see", "will see", "am going to see", "see"], correct: "C",
+    modelAnswer: "C (am going to see) — kế hoạch đã định (next Saturday)." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "A2",
+    stem: "After ___ dinner, I often watch TV.",
+    options: ["ate", "eat", "eaten", "eating"], correct: "D",
+    modelAnswer: "D (eating) — after + V-ing." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "B1",
+    stem: "Tom said that he ___ his motorbike the day before.",
+    options: ["had lost", "lost", "has lost", "lose"], correct: "A",
+    modelAnswer: "A (had lost) — quá khứ hoàn thành trong câu tường thuật ('the day before')." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "B1",
+    stem: "Overwork is ___ to cause increased stress.",
+    options: ["likely", "possible", "possibly", "obviously"], correct: "A",
+    modelAnswer: "A (likely) — be likely to do something." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "B1",
+    stem: "The husband is ill in ___ hospital, so she has to stay at ___ home to look after ___ children instead of going to work.",
+    options: ["0 / 0 / 0", "the / the / the", "0 / 0 / the", "0 / the / the"], correct: "C",
+    modelAnswer: "C (0 / 0 / the) — in hospital, at home (không mạo từ); the children (xác định)." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "A2",
+    stem: "The beautiful woman has a busy ___ life.",
+    options: ["society", "socialize", "social", "socializing"], correct: "C",
+    modelAnswer: "C (social) — social life (đời sống xã hội)." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "A2",
+    stem: "English has become the main language of ___.",
+    options: ["communication", "communicate", "communicant", "communicative"], correct: "A",
+    modelAnswer: "A (communication) — danh từ sau 'of'." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "A2",
+    stem: "I spoke very slowly ___ he didn't understand English very well.",
+    options: ["to", "so that", "because", "so"], correct: "C",
+    modelAnswer: "C (because) — chỉ nguyên nhân." },
+  { type: "mcq", topic: "en-gram", skill: "useofenglish", grade: "B1",
+    stem: "Can we find ___ at the hotel for the night?",
+    options: ["house", "room", "accommodation", "stay"], correct: "C",
+    modelAnswer: "C (accommodation) — chỗ ở (danh từ không đếm được)." },
+
+  // 3.2 WORD FORMS — give the correct form (en-vocab, fill); keyword bold via b()
+  { type: "fill", topic: "en-vocab", skill: "useofenglish", grade: "B1",
+    stem: "It is ___ for our students to make mistakes in English. " + b("(AVOID)"),
+    correct: "unavoidable", accept: ["unavoidable"],
+    modelAnswer: "unavoidable — tính từ — không thể tránh khỏi." },
+  { type: "fill", topic: "en-vocab", skill: "useofenglish", grade: "A2",
+    stem: "Teenagers are now ___ dressed. " + b("(FASHION)"),
+    correct: "fashionably", accept: ["fashionably"],
+    modelAnswer: "fashionably — trạng từ — ăn mặc thời trang." },
+  { type: "fill", topic: "en-vocab", skill: "useofenglish", grade: "B1",
+    stem: "Novelists are among the most ___ people in the world. " + b("(IMAGINE)"),
+    correct: "imaginative", accept: ["imaginative"],
+    modelAnswer: "imaginative — tính từ — giàu trí tưởng tượng." },
+  { type: "fill", topic: "en-vocab", skill: "useofenglish", grade: "A2",
+    stem: "___ is sometimes a very bad habit. " + b("(CURIOUS)"),
+    correct: "Curiosity", accept: ["Curiosity"],
+    modelAnswer: "Curiosity — danh từ — sự tò mò." },
+
+  // 3.3 (a) SYNONYMS — closest in meaning (en-synant); underlined target via u()
+  { type: "mcq", topic: "en-synant", skill: "useofenglish", grade: "B1",
+    stem: "If people's interference with the environment decreases, more species will survive and produce " + u("offspring") + ".",
+    options: ["result", "descent", "children", "ancestor"], correct: "C",
+    modelAnswer: "C (children) — offspring = con cái/hậu duệ." },
+  { type: "mcq", topic: "en-synant", skill: "useofenglish", grade: "B1",
+    stem: "Hunting for meat and burning forests for soil cause " + u("destruction") + " to wildlife.",
+    options: ["protection", "damage", "organization", "contamination"], correct: "B",
+    modelAnswer: "B (damage) — destruction = sự phá hủy/tàn phá." },
+
+  // 3.3 (b) ANTONYMS — opposite in meaning (en-synant)
+  { type: "mcq", topic: "en-synant", skill: "useofenglish", grade: "B1",
+    stem: "Love is supposed to follow marriage, not " + u("precede") + " it.",
+    options: ["take out", "find out", "happen", "come after"], correct: "D",
+    modelAnswer: "D (come after) — precede (đi trước) trái nghĩa với come after (đến sau)." },
+  { type: "mcq", topic: "en-synant", skill: "useofenglish", grade: "B1",
+    stem: "The city of Hue is very " + u("famous") + " for its Royal Tombs.",
+    options: ["infamous", "popular", "little known", "notorious"], correct: "C",
+    modelAnswer: "C (little known) — famous (nổi tiếng) trái nghĩa với little known (ít người biết); infamous/notorious = tai tiếng nên loại." },
+
+  // 3.4 CONVERSATION (en-comm)
+  { type: "mcq", topic: "en-comm", skill: "comm", grade: "A2",
+    stem: "Tim: \"Make yourself at home.\" Mai: \"___\"",
+    options: [
+      "Yes. Can I help you?",
+      "Thanks! Same to you.",
+      "Not at all. Don't mention it.",
+      "That's very kind. Thank you.",
+    ], correct: "D",
+    modelAnswer: "D — đáp lại lời mời tự nhiên như ở nhà một cách lịch sự." },
+  { type: "mcq", topic: "en-comm", skill: "comm", grade: "A2",
+    stem: "Alusa: \"I got 8.0/9.0 for the IELTS test!\" Liu: \"___\"",
+    options: [
+      "It's OK. I'm proud of you.",
+      "Good for you. Thank you.",
+      "Well done, son! I'm very proud of you.",
+      "You can do it.",
+    ], correct: "C",
+    modelAnswer: "C — lời chúc mừng phù hợp nhất trước thành tích ('You can do it' dùng để động viên trước, không hợp)." },
+
+  // 4.1 WRITING — build a paragraph from cue words (en-cwrite, fill/text_set)
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
+    stem: "Bill Gates / born / 1955 / Washington State. He / grow up / rich family.",
+    correct: "Bill Gates was born in 1955 in Washington State. He grew up in a rich family.",
+    accept: ["Bill Gates was born in 1955 in Washington State. He grew up in a rich family"],
+    modelAnswer: "Bill Gates was born in 1955 in Washington State. He grew up in a rich family." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
+    stem: "His parents / send / he / private school. There / he / meet / business partner / Paul Allen.",
+    correct: "His parents sent him to a private school. There he met his business partner, Paul Allen.",
+    accept: [
+      "His parents sent him to a private school. There he met his business partner, Paul Allen",
+      "His parents sent him to a private school. There he met his business partner Paul Allen",
+    ],
+    modelAnswer: "His parents sent him to a private school. There he met his business partner, Paul Allen." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
+    stem: "When / they / be / 8th grade, they / write / programs / business / computers.",
+    correct: "When they were in the 8th grade, they wrote programs for business computers.",
+    accept: ["When they were in the 8th grade, they wrote programs for business computers"],
+    modelAnswer: "When they were in the 8th grade, they wrote programs for business computers." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "1973 / Gates / be accepted / Harvard University. Parents / happy.",
+    correct: "In 1973, Gates was accepted into Harvard University. His parents were happy.",
+    accept: [
+      "In 1973, Gates was accepted into Harvard University. His parents were happy",
+      "In 1973, Gates was accepted to Harvard University. His parents were happy",
+    ],
+    modelAnswer: "In 1973, Gates was accepted into Harvard University. His parents were happy." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "Two years later / Gates / drop out / of Harvard / work / computer program / his friend Allen.",
+    correct: "Two years later, Gates dropped out of Harvard to work on a computer program with his friend Allen.",
+    accept: ["Two years later, Gates dropped out of Harvard to work on a computer program with his friend Allen"],
+    modelAnswer: "Two years later, Gates dropped out of Harvard to work on a computer program with his friend Allen." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
+    stem: "1975 / they / create / company / Microsoft / sell / their product.",
+    correct: "In 1975, they created a company called Microsoft to sell their product.",
+    accept: ["In 1975, they created a company called Microsoft to sell their product"],
+    modelAnswer: "In 1975, they created a company called Microsoft to sell their product." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
+    stem: "A few years later / Microsoft / become / giant company.",
+    correct: "A few years later, Microsoft became a giant company.",
+    accept: ["A few years later, Microsoft became a giant company"],
+    modelAnswer: "A few years later, Microsoft became a giant company." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "By 1990 / Gates / the youngest / billionaire / the United States / age of 34.",
+    correct: "By 1990, Gates was the youngest billionaire in the United States at the age of 34.",
+    accept: ["By 1990, Gates was the youngest billionaire in the United States at the age of 34"],
+    modelAnswer: "By 1990, Gates was the youngest billionaire in the United States at the age of 34." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "He / achieve / success / a lot of hard work. He / be / \"King of Software\".",
+    correct: "He achieved success with a lot of hard work. He is the \"King of Software\".",
+    accept: [
+      "He achieved success with a lot of hard work. He is the King of Software",
+      "He achieved success with a lot of hard work. He is the \"King of Software\"",
+    ],
+    modelAnswer: "He achieved success with a lot of hard work. He is the \"King of Software\"." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "A2",
+    stem: "By 1997, he / the richest / man / United States.",
+    correct: "By 1997, he was the richest man in the United States.",
+    accept: ["By 1997, he was the richest man in the United States"],
+    modelAnswer: "By 1997, he was the richest man in the United States." },
+
+  // 4.2 WRITING — rewrite (en-cwrite, fill/text_set). Stem shows original + lead-in.
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "He can't lift the table because he is not strong enough.\n→ If ______",
+    correct: "If he were strong enough, he could lift the table.",
+    accept: [
+      "If he were strong enough, he could lift the table",
+      "If he was strong enough, he could lift the table",
+      "he were strong enough, he could lift the table",
+    ],
+    modelAnswer: "If he were strong enough, he could lift the table." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "It is a pity her brother can't speak English as fluently as a native speaker.\n→ Her brother wishes ______",
+    correct: "Her brother wishes he could speak English as fluently as a native speaker.",
+    accept: [
+      "Her brother wishes he could speak English as fluently as a native speaker",
+      "he could speak English as fluently as a native speaker",
+    ],
+    modelAnswer: "Her brother wishes he could speak English as fluently as a native speaker." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "She doesn't usually drive a car very fast.\n→ She isn't used ______",
+    correct: "She isn't used to driving a car very fast.",
+    accept: [
+      "She isn't used to driving a car very fast",
+      "She is not used to driving a car very fast",
+      "to driving a car very fast",
+    ],
+    modelAnswer: "She isn't used to driving a car very fast." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "It is reported that the city has increasingly developed in the past few years.\n→ The city ______",
+    correct: "The city is reported to have increasingly developed in the past few years.",
+    accept: [
+      "The city is reported to have increasingly developed in the past few years",
+      "is reported to have increasingly developed in the past few years",
+    ],
+    modelAnswer: "The city is reported to have increasingly developed in the past few years." },
+  { type: "fill", topic: "en-cwrite", skill: "writing", grade: "B1",
+    stem: "My sister prefers staying at home and watching TV to going to the cinema.\n→ My sister would ______",
+    correct: "My sister would rather stay at home and watch TV than go to the cinema.",
+    accept: [
+      "My sister would rather stay at home and watch TV than go to the cinema",
+      "would rather stay at home and watch TV than go to the cinema",
+    ],
+    modelAnswer: "My sister would rather stay at home and watch TV than go to the cinema." },
+];
+
 // ─── All private English tests for mika ──────────────────────────────────────
 const TESTS: TestDef[] = [
   { key: "en-test1", title: "TEST 1 — Tiếng Anh (thầy giao)", minutes: 60, position: 1,
     sections: SECTIONS, passages: PASSAGES, questions: QUESTIONS },
   { key: "en-test4", title: "TEST 4 — K5 · Tiếng Anh (thầy giao)", minutes: 60, position: 2,
     sections: T4_SECTIONS, passages: T4_PASSAGES, questions: T4_QUESTIONS },
+  { key: "en-test5", title: "TEST 5 — K5 · Tiếng Anh (thầy giao)", minutes: 60, position: 3,
+    sections: T5_SECTIONS, passages: T5_PASSAGES, questions: T5_QUESTIONS },
 ];
 
 async function seedTest(ownerId: string, test: TestDef): Promise<void> {
