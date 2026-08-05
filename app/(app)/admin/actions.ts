@@ -625,6 +625,36 @@ export async function updateLevelConfig(
   return { ok: true };
 }
 
+// ─── Exams: Update minutes (bài thầy giao only) ───────────────────────────────
+// Only private remedial sets (ownerUserId set) may be edited here. Official /
+// public exams get their minutes from the seed pipeline (metadata), so editing
+// them would be silently reverted on the next re-seed.
+export async function updateExamMinutes(
+  examId: string,
+  minutes: number,
+): Promise<{ ok: boolean; error?: string }> {
+  await requireAdmin();
+
+  const parsed = z.number().int().min(5).max(180).safeParse(minutes);
+  if (!parsed.success) {
+    return { ok: false, error: "Thời gian phải là số nguyên từ 5 đến 180 phút." };
+  }
+
+  const exam = await prisma.exam.findUnique({
+    where: { id: examId },
+    select: { ownerUserId: true },
+  });
+  if (!exam) return { ok: false, error: "Không tìm thấy đề." };
+  if (!exam.ownerUserId) {
+    return { ok: false, error: "Chỉ sửa được thời gian của bài thầy giao (bài luyện riêng)." };
+  }
+
+  await prisma.exam.update({ where: { id: examId }, data: { minutes: parsed.data } });
+
+  revalidatePath("/admin");
+  return { ok: true };
+}
+
 // ─── Schools CRUD ────────────────────────────────────────────────────────────
 
 import { invalidateSchoolsCache } from "@/lib/schools";

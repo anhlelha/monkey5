@@ -1,6 +1,7 @@
 "use client";
 
-import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState, useTransition } from "react";
+import { updateExamMinutes } from "./actions";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Icon } from "@/components/Icon";
@@ -279,7 +280,13 @@ function ExamsPanelInner({ exams, subject = "math" }: ExamsPanelProps) {
                 </td>
                 <td className="mono">{e.kind === "official" ? e.year : "—"}</td>
                 <td className="mono">{e.qcount}</td>
-                <td className="mono">{e.minutes}p</td>
+                <td className="mono">
+                  {isOwned ? (
+                    <MinutesCell examId={e.id} minutes={e.minutes} />
+                  ) : (
+                    <>{e.minutes}p</>
+                  )}
+                </td>
                 <td style={{ textAlign: "right" }}>
                   <Link href={buildDetailHref(e.id)} className="btn sm ghost" style={{ textDecoration: "none" }}>
                     <Icon name="eye" size={12} /> Xem
@@ -291,5 +298,36 @@ function ExamsPanelInner({ exams, subject = "math" }: ExamsPanelProps) {
         </tbody>
       </table>
     </Card>
+  );
+}
+
+function MinutesCell({ examId, minutes }: { examId: string; minutes: number }) {
+  const [val, setVal] = useState(String(minutes));
+  const [pending, startTransition] = useTransition();
+  const n = parseInt(val, 10);
+  const valid = Number.isInteger(n) && n >= 5 && n <= 180;
+  const changed = valid && n !== minutes;
+  const save = () => {
+    if (!changed) return;
+    startTransition(async () => {
+      const res = await updateExamMinutes(examId, n);
+      if (!res.ok && res.error) window.alert(res.error);
+    });
+  };
+  return (
+    <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}>
+      <input
+        className="input"
+        style={{ width: 56, padding: "2px 6px", fontSize: 13 }}
+        value={val}
+        disabled={pending}
+        onChange={(e) => setVal(e.target.value)}
+        onKeyDown={(e) => { if (e.key === "Enter") save(); }}
+      />
+      <span className="muted" style={{ fontSize: 12 }}>p</span>
+      <button className="btn sm ghost" disabled={!changed || pending} onClick={save}>
+        {pending ? "…" : "Lưu"}
+      </button>
+    </span>
   );
 }

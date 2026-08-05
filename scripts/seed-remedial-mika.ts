@@ -277,7 +277,8 @@ async function main() {
       where: { id: examId },
       update: {
         title: bai.title,
-        minutes: bai.minutes,
+        // NOTE: `minutes` intentionally omitted here so an admin edit via
+        // /admin (updateExamMinutes) survives re-seeds. Only set on create.
         qcount: bai.questions.length,
         position: pos,
         active: true,
