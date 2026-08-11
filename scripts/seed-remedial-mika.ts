@@ -97,7 +97,26 @@ const BAI: Bai[] = [
     ],
   },
 
-  // ─── 3. Toán lời văn nhiều bước & suy luận (tuoi/log/soh) ──────────────────
+  // ─── 3. Dãy & tổng phân số đặc biệt — luyện thêm (phan) ────────────────────
+  {
+    key: "phan-day-luyenthem",
+    title: "Dãy & tổng phân số đặc biệt — luyện thêm",
+    minutes: 25,
+    questions: [
+      { type: "fill", topic: "phan", grade: "NC", stem: "Tính $A=\\dfrac{1}{2\\times3}+\\dfrac{1}{3\\times4}+\\dfrac{1}{4\\times5}+\\dots+\\dfrac{1}{11\\times12}$. (Viết dạng a/b)", correct: "5/12", modelAnswer: "Mỗi số hạng $\\dfrac{1}{n(n+1)}=\\dfrac1n-\\dfrac1{n+1}$. Khử liên tiếp: $A=\\dfrac12-\\dfrac1{12}=\\dfrac5{12}$." },
+      { type: "fill", topic: "phan", grade: "NC", stem: "Tính $A=\\dfrac{3}{2\\times5}+\\dfrac{3}{5\\times8}+\\dfrac{3}{8\\times11}+\\dots+\\dfrac{3}{20\\times23}$. (Viết dạng a/b)", correct: "21/46", modelAnswer: "$\\dfrac{3}{n(n+3)}=\\dfrac1n-\\dfrac1{n+3}$. Khử liên tiếp: $A=\\dfrac12-\\dfrac1{23}=\\dfrac{21}{46}$." },
+      { type: "fill", topic: "phan", grade: "NC", stem: "Tính $B=\\dfrac{1}{2\\times5}+\\dfrac{1}{5\\times8}+\\dfrac{1}{8\\times11}+\\dots+\\dfrac{1}{20\\times23}$. (Viết dạng a/b)", correct: "7/46", modelAnswer: "$\\dfrac{1}{n(n+3)}=\\dfrac13\\left(\\dfrac1n-\\dfrac1{n+3}\\right)$. Do đó $B=\\dfrac13\\left(\\dfrac12-\\dfrac1{23}\\right)=\\dfrac13\\times\\dfrac{21}{46}=\\dfrac7{46}$." },
+      { type: "fill", topic: "phan", grade: "L4", stem: "Tính $\\dfrac13+\\dfrac19+\\dfrac1{27}+\\dfrac1{81}+\\dfrac1{243}$. (Viết dạng a/b)", correct: "121/243", modelAnswer: "Quy đồng mẫu số 243: $\\dfrac{81+27+9+3+1}{243}=\\dfrac{121}{243}$." },
+      { type: "fill", topic: "phan", grade: "L4", stem: "Tính $\\dfrac23+\\dfrac29+\\dfrac2{27}+\\dfrac2{81}$. (Viết dạng a/b)", correct: "80/81", modelAnswer: "Quy đồng mẫu số 81: $\\dfrac{54+18+6+2}{81}=\\dfrac{80}{81}$." },
+      { type: "fill", topic: "phan", grade: "NC", stem: "Tính $S=\\dfrac12+\\dfrac16+\\dfrac1{18}+\\dfrac1{54}$. (Viết dạng a/b)", correct: "20/27", modelAnswer: "Quy đồng mẫu số 54: $S=\\dfrac{27+9+3+1}{54}=\\dfrac{40}{54}=\\dfrac{20}{27}$." },
+      { type: "fill", topic: "phan", grade: "NC", stem: "Tính $A=\\dfrac{41\\times42+23}{41\\times41+64}$.", correct: "1", num: 1, modelAnswer: "Tử số $=41\\times41+41+23=41\\times41+64$, đúng bằng mẫu số, nên $A=1$." },
+      { type: "fill", topic: "phan", grade: "NC", stem: "Tính $A=\\dfrac{35\\times35-1}{35\\times34+34}$.", correct: "1", num: 1, modelAnswer: "Tử số $=35^2-1=(35-1)(35+1)=34\\times36$; mẫu số $=34(35+1)=34\\times36$, nên $A=1$." },
+      { type: "mcq", topic: "phan", grade: "NC", stem: "So sánh $A=\\dfrac{37\\times37}{36\\times38}$ với $B=1$. Dấu của $A\\ \\dots\\ B$ là:", options: ["<", ">", "="], correct: "B", modelAnswer: "$37\\times37=1369$, còn $36\\times38=(37-1)(37+1)=37^2-1=1368$. Vì $1369>1368$ nên $A>1$." },
+      { type: "fill", topic: "phan", grade: "NC", stem: "Tìm x: $\\dfrac{1}{3\\times4}+\\dfrac{1}{4\\times5}+\\dots+\\dfrac{1}{x\\times(x+1)}=\\dfrac4{15}$. Vậy x = ...", correct: "14", num: 14, modelAnswer: "Khử liên tiếp, tổng bằng $\\dfrac13-\\dfrac1{x+1}=\\dfrac4{15}$. Suy ra $\\dfrac1{x+1}=\\dfrac1{15}$, nên $x=14$." },
+    ],
+  },
+
+  // ─── 4. Toán lời văn nhiều bước & suy luận (tuoi/log/soh) ──────────────────
   {
     key: "loivan",
     title: "Toán lời văn & suy luận",
@@ -118,7 +137,7 @@ const BAI: Bai[] = [
     ],
   },
 
-  // ─── 4. Hình bình hành & hình thoi (hinh) ──────────────────────────────────
+  // ─── 5. Hình bình hành & hình thoi (hinh) ──────────────────────────────────
   {
     key: "hinh-bhthoi",
     title: "Hình bình hành & hình thoi",
@@ -132,7 +151,7 @@ const BAI: Bai[] = [
     ],
   },
 
-  // ─── 5. Đổi đơn vị đo (do) ──────────────────────────────────────────────────
+  // ─── 6. Đổi đơn vị đo (do) ──────────────────────────────────────────────────
   {
     key: "doluong",
     title: "Đổi đơn vị đo",
@@ -146,7 +165,7 @@ const BAI: Bai[] = [
     ],
   },
 
-  // ─── 6. Đại lượng tỉ lệ / rút về đơn vị (ti) ────────────────────────────────
+  // ─── 7. Đại lượng tỉ lệ / rút về đơn vị (ti) ────────────────────────────────
   {
     key: "tile",
     title: "Tỉ lệ & rút về đơn vị",
@@ -158,7 +177,7 @@ const BAI: Bai[] = [
     ],
   },
 
-  // ─── 7. Đếm số · tổ hợp · Dirichlet (xs/soh) ────────────────────────────────
+  // ─── 8. Đếm số · tổ hợp · Dirichlet (xs/soh) ────────────────────────────────
   {
     key: "demso",
     title: "Đếm số, tổ hợp & suy luận chắc chắn",
@@ -172,7 +191,7 @@ const BAI: Bai[] = [
     ],
   },
 
-  // ─── 8. Làm tròn & ước lượng (soh) ──────────────────────────────────────────
+  // ─── 9. Làm tròn & ước lượng (soh) ──────────────────────────────────────────
   {
     key: "lamtron",
     title: "Làm tròn & ước lượng",
@@ -186,7 +205,7 @@ const BAI: Bai[] = [
     ],
   },
 
-  // ─── 9. Mẹo: chữ số 0 của n! & chữ số tận cùng (soh) ────────────────────────
+  // ─── 10. Mẹo: chữ số 0 của n! & chữ số tận cùng (soh) ───────────────────────
   {
     key: "tancung",
     title: "Mẹo: chữ số 0 của n! & chữ số tận cùng",
@@ -200,7 +219,7 @@ const BAI: Bai[] = [
     ],
   },
 
-  // ─── 10. Bài toán năng suất — rút về đơn vị (tỉ lệ kép) (ti) ────────────────
+  // ─── 11. Bài toán năng suất — rút về đơn vị (tỉ lệ kép) (ti) ────────────────
   {
     key: "nangsuat",
     title: "Bài toán năng suất — rút về đơn vị",
@@ -214,7 +233,7 @@ const BAI: Bai[] = [
     ],
   },
 
-  // ─── 11. Tỉ lệ nghịch & bài toán vòi nước (ti) ─────────────────────────────
+  // ─── 12. Tỉ lệ nghịch & bài toán vòi nước (ti) ─────────────────────────────
   {
     key: "tilenghich",
     title: "Tỉ lệ nghịch & bài toán vòi nước",
@@ -228,7 +247,7 @@ const BAI: Bai[] = [
     ],
   },
 
-  // ─── 12. Dãy phân số — tách thành hiệu (khử liên tiếp) (phan) ───────────────
+  // ─── 13. Dãy phân số — tách thành hiệu (khử liên tiếp) (phan) ───────────────
   // Câu dùng chung với ngân hàng chuyên đề Phân số/Tỉ số
   // (scripts/phanso-day-problems.ts → seed-phanso-day-reference.ts). Đáp số là
   // phân số a/b nên KHÔNG gắn num/set (matchExact) — HS gõ "a/b" không cách.
