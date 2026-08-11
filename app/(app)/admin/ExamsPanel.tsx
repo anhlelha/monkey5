@@ -27,7 +27,7 @@ interface ExamsPanelProps {
   subject?: "math" | "english" | "vietnamese";
 }
 
-type KindFilter = "all" | "official" | "reference";
+type KindFilter = "all" | "official" | "reference" | "private";
 
 interface FilterState {
   query: string;
@@ -39,7 +39,7 @@ interface FilterState {
 const DEFAULT_STATE: FilterState = { query: "", school: "all", kind: "all", year: "all" };
 
 function parseKind(v: string | null): KindFilter {
-  return v === "official" || v === "reference" ? v : "all";
+  return v === "official" || v === "reference" || v === "private" ? v : "all";
 }
 
 export function ExamsPanel({ exams, subject = "math" }: ExamsPanelProps) {
@@ -114,8 +114,10 @@ function ExamsPanelInner({ exams, subject = "math" }: ExamsPanelProps) {
         }
       }
       if (state.kind !== "all") {
-        if (state.kind === "official" && e.kind !== "official") return false;
-        if (state.kind === "reference" && e.kind === "official") return false;
+        const isPrivate = !!e.owner;
+        if (state.kind === "official" && (isPrivate || e.kind !== "official")) return false;
+        if (state.kind === "reference" && (isPrivate || e.kind === "official")) return false;
+        if (state.kind === "private" && !isPrivate) return false;
       }
       if (yearSelectorEnabled && state.year !== "all" && e.year !== state.year) return false;
       if (!q) return true;
@@ -184,6 +186,7 @@ function ExamsPanelInner({ exams, subject = "math" }: ExamsPanelProps) {
               <option value="all">Tất cả</option>
               <option value="official">Đề chính thức</option>
               <option value="reference">Đề tham khảo</option>
+              <option value="private">Bài luyện riêng</option>
             </select>
           </div>
 

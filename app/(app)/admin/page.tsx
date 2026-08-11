@@ -140,7 +140,7 @@ export default async function AdminPage({ searchParams }: Props) {
 
   const TAB_META: Record<string, { crumb: string; title: string; sub: string }> = {
     overview: { crumb: "Dashboard", title: "Dashboard", sub: "Thống kê tổng quan người dùng, đề thi và lượt làm bài." },
-    exams:    { crumb: "Đề bài", title: "Đề bài", sub: "Đề chính thức & đề tham khảo được upload từ code." },
+    exams:    { crumb: "Đề bài", title: "Đề bài", sub: "Đề chính thức, đề tham khảo & bài luyện riêng được upload từ code." },
     bank:     { crumb: "Câu hỏi", title: "Ngân hàng câu hỏi", sub: "Quản lý kho câu hỏi dùng cho luyện tập và đề tổng hợp." },
     users:    { crumb: "Tài khoản", title: "Tài khoản người dùng", sub: "Danh sách học sinh và quản trị viên trong hệ thống." },
     whitelist:{ crumb: "Whitelist", title: "Whitelist truy cập", sub: "Quản lý email được phép đăng nhập / nâng cấp." },
