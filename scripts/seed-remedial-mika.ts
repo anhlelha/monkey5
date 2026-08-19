@@ -264,6 +264,66 @@ const BAI: Bai[] = [
       modelAnswer: p.modelAnswer,
     })),
   },
+
+  // ─── 14. Đếm số khả năng bằng cách chia trường hợp (xs) ───────────────────
+  // Bài lớp 5: lời giải chỉ liệt kê/chia trường hợp, không dùng ký hiệu tổ hợp.
+  {
+    key: "dem-kha-nang-bong",
+    title: "Đếm số khả năng — chia trường hợp",
+    minutes: 20,
+    questions: [
+      {
+        type: "fill",
+        topic: "xs",
+        grade: "L5",
+        stem: "Trong một hộp có 4 quả bóng xanh được đánh số 1, 2, 3, 4 và 2 quả bóng đỏ được ghi chữ a, b. Mika lấy cùng lúc 2 quả bóng. Hỏi có bao nhiêu khả năng có thể xảy ra?",
+        correct: "15",
+        num: 15,
+        unit: "khả năng",
+        modelAnswer: "Chia thành 3 trường hợp. Lấy 2 bóng xanh có 6 cách: (1,2), (1,3), (1,4), (2,3), (2,4), (3,4). Lấy 1 bóng xanh và 1 bóng đỏ có $4\\times2=8$ cách. Lấy 2 bóng đỏ có 1 cách: (a,b). Vậy có $6+8+1=15$ khả năng.",
+      },
+      {
+        type: "fill",
+        topic: "xs",
+        grade: "L5",
+        stem: "Trong một túi có 2 viên bi trắng được đánh số 1, 2 và 3 viên bi đen được ghi chữ a, b, c. Mika lấy cùng lúc 2 viên bi. Hỏi có bao nhiêu cách lấy?",
+        correct: "10",
+        num: 10,
+        unit: "cách",
+        modelAnswer: "Lấy 2 bi trắng có 1 cách: (1,2). Lấy 1 bi trắng và 1 bi đen có $2\\times3=6$ cách. Lấy 2 bi đen có 3 cách: (a,b), (a,c), (b,c). Vậy có $1+6+3=10$ cách.",
+      },
+      {
+        type: "fill",
+        topic: "xs",
+        grade: "L5",
+        stem: "Trong một hộp có 3 quả bóng vàng được đánh số 1, 2, 3 và 3 quả bóng tím được ghi chữ a, b, c. Mika lấy cùng lúc 3 quả bóng. Hỏi có bao nhiêu khả năng có thể xảy ra?",
+        correct: "20",
+        num: 20,
+        unit: "khả năng",
+        modelAnswer: "Lấy 3 bóng vàng có 1 cách; lấy 3 bóng tím có 1 cách. Có 3 cặp bóng vàng và mỗi cặp ghép được với 3 bóng tím, nên trường hợp 2 vàng, 1 tím có $3\\times3=9$ cách. Tương tự, trường hợp 1 vàng, 2 tím có 9 cách. Vậy có $1+9+9+1=20$ khả năng.",
+      },
+      {
+        type: "fill",
+        topic: "xs",
+        grade: "L5",
+        stem: "Một hộp có 4 quả bóng đỏ được đánh số 1, 2, 3, 4 và 3 quả bóng xanh được ghi chữ a, b, c. Mika lấy cùng lúc 4 quả bóng. Hỏi có bao nhiêu cách lấy khác nhau?",
+        correct: "35",
+        num: 35,
+        unit: "cách",
+        modelAnswer: "Lấy 4 bóng đỏ có 1 cách. Lấy 3 đỏ, 1 xanh có $4\\times3=12$ cách. Lấy 2 đỏ, 2 xanh: có 6 cặp đỏ và 3 cặp xanh, được $6\\times3=18$ cách. Lấy 1 đỏ, 3 xanh có 4 cách. Vậy có $1+12+18+4=35$ cách.",
+      },
+      {
+        type: "fill",
+        topic: "xs",
+        grade: "L5",
+        stem: "Trong một hộp có 4 quả bóng xanh được đánh số 1, 2, 3, 4 và 3 quả bóng đỏ được ghi chữ a, b, c. Mika lấy cùng lúc 3 quả bóng sao cho trong số bóng lấy ra có cả bóng xanh và bóng đỏ. Hỏi có bao nhiêu cách lấy?",
+        correct: "30",
+        num: 30,
+        unit: "cách",
+        modelAnswer: "Nếu lấy 2 bóng xanh và 1 bóng đỏ: 4 bóng xanh tạo được 6 cặp; mỗi cặp ghép với 1 trong 3 bóng đỏ, nên có $6\\times3=18$ cách. Nếu lấy 1 bóng xanh và 2 bóng đỏ: 3 bóng đỏ tạo được 3 cặp; mỗi cặp ghép với 1 trong 4 bóng xanh, nên có $3\\times4=12$ cách. Vậy có $18+12=30$ cách.",
+      },
+    ],
+  },
 ];
 
 function schemaFor(q: RQ): string | null {
