@@ -5,6 +5,7 @@ import { getExamHistory, hydrateUser } from "@/lib/user-data";
 import { SCHOOLS, MIX_SCHOOL } from "@/lib/static";
 import { LibraryView } from "./LibraryView";
 import { effectivePlan, getPlanConfig } from "@/lib/plan-config";
+import { getEffectiveReadinessV4 } from "@/lib/readiness-v4/read-service";
 
 interface Props {
   searchParams: Promise<{ school?: string; kind?: string }>;
@@ -25,6 +26,11 @@ export default async function LibraryPage({ searchParams }: Props) {
     user.readiness,
     SCHOOLS.map((s) => s.id),
   );
+  const readinessViews = await getEffectiveReadinessV4(
+    user.id,
+    SCHOOLS.map((s) => s.id),
+    readiness,
+  );
 
   const sp = await searchParams;
 
@@ -34,14 +40,14 @@ export default async function LibraryPage({ searchParams }: Props) {
   // Public catalog only — private remedial sets (ownerUserId set) live at
   // /luyen-rieng, never in the school library grid.
   const exams = await prisma.exam.findMany({
-    where: { ownerUserId: null },
+    where: { ownerUserId: null, subject: "math" },
     orderBy: [{ kind: "asc" }, { year: "desc" }],
   });
 
   // Attempt counts per exam for this user (drives "X lần làm · cao nhất Y%" on each row).
   const attempts = await prisma.attempt.groupBy({
     by: ["examId"],
-    where: { userId: user.id, submitted: true },
+    where: { userId: user.id, submitted: true, exam: { subject: "math" } },
     _count: { _all: true },
     _max: { score: true },
   });
@@ -69,7 +75,7 @@ export default async function LibraryPage({ searchParams }: Props) {
 
   // Claimed reference exams for this user
   const claimedRefs = await prisma.userReferenceExam.findMany({
-    where: { userId: user.id },
+    where: { userId: user.id, exam: { subject: "math" } },
     include: { exam: true },
     orderBy: { addedAt: "asc" },
   });
@@ -92,7 +98,7 @@ export default async function LibraryPage({ searchParams }: Props) {
   });
 
   // User activity — drives the "Con đã làm X · Y" caption and the reference history list.
-  const history = await getExamHistory(user.id);
+  const history = await getExamHistory(user.id, "math");
   const referenceHistory = history.filter((h) => h.kind === "reference");
   const userDoneOfficial = history.filter((h) => h.kind === "official").length;
   const userDoneReference = referenceHistory.length;
@@ -122,7 +128,7 @@ export default async function LibraryPage({ searchParams }: Props) {
         style: MIX_SCHOOL.style,
         desc: MIX_SCHOOL.desc,
       }}
-      readiness={readiness}
+      readiness={readinessViews}
       referenceHistory={referenceHistory}
       userDoneOfficial={userDoneOfficial}
       userDoneReference={userDoneReference}

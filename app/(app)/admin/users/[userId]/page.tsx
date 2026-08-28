@@ -10,6 +10,9 @@ import {
 } from "@/lib/user-data";
 import { computeMastery } from "@/lib/mastery";
 import { getEffectiveReadiness } from "@/lib/readiness";
+import { getEffectiveReadinessV4 } from "@/lib/readiness-v4/read-service";
+import { getEffectiveAnalyticalMasteryV4 } from "@/lib/readiness-v4/content-mastery-service";
+import { MATH_ANALYTICAL_TOPICS } from "@/lib/readiness-v4/analytical-topics";
 import { DEFAULT_TOPICS } from "@/lib/static";
 import { isSubject, type Subject } from "@/lib/subjects";
 import { getActiveSchools } from "@/lib/schools";
@@ -57,6 +60,13 @@ export default async function AdminUserDetail({ params, searchParams }: Props) {
       getUserActivitySeries(userId, subject),
     ]);
 
+  const readinessViews = subject === "math"
+    ? await getEffectiveReadinessV4(userId, targetUser.targets, readiness)
+    : null;
+  const analyticalMastery = subject === "math"
+    ? await getEffectiveAnalyticalMasteryV4(userId, MATH_ANALYTICAL_TOPICS.map((topic) => topic.id))
+    : null;
+
   const summary = summaryMap.get(userId) ?? {
     attemptCount: 0,
     topicSessionCount: 0,
@@ -103,6 +113,8 @@ export default async function AdminUserDetail({ params, searchParams }: Props) {
           subject={subject}
           topicMastery={mastery.topicMastery}
           readiness={readiness}
+          readinessViews={readinessViews}
+          analyticalMastery={analyticalMastery}
           activitySeries={activitySeries}
         />
       </div>

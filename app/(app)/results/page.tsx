@@ -7,6 +7,9 @@ import { getRecentActivityFeed } from "@/lib/user-data";
 import { TopBar } from "@/components/TopBar";
 import { Icon } from "@/components/Icon";
 import { Bar, Card, Pill } from "@/components/ui";
+import { hydrateUser } from "@/lib/user-data";
+import { getEffectiveReadinessV4 } from "@/lib/readiness-v4/read-service";
+import { ReadinessUserSummary } from "@/components/readiness/ReadinessUserSummary";
 
 const levelColor = (level: string): string => {
   if (level === "L4") return "var(--success)";
@@ -27,6 +30,16 @@ export default async function RecentResults({ searchParams }: Props) {
   const subject: "math" | "english" | "vietnamese" =
     subjectParam === "vietnamese" ? "vietnamese" : subjectParam === "english" ? "english" : "math";
   const homeHref = subject === "vietnamese" ? "/vietnamese" : subject === "english" ? "/english" : "/home";
+  const dbUser = await prisma.user.findUnique({ where: { id: session.user.id } });
+  if (!dbUser) redirect("/signin");
+  const user = hydrateUser(dbUser);
+  const readinessViews = subject === "math"
+    ? await (async () => {
+        const { getEffectiveReadiness } = await import("@/lib/readiness");
+        const legacy = await getEffectiveReadiness(user.id, user.readiness, SCHOOLS.map((school) => school.id));
+        return getEffectiveReadinessV4(user.id, SCHOOLS.map((school) => school.id), legacy);
+      })()
+    : {};
 
   const [items, topicRows] = await Promise.all([
     getRecentActivityFeed(session.user.id, 25, subject),
@@ -44,6 +57,24 @@ export default async function RecentResults({ searchParams }: Props) {
             <p>Bấm vào một bài để xem lại đáp án và hỏi AI từng câu.</p>
           </div>
         </div>
+
+        {subject === "math" && Object.keys(readinessViews).length > 0 && (
+          <div style={{ marginBottom: 20 }}>
+            <ReadinessUserSummary
+              schools={SCHOOLS.map((school) => ({
+                id: school.id,
+                short: school.short,
+                name: school.name,
+                tone: school.tone,
+                minutes: school.minutes,
+              }))}
+              readiness={readinessViews}
+              targetIds={user.targets}
+              title="Readiness theo trường"
+              subtitle="Điểm bài làm bên dưới là kết quả của từng bài; Readiness V4 là chỉ số sẵn sàng theo trường và có Evidence riêng."
+            />
+          </div>
+        )}
 
         {items.length === 0 ? (
           <Card>

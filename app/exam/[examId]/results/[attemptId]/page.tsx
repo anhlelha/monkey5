@@ -126,13 +126,19 @@ export default async function ResultsPage({ params }: Props) {
     ? (await prisma.user.findUnique({ where: { id: attempt.userId } })) ?? dbUser
     : dbUser;
   const contextHydrated = hydrateUser(contextUser);
+  const { getEffectiveReadinessV4 } = await import("@/lib/readiness-v4/read-service");
+  const readinessViews = await getEffectiveReadinessV4(
+    contextHydrated.id,
+    SCHOOLS.map((s) => s.id),
+    contextHydrated.readiness,
+  );
 
   const targetSchools = SCHOOLS.filter((s) => contextHydrated.targets.includes(s.id)).map((s) => ({
     id: s.id,
     short: s.short,
     name: s.name,
     tone: s.tone,
-    current: contextHydrated.readiness[s.id] ?? 50,
+    readiness: readinessViews[s.id],
   }));
 
   let parsedSections = [];

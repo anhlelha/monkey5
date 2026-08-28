@@ -14,6 +14,8 @@ import type { ExamQuestion } from "@/lib/exam";
 import { gradeAnswer } from "@/lib/grading";
 import { regradeEssays } from "../../actions";
 import { WRITING_CRITERIA_LABELS, VN_WRITING_CRITERIA_LABELS } from "@/lib/llm/providers";
+import type { EffectiveReadinessView } from "@/lib/readiness-v4/read-service";
+import { presentReadiness } from "@/lib/readiness-v4/presentation";
 
 export interface EssayGradeView {
   earned: number;
@@ -48,7 +50,7 @@ interface Props {
   attemptId: string;
   attempt: { earned: number; total: number; score: number; durationSec: number };
   topics: { id: string; name: string; short: string; color: string }[];
-  targetSchools: { id: string; short: string; name: string; tone: string; current: number }[];
+  targetSchools: { id: string; short: string; name: string; tone: string; readiness: EffectiveReadinessView }[];
   adminView?: { ownerName: string; userId: string } | null;
 }
 
@@ -245,7 +247,7 @@ export function ResultsView({
             <p>
               {examMeta.title} · {scorePct}% —{" "}
               {scorePct >= 80
-                ? "Xuất sắc, con đã sẵn sàng!"
+                ? "Kết quả bài này rất tốt!"
                 : scorePct >= 65
                   ? "Khá tốt, còn vài chỗ cần luyện."
                   : scorePct >= 50
@@ -312,24 +314,33 @@ export function ResultsView({
             </div>
           </Card>
 
-          <Card title="Mức độ sẵn sàng hiện tại" sub="Cập nhật sau khi nộp bài">
+          <Card title="Readiness V4 theo trường" sub="Tách biệt với điểm của bài vừa làm; hệ thống có thể cần thời gian để cập nhật snapshot">
             <div className="col" style={{ gap: 14 }}>
-              {targetSchools.map((s) => (
-                <div key={s.id}>
+              {targetSchools.map((s) => {
+                const presentation = presentReadiness(s.readiness);
+                return <div key={s.id}>
                   <div className="row between" style={{ marginBottom: 4 }}>
                     <span className="row" style={{ gap: 8 }}>
                       <span className={"pill " + s.tone}>{s.short}</span>
                       <span style={{ fontSize: 13 }}>{s.name}</span>
                     </span>
                     <span className="mono" style={{ fontSize: 13 }}>
-                      <b style={{ color: s.current >= 70 ? "var(--success)" : s.current >= 50 ? "var(--ink)" : "var(--danger)" }}>
-                        {s.current}%
-                      </b>
+                      <b>{presentation.scoreLabel}</b>
                     </span>
                   </div>
-                  <Bar value={s.current} tone={s.tone} tall />
-                </div>
-              ))}
+                  {s.readiness.score !== null && <Bar value={s.readiness.score} tone={s.tone} tall />}
+                  <div className="row" style={{ gap: 8, marginTop: 6, flexWrap: "wrap" }}>
+                    <Pill tone={presentation.tone}>{presentation.statusLabel}</Pill>
+                    {s.readiness.source === "legacy-fallback" && <Pill>{presentation.sourceLabel}</Pill>}
+                  </div>
+                  {presentation.reason && <div className="muted" style={{ marginTop: 5, fontSize: 11.5 }}>{presentation.reason}</div>}
+                  {s.readiness.freshnessState !== "current" && (
+                    <div className="muted" style={{ marginTop: 4, fontSize: 11.5 }}>
+                      {presentation.freshnessLabel}
+                    </div>
+                  )}
+                </div>;
+              })}
               <div
                 style={{
                   marginTop: 4,

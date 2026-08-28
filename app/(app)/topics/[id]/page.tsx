@@ -1,135 +1,81 @@
+import { randomUUID } from "node:crypto";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { getTopicSessions, hydrateUser } from "@/lib/user-data";
-import { DEFAULT_TOPICS, SCHOOLS } from "@/lib/static";
-import { BASELINE_MASTERY } from "@/lib/mastery";
-import { effectivePlan, getLevelConfigs, remainingTopicSets } from "@/lib/plan-config";
+import { hydrateUser } from "@/lib/user-data";
+import { effectivePlan, remainingTopicSets } from "@/lib/plan-config";
 import { TopBar } from "@/components/TopBar";
 import { Icon } from "@/components/Icon";
-import { Bar, Card } from "@/components/ui";
-import { TopicPracticeLevels } from "./TopicPracticeLevels";
+import { Bar, Card, Pill } from "@/components/ui";
+import {
+  getMathAnalyticalTopic,
+  MATH_ANALYTICAL_TOPIC_IDS,
+  MATH_ANALYTICAL_TOPICS,
+} from "@/lib/readiness-v4/analytical-topics";
+import {
+  getPracticeBandStates,
+  getPracticeHistory,
+  PRACTICE_BANDS,
+} from "@/lib/readiness-v4/practice-service";
+import type { DifficultyBand } from "@/lib/readiness-v4/types";
+import { TopicPracticeBands } from "./TopicPracticeBands";
 import { TopicHistory } from "./TopicHistory";
 
 interface Props {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ limit?: string }>;
+  searchParams: Promise<{ band?: string; school?: string; error?: string }>;
 }
 
-const randStub = () => Math.random().toString(36).slice(-4);
-
-// Counts of active official-exam questions for this topic, grouped by school.
-// Drives the "Tần suất trong đề thật" card on the right rail.
-async function getOfficialQuestionCountsBySchool(
-  topicId: string,
-): Promise<Record<string, number>> {
-  const officialExams = await prisma.exam.findMany({
-    where: { kind: "official" },
-    select: { id: true, school: true },
-  });
-  const examSchool = new Map<string, string>();
-  for (const e of officialExams) examSchool.set(e.id, e.school);
-
-  const rows = await prisma.question.groupBy({
-    by: ["examId"],
-    where: {
-      topic: topicId,
-      active: true,
-      examId: { in: officialExams.map((e) => e.id) },
-    },
-    _count: { _all: true },
-  });
-
-  const bySchool: Record<string, number> = {};
-  for (const r of rows) {
-    if (!r.examId) continue;
-    const school = examSchool.get(r.examId);
-    if (!school) continue;
-    bySchool[school] = (bySchool[school] ?? 0) + r._count._all;
-  }
-  return bySchool;
+function validBand(value?: string): DifficultyBand | null {
+  return PRACTICE_BANDS.some((band) => band.id === value) ? value as DifficultyBand : null;
 }
 
 export default async function TopicDetail({ params, searchParams }: Props) {
-  const { id } = await params;
-  const { limit } = await searchParams;
+  const [{ id }, query] = await Promise.all([params, searchParams]);
   const session = await auth();
   if (!session?.user?.id) redirect("/signin");
   const dbUser = await prisma.user.findUnique({ where: { id: session.user.id } });
   if (!dbUser) redirect("/signin");
-  const user = hydrateUser(dbUser);
 
-  const topics = (await prisma.topic.findMany({ where: { subject: "math" }, orderBy: { position: "asc" } })) ?? [];
-  const TOPICS = topics.length > 0 ? topics : DEFAULT_TOPICS;
-  const topic = TOPICS.find((t) => t.id === id);
+  if (!MATH_ANALYTICAL_TOPIC_IDS.has(id)) {
+    const legacyMapping = await prisma.contentTaxonomyMapping.findFirst({
+      where: {
+        subject: "math",
+        taxonomyVersion: "math-topic-taxonomy-v1",
+        contentTopic: id,
+        enabled: true,
+      },
+      orderBy: [{ priority: "desc" }, { taxonomyTopic: "asc" }],
+    });
+    if (legacyMapping) redirect(`/topics/${legacyMapping.taxonomyTopic}`);
+    // "Toán tuổi" was a standalone legacy content bucket but is intentionally
+    // distributed across V4 taxonomy; ratio/percent is its dominant assessment.
+    if (id === "tuoi") redirect("/topics/ratio_percent");
+    notFound();
+  }
+
+  const topic = getMathAnalyticalTopic(id);
   if (!topic) notFound();
-
-  const [sessions, schoolCounts] = await Promise.all([
-    getTopicSessions(user.id, id),
-    getOfficialQuestionCountsBySchool(id),
+  const user = hydrateUser(dbUser);
+  const requestedSchool = query.school && user.targets.includes(query.school) ? query.school : null;
+  const targetSchool = requestedSchool ?? user.targets[0] ?? null;
+  const school = targetSchool
+    ? await prisma.school.findUnique({ where: { id: targetSchool } })
+    : null;
+  const [states, history, remaining] = await Promise.all([
+    getPracticeBandStates(user.id, id, targetSchool),
+    getPracticeHistory(user.id, id),
+    remainingTopicSets(user.id, effectivePlan({ role: dbUser.role, plan: dbUser.plan })),
   ]);
-  const totalQs = sessions.reduce((s, x) => s + x.qcount, 0);
-  const totalCorrect = sessions.reduce((s, x) => s + x.score, 0);
-  const accuracy = totalQs > 0 ? Math.round((totalCorrect / totalQs) * 100) : null;
 
-  const v = user.topicMastery[id] ?? BASELINE_MASTERY;
-  const pct = Math.round(v * 100);
-  const maxCount = Math.max(1, ...Object.values(schoolCounts));
-
-  // Build levels from DB config; fall back to defaults if DB is empty.
-  const levelCfgs = await getLevelConfigs();
-
-  // Per-level question availability for THIS topic, matching spawnTopicSetExam's
-  // source rules exactly. A level with 0 questions for the active source is
-  // locked in the UI instead of silently falling back to harder grades.
-  const topicQs = await prisma.question.findMany({
-    where: { active: true, topic: id },
-    select: {
-      grade: true,
-      examId: true,
-      exam: { select: { kind: true, generated: true, ownerUserId: true } },
-    },
-  });
-  const countAvail = (grades: string[]) => {
-    let official = 0;
-    let standalone = 0;
-    let sharedPrivate = 0;
-    for (const q of topicQs) {
-      if (!grades.includes(q.grade ?? "")) continue;
-      if (q.examId == null) {
-        standalone += 1;
-      } else if (q.exam?.kind === "official" && q.exam?.generated === false) {
-        official += 1;
-      } else if (
-        q.exam?.ownerUserId != null &&
-        q.exam?.generated === false &&
-        q.exam?.kind === "reference"
-      ) {
-        // Private "Bài luyện riêng" questions are shared into everyone's bổ trợ
-        // pool (any owner), matching spawnTopicSetExam's supplement OR-clause.
-        sharedPrivate += 1;
-      }
-    }
-    return {
-      all: official + standalone, // matches spawn "all"
-      official, // matches spawn "official"
-      supplement: standalone + sharedPrivate, // matches spawn "supplement"
-    };
-  };
-
-  const levels = levelCfgs.map((c) => ({
-    id: c.level,
-    label: c.label,
-    sub: c.sub,
-    q: c.qcount,
-    mins: c.minutes,
-    tone: c.tone,
-    stubId: `set-${id}-${c.level.toLowerCase()}-${randStub()}`,
-    avail: countAvail(c.grades),
-  }));
-
-  const remaining = await remainingTopicSets(user.id, effectivePlan({ role: dbUser.role, plan: dbUser.plan }));
+  const totalEvidence = states.reduce((sum, state) => sum + state.total, 0);
+  const totalCorrect = states.reduce((sum, state) => sum + state.correct, 0);
+  const aggregateMastery = totalEvidence > 0 ? Math.round((totalCorrect / totalEvidence) * 100) : null;
+  const selectedBand = validBand(query.band);
+  const currentIndex = MATH_ANALYTICAL_TOPICS.findIndex((candidate) => candidate.id === id);
+  const previous = currentIndex > 0 ? MATH_ANALYTICAL_TOPICS[currentIndex - 1] : null;
+  const next = currentIndex < MATH_ANALYTICAL_TOPICS.length - 1 ? MATH_ANALYTICAL_TOPICS[currentIndex + 1] : null;
 
   return (
     <div className="main">
@@ -146,92 +92,94 @@ export default async function TopicDetail({ params, searchParams }: Props) {
         }
       />
       <div className="content">
-        <div className="grid cols-2" style={{ gridTemplateColumns: "2fr 1fr", gap: 24, alignItems: "stretch" }}>
-          <div>
-            <div className="row" style={{ gap: 12, marginBottom: 12 }}>
-              <div
-                style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: 10,
-                  background: `color-mix(in oklch, ${topic.color}, white 86%)`,
-                  color: topic.color,
-                  display: "grid",
-                  placeItems: "center",
-                  fontSize: 20,
-                  fontWeight: 700,
-                }}
-              >
-                {topic.ico}
-              </div>
-              <div>
-                <h2 style={{ margin: 0, letterSpacing: "-0.02em" }}>{topic.name}</h2>
-                <p className="muted" style={{ margin: "2px 0 0", fontSize: 13 }}>
-                  {sessions.length > 0 && accuracy !== null ? (
-                    <>
-                      Con đã luyện <b className="mono" style={{ color: "var(--ink)" }}>{sessions.length}</b> bài ·{" "}
-                      <b className="mono" style={{ color: "var(--ink)" }}>{totalQs}</b> câu · đúng{" "}
-                      <b
-                        className="mono"
-                        style={{ color: accuracy >= 70 ? "var(--success)" : "var(--ink)" }}
-                      >
-                        {accuracy}%
-                      </b>
-                    </>
-                  ) : (
-                    <>Con chưa luyện chuyên đề này. Bắt đầu một bài mới nhé!</>
-                  )}
-                </p>
-              </div>
+        <div className="row between" style={{ gap: 20, alignItems: "start" }}>
+          <div className="row" style={{ gap: 12 }}>
+            <div style={{ width: 54, height: 54, borderRadius: 13, background: `color-mix(in oklch, ${topic.color}, white 86%)`, color: topic.color, display: "grid", placeItems: "center", fontSize: topic.icon.length > 2 ? 17 : 24, fontWeight: 750 }}>
+              {topic.icon}
             </div>
-
-            <TopicPracticeLevels topicId={id} levels={levels} remaining={remaining} limitReached={limit === "reached"} />
-
-            <TopicHistory sessions={sessions} topicName={topic.name} />
+            <div>
+              <div className="row" style={{ gap: 8, marginBottom: 2 }}>
+                <Pill>Taxonomy V4</Pill>
+                <span className="muted" style={{ fontSize: 12 }}>{currentIndex + 1}/13</span>
+              </div>
+              <h2 style={{ margin: 0 }}>{topic.name}</h2>
+              <p className="muted" style={{ margin: "4px 0 0", fontSize: 13 }}>
+                {totalEvidence > 0
+                  ? <>Đã có <b>{totalEvidence}</b> câu evidence trong chuyên đề này.</>
+                  : <>Chưa có evidence V4. Bắt đầu từ dải phù hợp bên dưới.</>}
+              </p>
+            </div>
           </div>
-
-          <div className="col" style={{ gap: 16 }}>
-            <Card>
-              <div className="eyebrow">Năng lực hiện tại</div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginTop: 6 }}>
-                <span className="mono" style={{ fontSize: 36, fontWeight: 700, color: topic.color }}>
-                  {pct}
-                </span>
-                <span className="muted" style={{ fontSize: 14 }}>%</span>
-              </div>
-              <Bar value={pct} tone={pct >= 70 ? "" : "ntt"} tall />
-              <div className="muted" style={{ fontSize: 12, marginTop: 6 }}>
-                Tính từ <b style={{ color: "var(--ink)" }}>{totalQs}</b> câu con đã trả lời trong chuyên đề này.
-              </div>
-              <div className="muted" style={{ fontSize: 12, marginTop: 4 }}>
-                Khoảng cách đến mục tiêu:{" "}
-                <b style={{ color: 70 - pct > 0 ? "var(--warn)" : "var(--success)" }}>
-                  {Math.max(0, 70 - pct)}%
-                </b>
-              </div>
-            </Card>
-
-            <Card title="Tần suất trong đề thật" sub="Số câu thuộc chuyên đề này trong các đề chính thức">
-              <div className="col" style={{ gap: 10 }}>
-                {SCHOOLS.map((school) => {
-                  const count = schoolCounts[school.id] ?? 0;
-                  return (
-                    <div key={school.id}>
-                      <div className="row between" style={{ marginBottom: 4 }}>
-                        <span className="row" style={{ gap: 6, fontSize: 13 }}>
-                          <span style={{ width: 8, height: 8, borderRadius: 2, background: school.color }} />
-                          {school.short}
-                        </span>
-                        <b className="mono" style={{ fontSize: 13 }}>{count} câu</b>
-                      </div>
-                      <Bar value={count} max={maxCount} tone={school.tone} />
-                    </div>
-                  );
-                })}
-              </div>
-            </Card>
+          <div className="row" style={{ gap: 6 }}>
+            {previous && <Link href={`/topics/${previous.id}`} className="btn sm ghost"><Icon name="chevL" size={12} /> {previous.short}</Link>}
+            {next && <Link href={`/topics/${next.id}`} className="btn sm ghost">{next.short} <Icon name="chevR" size={12} /></Link>}
           </div>
         </div>
+
+        <div className="grid cols-3" style={{ gap: 12, marginTop: 22 }}>
+          <Card>
+            <div className="eyebrow">Mastery quan sát</div>
+            <div style={{ fontSize: 28, fontWeight: 750, marginTop: 6, color: aggregateMastery === null ? "var(--ink-muted)" : topic.color }}>
+              {aggregateMastery === null ? "—" : `${aggregateMastery}%`}
+            </div>
+            <div className="muted" style={{ fontSize: 11.5, marginTop: 4 }}>Accuracy thô của evidence; từng band dùng posterior Mastery V4 riêng.</div>
+          </Card>
+          <Card>
+            <div className="eyebrow">Evidence V4</div>
+            <div style={{ fontSize: 28, fontWeight: 750, marginTop: 6 }}>{totalEvidence} câu</div>
+            <div className="muted" style={{ fontSize: 11.5, marginTop: 4 }}>Tách riêng theo Nền tảng, Vận dụng và Phân hóa.</div>
+          </Card>
+          <Card>
+            <div className="eyebrow">Ngân hàng khả dụng</div>
+            <div style={{ fontSize: 28, fontWeight: 750, marginTop: 6 }}>
+              {states.reduce((sum, state) => sum + state.availability.total, 0)} câu
+            </div>
+            <div className="muted" style={{ fontSize: 11.5, marginTop: 4 }}>Chỉ tính câu có assessment current/inherited hợp lệ.</div>
+          </Card>
+        </div>
+
+        <TopicPracticeBands
+          topicId={id}
+          states={states}
+          targetSchool={targetSchool}
+          targetSchoolName={school?.short ?? null}
+          requestNonce={randomUUID()}
+          selectedBand={selectedBand}
+          error={query.error ?? null}
+          remaining={remaining}
+        />
+
+        <div className="grid cols-2" style={{ gap: 16, marginTop: 24 }}>
+          <Card title="Ba dải của Readiness V4" sub="Grade lớp học không còn được dùng thay cho độ khó">
+            <div className="col" style={{ gap: 10 }}>
+              {PRACTICE_BANDS.map((band) => {
+                const state = states.find((candidate) => candidate.band === band.id)!;
+                const pct = state.mastery === null ? null : Math.round(state.mastery * 100);
+                return (
+                  <div key={band.id}>
+                    <div className="row between" style={{ marginBottom: 5, fontSize: 12.5 }}>
+                      <span><b>{band.label}</b> · {band.shortLabel}</span>
+                      <span className="mono muted">{pct === null ? "Chưa xác minh" : `${pct}%`}</span>
+                    </div>
+                    <Bar value={pct ?? 0} tone={pct !== null && pct >= 70 ? "" : "ltv"} />
+                  </div>
+                );
+              })}
+            </div>
+          </Card>
+          <Card title="Nguồn câu hỏi" sub="Nguồn không làm thay đổi taxonomy hoặc dải khó">
+            <div className="col" style={{ gap: 10, fontSize: 12.5 }}>
+              <div className="row between"><span>Câu từ đề chính thức</span><b>{states.reduce((sum, state) => sum + state.availability.official, 0)}</b></div>
+              <div className="row between"><span>Câu bổ trợ đã assessment</span><b>{states.reduce((sum, state) => sum + state.availability.supplement, 0)}</b></div>
+              <div className="row between"><span>Câu mới chưa làm</span><b>{states.reduce((sum, state) => sum + state.availability.unseen, 0)}</b></div>
+              <div className="muted" style={{ fontSize: 11.5, paddingTop: 4 }}>
+                Câu thiếu assessment, stale hoặc conflict không được đưa vào bài luyện V4.
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        <TopicHistory sessions={history} topicName={topic.name} />
       </div>
     </div>
   );

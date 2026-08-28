@@ -82,7 +82,7 @@ const ADMIN_GROUPS: NavGroup[] = [
     title: "Cấu hình nội dung",
     items: [
       { href: "/admin?tab=schools", icon: "school", label: "Trường", adminTab: "schools" },
-      { href: "/admin?tab=readiness", icon: "target", label: "Mức phù hợp", adminTab: "readiness" },
+      { href: "/admin?tab=readiness", icon: "target", label: "Readiness V4", adminTab: "readiness" },
     ],
   },
 ];
@@ -253,6 +253,7 @@ function NavBody({ learnItems, adminGroups, user, isAdmin, pathname, currentTab,
   const isActive = (it: NavItem) => {
     if (it.adminTab) {
       if (it.adminTab === "exams" && pathname.startsWith("/admin/exam")) return true;
+      if (it.adminTab === "readiness" && pathname.startsWith("/admin/readiness")) return true;
       if (pathname !== "/admin") return false;
       if (it.adminTab === "overview") return currentTab === null || currentTab === "overview";
       return currentTab === it.adminTab;

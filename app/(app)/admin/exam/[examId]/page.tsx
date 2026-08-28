@@ -10,6 +10,9 @@ import { BackButton } from "@/components/BackButton";
 import { MathText } from "@/components/MathText";
 import { ExamFigure } from "@/components/ExamFigure";
 import { getExamSectionHeader } from "@/lib/exam";
+import { MATH_ANALYTICAL_TOPICS } from "@/lib/readiness-v4/analytical-topics";
+import { questionContentHash } from "@/lib/readiness-v4/hashing";
+import { MATH_TAXONOMY_VERSION } from "@/lib/readiness-v4/types";
 import type { ExamQuestion, SectionHeader } from "@/lib/exam";
 
 interface Props {
@@ -33,6 +36,58 @@ const ANSWER_LABELS: Record<string, string> = {
   D: "D",
 };
 
+type V4AssessmentState = "current" | "inherited" | "stale" | "missing";
+
+interface V4AssessmentView {
+  state: V4AssessmentState;
+  topicPrimary?: string;
+  topicSecondary?: string[];
+  difficultyBand?: number;
+  cognitiveLevel?: string;
+  reasoningType?: string;
+  confidence?: number;
+  model?: string;
+  sourceRunId?: string;
+  taxonomyVersion?: string;
+  assessedAt?: Date;
+}
+
+const ANALYTICAL_TOPIC_BY_ID = new Map(MATH_ANALYTICAL_TOPICS.map((topic) => [topic.id, topic]));
+
+const COGNITIVE_LABELS: Record<string, string> = {
+  co_ban: "Cơ bản",
+  van_dung: "Vận dụng",
+  nang_cao: "Nâng cao",
+  chuyen_sau: "Chuyên sâu",
+};
+
+const REASONING_LABELS: Record<string, string> = {
+  direct: "Trực tiếp",
+  multi_step: "Nhiều bước",
+  non_routine: "Phi chuẩn",
+  proof_or_modeling: "Chứng minh / mô hình",
+};
+
+function parseStringArray(raw: string): string[] {
+  try {
+    const value = JSON.parse(raw);
+    return Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
+  } catch {
+    return [];
+  }
+}
+
+function humanize(value: string | undefined, labels: Record<string, string>): string {
+  if (!value) return "—";
+  return labels[value] ?? value.replaceAll("_", " ");
+}
+
+function confidencePercent(value: number | undefined): number {
+  if (value === undefined || !Number.isFinite(value)) return 0;
+  const percent = value <= 1 ? value * 100 : value;
+  return Math.round(Math.max(0, Math.min(100, percent)));
+}
+
 export default async function AdminExamPreviewPage({ params, searchParams }: Props) {
   const { examId } = await params;
   const { from } = await searchParams;
@@ -50,6 +105,75 @@ export default async function AdminExamPreviewPage({ params, searchParams }: Pro
   });
 
   if (!exam) notFound();
+
+  // V4 assessments are additive: select only rows from approved runs in the
+  // active math taxonomy. A cloned question may inherit its source assessment,
+  // but only while its assessment-relevant content hash still matches.
+  const approvedRuns = exam.subject === "math"
+    ? await prisma.assessmentRun.findMany({
+        where: {
+          subject: "math",
+          taxonomyVersion: MATH_TAXONOMY_VERSION,
+          status: "approved",
+        },
+        orderBy: [{ approvedAt: "desc" }, { createdAt: "desc" }],
+      })
+    : [];
+  const runRank = new Map(approvedRuns.map((run, index) => [run.id, index]));
+  const assessmentQuestionIds = [
+    ...new Set(
+      exam.questions.flatMap((question) =>
+        question.sourceQuestionId ? [question.id, question.sourceQuestionId] : [question.id],
+      ),
+    ),
+  ];
+  const assessmentRows = approvedRuns.length > 0 && assessmentQuestionIds.length > 0
+    ? await prisma.questionAssessment.findMany({
+        where: {
+          questionId: { in: assessmentQuestionIds },
+          taxonomyVersion: MATH_TAXONOMY_VERSION,
+          sourceRunId: { in: approvedRuns.map((run) => run.id) },
+        },
+      })
+    : [];
+  assessmentRows.sort(
+    (left, right) =>
+      (runRank.get(left.sourceRunId) ?? Number.MAX_SAFE_INTEGER) -
+      (runRank.get(right.sourceRunId) ?? Number.MAX_SAFE_INTEGER),
+  );
+  const assessmentByCanonicalQuestionId = new Map<string, (typeof assessmentRows)[number]>();
+  for (const assessment of assessmentRows) {
+    if (!assessmentByCanonicalQuestionId.has(assessment.questionId)) {
+      assessmentByCanonicalQuestionId.set(assessment.questionId, assessment);
+    }
+  }
+
+  const v4AssessmentByQuestionId = new Map<string, V4AssessmentView>();
+  for (const question of exam.questions) {
+    const direct = assessmentByCanonicalQuestionId.get(question.id);
+    const inherited = question.sourceQuestionId
+      ? assessmentByCanonicalQuestionId.get(question.sourceQuestionId)
+      : undefined;
+    const assessment = direct ?? inherited;
+    if (!assessment) {
+      v4AssessmentByQuestionId.set(question.id, { state: "missing" });
+      continue;
+    }
+    const isFresh = questionContentHash(question) === assessment.questionContentHash;
+    v4AssessmentByQuestionId.set(question.id, {
+      state: isFresh ? (direct ? "current" : "inherited") : "stale",
+      topicPrimary: assessment.topicPrimary,
+      topicSecondary: parseStringArray(assessment.topicSecondaryJson),
+      difficultyBand: assessment.difficultyBand,
+      cognitiveLevel: assessment.cognitiveLevel,
+      reasoningType: assessment.reasoningType,
+      confidence: assessment.confidence,
+      model: assessment.model,
+      sourceRunId: assessment.sourceRunId,
+      taxonomyVersion: assessment.taxonomyVersion,
+      assessedAt: assessment.assessedAt,
+    });
+  }
 
   const school = SCHOOLS.find((s) => s.id === exam.school) ?? MIX_SCHOOL;
 
@@ -107,6 +231,11 @@ export default async function AdminExamPreviewPage({ params, searchParams }: Pro
   const mcqCount = questions.filter((q) => q.type === "mcq").length;
   const fillCount = questions.filter((q) => q.type === "fill").length;
   const essayCount = questions.filter((q) => q.type === "essay").length;
+  const v4Views = [...v4AssessmentByQuestionId.values()];
+  const v4CurrentCount = v4Views.filter((view) => view.state === "current" || view.state === "inherited").length;
+  const v4StaleCount = v4Views.filter((view) => view.state === "stale").length;
+  const v4MissingCount = v4Views.filter((view) => view.state === "missing").length;
+  const v4RunIds = [...new Set(v4Views.map((view) => view.sourceRunId).filter((id): id is string => Boolean(id)))];
 
   return (
     <div className="main">
@@ -180,6 +309,38 @@ export default async function AdminExamPreviewPage({ params, searchParams }: Pro
           )}
         </div>
 
+        {exam.subject === "math" && (
+          <div
+            style={{
+              background: v4CurrentCount === questions.length
+                ? "oklch(0.97 0.02 145)"
+                : "oklch(0.97 0.025 80)",
+              border: `1px solid ${v4CurrentCount === questions.length ? "oklch(0.85 0.05 145)" : "oklch(0.84 0.08 80)"}`,
+              borderRadius: 14,
+              padding: "16px 22px",
+              marginBottom: 24,
+            }}
+          >
+            <div className="row between" style={{ gap: 12, flexWrap: "wrap" }}>
+              <div>
+                <div className="row" style={{ gap: 8, marginBottom: 5 }}>
+                  <Pill tone="green">Readiness V4</Pill>
+                  <b style={{ fontSize: 14 }}>Assessment coverage: {v4CurrentCount}/{questions.length} câu hợp lệ</b>
+                </div>
+                <div className="muted" style={{ fontSize: 12 }}>
+                  Taxonomy 13 topic: <code>{MATH_TAXONOMY_VERSION}</code>
+                  {v4RunIds.length > 0 ? ` · ${v4RunIds.length} approved run` : " · chưa có approved run phù hợp"}
+                </div>
+              </div>
+              <div className="row" style={{ gap: 6, flexWrap: "wrap" }}>
+                <Pill tone="green">Hợp lệ {v4CurrentCount}</Pill>
+                {v4StaleCount > 0 && <Pill tone="red">Lỗi thời {v4StaleCount}</Pill>}
+                {v4MissingCount > 0 && <Pill tone="amber">Chưa đánh giá {v4MissingCount}</Pill>}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Answer key summary */}
         <div
           style={{
@@ -241,6 +402,8 @@ export default async function AdminExamPreviewPage({ params, searchParams }: Pro
               short: q.topic,
               color: "var(--ink-muted)",
             };
+            const v4 = v4AssessmentByQuestionId.get(q.id);
+            const v4Topic = v4?.topicPrimary ? ANALYTICAL_TOPIC_BY_ID.get(v4.topicPrimary) : undefined;
             // Reading passages are shared across a group — show once, on the first question of the group.
             const showPassage =
               q.passage && questions[idx - 1]?.passageId !== q.passageId;
@@ -326,25 +489,33 @@ export default async function AdminExamPreviewPage({ params, searchParams }: Pro
                     >
                       Câu {q.num}.
                     </span>
-                    <Pill style={{ borderColor: topic.color }}>
-                      <span className="dot" style={{ background: topic.color }} />
-                      {topic.short}
-                    </Pill>
-                    <Pill
-                      tone={
-                        q.grade === "NC"
-                          ? "red"
-                          : q.grade === "L4+5"
-                          ? "amber"
-                          : ""
-                      }
-                    >
-                      {q.grade}
-                    </Pill>
+                    {v4 && v4.state !== "missing" ? (
+                      <>
+                        <Pill tone="green">V4 · {v4Topic?.name ?? v4.topicPrimary}</Pill>
+                        <Pill tone={(v4.difficultyBand ?? 0) >= 4 ? "red" : v4.difficultyBand === 3 ? "amber" : ""}>
+                          D{v4.difficultyBand}
+                        </Pill>
+                        <Pill>{humanize(v4.cognitiveLevel, COGNITIVE_LABELS)}</Pill>
+                        <Pill>{humanize(v4.reasoningType, REASONING_LABELS)}</Pill>
+                        <Pill>{confidencePercent(v4.confidence)}% tin cậy</Pill>
+                        <Pill tone={v4.state === "stale" ? "red" : "green"}>
+                          {v4.state === "stale" ? "V4 lỗi thời" : v4.state === "inherited" ? "V4 kế thừa" : "V4 hiện hành"}
+                        </Pill>
+                      </>
+                    ) : (
+                      <Pill tone="amber">Chưa có assessment V4</Pill>
+                    )}
                     {q.source && (
                       <Pill tone={q.source.startsWith("Trích đề") ? "cg" : ""}>
                         <Icon name="school" size={11} /> {q.source}
                       </Pill>
+                    )}
+                  </div>
+
+                  <div className="muted" style={{ fontSize: 11, marginBottom: 8, paddingRight: 110 }}>
+                    Legacy: <span style={{ color: topic.color }}>{topic.short}</span> · {q.grade}
+                    {v4?.sourceRunId && (
+                      <> · Run <code>{v4.sourceRunId}</code> · Model <code>{v4.model}</code></>
                     )}
                   </div>
 

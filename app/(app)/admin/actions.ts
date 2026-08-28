@@ -1,9 +1,21 @@
 "use server";
 
+import { execFile } from "node:child_process";
+import path from "node:path";
+import { promisify } from "node:util";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import {
+  getMathQuestionBankAssessmentCoverage,
+  summarizeMathTaxonomyTopicCoverage,
+  type QuestionBankAssessmentCoverageSummary,
+  type QuestionBankAssessmentState,
+  type QuestionBankAssessmentView,
+} from "@/lib/readiness-v4/assessment-coverage-service";
+import { MATH_ANALYTICAL_TOPICS } from "@/lib/readiness-v4/analytical-topics";
+import { MATH_TAXONOMY_VERSION } from "@/lib/readiness-v4/types";
 import {
   WATERMARKS,
   IMPLEMENTED_FIGURES,
@@ -17,6 +29,39 @@ const requireAdmin = async () => {
   if (!session?.user?.id || session.user.role !== "admin") throw new Error("Unauthorized");
   return session.user;
 };
+
+const execFileAsync = promisify(execFile);
+
+export async function exportMissingMathAssessmentInput(): Promise<{
+  ok: true;
+  artifactPath: string;
+  totalQuestions: number;
+  visualQuestions: number;
+  inputHash: string;
+}> {
+  await requireAdmin();
+  // Keep the multimodal renderer out of the Next Server Component graph:
+  // react-dom/server + sharp belong to the isolated CLI exporter process.
+  const tsxCli = path.join(/* turbopackIgnore: true */ process.cwd(), "node_modules/tsx/dist/cli.mjs");
+  const exporter = path.join(/* turbopackIgnore: true */ process.cwd(), "scripts/readiness-v4/export-question-bank-assessment-input.ts");
+  const { stdout } = await execFileAsync(process.execPath, [tsxCli, exporter], {
+    cwd: process.cwd(),
+    maxBuffer: 10 * 1024 * 1024,
+  });
+  const result = JSON.parse(stdout) as {
+    outputDir: string;
+    totalQuestions: number;
+    visualQuestions: number;
+    inputHash: string;
+  };
+  return {
+    ok: true,
+    artifactPath: result.outputDir.replace(`${process.cwd()}/`, ""),
+    totalQuestions: result.totalQuestions,
+    visualQuestions: result.visualQuestions,
+    inputHash: result.inputHash,
+  };
+}
 
 // ─── Topics ──────────────────────────────────────────────────────────────────
 
@@ -253,12 +298,148 @@ export interface BankStats {
   totalActive: number;
   totalInactive: number;
   byTopic: Record<string, number>;
+  v4Assessment: QuestionBankAssessmentCoverageSummary | null;
+}
+
+export interface MathTaxonomyAdminData {
+  taxonomyVersion: string;
+  approvedRunCount: number;
+  latestApprovedAt: string | null;
+  total: QuestionBankAssessmentCoverageSummary["total"];
+  topics: Array<{
+    id: string;
+    name: string;
+    short: string;
+    icon: string;
+    color: string;
+    usable: number;
+    current: number;
+    inherited: number;
+    byDifficulty: Record<1 | 2 | 3 | 4 | 5, number>;
+    mappedContentTopics: string[];
+  }>;
+  contentTopics: Array<{ id: string; name: string; short: string }>;
+}
+
+export async function getMathTaxonomyAdminData(): Promise<MathTaxonomyAdminData> {
+  await requireAdmin();
+  const [coverage, mappings, contentTopics, approvedRuns] = await Promise.all([
+    getMathQuestionBankAssessmentCoverage(),
+    prisma.contentTaxonomyMapping.findMany({
+      where: {
+        subject: "math",
+        taxonomyVersion: MATH_TAXONOMY_VERSION,
+        enabled: true,
+      },
+      orderBy: [{ taxonomyTopic: "asc" }, { priority: "desc" }, { contentTopic: "asc" }],
+    }),
+    prisma.topic.findMany({
+      where: { subject: "math" },
+      orderBy: { position: "asc" },
+      select: { id: true, name: true, short: true },
+    }),
+    prisma.assessmentRun.findMany({
+      where: { subject: "math", taxonomyVersion: MATH_TAXONOMY_VERSION, status: "approved" },
+      orderBy: [{ approvedAt: "desc" }, { createdAt: "desc" }],
+      select: { approvedAt: true },
+    }),
+  ]);
+  const coverageByTopic = new Map(
+    summarizeMathTaxonomyTopicCoverage(
+      coverage.items,
+      MATH_ANALYTICAL_TOPICS.map((topic) => topic.id),
+    ).map((row) => [row.topic, row]),
+  );
+  const mappingsByTopic = new Map<string, string[]>();
+  for (const mapping of mappings) {
+    const rows = mappingsByTopic.get(mapping.taxonomyTopic) ?? [];
+    rows.push(mapping.contentTopic);
+    mappingsByTopic.set(mapping.taxonomyTopic, rows);
+  }
+
+  return {
+    taxonomyVersion: MATH_TAXONOMY_VERSION,
+    approvedRunCount: approvedRuns.length,
+    latestApprovedAt: approvedRuns[0]?.approvedAt?.toISOString() ?? null,
+    total: coverage.total,
+    contentTopics,
+    topics: MATH_ANALYTICAL_TOPICS.map((topic) => {
+      const row = coverageByTopic.get(topic.id)!;
+      return {
+        ...topic,
+        usable: row.usable,
+        current: row.current,
+        inherited: row.inherited,
+        byDifficulty: row.byDifficulty,
+        mappedContentTopics: mappingsByTopic.get(topic.id) ?? [],
+      };
+    }),
+  };
+}
+
+const taxonomyMappingSchema = z.object({
+  taxonomyTopic: z.string().refine(
+    (value) => MATH_ANALYTICAL_TOPICS.some((topic) => topic.id === value),
+    "Analytical topic không hợp lệ",
+  ),
+  contentTopics: z.array(z.string().min(1)).max(20),
+});
+
+export async function saveMathTaxonomyMapping(payload: unknown): Promise<{ ok: true }> {
+  await requireAdmin();
+  const parsed = taxonomyMappingSchema.parse(payload);
+  const uniqueContentTopics = [...new Set(parsed.contentTopics)];
+  const existingContentTopics = uniqueContentTopics.length
+    ? await prisma.topic.findMany({
+        where: { subject: "math", id: { in: uniqueContentTopics } },
+        select: { id: true },
+      })
+    : [];
+  if (existingContentTopics.length !== uniqueContentTopics.length) {
+    throw new Error("Có content topic không hợp lệ");
+  }
+
+  await prisma.$transaction(async (tx) => {
+    await tx.contentTaxonomyMapping.updateMany({
+      where: {
+        subject: "math",
+        taxonomyVersion: MATH_TAXONOMY_VERSION,
+        taxonomyTopic: parsed.taxonomyTopic,
+      },
+      data: { enabled: false },
+    });
+    for (const [index, contentTopic] of uniqueContentTopics.entries()) {
+      await tx.contentTaxonomyMapping.upsert({
+        where: {
+          subject_taxonomyVersion_taxonomyTopic_contentTopic: {
+            subject: "math",
+            taxonomyVersion: MATH_TAXONOMY_VERSION,
+            taxonomyTopic: parsed.taxonomyTopic,
+            contentTopic,
+          },
+        },
+        create: {
+          subject: "math",
+          taxonomyVersion: MATH_TAXONOMY_VERSION,
+          taxonomyTopic: parsed.taxonomyTopic,
+          contentTopic,
+          priority: 100 - index * 10,
+          enabled: true,
+        },
+        update: { priority: 100 - index * 10, enabled: true },
+      });
+    }
+  });
+
+  revalidatePath("/admin");
+  revalidatePath("/topics");
+  return { ok: true };
 }
 
 export async function getBankStats(subject: "math" | "english" | "vietnamese" = "math"): Promise<BankStats> {
   await requireAdmin();
 
-  const [official, mock, supplement, privateCount, totalActive, totalInactive, byTopicRows] =
+  const [official, mock, supplement, privateCount, totalActive, totalInactive, byTopicRows, v4Assessment] =
     await Promise.all([
       prisma.question.count({
         where: { subject, examId: { not: null }, exam: { kind: "official", generated: false } },
@@ -314,6 +495,7 @@ export async function getBankStats(subject: "math" | "english" | "vietnamese" = 
         },
         _count: { id: true },
       }),
+      subject === "math" ? getMathQuestionBankAssessmentCoverage() : Promise.resolve(null),
     ]);
 
   const byTopic: Record<string, number> = {};
@@ -321,7 +503,18 @@ export async function getBankStats(subject: "math" | "english" | "vietnamese" = 
     byTopic[row.topic] = row._count.id;
   }
 
-  return { official, mock, supplement, private: privateCount, totalActive, totalInactive, byTopic };
+  return {
+    official,
+    mock,
+    supplement,
+    private: privateCount,
+    totalActive,
+    totalInactive,
+    byTopic,
+    v4Assessment: v4Assessment
+      ? { taxonomyVersion: v4Assessment.taxonomyVersion, total: v4Assessment.total, bySource: v4Assessment.bySource }
+      : null,
+  };
 }
 
 // ─── Bank: List questions ─────────────────────────────────────────────────────
@@ -337,6 +530,7 @@ export interface BankRow {
   source: "official" | "mock" | "supplement" | "private";
   examYear: string | null;
   examSchool: string | null;
+  assessment: QuestionBankAssessmentView | null;
 }
 
 export interface BankPage {
@@ -353,6 +547,7 @@ export interface BankFilters {
   q?: string;
   page?: number;
   subject?: "math" | "english" | "vietnamese";
+  assessmentState?: QuestionBankAssessmentState | "all";
 }
 
 export async function getBankQuestions(filters: BankFilters): Promise<BankPage> {
@@ -361,6 +556,9 @@ export async function getBankQuestions(filters: BankFilters): Promise<BankPage> 
   const pageSize = 25;
   const page = filters.page ?? 1;
   const skip = (page - 1) * pageSize;
+  const subject = filters.subject ?? "math";
+  const v4Assessment = subject === "math" ? await getMathQuestionBankAssessmentCoverage() : null;
+  const assessmentByQuestion = new Map(v4Assessment?.items.map((item) => [item.questionId, item]) ?? []);
 
   let where: any = {};
 
@@ -396,10 +594,13 @@ export async function getBankQuestions(filters: BankFilters): Promise<BankPage> 
   where = {
     AND: [
       where,
-      { subject: filters.subject ?? "math" },
+      { subject },
       filters.topic ? { topic: filters.topic } : {},
       filters.grade ? { grade: filters.grade } : {},
       filters.q ? { stem: { contains: filters.q } } : {},
+      filters.assessmentState && filters.assessmentState !== "all"
+        ? { id: { in: v4Assessment?.items.filter((item) => item.state === filters.assessmentState).map((item) => item.questionId) ?? [] } }
+        : {},
     ],
   };
 
@@ -435,6 +636,7 @@ export async function getBankQuestions(filters: BankFilters): Promise<BankPage> 
       source,
       examYear: q.exam?.year ?? null,
       examSchool: q.exam?.school ?? null,
+      assessment: assessmentByQuestion.get(q.id) ?? null,
     };
   });
 
@@ -461,6 +663,7 @@ export interface QuestionDetail {
   examSchool: string | null;
   examYear: string | null;
   examKind: string | null;
+  assessment: QuestionBankAssessmentView | null;
 }
 
 export async function getQuestionDetail(id: string): Promise<QuestionDetail> {
@@ -474,6 +677,7 @@ export async function getQuestionDetail(id: string): Promise<QuestionDetail> {
   });
 
   if (!q) throw new Error("Question not found");
+  const assessmentCoverage = q.subject === "math" ? await getMathQuestionBankAssessmentCoverage() : null;
 
   let parsedOptions: { id: string; text: string }[] = [];
   try {
@@ -512,6 +716,7 @@ export async function getQuestionDetail(id: string): Promise<QuestionDetail> {
     examSchool: q.exam?.school ?? null,
     examYear: q.exam?.year ?? null,
     examKind: q.exam?.kind ?? null,
+    assessment: assessmentCoverage?.items.find((item) => item.questionId === q.id) ?? null,
   };
 }
 

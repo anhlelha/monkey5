@@ -4,7 +4,6 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import {
   hydrateUser,
-  getMasteryStats,
   getUserActivityStats,
 } from "@/lib/user-data";
 import { DEFAULT_TOPICS } from "@/lib/static";
@@ -13,7 +12,7 @@ import { TopBar } from "@/components/TopBar";
 import { Icon } from "@/components/Icon";
 import { Bar, Card, Pill } from "@/components/ui";
 import { TopicsEditor } from "./TopicsEditor";
-import { MasteryOverviewCard } from "./MasteryOverviewCard";
+import { MathTaxonomyV4Panel } from "./MathTaxonomyV4Panel";
 import { QAPanel } from "./QAPanel";
 import { WhitelistPanel } from "./WhitelistPanel";
 import { BankPanel } from "./BankPanel";
@@ -22,6 +21,9 @@ import { LevelConfigPanel } from "./LevelConfigPanel";
 import { ExamsPanel } from "./ExamsPanel";
 import { SchoolsPanel } from "./SchoolsPanel";
 import { ReadinessPanel } from "./ReadinessPanel";
+import { ReadinessV4Admin } from "./ReadinessV4Admin";
+import { ReadinessV4OverviewCard } from "./ReadinessV4OverviewCard";
+import { getReadinessV4AdminState } from "./readiness-v4-actions";
 import { SettingsPanel } from "./SettingsPanel";
 import { LLMPanel } from "./LLMPanel";
 import { getQuietHours, getLandingTheme } from "@/lib/app-settings";
@@ -35,6 +37,7 @@ import {
   getLevelConfigRows,
   getReadinessDistribution,
   getAdminOverviewExtra,
+  getMathTaxonomyAdminData,
 } from "./actions";
 
 interface Props {
@@ -104,7 +107,6 @@ export default async function AdminPage({ searchParams }: Props) {
     : [];
   const ownerMap = new Map(owners.map((u) => [u.id, u.name ?? u.email ?? "—"]));
 
-  const masteryStats = tab === "overview" ? await getMasteryStats() : null;
   const overviewExtra = tab === "overview" ? await getAdminOverviewExtra() : null;
   const userActivityMap =
     tab === "users" ? await getUserActivityStats(users.map((u) => u.id)) : null;
@@ -119,13 +121,19 @@ export default async function AdminPage({ searchParams }: Props) {
 
   const bankStats = tab === "bank" ? await getBankStats(subject) : null;
   const bankPage  = tab === "bank" ? await getBankQuestions({ source: "all", page: 1, subject }) : null;
+  const mathTaxonomyData = tab === "topics" && subject === "math"
+    ? await getMathTaxonomyAdminData()
+    : null;
 
   const planConfigs  = tab === "plans" ? await getPlanConfigs()      : [];
   const levelConfigs = tab === "levels" ? await getLevelConfigRows(subject) : [];
 
   const schoolsList    = tab === "schools"   ? await getAllSchools()             : [];
-  const readinessData  = tab === "readiness" ? await getReadinessDistribution(subject) : [];
-  const readinessSchools = tab === "readiness" ? await getActiveSchools()       : [];
+  const readinessData  = tab === "readiness" && subject !== "math" ? await getReadinessDistribution(subject) : [];
+  const readinessSchools = tab === "readiness" && subject !== "math" ? await getActiveSchools() : [];
+  const readinessV4State = ["overview", "readiness"].includes(tab) && subject === "math"
+    ? await getReadinessV4AdminState()
+    : null;
   const activeSchools  = tab === "overview"  ? await getActiveSchools()         : [];
   const quietHours     = tab === "settings"  ? await getQuietHours()             : null;
   const landingTheme   = tab === "settings"  ? await getLandingTheme()            : null;
@@ -146,12 +154,12 @@ export default async function AdminPage({ searchParams }: Props) {
     whitelist:{ crumb: "Whitelist", title: "Whitelist truy cập", sub: "Quản lý email được phép đăng nhập / nâng cấp." },
     settings: { crumb: "Cấu hình chung", title: "Cấu hình chung", sub: "Tham số mặc định áp dụng cho toàn bộ ứng dụng." },
     llm:      { crumb: "AI LLMs", title: "Setup AI LLMs", sub: "Cấu hình nhà cung cấp AI & cách chấm câu tự luận tự động." },
-    topics:   { crumb: "Chuyên đề", title: "Cấu hình chuyên đề", sub: "Danh sách và thứ tự các chuyên đề luyện tập." },
+    topics:   { crumb: "Chuyên đề", title: subject === "math" ? "Taxonomy chuyên đề V4" : "Cấu hình content topic", sub: subject === "math" ? "Coverage, độ khó và mapping của 13 analytical topic Readiness V4." : "Danh sách nhóm nội dung hiển thị cho môn học." },
     qa:       { crumb: "QA câu hỏi", title: "QA câu hỏi", sub: "Soát lỗi và rà soát câu hỏi bị flag / có hình." },
     plans:    { crumb: "Gói thành viên", title: "Gói VIP · Pro · Free", sub: "Cấu hình giới hạn và quyền lợi từng gói." },
     levels:   { crumb: "Số câu luyện", title: "Số câu theo mức luyện", sub: "Cấu hình số câu & thời gian cho từng môn và mức luyện." },
     schools:  { crumb: "Trường", title: "Cấu hình trường", sub: "Quản lý danh sách trường + metadata hiển thị." },
-    readiness:{ crumb: "Mức phù hợp", title: "Phân tích readiness", sub: "Phân bố user theo mức sẵn sàng + tools rebuild profile / recompute." },
+    readiness:{ crumb: "Readiness V4", title: "Readiness V4", sub: "Shadow profiles, policy, snapshots, recompute jobs và mức sẵn sàng theo trường." },
   };
   const meta = TAB_META[tab] ?? TAB_META.overview;
 
@@ -315,20 +323,12 @@ export default async function AdminPage({ searchParams }: Props) {
               </div>
             </Card>
 
-            {masteryStats && (
+            {readinessV4State && (
               <div style={{ marginTop: 22 }}>
-                <MasteryOverviewCard
-                  stats={masteryStats}
-                  topics={TOPICS.map((t) => ({
-                    id: t.id,
-                    name: t.name,
-                    short: t.short,
-                    color: t.color,
-                    position: t.position ?? 0,
-                  }))}
-                />
+                <ReadinessV4OverviewCard state={readinessV4State} />
               </div>
             )}
+
           </>
         )}
 
@@ -357,20 +357,32 @@ export default async function AdminPage({ searchParams }: Props) {
           </Card>
         )}
 
-        {tab === "topics" && (
-          <TopicsEditor
-            key={`topics-${subject}`}
-            subject={subject}
-            initial={TOPICS.map((t) => ({
-              id: t.id,
-              name: t.name,
-              short: t.short,
-              ico: t.ico,
-              color: t.color,
-              position: t.position ?? 0,
-              skill: (t as { skill?: string | null }).skill ?? null,
-            }))}
-          />
+        {tab === "topics" && subject === "math" && mathTaxonomyData && (
+          <MathTaxonomyV4Panel data={mathTaxonomyData} />
+        )}
+
+        {tab === "topics" && subject !== "math" && (
+          <>
+            <div style={{ marginBottom: 16, padding: 12, border: "1px solid var(--border)", borderRadius: 10, background: "var(--surface-2)" }}>
+              <Pill tone="amber">Content topic</Pill>
+              <span className="muted" style={{ fontSize: 12.5, marginLeft: 8 }}>
+                {subject === "english" ? "Tiếng Anh" : "Tiếng Việt"} chưa dùng analytical taxonomy Readiness V4; cấu hình dưới đây chỉ điều khiển nhóm nội dung hiển thị.
+              </span>
+            </div>
+            <TopicsEditor
+              key={`topics-${subject}`}
+              subject={subject}
+              initial={TOPICS.map((t) => ({
+                id: t.id,
+                name: t.name,
+                short: t.short,
+                ico: t.ico,
+                color: t.color,
+                position: t.position ?? 0,
+                skill: (t as { skill?: string | null }).skill ?? null,
+              }))}
+            />
+          </>
         )}
 
         {tab === "users" && (
@@ -541,13 +553,22 @@ export default async function AdminPage({ searchParams }: Props) {
 
         {tab === "schools" && <SchoolsPanel schools={schoolsList} />}
 
-        {tab === "readiness" && (
-          <ReadinessPanel
-            key={`readiness-${subject}`}
-            histograms={readinessData}
-            schools={readinessSchools.map((s) => ({ id: s.id, full: s.full, tone: s.tone }))}
-            subject={subject}
-          />
+        {tab === "readiness" && subject === "math" && readinessV4State && (
+          <ReadinessV4Admin state={readinessV4State} />
+        )}
+
+        {tab === "readiness" && subject !== "math" && (
+          <div className="col" style={{ gap: 12 }}>
+            <Card title="Readiness legacy theo môn" sub="Môn này chưa nằm trong policy Readiness V4 Math; dữ liệu dưới đây không phải status V4.">
+              <div className="muted" style={{ fontSize: 12.5 }}>Khi có policy V4 riêng cho {subject}, màn hình này sẽ chuyển sang V4 control plane tương ứng.</div>
+            </Card>
+            <ReadinessPanel
+              key={`readiness-${subject}`}
+              histograms={readinessData}
+              schools={readinessSchools.map((s) => ({ id: s.id, full: s.full, tone: s.tone }))}
+              subject={subject}
+            />
+          </div>
         )}
 
         {tab === "settings" && quietHours && landingTheme && (

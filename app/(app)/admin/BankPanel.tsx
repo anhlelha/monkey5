@@ -7,6 +7,7 @@ import {
   getBankQuestions,
   toggleQuestionActive,
   getQuestionDetail,
+  exportMissingMathAssessmentInput,
   type BankStats,
   type BankRow,
   type BankFilters,
@@ -59,12 +60,14 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
   const [topic, setTopic] = useState("");
   const [grade, setGrade] = useState("");
   const [q, setQ] = useState("");
+  const [assessmentState, setAssessmentState] = useState<NonNullable<BankFilters["assessmentState"]>>("all");
 
   const [isPending, startTransition] = useTransition();
   const [togglingId, setTogglingId] = useState<string | null>(null);
 
   const [selectedDetail, setSelectedDetail] = useState<QuestionDetail | null>(null);
   const [loadingDetailId, setLoadingDetailId] = useState<string | null>(null);
+  const [exportResult, setExportResult] = useState<string | null>(null);
 
   const pageSize = initialPage.pageSize;
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
@@ -89,6 +92,7 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
       topic: topic || undefined,
       grade: grade || undefined,
       q: q || undefined,
+      assessmentState,
       page: 1,
       ...overrides,
     };
@@ -127,6 +131,7 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
       topic: topic || undefined,
       grade: grade || undefined,
       q: q || undefined,
+      assessmentState,
       page: p,
     };
     fetchPage(merged);
@@ -153,8 +158,66 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
       </div>
 
       {/* ── Per-topic breakdown ── */}
+      {subject === "math" && stats.v4Assessment && (
+        <Card
+          title="Assessment V4 · taxonomy phân tích"
+          sub={`${stats.v4Assessment.taxonomyVersion} · topic/D1–D5/confidence/hash của câu canonical; không tính generated clone`}
+        >
+          <div className="grid cols-5" style={{ gap: 10 }}>
+            {[
+              ["Tổng", stats.v4Assessment.total.total, ""],
+              ["Current", stats.v4Assessment.total.current, "green"],
+              ["Inherited", stats.v4Assessment.total.inherited, "accent"],
+              ["Stale / conflict", stats.v4Assessment.total.stale + stats.v4Assessment.total.conflict, "red"],
+              ["Missing", stats.v4Assessment.total.missing, "amber"],
+            ].map(([label, value, tone]) => (
+              <div key={String(label)} style={{ padding: 12, border: "1px solid var(--border)", borderRadius: 10 }}>
+                <div className="eyebrow" style={{ fontSize: 9 }}>{label}</div>
+                <div style={{ marginTop: 5 }}><Pill tone={String(tone)}><b>{value}</b></Pill></div>
+              </div>
+            ))}
+          </div>
+          <div className="row" style={{ gap: 8, flexWrap: "wrap", marginTop: 12 }}>
+            {Object.entries(stats.v4Assessment.bySource).map(([sourceId, value]) => (
+              <Pill key={sourceId}>
+                {SOURCE_LABELS[sourceId] ?? sourceId}: <b style={{ marginLeft: 4 }}>{value.current + value.inherited}/{value.total}</b>
+              </Pill>
+            ))}
+          </div>
+          <div className="row" style={{ gap: 10, flexWrap: "wrap", marginTop: 14, alignItems: "center" }}>
+            <button
+              type="button"
+              className="btn secondary"
+              disabled={isPending || stats.v4Assessment.total.missing + stats.v4Assessment.total.stale + stats.v4Assessment.total.conflict === 0}
+              onClick={() => {
+                setExportResult(null);
+                startTransition(async () => {
+                  try {
+                    const result = await exportMissingMathAssessmentInput();
+                    setExportResult(`${result.totalQuestions} câu · ${result.artifactPath}`);
+                  } catch (error) {
+                    setExportResult(error instanceof Error ? error.message : "Không thể tạo artifact");
+                  }
+                });
+              }}
+            >
+              <Icon name="download" size={15} /> {isPending ? "Đang xuất…" : "Xuất input cần đánh giá"}
+            </button>
+            <span className="muted" style={{ fontSize: 12 }}>
+              Chỉ tạo artifact để review; không gọi AI và không tự approve.
+            </span>
+          </div>
+          {exportResult && (
+            <div style={{ marginTop: 10, padding: 10, borderRadius: 8, background: "var(--surface-2)", fontSize: 12, overflowWrap: "anywhere" }}>
+              {exportResult}
+            </div>
+          )}
+        </Card>
+      )}
+
+      {/* ── Per-topic breakdown ── */}
       {Object.keys(stats.byTopic).length > 0 && (
-        <Card title="Phân bố theo chuyên đề" sub="Tổng số câu trong kho (kể cả tắt)">
+        <Card title="Phân bố content topic" sub="Topic nội dung dùng cho kho/luyện tập; không phải analytical taxonomy V4">
           <div className="row" style={{ gap: 8, flexWrap: "wrap" }}>
             {Object.entries(stats.byTopic)
               .sort(([, a], [, b]) => b - a)
@@ -168,7 +231,8 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
       )}
 
       {/* ── Filter bar ── */}
-      <Card title="Ngân hàng câu hỏi" sub={`${total.toLocaleString("vi-VN")} câu`}>
+              <Card title="Ngân hàng câu hỏi" sub={`${total.toLocaleString("vi-VN")} câu · content topic và Assessment V4 hiển thị tách biệt`}>
+
         <div className="row" style={{ gap: 10, flexWrap: "wrap", marginBottom: 16 }}>
           <select
             className="input"
@@ -187,6 +251,26 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
             <option value="private">Riêng</option>
           </select>
 
+          {subject === "math" && (
+            <select
+              className="input"
+              style={{ width: 170 }}
+              value={assessmentState}
+              onChange={(e) => {
+                const value = e.target.value as NonNullable<BankFilters["assessmentState"]>;
+                setAssessmentState(value);
+                applyFilters({ assessmentState: value, page: 1 });
+              }}
+            >
+              <option value="all">Tất cả assessment V4</option>
+              <option value="current">V4 · Current</option>
+              <option value="inherited">V4 · Inherited</option>
+              <option value="stale">V4 · Stale</option>
+              <option value="conflict">V4 · Conflict</option>
+              <option value="missing">V4 · Missing</option>
+            </select>
+          )}
+
           <select
             className="input"
             style={{ width: 160 }}
@@ -196,7 +280,7 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
               applyFilters({ topic: e.target.value || undefined, page: 1 });
             }}
           >
-            <option value="">Tất cả chuyên đề</option>
+            <option value="">Tất cả content topic</option>
             {topics.map((t) => (
               <option key={t.id} value={t.id}>
                 {t.name}
@@ -247,17 +331,18 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
             <thead>
               <tr>
                 <th style={{ width: 90 }}>Nguồn</th>
-                <th style={{ width: 80 }}>Chuyên đề</th>
+                <th style={{ width: 110 }}>Content topic</th>
                 <th style={{ width: 60 }}>Mức</th>
                 <th style={{ width: 50 }}>Loại</th>
                 <th>Nội dung câu</th>
+                {subject === "math" && <th style={{ width: 135 }}>Assessment V4</th>}
                 <th style={{ width: 110 }}>Trạng thái</th>
               </tr>
             </thead>
             <tbody>
               {rows.length === 0 && (
                 <tr>
-                  <td colSpan={6} style={{ textAlign: "center", padding: 24 }}>
+                  <td colSpan={subject === "math" ? 7 : 6} style={{ textAlign: "center", padding: 24 }}>
                     <span className="muted">Không có câu nào.</span>
                   </td>
                 </tr>
@@ -293,6 +378,22 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
                   <td style={{ maxWidth: 420 }}>
                     <span style={{ fontSize: 12.5, lineHeight: 1.4 }}>{row.stem}</span>
                   </td>
+                  {subject === "math" && (
+                    <td>
+                      {row.assessment ? (
+                        <div className="col" style={{ gap: 4, alignItems: "flex-start" }}>
+                          <Pill tone={row.assessment.state === "current" || row.assessment.state === "inherited" ? "green" : row.assessment.state === "missing" ? "amber" : "red"}>
+                            {row.assessment.state === "current" ? "Current" : row.assessment.state === "inherited" ? "Inherited" : row.assessment.state === "missing" ? "Missing" : row.assessment.state === "stale" ? "Stale" : "Conflict"}
+                          </Pill>
+                          {row.assessment.topicPrimary && (
+                            <span className="muted" style={{ fontSize: 10 }}>
+                              {row.assessment.topicPrimary} · D{row.assessment.difficultyBand} · {Math.round(row.assessment.confidence ?? 0)}%
+                            </span>
+                          )}
+                        </div>
+                      ) : <span className="muted">—</span>}
+                    </td>
+                  )}
                   <td>
                     <div className="col" style={{ gap: 4, alignItems: "flex-start" }}>
                       {/* Status badge */}

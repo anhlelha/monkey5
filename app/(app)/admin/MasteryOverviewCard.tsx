@@ -49,8 +49,8 @@ export function MasteryOverviewCard({ stats, topics }: Props) {
   return (
     <div className="col" style={{ gap: 16 }}>
       <Card
-        title="Mastery toàn hệ thống"
-        sub={`Trung bình của ${stats.activeUsers} HS đã có hoạt động · trên tổng ${stats.totalUsers} tài khoản`}
+        title="Legacy baseline · Mastery toàn hệ thống"
+        sub={`Dữ liệu legacy để đối chiếu rollback · ${stats.activeUsers} HS đã có hoạt động trên tổng ${stats.totalUsers} tài khoản`}
       >
         <div className="grid cols-4" style={{ gap: 12 }}>
           <div className="school-card" style={{ padding: 14 }}>
@@ -88,7 +88,7 @@ export function MasteryOverviewCard({ stats, topics }: Props) {
       </Card>
 
       <div className="grid cols-2" style={{ gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-        <Card title="Mastery theo chuyên đề" sub="Trung bình tính trên HS đã luyện chuyên đề tương ứng">
+        <Card title="Legacy baseline · Mastery theo content topic" sub="Trung bình từ User.topicMastery; không phải analytical taxonomy hoặc status Readiness V4">
           {perTopicSorted.length === 0 ? (
             <div className="muted" style={{ fontSize: 13 }}>Chưa có HS nào có dữ liệu mastery.</div>
           ) : (

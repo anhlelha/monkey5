@@ -9,6 +9,7 @@ import { isLLMGradingEnabled } from "@/lib/llm-settings";
 import { computeMastery } from "@/lib/mastery";
 import { ensureSchoolProfilesFresh, getAllSchoolProfiles } from "@/lib/school-profiles";
 import { computeAllReadiness } from "@/lib/readiness";
+import { getReadinessV4Flags } from "@/lib/readiness-v4/feature-flags";
 
 interface SubmitArgs {
   examId: string;
@@ -26,6 +27,13 @@ export async function submitExam({ examId, answers, durationSec }: SubmitArgs) {
     include: { questions: true },
   });
   if (!exam) throw new Error("Exam not found");
+  const practiceSet = await prisma.practiceSet.findUnique({
+    where: { examId },
+    select: { userId: true, analyticalTopic: true },
+  });
+  if (practiceSet && practiceSet.userId !== userId && session.user.role !== "admin") {
+    throw new Error("Unauthorized practice set");
+  }
 
   // Persist the raw attempt first; recomputeAttemptScore reads answers back and
   // sets earned/total/score (rule-based for mcq/fill, AI for essays).
@@ -56,8 +64,11 @@ export async function submitExam({ examId, answers, durationSec }: SubmitArgs) {
 
   // Topic-set spawns also write a TopicSession row (drives "Lịch sử luyện tập"
   // and the user-progress sub-title on the topic detail page).
-  const topicSet = parseTopicSetId(examId);
-  if (topicSet) {
+  const topicSet = practiceSet ? null : parseTopicSetId(examId);
+  if (practiceSet?.analyticalTopic) {
+    revalidatePath(`/topics/${practiceSet.analyticalTopic}`);
+    revalidatePath("/topics");
+  } else if (topicSet) {
     await prisma.topicSession.create({
       data: {
         userId,
@@ -71,22 +82,36 @@ export async function submitExam({ examId, answers, durationSec }: SubmitArgs) {
     revalidatePath(`/topics/${topicSet.topic}`);
   }
 
-  // Recompute mastery + readiness — hash-based ensureFresh detects new exams.
+  // Legacy JSON remains the rollback source during the migration window. Once
+  // its explicit persistence flag is disabled, submissions stop mutating it.
+  const readinessFlags = await getReadinessV4Flags().catch(() => ({ persistLegacyEnabled: true }));
+  if (readinessFlags.persistLegacyEnabled) {
+    try {
+      await ensureSchoolProfilesFresh();
+      const profiles = await getAllSchoolProfiles();
+      const mastery = await computeMastery(userId);
+      const readiness = computeAllReadiness(mastery.topicMastery, mastery.levelMastery, profiles);
+      await prisma.user.update({
+        where: { id: userId },
+        data: {
+          topicMastery: JSON.stringify(mastery.topicMastery),
+          readiness: JSON.stringify(readiness),
+        },
+      });
+    } catch (err) {
+      // Don't fail the submission if readiness compute fails — log and continue.
+      console.error("[submitExam] readiness recompute failed:", err);
+    }
+  }
+
+  // Readiness v4 is additive and best-effort. The feature flags default off;
+  // when shadow/compute is enabled this only enqueues a DB-backed job and never
+  // makes a successful Attempt submission wait for the v4 worker.
   try {
-    await ensureSchoolProfilesFresh();
-    const profiles = await getAllSchoolProfiles();
-    const mastery = await computeMastery(userId);
-    const readiness = computeAllReadiness(mastery.topicMastery, mastery.levelMastery, profiles);
-    await prisma.user.update({
-      where: { id: userId },
-      data: {
-        topicMastery: JSON.stringify(mastery.topicMastery),
-        readiness: JSON.stringify(readiness),
-      },
-    });
+    const { enqueueAttemptRecompute } = await import("@/lib/readiness-v4/job-service");
+    await enqueueAttemptRecompute({ userId, attemptId: attempt.id });
   } catch (err) {
-    // Don't fail the submission if readiness compute fails — log and continue.
-    console.error("[submitExam] readiness recompute failed:", err);
+    console.error("[submitExam] readiness v4 enqueue failed:", err);
   }
 
   revalidatePath("/home");

@@ -23,12 +23,12 @@ model User {
   image         String?
   // Application fields
   role          String    @default("student") // "student" | "admin"
-  plan          String    @default("free")    // "free" | "pro" | "vip"
-  disabled      Boolean   @default(false)     // Soft-disable: blocks sign-in + access
+  plan          String    @default("free") // "free" | "pro" | "vip"
+  disabled      Boolean   @default(false) // Soft-disable: blocks sign-in + access
   grade         String    @default("Lớp 5")
   targets       String    @default("[]") // JSON array of school ids
   hours         Int       @default(5)
-  examDate      String?   // ISO date string
+  examDate      String? // ISO date string
   readyTarget   Int       @default(75)
   streak        Int       @default(0)
   joinedDays    Int       @default(0)
@@ -38,13 +38,14 @@ model User {
   activity      String    @default("[]") // last-14-day percent[] (null for no activity)
   theme         String    @default("clay") // UI theme: clay | ocean | forest | grape | coral
 
-  accounts Account[]
-  sessions Session[]
-  attempts Attempt[]
-  customSets CustomSet[]
-  topicSessions TopicSession[]
+  accounts       Account[]
+  sessions       Session[]
+  attempts       Attempt[]
+  customSets     CustomSet[]
+  topicSessions  TopicSession[]
   referenceExams UserReferenceExam[]
-  topicSets UserTopicSet[]
+  topicSets      UserTopicSet[]
+  practiceSets   PracticeSet[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -89,33 +90,34 @@ model VerificationToken {
 // ─── Exam library ────────────────────────────────────────────────────────────
 
 model Exam {
-  id        String   @id
-  subject   String   @default("math") // "math" | "english"
-  school    String   // school id ("cg"|"ntt"|"ltv"|"tx"|"mix")
-  kind      String   // "official" | "reference" | "mixed"
-  year      String   // display label (e.g. "2024-2025")
+  id        String  @id
+  subject   String  @default("math") // "math" | "english"
+  school    String // school id ("cg"|"ntt"|"ltv"|"tx"|"mix")
+  kind      String // "official" | "reference" | "mixed"
+  year      String // display label (e.g. "2024-2025")
   title     String?
   intro     String?
   minutes   Int
   qcount    Int
-  generated Boolean  @default(false)
-  basedOn   String?  // id of source exam (for reference)
+  generated Boolean @default(false)
+  basedOn   String? // id of source exam (for reference)
   note      String?
   mixRatio  String?
-  sections  String   @default("[]") // JSON string of [{ num: number, header: string }]
+  sections  String  @default("[]") // JSON string of [{ num: number, header: string }]
 
   // ─── Personalized remedial sets (per-student "Bài thầy giao") ──────────────
   // ownerUserId null → public exam (official/reference/mixed, unchanged behavior).
   // ownerUserId set  → private practice set, visible ONLY to that user at
   //   /luyen-rieng. See docs/REMEDIAL-SETS-DESIGN.md.
   ownerUserId String?
-  position    Int      @default(0)  // display order within a user's set list
-  active      Boolean  @default(true) // false = archived (NEVER delete — Attempt cascade would wipe history)
+  position    Int       @default(0) // display order within a user's set list
+  active      Boolean   @default(true) // false = archived (NEVER delete — Attempt cascade would wipe history)
   archivedAt  DateTime?
 
-  questions Question[]
-  attempts  Attempt[]
+  questions      Question[]
+  attempts       Attempt[]
   referenceExams UserReferenceExam[]
+  practiceSet    PracticeSet?
 
   createdAt DateTime @default(now())
 
@@ -123,35 +125,35 @@ model Exam {
 }
 
 model Question {
-  id          String  @id @default(cuid())
-  examId      String?
-  subject     String  @default("math") // "math" | "english"
-  num         Int
-  type        String  // "fill" | "mcq" | "essay"
-  topic       String  // topic id
-  skill       String? // english skill domain: "pron"|"useofenglish"|"comm"|"reading"|"writing"
-  grade       String  // math: "L4"|"L5"|"NC"|"L4+5"  ·  english: "A1"|"A2"|"B1"
+  id               String  @id @default(cuid())
+  examId           String?
+  subject          String  @default("math") // "math" | "english"
+  num              Int
+  type             String // "fill" | "mcq" | "essay"
+  topic            String // topic id
+  skill            String? // english skill domain: "pron"|"useofenglish"|"comm"|"reading"|"writing"
+  grade            String // math: "L4"|"L5"|"NC"|"L4+5"  ·  english: "A1"|"A2"|"B1"
   // english-only sub-tags driving difficulty (e.g. "inference","collocation",
   // "idiom","underline"). JSON array; empty for math.
-  tags        String  @default("[]")
+  tags             String  @default("[]")
   // Reading questions sharing one passage carry the same groupId + passageId.
-  groupId     String?
-  passageId   String?
-  points      Int     @default(1)
-  stem        String
-  unit        String?
-  placeholder String?
-  correct     String?
+  groupId          String?
+  passageId        String?
+  points           Int     @default(1)
+  stem             String
+  unit             String?
+  placeholder      String?
+  correct          String?
   // Optional JSON: AnswerSchema for grading (see lib/grading/types.ts).
   // null → fall back to lenient string equality on `correct`.
-  answerSchema String?
+  answerSchema     String?
   // For MCQ — JSON array of { id, text }
-  options     String  @default("[]")
-  modelAnswer String?
-  figure      String?
-  source      String?
-  sourceQuestionId String?  // ID of original bank question (set when cloning into practice sets)
-  active      Boolean @default(true)
+  options          String  @default("[]")
+  modelAnswer      String?
+  figure           String?
+  source           String?
+  sourceQuestionId String? // ID of original bank question (set when cloning into practice sets)
+  active           Boolean @default(true)
 
   exam Exam? @relation(fields: [examId], references: [id], onDelete: SetNull)
 
@@ -159,39 +161,39 @@ model Question {
 }
 
 model Attempt {
-  id        String   @id @default(cuid())
-  userId    String
-  examId    String
+  id          String   @id @default(cuid())
+  userId      String
+  examId      String
   // JSON: { qid: answer }
-  answers   String   @default("{}")
-  score     Int      @default(0) // 0..100
+  answers     String   @default("{}")
+  score       Int      @default(0) // 0..100
   // Float (not Int) since AI-graded essays award fractional points (e.g. 0,5 / 0,75).
-  earned    Float    @default(0)
-  total     Int      @default(0)
-  durationSec Int    @default(0)
-  submitted Boolean  @default(false)
-  createdAt DateTime @default(now())
+  earned      Float    @default(0)
+  total       Int      @default(0)
+  durationSec Int      @default(0)
+  submitted   Boolean  @default(false)
+  createdAt   DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  exam Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exam        Exam         @relation(fields: [examId], references: [id], onDelete: Cascade)
   essayGrades EssayGrade[]
 }
 
 // ─── Topic practice sets (admin-managed) ─────────────────────────────────────
 
 model CustomSet {
-  id         String   @id @default(cuid())
-  topic      String
-  name       String
-  qcount     Int
-  minutes    Int      @default(30)
-  difficulty String   @default("L5")
-  kind       String   @default("reference") // "official" | "mixed" | "reference"
-  mixRatio   String?
-  source     String?
-  tags       String   @default("[]") // JSON array
+  id          String   @id @default(cuid())
+  topic       String
+  name        String
+  qcount      Int
+  minutes     Int      @default(30)
+  difficulty  String   @default("L5")
+  kind        String   @default("reference") // "official" | "mixed" | "reference"
+  mixRatio    String?
+  source      String?
+  tags        String   @default("[]") // JSON array
   createdById String?
-  createdAt  DateTime @default(now())
+  createdAt   DateTime @default(now())
 
   createdBy User? @relation(fields: [createdById], references: [id], onDelete: SetNull)
 }
@@ -203,11 +205,11 @@ model CustomSet {
 model TopicSession {
   id        String   @id @default(cuid())
   userId    String
-  topic     String   // topic id ("phan"|"hinh"|...)
-  level     String   // "L4" | "L5" | "NC" | "MIX" | "L4+5"
+  topic     String // topic id ("phan"|"hinh"|...)
+  level     String // "L4" | "L5" | "NC" | "MIX" | "L4+5"
   qcount    Int
-  score     Int      // number correct, 0..qcount
-  setId     String?  // spawned set id (e.g. "phan-l5") for traceability
+  score     Int // number correct, 0..qcount
+  setId     String? // spawned set id (e.g. "phan-l5") for traceability
   createdAt DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -220,14 +222,14 @@ model TopicSession {
 // persist edits. Order is by `position` ascending.
 
 model Topic {
-  id       String @id
+  id       String  @id
   subject  String  @default("math") // "math" | "english"
-  skill    String?                  // english skill domain (pron|useofenglish|comm|reading|writing)
+  skill    String? // english skill domain (pron|useofenglish|comm|reading|writing)
   name     String
   short    String
   ico      String
   color    String
-  position Int    @default(0)
+  position Int     @default(0)
 }
 
 // ─── Reading passage (english) ────────────────────────────────────────────────
@@ -270,8 +272,8 @@ model UserWhitelist {
   id        String   @id @default(cuid())
   email     String   @unique // lowercase
   role      String   @default("student") // "student" | "admin"
-  plan      String   @default("free")    // "free" | "pro" | "vip"
-  note      String?  // optional label (e.g. "Vinmec account")
+  plan      String   @default("free") // "free" | "pro" | "vip"
+  note      String? // optional label (e.g. "Vinmec account")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -280,8 +282,8 @@ model UserWhitelist {
 // -1 = unlimited. Admin edits via PlansPanel; read via lib/plan-config.ts.
 
 model PlanConfig {
-  plan               String   @id          // "free" | "pro" | "vip"
-  label              String                // "Miễn phí" | "Pro" | "VIP"
+  plan               String   @id // "free" | "pro" | "vip"
+  label              String // "Miễn phí" | "Pro" | "VIP"
   topicSetLimit      Int      @default(-1) // total lifetime topic-set quota
   referenceExamLimit Int      @default(-1) // replaces free=5/pro=20/vip=∞
   position           Int      @default(0)
@@ -323,25 +325,79 @@ model UserTopicSet {
   @@index([userId, addedAt])
 }
 
+// ─── Readiness V4 practice generation ───────────────────────────────────────
+// Exam remains the runner container. These rows preserve the exact V4 target,
+// assessment lineage and deterministic selection that produced that exam.
+
+model PracticeSet {
+  id                   String   @id @default(cuid())
+  userId               String
+  examId               String   @unique
+  subject              String   @default("math")
+  mode                 String   @default("targeted") // targeted | school_blueprint
+  taxonomyVersion      String
+  analyticalTopic      String?
+  difficultyBand       String? // foundation | application | advanced
+  targetSchool         String?
+  profileVersionId     String?
+  policyVersionId      String?
+  sourceFilter         String   @default("all") // all | official | supplement
+  algorithmVersion     String
+  idempotencyKey       String   @unique
+  requestedCount       Int
+  selectedCount        Int
+  unseenCount          Int
+  assessmentRunIdsJson String   @default("[]")
+  createdAt            DateTime @default(now())
+
+  user  User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exam  Exam              @relation(fields: [examId], references: [id], onDelete: Cascade)
+  items PracticeSetItem[]
+
+  @@index([userId, analyticalTopic, difficultyBand, createdAt])
+  @@index([targetSchool, profileVersionId])
+}
+
+model PracticeSetItem {
+  id                  String  @id @default(cuid())
+  practiceSetId       String
+  questionId          String
+  sourceQuestionId    String
+  canonicalQuestionId String
+  assessmentId        String
+  analyticalTopic     String
+  difficulty          Int
+  cognitiveLevel      String
+  reasoningType       String
+  isRepeat            Boolean @default(false)
+  position            Int
+
+  practiceSet PracticeSet @relation(fields: [practiceSetId], references: [id], onDelete: Cascade)
+
+  @@unique([practiceSetId, position])
+  @@index([canonicalQuestionId])
+  @@index([analyticalTopic, difficulty])
+}
+
 // ─── School metadata (admin-editable, was SCHOOLS array in lib/static.ts) ─────
 // Tên / màu / minutes / tone CSS / desc — admin sửa qua /admin?tab=schools.
 // Trường mới phát hiện trong Exam.school sẽ tự sinh row default qua
 // ensureSchoolMetadata() (lib/school-profiles.ts).
 
 model School {
-  id        String   @id              // "cg" | "ltv" | "tx" | "ntt" | "nn" | "ntl" | ...
-  short     String                    // "CG"
-  name      String                    // "THCS Cầu Giấy"
-  full      String                    // "THCS Cầu Giấy"
-  color     String                    // "var(--cg)" hoặc "#3b82f6"
-  tone      String                    // CSS class hậu tố — "cg"
-  desc      String                    @default("")
-  minutes   Int                       @default(60)
-  style     String                    @default("")
-  position  Int                       @default(0)
-  active    Boolean                   @default(true)
-  createdAt DateTime                  @default(now())
-  updatedAt DateTime                  @updatedAt
+  id        String   @id // "cg" | "ltv" | "tx" | "ntt" | "nn" | "ntl" | ...
+  short     String // "CG"
+  name      String // "THCS Cầu Giấy"
+  full      String // "THCS Cầu Giấy"
+  color     String // "var(--cg)" hoặc "#3b82f6"
+  tone      String // CSS class hậu tố — "cg"
+  desc      String   @default("")
+  minutes   Int      @default(60)
+  style     String   @default("")
+  position  Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 // ─── School profile (auto-computed statistics for readiness scoring) ──────────
@@ -353,12 +409,16 @@ model School {
 // student accounts are blocked from accessing learning pages (sức khỏe học sinh).
 
 model AppSetting {
-  id                 String   @id @default("singleton")
-  quietHoursEnabled  Boolean  @default(true)
-  quietHoursStart    String   @default("22:00") // HH:mm 24h, Asia/Ho_Chi_Minh
-  quietHoursEnd      String   @default("07:00")
-  landingTheme       String   @default("ocean") // clay | ocean | forest | grape | coral
-  updatedAt          DateTime @updatedAt
+  id                              String   @id @default("singleton")
+  quietHoursEnabled               Boolean  @default(true)
+  quietHoursStart                 String   @default("22:00") // HH:mm 24h, Asia/Ho_Chi_Minh
+  quietHoursEnd                   String   @default("07:00")
+  landingTheme                    String   @default("ocean") // clay | ocean | forest | grape | coral
+  readinessV4ComputeEnabled       Boolean  @default(false)
+  readinessV4ShadowEnabled        Boolean  @default(false)
+  readinessV4ReadEnabled          Boolean  @default(false)
+  readinessV4PersistLegacyEnabled Boolean  @default(true)
+  updatedAt                       DateTime @updatedAt
 }
 
 // ─── AI essay grading config (admin singleton) ───────────────────────────────
@@ -366,57 +426,57 @@ model AppSetting {
 // API key (nullable → falls back to env), the editable grading rubric prompt,
 // and the scoring policy weights. See lib/llm-settings.ts + lib/llm/.
 model LLMSetting {
-  id            String   @id @default("singleton")
-  enabled       Boolean  @default(false)
-  provider      String   @default("anthropic") // anthropic | openai | google
-  model         String   @default("claude-opus-4-8")
+  id               String   @id @default("singleton")
+  enabled          Boolean  @default(false)
+  provider         String   @default("anthropic") // anthropic | openai | google
+  model            String   @default("claude-opus-4-8")
   // API key for the provider. Null/empty → fall back to the provider's env var.
-  apiKey        String?
+  apiKey           String?
   // Editable system rubric. Null → built-in DEFAULT_GRADING_PROMPT.
-  gradingPrompt String?
+  gradingPrompt    String?
   // English Writing rubric (essay đoạn văn). Null → DEFAULT_WRITING_PROMPT.
-  writingPrompt String?
+  writingPrompt    String?
   // English Writing 5-criteria weights (percent, tổng=100): JSON
   // { task, lexical, grammar, cohesion, length }. Empty → DEFAULT_WRITING_WEIGHTS.
-  writingWeights String  @default("{}")
+  writingWeights   String   @default("{}")
   // Vietnamese văn rubric (đặt câu / cảm thụ / viết đoạn-bài). Null → VN_WRITING_PROMPT.
-  vnWritingPrompt String?
+  vnWritingPrompt  String?
   // Vietnamese văn 5-criteria weights (percent, tổng=100): JSON
   // { noidung, camthu, dienden, chinhta, sangtao }. Empty → VN_WRITING_WEIGHTS.
-  vnWritingWeights String @default("{}")
+  vnWritingWeights String   @default("{}")
   // Scoring policy (percent of the question's points):
-  methodWeight  Int      @default(70)  // weight for a correct method / reasoning
-  answerWeight  Int      @default(30)  // weight for a correct final answer
-  guessCredit   Int      @default(20)  // credit when answer is right but method is wrong (đoán mò)
-  maxTokens     Int      @default(1024)
-  updatedAt     DateTime @updatedAt
+  methodWeight     Int      @default(70) // weight for a correct method / reasoning
+  answerWeight     Int      @default(30) // weight for a correct final answer
+  guessCredit      Int      @default(20) // credit when answer is right but method is wrong (đoán mò)
+  maxTokens        Int      @default(1024)
+  updatedAt        DateTime @updatedAt
 }
 
 // ─── AI essay grade (one row per essay question per attempt) ──────────────────
 // Source of truth for essay scoring. Created at submit time and on regrade.
 model EssayGrade {
-  id            String   @id @default(cuid())
-  attemptId     String
-  questionId    String
-  fraction      Float    // 0..1 of the question's points
-  earned        Float    // fraction * points (the points actually awarded)
-  points        Int      // snapshot of Question.points at grade time
-  answerCorrect Boolean  @default(false)
-  methodScore   Float    @default(0) // 0..1 — correctness/completeness of the working
-  guessed       Boolean  @default(false) // right answer, wrong/absent method
+  id               String   @id @default(cuid())
+  attemptId        String
+  questionId       String
+  fraction         Float // 0..1 of the question's points
+  earned           Float // fraction * points (the points actually awarded)
+  points           Int // snapshot of Question.points at grade time
+  answerCorrect    Boolean  @default(false)
+  methodScore      Float    @default(0) // 0..1 — correctness/completeness of the working
+  guessed          Boolean  @default(false) // right answer, wrong/absent method
   // grading flavour: "math" (method/answer/guess) | "writing" (5-criteria rubric)
-  kind          String   @default("math")
+  kind             String   @default("math")
   // writing-only: JSON { task, lexical, grammar, cohesion, length } each 0..1
-  criteria      String   @default("{}")
-  feedback      String   @default("")
-  provider      String   @default("")
-  model         String   @default("")
-  status        String   @default("graded") // graded | error
-  error         String?
+  criteria         String   @default("{}")
+  feedback         String   @default("")
+  provider         String   @default("")
+  model            String   @default("")
+  status           String   @default("graded") // graded | error
+  error            String?
   // Token usage for this AI grading call (0 when grading failed / not AI).
-  promptTokens     Int   @default(0)
-  completionTokens Int   @default(0)
-  createdAt     DateTime @default(now())
+  promptTokens     Int      @default(0)
+  completionTokens Int      @default(0)
+  createdAt        DateTime @default(now())
 
   attempt Attempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
 
@@ -425,21 +485,313 @@ model EssayGrade {
 }
 
 model SchoolProfile {
-  school          String                      // FK soft tới School.id
-  subject         String   @default("math")   // "math" | "english"
-  topicWeights    String                      // JSON: { topicId: 0..1 }, tổng = 1.0
-  levelWeights    String                      // JSON: { "L4": 0..1, ... } | { "A1": ... }
-  difficulty      Float                       // 0-100 (công thức 6 yếu tố)
-  minutes         Float                       // thời lượng đề trung bình
-  totalQuestions  Int                         // số câu compute từ
-  freeTextPct     Float    @default(0)
-  olympicGeoPct   Float    @default(0)
-  diversity       Int      @default(0)
+  school         String // FK soft tới School.id
+  subject        String   @default("math") // "math" | "english"
+  topicWeights   String // JSON: { topicId: 0..1 }, tổng = 1.0
+  levelWeights   String // JSON: { "L4": 0..1, ... } | { "A1": ... }
+  difficulty     Float // 0-100 (công thức 6 yếu tố)
+  minutes        Float // thời lượng đề trung bình
+  totalQuestions Int // số câu compute từ
+  freeTextPct    Float    @default(0)
+  olympicGeoPct  Float    @default(0)
+  diversity      Int      @default(0)
   // english radar (6 yếu tố): JSON { readingLoad, productiveWriting, higherOrder,
   // timePressure, vocabDepth, skillDiversity } — mỗi trục 0..100. Empty cho math.
-  factors         String   @default("{}")
-  sourceHash      String                      // "{qcount}-{latestCreatedAt.ISO}"
-  updatedAt       DateTime @updatedAt
+  factors        String   @default("{}")
+  sourceHash     String // "{qcount}-{latestCreatedAt.ISO}"
+  updatedAt      DateTime @updatedAt
 
   @@id([school, subject])
+}
+
+// ─── Readiness v4 (additive, versioned, math-only in the first rollout) ──────
+
+model AssessmentRun {
+  id               String    @id
+  subject          String
+  taxonomyVersion  String
+  model            String
+  status           String    @default("draft") // draft | approved | retired
+  artifactPath     String?
+  inputHash        String
+  metadataJson     String    @default("{}")
+  approvedByUserId String?
+  approvedAt       DateTime?
+  createdAt        DateTime  @default(now())
+
+  @@index([subject, taxonomyVersion, status])
+}
+
+model QuestionAssessment {
+  id                  String   @id @default(cuid())
+  questionId          String
+  subject             String
+  taxonomyVersion     String
+  topicPrimary        String
+  topicSecondaryJson  String   @default("[]")
+  difficultyBand      Int
+  cognitiveLevel      String
+  reasoningType       String
+  confidence          Float
+  model               String
+  sourceRunId         String
+  questionContentHash String
+  assessedAt          DateTime
+  createdAt           DateTime @default(now())
+
+  @@unique([questionId, taxonomyVersion, sourceRunId])
+  @@index([subject, taxonomyVersion])
+  @@index([topicPrimary, difficultyBand])
+  @@index([sourceRunId])
+}
+
+model SchoolProfileVersion {
+  id                    String    @id @default(cuid())
+  school                String
+  subject               String
+  schemaVersion         String
+  methodologyVersion    String
+  taxonomyVersion       String
+  assessmentRunId       String
+  status                String    @default("draft") // draft | shadow | active | retired
+  sourceHash            String
+  sourceExamIdsJson     String
+  examCount             Int
+  questionCount         Int
+  yearCount             Int
+  yearRangeJson         String
+  blueprintCountJson    String
+  blueprintPointJson    String
+  topicWeightsJson      String
+  difficultyWeightsJson String
+  cognitiveWeightsJson  String
+  difficultyIndex       Float
+  difficultyFactorsJson String
+  formatProfileJson     String
+  reliabilityJson       String
+  createdAt             DateTime  @default(now())
+  activatedAt           DateTime?
+  retiredAt             DateTime?
+
+  @@unique([school, subject, methodologyVersion, sourceHash])
+  @@index([school, subject, status])
+  @@index([assessmentRunId])
+}
+
+model SchoolProfileAssignment {
+  id                       String    @id @default(cuid())
+  school                   String
+  subject                  String
+  scopeType                String    @default("global")
+  scopeKey                 String    @default("global")
+  profileVersionId         String
+  previousProfileVersionId String?
+  status                   String    @default("active") // active | ended
+  activatedByUserId        String
+  approvedByUserId         String
+  reason                   String
+  effectiveFrom            DateTime  @default(now())
+  endedAt                  DateTime?
+  createdAt                DateTime  @default(now())
+
+  @@index([school, subject, scopeType, scopeKey, status])
+  @@index([profileVersionId])
+}
+
+model ReadinessPolicyVersion {
+  id                     String    @id @default(cuid())
+  subject                String
+  version                String
+  methodologyVersion     String
+  status                 String    @default("draft") // draft | shadow | active | retired
+  formulaKey             String
+  priorStrength          Float
+  priorMastery           Float
+  evidenceTarget         Float
+  evidenceExponent       Float
+  blueprintWeightMode    String
+  preparingThreshold     Float
+  nearReadyThreshold     Float
+  readyThreshold         Float
+  strongReadyThreshold   Float
+  overallEvidenceGate    Float
+  advancedShareGate      Float
+  advancedEvidenceGate   Float
+  criticalTopicThreshold Float
+  criticalMasteryGate    Float
+  criticalEvidenceGate   Float
+  configJson             String    @default("{}")
+  changeSummary          String
+  createdByUserId        String
+  reviewedByUserId       String?
+  activatedByUserId      String?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+  shadowedAt             DateTime?
+  activatedAt            DateTime?
+  retiredAt              DateTime?
+
+  @@unique([subject, version])
+  @@index([subject, status])
+}
+
+model ReadinessPolicyAssignment {
+  id                      String    @id @default(cuid())
+  subject                 String
+  scopeType               String    @default("global")
+  scopeKey                String    @default("global")
+  policyVersionId         String
+  previousPolicyVersionId String?
+  status                  String    @default("active") // active | ended
+  activatedByUserId       String
+  approvedByUserId        String
+  reason                  String
+  effectiveFrom           DateTime  @default(now())
+  endedAt                 DateTime?
+  createdAt               DateTime  @default(now())
+
+  @@index([subject, scopeType, scopeKey, status])
+  @@index([policyVersionId])
+}
+
+model MasterySnapshot {
+  id                   String   @id @default(cuid())
+  userId               String
+  subject              String
+  methodologyVersion   String
+  taxonomyVersion      String
+  assessmentRunId      String
+  masteryConfigHash    String
+  attemptSourceHash    String
+  recomputeJobId       String?
+  cellsJson            String
+  topicSummaryJson     String
+  cognitiveSummaryJson String
+  coverageSummaryJson  String
+  computedAt           DateTime @default(now())
+
+  @@unique([userId, subject, methodologyVersion, taxonomyVersion, assessmentRunId, masteryConfigHash, attemptSourceHash])
+  @@index([userId, subject, computedAt])
+  @@index([recomputeJobId])
+}
+
+model ReadinessSnapshot {
+  id                 String   @id @default(cuid())
+  userId             String
+  school             String
+  subject            String
+  methodologyVersion String
+  profileVersionId   String
+  masterySnapshotId  String
+  policyVersionId    String
+  recomputeJobId     String?
+  schoolMastery      Float
+  schoolEvidence     Float
+  advancedEvidence   Float?
+  readiness          Float
+  status             String
+  gatesJson          String
+  criticalTopicsJson String
+  reasonCodesJson    String
+  calibrationVersion String?
+  computedAt         DateTime @default(now())
+
+  @@unique([userId, school, subject, profileVersionId, masterySnapshotId, policyVersionId, methodologyVersion])
+  @@index([userId, subject, computedAt])
+  @@index([school, subject, methodologyVersion])
+  @@index([recomputeJobId])
+}
+
+model ReadinessRecomputeJob {
+  id                    String    @id @default(cuid())
+  idempotencyKey        String    @unique
+  subject               String
+  jobType               String
+  reason                String
+  mode                  String
+  policyVersionId       String?
+  profileVersionIdsJson String    @default("[]")
+  taxonomyVersion       String?
+  scopeJson             String
+  sourceVersionJson     String
+  targetVersionJson     String
+  status                String    @default("queued")
+  requestedByUserId     String?
+  approvedByUserId      String?
+  totalItems            Int       @default(0)
+  processedItems        Int       @default(0)
+  successItems          Int       @default(0)
+  failedItems           Int       @default(0)
+  checkpointJson        String    @default("{}")
+  errorSummaryJson      String    @default("{}")
+  startedAt             DateTime?
+  completedAt           DateTime?
+  createdAt             DateTime  @default(now())
+
+  @@index([subject, status, createdAt])
+}
+
+model ReadinessRecomputeJobItem {
+  id             String    @id @default(cuid())
+  jobId          String
+  itemKey        String
+  payloadJson    String
+  status         String    @default("queued") // queued | running | completed | failed | cancelled
+  attemptCount   Int       @default(0)
+  leaseOwner     String?
+  leaseExpiresAt DateTime?
+  error          String?
+  startedAt      DateTime?
+  completedAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@unique([jobId, itemKey])
+  @@index([jobId, status])
+  @@index([status, leaseExpiresAt])
+}
+
+model ReadinessPolicyAuditLog {
+  id               String   @id @default(cuid())
+  policyVersionId  String?
+  profileVersionId String?
+  action           String
+  actorUserId      String
+  fromState        String?
+  toState          String?
+  diffJson         String   @default("{}")
+  reason           String
+  relatedJobId     String?
+  assignmentId     String?
+  createdAt        DateTime @default(now())
+
+  @@index([policyVersionId, createdAt])
+  @@index([profileVersionId, createdAt])
+  @@index([actorUserId, createdAt])
+}
+
+model ReadinessAdminPermission {
+  id              String   @id @default(cuid())
+  userId          String
+  permission      String
+  grantedByUserId String
+  createdAt       DateTime @default(now())
+
+  @@unique([userId, permission])
+  @@index([userId])
+}
+
+model ContentTaxonomyMapping {
+  id              String   @id @default(cuid())
+  subject         String
+  taxonomyVersion String
+  taxonomyTopic   String
+  contentTopic    String
+  priority        Int      @default(0)
+  enabled         Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([subject, taxonomyVersion, taxonomyTopic, contentTopic])
+  @@index([subject, taxonomyVersion, taxonomyTopic, enabled])
 }

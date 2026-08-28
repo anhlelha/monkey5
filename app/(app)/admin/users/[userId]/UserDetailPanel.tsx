@@ -9,6 +9,10 @@ import type {
   UserActivitySummary,
   UserShape,
 } from "@/lib/user-data";
+import type { EffectiveReadinessView } from "@/lib/readiness-v4/read-service";
+import type { EffectiveAnalyticalMasteryView } from "@/lib/readiness-v4/content-mastery-service";
+import { presentReadiness } from "@/lib/readiness-v4/presentation";
+import { MATH_ANALYTICAL_TOPICS } from "@/lib/readiness-v4/analytical-topics";
 
 const SUBJECT_ICON: Record<Subject, IconName> = {
   math: "grid",
@@ -43,6 +47,8 @@ interface Props {
   // Subject-scoped, computed per-load (NOT the math-only persisted user fields).
   topicMastery: Record<string, number>;
   readiness: Record<string, number>;
+  readinessViews: Record<string, EffectiveReadinessView> | null;
+  analyticalMastery: Record<string, EffectiveAnalyticalMasteryView> | null;
   activitySeries: (number | null)[];
 }
 
@@ -72,6 +78,8 @@ export function UserDetailPanel({
   subject,
   topicMastery,
   readiness,
+  readinessViews,
+  analyticalMastery,
   activitySeries,
 }: Props) {
   const topicById = new Map(topics.map((t) => [t.id, t]));
@@ -93,12 +101,33 @@ export function UserDetailPanel({
   const masteryEntries = Object.entries(topicMastery)
     .filter(([, v]) => typeof v === "number" && v > 0)
     .sort((a, b) => b[1] - a[1]);
-  const masteryAvg =
-    masteryEntries.length > 0
-      ? Math.round(
-          (masteryEntries.reduce((s, [, v]) => s + v, 0) / masteryEntries.length) * 100,
-        )
-      : 0;
+  const v4MasteryEntries = subject === "math" && analyticalMastery
+    ? Object.entries(analyticalMastery)
+        .filter(([, view]) => typeof view.score === "number")
+        .sort((a, b) => (b[1].score ?? 0) - (a[1].score ?? 0))
+    : [];
+  const v4MasteryAvg = v4MasteryEntries.length > 0
+    ? Math.round((v4MasteryEntries.reduce((sum, [, view]) => sum + (view.score ?? 0), 0) / v4MasteryEntries.length) * 100)
+    : null;
+  const masteryAvg = masteryEntries.length > 0
+    ? Math.round((masteryEntries.reduce((s, [, v]) => s + v, 0) / masteryEntries.length) * 100)
+    : 0;
+  const showV4Mastery = subject === "math" && Boolean(analyticalMastery);
+  const masteryRows = showV4Mastery
+    ? MATH_ANALYTICAL_TOPICS.map((topic) => ({
+        id: topic.id,
+        name: topic.name,
+        color: "var(--accent)",
+        score: analyticalMastery?.[topic.id]?.score ?? null,
+        total: analyticalMastery?.[topic.id]?.total ?? 0,
+      }))
+    : masteryEntries.map(([id, value]) => ({
+        id,
+        name: topicById.get(id)?.name ?? id,
+        color: topicById.get(id)?.color ?? "var(--ink-muted)",
+        score: value,
+        total: 0,
+      }));
 
   const targetSchools = user.targets
     .map((id) => schoolById.get(id))
@@ -247,36 +276,38 @@ export function UserDetailPanel({
           </div>
         </Card>
         <Card tight>
-          <div className="eyebrow">Mastery TB</div>
+          <div className="eyebrow">{showV4Mastery ? "Mastery V4 TB" : "Legacy mastery baseline"}</div>
           <div
             className="kpi"
             style={{
               color:
-                masteryAvg >= 70
+                (v4MasteryAvg ?? masteryAvg) >= 70
                   ? "var(--success)"
-                  : masteryAvg >= 50
+                  : (v4MasteryAvg ?? masteryAvg) >= 50
                     ? "var(--ink)"
                     : "var(--danger)",
               fontSize: 28,
               marginTop: 6,
             }}
           >
-            {masteryEntries.length > 0 ? `${masteryAvg}%` : "—"}
+            {showV4Mastery ? (v4MasteryAvg === null ? "—" : `${v4MasteryAvg}%`) : masteryEntries.length > 0 ? `${masteryAvg}%` : "—"}
           </div>
           <div className="muted" style={{ fontSize: 11.5, marginTop: 2 }}>
-            {masteryEntries.length} chuyên đề đã luyện
+            {showV4Mastery ? `${v4MasteryEntries.length} analytical topic có evidence` : `${masteryEntries.length} content topic đã luyện`}
           </div>
         </Card>
       </div>
 
       <div className="grid cols-2" style={{ gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-        <Card title="Sẵn sàng theo trường" sub="Readiness hiện tại với các trường mục tiêu">
+        <Card title="Readiness V4 theo trường" sub="Snapshot đúng active policy/profile; điểm bài làm không được dùng thay cho status">
           {targetSchools.length === 0 ? (
             <div className="muted" style={{ fontSize: 13 }}>HS chưa chọn trường mục tiêu.</div>
           ) : (
             <div className="col" style={{ gap: 12 }}>
               {targetSchools.map((s) => {
-                const current = readiness[s.id] ?? 0;
+                const v4 = readinessViews?.[s.id];
+                const presentation = v4 ? presentReadiness(v4) : null;
+                const current = v4?.score ?? readiness[s.id] ?? null;
                 return (
                   <div key={s.id}>
                     <div className="row between" style={{ marginBottom: 4 }}>
@@ -285,21 +316,19 @@ export function UserDetailPanel({
                         <span style={{ fontSize: 13 }}>{s.full}</span>
                       </span>
                       <span className="mono" style={{ fontSize: 13 }}>
-                        <b
-                          style={{
-                            color:
-                              current >= 70
-                                ? "var(--success)"
-                                : current >= 50
-                                  ? "var(--ink)"
-                                  : "var(--danger)",
-                          }}
-                        >
-                          {current}%
-                        </b>
+                        {current === null ? <span className="muted">Chưa đủ dữ liệu</span> : <b style={{ color: current >= 70 ? "var(--success)" : current >= 50 ? "var(--ink)" : "var(--danger)" }}>{Math.round(current)} / 100</b>}
                       </span>
                     </div>
-                    <Bar value={current} tone={s.tone} tall />
+                    {current === null ? <div className="muted" style={{ fontSize: 11 }}>Chưa có snapshot Readiness V4 khả dụng.</div> : <Bar value={current} tone={s.tone} tall />}
+                    {presentation && (
+                      <div className="row between" style={{ marginTop: 5, gap: 8 }}>
+                        <Pill tone={presentation.tone}>{presentation.statusLabel}</Pill>
+                        <span className="muted" style={{ fontSize: 10.5 }}>{presentation.freshnessLabel}</span>
+                      </div>
+                    )}
+                    {v4?.source === "v4" && v4.schoolMastery !== null && v4.evidence !== null && (
+                      <div className="muted" style={{ fontSize: 10.5, marginTop: 4 }}>Mastery {Math.round(v4.schoolMastery * 100)}% · Evidence {Math.round(v4.evidence * 100)}%</div>
+                    )}
                   </div>
                 );
               })}
@@ -307,44 +336,24 @@ export function UserDetailPanel({
           )}
         </Card>
 
-        <Card title="Mastery theo chuyên đề" sub="Mức thành thạo hiện tại của HS">
-          {masteryEntries.length === 0 ? (
-            <div className="muted" style={{ fontSize: 13 }}>HS chưa luyện chuyên đề {subjectName} nào.</div>
+        <Card title={showV4Mastery ? "Mastery V4 theo analytical topic" : "Legacy mastery theo content topic"} sub={showV4Mastery ? "Snapshot taxonomy V4; topic chưa có evidence được hiển thị là chưa xác minh." : `Mức thành thạo content topic hiện tại của HS · ${subjectName}`}>
+          {masteryRows.length === 0 ? (
+            <div className="muted" style={{ fontSize: 13 }}>{showV4Mastery ? "Chưa có analytical topic nào có evidence." : `HS chưa luyện chuyên đề ${subjectName} nào.`}</div>
           ) : (
             <div className="col" style={{ gap: 8 }}>
-              {masteryEntries.map(([tid, v]) => {
-                const t = topicById.get(tid);
-                const pct = Math.round(v * 100);
+              {masteryRows.map((row) => {
+                const pct = row.score === null ? null : Math.round(row.score * 100);
                 return (
-                  <div key={tid}>
+                  <div key={row.id}>
                     <div className="row between" style={{ marginBottom: 3 }}>
                       <span className="row" style={{ gap: 8, fontSize: 13 }}>
-                        <span
-                          style={{
-                            width: 8,
-                            height: 8,
-                            background: t?.color ?? "var(--ink-muted)",
-                            borderRadius: 2,
-                          }}
-                        />
-                        {t?.name ?? tid}
+                        <span style={{ width: 8, height: 8, background: row.color, borderRadius: 2 }} />
+                        {row.name}
                       </span>
-                      <b
-                        className="mono"
-                        style={{
-                          fontSize: 13,
-                          color:
-                            pct >= 70
-                              ? "var(--success)"
-                              : pct >= 50
-                                ? "var(--ink)"
-                                : "var(--danger)",
-                        }}
-                      >
-                        {pct}%
-                      </b>
+                      {pct === null ? <span className="muted" style={{ fontSize: 11 }}>Chưa xác minh</span> : <b className="mono" style={{ fontSize: 13, color: pct >= 70 ? "var(--success)" : pct >= 50 ? "var(--ink)" : "var(--danger)" }}>{pct}%</b>}
                     </div>
-                    <Bar value={pct} tone={toneFor(pct)} />
+                    <Bar value={pct ?? 0} tone={pct === null ? "" : toneFor(pct)} />
+                    {showV4Mastery && row.total > 0 && <div className="muted" style={{ fontSize: 10.5, marginTop: 2 }}>{row.total} câu có evidence</div>}
                   </div>
                 );
               })}

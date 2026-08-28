@@ -1,0 +1,646 @@
+.dashboard {
+  --profile-purple: #6f4fb2;
+  --profile-purple-soft: #eee9f8;
+  --profile-blue: #3d6fa9;
+  --profile-green: #2f806d;
+  --profile-rose: #a94f6b;
+  display: grid;
+  gap: 16px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 28px;
+  padding: 30px 32px;
+  border-radius: 22px;
+  color: white;
+  background:
+    radial-gradient(circle at 92% 0, color-mix(in oklab, var(--school-color) 62%, white) 0, transparent 30%),
+    radial-gradient(circle at 55% 145%, #0b6372 0, transparent 38%),
+    linear-gradient(122deg, #191537, #46347d);
+  box-shadow: 0 13px 34px rgba(24, 32, 45, 0.1);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: -90px;
+  bottom: -130px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+}
+
+.heroMain,
+.readinessCard {
+  position: relative;
+  z-index: 1;
+}
+
+.heroEyebrow {
+  margin-bottom: 13px;
+  color: #dcd5f4;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  font-size: 10.5px;
+  font-weight: 800;
+}
+
+.schoolIdentity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.schoolBadge {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 16px;
+  background: color-mix(in oklab, var(--school-color) 76%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.schoolIdentity h1 {
+  max-width: 760px;
+  margin: 0 0 5px;
+  font-size: clamp(25px, 3.5vw, 38px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.schoolIdentity p {
+  margin: 0;
+  color: #ebe8f7;
+  font-size: 13px;
+}
+
+.heroMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 20px;
+}
+
+.heroMeta span {
+  padding: 5px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.09);
+  color: #f0edf9;
+  font-size: 10.5px;
+  font-weight: 650;
+}
+
+.readinessCard {
+  align-self: stretch;
+  padding: 17px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.11);
+  backdrop-filter: blur(10px);
+}
+
+.readinessTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: #ded9ee;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.readinessScore {
+  margin: 8px 0 6px;
+  font-family: var(--font-mono);
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+
+.readinessScore small {
+  margin-left: 4px;
+  color: #d6d0e8;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.readinessTrack {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.readinessTrack span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #80d2b5;
+}
+
+.readinessBreakdown {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 13px;
+}
+
+.readinessBreakdown div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.readinessBreakdown span,
+.readinessCard p {
+  color: #d9d4e8;
+  font-size: 10px;
+}
+
+.readinessBreakdown b {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.readinessCard p {
+  margin: 11px 0 0;
+  line-height: 1.45;
+}
+
+.toolbar {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 16px;
+  border: 1px solid #d8e8e3;
+  border-left: 4px solid var(--profile-green);
+  border-radius: 12px;
+  background: #edf7f4;
+  color: #295d52;
+}
+
+.toolbarEyebrow {
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.toolbar p {
+  margin: 0;
+  font-size: 12px;
+}
+
+.toolbarActions {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+}
+
+.schoolSelector {
+  display: grid;
+  gap: 4px;
+  min-width: 245px;
+}
+
+.schoolSelector span {
+  color: #4d6e66;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.schoolSelector select {
+  width: 100%;
+  min-height: 34px;
+  padding: 6px 30px 6px 10px;
+  border: 1px solid #c9ddd7;
+  border-radius: 8px;
+  background: white;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.kpiCard,
+.panel {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 2px 10px rgba(20, 30, 47, 0.025);
+}
+
+.kpiCard {
+  min-width: 0;
+  padding: 16px;
+  border-radius: 13px;
+}
+
+.kpiCard > span {
+  display: block;
+  overflow: hidden;
+  color: var(--ink-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.kpiCard b {
+  display: block;
+  margin: 3px 0 1px;
+  overflow: hidden;
+  color: var(--ink);
+  text-overflow: ellipsis;
+  font-family: var(--font-mono);
+  font-size: 23px;
+  letter-spacing: -0.04em;
+}
+
+.kpiCard small {
+  display: block;
+  overflow: hidden;
+  color: var(--ink-faint);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 9.5px;
+}
+
+.twoColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.panel {
+  min-width: 0;
+  padding: 19px;
+  border-radius: 15px;
+}
+
+.panelHead {
+  margin-bottom: 16px;
+}
+
+.panelHead h2 {
+  margin: 0 0 3px;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+}
+
+.panelHead p {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 11px;
+}
+
+.metricList {
+  display: grid;
+  gap: 10px;
+}
+
+.metricRow {
+  display: grid;
+  grid-template-columns: minmax(105px, 150px) 1fr 82px;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+}
+
+.metricLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 650;
+}
+
+.track {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #edf0f5;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.metricValue {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.tablePanel {
+  padding-bottom: 15px;
+}
+
+.summaryChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: -2px 0 14px;
+}
+
+.summaryChips > span {
+  padding: 5px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: #4c586a;
+  font-size: 9.5px;
+  font-weight: 650;
+}
+
+.tableScroll {
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+}
+
+.blueprintTable,
+.examTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10.5px;
+}
+
+.blueprintTable {
+  min-width: 970px;
+}
+
+.examTable {
+  min-width: 820px;
+}
+
+.blueprintTable th,
+.examTable th {
+  padding: 9px 10px;
+  background: #f8f9fc;
+  color: #6b7484;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  font-size: 8.5px;
+}
+
+.blueprintTable th:first-child,
+.blueprintTable td:first-child,
+.examTable th:first-child,
+.examTable td:first-child {
+  text-align: left;
+}
+
+.blueprintTable td,
+.examTable td {
+  padding: 10px;
+  border-bottom: 1px solid #edf0f4;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.blueprintTable tr:last-child td,
+.examTable tr:last-child td {
+  border-bottom: 0;
+}
+
+.blueprintTable tbody tr:hover td,
+.examTable tbody tr:hover td {
+  background: #fbfbfe;
+}
+
+.topicCell {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 230px;
+  background: white;
+}
+
+.topicCell b {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.topicCell i {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.topicCell > span {
+  display: inline-block;
+  margin-top: 2px;
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+}
+
+.topicCell em {
+  display: inline-flex;
+  margin-left: 6px;
+  padding: 2px 5px;
+  border-radius: 999px;
+  background: #f8e7ed;
+  color: #91485e;
+  text-transform: uppercase;
+  font-size: 7.5px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.bandCell b,
+.bandCell span,
+.examName b,
+.examName span {
+  display: block;
+}
+
+.bandCell span,
+.examName span {
+  margin-top: 2px;
+  color: var(--ink-muted);
+  font-size: 8.5px;
+}
+
+.examName {
+  min-width: 250px;
+}
+
+.sourceGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 17px;
+}
+
+.sourceGrid > div {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: #fafbfc;
+}
+
+.sourceGrid b,
+.sourceGrid span,
+.sourceGrid code {
+  display: block;
+}
+
+.sourceGrid b {
+  margin-bottom: 3px;
+  font-size: 9.5px;
+}
+
+.sourceGrid span,
+.sourceGrid code {
+  overflow: hidden;
+  color: var(--ink-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 8.5px;
+}
+
+.lineage {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+
+.lineage > div {
+  min-width: 0;
+}
+
+.lineage b,
+.lineage span {
+  display: block;
+}
+
+.lineage b {
+  margin-bottom: 3px;
+  font-size: 9.5px;
+}
+
+.lineage span {
+  overflow: hidden;
+  color: var(--ink-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 8.5px;
+}
+
+@media (max-width: 1180px) {
+  .kpiGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .readinessCard {
+    max-width: none;
+  }
+
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .toolbarActions {
+    align-items: stretch;
+  }
+
+  .schoolSelector {
+    flex: 1;
+  }
+
+  .twoColumns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .schoolIdentity {
+    align-items: flex-start;
+  }
+
+  .schoolBadge {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+
+  .schoolIdentity h1 {
+    font-size: 23px;
+  }
+
+  .toolbarActions {
+    flex-direction: column;
+  }
+
+  .schoolSelector {
+    min-width: 0;
+  }
+
+  .kpiGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .kpiCard {
+    padding: 13px;
+  }
+
+  .metricRow {
+    grid-template-columns: 95px 1fr 70px;
+    gap: 7px;
+  }
+
+  .sourceGrid,
+  .lineage {
+    grid-template-columns: 1fr;
+  }
+}

@@ -16,7 +16,7 @@ the Claude Design handoff in `design-reference/`.
 
 ```bash
 npm install
-npx prisma db push     # create SQLite DB + tables
+npm run db:migrate     # create/update SQLite DB from reviewed migrations
 npm run db:seed        # seed schools, topics, sample exam, topic sets
 cp .env.example .env.local   # edit with real secrets
 npm run dev
@@ -149,6 +149,7 @@ npm run dev           # Next dev server (Turbopack)
 npm run build         # production build (also runs prisma generate)
 npm run start         # production server (after build)
 
+npm run db:migrate    # safely adopt baseline + deploy reviewed migrations
 npm run db:push       # apply schema.prisma changes
 npm run db:seed       # re-run seed (idempotent — topics + whitelist only)
 npm run db:reset      # nuke + re-create DB and reseed

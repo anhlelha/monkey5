@@ -25,9 +25,11 @@ export default auth((req) => {
 
   const session = req.auth;
   if (!session?.user?.id) {
+    const callbackUrl = `${pathname}${req.nextUrl.search}`;
     const url = req.nextUrl.clone();
     url.pathname = "/signin";
-    url.searchParams.set("callbackUrl", pathname);
+    url.search = "";
+    url.searchParams.set("callbackUrl", callbackUrl);
     return NextResponse.redirect(url);
   }
 

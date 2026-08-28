@@ -13,6 +13,7 @@ export interface LLMCallArgs {
   user: string;
   maxTokens: number;
   timeoutMs?: number;
+  images?: Array<{ mimeType: "image/png" | "image/jpeg" | "image/webp"; base64: string }>;
 }
 
 /** A provider/network error with a user-safe message. */
@@ -75,7 +76,18 @@ async function callAnthropic(args: LLMCallArgs): Promise<LLMResult> {
         model: args.model,
         max_tokens: args.maxTokens,
         system: args.system,
-        messages: [{ role: "user", content: args.user }],
+        messages: [{
+          role: "user",
+          content: args.images?.length
+            ? [
+                ...args.images.map((image) => ({
+                  type: "image",
+                  source: { type: "base64", media_type: image.mimeType, data: image.base64 },
+                })),
+                { type: "text", text: args.user },
+              ]
+            : args.user,
+        }],
       }),
       signal,
     });
@@ -119,7 +131,18 @@ async function callOpenAI(args: LLMCallArgs): Promise<LLMResult> {
         response_format: { type: "json_object" },
         messages: [
           { role: "system", content: args.system },
-          { role: "user", content: args.user },
+          {
+            role: "user",
+            content: args.images?.length
+              ? [
+                  { type: "text", text: args.user },
+                  ...args.images.map((image) => ({
+                    type: "image_url",
+                    image_url: { url: `data:${image.mimeType};base64,${image.base64}` },
+                  })),
+                ]
+              : args.user,
+          },
         ],
       }),
       signal,
@@ -154,7 +177,15 @@ async function callGoogle(args: LLMCallArgs): Promise<LLMResult> {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: args.system }] },
-        contents: [{ role: "user", parts: [{ text: args.user }] }],
+        contents: [{
+          role: "user",
+          parts: [
+            ...(args.images ?? []).map((image) => ({
+              inlineData: { mimeType: image.mimeType, data: image.base64 },
+            })),
+            { text: args.user },
+          ],
+        }],
         generationConfig: {
           responseMimeType: "application/json",
           maxOutputTokens: args.maxTokens,

@@ -86,6 +86,16 @@ export default async function ExamPage({ params }: Props) {
     notFound();
   }
 
+  // V4 practice exams are generated for one user and carry assessment lineage.
+  // Do not let a guessed/shared exam id expose another learner's practice set.
+  const practiceSet = await prisma.practiceSet.findUnique({
+    where: { examId: exam.id },
+    select: { userId: true },
+  });
+  if (practiceSet && practiceSet.userId !== session.user.id && sessionUser?.role !== "admin") {
+    notFound();
+  }
+
   // English reading questions reference a shared Passage by passageId.
   const passageIds = [...new Set(exam.questions.map((q) => q.passageId).filter((x): x is string => Boolean(x)))];
   const passages = passageIds.length

@@ -29,11 +29,10 @@ echo "Installing project dependencies..."
 npm install
 
 echo "Preparing database..."
-# Prisma db push is idempotent and cheap — always run so schema stays in sync.
-# --accept-data-loss is required for lossless column-type changes (e.g.
-# Attempt.earned Int→Float for AI essay grading); without it db push aborts when
-# a column it would alter holds existing rows, breaking the deploy.
-npx prisma db push --accept-data-loss
+# Production schema changes are versioned and reviewed. Readiness v4 is an
+# additive migration and must never depend on --accept-data-loss.
+bash scripts/prepare-migration-baseline.sh
+npx prisma migrate deploy
 # Re-seed is DESTRUCTIVE (deleteMany + insert per exam). Only run when exam
 # content sources actually changed. Caller sets RUN_SEED=0 to skip. Default on
 # so a bare `bash scripts/setup-remote.sh` / `deploy.sh` keeps old behavior.
@@ -101,6 +100,15 @@ if pm2 show "$APP_NAME" &>/dev/null; then
     pm2 restart "$APP_NAME"
 else
     pm2 start npm --name "$APP_NAME" -- start
+fi
+
+# Readiness v4 recompute runs outside web requests. The worker is safe to keep
+# online before cutover because feature flags/read pointers remain authoritative.
+READINESS_WORKER_NAME="$APP_NAME-readiness-v4-worker"
+if pm2 show "$READINESS_WORKER_NAME" &>/dev/null; then
+    pm2 restart "$READINESS_WORKER_NAME"
+else
+    pm2 start npx --name "$READINESS_WORKER_NAME" -- tsx scripts/readiness-v4/worker.ts --poll
 fi
 
 # Save PM2 process list

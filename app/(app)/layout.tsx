@@ -24,8 +24,8 @@ export default async function AppShell({ children }: { children: React.ReactNode
   if (user.targets.length === 0) redirect("/onboarding");
 
   const [examCount, assignedCount, quietHours] = await Promise.all([
-    prisma.exam.count({ where: { ownerUserId: null } }),
-    prisma.exam.count({ where: { ownerUserId: user.id, active: true } }),
+    prisma.exam.count({ where: { ownerUserId: null, subject: "math" } }),
+    prisma.exam.count({ where: { ownerUserId: user.id, subject: "math", active: true } }),
     getQuietHours(),
   ]);
 

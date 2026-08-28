@@ -265,7 +265,7 @@ function SettingsPanel({
           </div>
 
           <div>
-            <div className="eyebrow" style={{ marginBottom: 10 }}>Mức sẵn sàng mong muốn</div>
+            <div className="eyebrow" style={{ marginBottom: 10 }}>Mục tiêu chỉ số cá nhân</div>
             <div className="row" style={{ gap: 14 }}>
               <input
                 type="range"
@@ -277,11 +277,11 @@ function SettingsPanel({
                 style={{ flex: 1, accentColor: "var(--accent)" }}
               />
               <b className="mono" style={{ fontSize: 18, width: 50, textAlign: "right", color: "var(--accent-ink)" }}>
-                {readyTarget}%
+                {readyTarget}/100
               </b>
             </div>
             <div className="muted" style={{ fontSize: 11.5, marginTop: 6 }}>
-              Khi đạt mức này cho trường mục tiêu, hệ thống sẽ báo "Đã sẵn sàng".
+              Đây là mốc theo dõi cá nhân. Trạng thái Readiness V4 vẫn do score và các gate bằng chứng quyết định.
             </div>
           </div>
 

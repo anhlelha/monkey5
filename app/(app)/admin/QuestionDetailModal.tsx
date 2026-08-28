@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { Pill } from "@/components/ui";
 import { MathText } from "@/components/MathText";
+import { MATH_ANALYTICAL_TOPICS } from "@/lib/readiness-v4/analytical-topics";
 import type { QuestionDetail } from "./actions";
 
 const SOURCE_LABELS: Record<string, string> = {
@@ -48,6 +49,14 @@ export function QuestionDetailModal({ detail, onClose }: Props) {
 
   const isUrlOrPath = (val: string) =>
     val.startsWith("http") || val.startsWith("/") || val.includes(".");
+  const assessmentTopic = detail.assessment?.topicPrimary
+    ? MATH_ANALYTICAL_TOPICS.find((topic) => topic.id === detail.assessment?.topicPrimary)?.name ?? detail.assessment.topicPrimary
+    : null;
+  const assessmentTone = detail.assessment?.state === "current" || detail.assessment?.state === "inherited"
+    ? "green"
+    : detail.assessment?.state === "missing"
+      ? "amber"
+      : "red";
 
   return (
     <div
@@ -126,6 +135,41 @@ export function QuestionDetailModal({ detail, onClose }: Props) {
             ✕
           </button>
         </div>
+
+        {detail.assessment && (
+          <div
+            style={{
+              marginBottom: 16,
+              padding: "12px 14px",
+              border: "1px solid var(--border)",
+              borderRadius: "var(--r-sm)",
+              background: "var(--surface-2)",
+            }}
+          >
+            <div className="row between" style={{ gap: 10, marginBottom: 8 }}>
+              <b style={{ fontSize: 12 }}>READINESS V4 ASSESSMENT</b>
+              <Pill tone={assessmentTone}>{detail.assessment.state.toUpperCase()}</Pill>
+            </div>
+            {assessmentTopic ? (
+              <div className="grid cols-2" style={{ gap: 7, fontSize: 11.5 }}>
+                <div><span className="muted">Topic</span><br /><b>{assessmentTopic}</b></div>
+                <div><span className="muted">Difficulty</span><br /><b>D{detail.assessment.difficultyBand}</b></div>
+                <div><span className="muted">Cognitive / reasoning</span><br /><b>{detail.assessment.cognitiveLevel} · {detail.assessment.reasoningType}</b></div>
+                <div><span className="muted">Confidence</span><br /><b>{Math.round(detail.assessment.confidence ?? 0)}/100</b></div>
+                <div style={{ gridColumn: "1 / -1" }}><span className="muted">Assessment run</span><br /><code style={{ fontSize: 10 }}>{detail.assessment.sourceRunId}</code></div>
+                {detail.assessment.state === "inherited" && <div style={{ gridColumn: "1 / -1" }}><span className="muted">Canonical source</span><br /><code style={{ fontSize: 10 }}>{detail.assessment.canonicalQuestionId}</code></div>}
+              </div>
+            ) : (
+              <p className="muted" style={{ margin: 0, fontSize: 11.5 }}>
+                {detail.assessment.state === "missing"
+                  ? "Câu này chưa có assessment được duyệt trong taxonomy V4 hiện hành."
+                  : detail.assessment.state === "stale"
+                    ? "Nội dung câu đã thay đổi so với content hash của assessment."
+                    : "Có nhiều approved assessment mâu thuẫn cho cùng nội dung câu."}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Stem */}
         <div

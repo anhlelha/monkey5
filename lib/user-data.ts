@@ -122,9 +122,9 @@ export interface ExamHistoryItem {
   when_full: string;
 }
 
-export async function getExamHistory(userId: string): Promise<ExamHistoryItem[]> {
+export async function getExamHistory(userId: string, subject?: Subject): Promise<ExamHistoryItem[]> {
   const attempts = await prisma.attempt.findMany({
-    where: { userId, submitted: true },
+    where: { userId, submitted: true, ...(subject ? { exam: { subject } } : {}) },
     include: { exam: true },
     orderBy: { createdAt: "desc" },
   });

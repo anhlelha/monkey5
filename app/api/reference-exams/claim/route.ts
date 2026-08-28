@@ -24,7 +24,7 @@ export async function POST() {
 
   // Count how many this user already has
   const claimedCount = await prisma.userReferenceExam.count({
-    where: { userId },
+    where: { userId, exam: { subject: "math" } },
   });
 
   if (claimedCount >= limit) {
@@ -36,7 +36,7 @@ export async function POST() {
 
   // Find an admin-curated reference exam the user hasn't claimed yet
   const alreadyClaimed = await prisma.userReferenceExam.findMany({
-    where: { userId },
+    where: { userId, exam: { subject: "math" } },
     select: { examId: true },
   });
   const claimedIds = alreadyClaimed.map((r) => r.examId);
@@ -44,6 +44,7 @@ export async function POST() {
   const nextExam = await prisma.exam.findFirst({
     where: {
       kind: "reference",
+      subject: "math",
       generated: false,
       ownerUserId: null, // never hand out a private remedial set from the shared pool
       id: { notIn: claimedIds.length > 0 ? claimedIds : ["__none__"] },

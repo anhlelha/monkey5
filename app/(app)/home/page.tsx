@@ -13,12 +13,18 @@ import {
 } from "@/lib/user-data";
 import { DEFAULT_TOPICS } from "@/lib/static";
 import { getActiveSchools } from "@/lib/schools";
-import { BASELINE_MASTERY } from "@/lib/mastery";
 import { TopBar } from "@/components/TopBar";
 import { Icon } from "@/components/Icon";
 import { Bar, Card, Pill } from "@/components/ui";
 import { Radar } from "@/components/Radar";
 import { daysBetween, greeting } from "@/lib/fmt";
+import { getEffectiveReadinessV4 } from "@/lib/readiness-v4/read-service";
+import { ReadinessSchoolCard } from "@/components/readiness/ReadinessSchoolCard";
+import {
+  getEffectiveAnalyticalMasteryV4,
+  getEffectiveContentMasteryV4,
+} from "@/lib/readiness-v4/content-mastery-service";
+import { MATH_ANALYTICAL_TOPICS } from "@/lib/readiness-v4/analytical-topics";
 
 export default async function Dashboard() {
   const session = await auth();
@@ -50,6 +56,45 @@ export default async function Dashboard() {
     user.readiness,
     SCHOOLS.map((s) => s.id),
   );
+  const readinessViews = await getEffectiveReadinessV4(
+    user.id,
+    SCHOOLS.map((s) => s.id),
+    readiness,
+  );
+  const [contentMasteryViews, analyticalMasteryViews] = await Promise.all([
+    getEffectiveContentMasteryV4(
+      user.id,
+      TOPICS.map((topic) => topic.id),
+      user.topicMastery,
+    ),
+    getEffectiveAnalyticalMasteryV4(
+      user.id,
+      MATH_ANALYTICAL_TOPICS.map((topic) => topic.id),
+    ),
+  ]);
+  const showAnalyticalV4 = Object.values(analyticalMasteryViews).some((view) => view.source === "v4");
+  const DISPLAY_TOPICS = showAnalyticalV4
+    ? MATH_ANALYTICAL_TOPICS.map((topic, index) => {
+        const contentTopicId = analyticalMasteryViews[topic.id]?.contentTopic;
+        const contentTopic = TOPICS.find((candidate) => candidate.id === contentTopicId);
+        return {
+          ...topic,
+          color: contentTopic?.color ?? `hsl(${(index * 360) / MATH_ANALYTICAL_TOPICS.length} 55% 45%)`,
+          ico: contentTopic?.ico ?? String(index + 1),
+          practiceTopicId: topic.id,
+        };
+      })
+    : TOPICS.map((topic) => ({
+        id: topic.id,
+        name: topic.name,
+        short: topic.short,
+        color: topic.color,
+        ico: topic.ico,
+        practiceTopicId: topic.id,
+      }));
+  const displayMastery = (topicId: string) => showAnalyticalV4
+    ? analyticalMasteryViews[topicId]
+    : contentMasteryViews[topicId];
 
   const daysToExam = user.examDate ? daysBetween(user.examDate) : null;
   const greet = greeting();
@@ -61,7 +106,7 @@ export default async function Dashboard() {
     school: { id: string; full: string; tone: string; r: number };
     items: { topicId: string; topicName: string; currentMastery: number; gain: number }[];
   } | null = null;
-  if (primaryTargetId) {
+  if (primaryTargetId && readinessViews[primaryTargetId]?.source === "legacy-fallback") {
     const { getSchoolProfile } = await import("@/lib/school-profiles");
     const { computeGapTop3 } = await import("@/lib/readiness");
     const profile = await getSchoolProfile(primaryTargetId);
@@ -84,17 +129,19 @@ export default async function Dashboard() {
     }
   }
 
-  const radarData = TOPICS.map((t) => ({
+  const radarData = DISPLAY_TOPICS.map((t) => ({
     label: t.short,
-    value: user.topicMastery[t.id] ?? BASELINE_MASTERY,
+    value: displayMastery(t.id)?.score ?? 0,
   }));
 
-  // For "weakest topic" suggestion, only consider topics user has actually
-  // practiced. If none have data, fall back to the first TOPIC at baseline.
-  const masteredEntries = Object.entries(user.topicMastery).filter(([, v]) => Number.isFinite(v));
-  const weakestEntry = masteredEntries.sort((a, b) => a[1] - b[1])[0]
-    ?? [TOPICS[0]?.id ?? "soh", BASELINE_MASTERY];
-  const weakest = TOPICS.find((t) => t.id === weakestEntry[0]) ?? TOPICS[0];
+  // Never turn the 50% prior into a fake "weakest topic". V4 only ranks
+  // content topics that have at least one assessed fact after crosswalk.
+  const masteredEntries = DISPLAY_TOPICS.flatMap((topic): Array<[string, number]> => {
+    const score = displayMastery(topic.id)?.score;
+    return typeof score === "number" ? [[topic.id, score]] : [];
+  });
+  const weakestEntry = masteredEntries.sort((a, b) => a[1] - b[1])[0] ?? null;
+  const weakest = weakestEntry ? DISPLAY_TOPICS.find((topic) => topic.id === weakestEntry[0]) ?? null : null;
 
   return (
     <div className="main">
@@ -118,8 +165,9 @@ export default async function Dashboard() {
             </div>
             <h2>{greet}, {fn} 👋</h2>
             <p>
-              Hôm nay Khỉ con đề xuất con luyện{" "}
-              <b style={{ color: "var(--ink)" }}>{weakest.name}</b> — chuyên đề con đang yếu nhất.
+              {weakest
+                ? <>Hôm nay Khỉ con đề xuất con luyện <b style={{ color: "var(--ink)" }}>{weakest.name}</b> — nhóm nội dung V4 đang cần củng cố nhất.</>
+                : <>Chưa đủ evidence V4 để xác định chuyên đề yếu nhất. Hãy làm thêm một đề đã được đánh giá.</>}
             </p>
           </div>
           <div className="row" style={{ gap: 10 }}>
@@ -145,13 +193,15 @@ export default async function Dashboard() {
         </div>
 
         {(() => {
-          const sortedR = SCHOOLS.map((s) => ({ ...s, r: readiness[s.id] ?? 50 }))
+          const sortedR = SCHOOLS
+            .map((s) => ({ ...s, r: readinessViews[s.id]?.score ?? null }))
+            .filter((s): s is typeof s & { r: number } => s.r !== null)
             .sort((a, b) => b.r - a.r);
           const top = sortedR[0];
           if (!top) return null;
           return (
             <div className="muted" style={{ fontSize: 13, marginBottom: 14 }}>
-              💡 Hiện tại con phù hợp nhất với <b style={{ color: "var(--ink)" }}>{top.full}</b> ({top.r}%)
+              💡 Chỉ số Readiness hiện cao nhất ở <b style={{ color: "var(--ink)" }}>{top.full}</b> ({top.r} / 100). Đây không phải xác suất đỗ.
             </div>
           );
         })()}
@@ -159,34 +209,14 @@ export default async function Dashboard() {
         <div className="grid cols-4">
           {SCHOOLS.map((s) => {
             const isTarget = user.targets.includes(s.id);
-            const r = readiness[s.id] ?? 50;
-            const tone = r >= 75 ? "green" : r >= 60 ? "amber" : "red";
-            const status = r >= 75 ? "Sẵn sàng" : r >= 60 ? "Đang tiến triển" : "Cần luyện thêm";
             return (
-              <Link
+              <ReadinessSchoolCard
                 key={s.id}
+                school={s}
+                view={readinessViews[s.id]}
+                isTarget={isTarget}
                 href={`/library?school=${s.id}`}
-                className={"school-card " + s.tone}
-              >
-                <div className="row between">
-                  <div>
-                    <div className="eyebrow" style={{ fontSize: 10 }}>{s.short}</div>
-                    <div className="name">{s.name}</div>
-                  </div>
-                  {isTarget && (
-                    <Pill tone={s.tone}><span className="dot" />Mục tiêu</Pill>
-                  )}
-                </div>
-                <div className="pct">
-                  <span className="num">{r}</span>
-                  <span className="sym">%</span>
-                </div>
-                <Bar value={r} tone={s.tone} tall />
-                <div className="row between">
-                  <Pill tone={tone}>{status}</Pill>
-                  <span className="muted" style={{ fontSize: 11.5 }}>{s.minutes} phút</span>
-                </div>
-              </Link>
+              />
             );
           })}
         </div>
@@ -221,8 +251,8 @@ export default async function Dashboard() {
         {/* Topic mastery + activity */}
         <div className="grid cols-2" style={{ marginTop: 24 }}>
           <Card
-            title="Năng lực theo 10 chuyên đề"
-            sub="So sánh với mức yêu cầu trung bình của 4 trường"
+            title={showAnalyticalV4 ? "Mastery V4 theo 13 topic phân tích" : "Năng lực theo 10 chuyên đề"}
+            sub={showAnalyticalV4 ? "Đọc trực tiếp taxonomy V4; chưa có evidence không hiển thị prior 50%" : "Đang dùng dữ liệu legacy fallback"}
             action={
               <Link href="/topics" className="btn sm ghost">
                 Luyện chuyên đề <Icon name="chevR" size={12} />
@@ -235,7 +265,7 @@ export default async function Dashboard() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginTop: 8, fontSize: 12 }}>
               <div className="row" style={{ gap: 6 }}>
                 <span style={{ width: 12, height: 12, background: "var(--accent)", opacity: 0.3, border: "1.5px solid var(--accent)", borderRadius: 2 }} />
-                <span className="muted">Năng lực hiện tại</span>
+                <span className="muted">Mastery đã có evidence</span>
               </div>
               <div className="row" style={{ gap: 6, justifyContent: "flex-end" }}>
                 <span className="muted">Cập nhật sau mỗi bài</span>
@@ -399,51 +429,62 @@ export default async function Dashboard() {
           </Card>
 
           <div className="col" style={{ gap: 16 }}>
-            <Card>
-              <div className="row" style={{ gap: 10, marginBottom: 12 }}>
-                <div
-                  style={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: 10,
-                    background: `color-mix(in oklch, ${weakest.color}, white 80%)`,
-                    color: weakest.color,
-                    display: "grid",
-                    placeItems: "center",
-                    fontWeight: 700,
-                  }}
-                >
-                  {weakest.ico}
+            {weakest && weakestEntry ? (
+              <Card>
+                <div className="row" style={{ gap: 10, marginBottom: 12 }}>
+                  <div
+                    style={{
+                      width: 36,
+                      height: 36,
+                      borderRadius: 10,
+                      background: `color-mix(in oklch, ${weakest.color}, white 80%)`,
+                      color: weakest.color,
+                      display: "grid",
+                      placeItems: "center",
+                      fontWeight: 700,
+                    }}
+                  >
+                    {weakest.ico}
+                  </div>
+                  <Pill tone="red">Cần củng cố</Pill>
                 </div>
-                <Pill tone="red">Yếu nhất</Pill>
-              </div>
-              <h3 style={{ margin: 0, fontSize: 16, letterSpacing: "-0.01em" }}>{weakest.name}</h3>
-              <p className="muted" style={{ fontSize: 12.5, margin: "4px 0 12px" }}>
-                {(() => {
-                  const pct = Math.round(weakestEntry[1] * 100);
-                  const gap = Math.max(0, 70 - pct);
-                  return gap > 0
-                    ? `Mức ${pct}% — cách mục tiêu 70% còn ${gap}%`
-                    : `Mức ${pct}% — đã đạt mục tiêu 70%`;
-                })()}
-              </p>
-              <Bar value={weakestEntry[1] * 100} tone="ntt" tall />
-              <Link
-                href={`/topics/${weakest.id}`}
-                className="btn primary"
-                style={{ width: "100%", justifyContent: "center", marginTop: 14 }}
-              >
-                <Icon name="bolt" /> Bắt đầu luyện ngay
-              </Link>
-            </Card>
+                <h3 style={{ margin: 0, fontSize: 16, letterSpacing: "-0.01em" }}>{weakest.name}</h3>
+                <p className="muted" style={{ fontSize: 12.5, margin: "4px 0 12px" }}>
+                  {(() => {
+                    const pct = Math.round(weakestEntry[1] * 100);
+                    const gap = Math.max(0, 70 - pct);
+                    return gap > 0
+                      ? `Mastery V4 ${pct}% — cách mục tiêu 70% còn ${gap}%`
+                      : `Mastery V4 ${pct}% — đã đạt mục tiêu 70%`;
+                  })()}
+                </p>
+                <Bar value={weakestEntry[1] * 100} tone="ntt" tall />
+                <Link
+                  href={weakest.practiceTopicId ? `/topics/${weakest.practiceTopicId}` : "/library"}
+                  className="btn primary"
+                  style={{ width: "100%", justifyContent: "center", marginTop: 14 }}
+                >
+                  <Icon name="bolt" /> Bắt đầu luyện ngay
+                </Link>
+              </Card>
+            ) : (
+              <Card title="Chưa đủ dữ liệu V4">
+                <p className="muted" style={{ fontSize: 12.5 }}>
+                  Các giá trị prior 50% đã được ẩn. Làm một đề có câu hỏi được assessment để hệ thống xác định nhóm cần củng cố.
+                </p>
+                <Link href="/library" className="btn primary" style={{ width: "100%", justifyContent: "center", marginTop: 12 }}>
+                  <Icon name="bolt" /> Làm đề để tạo evidence
+                </Link>
+              </Card>
+            )}
 
           </div>
         </div>
 
         {/* Topic mastery table */}
         <Card
-          title="Chi tiết theo chuyên đề"
-          sub="Mức yêu cầu trung bình ≈ 70% cho top 4 trường"
+          title={showAnalyticalV4 ? "Chi tiết Mastery V4 theo 13 topic" : "Chi tiết theo chuyên đề"}
+          sub={showAnalyticalV4 ? "Topic phân tích hiển thị trực tiếp; nút luyện giữ nguyên topic V4 và cho chọn đúng dải D1–D5" : "Dữ liệu legacy fallback"}
           action={
             <Link href="/topics" className="btn sm ghost">
               Mở thư viện bài tập <Icon name="chevR" size={12} />
@@ -456,18 +497,18 @@ export default async function Dashboard() {
               <tr>
                 <th style={{ width: 40 }}></th>
                 <th>Chuyên đề</th>
-                <th style={{ width: 80 }}>Đã làm</th>
-                <th style={{ width: 140 }}>Mức thành thạo</th>
+                <th style={{ width: 80 }}>{showAnalyticalV4 ? "Evidence" : "Đã làm"}</th>
+                <th style={{ width: 140 }}>Mastery V4</th>
                 <th style={{ width: 80, textAlign: "right" }}>%</th>
                 <th style={{ width: 110 }}>Khoảng cách</th>
                 <th style={{ width: 100, textAlign: "right" }}></th>
               </tr>
             </thead>
             <tbody>
-              {TOPICS.map((t) => {
-                const v = user.topicMastery[t.id] ?? BASELINE_MASTERY;
-                const pct = Math.round(v * 100);
-                const gap = 70 - pct;
+              {DISPLAY_TOPICS.map((t) => {
+                const masteryView = displayMastery(t.id);
+                const pct = typeof masteryView?.score === "number" ? Math.round(masteryView.score * 100) : null;
+                const gap = pct === null ? null : 70 - pct;
                 const prog = topicProgress[t.id] ?? { sessions: 0, questions: 0 };
                 return (
                   <tr key={t.id}>
@@ -491,23 +532,31 @@ export default async function Dashboard() {
                     <td>
                       <div style={{ fontWeight: 500 }}>{t.name}</div>
                       <div className="muted" style={{ fontSize: 11.5 }}>
-                        {prog.questions > 0 ? `${prog.questions} câu đã chấm` : "Chưa luyện"}
+                        {masteryView?.source === "v4"
+                          ? masteryView.total > 0
+                            ? `${masteryView.total} câu có evidence V4`
+                            : "Chưa có evidence V4"
+                          : prog.questions > 0 ? `${prog.questions} câu đã chấm` : "Chưa luyện"}
                       </div>
                     </td>
-                    <td className="mono muted">{prog.sessions}</td>
+                    <td className="mono muted">{showAnalyticalV4 ? masteryView?.total ?? 0 : prog.sessions}</td>
                     <td>
-                      <Bar value={pct} tone={pct >= 70 ? "" : pct >= 55 ? "ltv" : "ntt"} />
+                      <Bar value={pct ?? 0} tone={pct !== null && pct >= 70 ? "" : pct !== null && pct >= 55 ? "ltv" : "ntt"} />
                     </td>
                     <td style={{ textAlign: "right" }} className="mono">
-                      <b style={{ fontSize: 14, color: pct >= 70 ? "var(--success)" : "var(--ink)" }}>{pct}%</b>
+                      {pct === null
+                        ? <span className="muted">—</span>
+                        : <b style={{ fontSize: 14, color: pct >= 70 ? "var(--success)" : "var(--ink)" }}>{pct}%</b>}
                     </td>
                     <td>
-                      {gap > 0 ? <Pill tone="amber">cần +{gap}%</Pill> : <Pill tone="green">đạt mục tiêu</Pill>}
+                      {gap === null
+                        ? <Pill>Chưa xác minh</Pill>
+                        : gap > 0 ? <Pill tone="amber">cần +{gap}%</Pill> : <Pill tone="green">đạt mục tiêu</Pill>}
                     </td>
                     <td style={{ textAlign: "right" }}>
-                      <Link href={`/topics/${t.id}`} className="btn sm">
-                        Luyện <Icon name="chevR" size={11} />
-                      </Link>
+                      {t.practiceTopicId
+                        ? <Link href={`/topics/${t.practiceTopicId}`} className="btn sm">Luyện <Icon name="chevR" size={11} /></Link>
+                        : <span className="muted" style={{ fontSize: 11 }}>Chưa có nội dung</span>}
                     </td>
                   </tr>
                 );

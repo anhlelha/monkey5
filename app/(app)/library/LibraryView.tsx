@@ -7,6 +7,8 @@ import { Icon } from "@/components/Icon";
 import { Bar, Card, KindBadge } from "@/components/ui";
 import { TopBar } from "@/components/TopBar";
 import type { ExamHistoryItem } from "@/lib/user-data";
+import type { EffectiveReadinessView } from "@/lib/readiness-v4/read-service";
+import { presentReadiness } from "@/lib/readiness-v4/presentation";
 
 interface ExamRow {
   id: string;
@@ -39,7 +41,7 @@ interface Props {
   exams: ExamRow[];
   schools: SchoolLite[];
   mixSchool: SchoolLite;
-  readiness: Record<string, number>;
+  readiness: Record<string, EffectiveReadinessView>;
   referenceHistory: ExamHistoryItem[];
   userDoneOfficial: number;
   userDoneReference: number;
@@ -197,7 +199,7 @@ interface OfficialTabProps {
   filteredOfficial: ExamRow[];
   byYear: [string, ExamRow[]][];
   activeSchool: SchoolLite | undefined;
-  readiness: Record<string, number>;
+  readiness: Record<string, EffectiveReadinessView>;
 }
 
 function OfficialTab({
@@ -211,6 +213,8 @@ function OfficialTab({
   activeSchool,
   readiness,
 }: OfficialTabProps) {
+  const activeReadiness = activeSchool ? readiness[activeSchool.id] : null;
+  const activePresentation = activeReadiness ? presentReadiness(activeReadiness) : null;
   return (
     <Fragment>
       <div className="chip-group" style={{ marginBottom: 18 }}>
@@ -270,10 +274,16 @@ function OfficialTab({
                 </b>
               </div>
               <div style={{ textAlign: "right" }}>
-                <div className="eyebrow">% sẵn sàng</div>
+                <div className="eyebrow">Readiness V4</div>
                 <b className="mono" style={{ fontSize: 16, color: "var(--accent-ink)" }}>
-                  {readiness[activeSchool.id] ?? 0}%
+                  {activePresentation?.scoreLabel ?? "Chưa khả dụng"}
                 </b>
+                {activePresentation && (
+                  <div className="muted" style={{ fontSize: 11, marginTop: 3, maxWidth: 220 }}>
+                    {activePresentation.statusLabel}
+                    {activeReadiness?.freshnessState !== "current" ? ` · ${activePresentation.freshnessLabel}` : ""}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -419,7 +429,7 @@ function ReferenceTab({
           <Icon name="sparkle" size={12} /> Đề tham khảo:
         </b>{" "}
         Do admin tạo và phát hành. Con nhận từng đề một vào danh sách cá nhân để luyện tập.
-        Không phải đề thật của trường — không tính vào % sẵn sàng.
+        Không phải đề thật của trường — không đi vào School Profile; kết quả chỉ đóng góp Readiness V4 khi câu đã có assessment hợp lệ.
       </div>
 
       {/* ── Ngân hàng đề của tôi ── */}

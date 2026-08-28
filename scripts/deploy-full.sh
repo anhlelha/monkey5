@@ -202,7 +202,7 @@ yn() { [[ "$1" -eq 1 ]] && echo "YES" || echo "no"; }
 echo
 echo "Kế hoạch deploy (mode: $DETECT_MODE):"
 echo "  • build + PM2 restart  : YES (luôn)"
-echo "  • prisma db push       : YES (luôn, idempotent)"
+echo "  • prisma migrate deploy: YES (versioned, reviewed SQL)"
 echo "  • re-seed exam content : $(yn $NEEDS_SEED)"
 echo "  • seed standalone bank : $(yn $NEEDS_BANK_SEED)"
 echo "  • backfill schema      : $(yn $NEEDS_BACKFILL)"
@@ -211,9 +211,43 @@ echo "  • recompute mastery    : $(yn $NEEDS_MASTERY)"
 
 # ── Step 1: backup before deploy (always — cheap safety net) ────────────────
 banner "Step 1/5 — Backup prod DB BEFORE deploy"
-ssh_vm "cd $REMOTE_PROJECT_PATH && \
-  cp prisma/dev.db prisma/dev.db.bak-pre-deploy-$STAMP && \
-  ls -lh prisma/dev.db.bak-pre-deploy-$STAMP"
+REMOTE_BACKUP="$REMOTE_PROJECT_PATH/prisma/dev.db.bak-pre-deploy-$STAMP"
+LOCAL_BACKUP_DIR="$SCRIPT_DIR/../.reports/production-backups"
+LOCAL_BACKUP="$LOCAL_BACKUP_DIR/dev.db.bak-pre-deploy-$STAMP"
+REMOTE_BACKUP_SHA=$(ssh_vm "cd $REMOTE_PROJECT_PATH && \
+  sqlite3 prisma/dev.db \".timeout 10000\" \".backup '$REMOTE_BACKUP'\" && \
+  test \"\$(sqlite3 '$REMOTE_BACKUP' 'PRAGMA integrity_check;')\" = 'ok' && \
+  sha256sum '$REMOTE_BACKUP' | awk '{print \$1}'")
+mkdir -p "$LOCAL_BACKUP_DIR"
+scp "${SSH_OPTS[@]}" "$REMOTE:$REMOTE_BACKUP" "$LOCAL_BACKUP"
+LOCAL_BACKUP_SHA=$(shasum -a 256 "$LOCAL_BACKUP" | awk '{print $1}')
+if [[ "$REMOTE_BACKUP_SHA" != "$LOCAL_BACKUP_SHA" ]]; then
+  echo "Backup verification failed: remote=$REMOTE_BACKUP_SHA local=$LOCAL_BACKUP_SHA" >&2
+  exit 1
+fi
+echo "✓ SQLite online backup verified: $REMOTE_BACKUP_SHA"
+ls -lh "$LOCAL_BACKUP"
+
+# Rehearse the checked-in migrations on the exact downloaded production backup.
+# Keep the migrated copy beside the pristine backup so failures are inspectable
+# and the original recovery point is never modified.
+REHEARSAL_DB="$LOCAL_BACKUP.rehearsal"
+cp "$LOCAL_BACKUP" "$REHEARSAL_DB"
+READINESS_DATABASE_PATH="$REHEARSAL_DB" \
+  DATABASE_URL="file:$REHEARSAL_DB" \
+  bash scripts/prepare-migration-baseline.sh
+DATABASE_URL="file:$REHEARSAL_DB" npx prisma migrate deploy
+if [[ "$(sqlite3 "$REHEARSAL_DB" 'PRAGMA integrity_check;')" != "ok" ]]; then
+  echo "Migration rehearsal failed SQLite integrity_check." >&2
+  exit 1
+fi
+REHEARSAL_FK_ERRORS=$(sqlite3 "$REHEARSAL_DB" 'PRAGMA foreign_key_check;')
+if [[ -n "$REHEARSAL_FK_ERRORS" ]]; then
+  echo "Migration rehearsal found foreign-key violations:" >&2
+  echo "$REHEARSAL_FK_ERRORS" >&2
+  exit 1
+fi
+echo "✓ Migration rehearsal passed on production backup: $REHEARSAL_DB"
 
 # ── Step 2: deploy (pull + build + restart; re-seed only if needed) ─────────
 if [[ "$NEEDS_SEED" -eq 1 ]]; then
