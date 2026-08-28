@@ -10,10 +10,7 @@
 set -euo pipefail
 
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-# READINESS_DATABASE_PATH lets the deploy pipeline rehearse the exact migration
-# against a downloaded production backup without touching the working database.
-DATABASE_PATH="${READINESS_DATABASE_PATH:-$PROJECT_ROOT/prisma/dev.db}"
-export DATABASE_URL="${DATABASE_URL:-file:$DATABASE_PATH}"
+DATABASE_PATH="$PROJECT_ROOT/prisma/dev.db"
 BASELINE_NAME="20260825000000_schema_baseline"
 V4_NAME="20260826000000_readiness_v4_additive"
 LEGACY_NAME="20260608000000_plan_config_question_bank"

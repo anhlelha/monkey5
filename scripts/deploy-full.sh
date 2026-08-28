@@ -229,14 +229,22 @@ echo "✓ SQLite online backup verified: $REMOTE_BACKUP_SHA"
 ls -lh "$LOCAL_BACKUP"
 
 # Rehearse the checked-in migrations on the exact downloaded production backup.
-# Keep the migrated copy beside the pristine backup so failures are inspectable
-# and the original recovery point is never modified.
-REHEARSAL_DB="$LOCAL_BACKUP.rehearsal"
+# Prisma's SQLite URL is intentionally relative to prisma/schema.prisma, so use
+# an isolated mini-project. This guarantees both the shell checks and Prisma CLI
+# target the rehearsal copy rather than the local development database.
+REHEARSAL_DIR="$LOCAL_BACKUP_DIR/rehearsal-$STAMP"
+REHEARSAL_DB="$REHEARSAL_DIR/prisma/dev.db"
+mkdir -p "$REHEARSAL_DIR/prisma" "$REHEARSAL_DIR/scripts"
 cp "$LOCAL_BACKUP" "$REHEARSAL_DB"
-READINESS_DATABASE_PATH="$REHEARSAL_DB" \
-  DATABASE_URL="file:$REHEARSAL_DB" \
+cp prisma/schema.prisma "$REHEARSAL_DIR/prisma/schema.prisma"
+cp -R prisma/migrations "$REHEARSAL_DIR/prisma/migrations"
+cp scripts/prepare-migration-baseline.sh "$REHEARSAL_DIR/scripts/prepare-migration-baseline.sh"
+ln -s "$SCRIPT_DIR/../node_modules" "$REHEARSAL_DIR/node_modules"
+(
+  cd "$REHEARSAL_DIR"
   bash scripts/prepare-migration-baseline.sh
-DATABASE_URL="file:$REHEARSAL_DB" npx prisma migrate deploy
+  npx prisma migrate deploy
+)
 if [[ "$(sqlite3 "$REHEARSAL_DB" 'PRAGMA integrity_check;')" != "ok" ]]; then
   echo "Migration rehearsal failed SQLite integrity_check." >&2
   exit 1
