@@ -18,6 +18,7 @@
  */
 
 import { PrismaClient } from "@prisma/client";
+import { DEM_TO_HOP_D1_D5_BAI } from "./dem-to-hop-d1-d5-problems";
 import { PHANSO_DAY_PROBLEMS } from "./phanso-day-problems";
 
 const prisma = new PrismaClient();
@@ -266,10 +267,14 @@ const BAI: Bai[] = [
   },
 
   // ─── 14. Đếm số khả năng bằng cách chia trường hợp (xs) ───────────────────
+  // 20 câu chính chia tuần tự thành 3 bài 7–7–6 câu.
+  ...DEM_TO_HOP_D1_D5_BAI,
+
+  // Phụ lục 5 bài chọn bóng. Giữ nguyên key để bảo toàn lịch sử làm bài.
   // Bài lớp 5: lời giải chỉ liệt kê/chia trường hợp, không dùng ký hiệu tổ hợp.
   {
     key: "dem-kha-nang-bong",
-    title: "Đếm số khả năng — chia trường hợp",
+    title: "Đếm – Tổ hợp · Phụ lục chọn bóng",
     minutes: 20,
     questions: [
       {
