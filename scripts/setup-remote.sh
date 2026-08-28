@@ -64,6 +64,9 @@ if [ "${RUN_SEED:-1}" = "1" ]; then
     # See docs/REMEDIAL-SETS-DESIGN.md.
     echo "Seeding personalized remedial sets..."
     npx tsx scripts/seed-remedial-mika.ts
+    # Reviewed V4 metadata for the 20-question D1-D5 counting set. Difficulty
+    # comes from the source HTML; the other analytical axes are mapped explicitly.
+    npx tsx scripts/seed-mika-dem-to-hop-assessments.ts
     # English "Bài thầy giao" for mika (subject="english", ownerUserId set).
     # Same idempotent pattern; source is Test_1_Answer_Key.pdf. Question.topic is
     # a plain string (no FK), so it's fine to run before the english topics below.
