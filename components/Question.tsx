@@ -7,6 +7,7 @@ import { MathText } from "./MathText";
 import { ExamFigure } from "./ExamFigure";
 import type { ExamQuestion, AnswerValue } from "@/lib/exam";
 import { gradeAnswer } from "@/lib/grading";
+import { getMathAnalyticalTopic } from "@/lib/readiness-v4/analytical-topics";
 
 interface TopicLite {
   id: string;
@@ -30,8 +31,17 @@ const essayValue = (v: AnswerValue): { text: string; drawings: string[] } => {
   return { text: (v as string) ?? "", drawings: [] };
 };
 
+const COGNITIVE_LABELS: Record<string, string> = {
+  co_ban: "Cơ bản",
+  van_dung: "Vận dụng",
+  nang_cao: "Nâng cao",
+  chuyen_sau: "Chuyên sâu",
+};
+
 export function Question({ q, topics, value, onChange, flagged, onFlag, readOnly, hidePassage }: Props) {
-  const topic = topics.find((t) => t.id === q.topic) ?? { id: q.topic, short: q.topic, color: "var(--ink-muted)" };
+  const legacyTopic = topics.find((t) => t.id === q.topic) ?? { id: q.topic, short: q.topic, color: "var(--ink-muted)" };
+  const analyticalTopic = q.assessmentV4 ? getMathAnalyticalTopic(q.assessmentV4.topicPrimary) : null;
+  const topic = analyticalTopic ?? legacyTopic;
   const v = typeof value === "string" ? value : "";
 
   // Lazy-grade in review mode so the badge/coloring matches what the server scored.
@@ -69,7 +79,16 @@ export function Question({ q, topics, value, onChange, flagged, onFlag, readOnly
           <Pill style={{ borderColor: topic.color }}>
             <span className="dot" style={{ background: topic.color }} />{topic.short}
           </Pill>
-          <Pill tone={q.grade === "NC" ? "red" : q.grade === "L4+5" ? "amber" : ""}>{q.grade}</Pill>
+          {q.assessmentV4 ? (
+            <>
+              <Pill tone={q.assessmentV4.difficultyBand >= 4 ? "red" : q.assessmentV4.difficultyBand === 3 ? "amber" : ""}>
+                V4 · D{q.assessmentV4.difficultyBand}
+              </Pill>
+              <Pill>{COGNITIVE_LABELS[q.assessmentV4.cognitiveLevel] ?? q.assessmentV4.cognitiveLevel}</Pill>
+            </>
+          ) : (
+            <Pill tone={q.grade === "NC" ? "red" : q.grade === "L4+5" ? "amber" : ""}>{q.grade}</Pill>
+          )}
           {q.source && (
             <Pill tone={q.source.startsWith("Trích đề") ? "cg" : ""}>
               <Icon name="school" size={11} /> {q.source}

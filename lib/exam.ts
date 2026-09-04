@@ -11,6 +11,14 @@ export interface ExamPassage {
   kind: string; // notice | message | article | cloze
 }
 
+export interface ExamQuestionAssessmentV4 {
+  state: "current" | "inherited";
+  topicPrimary: string;
+  difficultyBand: number;
+  cognitiveLevel: string;
+  reasoningType: string;
+}
+
 export interface ExamQuestion {
   id: string;
   num: number;
@@ -34,6 +42,8 @@ export interface ExamQuestion {
   sourceQuestionId?: string | null;
   // Optional JSON-serialized AnswerSchema. null/undefined → fall back to exact match.
   answerSchema?: string | null;
+  // Effective approved V4 assessment. Absent for non-math or unresolved rows.
+  assessmentV4?: ExamQuestionAssessmentV4 | null;
 }
 
 export interface SectionHeader {
@@ -61,4 +71,3 @@ export function getExamSectionHeader(
   if (!sections) return null;
   return sections.find((s) => s.num === num)?.header || null;
 }
-

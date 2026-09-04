@@ -16,6 +16,7 @@ import { regradeEssays } from "../../actions";
 import { WRITING_CRITERIA_LABELS, VN_WRITING_CRITERIA_LABELS } from "@/lib/llm/providers";
 import type { EffectiveReadinessView } from "@/lib/readiness-v4/read-service";
 import { presentReadiness } from "@/lib/readiness-v4/presentation";
+import { getMathAnalyticalTopic } from "@/lib/readiness-v4/analytical-topics";
 
 export interface EssayGradeView {
   earned: number;
@@ -65,6 +66,12 @@ interface Graded {
 
 /** An essay counts as a "correct" question (stats only) at/above this fraction. */
 const ESSAY_PASS_FRACTION = 0.5;
+const COGNITIVE_LABELS: Record<string, string> = {
+  co_ban: "Cơ bản",
+  van_dung: "Vận dụng",
+  nang_cao: "Nâng cao",
+  chuyen_sau: "Chuyên sâu",
+};
 /** Round earned points for display (quarter-point granularity). */
 const fmtPts = (n: number): string =>
   (Math.round(n * 100) / 100).toLocaleString("vi-VN", { maximumFractionDigits: 2 });
@@ -135,7 +142,7 @@ export function ResultsView({
 
   const byTopic = new Map<string, { correct: number; total: number; points: number; max: number }>();
   graded.forEach((g) => {
-    const tid = g.q.topic;
+    const tid = g.q.assessmentV4?.topicPrimary ?? g.q.topic;
     const slot = byTopic.get(tid) ?? { correct: 0, total: 0, points: 0, max: 0 };
     slot.total += 1;
     slot.max += g.q.points;
@@ -285,7 +292,8 @@ export function ResultsView({
           <Card title="Phân tích theo chuyên đề" sub="Điểm số con đạt được trong từng nhóm">
             <div className="col" style={{ gap: 12 }}>
               {Array.from(byTopic.entries()).map(([tid, st]) => {
-                const t = topics.find((x) => x.id === tid) ?? { id: tid, name: tid, short: tid, color: "var(--ink-muted)" };
+                const analyticalTopic = getMathAnalyticalTopic(tid);
+                const t = analyticalTopic ?? topics.find((x) => x.id === tid) ?? { id: tid, name: tid, short: tid, color: "var(--ink-muted)" };
                 const pct = st.max > 0 ? (st.points / st.max) * 100 : 0;
                 return (
                   <div key={tid}>
@@ -368,7 +376,8 @@ export function ResultsView({
 
         <div className="col" style={{ gap: 10 }}>
           {graded.map((g, idx) => {
-            const t = topics.find((x) => x.id === g.q.topic) ?? { id: g.q.topic, name: g.q.topic, short: g.q.topic, color: "var(--ink-muted)" };
+            const analyticalTopic = g.q.assessmentV4 ? getMathAnalyticalTopic(g.q.assessmentV4.topicPrimary) : null;
+            const t = analyticalTopic ?? topics.find((x) => x.id === g.q.topic) ?? { id: g.q.topic, name: g.q.topic, short: g.q.topic, color: "var(--ink-muted)" };
             const klass = g.empty ? "skip" : g.correct ? "ok" : "no";
             const sectionHeader = getExamSectionHeader(examMeta.sections, g.q.num);
             // Reading passages are shared across a group — show once, on the first question of the group.
@@ -413,7 +422,16 @@ export function ResultsView({
                         <Pill>
                           <span className="dot" style={{ background: t.color }} />{t.short}
                         </Pill>
-                        <Pill tone={g.q.grade === "NC" ? "red" : ""}>{g.q.grade}</Pill>
+                        {g.q.assessmentV4 ? (
+                          <>
+                            <Pill tone={g.q.assessmentV4.difficultyBand >= 4 ? "red" : g.q.assessmentV4.difficultyBand === 3 ? "amber" : ""}>
+                              V4 · D{g.q.assessmentV4.difficultyBand}
+                            </Pill>
+                            <Pill>{COGNITIVE_LABELS[g.q.assessmentV4.cognitiveLevel] ?? g.q.assessmentV4.cognitiveLevel}</Pill>
+                          </>
+                        ) : (
+                          <Pill tone={g.q.grade === "NC" ? "red" : ""}>{g.q.grade}</Pill>
+                        )}
                         {g.q.source && (
                           <Pill tone={g.q.source.startsWith("Trích đề") ? "cg" : ""}>
                             <Icon name="school" size={11} /> {g.q.source}

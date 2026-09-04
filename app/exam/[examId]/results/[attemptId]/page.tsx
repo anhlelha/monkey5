@@ -6,6 +6,7 @@ import { getActiveSchools, MIX_SCHOOL } from "@/lib/schools";
 import { hydrateUser } from "@/lib/user-data";
 import { ResultsView } from "./ResultsView";
 import type { ExamQuestion } from "@/lib/exam";
+import { getEffectiveQuestionAssessmentsV4 } from "@/lib/readiness-v4/question-assessment-service";
 
 interface Props {
   params: Promise<{ examId: string; attemptId: string }>;
@@ -59,6 +60,7 @@ export default async function ResultsPage({ params }: Props) {
     ? await prisma.passage.findMany({ where: { id: { in: passageIds } } })
     : [];
   const passageById = new Map(passages.map((p) => [p.id, p]));
+  const assessmentsV4 = await getEffectiveQuestionAssessmentsV4(exam.questions);
 
   const questions: ExamQuestion[] = exam.questions.map((q) => {
     const p = q.passageId ? passageById.get(q.passageId) : null;
@@ -83,6 +85,7 @@ export default async function ResultsPage({ params }: Props) {
       source: q.source,
       sourceQuestionId: q.sourceQuestionId,
       answerSchema: q.answerSchema,
+      assessmentV4: assessmentsV4[q.id] ?? null,
     };
   });
 

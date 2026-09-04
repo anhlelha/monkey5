@@ -5,6 +5,7 @@ import { SCHOOLS, MIX_SCHOOL, DEFAULT_TOPICS } from "@/lib/static";
 import { spawnReferenceExam, spawnTopicSetExam, TopicSetLimitError, TopicSetEmptyError } from "@/lib/spawn-exam";
 import { ExamRunner } from "./ExamRunner";
 import type { ExamQuestion } from "@/lib/exam";
+import { getEffectiveQuestionAssessmentsV4 } from "@/lib/readiness-v4/question-assessment-service";
 
 interface Props {
   params: Promise<{ examId: string }>;
@@ -102,6 +103,7 @@ export default async function ExamPage({ params }: Props) {
     ? await prisma.passage.findMany({ where: { id: { in: passageIds } } })
     : [];
   const passageById = new Map(passages.map((p) => [p.id, p]));
+  const assessmentsV4 = await getEffectiveQuestionAssessmentsV4(exam.questions);
 
   const questions: ExamQuestion[] = exam.questions.map((q) => {
     const p = q.passageId ? passageById.get(q.passageId) : null;
@@ -124,7 +126,9 @@ export default async function ExamPage({ params }: Props) {
       passageId: q.passageId,
       passage: p ? { title: p.title, body: p.body, kind: p.kind } : null,
       source: q.source,
+      sourceQuestionId: q.sourceQuestionId,
       answerSchema: q.answerSchema,
+      assessmentV4: assessmentsV4[q.id] ?? null,
     };
   });
 
