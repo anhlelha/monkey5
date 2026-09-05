@@ -10,7 +10,7 @@ export const IMPLEMENTED_FIGURES_LIST = [
   "ltv-2022-c19", "ltv-2022-c20",
   "ltv-2023-c9", "ltv-2023-c17", "ltv-2023-c20",
   "ltv-2024-c14", "ltv-2024-c17", "ltv-2024-c20", "ltv-2025-c5", "ltv-2025-c12",
-  "ntt-2018-c7", "ntt-2022-c8", "ntt-2023-c4", "ntt-2023-c8", "ntt-2024-c4", "ntt-2024-c6", "ntt-2024-c10",
+  "ntt-2018-c7", "ntt-2022-c8", "ntt-2023-c4", "ntt-2023-c8", "ntt-2024-c4", "ntt-2024-c6", "ntt-2024-c10", "ntt-2024-c12",
   "ntt-2025-c1", "ntt-2025-c2", "ntt-2025-c7", "ntt-2025-c8", "ntt-2025-b3",
   "ntt-2026-c1", "ntt-2026-c6", "ntt-2026-c8", "ntt-2026-c12", "ntt-2026-c15",
   "nn-2019-c4", "nn-2022-c5",
