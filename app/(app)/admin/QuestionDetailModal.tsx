@@ -3,8 +3,10 @@
 import { useEffect } from "react";
 import { Pill } from "@/components/ui";
 import { MathText } from "@/components/MathText";
+import { ExamFigure } from "@/components/ExamFigure";
 import { MATH_ANALYTICAL_TOPICS } from "@/lib/readiness-v4/analytical-topics";
 import type { QuestionDetail } from "./actions";
+import { IMPLEMENTED_FIGURES } from "./qa-constants";
 
 const SOURCE_LABELS: Record<string, string> = {
   official: "Chính thức",
@@ -214,18 +216,31 @@ export function QuestionDetailModal({ detail, onClose }: Props) {
                   border: "1px solid var(--border)",
                 }}
               />
+            ) : IMPLEMENTED_FIGURES.has(detail.figure) ? (
+              <div
+                style={{
+                  width: "fit-content",
+                  maxWidth: "100%",
+                  padding: 12,
+                  borderRadius: "var(--r-sm)",
+                  border: "1px solid var(--border)",
+                  background: "var(--surface-2)",
+                }}
+              >
+                <ExamFigure figure={detail.figure} />
+              </div>
             ) : (
-              <code
+              <div
                 style={{
                   fontSize: 12,
                   background: "var(--surface-2)",
-                  padding: "4px 8px",
+                  padding: "10px 12px",
                   borderRadius: "var(--r-xs)",
-                  display: "inline-block",
+                  color: "var(--ink-muted)",
                 }}
               >
-                {detail.figure}
-              </code>
+                Chưa có renderer cho hình <code>{detail.figure}</code>
+              </div>
             )}
           </div>
         )}
