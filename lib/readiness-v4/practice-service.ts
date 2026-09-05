@@ -126,6 +126,11 @@ export class PracticeV4EmptyError extends Error {
   }
 }
 
+export function isAtomicPracticeStem(stem: string): boolean {
+  const bundledTasks = stem.match(/\*\*Bài\s+\d+\s*[:.]?\*\*/giu) ?? [];
+  return bundledTasks.length <= 1;
+}
+
 function sourceKind(question: SourceQuestion): "official" | "supplement" | null {
   if (question.examId === null) return "supplement";
   if (question.exam?.kind === "official" && question.exam.generated === false) return "official";
@@ -232,6 +237,10 @@ export async function loadResolvedPracticeCandidates(): Promise<PracticeCandidat
   const index = buildAssessmentIndex(assessments, approvedRuns.map((run) => run.id));
 
   return questions.flatMap((question): PracticeCandidate[] => {
+    // A topic-practice item must be one coherent task. Some legacy supplemental
+    // rows bundled multiple independent worksheet exercises into one Question;
+    // a single V4 topicPrimary cannot make those rows topic-pure.
+    if (!isAtomicPracticeStem(question.stem)) return [];
     const kind = sourceKind(question);
     if (!kind) return [];
     const resolution = resolveQuestionAssessment(question, index);

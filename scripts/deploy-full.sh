@@ -272,7 +272,7 @@ fi
 # don't affect existing attempts, so NO backfill/regrade/mastery is needed.
 if [[ "$NEEDS_BANK_SEED" -eq 1 ]]; then
   banner "Step 2c/5 — Seed standalone bank (seed-supplemental.ts)"
-  ssh_vm "cd $REMOTE_PROJECT_PATH && npx tsx scripts/seed-supplemental.ts 2>&1 | tail -6"
+  ssh_vm "cd $REMOTE_PROJECT_PATH && npx tsx scripts/seed-supplemental.ts && npx tsx scripts/apply-split-supplemental-assessments.ts"
 else
   banner "Step 2c/5 — SKIPPED standalone bank seed (supplemental-questions.json không đổi)"
 fi

@@ -57,6 +57,7 @@ if [ "${RUN_SEED:-1}" = "1" ]; then
     # Bank from scripts/supplemental-questions.json (IDs prefixed "supp-"; deletes
     # only its own "supp-*" rows, so it never clobbers the cuid-keyed tuoi bank).
     npx tsx scripts/seed-supplemental.ts
+    npx tsx scripts/apply-split-supplemental-assessments.ts
     # Personalized remedial sets ("Bài thầy giao"): private per-student Exams
     # (ownerUserId set). Idempotent via deterministic exam ids — upserts the Exam
     # row (preserving Attempt history) and replaces its questions. Resolves owner
