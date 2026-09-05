@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { auth } from "@/auth";
 import {
   createTargetedPracticeSet,
+  isValidPracticeQuestionCount,
   PracticeV4EmptyError,
   PracticeV4LimitError,
   type PracticeSourceFilter,
@@ -22,8 +23,14 @@ export async function createPracticeSetAction(formData: FormData): Promise<void>
   const band = String(formData.get("band") ?? "") as DifficultyBand;
   const sourceFilter = String(formData.get("sourceFilter") ?? "all") as PracticeSourceFilter;
   const targetSchool = String(formData.get("targetSchool") ?? "") || null;
+  const questionCount = Number(formData.get("questionCount"));
   const idempotencyKey = String(formData.get("idempotencyKey") ?? "");
-  if (!getMathAnalyticalTopic(topic) || !DIFFICULTY_BANDS.includes(band) || !SOURCES.has(sourceFilter)) {
+  if (
+    !getMathAnalyticalTopic(topic) ||
+    !DIFFICULTY_BANDS.includes(band) ||
+    !SOURCES.has(sourceFilter) ||
+    !isValidPracticeQuestionCount(questionCount)
+  ) {
     redirect("/topics?error=invalid-target");
   }
   if (!idempotencyKey || idempotencyKey.length > 120) {
@@ -37,6 +44,7 @@ export async function createPracticeSetAction(formData: FormData): Promise<void>
       topic,
       band,
       sourceFilter,
+      questionCount,
       idempotencyKey,
       targetSchool,
     });

@@ -2,9 +2,28 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   candidateMatchesTarget,
+  estimatePracticeMinutes,
+  isValidPracticeQuestionCount,
+  PRACTICE_BANDS,
   selectPracticeCandidates,
   type PracticeCandidate,
 } from "../../lib/readiness-v4/practice-service";
+
+test("practice question count accepts only whole values within the supported range", () => {
+  assert.equal(isValidPracticeQuestionCount(1), true);
+  assert.equal(isValidPracticeQuestionCount(50), true);
+  assert.equal(isValidPracticeQuestionCount(0), false);
+  assert.equal(isValidPracticeQuestionCount(10.5), false);
+  assert.equal(isValidPracticeQuestionCount(51), false);
+});
+
+test("practice duration scales from each band's default", () => {
+  const foundation = PRACTICE_BANDS.find((band) => band.id === "foundation")!;
+  const advanced = PRACTICE_BANDS.find((band) => band.id === "advanced")!;
+  assert.equal(estimatePracticeMinutes(foundation, 0), 0);
+  assert.equal(estimatePracticeMinutes(foundation, 5), 10);
+  assert.equal(estimatePracticeMinutes(advanced, 4), 13);
+});
 
 function candidate(input: {
   id: string;

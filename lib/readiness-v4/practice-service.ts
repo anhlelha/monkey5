@@ -10,6 +10,8 @@ import { getSnapshotRecommendations, type LinkedReadinessRecommendation } from "
 import { cellKey, difficultyBandOf, MATH_TAXONOMY_VERSION, type DifficultyBand } from "./types";
 
 export const PRACTICE_V4_ALGORITHM = "practice-selector-v4-1" as const;
+export const MIN_PRACTICE_QUESTION_COUNT = 1;
+export const MAX_PRACTICE_QUESTION_COUNT = 50;
 
 export type PracticeSourceFilter = "all" | "official" | "supplement";
 
@@ -54,6 +56,20 @@ export const PRACTICE_BANDS: Array<{
     tone: "var(--ntt)",
   },
 ];
+
+export function isValidPracticeQuestionCount(value: number): boolean {
+  return Number.isInteger(value) &&
+    value >= MIN_PRACTICE_QUESTION_COUNT &&
+    value <= MAX_PRACTICE_QUESTION_COUNT;
+}
+
+export function estimatePracticeMinutes(
+  band: Pick<(typeof PRACTICE_BANDS)[number], "qcount" | "minutes">,
+  questionCount: number,
+): number {
+  if (questionCount <= 0) return 0;
+  return Math.max(1, Math.round((band.minutes / band.qcount) * questionCount));
+}
 
 interface SourceQuestion {
   id: string;
@@ -304,6 +320,7 @@ export interface CreateTargetedPracticeInput {
   topic: string;
   band: DifficultyBand;
   sourceFilter: PracticeSourceFilter;
+  questionCount: number;
   idempotencyKey: string;
   targetSchool?: string | null;
 }
@@ -315,7 +332,9 @@ export async function createTargetedPracticeSet(input: CreateTargetedPracticeInp
 }> {
   const meta = getMathAnalyticalTopic(input.topic);
   const bandMeta = PRACTICE_BANDS.find((band) => band.id === input.band);
-  if (!meta || !bandMeta) throw new PracticeV4EmptyError();
+  if (!meta || !bandMeta || !isValidPracticeQuestionCount(input.questionCount)) {
+    throw new PracticeV4EmptyError();
+  }
   const normalizedKey = `practice-v4:${input.userId}:${input.idempotencyKey.slice(0, 100)}`;
   const existing = await prisma.practiceSet.findUnique({ where: { idempotencyKey: normalizedKey } });
   if (existing) {
@@ -338,7 +357,7 @@ export async function createTargetedPracticeSet(input: CreateTargetedPracticeInp
   const candidates = allCandidates.filter((candidate) =>
     candidateMatchesTarget(candidate, input.topic, input.band, input.sourceFilter),
   );
-  const selected = selectPracticeCandidates(candidates, seen, bandMeta.qcount, normalizedKey);
+  const selected = selectPracticeCandidates(candidates, seen, input.questionCount, normalizedKey);
   if (!selected.length) throw new PracticeV4EmptyError();
 
   const suffix = stableHash({ normalizedKey, now: Date.now() }).slice(0, 10);
@@ -367,7 +386,7 @@ export async function createTargetedPracticeSet(input: CreateTargetedPracticeInp
         intro: unseenCount === selected.length
           ? "Bài luyện V4 theo đúng chuyên đề và dải độ khó. Các câu trong bài đều là câu con chưa làm."
           : `Bài luyện V4 theo đúng chuyên đề và dải độ khó. Có ${selected.length - unseenCount} câu ôn lại do ngân hàng câu mới không còn đủ.`,
-        minutes: bandMeta.minutes,
+        minutes: estimatePracticeMinutes(bandMeta, selected.length),
         qcount: selected.length,
         generated: true,
         note: `practice-v4:${input.topic}:${input.band}:${input.sourceFilter}`,
@@ -386,7 +405,7 @@ export async function createTargetedPracticeSet(input: CreateTargetedPracticeInp
         sourceFilter: input.sourceFilter,
         algorithmVersion: PRACTICE_V4_ALGORITHM,
         idempotencyKey: normalizedKey,
-        requestedCount: bandMeta.qcount,
+        requestedCount: input.questionCount,
         selectedCount: selected.length,
         unseenCount,
         assessmentRunIdsJson: JSON.stringify(assessmentRunIds),

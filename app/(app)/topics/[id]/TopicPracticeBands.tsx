@@ -6,6 +6,9 @@ import { Icon } from "@/components/Icon";
 import { Bar, Pill } from "@/components/ui";
 import { createPracticeSetAction } from "../actions";
 import {
+  estimatePracticeMinutes,
+  MAX_PRACTICE_QUESTION_COUNT,
+  MIN_PRACTICE_QUESTION_COUNT,
   PRACTICE_BANDS,
   type PracticeBandState,
   type PracticeSourceFilter,
@@ -61,6 +64,11 @@ export function TopicPracticeBands({
   remaining,
 }: Props) {
   const [sourceFilter, setSourceFilter] = useState<PracticeSourceFilter>("all");
+  const [questionCounts, setQuestionCounts] = useState<Record<DifficultyBand, number>>(() => ({
+    foundation: PRACTICE_BANDS.find((band) => band.id === "foundation")!.qcount,
+    application: PRACTICE_BANDS.find((band) => band.id === "application")!.qcount,
+    advanced: PRACTICE_BANDS.find((band) => band.id === "advanced")!.qcount,
+  }));
   const exhausted = Number.isFinite(remaining) && remaining <= 0;
 
   return (
@@ -139,10 +147,11 @@ export function TopicPracticeBands({
           const state = states.find((candidate) => candidate.band === band.id)!;
           const available = countForSource(state, sourceFilter);
           const unseen = unseenForSource(state, sourceFilter);
-          const requested = band.qcount;
-          const selected = Math.min(requested, available);
+          const maxCount = Math.min(available, MAX_PRACTICE_QUESTION_COUNT);
+          const selected = Math.min(questionCounts[band.id], maxCount);
           const repeats = Math.max(0, selected - unseen);
           const locked = exhausted || available === 0;
+          const estimatedMinutes = estimatePracticeMinutes(band, selected);
           const masteryPct = state.mastery === null ? null : Math.round(state.mastery * 100);
           const evidencePct = state.evidence === null ? null : Math.round(state.evidence * 100);
           const highlighted = selectedBand === band.id;
@@ -161,8 +170,9 @@ export function TopicPracticeBands({
               <input type="hidden" name="topic" value={topicId} />
               <input type="hidden" name="band" value={band.id} />
               <input type="hidden" name="sourceFilter" value={sourceFilter} />
+              <input type="hidden" name="questionCount" value={selected} />
               <input type="hidden" name="targetSchool" value={targetSchool ?? ""} />
-              <input type="hidden" name="idempotencyKey" value={`${requestNonce}:${band.id}:${sourceFilter}`} />
+              <input type="hidden" name="idempotencyKey" value={`${requestNonce}:${band.id}:${sourceFilter}:${selected}`} />
 
               <div className="row between" style={{ alignItems: "start" }}>
                 <div className="row" style={{ gap: 10 }}>
@@ -188,7 +198,7 @@ export function TopicPracticeBands({
               </div>
 
               <div className="row between" style={{ marginTop: 14, fontSize: 11.5 }}>
-                <span><b>~{selected}</b> câu · {band.minutes} phút</span>
+                <span><b>{selected}</b> câu · ~{estimatedMinutes} phút</span>
                 {available === 0 ? (
                   <span className="muted">Chưa có ngân hàng</span>
                 ) : repeats > 0 ? (
@@ -198,7 +208,28 @@ export function TopicPracticeBands({
                 )}
               </div>
 
-              <div style={{ marginTop: 14 }}>
+              <div className="row between" style={{ marginTop: 14, gap: 12, alignItems: "end" }}>
+                <label style={{ display: "grid", gap: 5, fontSize: 11.5, color: "var(--ink-soft)" }}>
+                  Số câu muốn luyện
+                  <input
+                    type="number"
+                    className="input mono"
+                    aria-label={`Số câu muốn luyện ${band.label}`}
+                    min={MIN_PRACTICE_QUESTION_COUNT}
+                    max={maxCount}
+                    value={selected}
+                    disabled={locked}
+                    onChange={(event) => {
+                      const next = Number(event.target.value);
+                      if (!Number.isFinite(next)) return;
+                      setQuestionCounts((current) => ({
+                        ...current,
+                        [band.id]: Math.min(maxCount, Math.max(MIN_PRACTICE_QUESTION_COUNT, Math.trunc(next))),
+                      }));
+                    }}
+                    style={{ width: 82, height: 38, paddingInline: 10 }}
+                  />
+                </label>
                 <SubmitButton disabled={locked} />
               </div>
             </form>
