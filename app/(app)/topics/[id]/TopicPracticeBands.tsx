@@ -75,27 +75,52 @@ export function TopicPracticeBands({
         {targetSchoolName && <Pill tone="green">Theo mục tiêu {targetSchoolName}</Pill>}
       </div>
 
-      <div className="row" style={{ gap: 4, padding: 4, border: "1px solid var(--border)", borderRadius: 10, background: "var(--bg-soft)", width: "fit-content", marginBottom: 14 }}>
-        {([
-          ["all", "Tất cả", "sparkle"],
-          ["official", "Câu chính thức", "library"],
-          ["supplement", "Câu bổ trợ", "plus"],
-        ] as const).map(([value, label, icon]) => (
-          <button
-            key={value}
-            type="button"
-            onClick={() => setSourceFilter(value)}
-            className="btn sm ghost"
-            aria-pressed={sourceFilter === value}
-            style={{
-              background: sourceFilter === value ? "var(--bg)" : "transparent",
-              boxShadow: sourceFilter === value ? "0 1px 3px rgba(0,0,0,.09)" : "none",
-              borderColor: "transparent",
-            }}
-          >
-            <Icon name={icon} size={12} /> {label}
-          </button>
-        ))}
+      <div style={{ width: "fit-content", marginBottom: 14 }}>
+        <div className="eyebrow" style={{ marginBottom: 7, fontSize: 10 }}>
+          Nguồn câu hỏi
+        </div>
+        <div
+          className="row"
+          role="group"
+          aria-label="Chọn nguồn câu hỏi"
+          style={{
+            gap: 4,
+            padding: 4,
+            border: "1px solid var(--border)",
+            borderRadius: 10,
+            background: "var(--surface-sunk)",
+            width: "fit-content",
+          }}
+        >
+          {([
+            ["all", "Tất cả", "sparkle"],
+            ["official", "Câu chính thức", "library"],
+            ["supplement", "Câu bổ trợ", "plus"],
+          ] as const).map(([value, label, icon]) => {
+            const selected = sourceFilter === value;
+            return (
+              <button
+                key={value}
+                type="button"
+                onClick={() => setSourceFilter(value)}
+                className="btn sm ghost"
+                aria-pressed={selected}
+                style={{
+                  minHeight: 34,
+                  paddingInline: 13,
+                  background: selected ? "var(--accent)" : "transparent",
+                  color: selected ? "white" : "var(--ink-soft)",
+                  fontWeight: selected ? 700 : 500,
+                  boxShadow: selected ? "0 2px 6px color-mix(in oklch, var(--accent), transparent 70%)" : "none",
+                  borderColor: selected ? "var(--accent)" : "transparent",
+                }}
+              >
+                <Icon name={selected ? "check" : icon} size={13} stroke={selected ? 2.5 : 1.8} />
+                {label}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <p className="muted" style={{ margin: "0 0 14px", fontSize: 12.5 }}>
