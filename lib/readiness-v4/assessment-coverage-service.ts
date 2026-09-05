@@ -155,3 +155,23 @@ export function summarizeMathTaxonomyTopicCoverage(
 
   return topicIds.map((topic) => rows.get(topic)!);
 }
+
+export function selectQuestionIdsByAssessmentFilters(
+  items: QuestionBankAssessmentView[],
+  filters: {
+    topic?: string;
+    state?: QuestionBankAssessmentState | "all";
+    difficultyBand?: number;
+  },
+): string[] | null {
+  const hasTopicFilter = Boolean(filters.topic);
+  const hasStateFilter = Boolean(filters.state && filters.state !== "all");
+  const hasDifficultyFilter = typeof filters.difficultyBand === "number";
+  if (!hasTopicFilter && !hasStateFilter && !hasDifficultyFilter) return null;
+
+  return items
+    .filter((item) => !hasTopicFilter || item.topicPrimary === filters.topic)
+    .filter((item) => !hasStateFilter || item.state === filters.state)
+    .filter((item) => !hasDifficultyFilter || item.difficultyBand === filters.difficultyBand)
+    .map((item) => item.questionId);
+}

@@ -3,6 +3,7 @@ import test from "node:test";
 
 import {
   classifyQuestionBankSource,
+  selectQuestionIdsByAssessmentFilters,
   summarizeMathTaxonomyTopicCoverage,
   summarizeQuestionBankAssessmentViews,
   type QuestionBankAssessmentView,
@@ -63,4 +64,31 @@ test("taxonomy topic coverage counts only usable current and inherited assessmen
     byDifficulty: { 1: 0, 2: 1, 3: 0, 4: 1, 5: 0 },
   });
   assert.equal(rows[1].usable, 0);
+});
+
+test("bank V4 filters intersect analytical topic and assessment state", () => {
+  const items = [
+    { ...view("q1", "official", "current"), topicPrimary: "num_div", difficultyBand: 2 },
+    { ...view("q2", "private", "inherited"), topicPrimary: "num_div", difficultyBand: 4 },
+    { ...view("q3", "official", "current"), topicPrimary: "logic_strategy", difficultyBand: 2 },
+    view("q4", "supplement", "missing"),
+  ];
+
+  assert.equal(selectQuestionIdsByAssessmentFilters(items, {}), null);
+  assert.deepEqual(
+    selectQuestionIdsByAssessmentFilters(items, { topic: "num_div" }),
+    ["q1", "q2"],
+  );
+  assert.deepEqual(
+    selectQuestionIdsByAssessmentFilters(items, { topic: "num_div", state: "current" }),
+    ["q1"],
+  );
+  assert.deepEqual(
+    selectQuestionIdsByAssessmentFilters(items, { topic: "num_div", difficultyBand: 4 }),
+    ["q2"],
+  );
+  assert.deepEqual(
+    selectQuestionIdsByAssessmentFilters(items, { state: "missing" }),
+    ["q4"],
+  );
 });

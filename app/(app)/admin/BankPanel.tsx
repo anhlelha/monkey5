@@ -15,6 +15,7 @@ import {
 } from "./actions";
 import { QuestionDetailModal } from "./QuestionDetailModal";
 import { DEFAULT_TOPICS } from "@/lib/static";
+import { MATH_ANALYTICAL_TOPICS } from "@/lib/readiness-v4/analytical-topics";
 
 interface TopicOption {
   id: string;
@@ -59,6 +60,7 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
   const [source, setSource] = useState<BankFilters["source"]>("all");
   const [topic, setTopic] = useState("");
   const [grade, setGrade] = useState("");
+  const [difficultyBand, setDifficultyBand] = useState("");
   const [q, setQ] = useState("");
   const [assessmentState, setAssessmentState] = useState<NonNullable<BankFilters["assessmentState"]>>("all");
 
@@ -72,10 +74,12 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
   const pageSize = initialPage.pageSize;
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
 
-  const topicName = (id: string) => {
+  const contentTopicName = (id: string) => {
     const t = topics.find((x) => x.id === id) ?? DEFAULT_TOPICS.find((x) => x.id === id);
     return t?.short ?? id;
   };
+  const analyticalTopicName = (id: string) =>
+    MATH_ANALYTICAL_TOPICS.find((item) => item.id === id)?.short ?? id;
 
   function fetchPage(filters: BankFilters) {
     startTransition(async () => {
@@ -91,6 +95,7 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
       source: source ?? "all",
       topic: topic || undefined,
       grade: grade || undefined,
+      difficultyBand: difficultyBand ? Number(difficultyBand) : undefined,
       q: q || undefined,
       assessmentState,
       page: 1,
@@ -130,6 +135,7 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
       source: source ?? "all",
       topic: topic || undefined,
       grade: grade || undefined,
+      difficultyBand: difficultyBand ? Number(difficultyBand) : undefined,
       q: q || undefined,
       assessmentState,
       page: p,
@@ -215,15 +221,21 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
         </Card>
       )}
 
-      {/* ── Per-topic breakdown ── */}
-      {Object.keys(stats.byTopic).length > 0 && (
-        <Card title="Phân bố content topic" sub="Topic nội dung dùng cho kho/luyện tập; không phải analytical taxonomy V4">
+      {/* ── Primary taxonomy breakdown ── */}
+      {Object.keys(subject === "math" ? stats.byAnalyticalTopic : stats.byTopic).length > 0 && (
+        <Card
+          title={subject === "math" ? "Phân bố chuyên đề V4" : "Phân bố content topic"}
+          sub={subject === "math"
+            ? "Analytical taxonomy V4; chỉ tính assessment Current và Inherited."
+            : "Topic nội dung dùng cho kho và luyện tập."}
+        >
           <div className="row" style={{ gap: 8, flexWrap: "wrap" }}>
-            {Object.entries(stats.byTopic)
+            {Object.entries(subject === "math" ? stats.byAnalyticalTopic : stats.byTopic)
               .sort(([, a], [, b]) => b - a)
               .map(([tid, count]) => (
                 <Pill key={tid}>
-                  {topicName(tid)}: <b style={{ marginLeft: 3 }}>{count}</b>
+                  {subject === "math" ? analyticalTopicName(tid) : contentTopicName(tid)}:
+                  <b style={{ marginLeft: 3 }}>{count}</b>
                 </Pill>
               ))}
           </div>
@@ -231,7 +243,10 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
       )}
 
       {/* ── Filter bar ── */}
-              <Card title="Ngân hàng câu hỏi" sub={`${total.toLocaleString("vi-VN")} câu · content topic và Assessment V4 hiển thị tách biệt`}>
+      <Card
+        title="Ngân hàng câu hỏi"
+        sub={`${total.toLocaleString("vi-VN")} câu · ${subject === "math" ? "lọc và phân loại theo analytical taxonomy V4" : "phân loại theo content topic"}`}
+      >
 
         <div className="row" style={{ gap: 10, flexWrap: "wrap", marginBottom: 16 }}>
           <select
@@ -280,29 +295,44 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
               applyFilters({ topic: e.target.value || undefined, page: 1 });
             }}
           >
-            <option value="">Tất cả content topic</option>
-            {topics.map((t) => (
+            <option value="">{subject === "math" ? "Tất cả chuyên đề V4" : "Tất cả content topic"}</option>
+            {(subject === "math" ? MATH_ANALYTICAL_TOPICS : topics).map((t) => (
               <option key={t.id} value={t.id}>
                 {t.name}
               </option>
             ))}
           </select>
 
-          <select
-            className="input"
-            style={{ width: 140 }}
-            value={grade}
-            onChange={(e) => {
-              setGrade(e.target.value);
-              applyFilters({ grade: e.target.value || undefined, page: 1 });
-            }}
-          >
-            {GRADE_OPTIONS.map((g) => (
-              <option key={g.value} value={g.value}>
-                {g.label}
-              </option>
-            ))}
-          </select>
+          {subject === "math" ? (
+            <select
+              className="input"
+              style={{ width: 140 }}
+              value={difficultyBand}
+              onChange={(e) => {
+                setDifficultyBand(e.target.value);
+                applyFilters({ difficultyBand: e.target.value ? Number(e.target.value) : undefined, page: 1 });
+              }}
+            >
+              <option value="">Tất cả độ khó V4</option>
+              {[1, 2, 3, 4, 5].map((band) => (
+                <option key={band} value={band}>D{band}</option>
+              ))}
+            </select>
+          ) : (
+            <select
+              className="input"
+              style={{ width: 140 }}
+              value={grade}
+              onChange={(e) => {
+                setGrade(e.target.value);
+                applyFilters({ grade: e.target.value || undefined, page: 1 });
+              }}
+            >
+              {GRADE_OPTIONS.map((g) => (
+                <option key={g.value} value={g.value}>{g.label}</option>
+              ))}
+            </select>
+          )}
 
           <input
             className="input"
@@ -331,8 +361,8 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
             <thead>
               <tr>
                 <th style={{ width: 90 }}>Nguồn</th>
-                <th style={{ width: 110 }}>Content topic</th>
-                <th style={{ width: 60 }}>Mức</th>
+                <th style={{ width: 110 }}>{subject === "math" ? "Chuyên đề V4" : "Content topic"}</th>
+                <th style={{ width: 70 }}>{subject === "math" ? "Độ khó V4" : "Mức"}</th>
                 <th style={{ width: 50 }}>Loại</th>
                 <th>Nội dung câu</th>
                 {subject === "math" && <th style={{ width: 135 }}>Assessment V4</th>}
@@ -367,10 +397,22 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
                     )}
                   </td>
                   <td>
-                    <span style={{ fontSize: 12 }}>{topicName(row.topic)}</span>
+                    <span style={{ fontSize: 12 }}>
+                      {subject === "math"
+                        ? row.assessment?.topicPrimary
+                          ? analyticalTopicName(row.assessment.topicPrimary)
+                          : "—"
+                        : contentTopicName(row.topic)}
+                    </span>
                   </td>
                   <td>
-                    <span className="mono" style={{ fontSize: 12 }}>{row.grade}</span>
+                    <span className="mono" style={{ fontSize: 12 }}>
+                      {subject === "math"
+                        ? row.assessment?.difficultyBand
+                          ? `D${row.assessment.difficultyBand}`
+                          : "—"
+                        : row.grade}
+                    </span>
                   </td>
                   <td>
                     <span className="mono" style={{ fontSize: 11 }}>{row.type}</span>
@@ -385,9 +427,9 @@ export function BankPanel({ stats, initialPage, topics, subject = "math" }: Prop
                           <Pill tone={row.assessment.state === "current" || row.assessment.state === "inherited" ? "green" : row.assessment.state === "missing" ? "amber" : "red"}>
                             {row.assessment.state === "current" ? "Current" : row.assessment.state === "inherited" ? "Inherited" : row.assessment.state === "missing" ? "Missing" : row.assessment.state === "stale" ? "Stale" : "Conflict"}
                           </Pill>
-                          {row.assessment.topicPrimary && (
+                          {typeof row.assessment.confidence === "number" && (
                             <span className="muted" style={{ fontSize: 10 }}>
-                              {row.assessment.topicPrimary} · D{row.assessment.difficultyBand} · {Math.round(row.assessment.confidence ?? 0)}%
+                              {Math.round(row.assessment.confidence)}% tin cậy
                             </span>
                           )}
                         </div>

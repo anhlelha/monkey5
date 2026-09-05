@@ -2,6 +2,12 @@
 
 import { prisma } from "./prisma";
 import type { Subject } from "./subjects";
+import { getEffectiveQuestionAssessmentsV4 } from "./readiness-v4/question-assessment-service";
+import {
+  isPrivateMathPracticeExam,
+  resolvePrivatePracticeTopicContext,
+  type ActivityTopicTaxonomy,
+} from "./admin-activity-classification";
 
 export interface UserShape {
   id: string;
@@ -588,8 +594,9 @@ export async function getUserActivityStats(
 // A finished topic-practice run writes BOTH a TopicSession and a paired
 // Attempt (same examId === setId). Naive listing would double-count it. This
 // helper merges them: if a TopicSession has a matching Attempt, the row is
-// classified as "topic" and links to the attempt's results. Pure exam
-// attempts (no matching topic session) remain "exam".
+// classified as "topic" and links to the attempt's results. Private math
+// practice Exams are also topics; only public/school exam attempts remain
+// "exam" when no matching topic session exists.
 
 export type AdminActivityFilter = "all" | "exam" | "topic";
 
@@ -611,6 +618,9 @@ export interface AdminActivityRow {
   minutes?: number;
   // Topic-only
   topic?: string;
+  topicIds?: string[];
+  topicTaxonomy?: ActivityTopicTaxonomy;
+  isPrivatePractice?: boolean;
   level?: string;
   qcount?: number;
 }
@@ -657,6 +667,50 @@ export async function getUserActivityForAdmin(
         }),
   ]);
 
+  // Private math sets are authored as Exam rows so they can use the normal
+  // runner, but product-wise they are focused practice rather than school
+  // exams. Resolve their approved analytical topics once per unique exam;
+  // legacy content topics remain the fallback when V4 evidence is unavailable.
+  const privateMathExamIds = [...new Set(
+    attempts
+      .filter((attempt) => isPrivateMathPracticeExam(attempt.exam))
+      .map((attempt) => attempt.examId),
+  )];
+  const privateMathQuestions = privateMathExamIds.length > 0
+    ? await prisma.question.findMany({
+        where: { examId: { in: privateMathExamIds } },
+        orderBy: [{ examId: "asc" }, { num: "asc" }],
+        select: {
+          id: true,
+          examId: true,
+          topic: true,
+          subject: true,
+          type: true,
+          stem: true,
+          options: true,
+          correct: true,
+          answerSchema: true,
+          points: true,
+          figure: true,
+          sourceQuestionId: true,
+        },
+      })
+    : [];
+  const effectiveV4 = await getEffectiveQuestionAssessmentsV4(privateMathQuestions);
+  const questionsByExamId = new Map<string, typeof privateMathQuestions>();
+  for (const question of privateMathQuestions) {
+    if (!question.examId) continue;
+    const rows = questionsByExamId.get(question.examId) ?? [];
+    rows.push(question);
+    questionsByExamId.set(question.examId, rows);
+  }
+  const privateTopicContextByExamId = new Map(
+    privateMathExamIds.map((examId) => [
+      examId,
+      resolvePrivatePracticeTopicContext(questionsByExamId.get(examId) ?? [], effectiveV4),
+    ]),
+  );
+
   // Map TopicSession.setId → session so we can find the pair for an attempt.
   const sessionBySetId = new Map<string, (typeof sessions)[number]>();
   for (const s of sessions) {
@@ -686,6 +740,24 @@ export async function getUserActivityForAdmin(
         topic: matched.topic,
         level: matched.level,
         qcount: matched.qcount,
+        durationSec: a.durationSec,
+      });
+    } else if (isPrivateMathPracticeExam(a.exam)) {
+      const context = privateTopicContextByExamId.get(a.examId);
+      merged.push({
+        kind: "topic",
+        id: a.id,
+        attemptId: a.id,
+        examId: a.examId,
+        createdAt: a.createdAt,
+        score: a.score,
+        correctCount: a.earned,
+        total: a.total,
+        topicIds: context?.topicIds ?? [],
+        topicTaxonomy: context?.taxonomy ?? "legacy",
+        isPrivatePractice: true,
+        examTitle: a.exam.title,
+        qcount: a.exam.qcount,
         durationSec: a.durationSec,
       });
     } else if (a.examId.startsWith("enset-") || a.examId.startsWith("vnset-")) {

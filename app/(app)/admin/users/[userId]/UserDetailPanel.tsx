@@ -83,6 +83,7 @@ export function UserDetailPanel({
   activitySeries,
 }: Props) {
   const topicById = new Map(topics.map((t) => [t.id, t]));
+  const analyticalTopicById = new Map(MATH_ANALYTICAL_TOPICS.map((t) => [t.id, t]));
   const schoolById = new Map(schools.map((s) => [s.id, s]));
   const subjectName = SUBJECT_META[subject].name;
 
@@ -443,6 +444,11 @@ export function UserDetailPanel({
                   const isExam = r.kind === "exam";
                   const school = isExam && r.school ? schoolById.get(r.school) : undefined;
                   const topic = !isExam && r.topic ? topicById.get(r.topic) : undefined;
+                  const contextTopics = (r.topicIds ?? []).map((id) =>
+                    r.topicTaxonomy === "analytical-v4"
+                      ? analyticalTopicById.get(id)
+                      : topicById.get(id),
+                  ).filter((item): item is TopicMeta => Boolean(item));
                   const detailHref = r.examId && r.attemptId
                     ? `/exam/${r.examId}/results/${r.attemptId}`
                     : null;
@@ -457,6 +463,27 @@ export function UserDetailPanel({
                         {isExam ? (
                           <span className={"pill " + (school?.tone ?? "")}>
                             {school?.short ?? r.school?.toUpperCase() ?? "—"}
+                          </span>
+                        ) : contextTopics.length > 0 ? (
+                          <span className="row" style={{ gap: 6, alignItems: "center", flexWrap: "wrap" }}>
+                            {contextTopics.slice(0, 2).map((contextTopic) => (
+                              <span key={contextTopic.id} className="row" style={{ gap: 6, alignItems: "center" }}>
+                                <span
+                                  style={{
+                                    width: 8,
+                                    height: 8,
+                                    background: contextTopic.color,
+                                    borderRadius: 2,
+                                  }}
+                                />
+                                <b style={{ fontWeight: 500, fontSize: 13 }}>{contextTopic.short}</b>
+                              </span>
+                            ))}
+                            {contextTopics.length > 2 && (
+                              <span className="muted" style={{ fontSize: 11.5 }}>
+                                +{contextTopics.length - 2}
+                              </span>
+                            )}
                           </span>
                         ) : (
                           <span className="row" style={{ gap: 8, alignItems: "center" }}>
@@ -485,6 +512,13 @@ export function UserDetailPanel({
                                   ? "Tham khảo"
                                   : "Trộn"}{" "}
                               · {r.examYear}
+                            </div>
+                          </>
+                        ) : r.isPrivatePractice ? (
+                          <>
+                            <b style={{ fontWeight: 500 }}>{r.examTitle ?? "Bài luyện riêng"}</b>
+                            <div className="muted" style={{ fontSize: 11.5 }}>
+                              Bài luyện riêng · {r.qcount} câu
                             </div>
                           </>
                         ) : (

@@ -9,6 +9,7 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import {
   getMathQuestionBankAssessmentCoverage,
+  selectQuestionIdsByAssessmentFilters,
   summarizeMathTaxonomyTopicCoverage,
   type QuestionBankAssessmentCoverageSummary,
   type QuestionBankAssessmentState,
@@ -298,6 +299,7 @@ export interface BankStats {
   totalActive: number;
   totalInactive: number;
   byTopic: Record<string, number>;
+  byAnalyticalTopic: Record<string, number>;
   v4Assessment: QuestionBankAssessmentCoverageSummary | null;
 }
 
@@ -502,6 +504,15 @@ export async function getBankStats(subject: "math" | "english" | "vietnamese" = 
   for (const row of byTopicRows) {
     byTopic[row.topic] = row._count.id;
   }
+  const byAnalyticalTopic: Record<string, number> = {};
+  for (const item of v4Assessment?.items ?? []) {
+    if (
+      item.topicPrimary
+      && (item.state === "current" || item.state === "inherited")
+    ) {
+      byAnalyticalTopic[item.topicPrimary] = (byAnalyticalTopic[item.topicPrimary] ?? 0) + 1;
+    }
+  }
 
   return {
     official,
@@ -511,6 +522,7 @@ export async function getBankStats(subject: "math" | "english" | "vietnamese" = 
     totalActive,
     totalInactive,
     byTopic,
+    byAnalyticalTopic,
     v4Assessment: v4Assessment
       ? { taxonomyVersion: v4Assessment.taxonomyVersion, total: v4Assessment.total, bySource: v4Assessment.bySource }
       : null,
@@ -544,6 +556,7 @@ export interface BankFilters {
   source?: "official" | "mock" | "supplement" | "private" | "all";
   topic?: string;
   grade?: string;
+  difficultyBand?: number;
   q?: string;
   page?: number;
   subject?: "math" | "english" | "vietnamese";
@@ -559,6 +572,13 @@ export async function getBankQuestions(filters: BankFilters): Promise<BankPage> 
   const subject = filters.subject ?? "math";
   const v4Assessment = subject === "math" ? await getMathQuestionBankAssessmentCoverage() : null;
   const assessmentByQuestion = new Map(v4Assessment?.items.map((item) => [item.questionId, item]) ?? []);
+  const assessmentQuestionIds = v4Assessment
+    ? selectQuestionIdsByAssessmentFilters(v4Assessment.items, {
+        topic: filters.topic,
+        state: filters.assessmentState,
+        difficultyBand: filters.difficultyBand,
+      })
+    : null;
 
   let where: any = {};
 
@@ -590,17 +610,16 @@ export async function getBankQuestions(filters: BankFilters): Promise<BankPage> 
     };
   }
 
-  // Always scope by subject (default math) + optional topic/grade/q filters.
+  // Math's primary topic filter is analytical taxonomy V4. Other subjects do
+  // not have V4 yet and continue to filter by their content topic.
   where = {
     AND: [
       where,
       { subject },
-      filters.topic ? { topic: filters.topic } : {},
-      filters.grade ? { grade: filters.grade } : {},
+      subject !== "math" && filters.topic ? { topic: filters.topic } : {},
+      subject !== "math" && filters.grade ? { grade: filters.grade } : {},
       filters.q ? { stem: { contains: filters.q } } : {},
-      filters.assessmentState && filters.assessmentState !== "all"
-        ? { id: { in: v4Assessment?.items.filter((item) => item.state === filters.assessmentState).map((item) => item.questionId) ?? [] } }
-        : {},
+      assessmentQuestionIds ? { id: { in: assessmentQuestionIds } } : {},
     ],
   };
 

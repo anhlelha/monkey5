@@ -105,16 +105,20 @@ export function QuestionDetailModal({ detail, onClose }: Props) {
               <span className="muted" style={{ fontSize: 12 }}>
                 {TYPE_LABELS[detail.type] ?? detail.type}
               </span>
-              <span className="muted" style={{ fontSize: 12 }}>·</span>
-              <span className="muted" style={{ fontSize: 12 }}>
-                Mức: <b>{detail.grade}</b>
-              </span>
-              {detail.topic && (
+              {!detail.assessment && (
                 <>
                   <span className="muted" style={{ fontSize: 12 }}>·</span>
                   <span className="muted" style={{ fontSize: 12 }}>
-                    Chuyên đề: <b>{detail.topic}</b>
+                    Mức: <b>{detail.grade}</b>
                   </span>
+                  {detail.topic && (
+                    <>
+                      <span className="muted" style={{ fontSize: 12 }}>·</span>
+                      <span className="muted" style={{ fontSize: 12 }}>
+                        Chuyên đề: <b>{detail.topic}</b>
+                      </span>
+                    </>
+                  )}
                 </>
               )}
               {detail.points !== 1 && (
