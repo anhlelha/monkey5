@@ -1466,6 +1466,35 @@ export function ExamFigure({ figure }: Props) {
       );
     }
 
+    // --- NTT 2024-25 Q12: trapezoid ABCD, M midpoint of AC,
+    // N on DM with MN = 2 DN, and A-N-P collinear ---
+    case "ntt-2024-c12":
+      return (
+        <div className="q-figure-wrapper" style={{ margin: "16px 0", maxWidth: "360px" }}>
+          <svg viewBox="0 0 240 210" width="100%" role="img" aria-label="Hình thang ABCD với M là trung điểm AC, N thuộc DM và A, N, P thẳng hàng" style={{ display: "block", height: "auto" }}>
+            <polygon points="80,30 160,30 190,170 30,170" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinejoin="round" />
+            <line x1="80" y1="30" x2="190" y2="170" stroke="var(--ink)" strokeWidth="1.4" />
+            <line x1="30" y1="170" x2="135" y2="100" stroke="var(--ink)" strokeWidth="1.4" />
+            <line x1="80" y1="30" x2="62" y2="170" stroke="var(--ink)" strokeWidth="1.4" />
+
+            <circle cx="135" cy="100" r="2.8" fill="var(--ink)" />
+            <circle cx="65" cy="146.7" r="2.8" fill="var(--ink)" />
+            <circle cx="62" cy="170" r="2.8" fill="var(--ink)" />
+
+            <text x="74" y="22" fill="var(--ink)" fontSize="14" fontWeight="600">A</text>
+            <text x="164" y="24" fill="var(--ink)" fontSize="14" fontWeight="600">B</text>
+            <text x="18" y="184" fill="var(--ink)" fontSize="14" fontWeight="600">D</text>
+            <text x="194" y="184" fill="var(--ink)" fontSize="14" fontWeight="600">C</text>
+            <text x="141" y="98" fill="var(--ink)" fontSize="14" fontWeight="600">M</text>
+            <text x="70" y="143" fill="var(--ink)" fontSize="14" fontWeight="600">N</text>
+            <text x="57" y="191" fill="var(--ink)" fontSize="14" fontWeight="600">P</text>
+
+            <text x="120" y="20" fill="var(--ink-soft)" fontSize="11" textAnchor="middle">AB</text>
+            <text x="110" y="202" fill="var(--ink-soft)" fontSize="11" textAnchor="middle">CD = 2 × AB</text>
+          </svg>
+        </div>
+      );
+
     // --- NTT 2025-26 Q1: Pie Chart of Grades ---
     case "ntt-2025-c1":
       return (
@@ -3849,4 +3878,3 @@ export function ExamFigure({ figure }: Props) {
       return null;
   }
 }
-

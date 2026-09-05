@@ -258,6 +258,9 @@ async function main() {
       // Apply overrides AFTER auto-cleaning. Override values are pre-formatted
       // (already wrapped in $...$ where needed) and treated as final source of truth.
       const override = CG_ENRICHMENT_MAP[q.id] || MANUAL_OVERRIDES[q.id] || {};
+      if (override.type) {
+        qType = override.type;
+      }
       if (override.stem) {
         stem = override.stem;
       }

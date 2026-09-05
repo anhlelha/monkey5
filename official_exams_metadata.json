@@ -2092,13 +2092,13 @@
         {
           "id": "NTT-2024-25-C12",
           "num": 12,
-          "type": "fill",
+          "type": "essay",
           "topic": "hinh",
           "grade": "NC",
-          "points": 1,
-          "correct": "a) SABCD = 180cm ;",
+          "points": 2,
+          "correct": "a) 180 cm²; b) 4 cm²",
           "unit": null,
-          "figure": null
+          "figure": "ntt-2024-c12"
         }
       ]
     },

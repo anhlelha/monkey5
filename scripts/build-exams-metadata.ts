@@ -152,10 +152,10 @@ function main() {
       return {
         id: q.id,
         num: q.num,
-        type: q.type,
+        type: enrichment.type !== undefined ? enrichment.type : q.type,
         topic: q.topic,
         grade: q.grade,
-        points: q.points,
+        points: enrichment.points !== undefined ? enrichment.points : q.points,
         correct: enrichment.correct !== undefined ? enrichment.correct : q.correct,
         unit: enrichment.unit !== undefined ? enrichment.unit : q.unit,
         figure: enrichment.figure !== undefined ? enrichment.figure : q.figure

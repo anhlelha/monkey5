@@ -6,6 +6,8 @@ export interface ExamOverride {
   stem?: string;
   correct?: string;
   unit?: string | null;
+  type?: "fill" | "mcq" | "essay";
+  points?: number;
   // `null` explicitly clears a `figure` value that was baked into
   // official_exams_metadata.json by a previous build.
   figure?: string | null;
@@ -1877,6 +1879,49 @@ export const MANUAL_OVERRIDES: Record<string, ExamOverride> = {
   "NTT-2024-25-C4": { figure: "ntt-2024-c4" },
   "NTT-2024-25-C6": { figure: "ntt-2024-c6" },
   "NTT-2024-25-C10": { figure: "ntt-2024-c10" },
+  // Source PDF extraction interleaved the diagram labels with the prompt and
+  // split every fraction/subscript in the worked solution across lines.
+  "NTT-2024-25-C12": {
+    type: "essay",
+    points: 2,
+    stem: [
+      "Cho hình thang $ABCD$ có $AB$ và $CD$ là hai cạnh đáy, $CD = 2 \\times AB$.",
+      "Trên đoạn thẳng $AC$ lấy điểm $M$ sao cho $AM = MC$.",
+      "Trên đoạn thẳng $DM$ lấy điểm $N$ sao cho $MN = 2 \\times DN$.",
+      "Kéo dài $AN$ cắt $DC$ tại $P$. Biết diện tích tam giác $ABC$ bằng $60\\text{ cm}^2$.",
+      "",
+      "1. Tính diện tích hình thang $ABCD$.",
+      "2. Tính diện tích tam giác $DNP$.",
+    ].join("\n"),
+    correct: "a) 180 cm²; b) 4 cm²",
+    unit: null,
+    figure: "ntt-2024-c12",
+    modelAnswer: [
+      "**1. Diện tích hình thang $ABCD$**",
+      "",
+      "Hai tam giác $ABC$ và $ADC$ có chiều cao bằng nhau, còn $CD = 2 \\times AB$, nên",
+      "$$S_{ADC} = 2 \\times S_{ABC} = 2 \\times 60 = 120\\text{ cm}^2.$$",
+      "Do đó",
+      "$$S_{ABCD} = S_{ABC} + S_{ADC} = 60 + 120 = 180\\text{ cm}^2.$$",
+      "**2. Diện tích tam giác $DNP$**",
+      "",
+      "Vì $MN = 2 \\times DN$ nên $DN = \\dfrac{1}{3}DM$. Vì $M$ là trung điểm của $AC$ nên $AM = \\dfrac{1}{2}AC$.",
+      "",
+      "Ta có $S_{ADN} = \\dfrac{1}{2}S_{ANM}$ và $S_{ANM} = \\dfrac{1}{2}S_{ANC}$, suy ra",
+      "$$S_{ADN} = \\dfrac{1}{4}S_{ANC}.$$",
+      "Hai tam giác $ADN$ và $ANC$ có chung đáy $AN$, nên khoảng cách từ $D$ đến $AN$ bằng $\\dfrac{1}{4}$ khoảng cách từ $C$ đến $AN$. Vì $A$, $N$, $P$ thẳng hàng, suy ra",
+      "$$S_{DNP} = \\dfrac{1}{4}S_{CNP}.$$",
+      "Mà $D$, $P$, $C$ thẳng hàng nên $S_{DNC} = S_{DNP} + S_{CNP} = 5S_{DNP}$. Vì vậy",
+      "$$S_{DNP} = \\dfrac{1}{5}S_{DNC}.$$",
+      "Hai tam giác $DNC$ và $DMC$ có chung chiều cao hạ từ $C$ xuống $DM$, với $DN = \\dfrac{1}{3}DM$, nên",
+      "$$S_{DNC} = \\dfrac{1}{3}S_{DMC}.$$",
+      "Hai tam giác $DMC$ và $DAC$ có chung chiều cao hạ từ $D$ xuống $AC$, với $MC = \\dfrac{1}{2}AC$, nên",
+      "$$S_{DMC} = \\dfrac{1}{2}S_{DAC} = \\dfrac{1}{2} \\times 120 = 60\\text{ cm}^2.$$",
+      "Vậy",
+      "$$S_{DNP} = \\dfrac{1}{5} \\times \\dfrac{1}{3} \\times 60 = 4\\text{ cm}^2.$$",
+      "**Đáp số:** 1. $180\\text{ cm}^2$; 2. $4\\text{ cm}^2$.",
+    ].join("\n"),
+  },
   // NTT 2025-26 — restore missing fractions, remove answer-box bleed, fix truncation
   "NTT-2025-26-C1": { figure: "ntt-2025-c1" },
   "NTT-2025-26-C2": { figure: "ntt-2025-c2" },
